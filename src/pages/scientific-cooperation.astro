@@ -77,8 +77,8 @@ const agreements = [
   },
   {
     date: '05.08.2025',
-    type: 'Договір про надання доступу до системи перевірки на плагіат',
-    institution: 'Сервіс перевірки текстових документів на наявність збігів / ознак плагіату',
+    type: 'Договір про надання доступу до системи перевірки текстів',
+    institution: 'Сервіс перевірки текстових документів',
     href: 'https://inmech.kyiv.ua/l/ua/ns/doc/2025.08.05_plagiat.pdf'
   },
   {
@@ -88,44 +88,11 @@ const agreements = [
     href: 'https://inmech.kyiv.ua/l/ua/ns/doc/2026.01.15_GIDRO.pdf'
   }
 ];
-
-const resourceLinks = [
-  {
-    title: 'Журнал «Прикладна механіка»',
-    description: 'Міжнародний науковий журнал Інституту, присвячений актуальним проблемам теоретичної та прикладної механіки.',
-    href: 'https://pm.inmech.kyiv.ua/'
-  },
-  {
-    title: 'Календар подій',
-    description: 'Анонси наукових заходів, семінарів, конференцій та інших подій Інституту.',
-    href: 'https://inmech.kyiv.ua/l/ua/calendar_g/'
-  },
-  {
-    title: 'Конференції',
-    description: 'Інформація про наукові конференції, організовані або підтримані Інститутом.',
-    href: 'https://inmech.kyiv.ua/l/ua/conferences/'
-  },
-  {
-    title: 'Національний комітет України з теоретичної і прикладної механіки',
-    description: 'Сайт Національного комітету України з теоретичної і прикладної механіки, пов’язаного з міжнародною механічною спільнотою.',
-    href: 'https://natcommmech.inmech.kyiv.ua/'
-  },
-  {
-    title: 'Гранти та конкурси',
-    description: 'Інформаційний ресурс з оголошеннями про грантові програми, конкурси та можливості фінансування досліджень.',
-    href: 'https://grants.inmech.kyiv.ua/'
-  },
-  {
-    title: 'Вибори директора Інституту 2026',
-    description: 'Окремий інформаційний ресурс, присвячений виборам директора Інституту.',
-    href: 'https://election.inmech.kyiv.ua/'
-  }
-];
 ---
 
 <BaseLayout
   title={`Наукова співпраця | ${site.name}`}
-  description="Наукова співпраця Інституту механіки ім. С.П. Тимошенка НАН України: договори, угоди, партнерські установи та пов’язані ресурси."
+  description="Наукова співпраця Інституту механіки ім. С.П. Тимошенка НАН України: договори, угоди та партнерські установи."
   activePage="about"
 >
   <section class="page-hero">
@@ -163,33 +130,6 @@ const resourceLinks = [
             <p>{agreement.type}</p>
             <a class="button secondary" href={agreement.href} target="_blank" rel="noopener">
               Відкрити PDF
-            </a>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <p class="eyebrow">Пов’язані ресурси</p>
-          <h2 class="section-title">Інформаційні сайти та платформи</h2>
-          <p class="section-text">
-            Нижче подано ресурси, пов’язані з публікаційною, конференційною,
-            організаційною та грантовою діяльністю Інституту.
-          </p>
-        </div>
-      </div>
-
-      <div class="resource-grid">
-        {resourceLinks.map((item) => (
-          <article class="resource-card">
-            <h2>{item.title}</h2>
-            <p>{item.description}</p>
-            <a class="button secondary" href={item.href} target="_blank" rel="noopener">
-              Перейти на сайт
             </a>
           </article>
         ))}

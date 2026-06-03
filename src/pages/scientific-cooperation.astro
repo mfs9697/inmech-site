@@ -2,6 +2,93 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
 
+const agreements = [
+  {
+    date: '12.03.2026',
+    type: 'Договір про співпрацю',
+    institution: 'Інститут проблем міцності імені Г. С. Писаренка НАН України',
+    href: 'https://inmech.kyiv.ua/l/ua/ns/doc/2026.03.12_Dogovor_IMP.pdf'
+  },
+  {
+    date: '13.02.2026',
+    type: 'Договір про співпрацю',
+    institution: 'Національний технічний університет України «Київський політехнічний інститут імені Ігоря Сікорського»',
+    href: 'https://inmech.kyiv.ua/l/ua/ns/doc/2026.02.13_KPI.pdf'
+  },
+  {
+    date: '27.02.2026',
+    type: 'Угода про проведення практики аспірантів',
+    institution: 'Національний технічний університет України «Київський політехнічний інститут імені Ігоря Сікорського»',
+    href: 'https://inmech.kyiv.ua/l/ua/ns/doc/2026.02.27_KPI.pdf'
+  },
+  {
+    date: '26.12.2025',
+    type: 'Договір про співпрацю',
+    institution: 'Національний університет кораблебудування імені адмірала Макарова',
+    href: 'https://inmech.kyiv.ua/l/ua/ns/doc/2025.12.26_NUK.pdf'
+  },
+  {
+    date: '01.01.2025',
+    type: 'Договір про співпрацю',
+    institution: 'ВСП ЗВО «Відкритий міжнародний університет розвитку людини “Україна”» — Миколаївський інститут розвитку людини',
+    href: 'https://inmech.kyiv.ua/l/ua/ns/doc/2025.01.01_VMURL.pdf'
+  },
+  {
+    date: '2025',
+    type: 'Договір про співпрацю',
+    institution: 'Національний транспортний університет',
+    href: 'https://inmech.kyiv.ua/l/ua/ns/doc/2025_NTU.pdf'
+  },
+  {
+    date: '02.05.2024',
+    type: 'Договір про співпрацю',
+    institution: 'Національний університет біоресурсів і природокористування України',
+    href: 'https://inmech.kyiv.ua/l/ua/ns/doc/2024.05.02_NUBIP.pdf'
+  },
+  {
+    date: '17.04.2025',
+    type: 'Договір про співпрацю',
+    institution: 'Київський національний університет імені Тараса Шевченка',
+    href: 'https://inmech.kyiv.ua/l/ua/ns/doc/2025.04.17_KNU.pdf'
+  },
+  {
+    date: '25.03.2025',
+    type: 'Agreement on research, educational and cultural cooperation',
+    institution: 'Institute of Julius-Maximilians-Universität Würzburg',
+    href: 'https://inmech.kyiv.ua/l/ua/ns/doc/2025.03.25_AGREEMENT_W%C3%BCrzburg.pdf'
+  },
+  {
+    date: '04.03.2025',
+    type: 'Договір про партнерство і співробітництво',
+    institution: 'Київський національний університет будівництва і архітектури',
+    href: 'https://inmech.kyiv.ua/l/ua/ns/doc/2025.03.04_KNUBA.pdf'
+  },
+  {
+    date: '28.03.2022',
+    type: 'Cooperation agreement',
+    institution: 'Centro de Investigación Científica de Yucatán A. C. (CICY)',
+    href: 'https://inmech.kyiv.ua/l/ua/ns/doc/2022.03.28_CICY.pdf'
+  },
+  {
+    date: '22.10.2024',
+    type: 'Договір про співпрацю',
+    institution: 'Миколаївський національний аграрний університет',
+    href: 'https://inmech.kyiv.ua/l/ua/ns/doc/2024.10.22_MNAU.pdf'
+  },
+  {
+    date: '05.08.2025',
+    type: 'Договір про надання доступу до системи перевірки на плагіат',
+    institution: 'Сервіс перевірки текстових документів на наявність збігів / ознак плагіату',
+    href: 'https://inmech.kyiv.ua/l/ua/ns/doc/2025.08.05_plagiat.pdf'
+  },
+  {
+    date: '15.01.2026',
+    type: 'Договір про співпрацю',
+    institution: 'Інститут гідромеханіки Національної академії наук України',
+    href: 'https://inmech.kyiv.ua/l/ua/ns/doc/2026.01.15_GIDRO.pdf'
+  }
+];
+
 const resourceLinks = [
   {
     title: 'Журнал «Прикладна механіка»',
@@ -11,12 +98,12 @@ const resourceLinks = [
   {
     title: 'Календар подій',
     description: 'Анонси наукових заходів, семінарів, конференцій та інших подій Інституту.',
-    href: 'https://events.inmech.kyiv.ua/'
+    href: 'https://inmech.kyiv.ua/l/ua/calendar_g/'
   },
   {
     title: 'Конференції',
     description: 'Інформація про наукові конференції, організовані або підтримані Інститутом.',
-    href: 'https://conf.inmech.kyiv.ua/'
+    href: 'https://inmech.kyiv.ua/l/ua/conferences/'
   },
   {
     title: 'Національний комітет України з теоретичної і прикладної механіки',
@@ -27,32 +114,18 @@ const resourceLinks = [
     title: 'Гранти та конкурси',
     description: 'Інформаційний ресурс з оголошеннями про грантові програми, конкурси та можливості фінансування досліджень.',
     href: 'https://grants.inmech.kyiv.ua/'
-  }
-];
-
-const cooperationAreas = [
-  {
-    title: 'Міжнародні наукові контакти',
-    text: 'Інститут підтримує наукові зв’язки з університетами, дослідницькими центрами та професійними спільнотами в галузі механіки, прикладної математики, матеріалознавства й інженерних наук.'
   },
   {
-    title: 'Спільні дослідження та публікації',
-    text: 'Одним із важливих напрямів співпраці є підготовка спільних статей, участь у міжнародних дослідницьких проєктах, обмін результатами та розвиток міждисциплінарних підходів.'
-  },
-  {
-    title: 'Конференції та наукові заходи',
-    text: 'Інститут організовує та підтримує конференції, семінари й робочі зустрічі, які сприяють науковому обміну та залученню українських учених до міжнародної дослідницької спільноти.'
-  },
-  {
-    title: 'Гранти, конкурси та проєкти',
-    text: 'Науковці Інституту беруть участь у грантових конкурсах, програмах підтримки досліджень і спільних ініціативах, спрямованих на розвиток фундаментальної та прикладної науки.'
+    title: 'Вибори директора Інституту 2026',
+    description: 'Окремий інформаційний ресурс, присвячений виборам директора Інституту.',
+    href: 'https://election.inmech.kyiv.ua/'
   }
 ];
 ---
 
 <BaseLayout
   title={`Наукова співпраця | ${site.name}`}
-  description="Наукова співпраця Інституту механіки ім. С.П. Тимошенка НАН України: міжнародні контакти, конференції, журнали, комітети, гранти та конкурси."
+  description="Наукова співпраця Інституту механіки ім. С.П. Тимошенка НАН України: договори, угоди, партнерські установи та пов’язані ресурси."
   activePage="about"
 >
   <section class="page-hero">
@@ -61,22 +134,39 @@ const cooperationAreas = [
         <p class="eyebrow">Про інститут</p>
         <h1>Наукова співпраця</h1>
         <p class="lead">
-          Наукова співпраця Інституту охоплює міжнародні контакти, спільні дослідження,
-          конференційну діяльність, публікації, участь у професійних комітетах, грантових
-          програмах і конкурсах.
+          На цій сторінці подано встановлені відносини Інституту з науковими,
+          освітніми та іншими партнерськими установами. Кожна картка містить
+          назву установи, тип документа, дату та посилання на PDF.
         </p>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <div class="container cooperation-grid">
-      {cooperationAreas.map((item) => (
-        <article class="panel cooperation-card">
-          <h2>{item.title}</h2>
-          <p>{item.text}</p>
-        </article>
-      ))}
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Договори та угоди</p>
+          <h2 class="section-title">Встановлені партнерські відносини</h2>
+          <p class="section-text">
+            Перелік сформовано на основі документів, оприлюднених у розділі
+            «Наукова співпраця» попередньої версії сайту Інституту.
+          </p>
+        </div>
+      </div>
+
+      <div class="agreement-grid">
+        {agreements.map((agreement) => (
+          <article class="agreement-card">
+            <div class="agreement-meta">{agreement.date}</div>
+            <h2>{agreement.institution}</h2>
+            <p>{agreement.type}</p>
+            <a class="button secondary" href={agreement.href} target="_blank" rel="noopener">
+              Відкрити PDF
+            </a>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -104,20 +194,6 @@ const cooperationAreas = [
           </article>
         ))}
       </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <article class="panel cooperation-note">
-        <p class="eyebrow">Оновлення розділу</p>
-        <h2>Матеріали для наповнення</h2>
-        <p>
-          Цю сторінку можна доповнити переліком міжнародних угод, партнерських установ,
-          спільних проєктів, меморандумів, програм академічної мобільності та результатів
-          міжнародної співпраці наукових відділів.
-        </p>
-      </article>
     </div>
   </section>
 </BaseLayout>

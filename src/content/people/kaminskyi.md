@@ -7,12 +7,10 @@ departmentUrl: "/departments/09-fracture-mechanics/"
 degree: "доктор фізико-математичних наук"
 academicTitle: "професор"
 email: "fract@inmech.kyiv.ua"
-phone: "+380444567770"
-office: "314"
 order: 2
 featured: true
 # Додайте фото у public/people/kaminskyi.png і розкоментуйте наступний рядок:
-# photo: "/people/kaminskyi.png"
+photo: "/people/kaminskyi.png"
 
 profiles:
   - label: "Scopus"

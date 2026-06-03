@@ -35,7 +35,7 @@ const initials = person.name
   .join('')
   .toUpperCase();
 
-const keyProfiles = person.profiles.filter((profile) => profile.value || profile.url);
+const keyProfiles = person.profiles.filter((profile) => profile.url);
 const pageTitle = `${person.name} | ${site.name}`;
 const pageDescription = person.position
   ? `${person.name} — ${person.position}`
@@ -87,29 +87,15 @@ const pageDescription = person.position
 
       <section class="profile-layout">
         <aside class="profile-sidebar">
-          <section class="profile-panel compact">
-            <h2>Контакти</h2>
-            <dl class="profile-contact-list">
-              {person.email && (
-                <>
-                  <dt>E-mail</dt>
-                  <dd><a href={`mailto:${person.email}`}>{person.email}</a></dd>
-                </>
-              )}
-              {person.phone && (
-                <>
-                  <dt>Телефон</dt>
-                  <dd>{person.phone}</dd>
-                </>
-              )}
-              {person.office && (
-                <>
-                  <dt>Кабінет</dt>
-                  <dd>{person.office}</dd>
-                </>
-              )}
-            </dl>
-          </section>
+          {person.email && (
+            <section class="profile-panel compact">
+              <h2>Контакти</h2>
+              <dl class="profile-contact-list">
+                <dt>E-mail</dt>
+                <dd><a href={`mailto:${person.email}`}>{person.email}</a></dd>
+              </dl>
+            </section>
+          )}
 
           {keyProfiles.length > 0 && (
             <section class="profile-panel compact">
@@ -118,8 +104,7 @@ const pageDescription = person.position
                 {keyProfiles.map((profile) => (
                   <article class={`metric-card metric-${profile.kind}`}>
                     <span>{profile.label}</span>
-                    {profile.value && <strong>{profile.value}</strong>}
-                    {profile.url && <a href={profile.url} target="_blank" rel="noopener">Переглянути →</a>}
+                    <a href={profile.url} target="_blank" rel="noopener">Переглянути профіль →</a>
                   </article>
                 ))}
               </div>

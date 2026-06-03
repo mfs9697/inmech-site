@@ -42,7 +42,10 @@
 .tender-widget-panel,
 .tender-note,
 .management-hero-panel,
-.management-card {
+.management-card,
+.council-hero-panel,
+.council-card,
+.council-summary-card {
   padding: clamp(22px, 3.5vw, 38px);
 }
 
@@ -69,7 +72,9 @@
 .tender-widget-panel h2,
 .tender-note h2,
 .management-hero-panel h1,
-.management-card h2 {
+.management-card h2,
+.council-hero-panel h1,
+.council-card h2 {
   margin-top: 0;
 }
 
@@ -89,7 +94,10 @@
 .tender-widget-panel p:last-child,
 .tender-note p:last-child,
 .management-hero-panel p:last-child,
-.management-card p:last-child {
+.management-card p:last-child,
+.council-hero-panel p:last-child,
+.council-card p:last-child,
+.council-summary-card p:last-child {
   margin-bottom: 0;
 }
 
@@ -209,7 +217,9 @@
 .cooperation-grid,
 .resource-grid,
 .agreement-grid,
-.management-grid {
+.management-grid,
+.council-grid,
+.council-summary-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
@@ -240,7 +250,9 @@
 
 .resource-card,
 .agreement-card,
-.management-card {
+.management-card,
+.council-card,
+.council-summary-card {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -251,7 +263,8 @@
 .cooperation-card p,
 .agreement-card p,
 .management-degree,
-.management-role {
+.management-role,
+.council-card p {
   color: var(--muted);
 }
 
@@ -344,7 +357,8 @@
   display: none;
 }
 
-.management-accent {
+.management-accent,
+.council-role {
   width: fit-content;
   margin: 0 0 10px;
   padding: 5px 10px;
@@ -375,6 +389,61 @@
   margin-right: 6px;
 }
 
+.council-summary-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.council-summary-card span {
+  display: grid;
+  place-items: center;
+  min-width: 68px;
+  height: 68px;
+  border-radius: 20px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  font-size: 1.7rem;
+  font-weight: 950;
+}
+
+.council-summary-card p {
+  color: var(--muted);
+  font-weight: 750;
+}
+
+.council-card {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.council-card.has-role {
+  border-color: rgba(184, 135, 47, 0.45);
+}
+
+.council-number {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background: var(--surface-soft);
+  color: var(--accent-dark);
+  font-weight: 950;
+}
+
+.council-card h2 {
+  font-size: 1.16rem;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.council-card p {
+  margin-top: 0;
+}
+
 @media (max-width: 900px) {
   .history-grid,
   .timeline-item,
@@ -387,7 +456,9 @@
   .cooperation-grid,
   .resource-grid,
   .agreement-grid,
-  .management-grid {
+  .management-grid,
+  .council-grid,
+  .council-summary-grid {
     grid-template-columns: 1fr;
   }
 
@@ -397,7 +468,8 @@
 }
 
 @media (max-width: 560px) {
-  .management-card {
+  .management-card,
+  .council-card {
     grid-template-columns: 1fr;
   }
 }

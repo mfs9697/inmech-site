@@ -29,7 +29,10 @@
 .timeline-item,
 .director-card,
 .statute-hero-panel,
-.statute-note {
+.statute-note,
+.strategy-hero-panel,
+.strategy-card,
+.strategy-note {
   padding: clamp(22px, 3.5vw, 38px);
 }
 
@@ -43,14 +46,20 @@
 .history-grid .panel h2,
 .history-hero-panel h1,
 .statute-hero-panel h1,
-.statute-note h2 {
+.statute-note h2,
+.strategy-hero-panel h1,
+.strategy-card h2,
+.strategy-note h2 {
   margin-top: 0;
 }
 
 .history-grid .panel p:last-child,
 .history-hero-panel p:last-child,
 .statute-hero-panel p:last-child,
-.statute-note p:last-child {
+.statute-note p:last-child,
+.strategy-hero-panel p:last-child,
+.strategy-card p:last-child,
+.strategy-note p:last-child {
   margin-bottom: 0;
 }
 
@@ -166,12 +175,44 @@
   font-size: 0.82rem;
 }
 
+.strategy-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.strategy-grid.two-columns {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.value-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.value-card {
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  font-weight: 750;
+  box-shadow: none;
+}
+
+.strategy-card.highlight-card {
+  border-color: rgba(29, 79, 145, 0.22);
+}
+
 @media (max-width: 900px) {
   .history-grid,
   .timeline-item,
   .director-grid,
   .statute-grid,
-  .statute-card {
+  .statute-card,
+  .strategy-grid,
+  .strategy-grid.two-columns,
+  .value-grid {
     grid-template-columns: 1fr;
   }
 }

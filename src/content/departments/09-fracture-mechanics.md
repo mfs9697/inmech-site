@@ -17,7 +17,7 @@ staff:
   - name: "Богданова Ольга Станиславівна"
     url: "/people/bogdanova/"
   - name: "Васильєва Наталія Володимирівна"
-    url: "/people/vasylieva/"
+    url: "/people/vasylyeva/"
   - name: "Курчаков Євген Євгенович"
     url: "/people/kurchakov/"
   - name: "Терещенко Лідія Миколаївна"

@@ -5,6 +5,16 @@ import NewsCard from '../components/NewsCard.astro';
 import DepartmentCard from '../components/DepartmentCard.astro';
 import { quickLinks, site } from '../data/site';
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
 const news = (await getCollection('news'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
@@ -42,12 +52,12 @@ const researchAreas = [
         </div>
 
         <figure class="hero-image-card">
-          <img src="/assets/img/logo-jacket-hero.svg" alt="Значок Інституту механіки ім. С. П. Тимошенка" loading="eager" />
-          <figcaption>Символ Інституту на щоденній академічній мапі</figcaption>
+          <img src={withBase('/assets/img/logo-jacket-hero.svg')} alt="Значок Інституту механіки ім. С. П. Тимошенка" loading="eager" />
           <div class="hero-actions hero-image-actions">
-            <a class="button primary" href="/departments/">Наукові відділи</a>
-            <a class="button secondary" href="/news/">Останні новини</a>
+            <a class="button primary" href={withBase('/departments/')}>Наукові відділи</a>
+            <a class="button secondary" href={withBase('/news/')}>Останні новини</a>
           </div>
+          <figcaption>Символ Інституту на щоденній академічній мапі</figcaption>
         </figure>
       </div>
 
@@ -93,7 +103,7 @@ const researchAreas = [
             Розв’язання фундаментальних і прикладних задач механіки суцільного середовища,
             матеріалознавства, міцності, довговічності та надійності конструкцій.
           </p>
-          <a class="card-link" href="/departments/">Переглянути напрями →</a>
+          <a class="card-link" href={withBase('/departments/')}>Переглянути напрями →</a>
         </article>
 
         <article class="card">
@@ -131,7 +141,7 @@ const researchAreas = [
       </div>
 
       <div class="quick-links">
-        {researchAreas.map((area) => <a class="quick-link" href="/departments/">{area}</a>)}
+        {researchAreas.map((area) => <a class="quick-link" href={withBase('/departments/')}>{area}</a>)}
       </div>
     </div>
   </section>
@@ -147,7 +157,7 @@ const researchAreas = [
             тому їх розміщення не залежить від дати створення файлів.
           </p>
         </div>
-        <a class="button secondary" href="/departments/">Усі відділи</a>
+        <a class="button secondary" href={withBase('/departments/')}>Усі відділи</a>
       </div>
 
       <div class="department-grid">
@@ -167,7 +177,7 @@ const researchAreas = [
             на окремій сторінці новин.
           </p>
         </div>
-        <a class="button secondary" href="/news/">Усі новини</a>
+        <a class="button secondary" href={withBase('/news/')}>Усі новини</a>
       </div>
 
       <div class="news-list">

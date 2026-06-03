@@ -7,9 +7,6 @@ departmentUrl: "/departments/09-fracture-mechanics/"
 degree: "кандидат фізико-математичних наук"
 academicTitle: "старший науковий співробітник"
 email: "o.bogdanova@i.ua"
-phone: "+380444567768"
-office: "312"
-order: 4
 featured: true
 photo: "/people/bogdanova.png"
 

@@ -27,7 +27,9 @@
 .history-hero-panel,
 .history-grid .panel,
 .timeline-item,
-.director-card {
+.director-card,
+.statute-hero-panel,
+.statute-note {
   padding: clamp(22px, 3.5vw, 38px);
 }
 
@@ -39,12 +41,16 @@
 }
 
 .history-grid .panel h2,
-.history-hero-panel h1 {
+.history-hero-panel h1,
+.statute-hero-panel h1,
+.statute-note h2 {
   margin-top: 0;
 }
 
 .history-grid .panel p:last-child,
-.history-hero-panel p:last-child {
+.history-hero-panel p:last-child,
+.statute-hero-panel p:last-child,
+.statute-note p:last-child {
   margin-bottom: 0;
 }
 
@@ -101,10 +107,71 @@
   font-weight: 700;
 }
 
+.statute-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.statute-card {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: 18px;
+  padding: clamp(20px, 3vw, 30px);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.statute-card.current {
+  border-color: rgba(184, 135, 47, 0.55);
+}
+
+.statute-year {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  font-size: 1.2rem;
+  font-weight: 950;
+}
+
+.statute-card.current .statute-year {
+  background: rgba(184, 135, 47, 0.18);
+  color: var(--gold);
+}
+
+.statute-card-body h2 {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+}
+
+.statute-card-body p {
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+
+.statute-badge {
+  display: inline-flex;
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(184, 135, 47, 0.15);
+  color: var(--gold) !important;
+  font-weight: 850;
+  font-size: 0.82rem;
+}
+
 @media (max-width: 900px) {
   .history-grid,
   .timeline-item,
-  .director-grid {
+  .director-grid,
+  .statute-grid,
+  .statute-card {
     grid-template-columns: 1fr;
   }
 }

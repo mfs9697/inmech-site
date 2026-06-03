@@ -14,7 +14,7 @@ featured: true
 
 profiles:
   - label: "Scopus"
-    value: "ID: 15080953100; h-index: 6"
+    value: "h-index: 6"
     url: "https://www.scopus.com/authid/detail.uri?authorId=15080953100"
     kind: "scopus"
 

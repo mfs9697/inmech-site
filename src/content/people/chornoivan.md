@@ -13,7 +13,7 @@ photo: "/people/chornoivan.png"
 
 profiles:
   - label: "Scopus"
-    value: "ID: 6603227520; h-index: 9"
+    value: "h-index: 9"
     url: "https://www.scopus.com/authid/detail.uri?authorId=6603227520"
     kind: "scopus"
   - label: "Web of Science"

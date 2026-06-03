@@ -1,20 +1,20 @@
 .specialized-hero-panel,
 .specialized-summary-card,
 .specialized-council-panel,
-.specialized-leader-card {
+.specialized-person-card {
   padding: clamp(22px, 3.5vw, 38px);
 }
 
 .specialized-hero-panel h1,
 .specialized-council-panel h2,
-.specialized-leader-card h3 {
+.specialized-person-card h3 {
   margin-top: 0;
 }
 
 .specialized-hero-panel p:last-child,
 .specialized-summary-card p:last-child,
 .specialized-council-panel p:last-child,
-.specialized-leader-card p:last-child {
+.specialized-person-card p:last-child {
   margin-bottom: 0;
 }
 
@@ -74,49 +74,73 @@
   color: var(--muted);
 }
 
-.specialized-leadership-grid {
+.specialized-people-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  margin-bottom: 26px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
 }
 
-.specialized-leader-card {
+.specialized-person-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
   background: var(--surface-soft);
   border: 1px solid var(--line);
-  border-radius: 18px;
+  border-radius: 20px;
 }
 
-.specialized-leader-card h3 {
-  font-size: 1.1rem;
+.specialized-person-card.has-role {
+  border-color: rgba(184, 135, 47, 0.45);
+  background:
+    radial-gradient(circle at 95% 0%, rgba(184, 135, 47, 0.12), transparent 34%),
+    var(--surface-soft);
+}
+
+.specialized-person-card h3 {
+  font-size: 1.16rem;
   line-height: 1.28;
-  margin-bottom: 8px;
+  margin-bottom: 0;
 }
 
-.specialized-leader-card p:last-child,
-.specialized-member-list li {
-  color: var(--muted);
+.specialized-role-badge {
+  width: fit-content;
+  margin: 0;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(184, 135, 47, 0.16);
+  color: var(--gold);
+  font-weight: 850;
+  font-size: 0.84rem;
 }
 
-.specialized-members-block h3 {
-  margin-top: 0;
-  font-size: 1.25rem;
-}
-
-.specialized-member-list {
+.specialized-person-details {
   display: grid;
   gap: 10px;
   margin: 0;
-  padding-left: 1.35rem;
 }
 
-.specialized-member-list li {
-  padding-left: 4px;
+.specialized-person-details div {
+  display: grid;
+  gap: 3px;
+}
+
+.specialized-person-details dt {
+  color: var(--accent-dark);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.specialized-person-details dd {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.45;
 }
 
 @media (max-width: 900px) {
   .specialized-summary-grid,
-  .specialized-leadership-grid {
+  .specialized-people-grid {
     grid-template-columns: 1fr;
   }
 }

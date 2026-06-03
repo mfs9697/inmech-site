@@ -13,7 +13,7 @@ photo: "/people/martynyak.png"
 
 profiles:
   - label: "Scopus"
-    value: "ID: 6602805303; h-index: 13"
+    value: "h-index: 13"
     url: "https://www.scopus.com/authid/detail.uri?authorId=6602805303"
     kind: "scopus"
   - label: "ORCID iD"

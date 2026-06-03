@@ -23,3 +23,88 @@
   background: rgba(255, 255, 255, 0.25);
   transform: translateY(-1px);
 }
+
+.history-hero-panel,
+.history-grid .panel,
+.timeline-item,
+.director-card {
+  padding: clamp(22px, 3.5vw, 38px);
+}
+
+.history-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.history-grid .panel h2,
+.history-hero-panel h1 {
+  margin-top: 0;
+}
+
+.history-grid .panel p:last-child,
+.history-hero-panel p:last-child {
+  margin-bottom: 0;
+}
+
+.history-list {
+  margin: 18px 0 0;
+  padding-left: 22px;
+}
+
+.history-list li {
+  margin-bottom: 8px;
+}
+
+.timeline {
+  display: grid;
+  gap: 14px;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.timeline-year {
+  color: var(--gold);
+  font-weight: 950;
+  font-size: 1.1rem;
+}
+
+.timeline-content h3 {
+  margin: 0 0 8px;
+}
+
+.timeline-content p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.director-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.director-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: none;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .history-grid,
+  .timeline-item,
+  .director-grid {
+    grid-template-columns: 1fr;
+  }
+}

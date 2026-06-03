@@ -13,7 +13,7 @@ photo: "/people/vasylyeva.png"
 
 profiles:
   - label: "Scopus"
-    value: "ID: 36115762600; h-index: 9"
+    value: "h-index: 9"
     url: "https://www.scopus.com/authid/detail.uri?authorId=36115762600"
     kind: "scopus"
   - label: "Web of Science"

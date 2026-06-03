@@ -12,7 +12,7 @@ photo: "/people/bogdanova.png"
 
 profiles:
   - label: "Scopus"
-    value: "ID: 7005639439; h-index: 5"
+    value: "h-index: 5"
     url: "https://www.scopus.com/authid/detail.uri?authorId=7005639439"
     kind: "scopus"
 

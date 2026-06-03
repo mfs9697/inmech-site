@@ -32,7 +32,11 @@
 .statute-note,
 .strategy-hero-panel,
 .strategy-card,
-.strategy-note {
+.strategy-note,
+.cooperation-hero-panel,
+.cooperation-card,
+.cooperation-note,
+.resource-card {
   padding: clamp(22px, 3.5vw, 38px);
 }
 
@@ -49,7 +53,11 @@
 .statute-note h2,
 .strategy-hero-panel h1,
 .strategy-card h2,
-.strategy-note h2 {
+.strategy-note h2,
+.cooperation-hero-panel h1,
+.cooperation-card h2,
+.cooperation-note h2,
+.resource-card h2 {
   margin-top: 0;
 }
 
@@ -59,7 +67,11 @@
 .statute-note p:last-child,
 .strategy-hero-panel p:last-child,
 .strategy-card p:last-child,
-.strategy-note p:last-child {
+.strategy-note p:last-child,
+.cooperation-hero-panel p:last-child,
+.cooperation-card p:last-child,
+.cooperation-note p:last-child,
+.resource-card p:last-child {
   margin-bottom: 0;
 }
 
@@ -175,7 +187,9 @@
   font-size: 0.82rem;
 }
 
-.strategy-grid {
+.strategy-grid,
+.cooperation-grid,
+.resource-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
@@ -204,6 +218,22 @@
   border-color: rgba(29, 79, 145, 0.22);
 }
 
+.resource-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.resource-card p,
+.cooperation-card p {
+  color: var(--muted);
+}
+
+.resource-card .button {
+  margin-top: 10px;
+}
+
 @media (max-width: 900px) {
   .history-grid,
   .timeline-item,
@@ -212,7 +242,9 @@
   .statute-card,
   .strategy-grid,
   .strategy-grid.two-columns,
-  .value-grid {
+  .value-grid,
+  .cooperation-grid,
+  .resource-grid {
     grid-template-columns: 1fr;
   }
 }

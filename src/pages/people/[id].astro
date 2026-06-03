@@ -1,0 +1,179 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../data/site';
+import '../../styles/profile.css';
+
+export async function getStaticPaths() {
+  const people = await getCollection('people');
+
+  return people.map((entry) => ({
+    params: { id: entry.id },
+    props: { entry }
+  }));
+}
+
+const { entry } = Astro.props;
+const person = entry.data;
+const { Content } = await render(entry);
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(url: string) {
+  if (url.startsWith('http') || url.startsWith('mailto:') || url.startsWith('#')) {
+    return url;
+  }
+
+  return `${base}${url.startsWith('/') ? url : `/${url}`}`;
+}
+
+const initials = person.name
+  .split(/\s+/)
+  .filter(Boolean)
+  .slice(0, 2)
+  .map((part) => part[0])
+  .join('')
+  .toUpperCase();
+
+const keyProfiles = person.profiles.filter((profile) => profile.value || profile.url);
+const pageTitle = `${person.name} | ${site.name}`;
+const pageDescription = person.position
+  ? `${person.name} — ${person.position}`
+  : `${person.name} — сторінка співробітника Інституту механіки ім. С.П. Тимошенка НАН України.`;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} activePage="departments">
+  <section class="profile-shell">
+    <div class="container">
+      <nav class="profile-breadcrumb" aria-label="Навігація">
+        <a href={withBase('/')}>Головна</a>
+        <span aria-hidden="true">/</span>
+        <a href={withBase('/departments/')}>Наукові відділи</a>
+        {person.departmentUrl && (
+          <>
+            <span aria-hidden="true">/</span>
+            <a href={withBase(person.departmentUrl)}>{person.department ?? 'Відділ'}</a>
+          </>
+        )}
+      </nav>
+
+      <article class="profile-hero-wow">
+        <div class="profile-portrait-card">
+          {person.photo ? (
+            <img src={withBase(person.photo)} alt={`Фото: ${person.name}`} class="profile-photo-wow" loading="eager" />
+          ) : (
+            <div class="profile-photo-placeholder" aria-hidden="true">{initials}</div>
+          )}
+        </div>
+
+        <div class="profile-intro-card">
+          <p class="eyebrow">Сторінка співробітника</p>
+          <h1>{person.name}</h1>
+          {person.nameEn && <p class="profile-name-en">{person.nameEn}</p>}
+
+          <div class="profile-role-stack">
+            {person.position && <p><strong>Посада:</strong> {person.position}</p>}
+            {person.department && <p><strong>Відділ:</strong> {person.department}</p>}
+            {person.degree && <p><strong>Науковий ступінь:</strong> {person.degree}</p>}
+            {person.academicTitle && <p><strong>Вчене звання:</strong> {person.academicTitle}</p>}
+          </div>
+
+          <div class="profile-actions">
+            {person.email && <a class="profile-button primary" href={`mailto:${person.email}`}>Написати листа</a>}
+            {person.departmentUrl && <a class="profile-button secondary" href={withBase(person.departmentUrl)}>Сторінка відділу</a>}
+          </div>
+        </div>
+      </article>
+
+      <section class="profile-layout">
+        <aside class="profile-sidebar">
+          <section class="profile-panel compact">
+            <h2>Контакти</h2>
+            <dl class="profile-contact-list">
+              {person.email && (
+                <>
+                  <dt>E-mail</dt>
+                  <dd><a href={`mailto:${person.email}`}>{person.email}</a></dd>
+                </>
+              )}
+              {person.phone && (
+                <>
+                  <dt>Телефон</dt>
+                  <dd>{person.phone}</dd>
+                </>
+              )}
+              {person.office && (
+                <>
+                  <dt>Кабінет</dt>
+                  <dd>{person.office}</dd>
+                </>
+              )}
+            </dl>
+          </section>
+
+          {keyProfiles.length > 0 && (
+            <section class="profile-panel compact">
+              <h2>Наукометричні профілі</h2>
+              <div class="metric-stack">
+                {keyProfiles.map((profile) => (
+                  <article class={`metric-card metric-${profile.kind}`}>
+                    <span>{profile.label}</span>
+                    {profile.value && <strong>{profile.value}</strong>}
+                    {profile.url && <a href={profile.url} target="_blank" rel="noopener">Переглянути →</a>}
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
+        </aside>
+
+        <main class="profile-main">
+          {person.researchAreas.length > 0 && (
+            <section class="profile-panel">
+              <div class="section-kicker">Research profile</div>
+              <h2>Напрями наукової діяльності</h2>
+              <ul class="research-list-wow">
+                {person.researchAreas.map((area) => <li>{area}</li>)}
+              </ul>
+            </section>
+          )}
+
+          {person.professionalActivity && (
+            <section class="profile-panel">
+              <div class="section-kicker">Academic activity</div>
+              <h2>Професійна діяльність</h2>
+              <p>{person.professionalActivity}</p>
+            </section>
+          )}
+
+          <section class="profile-panel profile-content">
+            <Content />
+          </section>
+
+          {person.publications.length > 0 && (
+            <section class="profile-panel">
+              <div class="section-kicker">Selected publications</div>
+              <h2>Публікації</h2>
+              <div class="publication-groups">
+                {person.publications.map((group) => (
+                  <section class="publication-group">
+                    <h3>{group.title}</h3>
+                    {group.type === 'ordered' ? (
+                      <ol class="publication-list">
+                        {group.items.map((item) => <li>{item}</li>)}
+                      </ol>
+                    ) : (
+                      <ul class="publication-list unordered">
+                        {group.items.map((item) => <li>{item}</li>)}
+                      </ul>
+                    )}
+                  </section>
+                ))}
+              </div>
+            </section>
+          )}
+        </main>
+      </section>
+    </div>
+  </section>
+</BaseLayout>

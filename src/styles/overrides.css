@@ -36,7 +36,8 @@
 .cooperation-hero-panel,
 .cooperation-card,
 .cooperation-note,
-.resource-card {
+.resource-card,
+.agreement-card {
   padding: clamp(22px, 3.5vw, 38px);
 }
 
@@ -57,7 +58,8 @@
 .cooperation-hero-panel h1,
 .cooperation-card h2,
 .cooperation-note h2,
-.resource-card h2 {
+.resource-card h2,
+.agreement-card h2 {
   margin-top: 0;
 }
 
@@ -71,7 +73,8 @@
 .cooperation-hero-panel p:last-child,
 .cooperation-card p:last-child,
 .cooperation-note p:last-child,
-.resource-card p:last-child {
+.resource-card p:last-child,
+.agreement-card p:last-child {
   margin-bottom: 0;
 }
 
@@ -189,7 +192,8 @@
 
 .strategy-grid,
 .cooperation-grid,
-.resource-grid {
+.resource-grid,
+.agreement-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
@@ -218,7 +222,8 @@
   border-color: rgba(29, 79, 145, 0.22);
 }
 
-.resource-card {
+.resource-card,
+.agreement-card {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -226,12 +231,40 @@
 }
 
 .resource-card p,
-.cooperation-card p {
+.cooperation-card p,
+.agreement-card p {
   color: var(--muted);
 }
 
-.resource-card .button {
+.resource-card .button,
+.agreement-card .button {
   margin-top: 10px;
+}
+
+.agreement-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.agreement-card h2 {
+  font-size: 1.12rem;
+  line-height: 1.28;
+}
+
+.agreement-meta {
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  font-weight: 850;
+  font-size: 0.88rem;
+}
+
+.agreement-card .button {
+  width: fit-content;
+  margin-top: auto;
 }
 
 @media (max-width: 900px) {
@@ -244,7 +277,8 @@
   .strategy-grid.two-columns,
   .value-grid,
   .cooperation-grid,
-  .resource-grid {
+  .resource-grid,
+  .agreement-grid {
     grid-template-columns: 1fr;
   }
 }

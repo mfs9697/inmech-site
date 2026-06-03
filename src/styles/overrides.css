@@ -37,7 +37,10 @@
 .cooperation-card,
 .cooperation-note,
 .resource-card,
-.agreement-card {
+.agreement-card,
+.tender-hero-panel,
+.tender-widget-panel,
+.tender-note {
   padding: clamp(22px, 3.5vw, 38px);
 }
 
@@ -59,7 +62,10 @@
 .cooperation-card h2,
 .cooperation-note h2,
 .resource-card h2,
-.agreement-card h2 {
+.agreement-card h2,
+.tender-hero-panel h1,
+.tender-widget-panel h2,
+.tender-note h2 {
   margin-top: 0;
 }
 
@@ -74,7 +80,10 @@
 .cooperation-card p:last-child,
 .cooperation-note p:last-child,
 .resource-card p:last-child,
-.agreement-card p:last-child {
+.agreement-card p:last-child,
+.tender-hero-panel p:last-child,
+.tender-widget-panel p:last-child,
+.tender-note p:last-child {
   margin-bottom: 0;
 }
 
@@ -267,6 +276,25 @@
   margin-top: auto;
 }
 
+.compact-header {
+  align-items: center;
+}
+
+.tender-widget-frame {
+  min-height: 720px;
+  margin-top: 24px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-soft);
+}
+
+.tender-widget-frame iframe {
+  display: block;
+  width: 100% !important;
+  border: 0 !important;
+}
+
 @media (max-width: 900px) {
   .history-grid,
   .timeline-item,
@@ -280,5 +308,9 @@
   .resource-grid,
   .agreement-grid {
     grid-template-columns: 1fr;
+  }
+
+  .compact-header {
+    align-items: flex-start;
   }
 }

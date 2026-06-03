@@ -1,0 +1,25 @@
+.aside-card .aside-list a {
+  display: block;
+  color: #f7fbff;
+  font-weight: 850;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.aside-card .aside-list a:hover,
+.aside-card .aside-list a:focus-visible {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.aside-card .aside-list li:has(a) {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.34);
+}
+
+.aside-card .aside-list li:has(a):hover,
+.aside-card .aside-list li:has(a):focus-within {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}

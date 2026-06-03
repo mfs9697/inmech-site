@@ -14,11 +14,11 @@ photo: "/people/kaminskyi.png"
 
 profiles:
   - label: "Scopus"
-    value: "ID: 16468653300"
+    value: "h-index: 14"
     url: "https://www.scopus.com/authid/detail.uri?authorId=16468653300"
     kind: "scopus"
   - label: "Google Scholar"
-    value: "h-index: 14"
+    value: "h-index: 20"
     url: "https://scholar.google.com/citations?user=prBz8-YAAAAJ"
     kind: "scholar"
   - label: "ORCID iD"

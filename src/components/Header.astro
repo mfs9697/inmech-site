@@ -2,7 +2,7 @@
 import { site } from '../data/site';
 
 interface Props {
-  activePage?: 'home' | 'news' | 'departments';
+  activePage?: 'home' | 'news' | 'departments' | 'about';
 }
 
 const { activePage = 'home' } = Astro.props;
@@ -48,9 +48,9 @@ function withBase(path: string) {
         <li><a class={isActive('home')} href={withBase('/')}>Головна</a></li>
 
         <li>
-          <span class="nav-label">Про інститут ▾</span>
+          <span class={`nav-label ${isActive('about')}`}>Про інститут ▾</span>
           <ul class="submenu">
-            <li><a href={withBase('/#about')}>Історія та місія</a></li>
+            <li><a class={isActive('about')} href={withBase('/history/')}>Історія та місія</a></li>
             <li><a href="#">Статут</a></li>
             <li><a href="#">Стратегія розвитку</a></li>
             <li><a href="#">Наукова співпраця</a></li>

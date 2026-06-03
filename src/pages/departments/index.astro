@@ -1,85 +1,53 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import DepartmentCard from '../../components/DepartmentCard.astro';
 import { site } from '../../data/site';
 
-export async function getStaticPaths() {
-  const departments = await getCollection('departments');
+const departments = (await getCollection('departments'))
+  .sort((a, b) => a.data.order - b.data.order);
 
-  return departments.map((entry) => ({
-    params: { id: entry.id },
-    props: { entry }
-  }));
-}
-
-const { entry } = Astro.props;
-const { Content } = await render(entry);
-
-const number = String(entry.data.number).padStart(2, '0');
-const staff = entry.data.staff ?? [];
-const contactEmail = entry.data.contactEmail;
-
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-
-function withBase(url: string) {
-  if (url.startsWith('http') || url.startsWith('mailto:') || url.startsWith('#')) {
-    return url;
-  }
-
-  return `${base}${url.startsWith('/') ? url : `/${url}`}`;
-}
+const groupedDepartments = [...departments.reduce((acc, entry) => {
+  const group = entry.data.group;
+  if (!acc.has(group)) acc.set(group, []);
+  acc.get(group)?.push(entry);
+  return acc;
+}, new Map<string, typeof departments>())].map(([group, entries], index) => ({
+  group,
+  entries,
+  id: `department-group-${index + 1}`
+}));
 ---
 
 <BaseLayout
-  title={`${entry.data.title} | ${site.name}`}
-  description={entry.data.summary}
+  title={`Наукові відділи | ${site.name}`}
+  description="Наукові відділи Інституту механіки ім. С.П. Тимошенка НАН України."
   activePage="departments"
 >
   <section class="page-hero">
     <div class="container">
       <div class="panel">
-        <p class="eyebrow">Науковий відділ {number}</p>
-        <h1>{entry.data.title}</h1>
-        <p class="lead">{entry.data.summary}</p>
-        {entry.data.head && <p><strong>Керівник:</strong> {entry.data.head}</p>}
+        <p class="eyebrow">Структура Інституту</p>
+        <h1>Наукові відділи</h1>
+        <p class="lead">
+          Наукові відділи Інституту згруповано за основними напрямами досліджень.
+          Кожен відділ має окрему сторінку з історією, науковими напрямами,
+          складом співробітників і контактною інформацією.
+        </p>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <div class="container">
-      <article class="panel" style="padding: clamp(24px, 4vw, 42px);">
-        <Content />
-
-        {staff.length > 0 && (
-          <>
-            <h2>Співробітники відділу</h2>
-            <ul>
-              {staff.map((person) => (
-                <li>
-                  {person.url ? (
-                    <a href={withBase(person.url)}>{person.name}</a>
-                  ) : (
-                    person.name
-                  )}
-                  {person.position && <> — {person.position}</>}
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
-
-        {contactEmail && (
-          <p>
-            <strong>Контактна інформація:</strong>{' '}
-            <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
-          </p>
-        )}
-
-        <p>
-          <a href={withBase('/departments/')}>← До списку наукових відділів</a>
-        </p>
-      </article>
+    <div class="container department-groups">
+      {groupedDepartments.map(({ group, entries, id }) => (
+        <section class="department-group" aria-labelledby={id}>
+          <h2 id={id}>{group}</h2>
+          <div class="department-grid">
+            {entries.map((entry) => <DepartmentCard entry={entry} />)}
+          </div>
+        </section>
+      ))}
     </div>
   </section>
 </BaseLayout>

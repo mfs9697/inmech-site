@@ -14,7 +14,7 @@ staff:
     url: "/people/kaminskyi/"
   - name: "Мартиняк Ростислав Михайлович"
     url: "/people/martynyak/"
-  - name: "Богданова Ольга Станиславівна"
+  - name: "Богданова Ольга Станіславівна"
     url: "/people/bogdanova/"
   - name: "Васильєва Наталія Володимирівна"
     url: "/people/vasylyeva/"

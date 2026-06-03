@@ -7,8 +7,6 @@ departmentUrl: "/departments/09-fracture-mechanics/"
 degree: "кандидат фізико-математичних наук"
 academicTitle: "старший науковий співробітник"
 email: "dfm11@ukr.net"
-phone: "+380444567768"
-office: "312"
 order: 6
 featured: true
 # Фото поки не підключено: файл public/people/kurchakov.png у репозиторії не знайдено.

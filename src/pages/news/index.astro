@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NewsCard from '../../components/NewsCard.astro';
+import YearArchive from '../../components/YearArchive.astro';
+import { site } from '../../data/site';
+
+const news = (await getCollection('news'))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout
+  title={`Новини | ${site.name}`}
+  description="Сторінка новин Astro-прототипу сайту Інституту механіки ім. С.П. Тимошенка НАН України."
+  activePage="news"
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">Архів повідомлень</p>
+        <h1>Новини Інституту</h1>
+        <p class="lead">У цій версії новини подані як записи колекції Astro: кожна новина має окремий Markdown-файл, дату, категорію та теги.</p>
+        <YearArchive activeYear={2026} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="news-list">
+        {news.map((entry) => <NewsCard entry={entry} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

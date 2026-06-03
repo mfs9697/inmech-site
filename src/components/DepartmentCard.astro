@@ -1,0 +1,19 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'departments'>;
+}
+
+const { entry } = Astro.props;
+const number = String(entry.data.number).padStart(2, '0');
+---
+
+<article class="department-card">
+  <div class="department-number" aria-hidden="true">{number}</div>
+  <div>
+    <h3>{entry.data.title}</h3>
+    <p>{entry.data.summary}</p>
+    {entry.data.head && <p class="department-head">Керівник: {entry.data.head}</p>}
+  </div>
+</article>

@@ -1,0 +1,59 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  activePage?: 'home' | 'news' | 'departments';
+}
+
+const { activePage = 'home' } = Astro.props;
+const isActive = (page: Props['activePage']) => activePage === page ? 'active' : '';
+---
+
+<header class="site-header">
+  <div class="topbar">
+    <div class="container">
+      <span>{site.officialLabel}</span>
+      <div class="lang-switch" aria-label="Вибір мови">
+        <a class="active" href={Astro.url.pathname}>Українська</a>
+        <a href="#" aria-disabled="true">English</a>
+      </div>
+    </div>
+  </div>
+  <div class="container header-main">
+    <a class="brand" href="/" aria-label="Головна сторінка">
+      <img src="/assets/img/inmech-mark.svg" alt="Логотип Інституту механіки" />
+      <span class="brand-text">
+        <strong class="brand-title">{site.name}</strong>
+        <span class="brand-subtitle">{site.subtitle}</span>
+      </span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Меню</button>
+    <nav class="primary-nav" id="primary-nav" aria-label="Головне меню">
+      <ul>
+        <li><a class={isActive('home')} href="/">Головна</a></li>
+        <li>
+          <span class="nav-label">Про інститут ▾</span>
+          <ul class="submenu">
+            <li><a href="/#about">Історія та місія</a></li>
+            <li><a href="#">Статут</a></li>
+            <li><a href="#">Стратегія розвитку</a></li>
+            <li><a href="#">Наукова співпраця</a></li>
+            <li><a href="#">Закупівлі та тендери</a></li>
+          </ul>
+        </li>
+        <li>
+          <span class="nav-label">Структура ▾</span>
+          <ul class="submenu">
+            <li><a href="#">Дирекція</a></li>
+            <li><a class={isActive('departments')} href="/departments/">Наукові відділи</a></li>
+            <li><a href="#">Вчена рада</a></li>
+            <li><a href="#">Спеціалізовані ради</a></li>
+            <li><a href="#">Рада молодих вчених</a></li>
+          </ul>
+        </li>
+        <li><a class={isActive('news')} href="/news/">Новини</a></li>
+        <li><a href="#contacts">Контакти</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DepartmentCard from '../../components/DepartmentCard.astro';
+import { site } from '../../data/site';
+
+const departments = (await getCollection('departments'))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const groupedDepartments = [...departments.reduce((acc, entry) => {
+  const group = entry.data.group;
+  if (!acc.has(group)) acc.set(group, []);
+  acc.get(group)?.push(entry);
+  return acc;
+}, new Map<string, typeof departments>())].map(([group, entries], index) => ({
+  group,
+  entries,
+  id: `department-group-${index + 1}`
+}));
+---
+
+<BaseLayout
+  title={`Наукові відділи | ${site.name}`}
+  description="Сторінка наукових відділів Astro-прототипу сайту Інституту механіки ім. С.П. Тимошенка НАН України."
+  activePage="departments"
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">Структура Інституту</p>
+        <h1>Наукові відділи</h1>
+        <p class="lead">Відділи зберігаються як окремі Markdown-файли. Порядок показу визначається полем <code>order</code>, тому сторінка не буде випадково змінюватися після редагування або додавання нового відділу.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container department-groups">
+      {groupedDepartments.map(({ group, entries, id }) => (
+        <section class="department-group" aria-labelledby={id}>
+          <h2 id={id}>{group}</h2>
+          <div class="department-grid">
+            {entries.map((entry) => <DepartmentCard entry={entry} />)}
+          </div>
+        </section>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

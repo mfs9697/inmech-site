@@ -1,0 +1,183 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NewsCard from '../components/NewsCard.astro';
+import DepartmentCard from '../components/DepartmentCard.astro';
+import { quickLinks, site } from '../data/site';
+
+const news = (await getCollection('news'))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+
+const departments = (await getCollection('departments'))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 6);
+
+const researchAreas = [
+  'Механіка деформівного твердого тіла',
+  'Динаміка, стійкість і теорія коливань',
+  'Термопружність, термопластичність і повзучість',
+  'Механіка руйнування, втома та довговічність матеріалів',
+  'Механіка композитних, неоднорідних і функціональних матеріалів',
+  'Контактна взаємодія, хвильові процеси та чисельне моделювання'
+];
+---
+
+<BaseLayout
+  title={`${site.name}`}
+  description={site.description}
+  activePage="home"
+>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-card">
+        <p class="eyebrow">Національна академія наук України</p>
+        <h1>Інститут механіки ім. С.П. Тимошенка НАН України</h1>
+        <p class="lead">
+          Провідна наукова установа НАН України, що здійснює фундаментальні та прикладні дослідження
+          в галузі механіки деформівного твердого тіла, динаміки, стійкості, термопружності,
+          повзучості, механіки руйнування та механіки композитних матеріалів.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="/news/">Останні новини</a>
+          <a class="button secondary" href="/departments/">Наукові відділи</a>
+        </div>
+      </div>
+
+      <aside class="aside-card" aria-labelledby="research-title">
+        <h2 id="research-title">Основні напрями досліджень</h2>
+        <p>
+          Дослідження Інституту охоплюють сучасні задачі механіки матеріалів, конструкцій,
+          оболонок, композитів і структур з пошкодженнями.
+        </p>
+        <ul class="aside-list">
+          <li>Механіка матеріалів і конструкцій</li>
+          <li>Механіка руйнування та втома</li>
+          <li>Динаміка, стійкість і коливання</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Про інститут</p>
+          <h2 class="section-title">Наукова школа, дослідження та інженерні застосування</h2>
+          <p class="section-text">
+            Інститут механіки ім. С.П. Тимошенка НАН України проводить дослідження у ключових напрямах
+            теоретичної та прикладної механіки, поєднуючи розвиток математичних моделей, експериментальні
+            дослідження, чисельне моделювання та впровадження результатів у практику.
+          </p>
+        </div>
+      </div>
+
+      <div class="cards-grid">
+        <article class="card">
+          <h3>Наукові дослідження</h3>
+          <p>
+            Розв’язання фундаментальних і прикладних задач механіки суцільного середовища,
+            матеріалознавства, міцності, довговічності та надійності конструкцій.
+          </p>
+          <a class="card-link" href="/departments/">Переглянути напрями →</a>
+        </article>
+
+        <article class="card">
+          <h3>Освітньо-наукова діяльність</h3>
+          <p>
+            Підготовка наукових кадрів, аспірантура, докторантура, спеціалізовані вчені ради,
+            наукові семінари та участь молодих учених у дослідницьких проєктах.
+          </p>
+          <a class="card-link" href="#">Аспірантура та докторантура →</a>
+        </article>
+
+        <article class="card">
+          <h3>Публікації та співпраця</h3>
+          <p>
+            Видання наукових журналів, міжнародна співпраця, конференції, спільні проєкти
+            та поширення результатів досліджень у світовому науковому просторі.
+          </p>
+          <a class="card-link" href="#">Журнал «Прикладна механіка» →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Наукова діяльність</p>
+          <h2 class="section-title">Ключові напрями роботи</h2>
+          <p class="section-text">
+            Сторінка має швидко показувати відвідувачеві, чим займається Інститут,
+            і спрямовувати його до відповідних наукових підрозділів.
+          </p>
+        </div>
+      </div>
+
+      <div class="quick-links">
+        {researchAreas.map((area) => <a class="quick-link" href="/departments/">{area}</a>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Структура</p>
+          <h2 class="section-title">Наукові відділи</h2>
+          <p class="section-text">
+            Відділи подано в контрольованому порядку за числовим полем <code>order</code>,
+            тому їх розміщення не залежить від дати створення файлів.
+          </p>
+        </div>
+        <a class="button secondary" href="/departments/">Усі відділи</a>
+      </div>
+
+      <div class="department-grid">
+        {departments.map((entry) => <DepartmentCard entry={entry} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Останні повідомлення</p>
+          <h2 class="section-title">Новини та оголошення</h2>
+          <p class="section-text">
+            На головній сторінці показано кілька найновіших повідомлень; повний архів доступний
+            на окремій сторінці новин.
+          </p>
+        </div>
+        <a class="button secondary" href="/news/">Усі новини</a>
+      </div>
+
+      <div class="news-list">
+        {news.map((entry) => <NewsCard entry={entry} level="h3" />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Швидкий доступ</p>
+          <h2 class="section-title">Основні розділи сайту</h2>
+          <p class="section-text">
+            Ці посилання можна поступово підключати до окремих сторінок у міру наповнення сайту.
+          </p>
+        </div>
+      </div>
+
+      <div class="quick-links">
+        {quickLinks.map((link) => <a class="quick-link" href={link.href}>{link.title}</a>)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,27 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'news'>;
+  level?: 'h2' | 'h3';
+}
+
+const { entry, level = 'h2' } = Astro.props;
+const date = entry.data.date.toLocaleDateString('uk-UA', {
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric'
+});
+---
+
+<article class="news-card">
+  <time class="news-date" datetime={entry.data.date.toISOString()}>{date}</time>
+  <div>
+    {level === 'h2' ? <h2>{entry.data.title}</h2> : <h3>{entry.data.title}</h3>}
+    <p>{entry.data.description}</p>
+    <div class="tags">
+      <span class="tag">{entry.data.category}</span>
+      {entry.data.tags.map((tag) => <span class="tag">{tag}</span>)}
+    </div>
+  </div>
+</article>

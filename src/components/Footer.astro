@@ -1,0 +1,33 @@
+---
+import { site } from '../data/site';
+---
+
+<footer class="site-footer" id="contacts">
+  <div class="container footer-grid">
+    <section>
+      <h2>{site.name}</h2>
+      <p>{site.address}</p>
+      <p>Тел.: <a href={`tel:${site.phone.replaceAll(' ', '')}`}>{site.phone}</a><br />E-mail: <a href={`mailto:${site.email}`}>{site.email}</a></p>
+    </section>
+    <section>
+      <h3>Розділи</h3>
+      <ul class="footer-links">
+        <li><a href="/news/">Новини</a></li>
+        <li><a href="/departments/">Наукові відділи</a></li>
+        <li><a href="#">Аспірантура</a></li>
+        <li><a href="#">Журнал «Прикладна механіка»</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3>Службові посилання</h3>
+      <ul class="footer-links">
+        <li><a href="#">Карта сайту</a></li>
+        <li><a href="#">Політика доступності</a></li>
+        <li><a href="#">Адміністрація сайту</a></li>
+      </ul>
+    </section>
+  </div>
+  <div class="container copyright">
+    © {new Date().getFullYear()} Інститут механіки ім. С.П. Тимошенка НАН України. Astro-прототип.
+  </div>
+</footer>

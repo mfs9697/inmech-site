@@ -1,0 +1,42 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  activePage?: 'home' | 'news' | 'departments';
+}
+
+const { title, description, activePage = 'home' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Перейти до змісту</a>
+    <Header activePage={activePage} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      const menuToggle = document.querySelector('.menu-toggle');
+      const nav = document.querySelector('.primary-nav');
+
+      if (menuToggle && nav) {
+        menuToggle.addEventListener('click', () => {
+          const isOpen = nav.classList.toggle('open');
+          menuToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+      }
+    </script>
+  </body>
+</html>

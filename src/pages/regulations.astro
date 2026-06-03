@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const documents = [
+  {
+    year: '2023',
+    title: 'Статут Інституту механіки 2023 р.',
+    description: 'Чинна редакція Статуту Інституту механіки ім. С. П. Тимошенка НАН України.',
+    href: 'https://inmech.kyiv.ua/doc/doc/stat_2023_1.pdf',
+    current: true
+  },
+  {
+    year: '2016',
+    title: 'Статут Інституту механіки 2016 р.',
+    description: 'Попередня редакція Статуту Інституту.',
+    href: 'https://inmech.kyiv.ua/doc/doc/stat_2016.pdf',
+    current: false
+  },
+  {
+    year: '2003',
+    title: 'Статут Інституту механіки 2003 р.',
+    description: 'Архівна редакція Статуту Інституту.',
+    href: 'https://inmech.kyiv.ua/doc/doc/stat_2003.pdf',
+    current: false
+  }
+];
+---
+
+<BaseLayout
+  title={`Статут | ${site.name}`}
+  description="Статут Інституту механіки ім. С.П. Тимошенка НАН України та архівні редакції документа."
+  activePage="about"
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel statute-hero-panel">
+        <p class="eyebrow">Про інститут</p>
+        <h1>Статут Інституту</h1>
+        <p class="lead">
+          На цій сторінці подано чинну та архівні редакції Статуту Інституту механіки
+          ім. С. П. Тимошенка НАН України. Документи відкриваються у форматі PDF.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Нормативні документи</p>
+          <h2 class="section-title">Редакції Статуту</h2>
+          <p class="section-text">
+            Основним документом є редакція 2023 року; попередні редакції залишено для архівного доступу
+            й простого порівняння змін у структурі та правовому статусі установи.
+          </p>
+        </div>
+      </div>
+
+      <div class="statute-grid">
+        {documents.map((doc) => (
+          <article class={`statute-card ${doc.current ? 'current' : ''}`}>
+            <div class="statute-year">{doc.year}</div>
+            <div class="statute-card-body">
+              {doc.current && <p class="statute-badge">Чинна редакція</p>}
+              <h2>{doc.title}</h2>
+              <p>{doc.description}</p>
+              <a class="button secondary" href={doc.href} target="_blank" rel="noopener">
+                Відкрити PDF
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="panel statute-note">
+        <p class="eyebrow">Примітка</p>
+        <h2>Про використання документів</h2>
+        <p>
+          Для офіційного використання слід звертатися до чинної редакції Статуту та, за потреби,
+          до відповідальних підрозділів Інституту. Архівні редакції розміщено як довідкові матеріали.
+        </p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

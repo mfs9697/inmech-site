@@ -16,8 +16,10 @@
 }
 
 .hero-card-visual h1 {
-  font-size: clamp(1.9rem, 3.8vw, 3.45rem);
-  max-width: 820px;
+  font-size: clamp(1.65rem, 3vw, 2.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  max-width: 760px;
 }
 
 .hero-image-card {
@@ -47,6 +49,16 @@
   line-height: 1.35;
 }
 
+.hero-image-actions {
+  margin-top: 16px;
+  justify-content: center;
+}
+
+.hero-image-actions .button {
+  flex: 1 1 auto;
+  min-width: 132px;
+}
+
 @media (max-width: 900px) {
   .hero-card-visual {
     grid-template-columns: 1fr;
@@ -54,5 +66,9 @@
 
   .hero-image-card {
     max-width: 360px;
+  }
+
+  .hero-card-visual h1 {
+    font-size: clamp(1.65rem, 7vw, 2.45rem);
   }
 }

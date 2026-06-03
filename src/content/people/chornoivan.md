@@ -7,8 +7,6 @@ departmentUrl: "/departments/09-fracture-mechanics/"
 degree: "кандидат фізико-математичних наук"
 academicTitle: "доцент"
 email: "chornoivan@nas.gov.ua"
-phone: "+380444567769"
-office: "315"
 order: 8
 featured: true
 photo: "/people/chornoivan.png"

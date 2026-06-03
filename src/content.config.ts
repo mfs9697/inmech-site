@@ -25,7 +25,17 @@ const departments = defineCollection({
     group: z.string(),
     head: z.string().optional(),
     summary: z.string(),
-    order: z.number()
+    order: z.number(),
+
+    contactEmail: z.string().email().optional(),
+
+    staff: z.array(
+      z.object({
+        name: z.string(),
+        url: z.string().optional(),
+        position: z.string().optional()
+      })
+    ).default([])
   })
 });
 

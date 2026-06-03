@@ -27,6 +27,13 @@ function withBase(url: string) {
   return `${base}${url.startsWith('/') ? url : `/${url}`}`;
 }
 
+function getHIndex(value?: string) {
+  if (!value) return '';
+
+  const match = value.match(/h-index\s*:\s*\d+/i);
+  return match ? match[0] : '';
+}
+
 const initials = person.name
   .split(/\s+/)
   .filter(Boolean)
@@ -101,12 +108,17 @@ const pageDescription = person.position
             <section class="profile-panel compact">
               <h2>Наукометричні профілі</h2>
               <div class="metric-stack">
-                {keyProfiles.map((profile) => (
-                  <article class={`metric-card metric-${profile.kind}`}>
-                    <span>{profile.label}</span>
-                    <a href={profile.url} target="_blank" rel="noopener">Переглянути профіль →</a>
-                  </article>
-                ))}
+                {keyProfiles.map((profile) => {
+                  const hIndex = getHIndex(profile.value);
+
+                  return (
+                    <article class={`metric-card metric-${profile.kind}`}>
+                      <span>{profile.label}</span>
+                      {hIndex && <strong>{hIndex}</strong>}
+                      <a href={profile.url} target="_blank" rel="noopener">Переглянути профіль →</a>
+                    </article>
+                  );
+                })}
               </div>
             </section>
           )}

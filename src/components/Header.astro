@@ -59,9 +59,9 @@ function withBase(path: string) {
         </li>
 
         <li>
-          <span class="nav-label">Структура ▾</span>
+          <span class={`nav-label ${isActive('departments')}`}>Структура ▾</span>
           <ul class="submenu">
-            <li><a href="#">Дирекція</a></li>
+            <li><a class={isActive('departments')} href={withBase('/management/')}>Дирекція</a></li>
             <li><a class={isActive('departments')} href={withBase('/departments/')}>Наукові відділи</a></li>
             <li><a href="#">Вчена рада</a></li>
             <li><a href="#">Спеціалізовані ради</a></li>

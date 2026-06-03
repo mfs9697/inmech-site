@@ -13,7 +13,7 @@ photo: "/people/tereshchenko.png"
 
 profiles:
   - label: "Scopus"
-    value: "ID: 57190344215; h-index: 3"
+    value: "h-index: 3"
     url: "https://www.scopus.com/authid/detail.uri?authorId=57190344215"
     kind: "scopus"
   - label: "ORCID iD"

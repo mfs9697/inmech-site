@@ -2,21 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
 
-const prozorroSearchUrl = 'https://prozorro.gov.ua/uk/search/tender?text=%D0%86%D0%BD%D1%81%D1%82%D0%B8%D1%82%D1%83%D1%82%20%D0%BC%D0%B5%D1%85%D0%B0%D0%BD%D1%96%D0%BA%D0%B8%20%D1%96%D0%BC.%20%D0%A1.%D0%9F.%20%D0%A2%D0%B8%D0%BC%D0%BE%D1%88%D0%B5%D0%BD%D0%BA%D0%B0';
-
-const tenderResources = [
-  {
-    title: 'Закупівлі Інституту в системі Prozorro',
-    description: 'Перейти до пошуку закупівель Інституту механіки ім. С. П. Тимошенка НАН України в електронній системі публічних закупівель Prozorro.',
-    href: prozorroSearchUrl,
-    button: 'Перейти до Prozorro'
-  }
-];
+const edrpou = '05417070';
+const prozorroSearchUrl = `https://prozorro.gov.ua/uk/search/tender?text=${edrpou}`;
 ---
 
 <BaseLayout
   title={`Закупівлі та тендери | ${site.name}`}
-  description="Закупівлі та тендери Інституту механіки ім. С.П. Тимошенка НАН України. Посилання на електронну систему публічних закупівель Prozorro."
+  description="Закупівлі та тендери Інституту механіки ім. С.П. Тимошенка НАН України. Інформація з електронної системи публічних закупівель Prozorro."
   activePage="about"
 >
   <section class="page-hero">
@@ -25,8 +17,8 @@ const tenderResources = [
         <p class="eyebrow">Про інститут</p>
         <h1>Закупівлі та тендери</h1>
         <p class="lead">
-          Інформація про публічні закупівлі Інституту доступна через електронну систему
-          публічних закупівель Prozorro. Посилання нижче відкриває пошук закупівель за назвою установи.
+          На цій сторінці подано інформацію про закупівлі Інституту механіки
+          ім. С. П. Тимошенка НАН України з електронної системи публічних закупівель Prozorro.
         </p>
       </div>
     </div>
@@ -34,17 +26,23 @@ const tenderResources = [
 
   <section class="section">
     <div class="container">
-      <div class="tender-grid">
-        {tenderResources.map((item) => (
-          <article class="tender-card">
-            <h2>{item.title}</h2>
-            <p>{item.description}</p>
-            <a class="button primary" href={item.href} target="_blank" rel="noopener">
-              {item.button}
-            </a>
-          </article>
-        ))}
-      </div>
+      <article class="panel tender-widget-panel">
+        <div class="section-header compact-header">
+          <div>
+            <p class="eyebrow">Prozorro</p>
+            <h2 class="section-title">Закупівлі установи</h2>
+            <p class="section-text">
+              Віджет налаштовано за кодом ЄДРПОУ Інституту: <strong>{edrpou}</strong>.
+              Якщо віджет не завантажився, скористайтеся кнопкою переходу до Prozorro.
+            </p>
+          </div>
+          <a class="button secondary" href={prozorroSearchUrl} target="_blank" rel="noopener">
+            Відкрити в Prozorro
+          </a>
+        </div>
+
+        <div class="tender-widget-frame" id="prom_state_purchase"></div>
+      </article>
     </div>
   </section>
 
@@ -52,12 +50,37 @@ const tenderResources = [
     <div class="container">
       <article class="panel tender-note">
         <p class="eyebrow">Примітка</p>
-        <h2>Як користуватися посиланням</h2>
+        <h2>Джерело даних</h2>
         <p>
-          Після переходу до Prozorro можна уточнити пошук за назвою замовника,
-          кодом ЄДРПОУ, роком, статусом закупівлі або ключовими словами.
+          Дані відображаються через зовнішній віджет системи публічних закупівель.
+          У разі потреби можна перейти до Prozorro й уточнити пошук за кодом ЄДРПОУ,
+          роком, статусом закупівлі або ключовими словами.
         </p>
       </article>
     </div>
   </section>
+
+  <script is:inline>
+    var _zk_uaprom = window._zk_uaprom || [];
+    window._zk_uaprom = _zk_uaprom;
+
+    _zk_uaprom.push(
+      ['APP_ID', '42fce870-4490-41e0-a744-f14cdaa0d393'],
+      ['CONTAINER_ID', 'prom_state_purchase'],
+      ['LOCALE', 'uk'],
+      ['ENTITYTYPE', 0],
+      ['SRN', ['05417070']]
+    );
+
+    (function (d, tag, id) {
+      if (d.getElementById(id)) return;
+      var script = d.createElement(tag);
+      script.id = id;
+      script.type = 'text/javascript';
+      script.src = 'https://zk-cabinet.c.prom.st/js/build/zakupki_widget_init_v2/zakupki_widget_init_v2_wp.d7ecb.js';
+      script.async = true;
+      var firstScript = d.getElementsByTagName(tag)[0];
+      firstScript.parentNode.insertBefore(script, firstScript);
+    })(document, 'script', 'zakupki_uaprom_id');
+  </script>
 </BaseLayout>

@@ -40,7 +40,9 @@
 .agreement-card,
 .tender-hero-panel,
 .tender-widget-panel,
-.tender-note {
+.tender-note,
+.management-hero-panel,
+.management-card {
   padding: clamp(22px, 3.5vw, 38px);
 }
 
@@ -65,7 +67,9 @@
 .agreement-card h2,
 .tender-hero-panel h1,
 .tender-widget-panel h2,
-.tender-note h2 {
+.tender-note h2,
+.management-hero-panel h1,
+.management-card h2 {
   margin-top: 0;
 }
 
@@ -83,7 +87,9 @@
 .agreement-card p:last-child,
 .tender-hero-panel p:last-child,
 .tender-widget-panel p:last-child,
-.tender-note p:last-child {
+.tender-note p:last-child,
+.management-hero-panel p:last-child,
+.management-card p:last-child {
   margin-bottom: 0;
 }
 
@@ -202,7 +208,8 @@
 .strategy-grid,
 .cooperation-grid,
 .resource-grid,
-.agreement-grid {
+.agreement-grid,
+.management-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
@@ -232,7 +239,8 @@
 }
 
 .resource-card,
-.agreement-card {
+.agreement-card,
+.management-card {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -241,7 +249,9 @@
 
 .resource-card p,
 .cooperation-card p,
-.agreement-card p {
+.agreement-card p,
+.management-degree,
+.management-role {
   color: var(--muted);
 }
 
@@ -295,6 +305,56 @@
   border: 0 !important;
 }
 
+.management-card {
+  display: grid;
+  grid-template-columns: 86px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.management-avatar {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, var(--accent-soft), rgba(184, 135, 47, 0.16));
+  color: var(--accent-dark);
+  font-weight: 950;
+  font-size: 1.2rem;
+}
+
+.management-accent {
+  width: fit-content;
+  margin: 0 0 10px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  font-weight: 850;
+  font-size: 0.84rem;
+}
+
+.management-card h2 {
+  font-size: 1.25rem;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.management-role {
+  font-weight: 750;
+  margin-bottom: 8px;
+}
+
+.management-degree {
+  margin-bottom: 12px;
+}
+
+.management-email span {
+  font-weight: 850;
+  margin-right: 6px;
+}
+
 @media (max-width: 900px) {
   .history-grid,
   .timeline-item,
@@ -306,11 +366,18 @@
   .value-grid,
   .cooperation-grid,
   .resource-grid,
-  .agreement-grid {
+  .agreement-grid,
+  .management-grid {
     grid-template-columns: 1fr;
   }
 
   .compact-header {
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .management-card {
+    grid-template-columns: 1fr;
   }
 }

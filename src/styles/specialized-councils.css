@@ -1,0 +1,122 @@
+.specialized-hero-panel,
+.specialized-summary-card,
+.specialized-council-panel,
+.specialized-leader-card {
+  padding: clamp(22px, 3.5vw, 38px);
+}
+
+.specialized-hero-panel h1,
+.specialized-council-panel h2,
+.specialized-leader-card h3 {
+  margin-top: 0;
+}
+
+.specialized-hero-panel p:last-child,
+.specialized-summary-card p:last-child,
+.specialized-council-panel p:last-child,
+.specialized-leader-card p:last-child {
+  margin-bottom: 0;
+}
+
+.specialized-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.specialized-summary-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.specialized-summary-card span {
+  display: grid;
+  place-items: center;
+  min-width: 68px;
+  height: 68px;
+  border-radius: 20px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  font-size: 1.7rem;
+  font-weight: 950;
+}
+
+.specialized-summary-card p {
+  color: var(--muted);
+  font-weight: 750;
+}
+
+.specialized-council-panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.specialized-council-header {
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 22px;
+}
+
+.specialized-council-header h2 {
+  font-size: clamp(1.7rem, 3vw, 2.35rem);
+  margin-bottom: 10px;
+}
+
+.specialized-profile,
+.specialized-order {
+  color: var(--muted);
+}
+
+.specialized-leadership-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 26px;
+}
+
+.specialized-leader-card {
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+
+.specialized-leader-card h3 {
+  font-size: 1.1rem;
+  line-height: 1.28;
+  margin-bottom: 8px;
+}
+
+.specialized-leader-card p:last-child,
+.specialized-member-list li {
+  color: var(--muted);
+}
+
+.specialized-members-block h3 {
+  margin-top: 0;
+  font-size: 1.25rem;
+}
+
+.specialized-member-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 1.35rem;
+}
+
+.specialized-member-list li {
+  padding-left: 4px;
+}
+
+@media (max-width: 900px) {
+  .specialized-summary-grid,
+  .specialized-leadership-grid {
+    grid-template-columns: 1fr;
+  }
+}

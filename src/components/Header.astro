@@ -51,8 +51,8 @@ function withBase(path: string) {
           <span class={`nav-label ${isActive('about')}`}>Про інститут ▾</span>
           <ul class="submenu">
             <li><a class={isActive('about')} href={withBase('/history/')}>Історія та місія</a></li>
-            <li><a href="#">Статут</a></li>
-            <li><a href="#">Стратегія розвитку</a></li>
+            <li><a class={isActive('about')} href={withBase('/regulations/')}>Статут</a></li>
+            <li><a class={isActive('about')} href={withBase('/strategy/')}>Стратегія розвитку</a></li>
             <li><a href="#">Наукова співпраця</a></li>
             <li><a href="#">Закупівлі та тендери</a></li>
           </ul>

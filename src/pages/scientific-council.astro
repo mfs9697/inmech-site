@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const councilMembers = [
+  {
+    name: 'Назаренко Володимир Михайлович',
+    title: 'академік НАН України',
+    councilRole: 'голова ради'
+  },
+  {
+    name: 'Гузь Олександр Миколайович',
+    title: 'академік НАН України',
+    councilRole: ''
+  },
+  {
+    name: 'Богданов Вячеслав Леонідович',
+    title: 'академік НАН України',
+    councilRole: ''
+  },
+  {
+    name: 'Селіванов Михайло Федорович',
+    title: 'член-кореспондент НАН України',
+    councilRole: ''
+  },
+  {
+    name: 'Кубенко Веніамін Дмитрович',
+    title: 'академік НАН України',
+    councilRole: 'заступник голови'
+  },
+  {
+    name: 'Мартинюк Анатолій Андрійович',
+    title: 'академік НАН України',
+    councilRole: 'заступник голови'
+  },
+  {
+    name: 'Скосаренко Юрій Валентинович',
+    title: 'учений секретар Інституту, доктор технічних наук',
+    councilRole: 'секретар'
+  },
+  {
+    name: 'Рущицький Ярема Ярославович',
+    title: 'член-кореспондент НАН України',
+    councilRole: ''
+  },
+  {
+    name: 'Григоренко Олександр Ярославович',
+    title: 'член-кореспондент НАН України',
+    councilRole: ''
+  },
+  {
+    name: 'Чернишенко Іван Семенович',
+    title: 'член-кореспондент НАН України',
+    councilRole: ''
+  },
+  {
+    name: 'Жук Ярослав Олександрович',
+    title: 'член-кореспондент НАН України',
+    councilRole: ''
+  },
+  {
+    name: 'Коренєв Володимир Антонович',
+    title: 'заступник директора із загальних питань',
+    councilRole: ''
+  },
+  {
+    name: 'Сторожук Євген Анатолійович',
+    title: 'член-кореспондент НАН України, доктор фізико-математичних наук',
+    councilRole: ''
+  },
+  {
+    name: 'Камінський Анатолій Олексійович',
+    title: 'доктор фізико-математичних наук, професор',
+    councilRole: ''
+  },
+  {
+    name: 'Карнаухов Василь Гаврилович',
+    title: 'доктор фізико-математичних наук, професор',
+    councilRole: ''
+  },
+  {
+    name: 'Колядюк Андрій Сергійович',
+    title: 'кандидат технічних наук',
+    councilRole: ''
+  },
+  {
+    name: 'Ткаченко Неоніла Єрмолаївна',
+    title: 'кандидат фізико-математичних наук',
+    councilRole: ''
+  },
+  {
+    name: 'Остос Олександр Хосеєвич',
+    title: 'доктор філософії',
+    councilRole: ''
+  }
+];
+
+const leadershipCount = councilMembers.filter((member) => member.councilRole).length;
+---
+
+<BaseLayout
+  title={`Вчена рада | ${site.name}`}
+  description="Вчена рада Інституту механіки ім. С.П. Тимошенка НАН України."
+  activePage="departments"
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel council-hero-panel">
+        <p class="eyebrow">Структура</p>
+        <h1>Вчена рада Інституту</h1>
+        <p class="lead">
+          Вчена рада Інституту механіки ім. С. П. Тимошенка НАН України є колегіальним
+          органом, що розглядає ключові питання наукової, науково-організаційної
+          та освітньо-наукової діяльності установи.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="council-summary-grid">
+        <article class="council-summary-card">
+          <span>{councilMembers.length}</span>
+          <p>членів вченої ради</p>
+        </article>
+        <article class="council-summary-card">
+          <span>{leadershipCount}</span>
+          <p>осіб у керівному складі ради</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Склад ради</p>
+          <h2 class="section-title">Члени вченої ради</h2>
+          <p class="section-text">
+            Склад подано за матеріалами попередньої версії сайту Інституту.
+          </p>
+        </div>
+      </div>
+
+      <div class="council-grid">
+        {councilMembers.map((member, index) => (
+          <article class={`council-card ${member.councilRole ? 'has-role' : ''}`}>
+            <div class="council-number">{String(index + 1).padStart(2, '0')}</div>
+            <div class="council-card-body">
+              {member.councilRole && <p class="council-role">{member.councilRole}</p>}
+              <h2>{member.name}</h2>
+              <p>{member.title}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const administration = [
+  {
+    name: 'Назаренко Володимир Михайлович',
+    role: 'в.о. директора Інституту',
+    degree: 'академік НАН України',
+    email: 'inst_mech@inmech.kyiv.ua',
+    accent: 'Директор'
+  },
+  {
+    name: 'Гузь Олександр Миколайович',
+    role: 'радник при дирекції',
+    degree: 'академік НАН України, член Європейської Академії наук, Fellow Нью-Йоркської Академії наук, Fellow of the World Innovation Foundation',
+    email: 'inst_mech@inmech.kyiv.ua',
+    accent: 'Радник'
+  },
+  {
+    name: 'Селіванов Михайло Федорович',
+    role: 'заступник директора з наукової роботи',
+    degree: 'доктор фізико-математичних наук, член-кореспондент НАН України',
+    email: 'inst_mech@inmech.kyiv.ua',
+    accent: 'Наукова робота'
+  },
+  {
+    name: 'Корєнєв Володимир Антонович',
+    role: 'заступник директора із загальних питань',
+    degree: '',
+    email: '',
+    accent: 'Загальні питання'
+  },
+  {
+    name: 'Скосаренко Юрій Валентинович',
+    role: 'вчений секретар Інституту',
+    degree: 'провідний науковий співробітник, доктор технічних наук',
+    email: 'yuskos@ukr.net',
+    accent: 'Вчений секретар'
+  }
+];
+
+function initials(name: string) {
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join('')
+    .toUpperCase();
+}
+---
+
+<BaseLayout
+  title={`Адміністрація | ${site.name}`}
+  description="Адміністрація Інституту механіки ім. С.П. Тимошенка НАН України."
+  activePage="departments"
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel management-hero-panel">
+        <p class="eyebrow">Структура</p>
+        <h1>Адміністрація Інституту</h1>
+        <p class="lead">
+          Адміністрація Інституту механіки ім. С. П. Тимошенка НАН України забезпечує
+          організацію наукової, освітньо-наукової, господарської та координаційної діяльності установи.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="management-grid">
+        {administration.map((person) => (
+          <article class="management-card">
+            <div class="management-avatar" aria-hidden="true">{initials(person.name)}</div>
+            <div class="management-body">
+              <p class="management-accent">{person.accent}</p>
+              <h2>{person.name}</h2>
+              <p class="management-role">{person.role}</p>
+              {person.degree && <p class="management-degree">{person.degree}</p>}
+              {person.email && (
+                <p class="management-email">
+                  <span>E-mail:</span>
+                  <a href={`mailto:${person.email}`}>{person.email}</a>
+                </p>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

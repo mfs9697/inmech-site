@@ -1,0 +1,452 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const educationSections = [
+  {
+    title: 'Аспірантура',
+    label: 'Вступникам і здобувачам',
+    href: '/postgraduate/',
+    icon: '🎓',
+    description:
+      'Правила прийому, освітньо-наукова програма, документи, наукові керівники, новини та матеріали для аспірантів.',
+    featured: true
+  },
+  {
+    title: 'Докторантура',
+    label: 'Підготовка докторів наук',
+    href: '/doctoral/',
+    icon: '📘',
+    description:
+      'Інформація щодо підготовки докторів наук, правил прийому, нормативних матеріалів і наукового супроводу.'
+  },
+  {
+    title: 'Захист дисертацій',
+    label: 'Анонси та архів',
+    href: '/dissertations/',
+    icon: '🛡️',
+    description:
+      'Заплановані та проведені захисти, дисертації, автореферати, висновки, відгуки опонентів і відеозаписи.',
+    featured: true
+  },
+  {
+    title: 'Ліцензії та Положення',
+    label: 'Нормативна база',
+    href: '/license-and-regulations/',
+    icon: '📄',
+    description:
+      'Ліцензійні документи, положення про освітній процес, академічну доброчесність, мобільність, практику та інші регламенти.'
+  },
+  {
+    title: 'Скринька довіри',
+    label: 'Звернення та пропозиції',
+    href: '/trust-box/',
+    icon: '✉️',
+    description:
+      'Канал для звернень, повідомлень і пропозицій щодо освітньо-наукового середовища Інституту.'
+  },
+  {
+    title: 'Науково-методична рада',
+    label: 'НМР',
+    href: '/nmr/',
+    icon: '🧭',
+    description:
+      'Склад ради, методичні документи, порядок рейтингування викладачів і добору наукових працівників до викладацького складу.'
+  }
+];
+
+const highlights = [
+  {
+    value: 'PhD',
+    text: 'підготовка докторів філософії за освітньо-науковою програмою'
+  },
+  {
+    value: 'DSc',
+    text: 'підготовка докторів наук і супровід наукових траєкторій'
+  },
+  {
+    value: '6',
+    text: 'ключових розділів освітньо-наукової діяльності'
+  }
+];
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+---
+
+<BaseLayout
+  title={`Освітньо-наукова діяльність | ${site.shortName}`}
+  description="Освітньо-наукова діяльність Інституту механіки ім. С. П. Тимошенка НАН України: аспірантура, докторантура, захист дисертацій, нормативні документи, НМР та скринька довіри."
+  activePage="education"
+>
+  <section class="education-hero">
+    <div class="container">
+      <div class="education-hero-panel">
+        <div class="education-hero-content">
+          <p class="eyebrow">Освітньо-наукова діяльність</p>
+          <h1>Підготовка дослідників у галузі механіки та прикладної математики</h1>
+          <p class="lead">
+            Інститут механіки ім. С. П. Тимошенка НАН України здійснює підготовку здобувачів
+            вищої освіти ступеня доктора філософії та доктора наук, забезпечує супровід
+            освітнього процесу, науково-методичну координацію, захист дисертацій і відкритий
+            доступ до нормативних матеріалів.
+          </p>
+        </div>
+
+        <div class="education-hero-mark" aria-hidden="true">
+          <span>PhD</span>
+          <span>DSc</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section education-highlights-section">
+    <div class="container">
+      <div class="education-highlights-grid">
+        {highlights.map((item) => (
+          <article class="education-highlight-card">
+            <span>{item.value}</span>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section education-sections-section">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Навігація розділом</p>
+          <h2>Основні розділи</h2>
+        </div>
+        <p>
+          Шість напрямів зібрані в єдину навігаційну панель — від вступу до аспірантури
+          до захисту дисертацій, методичного супроводу та нормативної бази.
+        </p>
+      </div>
+
+      <div class="education-card-grid">
+        {educationSections.map((section) => (
+          <a class={`education-card ${section.featured ? 'featured' : ''}`} href={withBase(section.href)}>
+            <span class="education-card-icon" aria-hidden="true">{section.icon}</span>
+            <span class="education-card-label">{section.label}</span>
+            <h2>{section.title}</h2>
+            <p>{section.description}</p>
+            <span class="education-card-action">Перейти до розділу →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section education-note-section">
+    <div class="container">
+      <div class="education-note-panel">
+        <p class="eyebrow">Єдиний освітній простір</p>
+        <h2>Наукова підготовка, методичний супровід і прозорі процедури</h2>
+        <p>
+          Освітньо-наукова діяльність Інституту поєднує підготовку молодих дослідників,
+          наукове консультування, методичну координацію, супровід захистів і доступ до
+          документів, що регламентують освітній процес та академічну доброчесність.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .education-hero {
+    padding: 52px 0 18px;
+  }
+
+  .education-hero-panel {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 28px;
+    align-items: center;
+    overflow: hidden;
+    padding: clamp(28px, 5vw, 54px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background:
+      radial-gradient(circle at 85% 15%, rgba(184, 135, 47, 0.24), transparent 34%),
+      linear-gradient(135deg, var(--accent-dark), var(--accent));
+    color: #fff;
+    box-shadow: var(--shadow);
+  }
+
+  .education-hero-panel::after {
+    content: '';
+    position: absolute;
+    inset: auto -80px -120px auto;
+    width: 300px;
+    height: 300px;
+    border-radius: 999px;
+    border: 42px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .education-hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .education-hero .eyebrow {
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .education-hero h1 {
+    max-width: 900px;
+    margin: 0 0 18px;
+    font-size: clamp(2.15rem, 4.4vw, 4.1rem);
+    line-height: 1.03;
+    letter-spacing: -0.045em;
+  }
+
+  .education-hero .lead {
+    max-width: 850px;
+    color: rgba(255, 255, 255, 0.86);
+  }
+
+  .education-hero-mark {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 16px;
+  }
+
+  .education-hero-mark span {
+    display: grid;
+    place-items: center;
+    min-height: 112px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 950;
+    letter-spacing: -0.04em;
+    backdrop-filter: blur(8px);
+  }
+
+  .education-highlights-section {
+    padding-top: 18px;
+  }
+
+  .education-highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .education-highlight-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: clamp(20px, 3vw, 30px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .education-highlight-card span {
+    display: grid;
+    place-items: center;
+    min-width: 76px;
+    height: 76px;
+    border-radius: 22px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-size: 1.45rem;
+    font-weight: 950;
+  }
+
+  .education-highlight-card p {
+    margin: 0;
+    color: var(--muted);
+    font-weight: 750;
+  }
+
+  .education-sections-section {
+    padding-top: 18px;
+  }
+
+  .education-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .education-card {
+    position: relative;
+    display: flex;
+    min-height: 310px;
+    flex-direction: column;
+    overflow: hidden;
+    padding: clamp(22px, 3vw, 34px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  }
+
+  .education-card::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 6px;
+    background: linear-gradient(90deg, var(--accent), var(--gold));
+    opacity: 0.88;
+  }
+
+  .education-card::after {
+    content: '';
+    position: absolute;
+    right: -52px;
+    bottom: -52px;
+    width: 145px;
+    height: 145px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    opacity: 0.62;
+    transition: transform 0.22s ease;
+  }
+
+  .education-card:hover,
+  .education-card:focus-visible {
+    transform: translateY(-6px);
+    border-color: rgba(29, 79, 145, 0.28);
+    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.12);
+    text-decoration: none;
+  }
+
+  .education-card:hover::after,
+  .education-card:focus-visible::after {
+    transform: scale(1.16);
+  }
+
+  .education-card.featured {
+    grid-column: span 2;
+    background:
+      radial-gradient(circle at 100% 100%, rgba(184, 135, 47, 0.18), transparent 34%),
+      var(--surface);
+  }
+
+  .education-card-icon {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 68px;
+    height: 68px;
+    margin-bottom: 18px;
+    border-radius: 22px;
+    background: var(--surface-soft);
+    font-size: 2rem;
+  }
+
+  .education-card-label {
+    position: relative;
+    z-index: 1;
+    width: fit-content;
+    margin-bottom: 12px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-size: 0.84rem;
+    font-weight: 850;
+  }
+
+  .education-card h2 {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 12px;
+    color: var(--text);
+    font-size: clamp(1.32rem, 2vw, 1.85rem);
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+  }
+
+  .education-card p {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .education-card-action {
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+    padding-top: 22px;
+    color: var(--accent-dark);
+    font-weight: 900;
+  }
+
+  .education-note-section {
+    padding-top: 18px;
+  }
+
+  .education-note-panel {
+    padding: clamp(24px, 4vw, 42px);
+    border: 1px solid rgba(184, 135, 47, 0.35);
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, rgba(184, 135, 47, 0.12), rgba(29, 79, 145, 0.08));
+    box-shadow: var(--shadow);
+  }
+
+  .education-note-panel h2 {
+    margin: 0 0 12px;
+    font-size: clamp(1.45rem, 2.4vw, 2.2rem);
+  }
+
+  .education-note-panel p:last-child {
+    margin-bottom: 0;
+    color: var(--muted);
+  }
+
+  @media (max-width: 1020px) {
+    .education-card-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 900px) {
+    .education-hero-panel,
+    .education-highlights-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .education-hero-mark {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 680px) {
+    .education-card-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .education-card.featured {
+      grid-column: auto;
+    }
+
+    .education-highlight-card {
+      align-items: flex-start;
+    }
+  }
+</style>

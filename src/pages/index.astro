@@ -20,17 +20,18 @@ const news = (await getCollection('news'))
   .slice(0, 3);
 
 const departments = (await getCollection('departments'))
-  .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 6);
+  .sort((a, b) => a.data.order - b.data.order);
 
-const researchAreas = [
-  'Механіка деформівного твердого тіла',
-  'Динаміка, стійкість і теорія коливань',
-  'Термопружність, термопластичність і повзучість',
-  'Механіка руйнування, втома та довговічність матеріалів',
-  'Механіка композитних, неоднорідних і функціональних матеріалів',
-  'Контактна взаємодія, хвильові процеси та чисельне моделювання'
-];
+const groupedDepartments = [...departments.reduce((acc, entry) => {
+  const group = entry.data.group;
+  if (!acc.has(group)) acc.set(group, []);
+  acc.get(group)?.push(entry);
+  return acc;
+}, new Map<string, typeof departments>())].map(([group, entries], index) => ({
+  group,
+  entries,
+  id: `home-department-group-${index + 1}`
+}));
 ---
 
 <BaseLayout
@@ -131,36 +132,27 @@ const researchAreas = [
       <div class="section-header">
         <div>
           <p class="eyebrow">Наукова діяльність</p>
-          <h2 class="section-title">Ключові напрями роботи</h2>
+          <h2 class="section-title">Наукові напрями та відділи</h2>
           <p class="section-text">
-            Сторінка має швидко показувати відвідувачеві, чим займається Інститут,
-            і спрямовувати його до відповідних наукових підрозділів.
-          </p>
-        </div>
-      </div>
-
-      <div class="quick-links">
-        {researchAreas.map((area) => <a class="quick-link" href={withBase('/departments/')}>{area}</a>)}
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <p class="eyebrow">Структура</p>
-          <h2 class="section-title">Наукові відділи</h2>
-          <p class="section-text">
-            Відділи подано в контрольованому порядку за числовим полем <code>order</code>,
-            тому їх розміщення не залежить від дати створення файлів.
+            Основні напрями роботи Інституту подано через групи наукових відділів.
+            Такий формат одразу показує, які підрозділи працюють у кожному напрямі.
           </p>
         </div>
         <a class="button secondary" href={withBase('/departments/')}>Усі відділи</a>
       </div>
 
-      <div class="department-grid">
-        {departments.map((entry) => <DepartmentCard entry={entry} />)}
+      <div class="home-department-groups">
+        {groupedDepartments.map(({ group, entries, id }) => (
+          <section class="home-department-group" aria-labelledby={id}>
+            <div class="home-department-group-header">
+              <h3 id={id}>{group}</h3>
+              <span>{entries.length} {entries.length === 1 ? 'відділ' : 'відділи'}</span>
+            </div>
+            <div class="department-grid">
+              {entries.map((entry) => <DepartmentCard entry={entry} />)}
+            </div>
+          </section>
+        ))}
       </div>
     </div>
   </section>

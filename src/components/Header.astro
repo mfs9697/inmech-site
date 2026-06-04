@@ -2,7 +2,7 @@
 import { site } from '../data/site';
 
 interface Props {
-  activePage?: 'home' | 'news' | 'departments' | 'about';
+  activePage?: 'home' | 'news' | 'departments' | 'about' | 'education';
 }
 
 const { activePage = 'home' } = Astro.props;
@@ -65,6 +65,19 @@ function withBase(path: string) {
             <li><a class={isActive('departments')} href={withBase('/scientific-council/')}>Вчена рада</a></li>
             <li><a class={isActive('departments')} href={withBase('/specialized-councils/')}>Спеціалізовані ради</a></li>
             <li><a class={isActive('departments')} href={withBase('/young-scientists/')}>Рада молодих вчених</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <span class={`nav-label ${isActive('education')}`}>Освітньо-наукова діяльність ▾</span>
+          <ul class="submenu">
+            <li><a class={isActive('education')} href={withBase('/education/')}>Огляд розділу</a></li>
+            <li><a class={isActive('education')} href={withBase('/postgraduate/')}>Аспірантура</a></li>
+            <li><a class={isActive('education')} href={withBase('/doctoral/')}>Докторантура</a></li>
+            <li><a class={isActive('education')} href={withBase('/dissertations/')}>Захист дисертацій</a></li>
+            <li><a class={isActive('education')} href={withBase('/license-and-regulations/')}>Ліцензії та Положення</a></li>
+            <li><a class={isActive('education')} href={withBase('/trust-box/')}>Скринька довіри</a></li>
+            <li><a class={isActive('education')} href={withBase('/nmr/')}>Науково-методична рада</a></li>
           </ul>
         </li>
 

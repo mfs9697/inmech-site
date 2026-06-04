@@ -7,7 +7,6 @@ interface Props {
 
 const { activePage = 'home' } = Astro.props;
 const isActive = (page: Props['activePage']) => activePage === page ? 'active' : '';
-
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 function withBase(path: string) {
@@ -65,7 +64,7 @@ function withBase(path: string) {
             <li><a class={isActive('departments')} href={withBase('/departments/')}>Наукові відділи</a></li>
             <li><a class={isActive('departments')} href={withBase('/scientific-council/')}>Вчена рада</a></li>
             <li><a class={isActive('departments')} href={withBase('/specialized-councils/')}>Спеціалізовані ради</a></li>
-            <li><a href="#">Рада молодих вчених</a></li>
+            <li><a class={isActive('departments')} href={withBase('/young-scientists/')}>Рада молодих вчених</a></li>
           </ul>
         </li>
 

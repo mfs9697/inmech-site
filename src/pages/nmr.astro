@@ -1,0 +1,560 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+const activityCards = [
+  {
+    title: 'Методичне забезпечення ОНП',
+    icon: '📚',
+    text: 'Координація освітніх компонентів, силабусів, робочих програм, навчальних планів і методичних матеріалів.'
+  },
+  {
+    title: 'Якість освітнього процесу',
+    icon: '✓',
+    text: 'Участь у моніторингу якості викладання, аналізі результатів опитувань і врахуванні пропозицій стейкхолдерів.'
+  },
+  {
+    title: 'Рейтингування викладачів',
+    icon: '★',
+    text: 'Супровід процедур рейтингування науково-педагогічних працівників Інституту.'
+  },
+  {
+    title: 'Добір викладацького складу',
+    icon: '◎',
+    text: 'Методичний супровід процедур відбору наукових працівників до викладацького складу.'
+  }
+];
+
+const documentGroups = [
+  {
+    title: 'Склад ради',
+    description: 'Документ із персональним складом Науково-методичної ради Інституту.',
+    documents: [
+      {
+        title: 'Склад НМР',
+        href: 'https://inmech.kyiv.ua/doc/postgraduate/nmr_members.docx',
+        type: 'DOCX'
+      }
+    ]
+  },
+  {
+    title: 'Рейтингування викладачів',
+    description: 'Порядок рейтингування та результати рейтингу науково-педагогічних працівників.',
+    documents: [
+      {
+        title: 'Порядок рейтингування науково-педагогічних працівників Інституту механіки ім. С. П. Тимошенка НАН України',
+        href: 'https://inmech.kyiv.ua/doc/postgraduate/reting_rules.pdf',
+        type: 'PDF'
+      },
+      {
+        title: 'Рейтинг викладачів 2024–2025',
+        href: 'https://inmech.kyiv.ua/doc/postgraduate/rating_2024_2025.pdf',
+        type: 'PDF'
+      }
+    ]
+  },
+  {
+    title: 'Добір викладацького складу',
+    description: 'Документ, що регламентує відбір або добір наукових працівників до викладацького складу.',
+    documents: [
+      {
+        title: 'Порядок відбору / добору наукових працівників Інституту механіки ім. С. П. Тимошенка НАН України до викладацького складу',
+        href: 'https://inmech.kyiv.ua/doc/postgraduate/selection_procedure.pdf',
+        type: 'PDF'
+      }
+    ]
+  }
+];
+
+const relatedLinks = [
+  ['Аспірантура', '/postgraduate/'],
+  ['Докторантура', '/doctoral/'],
+  ['Ліцензії та Положення', '/license-and-regulations/'],
+  ['Освітньо-наукова діяльність', '/education/']
+];
+---
+
+<BaseLayout
+  title={`Науково-методична рада | ${site.shortName}`}
+  description="Науково-методична рада Інституту механіки ім. С. П. Тимошенка НАН України: методичне забезпечення освітньо-наукової діяльності, рейтингування викладачів, добір викладацького складу та документи."
+  activePage="education"
+>
+  <section class="nmr-hero">
+    <div class="container nmr-hero-grid">
+      <div class="nmr-hero-panel">
+        <p class="eyebrow">Освітньо-наукова діяльність</p>
+        <h1>Науково-методична рада</h1>
+        <p class="lead">
+          Науково-методична рада Інституту механіки ім. С. П. Тимошенка НАН України
+          координує методичне забезпечення освітньо-наукової діяльності, питання якості
+          освітнього процесу, рейтингування викладачів, добір наукових працівників до
+          викладацького складу та підготовку документів, пов’язаних із реалізацією
+          освітньо-наукової програми.
+        </p>
+        <div class="nmr-hero-actions">
+          <a class="button primary" href="#documents">Документи НМР</a>
+          <a class="button secondary" href="#activities">Напрями діяльності</a>
+        </div>
+      </div>
+
+      <aside class="nmr-mark-card">
+        <span>НМР</span>
+        <h2>Методична координація</h2>
+        <p>
+          Підтримка якості освітньо-наукової програми, прозорих процедур і методичного
+          супроводу підготовки здобувачів.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section nmr-summary-section">
+    <div class="container nmr-summary-grid">
+      <article class="nmr-summary-card">
+        <span>ОНП</span>
+        <p>методичне забезпечення освітньо-наукової програми</p>
+      </article>
+      <article class="nmr-summary-card">
+        <span>Якість</span>
+        <p>моніторинг і підтримка якості освітнього процесу</p>
+      </article>
+      <article class="nmr-summary-card">
+        <span>Рейтинг</span>
+        <p>процедури рейтингування викладачів</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="activities">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Сфера відповідальності</p>
+          <h2>Основні напрями діяльності</h2>
+        </div>
+        <p>
+          НМР забезпечує методичну узгодженість освітньо-наукової діяльності та підтримує
+          прозорі процедури, пов’язані з якістю освітнього процесу й викладацьким складом.
+        </p>
+      </div>
+
+      <div class="nmr-activity-grid">
+        {activityCards.map((card) => (
+          <article class="nmr-activity-card">
+            <span>{card.icon}</span>
+            <h3>{card.title}</h3>
+            <p>{card.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="composition">
+    <div class="container">
+      <div class="nmr-composition-panel">
+        <div>
+          <p class="eyebrow">Склад ради</p>
+          <h2>Склад Науково-методичної ради</h2>
+          <p>
+            Актуальний склад НМР подано в окремому документі. Якщо надалі буде підготовлено
+            текстовий перелік членів ради, його можна додати на цю сторінку у вигляді карток.
+          </p>
+        </div>
+        <a class="button primary" href="https://inmech.kyiv.ua/doc/postgraduate/nmr_members.docx" target="_blank" rel="noopener noreferrer">
+          Завантажити склад НМР
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="documents">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Документи</p>
+          <h2>Документи НМР</h2>
+        </div>
+        <p>
+          Основні матеріали згруповано за призначенням: склад ради, рейтингування викладачів
+          і добір наукових працівників до викладацького складу.
+        </p>
+      </div>
+
+      <div class="nmr-document-group-grid">
+        {documentGroups.map((group) => (
+          <article class="nmr-document-group-card">
+            <h3>{group.title}</h3>
+            <p>{group.description}</p>
+            <div class="nmr-document-list">
+              {group.documents.map((document) => (
+                <a href={document.href} target="_blank" rel="noopener noreferrer">
+                  <span>{document.type}</span>
+                  <strong>{document.title}</strong>
+                </a>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="related-panel">
+        <div>
+          <p class="eyebrow">Пов’язані розділи</p>
+          <h2>Освітньо-наукова діяльність</h2>
+        </div>
+        <div class="related-link-grid">
+          {relatedLinks.map(([title, href]) => (
+            <a href={withBase(href)}>{title} →</a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .nmr-hero {
+    padding: 52px 0 18px;
+  }
+
+  .nmr-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .nmr-hero-panel,
+  .nmr-mark-card,
+  .nmr-summary-card,
+  .nmr-activity-card,
+  .nmr-composition-panel,
+  .nmr-document-group-card,
+  .related-panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .nmr-hero-panel {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(28px, 5vw, 54px);
+  }
+
+  .nmr-hero-panel::after {
+    content: '';
+    position: absolute;
+    right: -90px;
+    top: -110px;
+    width: 280px;
+    height: 280px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(29, 79, 145, 0.17), rgba(29, 79, 145, 0));
+  }
+
+  .nmr-hero-panel h1,
+  .nmr-hero-panel .lead,
+  .nmr-hero-panel .eyebrow,
+  .nmr-hero-actions {
+    position: relative;
+    z-index: 1;
+  }
+
+  .nmr-hero-panel h1 {
+    margin: 0 0 18px;
+    font-size: clamp(2.2rem, 4.6vw, 4.3rem);
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+  }
+
+  .nmr-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .nmr-mark-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(24px, 4vw, 40px);
+    background: linear-gradient(145deg, var(--accent-dark), var(--accent));
+    color: #fff;
+  }
+
+  .nmr-mark-card span {
+    display: grid;
+    place-items: center;
+    width: 108px;
+    height: 96px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.14);
+    font-size: 1.95rem;
+    font-weight: 950;
+    letter-spacing: -0.04em;
+  }
+
+  .nmr-mark-card h2 {
+    margin: 0 0 12px;
+    font-size: 1.65rem;
+  }
+
+  .nmr-mark-card p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.84);
+  }
+
+  .nmr-summary-section {
+    padding-top: 16px;
+  }
+
+  .nmr-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .nmr-summary-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: clamp(20px, 3vw, 30px);
+  }
+
+  .nmr-summary-card span {
+    display: grid;
+    place-items: center;
+    min-width: 92px;
+    height: 70px;
+    border-radius: 22px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-weight: 950;
+  }
+
+  .nmr-summary-card p {
+    margin: 0;
+    color: var(--muted);
+    font-weight: 750;
+  }
+
+  .section-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 28px;
+    align-items: flex-end;
+    margin-bottom: 22px;
+  }
+
+  .section-heading h2 {
+    margin: 0;
+    font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .section-heading p:last-child {
+    max-width: 560px;
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .nmr-activity-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .nmr-activity-card {
+    padding: clamp(20px, 3vw, 30px);
+  }
+
+  .nmr-activity-card span {
+    display: grid;
+    place-items: center;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 18px;
+    border-radius: 20px;
+    background: var(--surface-soft);
+    color: var(--accent-dark);
+    font-size: 1.55rem;
+    font-weight: 950;
+  }
+
+  .nmr-activity-card h3 {
+    margin: 0 0 10px;
+    font-size: 1.16rem;
+    line-height: 1.22;
+  }
+
+  .nmr-activity-card p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .nmr-composition-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 24px;
+    align-items: center;
+    padding: clamp(22px, 3vw, 34px);
+    background: linear-gradient(135deg, rgba(184, 135, 47, 0.12), rgba(29, 79, 145, 0.08));
+    border-color: rgba(184, 135, 47, 0.35);
+  }
+
+  .nmr-composition-panel h2 {
+    margin: 0 0 10px;
+    font-size: clamp(1.45rem, 2.4vw, 2.2rem);
+  }
+
+  .nmr-composition-panel p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .nmr-document-group-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .nmr-document-group-card {
+    padding: clamp(22px, 3vw, 34px);
+  }
+
+  .nmr-document-group-card h3 {
+    margin: 0 0 10px;
+    font-size: 1.28rem;
+  }
+
+  .nmr-document-group-card p {
+    margin: 0 0 18px;
+    color: var(--muted);
+  }
+
+  .nmr-document-list,
+  .related-link-grid {
+    display: grid;
+    gap: 10px;
+  }
+
+  .nmr-document-list a {
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 12px;
+    align-items: center;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface-soft);
+    color: var(--text);
+  }
+
+  .nmr-document-list a:hover {
+    text-decoration: none;
+    background: var(--accent-soft);
+  }
+
+  .nmr-document-list span {
+    display: grid;
+    place-items: center;
+    height: 44px;
+    border-radius: 14px;
+    background: #fff;
+    color: var(--accent-dark);
+    font-size: 0.78rem;
+    font-weight: 950;
+  }
+
+  .nmr-document-list strong {
+    color: var(--accent-dark);
+    line-height: 1.28;
+  }
+
+  .related-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 24px;
+    align-items: center;
+    padding: clamp(22px, 3vw, 34px);
+  }
+
+  .related-panel h2 {
+    margin: 0;
+    font-size: clamp(1.45rem, 2.4vw, 2.2rem);
+  }
+
+  .related-link-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .related-link-grid a {
+    display: block;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface-soft);
+    color: var(--accent-dark);
+    font-weight: 850;
+  }
+
+  .related-link-grid a:hover {
+    text-decoration: none;
+    background: var(--accent-soft);
+  }
+
+  @media (max-width: 1120px) {
+    .nmr-activity-grid,
+    .nmr-document-group-grid,
+    .related-link-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 900px) {
+    .nmr-hero-grid,
+    .nmr-summary-grid,
+    .nmr-composition-panel,
+    .related-panel {
+      grid-template-columns: 1fr;
+    }
+
+    .section-heading {
+      display: block;
+    }
+
+    .section-heading p:last-child {
+      margin-top: 10px;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .nmr-activity-grid,
+    .nmr-document-group-grid,
+    .related-link-grid,
+    .nmr-document-list a {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

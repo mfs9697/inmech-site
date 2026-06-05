@@ -1,0 +1,1155 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+function initials(name: string) {
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join('')
+    .toUpperCase();
+}
+
+const admissionSteps = [
+  {
+    title: 'Етап І',
+    subtitle: 'ЄВІ та ЄВВ',
+    items: [
+      'Реєстрація на ЄВІ та ЄВВ: 23 квітня – 14 травня — основний період; 26–28 травня 2026 — додатковий період.',
+      'Отримання запрошень: до 19 червня — учасникам основної сесії; до 28 липня — учасникам додаткової сесії.',
+      'Проведення тестування: 26 червня – 14 липня — основна сесія; 3 серпня – 21 серпня — додаткова сесія.',
+      'Оголошення результатів: до 23 липня — основна сесія; до 21 серпня — додаткова сесія.'
+    ]
+  },
+  {
+    title: 'Етап ІІ',
+    subtitle: 'Реєстрація та конкурсний відбір',
+    items: [
+      'Реєстрація особистого кабінету на сайті ЄДЕБО — з 01 липня.',
+      'Реєстрація на конкурсний відбір — 07 серпня – 25 серпня до 18:00.',
+      'Реєстрація на іспит зі спеціальності — 07 серпня – 25 серпня до 18:00.'
+    ]
+  },
+  {
+    title: 'Етап ІІІ',
+    subtitle: 'Іспит і зарахування',
+    items: [
+      'Іспит зі спеціальності — з 26 серпня до 07 вересня 2026 р.',
+      'Оголошення рейтингового списку — до 12 вересня 2026 р.',
+      'Наказ на зарахування — до 14 вересня 2026 р.'
+    ]
+  }
+];
+
+const admissionDocuments = [
+  {
+    title: 'Правила прийому на навчання 2026',
+    href: 'https://inmech.kyiv.ua/doc/postgraduate/2026/pravyla_pryjomu_2026.pdf'
+  },
+  {
+    title: 'Вимоги до дослідницької пропозиції',
+    href: 'https://inmech.kyiv.ua/doc/postgraduate/2026/vymogy_do_dd_2026.pdf'
+  },
+  {
+    title: 'Програма вступного іспиту',
+    href: 'https://inmech.kyiv.ua/doc/postgraduate/2026/exame_program.pdf'
+  },
+  {
+    title: 'Порядок оцінювання',
+    href: 'https://inmech.kyiv.ua/doc/postgraduate/2026/poryadok_ocinyuvannya_2026.pdf'
+  },
+  {
+    title: 'Архів для вступників 2025',
+    href: 'https://inmech.kyiv.ua/l/ua/postgraduate/for_applicants/2025/'
+  }
+];
+
+const requiredDocumentsLeft = [
+  'Заява на ім’я директора Інституту механіки ім. С. П. Тимошенка НАН України.',
+  'Особовий листок з обліку кадрів, засвідчений печаткою установи, де вступник навчається або працює.',
+  'Дві фотокартки 3×4 см.',
+  'Документ, що посвідчує особу і громадянство.',
+  'Документ про зміну прізвища — у разі зміни прізвища.',
+  'Військовий квиток або посвідчення про приписку — для військовозобов’язаних.',
+  'Список опублікованих наукових праць і винаходів за спеціальністю — за наявності.',
+  'Дослідницька пропозиція з обраної спеціальності.'
+];
+
+const requiredDocumentsRight = [
+  'Диплом про закінчення закладу вищої освіти і додаток до нього.',
+  'Для осіб, які здобули вищу освіту за кордоном, — документи для встановлення еквівалентності диплома.',
+  'Рекомендація Вченої ради закладу вищої освіти — за наявності.',
+  'Довідка про присвоєння ідентифікаційного номера.',
+  'Довідка з постійного місця реєстрації — для осіб, які мають намір проживати в гуртожитку.',
+  'Міжнародний сертифікат з іноземної мови — за наявності.',
+  'Згода на збір та обробку персональних даних.'
+];
+
+const supervisors = [
+  {
+    name: 'Юрчук Василь Миколайович',
+    degree: 'доктор фізико-математичних наук',
+    interests: 'нелінійно пружні матеріали, хвильові процеси, механіка деформівного твердого тіла'
+  },
+  {
+    name: 'Кіпніс Олександр Леонідович',
+    degree: 'кандидат фізико-математичних наук',
+    interests: 'стійкість і руйнування матеріалів з тонким покриттям, армовані композити, високопродуктивні обчислення'
+  },
+  {
+    name: 'Борисенко Максим Юрійович',
+    degree: 'доктор технічних наук',
+    interests: 'чисельний та експериментальний аналіз коливань пластин і оболонок'
+  },
+  {
+    name: 'Хорошун Анатолій Сергійович',
+    degree: 'доктор фізико-математичних наук',
+    interests: 'механіка композитних матеріалів, моделювання властивостей неоднорідних середовищ'
+  },
+  {
+    name: 'Григоренко Олександр Ярославович',
+    degree: 'доктор фізико-математичних наук, професор, академік НАН України',
+    interests: 'обчислювальні методи механіки, механіка оболонок, чисельне моделювання'
+  },
+  {
+    name: 'Селіванов Михайло Федорович',
+    degree: 'доктор фізико-математичних наук, член-кореспондент НАН України',
+    interests: 'механіка руйнування, когезивні моделі тріщин, пружні та в’язкопружні тіла',
+    photo: '/people/selivanov.png'
+  }
+];
+
+const programYears = [
+  {
+    year: '2025',
+    title: 'ОНП 2025 — F1 Прикладна математика',
+    program: 'https://inmech.kyiv.ua/doc/postgraduate/onp/2025.pdf',
+    plan: 'https://inmech.kyiv.ua/doc/postgraduate/np/np_2025.pdf'
+  },
+  {
+    year: '2024',
+    title: 'ОНП 2024 — 113 Прикладна математика',
+    program: 'https://inmech.kyiv.ua/doc/postgraduate/onp/2024.pdf',
+    plan: 'https://inmech.kyiv.ua/doc/postgraduate/np/np_2024.pdf'
+  },
+  {
+    year: '2023',
+    title: 'ОНП 2023 — 113 Прикладна математика',
+    program: 'https://inmech.kyiv.ua/doc/postgraduate/onp/2023.pdf',
+    plan: 'https://inmech.kyiv.ua/doc/postgraduate/np/np_2023.pdf'
+  },
+  {
+    year: '2022',
+    title: 'ОНП 2022 — 113 Прикладна математика',
+    program: 'https://inmech.kyiv.ua/doc/postgraduate/onp/2022.pdf',
+    plan: 'https://inmech.kyiv.ua/doc/postgraduate/np/np_2022.pdf'
+  }
+];
+
+const curriculum = [
+  ['ОК1', 'Філософія науки і культури', '6'],
+  ['ОК2', 'Іноземна мова професійного спрямування для підготовки аспірантів до рівня С1', '8'],
+  ['ОК3', 'Методологія, організація та технологія наукових досліджень в механіці', '6'],
+  ['ОК4', 'Поглиблений курс теоретичної механіки', '4'],
+  ['ОК5', 'Механіка деформівного твердого тіла', '4'],
+  ['ОК6', 'Педагогічна практика', '2']
+];
+
+const syllabusLinks = [
+  {
+    title: 'Силабуси та робочі програми 2025',
+    links: [
+      ['ОК2', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/ok2-rp-2025.pdf'],
+      ['ОК3', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/ok3-syl-2025.pdf'],
+      ['ОК4', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/ok4-syl-2025.pdf'],
+      ['ОК5', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/ok5-syl-2025.pdf'],
+      ['ОК6', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/ok6-syl-2025.pdf'],
+      ['ОК7', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/ok7-syl-2025.pdf'],
+      ['ОК8', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/ok8-syl-2025.pdf']
+    ]
+  },
+  {
+    title: 'Вибіркові компоненти 2025',
+    links: [
+      ['ВК1', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/vk1-syl-2025.pdf'],
+      ['ВК2', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/vk2-syl-2025.pdf'],
+      ['ВК3', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/vk3-syl%20-2025.pdf'],
+      ['ВК4', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/vk4-syl-2025.pdf'],
+      ['ВК5', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/vk5-syl-2025.pdf'],
+      ['ВК6', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/vk6-syl-2025.pdf'],
+      ['ВК7', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/vk7-syl-2025.pdf'],
+      ['ВК8', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/vk8-syl-2025.pdf'],
+      ['ВК9', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/vk9-syl-2025.pdf'],
+      ['ВК10', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/vk10-syl-2025.pdf']
+    ]
+  }
+];
+
+const scheduleLinks = [
+  {
+    title: 'Аспіранти 1-го курсу',
+    href: 'https://inmech.kyiv.ua/doc/postgraduate/shedule/2025_2026/shedule_2025_2026_1.pdf'
+  },
+  {
+    title: 'Аспіранти 2-го курсу',
+    href: 'https://inmech.kyiv.ua/doc/postgraduate/shedule/2025_2026/shedule_2025_2026_2.pdf'
+  },
+  {
+    title: 'Аспіранти 3-го курсу',
+    href: 'https://inmech.kyiv.ua/doc/postgraduate/shedule/2025_2026/shedule_2025_2026_3.pdf'
+  }
+];
+
+const accreditationLinks = [
+  {
+    title: 'Програма роботи експертної групи',
+    href: 'https://inmech.kyiv.ua/doc/postgraduate/program.pdf'
+  },
+  {
+    title: 'Відомості про самооцінювання',
+    href: 'https://inmech.kyiv.ua/doc/postgraduate/self-assessment.pdf'
+  }
+];
+
+const feedbackLinks = [
+  {
+    year: '2026',
+    links: [
+      ['Відгук 1', 'https://inmech.kyiv.ua/doc/postgraduate/vidguk/vidguk-1-2026.pdf'],
+      ['Відгук 2', 'https://inmech.kyiv.ua/doc/postgraduate/vidguk/vidguk-2-2026.pdf'],
+      ['Відгук 3', 'https://inmech.kyiv.ua/doc/postgraduate/vidguk/vidguk-3-2026.pdf'],
+      ['Відгук 4', 'https://inmech.kyiv.ua/doc/postgraduate/vidguk/vidguk-2026-4.pdf']
+    ]
+  },
+  {
+    year: '2025',
+    links: [
+      ['Відгук 1', 'https://inmech.kyiv.ua/doc/postgraduate/vidguk/vidguk-1-2025.pdf'],
+      ['Відгук 2', 'https://inmech.kyiv.ua/doc/postgraduate/vidguk/vidguk-2-2025.pdf']
+    ]
+  },
+  {
+    year: '2024',
+    links: [
+      ['Відгук 1', 'https://inmech.kyiv.ua/doc/postgraduate/vidguk/vidguk-1-2024.pdf'],
+      ['Відгук 2', 'https://inmech.kyiv.ua/doc/postgraduate/vidguk/vidguk-2-2024.pdf']
+    ]
+  }
+];
+
+const surveyResults = [
+  ['Результати опитування аспірантів 1-го курсу, 2026', 'https://inmech.kyiv.ua/doc/postgraduate/opit/ro-1-kurs-02-2026.pdf'],
+  ['Результати опитування, 2025', 'https://inmech.kyiv.ua/doc/postgraduate/opit/ro-09-2025.pdf'],
+  ['ОК3, квітень 2026', 'https://inmech.kyiv.ua/doc/postgraduate/opit/ro-ok3-04-2026.pdf'],
+  ['ОК4, квітень 2026', 'https://inmech.kyiv.ua/doc/postgraduate/opit/ro-ok4-04-2026.pdf'],
+  ['ОК5, квітень 2026', 'https://inmech.kyiv.ua/doc/postgraduate/opit/ro-ok5-04-2026.pdf'],
+  ['ОК6, квітень 2026', 'https://inmech.kyiv.ua/doc/postgraduate/opit/ro-ok6-04-2026.pdf']
+];
+
+const newsItems = [
+  {
+    date: '31 березня 2026',
+    label: 'Гостьова лекція',
+    text: 'О 13:30 відбудеться гостьова лекція професора Костянтина Науменка, Institute of Mechanics, Otto-von-Guericke-Universität Magdeburg. Мова лекції — англійська.',
+    href: 'https://us04web.zoom.us/j/9035597117?pwd=VlNITHhrZUdZMDVTdnhRMWt3RmFIUT09'
+  },
+  {
+    date: '26 березня 2026',
+    label: 'Проміжний звіт',
+    text: 'Проміжний звіт аспірантів 3-го курсу за перший семестр поточного навчального року відбудеться об 11:00 в онлайн-форматі.',
+    href: 'https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZDQ0YzAwMTUtYmZlOC00MDhkLTg3MDAtNmU4YWZmOTkwM2Zl%40thread.v2/0?context=%7b%22Tid%22%3a%220ef9db58-9d7a-498c-9e01-4c8416322816%22%2c%22Oid%22%3a%220899cb06-efe8-42d2-a1f3-8999926e5722%22%7d'
+  },
+  {
+    date: '2026',
+    label: 'Опитування',
+    text: 'Опитування аспірантів щодо якості викладання основних дисциплін завершено; результати подано у відповідному розділі сторінки.'
+  }
+];
+
+const students = [
+  {
+    year: 'Вступ 2025',
+    names: ['Грисевич Роман Юрійович', 'Назарчук Юрій Олександрович', 'Прощенко Олександр Анатолійович', 'Синявський Олексій Ігорович', 'Серафимович Роман Вікторович', 'Усов Василь Олександрович', 'Філь Євген Вадимович']
+  },
+  {
+    year: 'Вступ 2024',
+    names: ['Горський Юрій Вікторович', 'Кобзар Петро Юрійович', 'Лесик Олексій Іванович', 'Ольховський Антон Стефанович', 'Селіванов Данило Михайлович']
+  }
+];
+
+const quickAnchors = [
+  ['Вступникам', '#admission'],
+  ['ОНП', '#program'],
+  ['Керівники', '#supervisors'],
+  ['Розклад', '#schedule'],
+  ['Аспіранти', '#students'],
+  ['Акредитація', '#accreditation'],
+  ['Опитування', '#quality']
+];
+---
+
+<BaseLayout
+  title={`Аспірантура | ${site.shortName}`}
+  description="Аспірантура Інституту механіки ім. С. П. Тимошенка НАН України: вступ 2026, освітньо-наукова програма, документи, розклад, аспіранти та наукові керівники."
+  activePage="education"
+>
+  <section class="postgraduate-hero">
+    <div class="container postgraduate-hero-grid">
+      <div class="postgraduate-hero-panel">
+        <p class="eyebrow">Освітньо-наукова діяльність</p>
+        <h1>Аспірантура</h1>
+        <p class="lead">
+          Інститут механіки ім. С. П. Тимошенка НАН України оголошує набір до аспірантури
+          денної форми навчання на 2026 рік за спеціальністю <strong>F1 Прикладна математика</strong>.
+        </p>
+        <div class="postgraduate-hero-actions">
+          <a class="button primary" href="#admission">Вступникам 2026</a>
+          <a class="button secondary" href="#program">Освітньо-наукова програма</a>
+        </div>
+      </div>
+
+      <aside class="postgraduate-info-card">
+        <span class="postgraduate-info-mark">F1</span>
+        <h2>Прикладна математика</h2>
+        <p>Третій освітньо-науковий рівень вищої освіти</p>
+        <p class="postgraduate-info-note">ОНП: механіка деформівного твердого тіла і теоретична механіка</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section compact-nav-section">
+    <div class="container">
+      <nav class="postgraduate-anchor-nav" aria-label="Навігація сторінкою аспірантури">
+        {quickAnchors.map(([label, href]) => (
+          <a href={href}>{label}</a>
+        ))}
+      </nav>
+    </div>
+  </section>
+
+  <section class="section" id="admission">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Вступникам</p>
+          <h2>Вступ до аспірантури у 2026 році</h2>
+        </div>
+        <p>
+          Основні етапи вступної кампанії, нормативні документи та перелік матеріалів,
+          які потрібні для участі в конкурсному відборі.
+        </p>
+      </div>
+
+      <div class="admission-grid">
+        {admissionSteps.map((step) => (
+          <article class="admission-card">
+            <span>{step.title}</span>
+            <h3>{step.subtitle}</h3>
+            <ul>
+              {step.items.map((item) => <li>{item}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+
+      <div class="requirement-note">
+        <strong>Обов’язкова умова допуску:</strong>
+        успішне складання ЄВВ з методології наукових досліджень у 2025 або 2026 роках
+        та успішне складання ЄВІ у 2024–2026 роках; мінімальна сума оцінок тесту загальної
+        навчальної компетентності ЄВІ та тесту з іноземної мови ЄВІ не може бути меншою ніж 300.
+      </div>
+
+      <div class="document-grid document-grid-wide">
+        {admissionDocuments.map((document) => (
+          <a class="document-card" href={document.href} target="_blank" rel="noopener noreferrer">
+            <span>PDF</span>
+            <strong>{document.title}</strong>
+          </a>
+        ))}
+      </div>
+
+      <details class="postgraduate-details">
+        <summary>Перелік документів для вступу</summary>
+        <div class="required-documents-grid">
+          <ul class="check-list">
+            {requiredDocumentsLeft.map((item) => <li>{item}</li>)}
+          </ul>
+          <ul class="check-list">
+            {requiredDocumentsRight.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div class="warning-note">
+          <strong>Увага!</strong> Копії документів без пред’явлення оригіналів не приймаються.
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="section" id="news">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Новини для аспірантів</p>
+          <h2>Оголошення та події</h2>
+        </div>
+      </div>
+
+      <div class="postgraduate-news-grid">
+        {newsItems.map((item) => (
+          <article class="postgraduate-news-card">
+            <span class="news-date-badge">{item.date}</span>
+            <p class="management-accent">{item.label}</p>
+            <p>{item.text}</p>
+            {item.href && <a href={item.href} target="_blank" rel="noopener noreferrer">Перейти за посиланням →</a>}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="program">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Освітньо-наукова програма</p>
+          <h2>ОНП та навчальні плани</h2>
+        </div>
+        <p>
+          Документи освітньо-наукової програми та навчальні плани різних років подано у відкритому доступі.
+        </p>
+      </div>
+
+      <div class="program-year-grid">
+        {programYears.map((item) => (
+          <article class="program-year-card">
+            <span>{item.year}</span>
+            <h3>{item.title}</h3>
+            <div class="program-year-links">
+              <a href={item.program} target="_blank" rel="noopener noreferrer">ОНП</a>
+              <a href={item.plan} target="_blank" rel="noopener noreferrer">Навчальний план</a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <article class="program-table-panel">
+        <h3>Обов’язкові компоненти навчального плану</h3>
+        <div class="responsive-table-wrap">
+          <table class="program-table">
+            <thead>
+              <tr>
+                <th>Код</th>
+                <th>Назва дисципліни</th>
+                <th>Кредити</th>
+              </tr>
+            </thead>
+            <tbody>
+              {curriculum.map(([code, title, credits]) => (
+                <tr>
+                  <td>{code}</td>
+                  <td>{title}</td>
+                  <td>{credits}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <div class="syllabus-grid">
+        {syllabusLinks.map((group) => (
+          <details class="postgraduate-details compact">
+            <summary>{group.title}</summary>
+            <div class="pill-link-grid">
+              {group.links.map(([label, href]) => (
+                <a href={href} target="_blank" rel="noopener noreferrer">{label}</a>
+              ))}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="supervisors">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Наукове керівництво</p>
+          <h2>Потенційні наукові керівники аспірантів</h2>
+        </div>
+      </div>
+
+      <div class="supervisor-grid">
+        {supervisors.map((person) => (
+          <article class="supervisor-card">
+            <div class="supervisor-avatar-frame">
+              {person.photo && (
+                <img
+                  src={withBase(person.photo)}
+                  alt={`Фото: ${person.name}`}
+                  class="supervisor-photo"
+                  loading="lazy"
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"
+                />
+              )}
+              <div class={`supervisor-avatar ${person.photo ? 'avatar-fallback' : ''}`} aria-hidden="true">
+                {initials(person.name)}
+              </div>
+            </div>
+            <div>
+              <h3>{person.name}</h3>
+              <p class="supervisor-degree">{person.degree}</p>
+              <p>{person.interests}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="schedule">
+    <div class="container two-column-section">
+      <article class="postgraduate-panel">
+        <p class="eyebrow">Розклад занять</p>
+        <h2>Розклад занять аспірантів 2025–2026</h2>
+        <div class="document-grid">
+          {scheduleLinks.map((link) => (
+            <a class="document-card" href={link.href} target="_blank" rel="noopener noreferrer">
+              <span>PDF</span>
+              <strong>{link.title}</strong>
+            </a>
+          ))}
+        </div>
+      </article>
+
+      <article class="postgraduate-panel" id="accreditation">
+        <p class="eyebrow">Акредитація</p>
+        <h2>Матеріали акредитації ОНП</h2>
+        <p>
+          Акредитаційна експертиза освітньої програми «Механіка деформівного твердого тіла
+          і теоретична механіка» за спеціальністю 113 «Прикладна математика» проводиться
+          за третім рівнем вищої освіти.
+        </p>
+        <div class="document-grid">
+          {accreditationLinks.map((link) => (
+            <a class="document-card" href={link.href} target="_blank" rel="noopener noreferrer">
+              <span>PDF</span>
+              <strong>{link.title}</strong>
+            </a>
+          ))}
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="students">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Аспіранти</p>
+          <h2>Здобувачі освітньо-наукового ступеня</h2>
+        </div>
+      </div>
+
+      <div class="students-grid">
+        {students.map((group) => (
+          <article class="students-card">
+            <h3>{group.year}</h3>
+            <ul>
+              {group.names.map((name) => <li>{name}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="quality">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Якість освітнього процесу</p>
+          <h2>Відгуки, опитування та результати моніторингу</h2>
+        </div>
+      </div>
+
+      <div class="quality-grid">
+        <article class="postgraduate-panel">
+          <h3>Відгуки та пропозиції стейкхолдерів</h3>
+          <div class="feedback-year-grid">
+            {feedbackLinks.map((group) => (
+              <div class="feedback-year-card">
+                <strong>{group.year}</strong>
+                <div class="pill-link-grid small">
+                  {group.links.map(([label, href]) => (
+                    <a href={href} target="_blank" rel="noopener noreferrer">{label}</a>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </article>
+
+        <article class="postgraduate-panel">
+          <h3>Результати опитувань</h3>
+          <div class="survey-list">
+            {surveyResults.map(([title, href]) => (
+              <a href={href} target="_blank" rel="noopener noreferrer">{title}</a>
+            ))}
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .postgraduate-hero {
+    padding: 52px 0 18px;
+  }
+
+  .postgraduate-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .postgraduate-hero-panel,
+  .postgraduate-info-card,
+  .admission-card,
+  .program-year-card,
+  .program-table-panel,
+  .postgraduate-panel,
+  .supervisor-card,
+  .students-card,
+  .postgraduate-news-card,
+  .postgraduate-details {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .postgraduate-hero-panel {
+    padding: clamp(28px, 5vw, 54px);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .postgraduate-hero-panel::after {
+    content: '';
+    position: absolute;
+    right: -90px;
+    top: -110px;
+    width: 280px;
+    height: 280px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(29, 79, 145, 0.17), rgba(29, 79, 145, 0));
+  }
+
+  .postgraduate-hero-panel h1 {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 18px;
+    font-size: clamp(2.2rem, 4.6vw, 4.3rem);
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+  }
+
+  .postgraduate-hero-panel .lead,
+  .postgraduate-hero-panel .eyebrow,
+  .postgraduate-hero-actions {
+    position: relative;
+    z-index: 1;
+  }
+
+  .postgraduate-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .postgraduate-info-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(24px, 4vw, 40px);
+    background: linear-gradient(145deg, var(--accent-dark), var(--accent));
+    color: #fff;
+  }
+
+  .postgraduate-info-mark {
+    display: grid;
+    place-items: center;
+    width: 92px;
+    height: 92px;
+    margin-bottom: 20px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    font-size: 2rem;
+    font-weight: 950;
+  }
+
+  .postgraduate-info-card h2 {
+    margin: 0 0 10px;
+    font-size: 1.65rem;
+  }
+
+  .postgraduate-info-card p {
+    margin: 0 0 10px;
+    color: rgba(255, 255, 255, 0.84);
+  }
+
+  .postgraduate-info-note {
+    font-weight: 750;
+  }
+
+  .compact-nav-section {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .postgraduate-anchor-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 14px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: none;
+  }
+
+  .postgraduate-anchor-nav a {
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: var(--surface-soft);
+    color: var(--accent-dark);
+    font-weight: 850;
+  }
+
+  .postgraduate-anchor-nav a:hover {
+    text-decoration: none;
+    background: var(--accent-soft);
+  }
+
+  .section-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 28px;
+    align-items: flex-end;
+    margin-bottom: 22px;
+  }
+
+  .section-heading h2 {
+    margin: 0;
+    font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .section-heading p:last-child {
+    max-width: 520px;
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .admission-grid,
+  .postgraduate-news-grid,
+  .program-year-grid,
+  .supervisor-grid,
+  .students-grid,
+  .quality-grid,
+  .two-column-section {
+    display: grid;
+    gap: 16px;
+  }
+
+  .admission-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .admission-card {
+    padding: clamp(20px, 3vw, 28px);
+    border-top: 5px solid var(--accent);
+  }
+
+  .admission-card span {
+    display: inline-flex;
+    width: fit-content;
+    margin-bottom: 12px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-weight: 900;
+    font-size: 0.84rem;
+  }
+
+  .admission-card h3 {
+    margin: 0 0 12px;
+    font-size: 1.22rem;
+  }
+
+  .admission-card ul,
+  .students-card ul,
+  .check-list {
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  .admission-card li,
+  .students-card li,
+  .check-list li {
+    margin-bottom: 8px;
+  }
+
+  .requirement-note,
+  .warning-note {
+    margin-top: 18px;
+    padding: 18px 20px;
+    border-radius: 16px;
+  }
+
+  .requirement-note {
+    border-left: 5px solid var(--accent);
+    background: var(--surface-soft);
+  }
+
+  .warning-note {
+    border-left: 5px solid #c2410c;
+    background: #fff7ed;
+    color: #9a3412;
+  }
+
+  .document-grid,
+  .document-grid-wide {
+    display: grid;
+    gap: 12px;
+  }
+
+  .document-grid-wide {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    margin-top: 18px;
+  }
+
+  .document-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 76px;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--surface);
+    color: var(--text);
+    font-weight: 750;
+  }
+
+  .document-card:hover {
+    text-decoration: none;
+    background: var(--accent-soft);
+  }
+
+  .document-card span {
+    display: grid;
+    place-items: center;
+    min-width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-size: 0.78rem;
+    font-weight: 950;
+  }
+
+  .postgraduate-details {
+    margin-top: 18px;
+    padding: 18px 20px;
+  }
+
+  .postgraduate-details.compact {
+    margin-top: 0;
+  }
+
+  .postgraduate-details summary {
+    cursor: pointer;
+    color: var(--accent-dark);
+    font-weight: 900;
+  }
+
+  .required-documents-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 18px;
+  }
+
+  .check-list li::marker {
+    color: var(--accent);
+  }
+
+  .postgraduate-news-grid,
+  .program-year-grid,
+  .supervisor-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .postgraduate-news-card,
+  .program-year-card,
+  .postgraduate-panel,
+  .students-card {
+    padding: clamp(20px, 3vw, 30px);
+  }
+
+  .news-date-badge,
+  .program-year-card span {
+    display: inline-flex;
+    width: fit-content;
+    margin-bottom: 12px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-weight: 900;
+    font-size: 0.86rem;
+  }
+
+  .postgraduate-news-card p:last-of-type {
+    color: var(--muted);
+  }
+
+  .program-year-card h3 {
+    margin: 0 0 18px;
+    font-size: 1.16rem;
+  }
+
+  .program-year-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .program-year-links a,
+  .pill-link-grid a,
+  .survey-list a {
+    display: inline-flex;
+    width: fit-content;
+    padding: 7px 11px;
+    border-radius: 999px;
+    background: var(--surface-soft);
+    color: var(--accent-dark);
+    font-weight: 850;
+  }
+
+  .program-year-links a:hover,
+  .pill-link-grid a:hover,
+  .survey-list a:hover {
+    text-decoration: none;
+    background: var(--accent-soft);
+  }
+
+  .program-table-panel {
+    margin-top: 16px;
+    padding: clamp(20px, 3vw, 30px);
+  }
+
+  .responsive-table-wrap {
+    overflow-x: auto;
+  }
+
+  .program-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 680px;
+  }
+
+  .program-table th,
+  .program-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+  }
+
+  .program-table th {
+    background: var(--accent-dark);
+    color: #fff;
+  }
+
+  .program-table td:first-child,
+  .program-table td:last-child {
+    font-weight: 900;
+    color: var(--accent-dark);
+  }
+
+  .syllabus-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .pill-link-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .pill-link-grid.small a {
+    font-size: 0.88rem;
+  }
+
+  .supervisor-card {
+    display: grid;
+    grid-template-columns: 86px minmax(0, 1fr);
+    gap: 16px;
+    padding: 20px;
+    align-items: start;
+  }
+
+  .supervisor-avatar-frame,
+  .supervisor-photo,
+  .supervisor-avatar {
+    width: 78px;
+    height: 78px;
+    border-radius: 22px;
+  }
+
+  .supervisor-avatar-frame {
+    position: relative;
+  }
+
+  .supervisor-photo,
+  .supervisor-avatar {
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+  }
+
+  .supervisor-photo {
+    object-fit: cover;
+    background: var(--surface-soft);
+  }
+
+  .supervisor-avatar {
+    background: linear-gradient(135deg, var(--accent-soft), rgba(184, 135, 47, 0.16));
+    color: var(--accent-dark);
+    font-size: 1.05rem;
+    font-weight: 950;
+  }
+
+  .supervisor-avatar.avatar-fallback {
+    display: none;
+  }
+
+  .supervisor-card h3 {
+    margin: 0 0 8px;
+    font-size: 1.12rem;
+    line-height: 1.25;
+  }
+
+  .supervisor-degree,
+  .supervisor-card p:last-child,
+  .postgraduate-panel p,
+  .students-card li {
+    color: var(--muted);
+  }
+
+  .two-column-section,
+  .quality-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .postgraduate-panel h2,
+  .postgraduate-panel h3 {
+    margin-top: 0;
+  }
+
+  .postgraduate-panel .document-grid {
+    margin-top: 16px;
+  }
+
+  .students-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .students-card h3 {
+    margin-top: 0;
+  }
+
+  .feedback-year-grid {
+    display: grid;
+    gap: 14px;
+  }
+
+  .feedback-year-card {
+    padding: 14px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--surface-soft);
+  }
+
+  .survey-list {
+    display: grid;
+    gap: 10px;
+  }
+
+  @media (max-width: 1100px) {
+    .document-grid-wide,
+    .postgraduate-news-grid,
+    .program-year-grid,
+    .supervisor-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 900px) {
+    .postgraduate-hero-grid,
+    .admission-grid,
+    .required-documents-grid,
+    .syllabus-grid,
+    .two-column-section,
+    .quality-grid,
+    .students-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-heading {
+      display: block;
+    }
+
+    .section-heading p:last-child {
+      margin-top: 10px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .document-grid-wide,
+    .postgraduate-news-grid,
+    .program-year-grid,
+    .supervisor-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .supervisor-card {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -124,7 +124,6 @@ const relatedLinks = [
         </p>
         <div class="services-hero-actions">
           <a class="button primary" href="#services-list">Структура служб</a>
-          <a class="button secondary" href="#contacts">Контакти</a>
         </div>
       </div>
 
@@ -197,42 +196,6 @@ const relatedLinks = [
     </div>
   </section>
 
-  <section class="section" id="contacts">
-    <div class="container services-two-column">
-      <article class="services-contact-panel">
-        <p class="eyebrow">Загальні контакти</p>
-        <h2>Контактна інформація Інституту</h2>
-        <p>
-          Для звернень до служб Інституту можна використовувати загальні контакти установи
-          або звертатися безпосередньо до відповідного структурного підрозділу.
-        </p>
-        <div class="services-contact-list">
-          <div>
-            <strong>Адреса</strong>
-            <span>{site.address}</span>
-          </div>
-          <div>
-            <strong>Телефон</strong>
-            <a href={`tel:${site.phone.replaceAll(' ', '')}`}>{site.phone}</a>
-          </div>
-          <div>
-            <strong>Email</strong>
-            <a href={`mailto:${site.email}`}>{site.email}</a>
-          </div>
-        </div>
-      </article>
-
-      <aside class="services-note-panel">
-        <p class="eyebrow">Примітка</p>
-        <h2>Актуалізація інформації</h2>
-        <p>
-          За потреби сторінку можна доповнити кабінетами, службовими телефонами,
-          графіком прийому, внутрішніми регламентами та типовими формами документів.
-        </p>
-      </aside>
-    </div>
-  </section>
-
   <section class="section">
     <div class="container">
       <div class="related-panel">
@@ -267,8 +230,6 @@ const relatedLinks = [
   .services-summary-card,
   .service-group-card,
   .staff-card,
-  .services-contact-panel,
-  .services-note-panel,
   .related-panel {
     background: var(--surface);
     border: 1px solid var(--line);
@@ -481,62 +442,19 @@ const relatedLinks = [
     font-weight: 700;
   }
 
-  .services-two-column {
-    display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
-    gap: 18px;
-    align-items: start;
-  }
-
-  .services-contact-panel,
-  .services-note-panel,
-  .related-panel {
-    padding: clamp(22px, 3vw, 34px);
-  }
-
-  .services-contact-panel h2,
-  .services-note-panel h2,
-  .related-panel h2 {
-    margin: 0 0 12px;
-    font-size: clamp(1.45rem, 2.4vw, 2.2rem);
-    line-height: 1.1;
-    letter-spacing: -0.025em;
-  }
-
-  .services-contact-panel p,
-  .services-note-panel p {
-    color: var(--muted);
-  }
-
-  .services-contact-list {
-    display: grid;
-    gap: 12px;
-    margin-top: 18px;
-  }
-
-  .services-contact-list div {
-    display: grid;
-    gap: 5px;
-    padding: 14px 16px;
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    background: var(--surface-soft);
-  }
-
-  .services-contact-list strong {
-    color: var(--accent-dark);
-  }
-
-  .services-note-panel {
-    background: linear-gradient(135deg, rgba(184, 135, 47, 0.12), rgba(29, 79, 145, 0.08));
-    border-color: rgba(184, 135, 47, 0.35);
-  }
-
   .related-panel {
     display: grid;
     grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
     gap: 24px;
     align-items: center;
+    padding: clamp(22px, 3vw, 34px);
+  }
+
+  .related-panel h2 {
+    margin: 0 0 12px;
+    font-size: clamp(1.45rem, 2.4vw, 2.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
   }
 
   .related-link-grid {
@@ -570,7 +488,6 @@ const relatedLinks = [
   @media (max-width: 900px) {
     .services-hero-grid,
     .services-summary-grid,
-    .services-two-column,
     .related-panel {
       grid-template-columns: 1fr;
     }

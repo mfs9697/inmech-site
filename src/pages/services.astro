@@ -1,0 +1,487 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+const serviceCards = [
+  {
+    title: 'Адміністративний супровід',
+    icon: '🏛️',
+    text: 'Організаційна підтримка діяльності Інституту, внутрішній документообіг і координація поточних адміністративних питань.'
+  },
+  {
+    title: 'Кадрові питання',
+    icon: '👥',
+    text: 'Супровід кадрових процедур, облік персоналу, підготовка кадрових документів і взаємодія зі структурними підрозділами.'
+  },
+  {
+    title: 'Фінансово-бухгалтерський супровід',
+    icon: '📊',
+    text: 'Підтримка фінансово-господарських процедур, звітності, закупівельних та облікових процесів у межах компетенції відповідних служб.'
+  },
+  {
+    title: 'Інформаційна та цифрова підтримка',
+    icon: '💻',
+    text: 'Підтримка інформаційних ресурсів, електронної комунікації, оновлення вебсайту та цифрових сервісів Інституту.'
+  },
+  {
+    title: 'Бібліотечно-інформаційний супровід',
+    icon: '📚',
+    text: 'Інформаційна підтримка наукової роботи, доступ до видань, бібліографічних матеріалів і науково-інформаційних ресурсів.'
+  },
+  {
+    title: 'Господарське забезпечення',
+    icon: '🛠️',
+    text: 'Підтримка функціонування приміщень, інфраструктури та матеріально-технічного забезпечення Інституту.'
+  }
+];
+
+const relatedLinks = [
+  ['Дирекція', '/management/'],
+  ['Наукові відділи', '/departments/'],
+  ['Вчена рада', '/scientific-council/'],
+  ['Рада молодих вчених', '/young-scientists/']
+];
+---
+
+<BaseLayout
+  title={`Служби інституту | ${site.shortName}`}
+  description="Служби Інституту механіки ім. С. П. Тимошенка НАН України: адміністративний, кадровий, фінансово-бухгалтерський, інформаційний та господарський супровід діяльності Інституту."
+  activePage="departments"
+>
+  <section class="services-hero">
+    <div class="container services-hero-grid">
+      <div class="services-hero-panel">
+        <p class="eyebrow">Структура Інституту</p>
+        <h1>Служби інституту</h1>
+        <p class="lead">
+          Служби Інституту забезпечують організаційний, адміністративний, кадровий,
+          фінансово-бухгалтерський, інформаційний та господарський супровід роботи наукових
+          підрозділів і функціонування установи загалом.
+        </p>
+        <div class="services-hero-actions">
+          <a class="button primary" href="#services-list">Переглянути напрями</a>
+          <a class="button secondary" href="#contacts">Контакти</a>
+        </div>
+      </div>
+
+      <aside class="services-mark-card">
+        <span>6</span>
+        <h2>напрямів підтримки</h2>
+        <p>
+          Сторінка підготовлена як структурована основа для подальшого додавання відповідальних
+          осіб, кабінетів, телефонів і службових документів.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section services-summary-section">
+    <div class="container services-summary-grid">
+      <article class="services-summary-card">
+        <span>Організація</span>
+        <p>підтримка щоденної роботи Інституту</p>
+      </article>
+      <article class="services-summary-card">
+        <span>Документи</span>
+        <p>супровід процедур і службового документообігу</p>
+      </article>
+      <article class="services-summary-card">
+        <span>Комунікація</span>
+        <p>інформаційна взаємодія між підрозділами</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="services-list">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Основні напрями</p>
+          <h2>Службова підтримка діяльності Інституту</h2>
+        </div>
+        <p>
+          Нижче подано узагальнені напрями роботи служб. Персональний склад, кабінети та
+          спеціалізовані контакти можна буде додати після уточнення актуальної інформації.
+        </p>
+      </div>
+
+      <div class="services-card-grid">
+        {serviceCards.map((service) => (
+          <article class="services-card">
+            <span>{service.icon}</span>
+            <h3>{service.title}</h3>
+            <p>{service.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contacts">
+    <div class="container services-two-column">
+      <article class="services-contact-panel">
+        <p class="eyebrow">Загальні контакти</p>
+        <h2>Контактна інформація Інституту</h2>
+        <p>
+          Для звернень до служб Інституту можна використовувати загальні контакти установи.
+          Після уточнення відповідальних підрозділів цей блок можна деталізувати.
+        </p>
+        <div class="services-contact-list">
+          <div>
+            <strong>Адреса</strong>
+            <span>{site.address}</span>
+          </div>
+          <div>
+            <strong>Телефон</strong>
+            <a href={`tel:${site.phone.replaceAll(' ', '')}`}>{site.phone}</a>
+          </div>
+          <div>
+            <strong>Email</strong>
+            <a href={`mailto:${site.email}`}>{site.email}</a>
+          </div>
+        </div>
+      </article>
+
+      <aside class="services-note-panel">
+        <p class="eyebrow">Для подальшого наповнення</p>
+        <h2>Що можна додати наступним кроком</h2>
+        <ul>
+          <li>перелік служб із відповідальними особами;</li>
+          <li>кабінети, телефони та службові email-адреси;</li>
+          <li>графік прийому або години роботи;</li>
+          <li>типові форми заяв, службових записок і документів;</li>
+          <li>посилання на внутрішні регламенти та інструкції.</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="related-panel">
+        <div>
+          <p class="eyebrow">Пов’язані розділи</p>
+          <h2>Структура Інституту</h2>
+        </div>
+        <div class="related-link-grid">
+          {relatedLinks.map(([title, href]) => (
+            <a href={withBase(href)}>{title} →</a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .services-hero {
+    padding: 52px 0 18px;
+  }
+
+  .services-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .services-hero-panel,
+  .services-mark-card,
+  .services-summary-card,
+  .services-card,
+  .services-contact-panel,
+  .services-note-panel,
+  .related-panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .services-hero-panel {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(28px, 5vw, 54px);
+  }
+
+  .services-hero-panel::after {
+    content: '';
+    position: absolute;
+    right: -90px;
+    top: -110px;
+    width: 280px;
+    height: 280px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(29, 79, 145, 0.17), rgba(29, 79, 145, 0));
+  }
+
+  .services-hero-panel h1,
+  .services-hero-panel .lead,
+  .services-hero-panel .eyebrow,
+  .services-hero-actions {
+    position: relative;
+    z-index: 1;
+  }
+
+  .services-hero-panel h1 {
+    margin: 0 0 18px;
+    font-size: clamp(2.2rem, 4.6vw, 4.3rem);
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+  }
+
+  .services-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .services-mark-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(24px, 4vw, 40px);
+    background: linear-gradient(145deg, var(--accent-dark), var(--accent));
+    color: #fff;
+  }
+
+  .services-mark-card span {
+    display: grid;
+    place-items: center;
+    width: 96px;
+    height: 96px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.14);
+    font-size: 2.4rem;
+    font-weight: 950;
+  }
+
+  .services-mark-card h2 {
+    margin: 0 0 12px;
+    font-size: 1.65rem;
+  }
+
+  .services-mark-card p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.84);
+  }
+
+  .services-summary-section {
+    padding-top: 16px;
+  }
+
+  .services-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .services-summary-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: clamp(20px, 3vw, 30px);
+  }
+
+  .services-summary-card span {
+    display: grid;
+    place-items: center;
+    min-width: 118px;
+    height: 70px;
+    border-radius: 22px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-weight: 950;
+  }
+
+  .services-summary-card p {
+    margin: 0;
+    color: var(--muted);
+    font-weight: 750;
+  }
+
+  .section-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 28px;
+    align-items: flex-end;
+    margin-bottom: 22px;
+  }
+
+  .section-heading h2 {
+    margin: 0;
+    font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .section-heading p:last-child {
+    max-width: 560px;
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .services-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .services-card {
+    padding: clamp(20px, 3vw, 30px);
+  }
+
+  .services-card span {
+    display: grid;
+    place-items: center;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 18px;
+    border-radius: 20px;
+    background: var(--surface-soft);
+    font-size: 1.45rem;
+  }
+
+  .services-card h3 {
+    margin: 0 0 10px;
+    font-size: 1.18rem;
+    line-height: 1.25;
+  }
+
+  .services-card p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .services-two-column {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+    gap: 18px;
+    align-items: start;
+  }
+
+  .services-contact-panel,
+  .services-note-panel,
+  .related-panel {
+    padding: clamp(22px, 3vw, 34px);
+  }
+
+  .services-contact-panel h2,
+  .services-note-panel h2,
+  .related-panel h2 {
+    margin: 0 0 12px;
+    font-size: clamp(1.45rem, 2.4vw, 2.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .services-contact-panel p,
+  .services-note-panel li {
+    color: var(--muted);
+  }
+
+  .services-contact-list {
+    display: grid;
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .services-contact-list div {
+    display: grid;
+    gap: 5px;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--surface-soft);
+  }
+
+  .services-contact-list strong {
+    color: var(--accent-dark);
+  }
+
+  .services-note-panel {
+    background: linear-gradient(135deg, rgba(184, 135, 47, 0.12), rgba(29, 79, 145, 0.08));
+    border-color: rgba(184, 135, 47, 0.35);
+  }
+
+  .services-note-panel ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  .services-note-panel li {
+    margin-bottom: 10px;
+  }
+
+  .related-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 24px;
+    align-items: center;
+  }
+
+  .related-link-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .related-link-grid a {
+    display: block;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface-soft);
+    color: var(--accent-dark);
+    font-weight: 850;
+  }
+
+  .related-link-grid a:hover {
+    text-decoration: none;
+    background: var(--accent-soft);
+  }
+
+  @media (max-width: 1040px) {
+    .services-card-grid,
+    .related-link-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 900px) {
+    .services-hero-grid,
+    .services-summary-grid,
+    .services-two-column,
+    .related-panel {
+      grid-template-columns: 1fr;
+    }
+
+    .section-heading {
+      display: block;
+    }
+
+    .section-heading p:last-child {
+      margin-top: 10px;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .services-card-grid,
+    .related-link-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

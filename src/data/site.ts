@@ -1,6 +1,6 @@
 export const site = {
   lang: 'uk',
-  name: 'Інститут механіки ім. С.П. Тимошенка',
+  name: 'Інститут механіки ім.С.П. Тимошенка',
   shortName: "Інститут механіки",
   subtitle: 'Національна академія наук України',
   heroSubtitle: "Фундаментальні та прикладні дослідження в галузі механіки",
@@ -15,7 +15,7 @@ export const archiveYears = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 202
 
 export const quickLinks = [
   { title: 'Наукові відділи', href: '/departments/' },
-  { title: 'Аспірантура', href: '#' },
+  { title: 'Аспірантура', href: '/postgraduate/' },
   { title: 'Журнал «Прикладна механіка»', href: '#' },
   { title: 'Конференції', href: '#' },
   { title: 'Контакти', href: '#contacts' }

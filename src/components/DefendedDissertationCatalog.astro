@@ -1,64 +1,15 @@
 ---
+import { defendedDissertationsA } from '../data/defendedDissertationsA';
+import { defendedDissertationsB } from '../data/defendedDissertationsB';
+import { defendedDissertationsV } from '../data/defendedDissertationsV';
+
 const catalog = [
-  {
-    letter: 'А',
-    items: [
-      {
-        name: 'Абдуганієв Абдувакил Абдуганієвич',
-        title: 'Розробка мікроструктурної теорії пористих середовищ, насичених рідиною, і аналіз поширення хвиль',
-        date: '27.02.1990',
-        degree: 'кандидат фізико-математичних наук',
-        specialty: '01.02.04',
-        institution: 'Інститут механіки АН УРСР',
-        cityYear: 'Ташкент, 1990',
-        pages: '149 с.'
-      }
-    ]
-  },
-  {
-    letter: 'Б',
-    items: [
-      {
-        name: 'Борисенко Максим Юрійович',
-        title: 'Чисельний та експериментальний аналіз вільних коливань багатокутних пластин і циліндричних оболонок з конструктивною неоднорідністю',
-        date: '16.10.2025',
-        degree: 'доктор технічних наук',
-        specialty: '01.02.04 — механіка деформівного твердого тіла',
-        institution: 'Інститут механіки ім. С. П. Тимошенка НАН України',
-        cityYear: 'Київ, 2025',
-        abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/03/refer.pdf',
-        dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/03/dis.pdf'
-      },
-      {
-        name: 'Борисенко Максим Юрійович',
-        title: 'Архівний запис захисту 2016 року',
-        date: '2016',
-        degree: 'дані уточнюються',
-        specialty: 'дані уточнюються',
-        institution: 'Інститут механіки ім. С. П. Тимошенка НАН України',
-        cityYear: 'Київ, 2016',
-        abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2016/02refer.pdf',
-        dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2016/02dis.pdf'
-      }
-    ]
-  },
-  {
-    letter: 'В',
-    items: [
-      {
-        name: 'Вельмагіна Наталя Олександрівна',
-        title: 'Архівний запис захисту 2016 року',
-        date: '2016',
-        degree: 'дані уточнюються',
-        specialty: 'дані уточнюються',
-        institution: 'Інститут механіки ім. С. П. Тимошенка НАН України',
-        cityYear: 'Київ, 2016',
-        abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2016/07refer1.pdf',
-        dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2016/07dis.pdf'
-      }
-    ]
-  }
+  { letter: 'А', items: defendedDissertationsA },
+  { letter: 'Б', items: defendedDissertationsB },
+  { letter: 'В', items: defendedDissertationsV }
 ];
+
+const totalItems = catalog.reduce((sum, group) => sum + group.items.length, 0);
 ---
 
 <section class="section" id="defended-catalog">
@@ -69,8 +20,8 @@ const catalog = [
         <h2>Захищені дисертації</h2>
       </div>
       <p>
-        Перший фрагмент каталогу подано для літер А–В. Формат передбачає поступове
-        перенесення повного переліку дисертацій, захищених в Інституті механіки.
+        Перший фрагмент каталогу подано для літер А–В. У ньому розміщено {totalItems}
+        бібліографічних записів зі старого розділу бібліотеки.
       </p>
     </div>
 
@@ -81,9 +32,9 @@ const catalog = [
     </nav>
 
     <div class="diss-note">
-      <strong>Примітка.</strong> Записи з позначкою «дані уточнюються» використано як стартові
-      картки за наявними архівними матеріалами. Після повного перенесення бібліотечного каталогу
-      ці поля можна буде замінити повними бібліографічними даними.
+      <strong>Примітка.</strong> Це перший перенесений фрагмент повного каталогу. Записи залишено
+      максимально близькими до бібліографічного формату старої сторінки; далі за цим самим
+      шаблоном можна додати наступні літери.
     </div>
 
     <div class="diss-groups">
@@ -91,7 +42,7 @@ const catalog = [
         <section class="diss-letter-group" id={`catalog-${group.letter}`}>
           <div class="diss-letter-header">
             <h3>{group.letter}</h3>
-            <span>{group.items.length} {group.items.length === 1 ? 'запис' : 'записи'}</span>
+            <span>{group.items.length} {group.items.length === 1 ? 'запис' : 'записів'}</span>
           </div>
 
           <div class="diss-card-grid">
@@ -99,40 +50,7 @@ const catalog = [
               <article class="diss-card">
                 <h4>{item.name}</h4>
                 <p class="diss-title">{item.title}</p>
-                <dl class="diss-meta-grid">
-                  <div>
-                    <dt>Захист</dt>
-                    <dd>{item.date}</dd>
-                  </div>
-                  <div>
-                    <dt>Ступінь</dt>
-                    <dd>{item.degree}</dd>
-                  </div>
-                  <div>
-                    <dt>Спеціальність</dt>
-                    <dd>{item.specialty}</dd>
-                  </div>
-                  <div>
-                    <dt>Установа</dt>
-                    <dd>{item.institution}</dd>
-                  </div>
-                  <div>
-                    <dt>Місто, рік</dt>
-                    <dd>{item.cityYear}</dd>
-                  </div>
-                  {item.pages && (
-                    <div>
-                      <dt>Обсяг</dt>
-                      <dd>{item.pages}</dd>
-                    </div>
-                  )}
-                </dl>
-                {(item.abstract || item.dissertation) && (
-                  <div class="diss-links">
-                    {item.abstract && <a href={item.abstract} target="_blank" rel="noopener noreferrer">Автореферат</a>}
-                    {item.dissertation && <a href={item.dissertation} target="_blank" rel="noopener noreferrer">Дисертація</a>}
-                  </div>
-                )}
+                <p class="diss-details">{item.details}</p>
               </article>
             ))}
           </div>
@@ -224,69 +142,31 @@ const catalog = [
   .diss-card {
     padding: 16px 18px;
     box-shadow: none;
+    background: var(--surface-soft);
   }
 
   .diss-card h4 {
-    margin: 0 0 12px;
+    margin: 0 0 10px;
+    color: var(--accent-dark);
     font-size: 1.05rem;
+    line-height: 1.25;
   }
 
   .diss-title {
-    margin: 0 0 14px;
+    margin: 0 0 12px;
     color: var(--text);
-    font-weight: 800;
-  }
-
-  .diss-meta-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-    margin: 0 0 14px;
-  }
-
-  .diss-meta-grid div {
-    padding: 10px 12px;
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    background: var(--surface-soft);
-  }
-
-  .diss-meta-grid dt {
-    margin-bottom: 4px;
-    color: var(--muted);
-    font-size: 0.82rem;
     font-weight: 850;
+    line-height: 1.35;
   }
 
-  .diss-meta-grid dd {
+  .diss-details {
     margin: 0;
-    color: var(--text);
-    font-weight: 750;
-  }
-
-  .diss-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .diss-links a {
-    display: inline-flex;
-    padding: 7px 11px;
-    border-radius: 999px;
-    background: var(--surface-soft);
-    color: var(--accent-dark);
-    font-weight: 850;
-  }
-
-  .diss-links a:hover {
-    background: var(--accent-soft);
-    text-decoration: none;
+    color: var(--muted);
+    line-height: 1.45;
   }
 
   @media (max-width: 900px) {
-    .diss-card-grid,
-    .diss-meta-grid {
+    .diss-card-grid {
       grid-template-columns: 1fr;
     }
 

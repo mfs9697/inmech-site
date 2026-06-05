@@ -1,0 +1,669 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+const featuredDefenses = [
+  {
+    status: 'Анонс / матеріали захисту',
+    year: '2026',
+    name: 'Кіпніс Олександр Леонідович',
+    title: 'Стійкість матеріалів з покриттям при стиску вздовж межі поділу за різних умов міжфазного контакту',
+    date: '14.05.2026 о 10:00',
+    place: 'м. Київ, вул. Нестерова, 3, аудиторія 311',
+    degree: 'доктор фізико-математичних наук',
+    specialty: '01.02.04 — механіка деформівного твердого тіла',
+    consultant: 'Богданов Вячеслав Леонідович, академік НАН України, доктор фізико-математичних наук',
+    links: [
+      ['Автореферат', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2026/01/refer.pdf'],
+      ['Дисертація', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2026/01/dis.pdf'],
+      ['Висновок', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2026/01/v.pdf'],
+      ['Облікова картка', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2026/01/oblic.pdf'],
+      ['Посилання на захист', 'https://teams.microsoft.com/meet/3299025440584?p=fv8RF19iX9zDJjxHph'],
+      ['Відео захисту', 'https://youtu.be/8k0PaHIahn0?si=NmVR5nF_dobJsEG3']
+    ],
+    opponents: [
+      ['Марчук Олександр Васильович', 'доктор технічних наук, професор', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2026/01/vid1.pdf'],
+      ['Кущ Володимир Іванович', 'доктор фізико-математичних наук, професор', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2026/01/vid2.pdf'],
+      ['Острик Володимир Іванович', 'доктор фізико-математичних наук, професор', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2026/01/vid3.pdf']
+    ]
+  },
+  {
+    status: 'Архів 2025',
+    year: '2025',
+    name: 'Борисенко Максим Юрійович',
+    title: 'Чисельний та експериментальний аналіз вільних коливань багатокутних пластин і циліндричних оболонок з конструктивною неоднорідністю',
+    date: '16.10.2025 о 11:00',
+    place: 'м. Київ, вул. Нестерова, 3, аудиторія 311',
+    degree: 'доктор технічних наук',
+    specialty: '01.02.04 — механіка деформівного твердого тіла',
+    consultant: 'Григоренко Олександр Ярославович, академік НАН України, доктор фізико-математичних наук, професор',
+    links: [
+      ['Автореферат', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/03/refer.pdf'],
+      ['Дисертація', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/03/dis.pdf'],
+      ['Висновок', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/03/v.pdf'],
+      ['Облікова картка', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/03/oblic.pdf'],
+      ['Відео 1', 'https://youtube.com/watch?v=eeyzbe0_P8Q'],
+      ['Відео 2', 'https://youtube.com/watch?v=fPIHyxVFHmw']
+    ],
+    opponents: [
+      ['Іванченко Григорій Михайлович', 'доктор технічних наук, професор', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/03/vid1.pdf'],
+      ['Курпа Лідія Василівна', 'доктор технічних наук, професор', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/03/vid2.pdf'],
+      ['Лоза Ігор Андрійович', 'доктор фізико-математичних наук, професор', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/03/vid3.pdf']
+    ]
+  },
+  {
+    status: 'Архів 2025',
+    year: '2025',
+    name: 'Григор’єва Людмила Олександрівна',
+    title: 'Чисельне моделювання динамічних процесів в п’єзоелектричних тілах з урахуванням дисипативних властивостей та неоднорідності матеріалу',
+    date: '30.09.2025 о 11:00',
+    place: 'м. Київ, вул. Нестерова, 3, аудиторія 311',
+    degree: 'доктор фізико-математичних наук',
+    specialty: '01.02.04 — механіка деформівного твердого тіла',
+    consultant: 'Янчевський Ігор Владиславович, доктор фізико-математичних наук, професор',
+    links: [
+      ['Автореферат', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/02/refer.pdf'],
+      ['Дисертація', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/02/dis.pdf'],
+      ['Висновок', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/02/v_1.pdf'],
+      ['Облікова картка', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/02/oblic.pdf'],
+      ['Відео 1', 'https://youtu.be/4hHs4QonllE?si=HD1HGacodRlDiyaN'],
+      ['Відео 2', 'https://youtu.be/uRLbzk4En00?si=ztyGd5erGswLtthh']
+    ],
+    opponents: [
+      ['Сенченков Ігор Костянтинович', 'доктор фізико-математичних наук', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/02/vid1_1.pdf'],
+      ['Говоруха Володимир Борисович', 'доктор фізико-математичних наук, професор', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/02/vid2_1.pdf'],
+      ['Савченко Олена Віталіївна', 'доктор технічних наук, доцент', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/02/vid3_1.pdf']
+    ]
+  },
+  {
+    status: 'Архів 2025',
+    year: '2025',
+    name: 'Юрчук Василь Миколайович',
+    title: 'Сценарії поширення хвиль різних початкових профілів в матеріалах, які деформуються нелінійно пружно',
+    date: '02.09.2025 о 14:00',
+    place: 'м. Київ, вул. Нестерова, 3, аудиторія 311',
+    degree: 'доктор фізико-математичних наук',
+    specialty: '01.02.04 — механіка деформівного твердого тіла',
+    consultant: 'Рущицький Ярема Ярославович, член-кореспондент НАН України, доктор фізико-математичних наук, професор',
+    links: [
+      ['Автореферат', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/01/refer1.pdf'],
+      ['Дисертація', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/01/dis2.pdf'],
+      ['Висновок', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/01/v.pdf'],
+      ['Облікова картка', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/01/oblic.pdf'],
+      ['Відео захисту', 'https://www.youtube.com/watch?v=XXVwhdl4h8Q']
+    ],
+    opponents: [
+      ['Лимарченко Олег Степанович', 'доктор технічних наук, професор', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/01/vid1.pdf'],
+      ['Говоруха Володимир Борисович', 'доктор фізико-математичних наук, професор', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/01/vid2.pdf'],
+      ['Савченко Олена Віталіївна', 'доктор технічних наук, доцент', 'https://inmech.kyiv.ua/doc/postgraduate/dis/2025/01/vid3.pdf']
+    ]
+  }
+];
+
+const archiveDefenses = [
+  { year: '2021', name: 'Яремченко Сергій Миколайович', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2021/26ref.pdf', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2021/26dis.pdf' },
+  { year: '2021', name: 'Мельник Всеволод Михайлович', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2021/25ref.docx', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2021/25dis.docx' },
+  { year: '2021', name: 'Орленко Сергій Петрович', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2021/24ref.pdf', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2021/24dis.pdf', video: 'https://youtu.be/fIqUI6MljMs' },
+  { year: '2020', name: 'Орленко Сергій Петрович', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2020/23ref.pdf', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2020/23dis.pdf' },
+  { year: '2019', name: 'Тімохін Олексій Павлович', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2019/22ref.pdf', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2019/22dis.pdf' },
+  { year: '2019', name: 'Нефьодов Олександр Олексійович', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2019/21ref.pdf', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2019/21dis_last.pdf' },
+  { year: '2019', name: 'Глухов Андрій Юрійович', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2019/20ref.rar', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2019/20dis.zip' },
+  { year: '2019', name: 'Погребняк Анатолій Дмитрович', abstract: 'https://inmech.kyiv.ua/3doc/postgraduate/dis/2019/19ref.rar', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2019/19dis.rar' },
+  { year: '2019', name: 'Рожок Лілія Степанівна', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2019/18refer.pdf', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2019/18dis.pdf' },
+  { year: '2019', name: 'Шугайло Олексій Петрович', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2019/17refer.pdf', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2019/17dis.pdf' },
+  { year: '2019', name: 'Юрчук Василь Миколайович', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2019/16refer.pdf', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2019/16dis.pdf' },
+  { year: '2019', name: 'Хорошун Анатолій Сергійович', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2019/15refer.pdf', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2019/15dis.pdf' },
+  { year: '2018', name: 'Чернобай Володимир Сергійович', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2018/14refer.pdf', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2018/14dis.pdf' },
+  { year: '2018', name: 'Панкратьєв Сергій Анатолійович', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2018/13refer.pdf', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2018/13dis.pdf' },
+  { year: '2018', name: 'Забуга Артем Геннадійович', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2018/12refer.pdf', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2018/12dis.pdf' },
+  { year: '2017', name: 'Селіванов Михайло Федорович', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2017/11refer.pdf', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2017/11dis.pdf' },
+  { year: '2016', name: 'Крицький Володимир Борисович', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2016/10refer.pdf', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2016/10dis.pdf' },
+  { year: '2016', name: 'Пославський Сергій Юрійович', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2016/09refer.pdf', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2016/09dis.pdf' },
+  { year: '2016', name: 'Скосаренко Юрій Валентинович', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2016/08refer.pdf', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2016/08dis.zip' },
+  { year: '2016', name: 'Вельмагіна Наталя Олександрівна', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2016/07refer1.pdf', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2016/07dis.pdf' },
+  { year: '2016', name: 'Кіпніс Олександр Леонідович', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2016/06refer.pdf', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2016/06dis.pdf' },
+  { year: '2016', name: 'Мейш Юлія Анатоліївна', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2016/05refer1.pdf', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2016/05dis.pdf' },
+  { year: '2016', name: 'Семенович Катерина Олексіївна', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2016/04refer.pdf', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2016/04dis.pdf' },
+  { year: '2016', name: 'Рагуліна Віра Сергіївна', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2016/03refer.doc', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2016/03dis.doc' },
+  { year: '2016', name: 'Борисенко Максим Юрійович', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2016/02refer.pdf', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2016/02dis.pdf' },
+  { year: '2015', name: 'Кепенач Наталiя Павлiвна', abstract: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2015/01refer.pdf', dissertation: 'https://inmech.kyiv.ua/doc/postgraduate/dis/2015/01dis.pdf' }
+];
+
+const archiveGroups = [...archiveDefenses.reduce((acc, item) => {
+  if (!acc.has(item.year)) acc.set(item.year, []);
+  acc.get(item.year)?.push(item);
+  return acc;
+}, new Map<string, typeof archiveDefenses>())].sort(([a], [b]) => Number(b) - Number(a));
+---
+
+<BaseLayout
+  title={`Захист дисертацій | ${site.shortName}`}
+  description="Захист дисертацій в Інституті механіки ім. С. П. Тимошенка НАН України: анонси, архів, автореферати, дисертації, відгуки опонентів і відеозаписи."
+  activePage="education"
+>
+  <section class="defense-hero">
+    <div class="container defense-hero-grid">
+      <div class="defense-hero-panel">
+        <p class="eyebrow">Освітньо-наукова діяльність</p>
+        <h1>Захист дисертацій</h1>
+        <p class="lead">
+          Розділ містить інформацію про анонсовані та проведені захисти дисертацій:
+          теми робіт, дати засідань, матеріали до захисту, відгуки опонентів, автореферати,
+          дисертації та відеозаписи.
+        </p>
+        <div class="defense-hero-actions">
+          <a class="button primary" href="#announcements">Анонси та останні захисти</a>
+          <a class="button secondary" href="#archive">Архів</a>
+        </div>
+      </div>
+
+      <aside class="defense-stat-card">
+        <span>{featuredDefenses.length}</span>
+        <h2>останні захисти</h2>
+        <p>Детальні картки з документами, опонентами та відеоматеріалами.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section defense-summary-section">
+    <div class="container defense-summary-grid">
+      <article class="defense-summary-card">
+        <span>2026</span>
+        <p>актуальні матеріали захисту</p>
+      </article>
+      <article class="defense-summary-card">
+        <span>2025</span>
+        <p>найновіші архівні захисти</p>
+      </article>
+      <article class="defense-summary-card">
+        <span>2015–2021</span>
+        <p>компактний архів матеріалів</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="announcements">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Анонси та останні захисти</p>
+          <h2>Детальні матеріали</h2>
+        </div>
+        <p>
+          Для найновіших захистів подано повні картки з ключовими відомостями,
+          основними файлами та відгуками офіційних опонентів.
+        </p>
+      </div>
+
+      <div class="featured-defense-list">
+        {featuredDefenses.map((defense) => (
+          <article class="featured-defense-card">
+            <div class="featured-defense-header">
+              <div>
+                <span class="defense-status">{defense.status}</span>
+                <h3>{defense.name}</h3>
+              </div>
+              <span class="defense-year">{defense.year}</span>
+            </div>
+
+            <p class="defense-title">{defense.title}</p>
+
+            <dl class="defense-meta-grid">
+              <div>
+                <dt>Дата захисту</dt>
+                <dd>{defense.date}</dd>
+              </div>
+              <div>
+                <dt>Місце</dt>
+                <dd>{defense.place}</dd>
+              </div>
+              <div>
+                <dt>Науковий ступінь</dt>
+                <dd>{defense.degree}</dd>
+              </div>
+              <div>
+                <dt>Спеціальність</dt>
+                <dd>{defense.specialty}</dd>
+              </div>
+            </dl>
+
+            <p class="consultant-line"><strong>Науковий консультант:</strong> {defense.consultant}</p>
+
+            <div class="defense-links">
+              {defense.links.map(([label, href]) => (
+                <a href={href} target="_blank" rel="noopener noreferrer">{label}</a>
+              ))}
+            </div>
+
+            <details class="opponents-details">
+              <summary>Офіційні опоненти</summary>
+              <div class="opponents-grid">
+                {defense.opponents.map(([name, degree, href]) => (
+                  <a class="opponent-card" href={href} target="_blank" rel="noopener noreferrer">
+                    <strong>{name}</strong>
+                    <span>{degree}</span>
+                    <em>Переглянути відгук →</em>
+                  </a>
+                ))}
+              </div>
+            </details>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="archive">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Архів</p>
+          <h2>Попередні захисти</h2>
+        </div>
+        <p>
+          Архів подано за роками. Для кожного захисту наведено швидкі посилання на автореферат,
+          дисертацію та, за наявності, відеозапис.
+        </p>
+      </div>
+
+      <div class="archive-groups">
+        {archiveGroups.map(([year, defenses]) => (
+          <section class="archive-group">
+            <div class="archive-year-header">
+              <h3>{year}</h3>
+              <span>{defenses.length} {defenses.length === 1 ? 'захист' : 'захистів'}</span>
+            </div>
+            <div class="archive-card-grid">
+              {defenses.map((defense) => (
+                <article class="archive-defense-card">
+                  <h4>{defense.name}</h4>
+                  <div class="archive-links">
+                    {defense.abstract && <a href={defense.abstract} target="_blank" rel="noopener noreferrer">Автореферат</a>}
+                    {defense.dissertation && <a href={defense.dissertation} target="_blank" rel="noopener noreferrer">Дисертація</a>}
+                    {defense.video && <a href={defense.video} target="_blank" rel="noopener noreferrer">Відео</a>}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .defense-hero {
+    padding: 52px 0 18px;
+  }
+
+  .defense-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .defense-hero-panel,
+  .defense-stat-card,
+  .defense-summary-card,
+  .featured-defense-card,
+  .archive-group,
+  .archive-defense-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .defense-hero-panel {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(28px, 5vw, 54px);
+  }
+
+  .defense-hero-panel::after {
+    content: '';
+    position: absolute;
+    right: -90px;
+    top: -110px;
+    width: 280px;
+    height: 280px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(29, 79, 145, 0.17), rgba(29, 79, 145, 0));
+  }
+
+  .defense-hero-panel h1,
+  .defense-hero-panel .lead,
+  .defense-hero-panel .eyebrow,
+  .defense-hero-actions {
+    position: relative;
+    z-index: 1;
+  }
+
+  .defense-hero-panel h1 {
+    margin: 0 0 18px;
+    font-size: clamp(2.2rem, 4.6vw, 4.3rem);
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+  }
+
+  .defense-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .defense-stat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(24px, 4vw, 40px);
+    background: linear-gradient(145deg, var(--accent-dark), var(--accent));
+    color: #fff;
+  }
+
+  .defense-stat-card span {
+    display: grid;
+    place-items: center;
+    width: 96px;
+    height: 96px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.14);
+    font-size: 2.2rem;
+    font-weight: 950;
+  }
+
+  .defense-stat-card h2 {
+    margin: 0 0 12px;
+    font-size: 1.65rem;
+  }
+
+  .defense-stat-card p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.84);
+  }
+
+  .defense-summary-section {
+    padding-top: 16px;
+  }
+
+  .defense-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .defense-summary-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: clamp(20px, 3vw, 30px);
+  }
+
+  .defense-summary-card span {
+    display: grid;
+    place-items: center;
+    min-width: 92px;
+    height: 72px;
+    border-radius: 22px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-weight: 950;
+    font-size: 1.2rem;
+  }
+
+  .defense-summary-card p {
+    margin: 0;
+    color: var(--muted);
+    font-weight: 750;
+  }
+
+  .section-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 28px;
+    align-items: flex-end;
+    margin-bottom: 22px;
+  }
+
+  .section-heading h2 {
+    margin: 0;
+    font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .section-heading p:last-child {
+    max-width: 540px;
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .featured-defense-list,
+  .archive-groups {
+    display: grid;
+    gap: 18px;
+  }
+
+  .featured-defense-card {
+    padding: clamp(22px, 3.5vw, 36px);
+  }
+
+  .featured-defense-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+
+  .defense-status,
+  .defense-year {
+    display: inline-flex;
+    width: fit-content;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-size: 0.84rem;
+    font-weight: 900;
+  }
+
+  .defense-year {
+    min-width: 68px;
+    justify-content: center;
+    background: rgba(184, 135, 47, 0.16);
+    color: var(--gold);
+  }
+
+  .featured-defense-card h3 {
+    margin: 12px 0 0;
+    font-size: clamp(1.35rem, 2vw, 1.9rem);
+    line-height: 1.15;
+  }
+
+  .defense-title {
+    margin: 0 0 18px;
+    color: var(--text);
+    font-size: 1.08rem;
+    font-weight: 800;
+  }
+
+  .defense-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 0 0 18px;
+  }
+
+  .defense-meta-grid div {
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--surface-soft);
+  }
+
+  .defense-meta-grid dt {
+    margin-bottom: 5px;
+    color: var(--muted);
+    font-size: 0.86rem;
+    font-weight: 850;
+  }
+
+  .defense-meta-grid dd {
+    margin: 0;
+    color: var(--text);
+    font-weight: 750;
+  }
+
+  .consultant-line {
+    margin: 0 0 18px;
+    color: var(--muted);
+  }
+
+  .defense-links,
+  .archive-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .defense-links a,
+  .archive-links a {
+    display: inline-flex;
+    padding: 7px 11px;
+    border-radius: 999px;
+    background: var(--surface-soft);
+    color: var(--accent-dark);
+    font-weight: 850;
+  }
+
+  .defense-links a:hover,
+  .archive-links a:hover {
+    background: var(--accent-soft);
+    text-decoration: none;
+  }
+
+  .opponents-details {
+    margin-top: 18px;
+    padding: 16px 18px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: rgba(238, 244, 251, 0.62);
+  }
+
+  .opponents-details summary {
+    cursor: pointer;
+    color: var(--accent-dark);
+    font-weight: 900;
+  }
+
+  .opponents-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 14px;
+  }
+
+  .opponent-card {
+    display: grid;
+    gap: 6px;
+    padding: 14px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: #fff;
+    color: var(--text);
+  }
+
+  .opponent-card:hover {
+    text-decoration: none;
+    background: var(--accent-soft);
+  }
+
+  .opponent-card span {
+    color: var(--muted);
+  }
+
+  .opponent-card em {
+    color: var(--accent-dark);
+    font-style: normal;
+    font-weight: 850;
+  }
+
+  .archive-group {
+    padding: clamp(18px, 3vw, 28px);
+  }
+
+  .archive-year-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .archive-year-header h3 {
+    margin: 0;
+    color: var(--accent-dark);
+    font-size: 1.42rem;
+  }
+
+  .archive-year-header span {
+    color: var(--muted);
+    font-weight: 850;
+  }
+
+  .archive-card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .archive-defense-card {
+    padding: 16px 18px;
+    box-shadow: none;
+  }
+
+  .archive-defense-card h4 {
+    margin: 0 0 12px;
+    font-size: 1.05rem;
+  }
+
+  @media (max-width: 900px) {
+    .defense-hero-grid,
+    .defense-summary-grid,
+    .defense-meta-grid,
+    .opponents-grid,
+    .archive-card-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-heading,
+    .featured-defense-header,
+    .archive-year-header {
+      display: block;
+    }
+
+    .section-heading p:last-child,
+    .defense-year,
+    .archive-year-header span {
+      margin-top: 10px;
+    }
+  }
+</style>

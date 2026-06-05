@@ -15,6 +15,16 @@
     row-gap: 6px;
   }
 
+  .primary-nav > ul > li {
+    order: 2;
+  }
+
+  .primary-nav > ul > li:nth-child(1),
+  .primary-nav > ul > li:nth-child(5),
+  .primary-nav > ul > li:nth-child(6) {
+    order: 1;
+  }
+
   .primary-nav a,
   .primary-nav .nav-label {
     white-space: nowrap;

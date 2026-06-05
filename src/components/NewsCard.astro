@@ -12,16 +12,28 @@ const date = entry.data.date.toLocaleDateString('uk-UA', {
   month: '2-digit',
   year: 'numeric'
 });
+const TitleTag = level;
 ---
 
 <article class="news-card">
   <time class="news-date" datetime={entry.data.date.toISOString()}>{date}</time>
   <div>
-    {level === 'h2' ? <h2>{entry.data.title}</h2> : <h3>{entry.data.title}</h3>}
+    <TitleTag>
+      {entry.data.externalUrl ? (
+        <a href={entry.data.externalUrl} target="_blank" rel="noopener noreferrer">{entry.data.title}</a>
+      ) : (
+        entry.data.title
+      )}
+    </TitleTag>
     <p>{entry.data.description}</p>
     <div class="tags">
       <span class="tag">{entry.data.category}</span>
       {entry.data.tags.map((tag) => <span class="tag">{tag}</span>)}
     </div>
+    {entry.data.externalUrl && (
+      <a class="card-link news-more-link" href={entry.data.externalUrl} target="_blank" rel="noopener noreferrer">
+        Перейти до матеріалу →
+      </a>
+    )}
   </div>
 </article>

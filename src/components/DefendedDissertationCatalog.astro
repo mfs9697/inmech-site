@@ -2,12 +2,22 @@
 import { defendedDissertationsA } from '../data/defendedDissertationsA';
 import { defendedDissertationsB } from '../data/defendedDissertationsB';
 import { defendedDissertationsV } from '../data/defendedDissertationsV';
+import { defendedDissertationsG } from '../data/defendedDissertationsG';
+import { defendedDissertationsD } from '../data/defendedDissertationsD';
+import { defendedDissertationsE } from '../data/defendedDissertationsE';
+import { defendedDissertationsZh } from '../data/defendedDissertationsZh';
+import { defendedDissertationsZ } from '../data/defendedDissertationsZ';
 import { defenseMaterialsArchiveGroups } from '../data/defenseMaterialsArchive';
 
 const catalog = [
   { letter: 'А', items: defendedDissertationsA },
   { letter: 'Б', items: defendedDissertationsB },
-  { letter: 'В', items: defendedDissertationsV }
+  { letter: 'В', items: defendedDissertationsV },
+  { letter: 'Г', items: defendedDissertationsG },
+  { letter: 'Д', items: defendedDissertationsD },
+  { letter: 'Е', items: defendedDissertationsE },
+  { letter: 'Ж', items: defendedDissertationsZh },
+  { letter: 'З', items: defendedDissertationsZ }
 ];
 
 const totalItems = catalog.reduce((sum, group) => sum + group.items.length, 0);
@@ -22,7 +32,7 @@ const totalArchiveItems = defenseMaterialsArchiveGroups.reduce((sum, [, items]) 
         <h2>Захищені дисертації</h2>
       </div>
       <p>
-        Перший фрагмент алфавітного каталогу подано для літер А–В. У ньому розміщено {totalItems}
+        Перший фрагмент алфавітного каталогу подано для літер А–З. У ньому розміщено {totalItems}
         бібліографічних записів зі старого розділу бібліотеки.
       </p>
     </div>

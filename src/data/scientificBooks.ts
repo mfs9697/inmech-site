@@ -239,6 +239,78 @@ export const scientificBooks = [
     category: 'Термопружність, повзучість і непружне деформування',
     note: 'Навчальне видання з бібліотечного переліку; у старому списку позначене як представлене в Бібліотеці Конгресу США.',
     inLibraryOfCongress: true
+  },
+  {
+    authors: 'Kondratenko Yu.P., Kuntsevich V.M., Chikrii A.A., Gubarev V.F.',
+    title: 'Advanced Control Systems Theory and Applications',
+    year: 2024,
+    publisher: 'River Publishers',
+    pages: '476 p.',
+    isbn: '978-877-004-308-3',
+    url: '',
+    category: 'Стійкість, керування та нелінійні системи',
+    note: 'Монографія з блоку сучасних видань; додано до групи теорії керування.',
+    inLibraryOfCongress: false
+  },
+  {
+    authors: 'Aliev F.A., Larin V.B., Velieva N.I.',
+    title: 'Algorithms of the Synthesis of Optimal Regulators',
+    year: 2022,
+    publisher: 'Outskirts Press',
+    pages: '410 p.',
+    isbn: '978-197724-985-2',
+    url: '',
+    category: 'Стійкість, керування та нелінійні системи',
+    note: 'Монографія з блоку сучасних видань; тематично належить до синтезу оптимальних регуляторів.',
+    inLibraryOfCongress: false
+  },
+  {
+    authors: 'Cruz-Hernandez C., Martynyuk A.A., Mazko A.G.',
+    title: 'Advances in Stability and Control Theory for Uncertain Dynamical Systems',
+    year: 2021,
+    publisher: 'Stability, Oscillations and Optimization of Systems, Vol. 11',
+    pages: '340 p.',
+    isbn: '978-1-908106-73-5',
+    url: 'https://cambridgescientificpublishers.com/product/volume-eleven-advances-in-stability-and-control-theory-for-uncertain-dynamical-systems',
+    category: 'Стійкість, керування та нелінійні системи',
+    note: 'Сучасне видання з теорії стійкості та керування невизначеними динамічними системами.',
+    inLibraryOfCongress: false
+  },
+  {
+    authors: 'Martynyuk A.A., Radziszewski B., Szadkowski A.',
+    title: 'Elements of the Theory and Applications with Examples',
+    year: 2020,
+    publisher: 'Sciendo',
+    pages: '328 p.',
+    isbn: '',
+    url: 'https://doi.org/10.2478/9788366675285',
+    category: 'Стійкість, керування та нелінійні системи',
+    note: 'Видання з прикладами застосування теорії; додано до групи стійкості та нелінійних систем.',
+    inLibraryOfCongress: false
+  },
+  {
+    authors: 'Оболенский А.Ю.',
+    title: 'Лекции по качественной теории дифференциальных уравнений',
+    year: 2006,
+    publisher: 'Москва–Ижевск: НИЦ «Регулярная и хаотическая динамика», Институт компьютерных исследований',
+    pages: '320 с.',
+    isbn: '',
+    url: '',
+    category: 'Стійкість, керування та нелінійні системи',
+    note: 'Лекції з бібліотечного переліку; тематично належить до якісної теорії диференціальних рівнянь і динамічних систем.',
+    inLibraryOfCongress: false
+  },
+  {
+    authors: 'Гузь А.Н.',
+    title: 'Основы трехмерной теории устойчивости деформируемых тел',
+    year: 1986,
+    publisher: 'Київ: Вища школа',
+    pages: '511 с.',
+    isbn: '',
+    url: '',
+    category: 'Стійкість, керування та нелінійні системи',
+    note: 'Навчальне видання з бібліотечного переліку; додано до групи теорії стійкості деформівних тіл.',
+    inLibraryOfCongress: false
   }
 ] as const satisfies readonly ScientificBook[];
 

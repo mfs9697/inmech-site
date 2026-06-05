@@ -22,6 +22,12 @@ import { defendedDissertationsU } from '../data/defendedDissertationsU';
 import { defendedDissertationsF } from '../data/defendedDissertationsF';
 import { defendedDissertationsKh } from '../data/defendedDissertationsKh';
 import { defendedDissertationsTs } from '../data/defendedDissertationsTs';
+import { defendedDissertationsCh } from '../data/defendedDissertationsCh';
+import { defendedDissertationsSh } from '../data/defendedDissertationsSh';
+import { defendedDissertationsShch } from '../data/defendedDissertationsShch';
+import { defendedDissertationsEe } from '../data/defendedDissertationsEe';
+import { defendedDissertationsYu } from '../data/defendedDissertationsYu';
+import { defendedDissertationsYa } from '../data/defendedDissertationsYa';
 import { defenseMaterialsArchiveGroups } from '../data/defenseMaterialsArchive';
 
 const defendedDissertationsS = [...defendedDissertationsS1, ...defendedDissertationsS2];
@@ -48,7 +54,13 @@ const catalog = [
   { letter: 'У', items: defendedDissertationsU },
   { letter: 'Ф', items: defendedDissertationsF },
   { letter: 'Х', items: defendedDissertationsKh },
-  { letter: 'Ц', items: defendedDissertationsTs }
+  { letter: 'Ц', items: defendedDissertationsTs },
+  { letter: 'Ч', items: defendedDissertationsCh },
+  { letter: 'Ш', items: defendedDissertationsSh },
+  { letter: 'Щ', items: defendedDissertationsShch },
+  { letter: 'Э', items: defendedDissertationsEe },
+  { letter: 'Ю', items: defendedDissertationsYu },
+  { letter: 'Я', items: defendedDissertationsYa }
 ];
 
 const totalItems = catalog.reduce((sum, group) => sum + group.items.length, 0);
@@ -63,7 +75,7 @@ const totalArchiveItems = defenseMaterialsArchiveGroups.reduce((sum, [, items]) 
         <h2>Захищені дисертації</h2>
       </div>
       <p>
-        Перший фрагмент алфавітного каталогу подано для літер А–Ц. У ньому розміщено {totalItems}
+        Алфавітний каталог подано для літер А–Я. У ньому розміщено {totalItems}
         бібліографічних записів зі старого розділу бібліотеки.
       </p>
     </div>
@@ -76,10 +88,9 @@ const totalArchiveItems = defenseMaterialsArchiveGroups.reduce((sum, [, items]) 
     </nav>
 
     <div class="diss-note">
-      <strong>Примітка.</strong> Це перший перенесений фрагмент повного каталогу. Записи залишено
-      максимально близькими до бібліографічного формату старої сторінки; далі за цим самим
-      шаблоном можна додати наступні літери. Окремо нижче подано архів матеріалів захистів
-      попередніх років.
+      <strong>Примітка.</strong> Каталог перенесено зі старої сторінки бібліотеки та збережено
+      максимально близьким до її бібліографічного формату. Окремо нижче подано архів матеріалів
+      захистів попередніх років.
     </div>
 
     <div class="diss-groups">

@@ -1,7 +1,12 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { site } from '../../data/site';
-import { textbooks, textbookCategories, textbookYears } from '../../data/textbooks';
+import {
+  textbooks,
+  textbookCategories,
+  textbookYears,
+  textbookLibraryOfCongressCount
+} from '../../data/textbooks';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -25,14 +30,14 @@ function withBase(path: string) {
         <p class="eyebrow">Бібліотека</p>
         <h1>Підручники та навчальні посібники</h1>
         <p class="lead">
-          Навчальні видання, конспекти лекцій та навчально-наукові матеріали, підготовлені
-          співробітниками Інституту механіки або пов’язані з його науковими школами.
-          Сторінку передбачено як розділ, що буде поступово поповнюватися.
+          Навчальні видання, курси лекцій і посібники з механіки, математики,
+          теорії оболонок, термопружності, стійкості, чисельних методів та суміжних напрямів,
+          підготовлені співробітниками Інституту або пов’язані з його науковими школами.
         </p>
       </div>
       <div class="textbooks-stats" aria-label="Статистика навчальних видань">
         <strong>{textbooks.length}</strong>
-        <span>видання</span>
+        <span>видань</span>
         <small>{textbookYears.at(-1)}–{textbookYears[0]}</small>
       </div>
     </div>
@@ -46,14 +51,15 @@ function withBase(path: string) {
           <h2>Навчальні видання</h2>
         </div>
         <p>
-          Записи подано у стислому бібліографічному форматі. Надалі цей блок можна розширити
-          повним переліком підручників, навчальних посібників, методичних матеріалів і курсів лекцій.
+          Записи перенесено зі старого бібліотечного розділу та подано у стислому
+          бібліографічному форматі. Позначка «Бібліотека Конгресу» відповідає зірочці
+          на старій сторінці бібліотеки.
         </p>
       </div>
 
       <div class="textbooks-toolbar">
         <a href={withBase('/library/')}>← До бібліотеки</a>
-        <span>{textbookCategories.length} тематичних напрямів</span>
+        <span>{textbookCategories.length} тематичних напрямів · {textbookLibraryOfCongressCount} у Бібліотеці Конгресу США</span>
       </div>
 
       <div class="year-groups">
@@ -78,6 +84,9 @@ function withBase(path: string) {
                     <p class="details">
                       {item.publisher}{item.pages ? `, ${item.pages}` : ''}{'isbn' in item && item.isbn ? `; ISBN ${item.isbn}` : ''}.
                     </p>
+                    {item.inLibraryOfCongress && (
+                      <p class="loc-badge">Бібліотека Конгресу США</p>
+                    )}
                     {item.url && (
                       <a class="card-link" href={item.url} target="_blank" rel="noopener noreferrer">Електронний ресурс →</a>
                     )}
@@ -292,6 +301,18 @@ function withBase(path: string) {
     margin: 0 0 14px;
     color: var(--muted);
     line-height: 1.45;
+  }
+
+  .loc-badge {
+    display: inline-flex;
+    width: fit-content;
+    margin: 0 0 14px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(184, 135, 47, 0.14);
+    color: var(--accent-dark);
+    font-size: 0.82rem;
+    font-weight: 900;
   }
 
   .textbook-card .card-link {

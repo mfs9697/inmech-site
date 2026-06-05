@@ -311,6 +311,42 @@ export const scientificBooks = [
     category: 'Стійкість, керування та нелінійні системи',
     note: 'Навчальне видання з бібліотечного переліку; додано до групи теорії стійкості деформівних тіл.',
     inLibraryOfCongress: false
+  },
+  {
+    authors: 'За заг. ред. Р.М. Мартиняка',
+    title: 'Контактна механіка та поверхневі явища',
+    year: 2024,
+    publisher: 'Львів: Растр-7',
+    pages: '224 с.',
+    isbn: '978-617-8537-87-6',
+    url: '',
+    category: 'Контактна механіка та прикладні задачі',
+    note: 'Монографія з блоку сучасних видань; основний запис тематичної групи контактної механіки.',
+    inLibraryOfCongress: false
+  },
+  {
+    authors: 'Altenbach H., Bogdanov V.',
+    title: 'Selected Problems of Solid Mechanics and Solving Methods',
+    year: 2024,
+    publisher: 'Advanced Structured Materials',
+    pages: '544 p.',
+    isbn: '978-3031540622',
+    url: 'https://doi.org/10.1007/978-3-031-54063-9',
+    category: 'Контактна механіка та прикладні задачі',
+    note: 'Сучасна монографія з прикладних задач механіки деформівного твердого тіла та методів їх розв’язання.',
+    inLibraryOfCongress: false
+  },
+  {
+    authors: 'Rushchitsky J.J.',
+    title: 'Foundations of Mechanics of Materials',
+    year: 2021,
+    publisher: 'Copenhagen: Ventus Publishing ApS',
+    pages: '276 p.',
+    isbn: '978-87-403-3706-8',
+    url: 'https://bookboon.com/premium/books/foundations-of-mechanics-of-materials-part-1',
+    category: 'Контактна механіка та прикладні задачі',
+    note: 'Навчально-наукове видання з основ механіки матеріалів; додано до прикладної частини групи.',
+    inLibraryOfCongress: false
   }
 ] as const satisfies readonly ScientificBook[];
 

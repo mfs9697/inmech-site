@@ -155,6 +155,66 @@ export const scientificBooks = [
     category: 'Механіка руйнування',
     note: 'Монографія з блоку сучасних видань співробітників Інституту; тематично належить до механіки міжфазних тріщин.',
     inLibraryOfCongress: false
+  },
+  {
+    authors: 'Guz A.N.',
+    title: 'Elastic Waves in Bodies with Initial (Residual) Stresses',
+    year: 2024,
+    publisher: 'Київ: Академперіодика',
+    pages: '668 с.',
+    isbn: '978-966-360-519-7',
+    url: 'https://doi.org/10.15407/akademperiodyka.519.668',
+    category: 'Динаміка, коливання та хвилі',
+    note: 'Монографія з блоку сучасних видань співробітників Інституту; тематично належить до пружних хвиль у тілах з початковими напруженнями.',
+    inLibraryOfCongress: false
+  },
+  {
+    authors: 'Кубенко В.Д., Янчевський І.В.',
+    title: 'Дифракція акустичних хвиль на системах неоднотипних тіл',
+    year: 2024,
+    publisher: 'Київ: КПІ ім. Ігоря Сікорського, Вид-во «Політехніка»',
+    pages: '265 с.',
+    isbn: '978-966-990-114-9',
+    url: '',
+    category: 'Динаміка, коливання та хвилі',
+    note: 'Монографія з блоку сучасних видань співробітників Інституту; додано до групи акустичних хвиль і дифракції.',
+    inLibraryOfCongress: false
+  },
+  {
+    authors: 'Жук О.П., Гузь О.М., Жук Я.О.',
+    title: 'Радіаційні сили акустичного поля в рідині з включеннями',
+    year: 2023,
+    publisher: 'Київ: Альянт',
+    pages: '240 с.',
+    isbn: '978-617-7819-38-6',
+    url: '',
+    category: 'Динаміка, коливання та хвилі',
+    note: 'Монографія з блоку сучасних видань співробітників Інституту; тематично належить до акустичних полів і хвильових процесів.',
+    inLibraryOfCongress: false
+  },
+  {
+    authors: 'Rushchitsky J.J.',
+    title: 'Evolution of Solitary Elastic Waves with Different Initial Profiles',
+    year: 2023,
+    publisher: 'Chapter 2 in Horizons in Physics, Vol. 312, Nova Science Publishers',
+    pages: '252 p.',
+    isbn: '979-8-89113-513-0',
+    url: '',
+    category: 'Динаміка, коливання та хвилі',
+    note: 'Видання з блоку сучасних праць співробітників Інституту; додано до групи нелінійних і поодиноких пружних хвиль.',
+    inLibraryOfCongress: false
+  },
+  {
+    authors: 'Grigorenko A.Ya., Müller W.H., Loza I.A.',
+    title: 'Selected Problems in the Elastodynamics of Piezoceramic Bodies',
+    year: 2021,
+    publisher: 'Advanced Structured Materials',
+    pages: '227 p.',
+    isbn: '9783030741983',
+    url: 'https://doi.org/10.1007/978-3-030-74199-0',
+    category: 'Динаміка, коливання та хвилі',
+    note: 'Монографія з блоку сучасних видань співробітників Інституту; тематично належить до еластодинаміки п’єзокерамічних тіл.',
+    inLibraryOfCongress: false
   }
 ] as const satisfies readonly ScientificBook[];
 

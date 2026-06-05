@@ -2,6 +2,7 @@
 import { defendedDissertationsA } from '../data/defendedDissertationsA';
 import { defendedDissertationsB } from '../data/defendedDissertationsB';
 import { defendedDissertationsV } from '../data/defendedDissertationsV';
+import { defenseMaterialsArchiveGroups } from '../data/defenseMaterialsArchive';
 
 const catalog = [
   { letter: 'А', items: defendedDissertationsA },
@@ -10,6 +11,7 @@ const catalog = [
 ];
 
 const totalItems = catalog.reduce((sum, group) => sum + group.items.length, 0);
+const totalArchiveItems = defenseMaterialsArchiveGroups.reduce((sum, [, items]) => sum + items.length, 0);
 ---
 
 <section class="section" id="defended-catalog">
@@ -20,7 +22,7 @@ const totalItems = catalog.reduce((sum, group) => sum + group.items.length, 0);
         <h2>Захищені дисертації</h2>
       </div>
       <p>
-        Перший фрагмент каталогу подано для літер А–В. У ньому розміщено {totalItems}
+        Перший фрагмент алфавітного каталогу подано для літер А–В. У ньому розміщено {totalItems}
         бібліографічних записів зі старого розділу бібліотеки.
       </p>
     </div>
@@ -29,12 +31,14 @@ const totalItems = catalog.reduce((sum, group) => sum + group.items.length, 0);
       {catalog.map((group) => (
         <a href={`#catalog-${group.letter}`}>{group.letter}</a>
       ))}
+      <a class="archive-anchor" href="#defense-materials-archive">Архів</a>
     </nav>
 
     <div class="diss-note">
       <strong>Примітка.</strong> Це перший перенесений фрагмент повного каталогу. Записи залишено
       максимально близькими до бібліографічного формату старої сторінки; далі за цим самим
-      шаблоном можна додати наступні літери.
+      шаблоном можна додати наступні літери. Окремо нижче подано архів матеріалів захистів
+      попередніх років.
     </div>
 
     <div class="diss-groups">
@@ -51,6 +55,45 @@ const totalItems = catalog.reduce((sum, group) => sum + group.items.length, 0);
                 <h4>{item.name}</h4>
                 <p class="diss-title">{item.title}</p>
                 <p class="diss-details">{item.details}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section" id="defense-materials-archive">
+  <div class="container">
+    <div class="section-heading compact-header">
+      <div>
+        <p class="eyebrow">Архів</p>
+        <h2>Матеріали попередніх захистів</h2>
+      </div>
+      <p>
+        Архів матеріалів захистів за 2015–2021 роки перенесено до каталогу. Усього подано
+        {totalArchiveItems} записів із посиланнями на автореферати, дисертації та відеозаписи, якщо вони є.
+      </p>
+    </div>
+
+    <div class="archive-material-groups">
+      {defenseMaterialsArchiveGroups.map(([year, items]) => (
+        <section class="archive-material-group">
+          <div class="diss-letter-header">
+            <h3>{year}</h3>
+            <span>{items.length} {items.length === 1 ? 'запис' : 'записів'}</span>
+          </div>
+
+          <div class="archive-material-grid">
+            {items.map((item) => (
+              <article class="archive-material-card">
+                <h4>{item.name}</h4>
+                <div class="archive-material-links">
+                  {item.links.map(([label, href]) => (
+                    <a href={href} target="_blank" rel="noopener noreferrer">{label}</a>
+                  ))}
+                </div>
               </article>
             ))}
           </div>
@@ -81,6 +124,11 @@ const totalItems = catalog.reduce((sum, group) => sum + group.items.length, 0);
     box-shadow: var(--shadow);
   }
 
+  .diss-alpha-nav a.archive-anchor {
+    width: auto;
+    padding: 0 14px;
+  }
+
   .diss-alpha-nav a:hover {
     background: var(--accent-soft);
     text-decoration: none;
@@ -95,20 +143,24 @@ const totalItems = catalog.reduce((sum, group) => sum + group.items.length, 0);
     color: var(--muted);
   }
 
-  .diss-groups {
+  .diss-groups,
+  .archive-material-groups {
     display: grid;
     gap: 18px;
   }
 
   .diss-letter-group,
-  .diss-card {
+  .diss-card,
+  .archive-material-group,
+  .archive-material-card {
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
   }
 
-  .diss-letter-group {
+  .diss-letter-group,
+  .archive-material-group {
     padding: clamp(18px, 3vw, 28px);
   }
 
@@ -133,19 +185,22 @@ const totalItems = catalog.reduce((sum, group) => sum + group.items.length, 0);
     font-weight: 850;
   }
 
-  .diss-card-grid {
+  .diss-card-grid,
+  .archive-material-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
   }
 
-  .diss-card {
+  .diss-card,
+  .archive-material-card {
     padding: 16px 18px;
     box-shadow: none;
     background: var(--surface-soft);
   }
 
-  .diss-card h4 {
+  .diss-card h4,
+  .archive-material-card h4 {
     margin: 0 0 10px;
     color: var(--accent-dark);
     font-size: 1.05rem;
@@ -165,8 +220,29 @@ const totalItems = catalog.reduce((sum, group) => sum + group.items.length, 0);
     line-height: 1.45;
   }
 
+  .archive-material-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .archive-material-links a {
+    display: inline-flex;
+    padding: 7px 11px;
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--accent-dark);
+    font-weight: 850;
+  }
+
+  .archive-material-links a:hover {
+    background: var(--accent-soft);
+    text-decoration: none;
+  }
+
   @media (max-width: 900px) {
-    .diss-card-grid {
+    .diss-card-grid,
+    .archive-material-grid {
       grid-template-columns: 1fr;
     }
 

@@ -12,38 +12,92 @@ function withBase(path: string) {
   return `${base}${path.startsWith('/') ? path : `/${path}`}`;
 }
 
-const serviceCards = [
+function initials(name: string) {
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join('')
+    .toUpperCase();
+}
+
+const serviceGroups = [
   {
-    title: 'Адміністративний супровід',
-    icon: '🏛️',
-    text: 'Організаційна підтримка діяльності Інституту, внутрішній документообіг і координація поточних адміністративних питань.'
-  },
-  {
-    title: 'Кадрові питання',
-    icon: '👥',
-    text: 'Супровід кадрових процедур, облік персоналу, підготовка кадрових документів і взаємодія зі структурними підрозділами.'
-  },
-  {
-    title: 'Фінансово-бухгалтерський супровід',
+    title: 'Планово-економічний відділ',
     icon: '📊',
-    text: 'Підтримка фінансово-господарських процедур, звітності, закупівельних та облікових процесів у межах компетенції відповідних служб.'
+    description: 'Планово-економічний супровід діяльності Інституту.',
+    staff: [
+      {
+        name: 'Макарова Людмила Миколаївна',
+        position: 'начальник відділу'
+      },
+      {
+        name: 'Хромцова Тетяна Валентинівна',
+        position: 'провідний економіст'
+      },
+      {
+        name: 'Сапсай Катерина Петрівна',
+        position: 'провідний економіст'
+      }
+    ]
   },
   {
-    title: 'Інформаційна та цифрова підтримка',
-    icon: '💻',
-    text: 'Підтримка інформаційних ресурсів, електронної комунікації, оновлення вебсайту та цифрових сервісів Інституту.'
+    title: 'Відділ кадрів',
+    icon: '👥',
+    description: 'Кадровий облік, супровід кадрових процедур і робота з персоналом.',
+    staff: [
+      {
+        name: 'Деревінська Наталія Миколаївна',
+        position: 'начальник відділу кадрів'
+      },
+      {
+        name: 'Демчук Марина Іванівна',
+        position: 'старший інспектор'
+      }
+    ]
   },
   {
-    title: 'Бібліотечно-інформаційний супровід',
-    icon: '📚',
-    text: 'Інформаційна підтримка наукової роботи, доступ до видань, бібліографічних матеріалів і науково-інформаційних ресурсів.'
+    title: 'Відділ бухгалтерського обліку та звітності',
+    icon: '🧾',
+    description: 'Бухгалтерський облік, фінансова звітність і супровід фінансово-господарських процедур.',
+    staff: [
+      {
+        name: 'Бек Надія Миколаївна',
+        position: 'головний бухгалтер'
+      },
+      {
+        name: 'Грибова Олена Венидіктівна',
+        position: 'заступник головного бухгалтера'
+      },
+      {
+        name: 'Остапчук Світлана Юріївна',
+        position: 'провідний бухгалтер'
+      },
+      {
+        name: 'Овсінська Тетяна Анатоліївна',
+        position: 'провідний бухгалтер'
+      }
+    ]
   },
   {
-    title: 'Господарське забезпечення',
-    icon: '🛠️',
-    text: 'Підтримка функціонування приміщень, інфраструктури та матеріально-технічного забезпечення Інституту.'
+    title: 'Канцелярія',
+    icon: '📁',
+    description: 'Службовий документообіг, канцелярська робота та архів.',
+    staff: [
+      {
+        name: 'Сидорова Тетяна Сергіївна',
+        position: 'завідувач канцелярії'
+      },
+      {
+        name: 'Бондарчук Людмила В’ячеславівна',
+        position: 'інженер 1 категорії, архів'
+      }
+    ]
   }
 ];
+
+const totalStaff = serviceGroups.reduce((sum, group) => sum + group.staff.length, 0);
 
 const relatedLinks = [
   ['Дирекція', '/management/'],
@@ -55,7 +109,7 @@ const relatedLinks = [
 
 <BaseLayout
   title={`Служби інституту | ${site.shortName}`}
-  description="Служби Інституту механіки ім. С. П. Тимошенка НАН України: адміністративний, кадровий, фінансово-бухгалтерський, інформаційний та господарський супровід діяльності Інституту."
+  description="Служби Інституту механіки ім. С. П. Тимошенка НАН України: планово-економічний відділ, відділ кадрів, відділ бухгалтерського обліку та звітності, канцелярія."
   activePage="departments"
 >
   <section class="services-hero">
@@ -64,22 +118,22 @@ const relatedLinks = [
         <p class="eyebrow">Структура Інституту</p>
         <h1>Служби інституту</h1>
         <p class="lead">
-          Служби Інституту забезпечують організаційний, адміністративний, кадровий,
-          фінансово-бухгалтерський, інформаційний та господарський супровід роботи наукових
-          підрозділів і функціонування установи загалом.
+          Служби Інституту забезпечують планово-економічний, кадровий,
+          бухгалтерський та канцелярський супровід роботи установи, підтримуючи
+          щоденну діяльність наукових підрозділів і адміністрації.
         </p>
         <div class="services-hero-actions">
-          <a class="button primary" href="#services-list">Переглянути напрями</a>
+          <a class="button primary" href="#services-list">Структура служб</a>
           <a class="button secondary" href="#contacts">Контакти</a>
         </div>
       </div>
 
       <aside class="services-mark-card">
-        <span>6</span>
-        <h2>напрямів підтримки</h2>
+        <span>{serviceGroups.length}</span>
+        <h2>служби</h2>
         <p>
-          Сторінка підготовлена як структурована основа для подальшого додавання відповідальних
-          осіб, кабінетів, телефонів і службових документів.
+          На сторінці подано структуру та склад служб Інституту: {totalStaff} працівників
+          у чотирьох адміністративно-господарських підрозділах.
         </p>
       </aside>
     </div>
@@ -88,16 +142,16 @@ const relatedLinks = [
   <section class="section services-summary-section">
     <div class="container services-summary-grid">
       <article class="services-summary-card">
-        <span>Організація</span>
-        <p>підтримка щоденної роботи Інституту</p>
+        <span>Планування</span>
+        <p>планово-економічний супровід діяльності</p>
+      </article>
+      <article class="services-summary-card">
+        <span>Персонал</span>
+        <p>кадрові процедури та облік працівників</p>
       </article>
       <article class="services-summary-card">
         <span>Документи</span>
-        <p>супровід процедур і службового документообігу</p>
-      </article>
-      <article class="services-summary-card">
-        <span>Комунікація</span>
-        <p>інформаційна взаємодія між підрозділами</p>
+        <p>бухгалтерія, звітність, канцелярія та архів</p>
       </article>
     </div>
   </section>
@@ -106,22 +160,38 @@ const relatedLinks = [
     <div class="container">
       <div class="section-heading compact-header">
         <div>
-          <p class="eyebrow">Основні напрями</p>
-          <h2>Службова підтримка діяльності Інституту</h2>
+          <p class="eyebrow">Структура та склад</p>
+          <h2>Служби Інституту</h2>
         </div>
         <p>
-          Нижче подано узагальнені напрями роботи служб. Персональний склад, кабінети та
-          спеціалізовані контакти можна буде додати після уточнення актуальної інформації.
+          Нижче подано службові підрозділи Інституту та їхній персональний склад.
+          Кожну службу оформлено окремою карткою з працівниками та посадами.
         </p>
       </div>
 
-      <div class="services-card-grid">
-        {serviceCards.map((service) => (
-          <article class="services-card">
-            <span>{service.icon}</span>
-            <h3>{service.title}</h3>
-            <p>{service.text}</p>
-          </article>
+      <div class="service-group-grid">
+        {serviceGroups.map((group) => (
+          <section class="service-group-card">
+            <div class="service-group-header">
+              <span>{group.icon}</span>
+              <div>
+                <h3>{group.title}</h3>
+                <p>{group.description}</p>
+              </div>
+            </div>
+
+            <div class="staff-card-grid">
+              {group.staff.map((person) => (
+                <article class="staff-card">
+                  <div class="staff-avatar" aria-hidden="true">{initials(person.name)}</div>
+                  <div>
+                    <h4>{person.name}</h4>
+                    <p>{person.position}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
         ))}
       </div>
     </div>
@@ -133,8 +203,8 @@ const relatedLinks = [
         <p class="eyebrow">Загальні контакти</p>
         <h2>Контактна інформація Інституту</h2>
         <p>
-          Для звернень до служб Інституту можна використовувати загальні контакти установи.
-          Після уточнення відповідальних підрозділів цей блок можна деталізувати.
+          Для звернень до служб Інституту можна використовувати загальні контакти установи
+          або звертатися безпосередньо до відповідного структурного підрозділу.
         </p>
         <div class="services-contact-list">
           <div>
@@ -153,15 +223,12 @@ const relatedLinks = [
       </article>
 
       <aside class="services-note-panel">
-        <p class="eyebrow">Для подальшого наповнення</p>
-        <h2>Що можна додати наступним кроком</h2>
-        <ul>
-          <li>перелік служб із відповідальними особами;</li>
-          <li>кабінети, телефони та службові email-адреси;</li>
-          <li>графік прийому або години роботи;</li>
-          <li>типові форми заяв, службових записок і документів;</li>
-          <li>посилання на внутрішні регламенти та інструкції.</li>
-        </ul>
+        <p class="eyebrow">Примітка</p>
+        <h2>Актуалізація інформації</h2>
+        <p>
+          За потреби сторінку можна доповнити кабінетами, службовими телефонами,
+          графіком прийому, внутрішніми регламентами та типовими формами документів.
+        </p>
       </aside>
     </div>
   </section>
@@ -198,7 +265,8 @@ const relatedLinks = [
   .services-hero-panel,
   .services-mark-card,
   .services-summary-card,
-  .services-card,
+  .service-group-card,
+  .staff-card,
   .services-contact-panel,
   .services-note-panel,
   .related-panel {
@@ -334,36 +402,83 @@ const relatedLinks = [
     color: var(--muted);
   }
 
-  .services-card-grid {
+  .service-group-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
+    gap: 18px;
   }
 
-  .services-card {
-    padding: clamp(20px, 3vw, 30px);
+  .service-group-card {
+    padding: clamp(22px, 3vw, 34px);
   }
 
-  .services-card span {
+  .service-group-header {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+    margin-bottom: 20px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .service-group-header > span {
     display: grid;
     place-items: center;
-    width: 60px;
-    height: 60px;
-    margin-bottom: 18px;
-    border-radius: 20px;
+    width: 64px;
+    height: 64px;
+    border-radius: 22px;
     background: var(--surface-soft);
-    font-size: 1.45rem;
+    font-size: 1.6rem;
   }
 
-  .services-card h3 {
-    margin: 0 0 10px;
-    font-size: 1.18rem;
+  .service-group-header h3 {
+    margin: 0 0 8px;
+    font-size: clamp(1.32rem, 2vw, 1.8rem);
+    line-height: 1.15;
+  }
+
+  .service-group-header p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .staff-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .staff-card {
+    display: grid;
+    grid-template-columns: 58px minmax(0, 1fr);
+    gap: 14px;
+    align-items: center;
+    padding: 16px;
+    box-shadow: none;
+    background: var(--surface-soft);
+  }
+
+  .staff-avatar {
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--accent-soft), rgba(184, 135, 47, 0.16));
+    color: var(--accent-dark);
+    font-weight: 950;
+  }
+
+  .staff-card h4 {
+    margin: 0 0 4px;
+    font-size: 1rem;
     line-height: 1.25;
   }
 
-  .services-card p {
+  .staff-card p {
     margin: 0;
     color: var(--muted);
+    font-weight: 700;
   }
 
   .services-two-column {
@@ -389,7 +504,7 @@ const relatedLinks = [
   }
 
   .services-contact-panel p,
-  .services-note-panel li {
+  .services-note-panel p {
     color: var(--muted);
   }
 
@@ -415,15 +530,6 @@ const relatedLinks = [
   .services-note-panel {
     background: linear-gradient(135deg, rgba(184, 135, 47, 0.12), rgba(29, 79, 145, 0.08));
     border-color: rgba(184, 135, 47, 0.35);
-  }
-
-  .services-note-panel ul {
-    margin: 0;
-    padding-left: 20px;
-  }
-
-  .services-note-panel li {
-    margin-bottom: 10px;
   }
 
   .related-panel {
@@ -455,7 +561,7 @@ const relatedLinks = [
   }
 
   @media (max-width: 1040px) {
-    .services-card-grid,
+    .staff-card-grid,
     .related-link-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -479,8 +585,10 @@ const relatedLinks = [
   }
 
   @media (max-width: 620px) {
-    .services-card-grid,
-    .related-link-grid {
+    .staff-card-grid,
+    .related-link-grid,
+    .service-group-header,
+    .staff-card {
       grid-template-columns: 1fr;
     }
   }

@@ -118,10 +118,13 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
         <article class="card">
           <h3>Публікації та співпраця</h3>
           <p>
-            Видання наукових журналів, міжнародна співпраця, конференції, спільні проєкти
+            Видання наукових журналів, міжнародна співпраця, конференції, бібліотечні матеріали
             та поширення результатів досліджень у світовому науковому просторі.
           </p>
-          <a class="card-link" href="#">Журнал «Прикладна механіка» →</a>
+          <div class="card-links-stack">
+            <a class="card-link" href="https://applied-mechanics.inmech.kyiv.ua/" target="_blank" rel="noopener">Журнал «Прикладна механіка» →</a>
+            <a class="card-link" href={withBase('/library/')}>Бібліотека →</a>
+          </div>
         </article>
       </div>
     </div>
@@ -195,3 +198,10 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .card-links-stack {
+    display: grid;
+    gap: 8px;
+  }
+</style>

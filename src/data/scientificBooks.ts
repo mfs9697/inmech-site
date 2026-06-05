@@ -119,6 +119,42 @@ export const scientificBooks = [
     category: 'Механіка композитів',
     note: 'Навчальне видання з бібліотечного переліку; тематично належить до механіки композитних матеріалів.',
     inLibraryOfCongress: false
+  },
+  {
+    authors: 'Guz A.N.',
+    title: 'Eight Non-Classical Problems of Fracture Mechanics',
+    year: 2022,
+    publisher: 'Advanced Structured Materials',
+    pages: '400 p.',
+    isbn: '978-3030775032',
+    url: '',
+    category: 'Механіка руйнування',
+    note: 'Монографія з блоку сучасних видань співробітників Інституту; додано до тематичної групи механіки руйнування.',
+    inLibraryOfCongress: false
+  },
+  {
+    authors: 'Guz A.N., Bogdanov V.L., Nazarenko V.M.',
+    title: 'Fracture of Materials Under Compression Along Cracks',
+    year: 2020,
+    publisher: 'Cham: Springer International Publishing',
+    pages: '504 p.',
+    isbn: '978-3-030-51813-4',
+    url: 'https://doi.org/10.1007/978-3-030-51814-1',
+    category: 'Механіка руйнування',
+    note: 'Springer-монографія з блоку сучасних видань співробітників Інституту.',
+    inLibraryOfCongress: false
+  },
+  {
+    authors: 'Камінський А.О., Дудик М.В., Решітник Ю.В.',
+    title: 'Моделі структури привершинної області міжфазної тріщини на ламаній межі розділу матеріалів',
+    year: 2020,
+    publisher: 'Київ, Умань, Бровари: АНФ ГРУП',
+    pages: '137 с.',
+    isbn: '978-617-7252-22-0',
+    url: 'https://dspace.udpu.edu.ua/handle/123456789/13305',
+    category: 'Механіка руйнування',
+    note: 'Монографія з блоку сучасних видань співробітників Інституту; тематично належить до механіки міжфазних тріщин.',
+    inLibraryOfCongress: false
   }
 ] as const satisfies readonly ScientificBook[];
 

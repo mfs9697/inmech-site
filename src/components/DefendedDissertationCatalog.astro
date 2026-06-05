@@ -8,8 +8,12 @@ import { defendedDissertationsE } from '../data/defendedDissertationsE';
 import { defendedDissertationsZh } from '../data/defendedDissertationsZh';
 import { defendedDissertationsZ } from '../data/defendedDissertationsZ';
 import { defendedDissertationsI } from '../data/defendedDissertationsI';
+import { defendedDissertationsK } from '../data/defendedDissertationsK';
 import { defendedDissertationsL } from '../data/defendedDissertationsL';
 import { defendedDissertationsM } from '../data/defendedDissertationsM';
+import { defendedDissertationsN } from '../data/defendedDissertationsN';
+import { defendedDissertationsO } from '../data/defendedDissertationsO';
+import { defendedDissertationsP } from '../data/defendedDissertationsP';
 import { defenseMaterialsArchiveGroups } from '../data/defenseMaterialsArchive';
 
 const catalog = [
@@ -22,8 +26,12 @@ const catalog = [
   { letter: 'Ж', items: defendedDissertationsZh },
   { letter: 'З', items: defendedDissertationsZ },
   { letter: 'И', items: defendedDissertationsI },
+  { letter: 'К', items: defendedDissertationsK },
   { letter: 'Л', items: defendedDissertationsL },
-  { letter: 'М', items: defendedDissertationsM }
+  { letter: 'М', items: defendedDissertationsM },
+  { letter: 'Н', items: defendedDissertationsN },
+  { letter: 'О', items: defendedDissertationsO },
+  { letter: 'П', items: defendedDissertationsP }
 ];
 
 const totalItems = catalog.reduce((sum, group) => sum + group.items.length, 0);
@@ -38,7 +46,7 @@ const totalArchiveItems = defenseMaterialsArchiveGroups.reduce((sum, [, items]) 
         <h2>Захищені дисертації</h2>
       </div>
       <p>
-        Перший фрагмент алфавітного каталогу подано для літер А–З, И, Л, М. У ньому розміщено {totalItems}
+        Перший фрагмент алфавітного каталогу подано для літер А–П. У ньому розміщено {totalItems}
         бібліографічних записів зі старого розділу бібліотеки.
       </p>
     </div>

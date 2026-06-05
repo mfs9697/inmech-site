@@ -1,0 +1,475 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+const principles = [
+  {
+    title: 'Конфіденційність',
+    icon: '🔒',
+    text: 'Звернення розглядаються з повагою до приватності заявника та змісту повідомлення.'
+  },
+  {
+    title: 'Доброзичливість',
+    icon: '🤝',
+    text: 'Скринька призначена для конструктивних звернень, пропозицій і повідомлень щодо освітньо-наукового середовища.'
+  },
+  {
+    title: 'Зворотний зв’язок',
+    icon: '✉️',
+    text: 'Якщо Ви бажаєте отримати відповідь, наприкінці повідомлення потрібно зазначити контакт для зв’язку.'
+  }
+];
+
+const topics = [
+  'пропозиції щодо покращення освітньо-наукового процесу',
+  'повідомлення про проблемні ситуації в освітньому середовищі',
+  'питання академічної доброчесності та етики академічних відносин',
+  'зауваження щодо організації навчання, комунікації або доступності інформації',
+  'інші звернення, пов’язані з освітньо-науковою діяльністю Інституту'
+];
+
+const relatedLinks = [
+  ['Аспірантура', '/postgraduate/'],
+  ['Ліцензії та Положення', '/license-and-regulations/'],
+  ['Науково-методична рада', '/nmr/'],
+  ['Освітньо-наукова діяльність', '/education/']
+];
+---
+
+<BaseLayout
+  title={`Скринька довіри | ${site.shortName}`}
+  description="Скринька довіри Інституту механіки ім. С. П. Тимошенка НАН України для звернень, повідомлень і пропозицій щодо освітньо-наукового середовища."
+  activePage="education"
+>
+  <section class="trust-hero">
+    <div class="container trust-hero-grid">
+      <div class="trust-hero-panel">
+        <p class="eyebrow">Освітньо-наукова діяльність</p>
+        <h1>Скринька довіри</h1>
+        <p class="lead">
+          Скринька довіри призначена для звернень, повідомлень і пропозицій щодо
+          освітньо-наукового середовища Інституту. Якщо Ви бажаєте отримати відповідь,
+          наприкінці повідомлення зазначте контакт, за яким із Вами можна зв’язатися.
+        </p>
+        <div class="trust-hero-actions">
+          <a class="button primary" href="#trust-form">Написати звернення</a>
+          <a class="button secondary" href="#principles">Принципи роботи</a>
+        </div>
+      </div>
+
+      <aside class="trust-mark-card">
+        <span>✉️</span>
+        <h2>Відкрита комунікація</h2>
+        <p>
+          Канал для спокійного й відповідального повідомлення про питання, які потребують
+          уваги в освітньо-науковому процесі.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section trust-summary-section" id="principles">
+    <div class="container trust-summary-grid">
+      {principles.map((principle) => (
+        <article class="trust-summary-card">
+          <span>{principle.icon}</span>
+          <h2>{principle.title}</h2>
+          <p>{principle.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" id="trust-form">
+    <div class="container trust-two-column">
+      <article class="trust-form-panel">
+        <div class="section-heading compact-header">
+          <div>
+            <p class="eyebrow">Звернення</p>
+            <h2>Написати до скриньки довіри</h2>
+          </div>
+        </div>
+
+        <form class="trust-form" id="trustForm">
+          <label for="trustMessage">Текст звернення</label>
+          <textarea
+            id="trustMessage"
+            name="message"
+            rows="10"
+            placeholder="Введіть текст звернення. Якщо Ви бажаєте отримати відповідь, наприкінці повідомлення зазначте контакт для зв’язку."
+          ></textarea>
+
+          <p class="form-note">
+            Ця форма працює на статичному сайті: після натискання кнопки буде відкрито Вашу
+            поштову програму з підготовленим листом на адресу Інституту.
+          </p>
+
+          <div class="trust-form-actions">
+            <button class="button primary" type="submit">Підготувати лист</button>
+            <a class="button secondary" href={`mailto:${site.email}?subject=Скринька довіри`}>Написати через email</a>
+          </div>
+        </form>
+      </article>
+
+      <aside class="trust-topics-panel">
+        <p class="eyebrow">Що можна повідомити</p>
+        <h2>Тематика звернень</h2>
+        <ul>
+          {topics.map((topic) => <li>{topic}</li>)}
+        </ul>
+        <div class="trust-email-card">
+          <strong>Email Інституту</strong>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="trust-note-panel">
+        <p class="eyebrow">Важливо</p>
+        <h2>Як підготувати звернення</h2>
+        <p>
+          Опишіть ситуацію стисло й по суті: що сталося, коли це відбулося, кого або якого
+          процесу стосується звернення, які дії або роз’яснення Ви очікуєте. Для отримання
+          відповіді додайте наприкінці повідомлення email або інший зручний контакт.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="related-panel">
+        <div>
+          <p class="eyebrow">Пов’язані розділи</p>
+          <h2>Освітньо-наукова діяльність</h2>
+        </div>
+        <div class="related-link-grid">
+          {relatedLinks.map(([title, href]) => (
+            <a href={withBase(href)}>{title} →</a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('trustForm');
+    const textarea = document.getElementById('trustMessage');
+    const email = "inst_mech@inmech.kyiv.ua";
+
+    if (form && textarea) {
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const message = textarea.value.trim();
+        const subject = encodeURIComponent('Скринька довіри');
+        const body = encodeURIComponent(message || '');
+        window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+      });
+    }
+  </script>
+</BaseLayout>
+
+<style>
+  .trust-hero {
+    padding: 52px 0 18px;
+  }
+
+  .trust-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .trust-hero-panel,
+  .trust-mark-card,
+  .trust-summary-card,
+  .trust-form-panel,
+  .trust-topics-panel,
+  .trust-note-panel,
+  .related-panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .trust-hero-panel {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(28px, 5vw, 54px);
+  }
+
+  .trust-hero-panel::after {
+    content: '';
+    position: absolute;
+    right: -90px;
+    top: -110px;
+    width: 280px;
+    height: 280px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(29, 79, 145, 0.17), rgba(29, 79, 145, 0));
+  }
+
+  .trust-hero-panel h1,
+  .trust-hero-panel .lead,
+  .trust-hero-panel .eyebrow,
+  .trust-hero-actions {
+    position: relative;
+    z-index: 1;
+  }
+
+  .trust-hero-panel h1 {
+    margin: 0 0 18px;
+    font-size: clamp(2.2rem, 4.6vw, 4.3rem);
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+  }
+
+  .trust-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .trust-mark-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(24px, 4vw, 40px);
+    background: linear-gradient(145deg, var(--accent-dark), var(--accent));
+    color: #fff;
+  }
+
+  .trust-mark-card span {
+    display: grid;
+    place-items: center;
+    width: 96px;
+    height: 96px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.14);
+    font-size: 2rem;
+  }
+
+  .trust-mark-card h2 {
+    margin: 0 0 12px;
+    font-size: 1.65rem;
+  }
+
+  .trust-mark-card p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.84);
+  }
+
+  .trust-summary-section {
+    padding-top: 16px;
+  }
+
+  .trust-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .trust-summary-card {
+    padding: clamp(20px, 3vw, 30px);
+  }
+
+  .trust-summary-card > span {
+    display: grid;
+    place-items: center;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 18px;
+    border-radius: 20px;
+    background: var(--surface-soft);
+    font-size: 1.45rem;
+  }
+
+  .trust-summary-card h2 {
+    margin: 0 0 10px;
+    font-size: 1.25rem;
+  }
+
+  .trust-summary-card p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .trust-two-column {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+    gap: 18px;
+    align-items: start;
+  }
+
+  .trust-form-panel,
+  .trust-topics-panel,
+  .trust-note-panel,
+  .related-panel {
+    padding: clamp(22px, 3vw, 34px);
+  }
+
+  .section-heading {
+    margin-bottom: 18px;
+  }
+
+  .section-heading h2,
+  .trust-topics-panel h2,
+  .trust-note-panel h2,
+  .related-panel h2 {
+    margin: 0 0 12px;
+    font-size: clamp(1.45rem, 2.4vw, 2.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .trust-form {
+    display: grid;
+    gap: 14px;
+  }
+
+  .trust-form label {
+    color: var(--accent-dark);
+    font-weight: 900;
+  }
+
+  .trust-form textarea {
+    width: 100%;
+    min-height: 260px;
+    padding: 16px 18px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--surface-soft);
+    color: var(--text);
+    font: inherit;
+    resize: vertical;
+  }
+
+  .trust-form textarea:focus {
+    outline: 3px solid rgba(29, 79, 145, 0.18);
+    border-color: rgba(29, 79, 145, 0.45);
+  }
+
+  .form-note,
+  .trust-note-panel p,
+  .trust-topics-panel li {
+    color: var(--muted);
+  }
+
+  .form-note {
+    margin: 0;
+    padding: 14px 16px;
+    border-left: 5px solid var(--accent);
+    border-radius: 14px;
+    background: var(--surface-soft);
+  }
+
+  .trust-form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .trust-form-actions button {
+    cursor: pointer;
+    font: inherit;
+  }
+
+  .trust-topics-panel ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  .trust-topics-panel li {
+    margin-bottom: 10px;
+  }
+
+  .trust-email-card {
+    margin-top: 22px;
+    padding: 16px 18px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--surface-soft);
+  }
+
+  .trust-email-card strong {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--accent-dark);
+  }
+
+  .trust-note-panel {
+    background: linear-gradient(135deg, rgba(184, 135, 47, 0.12), rgba(29, 79, 145, 0.08));
+    border-color: rgba(184, 135, 47, 0.35);
+  }
+
+  .trust-note-panel p:last-child {
+    margin-bottom: 0;
+  }
+
+  .related-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 24px;
+    align-items: center;
+  }
+
+  .related-link-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .related-link-grid a {
+    display: block;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface-soft);
+    color: var(--accent-dark);
+    font-weight: 850;
+  }
+
+  .related-link-grid a:hover {
+    text-decoration: none;
+    background: var(--accent-soft);
+  }
+
+  @media (max-width: 1020px) {
+    .related-link-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 900px) {
+    .trust-hero-grid,
+    .trust-summary-grid,
+    .trust-two-column,
+    .related-panel {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .related-link-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+import DefendedDissertationCatalog from '../components/DefendedDissertationCatalog.astro';
+---
+
+<BaseLayout
+  title={`Захищені дисертації | ${site.shortName}`}
+  description="Каталог дисертацій, захищених в Інституті механіки ім. С. П. Тимошенка НАН України."
+  activePage="education"
+>
+  <section class="catalog-hero">
+    <div class="container catalog-hero-panel">
+      <p class="eyebrow">Освітньо-наукова діяльність</p>
+      <h1>Захищені дисертації</h1>
+      <p class="lead">
+        Каталог дисертацій, захищених в Інституті механіки. Перший перенесений фрагмент
+        містить записи на літери А–В зі старої сторінки бібліотеки.
+      </p>
+      <div class="catalog-hero-actions">
+        <a class="button primary" href="#defended-catalog">Перейти до каталогу</a>
+        <a class="button secondary" href="/inmech-site/dissertations/">До сторінки захистів</a>
+      </div>
+    </div>
+  </section>
+
+  <DefendedDissertationCatalog />
+</BaseLayout>
+
+<style>
+  .catalog-hero {
+    padding: 52px 0 18px;
+  }
+
+  .catalog-hero-panel {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(28px, 5vw, 54px);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .catalog-hero-panel::after {
+    content: '';
+    position: absolute;
+    right: -90px;
+    top: -110px;
+    width: 280px;
+    height: 280px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(29, 79, 145, 0.17), rgba(29, 79, 145, 0));
+  }
+
+  .catalog-hero-panel h1,
+  .catalog-hero-panel .lead,
+  .catalog-hero-panel .eyebrow,
+  .catalog-hero-actions {
+    position: relative;
+    z-index: 1;
+  }
+
+  .catalog-hero-panel h1 {
+    margin: 0 0 18px;
+    font-size: clamp(2.2rem, 4.6vw, 4.3rem);
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+  }
+
+  .catalog-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+</style>

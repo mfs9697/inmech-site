@@ -1,0 +1,332 @@
+import type { BibliographyEntry } from './bibliography';
+
+// Technical alphabetic batch for entries extracted from the old Бібліотека.html file.
+// Public display remains unified; this file is only an internal data chunk.
+// Source section: “Окремі наукові монографії, довідники та словники з механіки”.
+// Letter Г, part 1: Гавриленко — Горошко.
+export const bibliographyLibraryG1 = [
+  {
+    id: 'library-g-64-gavrilenko-1989-ustoichivost-rebristykh-tsilindricheskikh-obolochek',
+    authors: 'Гавриленко Г.Д.',
+    title: 'Устойчивость ребристых цилиндрических оболочек при неоднородном напряженно-деформированном состоянии',
+    year: 1989,
+    publisher: 'К.: Наук. думка',
+    pages: '176 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['shells-plates', 'stability-control', 'solid-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-g-65-gavrilenko-1991-metodiki-chislennogo-rascheta-ustoichivosti-podkreplennykh-obolochek',
+    authors: 'Гавриленко Г.Д.',
+    title: 'Методики численного расчета устойчивости подкрепленных оболочек',
+    year: 1991,
+    publisher: 'К.: Наук. думка',
+    pages: '176 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['shells-plates', 'stability-control', 'numerical-methods', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-g-66-gavrilenko-1999-ustoichivost-rebristykh-obolochek-nesovershennoi-formy',
+    authors: 'Гавриленко Г.Д.',
+    title: 'Устойчивость ребристых оболочек несовершенной формы',
+    year: 1999,
+    publisher: 'К.: Наук. думка',
+    pages: '190 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['shells-plates', 'stability-control', 'monograph']
+  },
+  {
+    id: 'library-g-67-gavrilenko-2007-nesushchaia-sposobnost-nesovershennykh-obolochek',
+    authors: 'Гавриленко Г.Д.',
+    title: 'Несущая способность несовершенных оболочек',
+    year: 2007,
+    publisher: 'Днепропетровск: Системные технологии',
+    pages: '294 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['shells-plates', 'stability-control', 'monograph']
+  },
+  {
+    id: 'library-g-68-gavrilenko-kroll-2006-metod-umenshennoi-zhestkosti',
+    authors: 'Гавриленко Г.Д., Кролл Д.',
+    title: 'Метод уменьшенной жесткости',
+    year: 2006,
+    publisher: 'Днепропетровск: Системные технологии',
+    pages: '159 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['stability-control', 'numerical-methods', 'monograph']
+  },
+  {
+    id: 'library-g-69-gavrilenko-trubitsina-2008-kolebaniia-i-ustoichivost-rebristykh-obolochek-vrashcheniia',
+    authors: 'Гавриленко Г.Д., Трубицина О.А.',
+    title: 'Колебания и устойчивость ребристых оболочек вращения',
+    year: 2008,
+    publisher: 'Днепропетровск: Системные технологии',
+    pages: '155 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['shells-plates', 'dynamics-waves', 'stability-control', 'monograph']
+  },
+  {
+    id: 'library-g-70-ganiev-vorobev-liutyi-1979-rezonansnye-kolebaniia-giroskopicheskikh-sistem',
+    authors: 'Ганиев Р.Ф., Воробьев В.М., Лютый А.И.',
+    title: 'Резонансные колебания гироскопических систем',
+    year: 1979,
+    publisher: 'К.: Наук. думка',
+    pages: '186 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['dynamics-waves', 'theoretical-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-g-71-ganiev-zakrzhevskii-1995-programmnye-dvizheniia-deformiruemykh-upravliaemykh-konstruktsii',
+    authors: 'Ганиев Р.Ф., Закржевский А.Е.',
+    title: 'Программные движения деформируемых управляемых конструкций',
+    year: 1995,
+    publisher: 'М.: Наука',
+    pages: '214 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['stability-control', 'solid-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-g-72-ganiev-kobasko-kulik-1980-kolebatelnye-iavleniia-v-mnogofaznykh-sredakh',
+    authors: 'Ганиев Р.Ф., Кобаско Н.И., Кулик В.В., Лакиза В.Д., Малышев П.А., Пучка Г.Н., Украинский Л.Е., Цапенко А.С.',
+    title: 'Колебательные явления в многофазных средах и их использование в технологии',
+    year: 1980,
+    publisher: 'К.: Наук. думка',
+    pages: '142 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['dynamics-waves', 'materials-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-g-73-ganiev-kovalchuk-1980-dinamika-sistem-tverdykh-i-uprugikh-tel',
+    authors: 'Ганиев Р.Ф., Ковальчук П.С.',
+    title: 'Динамика систем твердых и упругих тел (Резонансные явления при нелинейных колебаниях)',
+    year: 1980,
+    publisher: 'М.: Машиностроение',
+    pages: '208 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['dynamics-waves', 'solid-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-g-74-ganiev-kononenko-1976-kolebaniia-tverdykh-tel',
+    authors: 'Ганиев Р.Ф., Кононенко В.О.',
+    title: 'Колебания твердых тел',
+    year: 1976,
+    publisher: 'М.: Наука',
+    pages: '431 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['dynamics-waves', 'solid-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-g-75-ganiev-ukrainskii-1975-dinamika-chastits-pri-vozdeistvii-vibratsii',
+    authors: 'Ганиев Р.Ф., Украинский Л.Е.',
+    title: 'Динамика частиц при воздействии вибраций',
+    year: 1975,
+    publisher: 'К.: Наук. думка',
+    pages: '168 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['dynamics-waves', 'materials-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-g-76-garf-1970-mashiny-i-pribory-dlia-programmnykh-ispytanii-na-ustalost',
+    authors: 'Гарф М.Э.',
+    title: 'Машины и приборы для программных испытаний на усталость',
+    year: 1970,
+    publisher: 'К.: Наук. думка',
+    pages: '196 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['experimental-mechanics', 'fracture-mechanics', 'materials-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-g-77-garf-kramarenko-filatov-1980-razvitie-ustalostnykh-treshchin-v-materialakh',
+    authors: 'Гарф М.Э., Крамаренко О.Я., Филатов М.Я., Филатов Э.Я.',
+    title: 'Развитие усталостных трещин в материалах и конструкциях',
+    year: 1980,
+    publisher: 'К.: Наук. думка',
+    pages: '151 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['fracture-mechanics', 'materials-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-g-78-garf-1984-ispytaniia-na-ustalost',
+    authors: 'Гарф М.Э.',
+    title: 'Испытания на усталость применительно к задачам оптимизации конструкций',
+    year: 1984,
+    publisher: 'К.: Наук. думка',
+    pages: '176 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['experimental-mechanics', 'fracture-mechanics', 'materials-mechanics', 'monograph']
+  },
+  {
+    id: 'library-g-79-garf-ishchenko-pogrebniak-2000-dinamicheskie-osnovy-rascheta-mashin-dlia-ustalosti',
+    authors: 'Гарф М.Э., Ищенко И.И., Погребняк А.Д.',
+    title: 'Динамические основы расчета и конструирования машин для испытания на усталость',
+    year: 2000,
+    publisher: 'К.: Реформа',
+    pages: '232 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['dynamics-waves', 'experimental-mechanics', 'fracture-mechanics', 'monograph']
+  },
+  {
+    id: 'library-g-80-girchenko-dzhafarov-khobotov-1988-polietilen-srednego-davleniia',
+    authors: 'Гирченко А.Г., Джафаров А.С., Хоботов В.М.',
+    title: 'Физико-механические свойства полиэтилена среднего давления и его применение в радиотехнике',
+    year: 1988,
+    publisher: 'К.: Наук. думка',
+    pages: '184 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['materials-mechanics', 'experimental-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-g-81-golovko-lugovoi-meish-2012-dinamika-neodnorodnykh-obolochek',
+    authors: 'Головко К.Г., Луговой П.З., Мейш В.Ф.',
+    title: 'Динамика неоднородных оболочек при нестационарных нагрузках',
+    year: 2012,
+    publisher: 'Киевский университет',
+    pages: '541 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['shells-plates', 'dynamics-waves', 'monograph']
+  },
+  {
+    id: 'library-g-82-golub-1983-tsiklicheskaia-polzuchest-nikelevykh-splavov',
+    authors: 'Голуб В.П.',
+    title: 'Циклическая ползучесть жаропрочных никелевых сплавов',
+    year: 1983,
+    publisher: 'К.: Наук. думка',
+    pages: '224 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['thermoelasticity-creep', 'materials-mechanics', 'monograph']
+  },
+  {
+    id: 'library-g-83-golub-pogrebniak-1994-vysokotemperaturnoe-razrushenie-materialov',
+    authors: 'Голуб В.П., Погребняк А.Д.',
+    title: 'Высокотемпературное разрушение материалов при циклическом нагружении',
+    year: 1994,
+    publisher: 'К.: Наук. думка',
+    pages: '228 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['fracture-mechanics', 'materials-mechanics', 'thermoelasticity-creep', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-g-84-golubentsev-1959-dinamika-perekhodnykh-protsessov-v-mashinakh',
+    authors: 'Голубенцев А.Н.',
+    title: 'Динамика переходных процессов в машинах с многими массами',
+    year: 1959,
+    publisher: 'Киев — Москва: Машгиз',
+    pages: '146 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['dynamics-waves', 'theoretical-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-g-85-golubentsev-1959-pusk-asinkhronnogo-dvigatelia',
+    authors: 'Голубенцев А.Н.',
+    title: 'Пуск асинхронного двигателя шахтной подъемной машины',
+    year: 1959,
+    publisher: 'К.: Гостехиздат УССР',
+    pages: '74 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['dynamics-waves', 'theoretical-mechanics', 'monograph']
+  },
+  {
+    id: 'library-g-86-goldenveizer-1935-rozrakhunok-tonkostinnykh-obolonok',
+    authors: 'Гольденвейзер А.Л.',
+    title: 'Розрахунок тонкостінних оболонок та цупких діафрагм',
+    year: 1935,
+    publisher: 'К.: Вид-во ВУАН',
+    pages: '38 с.',
+    language: 'uk',
+    type: 'monograph',
+    tags: ['shells-plates', 'solid-mechanics', 'monograph']
+  },
+  {
+    id: 'library-g-87-gorbunov-strelbitskaia-1946-priblizhennye-metody-rascheta-ram',
+    authors: 'Горбунов Б.Н., Стрельбицкая А.И.',
+    title: 'Приближенные методы расчета несущих рам из тонкостенных стержней',
+    year: 1946,
+    publisher: 'М.: Машгиз',
+    pages: '168 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['solid-mechanics', 'shells-plates', 'numerical-methods', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-g-88-gorbunov-strelbitskaia-1947-raschet-vagonnykh-ram',
+    authors: 'Горбунов Б.Н., Стрельбицкая А.И.',
+    title: 'Расчет вагонных рам из тонкостенных стержней',
+    year: 1947,
+    publisher: 'М.: Машгиз',
+    pages: '168 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['solid-mechanics', 'shells-plates', 'monograph']
+  },
+  {
+    id: 'library-g-89-gorbunov-strelbitskaia-1948-teoriia-ram-iz-tonkostennykh-sterzhnei',
+    authors: 'Горбунов Б.Н., Стрельбицкая А.И.',
+    title: 'Теория рам из тонкостенных стержней',
+    year: 1948,
+    publisher: 'М. — Л.: Гостехиздат',
+    pages: '216 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['solid-mechanics', 'shells-plates', 'theoretical-mechanics', 'monograph']
+  },
+  {
+    id: 'library-g-90-goroshko-1965-dinamika-uprugoi-konstruktsii-v-usloviiakh-svobodnogo-poleta',
+    authors: 'Горошко О.А.',
+    title: 'Динамика упругой конструкции в условиях свободного полета',
+    year: 1965,
+    publisher: 'К.: Наук. думка',
+    pages: '168 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['dynamics-waves', 'solid-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-g-91-goroshko-savin-1971-vvedenie-v-mekhaniku-deformiruemykh-odnomernykh-tel',
+    authors: 'Горошко О.А., Савин Г.Н.',
+    title: 'Введение в механику деформируемых одномерных тел переменной длины',
+    year: 1971,
+    publisher: 'К.: Наук. думка',
+    pages: '224 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['solid-mechanics', 'theoretical-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  }
+] as const satisfies readonly BibliographyEntry[];

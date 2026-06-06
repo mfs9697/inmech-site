@@ -3,9 +3,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { site } from '../../data/site';
 import { bibliography } from '../../data/bibliography';
 import { bibliographyModernAdditions } from '../../data/bibliographyModernAdditions';
+import { bibliographyTextbookAdditions } from '../../data/bibliographyTextbookAdditions';
 import { bibliographyTagLabels } from '../../data/bibliographyTags';
 
-const combinedBibliography = [...bibliography, ...bibliographyModernAdditions];
+const combinedBibliography = [...bibliography, ...bibliographyModernAdditions, ...bibliographyTextbookAdditions];
 const bibliographyYears = [...new Set(combinedBibliography.map((item) => item.year).filter((year): year is number => typeof year === 'number'))].sort((a, b) => b - a);
 const bibliographyUsedTags = [...new Set(combinedBibliography.flatMap((item) => item.tags))].sort();
 const bibliographyLibraryOfCongressCount = combinedBibliography.filter((item) => item.inLibraryOfCongress).length;

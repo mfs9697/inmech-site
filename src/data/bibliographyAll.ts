@@ -3,13 +3,15 @@ import { bibliographyModernAdditions } from './bibliographyModernAdditions';
 import { bibliographyTextbookAdditions } from './bibliographyTextbookAdditions';
 import { bibliographyLegacyCollections } from './bibliographyLegacyCollections';
 import { bibliographyLibraryAtoB } from './bibliographyLibraryAtoB';
+import { bibliographyLibraryV } from './bibliographyLibraryV';
 
 export const bibliographyAll = [
   ...bibliography,
   ...bibliographyModernAdditions,
   ...bibliographyTextbookAdditions,
   ...bibliographyLegacyCollections,
-  ...bibliographyLibraryAtoB
+  ...bibliographyLibraryAtoB,
+  ...bibliographyLibraryV
 ] as const;
 
 export const bibliographyYears = [...new Set(bibliographyAll.map((item) => item.year).filter((year): year is number => typeof year === 'number'))].sort((a, b) => b - a);

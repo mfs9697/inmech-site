@@ -109,13 +109,13 @@ const hasEntries = bibliography.length > 0;
       </nav>
 
       <div class="tag-cloud" aria-label="Фільтр за тематичними тегами">
-        <button class="tag-filter is-active" type="button" data-tag="all">Усі записи</button>
+        <button class="tag-filter is-active" type="button" data-tag-filter="all">Усі записи</button>
         {bibliographyUsedTags.map((tag) => (
-          <button class="tag-filter" type="button" data-tag={tag}>{bibliographyTagLabels[tag]}</button>
+          <button class="tag-filter" type="button" data-tag-filter={tag}>{bibliographyTagLabels[tag]}</button>
         ))}
       </div>
 
-      <p class="no-results" data-no-results hidden>
+      <p class="no-results is-filter-hidden" data-no-results>
         Для вибраного тегу поки немає записів.
       </p>
 
@@ -129,7 +129,7 @@ const hasEntries = bibliography.length > 0;
 
             <div class="book-grid">
               {group.items.map((item) => (
-                <article class="book-card" data-book-card data-tags={item.tags.join(' ')}>
+                <article class="book-card" data-book-card data-tags={JSON.stringify(item.tags)}>
                   <div class="book-card-topline">
                     <span>{bibliographyTypeLabels[item.type]}</span>
                     {item.year && <strong>{item.year}</strong>}
@@ -142,7 +142,7 @@ const hasEntries = bibliography.length > 0;
                   {item.note && <p class="note">{item.note}</p>}
                   <div class="entry-tags">
                     {item.tags.map((tag) => (
-                      <button class="tag-filter entry-tag" type="button" data-tag={tag}>{bibliographyTagLabels[tag]}</button>
+                      <button class="tag-filter entry-tag" type="button" data-tag-filter={tag}>{bibliographyTagLabels[tag]}</button>
                     ))}
                   </div>
                   {item.inLibraryOfCongress && <p class="loc-badge">Бібліотека Конгресу США</p>}
@@ -160,7 +160,7 @@ const hasEntries = bibliography.length > 0;
 </BaseLayout>
 
 <script>
-  const filterButtons = Array.from(document.querySelectorAll('[data-tag]'));
+  const filterButtons = Array.from(document.querySelectorAll('[data-tag-filter]'));
   const cards = Array.from(document.querySelectorAll('[data-book-card]'));
   const groups = Array.from(document.querySelectorAll('[data-alphabet-group]'));
   const summary = document.querySelector('[data-filter-summary]');
@@ -172,9 +172,17 @@ const hasEntries = bibliography.length > 0;
     return `${count} записів`;
   }
 
+  function readTags(card) {
+    try {
+      return JSON.parse(card.dataset.tags || '[]');
+    } catch {
+      return [];
+    }
+  }
+
   function setActiveButtons(activeTag) {
     filterButtons.forEach((button) => {
-      button.classList.toggle('is-active', button.dataset.tag === activeTag);
+      button.classList.toggle('is-active', button.dataset.tagFilter === activeTag);
     });
   }
 
@@ -182,21 +190,23 @@ const hasEntries = bibliography.length > 0;
     let visibleTotal = 0;
 
     cards.forEach((card) => {
-      const tags = (card.dataset.tags || '').split(' ');
+      const tags = readTags(card);
       const visible = activeTag === 'all' || tags.includes(activeTag);
-      card.hidden = !visible;
+      card.classList.toggle('is-filter-hidden', !visible);
       if (visible) visibleTotal += 1;
     });
 
     groups.forEach((group) => {
-      const visibleCards = Array.from(group.querySelectorAll('[data-book-card]')).filter((card) => !card.hidden);
+      const visibleCards = Array.from(group.querySelectorAll('[data-book-card]')).filter(
+        (card) => !card.classList.contains('is-filter-hidden')
+      );
       const count = visibleCards.length;
-      group.hidden = count === 0;
+      group.classList.toggle('is-filter-hidden', count === 0);
       const countElement = group.querySelector('[data-group-count]');
       if (countElement) countElement.textContent = formatCount(count);
     });
 
-    const activeButton = filterButtons.find((button) => button.dataset.tag === activeTag);
+    const activeButton = filterButtons.find((button) => button.dataset.tagFilter === activeTag);
     const activeLabel = activeButton?.textContent?.trim() || 'Усі записи';
 
     if (summary) {
@@ -206,7 +216,7 @@ const hasEntries = bibliography.length > 0;
     }
 
     if (noResults) {
-      noResults.hidden = visibleTotal !== 0;
+      noResults.classList.toggle('is-filter-hidden', visibleTotal !== 0);
     }
 
     setActiveButtons(activeTag);
@@ -214,7 +224,7 @@ const hasEntries = bibliography.length > 0;
 
   filterButtons.forEach((button) => {
     button.addEventListener('click', () => {
-      const tag = button.dataset.tag || 'all';
+      const tag = button.dataset.tagFilter || 'all';
       applyFilter(tag);
       if (tag === 'all') {
         history.replaceState(null, '', window.location.pathname);
@@ -228,10 +238,14 @@ const hasEntries = bibliography.length > 0;
     ? window.location.hash.replace('#tag-', '')
     : 'all';
 
-  applyFilter(filterButtons.some((button) => button.dataset.tag === hashTag) ? hashTag : 'all');
+  applyFilter(filterButtons.some((button) => button.dataset.tagFilter === hashTag) ? hashTag : 'all');
 </script>
 
 <style>
+  .is-filter-hidden {
+    display: none !important;
+  }
+
   .books-hero {
     padding: 52px 0 18px;
   }

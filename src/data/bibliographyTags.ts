@@ -13,6 +13,7 @@ export const bibliographyTagLabels = {
   acoustics: 'Акустика',
   'initial-stresses': 'Початкові напруження',
   piezoelectricity: 'П’єзоелектричні матеріали',
+  'interdisciplinary-modeling': 'Міждисциплінарне моделювання',
   'reference-edition': 'Довідкове видання',
   'history-of-science': 'Історія науки',
   'institute-history': 'Історія Інституту',
@@ -42,7 +43,8 @@ export const bibliographyTagGroups = [
       'fluid-gas-mechanics',
       'acoustics',
       'initial-stresses',
-      'piezoelectricity'
+      'piezoelectricity',
+      'interdisciplinary-modeling'
     ]
   },
   {

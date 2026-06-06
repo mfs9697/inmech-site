@@ -1,13 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { site } from '../../data/site';
-import {
-  bibliography,
-  bibliographyLibraryOfCongressCount,
-  bibliographyUsedTags,
-  bibliographyYears
-} from '../../data/bibliography';
+import { bibliography } from '../../data/bibliography';
+import { bibliographyModernAdditions } from '../../data/bibliographyModernAdditions';
 import { bibliographyTagLabels } from '../../data/bibliographyTags';
+
+const combinedBibliography = [...bibliography, ...bibliographyModernAdditions];
+const bibliographyYears = [...new Set(combinedBibliography.map((item) => item.year).filter((year): year is number => typeof year === 'number'))].sort((a, b) => b - a);
+const bibliographyUsedTags = [...new Set(combinedBibliography.flatMap((item) => item.tags))].sort();
+const bibliographyLibraryOfCongressCount = combinedBibliography.filter((item) => item.inLibraryOfCongress).length;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -43,7 +44,7 @@ const bibliographyTypeLabels = {
   'series-volume': 'Том серії'
 } as const;
 
-const sortedBibliography = [...bibliography].sort((a, b) =>
+const sortedBibliography = [...combinedBibliography].sort((a, b) =>
   normalizeAuthorKey(a.authors).localeCompare(normalizeAuthorKey(b.authors), 'uk') ||
   a.title.localeCompare(b.title, 'uk')
 );
@@ -53,9 +54,9 @@ const alphabetGroups = [...sortedBibliography.reduce((acc, entry) => {
   if (!acc.has(initial)) acc.set(initial, []);
   acc.get(initial)?.push(entry);
   return acc;
-}, new Map<string, typeof bibliography>())].map(([letter, items]) => ({ letter, items }));
+}, new Map<string, typeof combinedBibliography>())].map(([letter, items]) => ({ letter, items }));
 
-const hasEntries = bibliography.length > 0;
+const hasEntries = combinedBibliography.length > 0;
 ---
 
 <BaseLayout
@@ -75,7 +76,7 @@ const hasEntries = bibliography.length > 0;
         </p>
       </div>
       <div class="books-stats" aria-label="Статистика каталогу окремих монографій">
-        <strong>{bibliography.length}</strong>
+        <strong>{combinedBibliography.length}</strong>
         <span>записів</span>
         <small>{hasEntries ? `${bibliographyYears.at(-1)}–${bibliographyYears[0]}` : 'підготовка'}</small>
       </div>

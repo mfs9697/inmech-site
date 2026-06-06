@@ -33,6 +33,16 @@ function getInitial(authors: string) {
   return first || '#';
 }
 
+const bibliographyTypeLabels = {
+  monograph: 'Монографія',
+  textbook: 'Навчальне видання',
+  handbook: 'Довідник',
+  dictionary: 'Словник',
+  'edited-volume': 'Колективна праця',
+  chapter: 'Розділ у виданні',
+  'series-volume': 'Том серії'
+} as const;
+
 const sortedBibliography = [...bibliography].sort((a, b) =>
   normalizeAuthorKey(a.authors).localeCompare(normalizeAuthorKey(b.authors), 'uk') ||
   a.title.localeCompare(b.title, 'uk')
@@ -80,15 +90,15 @@ const hasEntries = bibliography.length > 0;
           <h2>Алфавітний покажчик</h2>
         </div>
         <p>
-          Записи згруповано за першою літерою автора або редактора. Тематичні теги показано як
-          чіпи на картках; пізніше їх можна використати для фільтрів і тематичних підбірок.
+          Записи згруповано за першою літерою автора або редактора. Тематичні теги вже активні:
+          натисніть тег, щоб переглянути відповідну добірку, або поверніться до всіх записів.
         </p>
       </div>
 
       <div class="books-toolbar">
         <a href={withBase('/library/')}>← До бібліотеки</a>
-        <span>
-          {bibliographyUsedTags.length} тегів · {bibliographyLibraryOfCongressCount} у Бібліотеці Конгресу США
+        <span data-filter-summary>
+          Усі записи · {bibliographyUsedTags.length} тегів · {bibliographyLibraryOfCongressCount} у Бібліотеці Конгресу США
         </span>
       </div>
 
@@ -98,25 +108,30 @@ const hasEntries = bibliography.length > 0;
         ))}
       </nav>
 
-      <div class="tag-cloud" aria-label="Використані тематичні теги">
+      <div class="tag-cloud" aria-label="Фільтр за тематичними тегами">
+        <button class="tag-filter is-active" type="button" data-tag="all">Усі записи</button>
         {bibliographyUsedTags.map((tag) => (
-          <span>{bibliographyTagLabels[tag]}</span>
+          <button class="tag-filter" type="button" data-tag={tag}>{bibliographyTagLabels[tag]}</button>
         ))}
       </div>
 
+      <p class="no-results" data-no-results hidden>
+        Для вибраного тегу поки немає записів.
+      </p>
+
       <div class="alphabet-groups">
         {alphabetGroups.map((group) => (
-          <section class="alphabet-group" id={`books-${group.letter}`}>
+          <section class="alphabet-group" id={`books-${group.letter}`} data-alphabet-group>
             <div class="alphabet-header">
               <h3>{group.letter}</h3>
-              <span>{group.items.length} {group.items.length === 1 ? 'запис' : 'записів'}</span>
+              <span data-group-count>{group.items.length} {group.items.length === 1 ? 'запис' : 'записів'}</span>
             </div>
 
             <div class="book-grid">
               {group.items.map((item) => (
-                <article class="book-card">
+                <article class="book-card" data-book-card data-tags={item.tags.join(' ')}>
                   <div class="book-card-topline">
-                    <span>{item.type}</span>
+                    <span>{bibliographyTypeLabels[item.type]}</span>
                     {item.year && <strong>{item.year}</strong>}
                   </div>
                   <h4>{item.title}</h4>
@@ -127,7 +142,7 @@ const hasEntries = bibliography.length > 0;
                   {item.note && <p class="note">{item.note}</p>}
                   <div class="entry-tags">
                     {item.tags.map((tag) => (
-                      <span>{bibliographyTagLabels[tag]}</span>
+                      <button class="tag-filter entry-tag" type="button" data-tag={tag}>{bibliographyTagLabels[tag]}</button>
                     ))}
                   </div>
                   {item.inLibraryOfCongress && <p class="loc-badge">Бібліотека Конгресу США</p>}
@@ -143,6 +158,78 @@ const hasEntries = bibliography.length > 0;
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  const filterButtons = Array.from(document.querySelectorAll('[data-tag]'));
+  const cards = Array.from(document.querySelectorAll('[data-book-card]'));
+  const groups = Array.from(document.querySelectorAll('[data-alphabet-group]'));
+  const summary = document.querySelector('[data-filter-summary]');
+  const noResults = document.querySelector('[data-no-results]');
+  const allCount = cards.length;
+
+  function formatCount(count) {
+    if (count === 1) return '1 запис';
+    return `${count} записів`;
+  }
+
+  function setActiveButtons(activeTag) {
+    filterButtons.forEach((button) => {
+      button.classList.toggle('is-active', button.dataset.tag === activeTag);
+    });
+  }
+
+  function applyFilter(activeTag) {
+    let visibleTotal = 0;
+
+    cards.forEach((card) => {
+      const tags = (card.dataset.tags || '').split(' ');
+      const visible = activeTag === 'all' || tags.includes(activeTag);
+      card.hidden = !visible;
+      if (visible) visibleTotal += 1;
+    });
+
+    groups.forEach((group) => {
+      const visibleCards = Array.from(group.querySelectorAll('[data-book-card]')).filter((card) => !card.hidden);
+      const count = visibleCards.length;
+      group.hidden = count === 0;
+      const countElement = group.querySelector('[data-group-count]');
+      if (countElement) countElement.textContent = formatCount(count);
+    });
+
+    const activeButton = filterButtons.find((button) => button.dataset.tag === activeTag);
+    const activeLabel = activeButton?.textContent?.trim() || 'Усі записи';
+
+    if (summary) {
+      summary.textContent = activeTag === 'all'
+        ? `Усі записи · ${allCount} записів`
+        : `${activeLabel} · ${visibleTotal} записів із ${allCount}`;
+    }
+
+    if (noResults) {
+      noResults.hidden = visibleTotal !== 0;
+    }
+
+    setActiveButtons(activeTag);
+  }
+
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const tag = button.dataset.tag || 'all';
+      applyFilter(tag);
+      if (tag === 'all') {
+        history.replaceState(null, '', window.location.pathname);
+      } else {
+        history.replaceState(null, '', `#tag-${tag}`);
+      }
+    });
+  });
+
+  const hashTag = window.location.hash.startsWith('#tag-')
+    ? window.location.hash.replace('#tag-', '')
+    : 'all';
+
+  applyFilter(filterButtons.some((button) => button.dataset.tag === hashTag) ? hashTag : 'all');
+</script>
 
 <style>
   .books-hero {
@@ -239,7 +326,8 @@ const hasEntries = bibliography.length > 0;
 
   .books-toolbar,
   .alpha-nav,
-  .tag-cloud {
+  .tag-cloud,
+  .no-results {
     border: 1px solid var(--line);
     border-radius: 18px;
     background: var(--surface-soft);
@@ -274,8 +362,7 @@ const hasEntries = bibliography.length > 0;
   }
 
   .alpha-nav a,
-  .tag-cloud span,
-  .entry-tags span,
+  .tag-filter,
   .book-card-topline span,
   .loc-badge {
     display: inline-flex;
@@ -298,12 +385,24 @@ const hasEntries = bibliography.length > 0;
     text-decoration: none;
   }
 
-  .tag-cloud span,
-  .entry-tags span,
+  .tag-filter,
   .book-card-topline span {
     padding: 6px 10px;
+    border: 0;
     background: var(--surface);
     color: var(--accent-dark);
+    cursor: pointer;
+    font-family: inherit;
+    line-height: 1.2;
+  }
+
+  .tag-filter:hover,
+  .tag-filter.is-active {
+    background: var(--accent-soft);
+  }
+
+  .tag-filter.is-active {
+    outline: 2px solid rgba(29, 79, 145, 0.18);
   }
 
   .alphabet-groups {
@@ -384,11 +483,22 @@ const hasEntries = bibliography.length > 0;
     margin: 0 0 14px;
   }
 
+  .entry-tag {
+    font-size: 0.78rem;
+  }
+
   .loc-badge {
     margin: 0 0 14px;
     padding: 6px 10px;
     background: rgba(184, 135, 47, 0.14);
     color: var(--accent-dark);
+  }
+
+  .no-results {
+    margin: 0 0 18px;
+    padding: 16px 18px;
+    color: var(--muted);
+    font-weight: 850;
   }
 
   .book-card .card-link {

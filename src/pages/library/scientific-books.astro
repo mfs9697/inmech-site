@@ -2,12 +2,12 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { site } from '../../data/site';
 import {
-  scientificBooks,
-  scientificBookCategories,
-  scientificBookLibraryOfCongressCount,
-  scientificBookPlannedCategories,
-  scientificBookYears
-} from '../../data/scientificBooks';
+  bibliography,
+  bibliographyLibraryOfCongressCount,
+  bibliographyUsedTags,
+  bibliographyYears
+} from '../../data/bibliography';
+import { bibliographyTagLabels } from '../../data/bibliographyTags';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -19,7 +19,33 @@ function withBase(path: string) {
   return `${base}${path.startsWith('/') ? path : `/${path}`}`;
 }
 
-const hasBooks = scientificBooks.length > 0;
+function normalizeAuthorKey(authors: string) {
+  return authors
+    .replace(/^За заг\. ред\.\s*/i, '')
+    .replace(/^За ред\.\s*/i, '')
+    .replace(/^Под общ\. ред\.\s*/i, '')
+    .trim();
+}
+
+function getInitial(authors: string) {
+  const normalized = normalizeAuthorKey(authors);
+  const first = normalized.charAt(0).toUpperCase();
+  return first || '#';
+}
+
+const sortedBibliography = [...bibliography].sort((a, b) =>
+  normalizeAuthorKey(a.authors).localeCompare(normalizeAuthorKey(b.authors), 'uk') ||
+  a.title.localeCompare(b.title, 'uk')
+);
+
+const alphabetGroups = [...sortedBibliography.reduce((acc, entry) => {
+  const initial = getInitial(entry.authors);
+  if (!acc.has(initial)) acc.set(initial, []);
+  acc.get(initial)?.push(entry);
+  return acc;
+}, new Map<string, typeof bibliography>())].map(([letter, items]) => ({ letter, items }));
+
+const hasEntries = bibliography.length > 0;
 ---
 
 <BaseLayout
@@ -33,15 +59,15 @@ const hasBooks = scientificBooks.length > 0;
         <p class="eyebrow">Бібліотека</p>
         <h1>Великий каталог окремих монографій</h1>
         <p class="lead">
-          Розділ призначено для великого бібліографічного каталогу окремих наукових монографій,
-          довідників, словників та інших фундаментальних видань, пов’язаних із науковими школами
-          Інституту механіки.
+          Розділ формується як єдина бібліографічна база: кожен запис зберігається один раз,
+          а тематична належність задається контрольованими тегами. Це дає змогу показувати каталог
+          за алфавітом, роками, типами видань або науковими напрямами без дублювання записів.
         </p>
       </div>
       <div class="books-stats" aria-label="Статистика каталогу окремих монографій">
-        <strong>{scientificBooks.length}</strong>
+        <strong>{bibliography.length}</strong>
         <span>записів</span>
-        <small>{hasBooks ? `${scientificBookYears.at(-1)}–${scientificBookYears[0]}` : 'підготовка'}</small>
+        <small>{hasEntries ? `${bibliographyYears.at(-1)}–${bibliographyYears[0]}` : 'підготовка'}</small>
       </div>
     </div>
   </section>
@@ -50,69 +76,70 @@ const hasBooks = scientificBooks.length > 0;
     <div class="container">
       <div class="section-heading compact-header">
         <div>
-          <p class="eyebrow">Структура</p>
-          <h2>{hasBooks ? 'Каталог видань' : 'Підготовка каталогу'}</h2>
+          <p class="eyebrow">Каталог</p>
+          <h2>Алфавітний покажчик</h2>
         </div>
         <p>
-          На першому етапі закладено структуру розділу та тематичні групи. Далі записи зі старої
-          бібліотечної сторінки можна переносити порціями до файлу даних без зміни дизайну сторінки.
+          Записи згруповано за першою літерою автора або редактора. Тематичні теги показано як
+          чіпи на картках; пізніше їх можна використати для фільтрів і тематичних підбірок.
         </p>
       </div>
 
       <div class="books-toolbar">
         <a href={withBase('/library/')}>← До бібліотеки</a>
         <span>
-          {hasBooks
-            ? `${scientificBookCategories.length} тематичних напрямів · ${scientificBookLibraryOfCongressCount} у Бібліотеці Конгресу США`
-            : 'Каталог готовий до наповнення'}
+          {bibliographyUsedTags.length} тегів · {bibliographyLibraryOfCongressCount} у Бібліотеці Конгресу США
         </span>
       </div>
 
-      {hasBooks ? (
-        <div class="year-groups">
-          {scientificBookYears.map((year) => {
-            const items = scientificBooks.filter((item) => item.year === year);
-            return (
-              <section class="year-group" id={`year-${year}`}>
-                <div class="year-header">
-                  <h3>{year}</h3>
-                  <span>{items.length} {items.length === 1 ? 'видання' : 'видань'}</span>
-                </div>
+      <nav class="alpha-nav" aria-label="Алфавітна навігація бібліографічного каталогу">
+        {alphabetGroups.map((group) => (
+          <a href={`#books-${group.letter}`}>{group.letter}</a>
+        ))}
+      </nav>
 
-                <div class="book-grid">
-                  {items.map((item) => (
-                    <article class="book-card">
-                      <div class="book-card-topline">
-                        <span>{item.category}</span>
-                        {item.year && <strong>{item.year}</strong>}
-                      </div>
-                      <h4>{item.title}</h4>
-                      <p class="authors">{item.authors}</p>
-                      <p class="details">
-                        {item.publisher}{item.pages ? `, ${item.pages}` : ''}{item.isbn ? `; ISBN ${item.isbn}` : ''}.
-                      </p>
-                      {item.note && <p class="note">{item.note}</p>}
-                      {item.inLibraryOfCongress && <p class="loc-badge">Бібліотека Конгресу США</p>}
-                      {item.url && (
-                        <a class="card-link" href={item.url} target="_blank" rel="noopener noreferrer">Електронний ресурс →</a>
-                      )}
-                    </article>
-                  ))}
-                </div>
-              </section>
-            );
-          })}
-        </div>
-      ) : (
-        <div class="planned-grid">
-          {scientificBookPlannedCategories.map((item) => (
-            <article class="planned-card">
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </article>
-          ))}
-        </div>
-      )}
+      <div class="tag-cloud" aria-label="Використані тематичні теги">
+        {bibliographyUsedTags.map((tag) => (
+          <span>{bibliographyTagLabels[tag]}</span>
+        ))}
+      </div>
+
+      <div class="alphabet-groups">
+        {alphabetGroups.map((group) => (
+          <section class="alphabet-group" id={`books-${group.letter}`}>
+            <div class="alphabet-header">
+              <h3>{group.letter}</h3>
+              <span>{group.items.length} {group.items.length === 1 ? 'запис' : 'записів'}</span>
+            </div>
+
+            <div class="book-grid">
+              {group.items.map((item) => (
+                <article class="book-card">
+                  <div class="book-card-topline">
+                    <span>{item.type}</span>
+                    {item.year && <strong>{item.year}</strong>}
+                  </div>
+                  <h4>{item.title}</h4>
+                  <p class="authors">{item.authors}</p>
+                  <p class="details">
+                    {item.publisher}{item.pages ? `, ${item.pages}` : ''}{item.isbn ? `; ISBN ${item.isbn}` : ''}{item.doi ? `; DOI ${item.doi}` : ''}.
+                  </p>
+                  {item.note && <p class="note">{item.note}</p>}
+                  <div class="entry-tags">
+                    {item.tags.map((tag) => (
+                      <span>{bibliographyTagLabels[tag]}</span>
+                    ))}
+                  </div>
+                  {item.inLibraryOfCongress && <p class="loc-badge">Бібліотека Конгресу США</p>}
+                  {item.url && (
+                    <a class="card-link" href={item.url} target="_blank" rel="noopener noreferrer">Електронний ресурс →</a>
+                  )}
+                </article>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
     </div>
   </section>
 </BaseLayout>
@@ -124,8 +151,7 @@ const hasBooks = scientificBooks.length > 0;
 
   .books-hero-panel,
   .book-card,
-  .planned-card,
-  .year-group {
+  .alphabet-group {
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
@@ -211,16 +237,21 @@ const hasBooks = scientificBooks.length > 0;
     color: var(--muted);
   }
 
+  .books-toolbar,
+  .alpha-nav,
+  .tag-cloud {
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--surface-soft);
+  }
+
   .books-toolbar {
     display: flex;
     justify-content: space-between;
     gap: 16px;
     align-items: center;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
     padding: 14px 16px;
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    background: var(--surface-soft);
   }
 
   .books-toolbar a {
@@ -233,44 +264,58 @@ const hasBooks = scientificBooks.length > 0;
     font-weight: 850;
   }
 
-  .planned-grid,
-  .book-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
+  .alpha-nav,
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+    padding: 12px;
   }
 
-  .planned-card,
-  .book-card {
-    padding: 20px;
-    background: var(--surface-soft);
+  .alpha-nav a,
+  .tag-cloud span,
+  .entry-tags span,
+  .book-card-topline span,
+  .loc-badge {
+    display: inline-flex;
+    width: fit-content;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 900;
   }
 
-  .planned-card h3,
-  .book-card h4 {
-    margin: 0 0 10px;
+  .alpha-nav a {
+    min-width: 38px;
+    justify-content: center;
+    padding: 8px 10px;
+    background: var(--surface);
     color: var(--accent-dark);
-    line-height: 1.25;
   }
 
-  .planned-card p,
-  .details,
-  .note {
-    margin: 0;
-    color: var(--muted);
-    line-height: 1.45;
+  .alpha-nav a:hover {
+    background: var(--accent-soft);
+    text-decoration: none;
   }
 
-  .year-groups {
+  .tag-cloud span,
+  .entry-tags span,
+  .book-card-topline span {
+    padding: 6px 10px;
+    background: var(--surface);
+    color: var(--accent-dark);
+  }
+
+  .alphabet-groups {
     display: grid;
     gap: 18px;
   }
 
-  .year-group {
+  .alphabet-group {
     padding: clamp(18px, 3vw, 28px);
   }
 
-  .year-header,
+  .alphabet-header,
   .book-card-topline {
     display: flex;
     justify-content: space-between;
@@ -278,36 +323,45 @@ const hasBooks = scientificBooks.length > 0;
     align-items: center;
   }
 
-  .year-header {
+  .alphabet-header {
     margin-bottom: 14px;
     padding-bottom: 12px;
     border-bottom: 1px solid var(--line);
   }
 
-  .year-header h3 {
+  .alphabet-header h3 {
     margin: 0;
     color: var(--accent-dark);
     font-size: 1.45rem;
   }
 
-  .year-header span,
+  .alphabet-header span,
   .book-card-topline strong {
     color: var(--muted);
     font-weight: 850;
+  }
+
+  .book-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .book-card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: var(--surface-soft);
   }
 
   .book-card-topline {
     margin-bottom: 12px;
   }
 
-  .book-card-topline span {
-    display: inline-flex;
-    padding: 5px 9px;
-    border-radius: 999px;
-    background: var(--surface);
+  .book-card h4 {
+    margin: 0 0 10px;
     color: var(--accent-dark);
-    font-size: 0.82rem;
-    font-weight: 900;
+    line-height: 1.25;
   }
 
   .authors {
@@ -316,24 +370,25 @@ const hasBooks = scientificBooks.length > 0;
     font-weight: 850;
   }
 
-  .details {
-    margin-bottom: 14px;
+  .details,
+  .note {
+    margin: 0 0 14px;
+    color: var(--muted);
+    line-height: 1.45;
   }
 
-  .note {
-    margin-bottom: 14px;
+  .entry-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin: 0 0 14px;
   }
 
   .loc-badge {
-    display: inline-flex;
-    width: fit-content;
     margin: 0 0 14px;
     padding: 6px 10px;
-    border-radius: 999px;
     background: rgba(184, 135, 47, 0.14);
     color: var(--accent-dark);
-    font-size: 0.82rem;
-    font-weight: 900;
   }
 
   .book-card .card-link {
@@ -344,18 +399,17 @@ const hasBooks = scientificBooks.length > 0;
     .books-hero-panel,
     .section-heading,
     .books-toolbar,
-    .year-header {
+    .alphabet-header {
       display: block;
     }
 
     .books-stats,
     .section-heading p:last-child,
     .books-toolbar span,
-    .year-header span {
+    .alphabet-header span {
       margin-top: 14px;
     }
 
-    .planned-grid,
     .book-grid {
       grid-template-columns: 1fr;
     }

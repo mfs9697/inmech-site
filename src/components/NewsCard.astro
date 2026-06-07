@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { getVisibleNewsTags } from '../utils/newsTags';
 
 interface Props {
   entry: CollectionEntry<'news'>;
@@ -15,6 +16,7 @@ const date = entry.data.date.toLocaleDateString('uk-UA', {
   year: 'numeric'
 });
 const TitleTag = level;
+const visibleTags = getVisibleNewsTags(entry);
 ---
 
 <article class="news-card">
@@ -29,8 +31,7 @@ const TitleTag = level;
     </TitleTag>
     <p>{entry.data.description}</p>
     <div class="tags">
-      <span class="tag category-tag">{entry.data.category}</span>
-      {entry.data.tags.map((tag) => (
+      {visibleTags.map((tag) => (
         <a class="tag" href={withBase(`/news/tags/${encodeURIComponent(tag)}/`)}>{tag}</a>
       ))}
     </div>

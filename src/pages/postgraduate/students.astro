@@ -4,7 +4,7 @@ import { site } from '../../data/site';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
-const photoBase = 'src/pages/people/';
+const photoBase = '/people/';
 
 const studentGroups = [
   {

@@ -1,0 +1,267 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../data/site';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+
+const activeCards = [
+  {
+    title: 'Вступникам до аспірантури',
+    label: 'Вступ 2026',
+    text: 'Умови вступу, етапи вступної кампанії, нормативні документи, перелік документів і потенційні наукові керівники.',
+    href: '/postgraduate/admission/'
+  },
+  {
+    title: 'Освітньо-наукова програма',
+    label: 'ОНП',
+    text: 'Освітньо-наукові програми, навчальні плани, дисципліни, силабуси, відгуки та результати опитувань.',
+    href: '/postgraduate/program/'
+  }
+];
+
+const plannedCards = [
+  'Акредитація',
+  'Аспіранти',
+  'Розклад занять аспірантів',
+  'Викладачі і наукові керівники',
+  'Відповідність тем аспірантів науковій діяльності керівників',
+  'Новини для аспірантів'
+];
+---
+
+<BaseLayout
+  title={`Аспірантура | ${site.shortName}`}
+  description="Аспірантура Інституту механіки ім. С. П. Тимошенка НАН України: вступ, освітньо-наукова програма, документи та матеріали для аспірантів."
+  activePage="education"
+>
+  <main class="postgraduate-page">
+    <section class="postgraduate-hero">
+      <div>
+        <p class="eyebrow">Освітньо-наукова діяльність</p>
+        <h1>Аспірантура</h1>
+        <p class="lead">
+          Аспірантура Інституту механіки ім. С. П. Тимошенка НАН України здійснює підготовку
+          здобувачів ступеня доктора філософії за спеціальністю
+          <strong>F1 Прикладна математика</strong> / <strong>113 Прикладна математика</strong>
+          відповідно до чинної освітньо-наукової програми.
+        </p>
+        <p>
+          У цьому розділі зібрано інформацію для вступників, аспірантів, наукових керівників
+          та всіх зацікавлених осіб щодо вступу, навчання, освітньо-наукової програми,
+          акредитації, розкладу занять і наукової тематики аспірантів.
+        </p>
+      </div>
+      <aside class="hero-badge">
+        <span>PhD</span>
+        <strong>F1</strong>
+        <p>Прикладна математика</p>
+      </aside>
+    </section>
+
+    <section class="notice-panel">
+      <div>
+        <strong>Актуально:</strong> набір до аспірантури на 2026 рік проводиться за спеціальністю
+        <strong>F1 Прикладна математика</strong>.
+      </div>
+      <a href={withBase('/postgraduate/admission/')}>Умови вступу →</a>
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Навігація</p>
+          <h2>Основні сторінки</h2>
+        </div>
+        <p>Перший етап реорганізації: окремі сторінки для вступників і для освітньо-наукової програми.</p>
+      </div>
+
+      <div class="card-grid">
+        {activeCards.map((card) => (
+          <a class="nav-card" href={withBase(card.href)}>
+            <span>{card.label}</span>
+            <h3>{card.title}</h3>
+            <p>{card.text}</p>
+            <strong>Перейти до сторінки →</strong>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Наступний етап</p>
+          <h2>Сторінки, які доцільно винести окремо</h2>
+        </div>
+        <p>Ці блоки поки заплановано для наступного розділення, щоб не перевантажувати основну сторінку.</p>
+      </div>
+
+      <div class="card-grid compact">
+        {plannedCards.map((title) => (
+          <article class="nav-card muted-card">
+            <span>Заплановано</span>
+            <h3>{title}</h3>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .postgraduate-page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 52px 20px 72px;
+  }
+
+  .postgraduate-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 24px;
+    align-items: stretch;
+    padding: clamp(28px, 5vw, 54px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .postgraduate-hero h1 {
+    margin: 0 0 18px;
+    font-size: clamp(2.3rem, 5vw, 4.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+  }
+
+  .lead {
+    max-width: 880px;
+    color: var(--muted);
+    font-size: 1.08rem;
+    line-height: 1.7;
+  }
+
+  .hero-badge {
+    display: grid;
+    place-items: center;
+    gap: 8px;
+    padding: 26px;
+    border-radius: 28px;
+    background: linear-gradient(145deg, var(--accent-dark), var(--accent));
+    color: #fff;
+    text-align: center;
+  }
+
+  .hero-badge span {
+    font-weight: 850;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.82;
+  }
+
+  .hero-badge strong {
+    font-size: 4rem;
+    line-height: 1;
+  }
+
+  .hero-badge p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.86);
+    font-weight: 750;
+  }
+
+  .notice-panel {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    align-items: center;
+    margin: 22px 0;
+    padding: 18px 20px;
+    border: 1px solid rgba(29, 79, 145, 0.18);
+    border-radius: 20px;
+    background: var(--accent-soft);
+  }
+
+  .notice-panel a {
+    white-space: nowrap;
+    font-weight: 850;
+  }
+
+  .section-block {
+    margin-top: 34px;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .card-grid.compact {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .nav-card {
+    display: flex;
+    min-height: 220px;
+    flex-direction: column;
+    padding: 26px;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: var(--surface);
+    color: var(--text);
+    text-decoration: none;
+    box-shadow: var(--shadow);
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+  }
+
+  .nav-card:hover {
+    transform: translateY(-4px);
+    text-decoration: none;
+  }
+
+  .nav-card span {
+    width: fit-content;
+    margin-bottom: 14px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-size: 0.78rem;
+    font-weight: 850;
+  }
+
+  .nav-card h3 {
+    margin: 0 0 10px;
+    font-size: 1.35rem;
+  }
+
+  .nav-card p {
+    color: var(--muted);
+  }
+
+  .nav-card strong {
+    margin-top: auto;
+    color: var(--accent-dark);
+  }
+
+  .muted-card {
+    min-height: 150px;
+    background: var(--surface-soft);
+    box-shadow: none;
+  }
+
+  @media (max-width: 860px) {
+    .postgraduate-hero,
+    .card-grid,
+    .card-grid.compact {
+      grid-template-columns: 1fr;
+    }
+
+    .notice-panel {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>

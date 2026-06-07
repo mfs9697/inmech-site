@@ -1,0 +1,112 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import NewsCard from '../../../components/NewsCard.astro';
+import { site } from '../../../data/site';
+
+export async function getStaticPaths() {
+  const currentYear = new Date().getFullYear();
+  const news = (await getCollection('news'))
+    .filter((entry) => entry.data.year === currentYear || entry.data.date.getFullYear() === currentYear);
+  const tags = Array.from(new Set(news.flatMap((entry) => entry.data.tags)));
+
+  return tags.map((tag) => ({
+    params: { tag },
+    props: { tag }
+  }));
+}
+
+const { tag } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+const currentYear = new Date().getFullYear();
+
+const allCurrentNews = (await getCollection('news'))
+  .filter((entry) => entry.data.year === currentYear || entry.data.date.getFullYear() === currentYear)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const news = allCurrentNews.filter((entry) => entry.data.tags.includes(tag));
+const tags = Array.from(new Set(allCurrentNews.flatMap((entry) => entry.data.tags)))
+  .sort((a, b) => a.localeCompare(b, 'uk'));
+---
+
+<BaseLayout
+  title={`Новини за тегом «${tag}» | ${site.name}`}
+  description={`Новини Інституту механіки ім. С. П. Тимошенка НАН України за тегом «${tag}» у ${currentYear} році.`}
+  activePage="news"
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">Новини за тегом</p>
+        <h1>{tag}</h1>
+        <p class="lead">
+          Новини поточного року, позначені тегом «{tag}».
+        </p>
+
+        <nav class="tag-nav" aria-label="Фільтр новин за тегами">
+          <a class="tag-filter" href={withBase('/news/')}>Усі новини</a>
+          {tags.map((item) => (
+            <a class={`tag-filter ${item === tag ? 'active' : ''}`} href={withBase(`/news/tags/${encodeURIComponent(item)}/`)}>{item}</a>
+          ))}
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {news.length > 0 ? (
+        <div class="news-list">
+          {news.map((entry) => <NewsCard entry={entry} />)}
+        </div>
+      ) : (
+        <div class="empty-news-panel">
+          <h2>Новин за цим тегом не знайдено</h2>
+          <p><a href={withBase('/news/')}>Повернутися до всіх новин</a></p>
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .tag-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 22px;
+  }
+
+  .tag-filter {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--text);
+    font-weight: 750;
+    text-decoration: none;
+  }
+
+  .tag-filter:hover,
+  .tag-filter.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .empty-news-panel {
+    padding: 28px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .empty-news-panel h2 {
+    margin-top: 0;
+  }
+</style>

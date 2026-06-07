@@ -1,0 +1,281 @@
+import type { BibliographyEntry } from './bibliography';
+
+// Technical alphabetic batch for entries extracted from the old Бібліотека.html file.
+// Public display remains unified; this file is only an internal data chunk.
+// Source section: “Окремі наукові монографії, довідники та словники з механіки”.
+// Letter М.
+export const bibliographyLibraryM = [
+  {
+    id: 'library-m-308-maizel-1951-temperaturnaia-zadacha-teorii-uprugosti',
+    authors: 'Майзель В.М.',
+    title: 'Температурная задача теории упругости',
+    year: 1951,
+    publisher: 'К.: Изд. АН УССР',
+    pages: '152 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['thermoelasticity-creep', 'solid-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-m-309-malashenko-1936-vibratsiina-mitsnist-plakirovanoho-diuraliuminiiu',
+    authors: 'Малашенко С.В.',
+    title: 'Дослідження вібраційної міцності плакірованого дюралюмінію і вплив на неї заклепок і корозії',
+    year: 1936,
+    publisher: 'К.: Вид-во АН УРСР',
+    pages: '30 с.',
+    language: 'uk',
+    type: 'monograph',
+    tags: ['materials-mechanics', 'dynamics-waves', 'experimental-mechanics', 'monograph']
+  },
+  {
+    id: 'library-m-310-malashenko-chekin-dyshel-milovanova-dadamukhammedov-1983-pnevmaticheskie-izmeriteli',
+    authors: 'Малашенко С.В., Чекин О.Н., Дышель М.Ш., Милованова О.Б., Дадамухаммедов Э.У.',
+    title: 'Исследование материалов и элементов конструкций пневматическими измерителями',
+    year: 1983,
+    publisher: 'К.: Наук. думка',
+    pages: '160 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['materials-mechanics', 'experimental-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-m-311-martynyuk-2012-ustoichivost-reshenii-dinamicheskikh-uravnenii-na-vremennoi-shkale',
+    authors: 'Мартынюк А.А.',
+    title: 'Теория устойчивости решений динамических уравнений на временной шкале',
+    year: 2012,
+    publisher: 'К.: Феникс',
+    pages: '292 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['stability-control', 'theoretical-mechanics', 'monograph']
+  },
+  {
+    id: 'library-m-312-martynyuk-1995-stability-analysis-nonlinear-mechanics-equations',
+    authors: 'Martynyuk A.A.',
+    title: 'Stability Analysis: Nonlinear Mechanics Equations',
+    year: 1995,
+    publisher: 'London: Gordon and Breach Publishers',
+    pages: '246 p.',
+    language: 'en',
+    type: 'monograph',
+    tags: ['stability-control', 'theoretical-mechanics', 'monograph'],
+    note: 'Vol. 2 in the series “Stability and Control: Theory, Methods and Applications”.',
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-m-313-martynyuk-1998-stability-liapunovs-matrix-function-method',
+    authors: 'Martynyuk A.A.',
+    title: 'Stability by Liapunov’s Matrix Function Method with Applications',
+    year: 1998,
+    publisher: 'New York–Basel: Marcel Dekker',
+    pages: '271 p.',
+    language: 'en',
+    type: 'monograph',
+    tags: ['stability-control', 'theoretical-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-m-314-martynyuk-2002-qualitative-methods-in-nonlinear-dynamics',
+    authors: 'Martynyuk A.A.',
+    title: 'Qualitative Methods in Nonlinear Dynamics: Novel Approaches to Liapunov’s Matrix Functions',
+    year: 2002,
+    publisher: 'New York–Basel: Marcel Dekker',
+    pages: '301 p.',
+    language: 'en',
+    type: 'monograph',
+    tags: ['stability-control', 'theoretical-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-m-315-martynyuk-ed-2002-advances-in-stability-theory-end-20th-century',
+    authors: 'Martynyuk A.A. (ed.)',
+    title: 'Advances in Stability Theory at the End of the 20th Century',
+    year: 2002,
+    publisher: 'London: Taylor & Francis Publishers',
+    pages: '340 p.',
+    language: 'en',
+    type: 'edited-volume',
+    tags: ['stability-control', 'theoretical-mechanics', 'edited-volume'],
+    note: 'Vol. 12 in the series “Stability and Control: Theory, Methods and Applications”.',
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-m-316-martynyuk-2007-stability-of-motion-role-of-multicomponent-lyapunov-function',
+    authors: 'Martynyuk A.A.',
+    title: 'Stability of Motion. The Role of Multicomponent Lyapunov’s Function',
+    year: 2007,
+    publisher: 'Cambridge Scientific Publishers (CSP)',
+    pages: '322 p.',
+    language: 'en',
+    type: 'monograph',
+    tags: ['stability-control', 'theoretical-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-m-317-martynyuk-2013-stability-and-control-advances-in-stability-theory',
+    authors: 'Martynyuk A.A.',
+    title: 'Stability and Control: Theory, Methods and Applications. Vol. 13. Advances in Stability Theory in the End of the 20th Century',
+    year: 2013,
+    publisher: 'Taylor & Francis',
+    pages: '340 p.',
+    language: 'en',
+    type: 'series-volume',
+    tags: ['stability-control', 'theoretical-mechanics', 'multivolume'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-m-318-martynyuk-gutowski-1979-integralnye-neravenstva-i-ustoichivost-dvizheniia',
+    authors: 'Мартынюк А.А., Гутовски Р.',
+    title: 'Интегральные неравенства и устойчивость движения',
+    year: 1979,
+    publisher: 'К.: Наук. думка',
+    pages: '272 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['stability-control', 'theoretical-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-m-319-martynyuk-kato-shestakov-1990-ustoichivost-dvizheniia-metod-predelnykh-uravnenii',
+    authors: 'Мартынюк А.А., Като Д., Шестаков А.А.',
+    title: 'Устойчивость движения: метод предельных уравнений',
+    year: 1990,
+    publisher: 'К.: Наук. думка',
+    pages: '256 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['stability-control', 'theoretical-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-m-320-martynyuk-lakshmikantham-leela-1989-ustoichivost-dvizheniia-metod-integralnykh-neravenstv',
+    authors: 'Мартынюк А.А., Лакшмикантам В., Лила С.',
+    title: 'Устойчивость движения: метод интегральных неравенств',
+    year: 1989,
+    publisher: 'К.: Наук. думка',
+    pages: '272 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['stability-control', 'theoretical-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-m-321-martynyuk-martynyuk-chernienko-2012-uncertain-dynamical-systems',
+    authors: 'Martynyuk A.A., Martynyuk-Chernienko Yu.A.',
+    title: 'Uncertain Dynamical Systems. Stability and Motion Control',
+    year: 2012,
+    publisher: 'CRC Press',
+    pages: '296 p.',
+    language: 'en',
+    type: 'monograph',
+    tags: ['stability-control', 'theoretical-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-m-322-martynyuk-martynyuk-chernienko-sun-2011-netochnye-dinamicheskie-sistemy',
+    authors: 'Мартынюк А.А., Мартынюк-Черниенко Ю.А., Сунь Жен Ки',
+    title: 'Неточные динамические системы: устойчивость и управление движением',
+    year: 2011,
+    publisher: 'Пекин: Science Press',
+    pages: '237 с.',
+    language: 'other',
+    type: 'monograph',
+    tags: ['stability-control', 'theoretical-mechanics', 'monograph'],
+    note: 'Перевод с русского языка на китайский язык.'
+  },
+  {
+    id: 'library-m-323-martynyuk-sun-1983-teoriia-prakticheskoi-ustoichivosti-s-prilozheniiami',
+    authors: 'Мартынюк А.А., Сунь Жен Ки',
+    title: 'Теория практической устойчивости с приложениями',
+    year: 1983,
+    publisher: 'Харбин: Харбинский технологический институт',
+    pages: '297 с.',
+    language: 'other',
+    type: 'monograph',
+    tags: ['stability-control', 'theoretical-mechanics', 'monograph'],
+    note: 'На китайском языке.'
+  },
+  {
+    id: 'library-m-324-martynyuk-sun-1999-teoriia-prakticheskoi-ustoichivosti-2nd-edition',
+    authors: 'Мартынюк А.А., Сунь Жен Ки',
+    title: 'Теория практической устойчивости с приложениями. 2-е издание, исправленное и дополненное',
+    year: 1999,
+    publisher: 'Пекин: Изд-во Китайской академии наук',
+    pages: '297 с.',
+    language: 'other',
+    type: 'monograph',
+    tags: ['stability-control', 'theoretical-mechanics', 'monograph'],
+    note: 'На китайском языке.'
+  },
+  {
+    id: 'library-m-325-martynyuk-sun-2005-kachestvennyi-analiz-nelineinykh-sistem-s-malym-parametrom',
+    authors: 'Мартынюк А.А., Сунь Жень Ки',
+    title: 'Качественный анализ нелинейных систем с малым параметром',
+    year: 2005,
+    publisher: 'Пекин: Изд-во Китайской академии наук',
+    pages: '253 с.',
+    language: 'other',
+    type: 'monograph',
+    tags: ['stability-control', 'theoretical-mechanics', 'monograph'],
+    note: 'На китайском языке.'
+  },
+  {
+    id: 'library-m-326-martynyuk-et-al-1981-dinamika-i-ustoichivost-dvizheniia-kolesnykh-transportnykh-mashin',
+    authors: 'Мартынюк А.А. и др.',
+    title: 'Динамика и устойчивость движения колесных транспортных машин',
+    year: 1981,
+    publisher: 'К.: Техніка',
+    pages: '223 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['stability-control', 'dynamics-waves', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-m-327-martynyuk-chernetskaya-martynyuk-2013-weakly-connected-nonlinear-systems',
+    authors: 'Martynyuk A.A., Chernetskaya L., Martynyuk Yu.A.',
+    title: 'Weakly Connected Nonlinear Systems',
+    year: 2013,
+    publisher: 'CRC Press',
+    pages: '212 p.',
+    language: 'en',
+    type: 'monograph',
+    tags: ['stability-control', 'theoretical-mechanics', 'monograph'],
+    inLibraryOfCongress: true
+  },
+  {
+    id: 'library-m-328-martynyuk-chernienko-2009-netochnye-dinamicheskie-sistemy',
+    authors: 'Мартынюк-Черниенко Ю.А.',
+    title: 'Неточные динамические системы: устойчивость и управление движением',
+    year: 2009,
+    publisher: 'К.: Изд-во «Феникс»',
+    pages: '320 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['stability-control', 'theoretical-mechanics', 'monograph']
+  },
+  {
+    id: 'library-m-329-mitropolskii-1955-nestatsionarnye-protsessy-v-nelineinykh-kolebatelnykh-sistemakh',
+    authors: 'Митропольский Ю.А.',
+    title: 'Нестационарные процессы в нелинейных колебательных системах',
+    year: 1955,
+    publisher: 'К.: Изд-во АН УССР',
+    pages: '283 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['dynamics-waves', 'theoretical-mechanics', 'monograph']
+  },
+  {
+    id: 'library-m-330-motovilovets-1969-teploprovodnost-plastin-i-tel-vrashcheniia',
+    authors: 'Мотовиловец И.А.',
+    title: 'Теплопроводность пластин и тел вращения',
+    year: 1969,
+    publisher: 'К.: Наук. думка',
+    pages: '144 с.',
+    language: 'ru',
+    type: 'monograph',
+    tags: ['thermoelasticity-creep', 'shells-plates', 'monograph']
+  }
+] as const satisfies readonly BibliographyEntry[];

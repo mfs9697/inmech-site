@@ -1,0 +1,198 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../data/site';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+
+const programYears = [
+  ['2025', 'F1 Прикладна математика', 'https://inmech.kyiv.ua/doc/postgraduate/onp/2025.pdf', 'https://inmech.kyiv.ua/doc/postgraduate/np/np_2025.pdf'],
+  ['2024', '113 Прикладна математика', 'https://inmech.kyiv.ua/doc/postgraduate/onp/2024.pdf', 'https://inmech.kyiv.ua/doc/postgraduate/np/np_2024.pdf'],
+  ['2023', '113 Прикладна математика', 'https://inmech.kyiv.ua/doc/postgraduate/onp/2023.pdf', 'https://inmech.kyiv.ua/doc/postgraduate/np/np_2023.pdf'],
+  ['2022', '113 Прикладна математика', 'https://inmech.kyiv.ua/doc/postgraduate/onp/2022.pdf', 'https://inmech.kyiv.ua/doc/postgraduate/np/np_2022.pdf']
+];
+
+const courses = [
+  ['ОК1', 'Філософія науки і культури', '6', 'к.філос.н., доцент Вільчинська С. В.; к.філос.н. Літус І. І.', [['2024', 'https://inmech.kyiv.ua/doc/postgraduate/program/2024/ok1-rp-2024.pdf']]],
+  ['ОК2', 'Іноземна мова професійного спрямування для підготовки аспірантів до рівня загальноєвропейського стандарту володіння мовою С1', '8', 'к.ф.н. Рубашова Л. М.', [['2025', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/ok2-rp-2025.pdf']]],
+  ['ОК3', 'Методологія, організація та технологія наукових досліджень в механіці', '6', 'д.ф.-м.н., член-кор. НАНУ Жук Я. О.; к.ф.-м.н. Васильєва Н. В.', [['2025', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/ok3-syl-2025.pdf'], ['2024', 'https://inmech.kyiv.ua/doc/postgraduate/program/2024/ok3-syl-2024.pdf']]],
+  ['ОК4', 'Поглиблений курс теоретичної механіки', '4', 'к.ф.-м.н. Іванов І. Л.', [['2025', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/ok4-syl-2025.pdf'], ['2024', 'https://inmech.kyiv.ua/doc/postgraduate/program/2024/ok4-syl-2024.pdf']]],
+  ['ОК5', 'Механіка деформівного твердого тіла', '4', 'д.ф.-м.н., член-кор. НАН України Селіванов М. Ф.', [['2025', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/ok5-syl-2025.pdf'], ['2024', 'https://inmech.kyiv.ua/doc/postgraduate/program/2024/ok5-syl-2024.pdf']]],
+  ['ОК6', 'Чисельні методи розв’язання задач прикладної математики', '4', 'д.ф.-м.н. Янчевський І. В.', [['2025', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/ok6-syl-2025.pdf'], ['2024', 'https://inmech.kyiv.ua/doc/postgraduate/program/2024/ok6-syl-2024.pdf']]],
+  ['ОК7', 'Педагогіка і методика викладання прикладної математики', '2', 'д.т.н. Борисенко М. Ю.', [['2025', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/ok7-syl-2025.pdf'], ['2024', 'https://inmech.kyiv.ua/doc/postgraduate/program/2024/ok7-syl-2024.pdf']]],
+  ['ОК8', 'Педагогічна практика', '2', 'д.т.н. Борисенко М. Ю.', [['2025', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/ok8-syl-2025.pdf'], ['2024', 'https://inmech.kyiv.ua/doc/postgraduate/program/2024/ok8-syl-2024.pdf']]],
+  ['ВК1', 'Нелінійна теорія оболонок з отворами', '4', 'д.ф.-м.н., член-кор. НАН України Сторожук Є. А.; д.ф.-м.н. Максимюк В. А.', [['2025', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/vk1-syl-2025.pdf'], ['2024', 'https://inmech.kyiv.ua/doc/postgraduate/program/2024/vk1-syl-2024.pdf']]],
+  ['ВК2', 'Аналітично-чисельне дослідження стійкості та руйнування матеріалів з тонким покриттям та армованих композитних матеріалів із застосуванням високопродуктивних обчислень', '4', 'д.ф.-м.н. Декрет В. А.; к.ф.-м.н. Кіпніс О. Л.', [['2025', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/vk2-syl-2025.pdf'], ['2024', 'https://inmech.kyiv.ua/doc/postgraduate/program/2024/vk2-syl-2024.pdf']]],
+  ['ВК3', 'Поширення хвиль з врахуванням структурних рівнів матеріалів та базових властивостей деформування матеріалів', '4', 'д.ф.-м.н. Юрчук В. М.', [['2025', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/vk3-syl%20-2025.pdf'], ['2024', 'https://inmech.kyiv.ua/doc/postgraduate/program/2024/vk3-syl%20-2024.pdf']]],
+  ['ВК4', 'Механіка руйнування в’язкопружних матеріалів', '4', 'к.ф.-м.н. Чорноіван Ю. О.', [['2025', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/vk4-syl-2025.pdf'], ['2024', 'https://inmech.kyiv.ua/doc/postgraduate/program/2024/vk4-syl-2024.pdf']]],
+  ['ВК5', 'Математичні моделі термомеханіки суцільних середовищ', '4', 'д.ф.-м.н., член-кор. НАН України Жук Я. О.', [['2025', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/vk5-syl-2025.pdf'], ['2024', 'https://inmech.kyiv.ua/doc/postgraduate/program/2024/vk5-syl-2024.pdf']]],
+  ['ВК6', 'Динаміка структурно неоднорідних оболонок', '4', 'к.т.н. Колядюк А. С.', [['2025', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/vk6-syl-2025.pdf'], ['2024', 'https://inmech.kyiv.ua/doc/postgraduate/program/2024/vk6-syl-2024.pdf']]],
+  ['ВК7', 'Чисельний аналіз механічної поведінки оболонкових систем', '4', 'д.т.н. Борисенко М. Ю.', [['2025', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/vk7-syl-2025.pdf'], ['2024', 'https://inmech.kyiv.ua/doc/postgraduate/program/2024/vk7-syl-2024.pdf']]],
+  ['ВК8', 'Стійкість і керування рухом складних систем', '4', 'к.ф.-м.н. Іванов І. Л.', [['2025', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/vk8-syl-2025.pdf'], ['2024', 'https://inmech.kyiv.ua/doc/postgraduate/program/2024/vk8-syl-2024.pdf']]],
+  ['ВК9', 'Методи визначення функцій та реологічних параметрів в нелінійній теорії в’язкопружності', '4', 'д.ф.-м.н. Маслов Б. П.', [['2025', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/vk9-syl-2025.pdf'], ['2024', 'https://inmech.kyiv.ua/doc/postgraduate/program/2024/vk9-syl-2024.pdf']]],
+  ['ВК10', 'Сучасні чисельні методи розв’язання прикладних задач механіки деформівного тіла', '4', 'д.ф.-м.н. Янчевський І. В.', [['2025', 'https://inmech.kyiv.ua/doc/postgraduate/program/2025/vk10-syl-2025.pdf'], ['2024', 'https://inmech.kyiv.ua/doc/postgraduate/program/2024/vk10-syl-2024.pdf']]]
+];
+
+const reviews = [
+  ['2026', [['відгук 1', 'https://inmech.kyiv.ua/doc/postgraduate/vidguk/vidguk-1-2026.pdf'], ['відгук 2', 'https://inmech.kyiv.ua/doc/postgraduate/vidguk/vidguk-2-2026.pdf'], ['відгук 3', 'https://inmech.kyiv.ua/doc/postgraduate/vidguk/vidguk-3-2026.pdf'], ['відгук 4', 'https://inmech.kyiv.ua/doc/postgraduate/vidguk/vidguk-2026-4.pdf']]],
+  ['2025', [['відгук 1', 'https://inmech.kyiv.ua/doc/postgraduate/vidguk/vidguk-1-2025.pdf'], ['відгук 2', 'https://inmech.kyiv.ua/doc/postgraduate/vidguk/vidguk-2-2025.pdf']]],
+  ['2024', [['відгук 1', 'https://inmech.kyiv.ua/doc/postgraduate/vidguk/vidguk-1-2024.pdf'], ['відгук 2', 'https://inmech.kyiv.ua/doc/postgraduate/vidguk/vidguk-2-2024.pdf']]],
+  ['2023', [['відгук 1', 'https://inmech.kyiv.ua/doc/postgraduate/vidguk/vidguk-1-2023.pdf'], ['відгук 2', 'https://inmech.kyiv.ua/doc/postgraduate/vidguk/vidguk-2-2023.pdf'], ['відгук 3', 'https://inmech.kyiv.ua/doc/postgraduate/vidguk/vidguk-3-2023.pdf'], ['відгук 4', 'https://inmech.kyiv.ua/doc/postgraduate/vidguk/vidguk-4-2023.pdf']]],
+  ['2022', [['відгук 1', 'https://inmech.kyiv.ua/doc/postgraduate/vidguk/vidguk-1-2022.pdf'], ['відгук 2', 'https://inmech.kyiv.ua/doc/postgraduate/vidguk/vidguk-2-2022.pdf']]]
+];
+
+const surveys = [
+  ['Результати опитування аспірантів 1-го курсу, 2026', 'https://inmech.kyiv.ua/doc/postgraduate/opit/ro-1-kurs-02-2026.pdf'],
+  ['Результати опитування, 2025', 'https://inmech.kyiv.ua/doc/postgraduate/opit/ro-09-2025.pdf'],
+  ['ОК3, квітень 2026', 'https://inmech.kyiv.ua/doc/postgraduate/opit/ro-ok3-04-2026.pdf'],
+  ['ОК4, квітень 2026', 'https://inmech.kyiv.ua/doc/postgraduate/opit/ro-ok4-04-2026.pdf'],
+  ['ОК5, квітень 2026', 'https://inmech.kyiv.ua/doc/postgraduate/opit/ro-ok5-04-2026.pdf'],
+  ['ОК6, квітень 2026', 'https://inmech.kyiv.ua/doc/postgraduate/opit/ro-ok6-04-2026.pdf']
+];
+---
+
+<BaseLayout
+  title={`Освітньо-наукова програма | ${site.shortName}`}
+  description="Освітньо-наукова програма аспірантури Інституту механіки ім. С. П. Тимошенка НАН України: ОНП, навчальні плани, дисципліни, силабуси, відгуки та результати опитувань."
+  activePage="education"
+>
+  <main class="postgraduate-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumbs">
+      <a href={withBase('/postgraduate/')}>Аспірантура</a>
+      <span>›</span>
+      <span>Освітньо-наукова програма</span>
+    </nav>
+
+    <section class="page-hero">
+      <p class="eyebrow">Освітньо-наукова програма</p>
+      <h1>ОНП, навчальні плани та дисципліни</h1>
+      <p class="lead">
+        Документи освітньо-наукової програми, навчальні плани, силабуси дисциплін,
+        відгуки стейкхолдерів і результати опитувань подано окремо від сторінки вступу,
+        щоб зробити розділ аспірантури простішим для навігації.
+      </p>
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Документи ОНП</p>
+          <h2>Освітньо-наукові програми та навчальні плани</h2>
+        </div>
+      </div>
+      <div class="year-grid">
+        {programYears.map(([year, specialty, program, plan]) => (
+          <article class="year-card">
+            <span>{year}</span>
+            <h3>{specialty}</h3>
+            <div class="pill-links">
+              <a href={program} target="_blank" rel="noopener noreferrer">ОНП</a>
+              <a href={plan} target="_blank" rel="noopener noreferrer">Навчальний план</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Навчальний план</p>
+          <h2>Дисципліни ОНП</h2>
+        </div>
+      </div>
+      <div class="table-panel">
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Код</th>
+                <th>Назва дисципліни</th>
+                <th>Кредити</th>
+                <th>Викладач</th>
+                <th>Документація</th>
+              </tr>
+            </thead>
+            <tbody>
+              {courses.map(([code, title, credits, teachers, docs]) => (
+                <tr>
+                  <td>{code}</td>
+                  <td>{title}</td>
+                  <td>{credits}</td>
+                  <td>{teachers}</td>
+                  <td>
+                    <div class="mini-links">
+                      {docs.map(([label, href]) => (
+                        <a href={href} target="_blank" rel="noopener noreferrer">{label}</a>
+                      ))}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block two-column">
+      <article class="info-panel">
+        <p class="eyebrow">Відгуки</p>
+        <h2>Відгуки на освітньо-наукову програму</h2>
+        <div class="review-list">
+          {reviews.map(([year, links]) => (
+            <div class="review-row">
+              <strong>{year}</strong>
+              <div class="pill-links small">
+                {links.map(([label, href]) => (
+                  <a href={href} target="_blank" rel="noopener noreferrer">{label}</a>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </article>
+
+      <article class="info-panel">
+        <p class="eyebrow">Якість освітнього процесу</p>
+        <h2>Результати опитувань</h2>
+        <div class="survey-list">
+          {surveys.map(([label, href]) => (
+            <a href={href} target="_blank" rel="noopener noreferrer">{label}</a>
+          ))}
+        </div>
+      </article>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .postgraduate-page { max-width: 1180px; margin: 0 auto; padding: 46px 20px 72px; }
+  .breadcrumbs { display: flex; gap: 10px; align-items: center; margin-bottom: 22px; color: var(--muted); font-weight: 750; }
+  .page-hero, .year-card, .table-panel, .info-panel { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+  .page-hero { padding: clamp(28px, 5vw, 52px); }
+  .page-hero h1 { margin: 0 0 18px; font-size: clamp(2.2rem, 4.8vw, 4.3rem); line-height: 1.04; letter-spacing: -0.04em; }
+  .lead { max-width: 920px; color: var(--muted); font-size: 1.08rem; line-height: 1.7; }
+  .section-block { margin-top: 34px; }
+  .year-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+  .year-card { padding: 22px; }
+  .year-card span { display: inline-block; margin-bottom: 12px; padding: 6px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-dark); font-weight: 850; }
+  .year-card h3 { min-height: 58px; margin: 0 0 16px; font-size: 1.1rem; }
+  .pill-links, .mini-links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill-links a, .mini-links a, .survey-list a { display: inline-flex; align-items: center; padding: 7px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-dark); font-size: 0.86rem; font-weight: 850; text-decoration: none; }
+  .pill-links a:hover, .mini-links a:hover, .survey-list a:hover { text-decoration: none; background: rgba(29, 79, 145, 0.16); }
+  .table-panel { padding: 0; overflow: hidden; }
+  .table-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; min-width: 960px; }
+  th, td { padding: 14px 16px; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
+  th { background: var(--accent-dark); color: #fff; font-size: 0.9rem; }
+  td { color: var(--muted); }
+  td:first-child, td:nth-child(3) { color: var(--text); font-weight: 850; white-space: nowrap; }
+  .two-column { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; }
+  .info-panel { padding: 24px; }
+  .info-panel h2 { margin-top: 0; }
+  .review-list, .survey-list { display: grid; gap: 12px; }
+  .review-row { display: grid; grid-template-columns: 70px 1fr; gap: 12px; align-items: start; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .survey-list a { justify-content: flex-start; border-radius: 14px; }
+  @media (max-width: 980px) { .year-grid, .two-column { grid-template-columns: 1fr; } }
+</style>

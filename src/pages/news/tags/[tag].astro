@@ -3,12 +3,13 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import NewsCard from '../../../components/NewsCard.astro';
 import { site } from '../../../data/site';
+import { allowedNewsTags, getVisibleNewsTags } from '../../../utils/newsTags';
 
 export async function getStaticPaths() {
   const currentYear = new Date().getFullYear();
   const news = (await getCollection('news'))
     .filter((entry) => entry.data.year === currentYear || entry.data.date.getFullYear() === currentYear);
-  const tags = Array.from(new Set(news.flatMap((entry) => entry.data.tags)));
+  const tags = allowedNewsTags.filter((tag) => news.some((entry) => getVisibleNewsTags(entry).includes(tag)));
 
   return tags.map((tag) => ({
     params: { tag },
@@ -25,9 +26,8 @@ const allCurrentNews = (await getCollection('news'))
   .filter((entry) => entry.data.year === currentYear || entry.data.date.getFullYear() === currentYear)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-const news = allCurrentNews.filter((entry) => entry.data.tags.includes(tag));
-const tags = Array.from(new Set(allCurrentNews.flatMap((entry) => entry.data.tags)))
-  .sort((a, b) => a.localeCompare(b, 'uk'));
+const news = allCurrentNews.filter((entry) => getVisibleNewsTags(entry).includes(tag));
+const tags = allowedNewsTags.filter((item) => allCurrentNews.some((entry) => getVisibleNewsTags(entry).includes(item)));
 ---
 
 <BaseLayout

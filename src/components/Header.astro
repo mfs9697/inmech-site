@@ -90,6 +90,23 @@ function withBase(path: string) {
 </header>
 
 <style>
+  .site-header {
+    background: #0f1f34;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    color: #fff;
+    backdrop-filter: none;
+  }
+
+  .topbar {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    color: rgba(255, 255, 255, 0.74);
+  }
+
+  .lang-switch a,
+  .lang-switch .active {
+    color: #cce3ff;
+  }
+
   .header-main {
     align-items: center;
     padding: 18px 0;
@@ -97,26 +114,86 @@ function withBase(path: string) {
 
   .brand {
     gap: 20px;
+    color: #fff;
+  }
+
+  .brand:hover {
+    color: #fff;
+    text-decoration: none;
   }
 
   .brand img {
     width: 87px !important;
     height: 87px !important;
+    border: 1px solid rgba(255, 255, 255, 0.24);
     border-radius: 21px;
+    background: #fff;
   }
 
   .brand-title {
+    color: #fff;
     font-size: clamp(1.22rem, 2.35vw, 1.72rem);
     line-height: 1.16;
   }
 
   .brand-subtitle {
+    color: rgba(255, 255, 255, 0.74);
     font-size: 1.02rem;
+  }
+
+  .menu-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.28);
+    color: #fff;
+  }
+
+  .primary-nav a,
+  .primary-nav .nav-label {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .primary-nav a:hover,
+  .primary-nav a.active,
+  .primary-nav .nav-label:hover,
+  .primary-nav .nav-label.active {
+    background: rgba(255, 255, 255, 0.13);
+    color: #fff;
+  }
+
+  .primary-nav .submenu {
+    background: #fff;
+    border-color: var(--line);
+  }
+
+  .primary-nav .submenu a {
+    color: var(--text);
+  }
+
+  .primary-nav .submenu a:hover,
+  .primary-nav .submenu a.active {
+    background: var(--accent-soft);
+    color: var(--accent-dark);
   }
 
   @media (max-width: 940px) {
     .primary-nav {
       top: 148px;
+      background: #0f1f34;
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .primary-nav .submenu {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .primary-nav .submenu a {
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    .primary-nav .submenu a:hover,
+    .primary-nav .submenu a.active {
+      background: rgba(255, 255, 255, 0.13);
+      color: #fff;
     }
   }
 

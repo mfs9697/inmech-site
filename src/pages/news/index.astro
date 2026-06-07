@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import NewsCard from '../../components/NewsCard.astro';
 import { site } from '../../data/site';
+import { allowedNewsTags, getVisibleNewsTags } from '../../utils/newsTags';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
@@ -12,8 +13,7 @@ const news = (await getCollection('news'))
   .filter((entry) => entry.data.year === currentYear || entry.data.date.getFullYear() === currentYear)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-const tags = Array.from(new Set(news.flatMap((entry) => entry.data.tags)))
-  .sort((a, b) => a.localeCompare(b, 'uk'));
+const tags = allowedNewsTags.filter((tag) => news.some((entry) => getVisibleNewsTags(entry).includes(tag)));
 ---
 
 <BaseLayout
@@ -51,7 +51,6 @@ const tags = Array.from(new Set(news.flatMap((entry) => entry.data.tags)))
       ) : (
         <div class="empty-news-panel">
           <h2>Новини за {currentYear} рік поки що не додано</h2>
-          <p>Після додавання матеріалів вони автоматично з’являться на цій сторінці.</p>
         </div>
       )}
     </div>
@@ -96,9 +95,5 @@ const tags = Array.from(new Set(news.flatMap((entry) => entry.data.tags)))
 
   .empty-news-panel h2 {
     margin-top: 0;
-  }
-
-  .empty-news-panel p {
-    color: var(--muted);
   }
 </style>

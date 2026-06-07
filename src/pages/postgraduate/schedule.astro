@@ -66,17 +66,6 @@ const scheduleLinks = [
         ))}
       </div>
     </section>
-
-    <section class="section-block note-panel">
-      <div>
-        <p class="eyebrow">Примітка</p>
-        <h2>Оновлення розкладу</h2>
-        <p>
-          У разі зміни розкладу або появи нової редакції PDF-файли на цій сторінці можуть бути
-          замінені на актуальні. Для наступного етапу можна додати архів розкладів за попередні роки.
-        </p>
-      </div>
-    </section>
   </main>
 </BaseLayout>
 
@@ -97,8 +86,7 @@ const scheduleLinks = [
   }
 
   .page-hero,
-  .schedule-card,
-  .note-panel {
+  .schedule-card {
     border: 1px solid var(--line);
     border-radius: var(--radius);
     background: var(--surface);
@@ -185,20 +173,6 @@ const scheduleLinks = [
   .schedule-card b {
     margin-top: auto;
     color: var(--accent-dark);
-  }
-
-  .note-panel {
-    padding: 28px;
-  }
-
-  .note-panel h2 {
-    margin-top: 0;
-  }
-
-  .note-panel p {
-    max-width: 850px;
-    color: var(--muted);
-    line-height: 1.7;
   }
 
   @media (max-width: 920px) {

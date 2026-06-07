@@ -19,6 +19,7 @@ import { bibliographyLibraryO } from './bibliographyLibraryO';
 import { bibliographyLibraryP } from './bibliographyLibraryP';
 import { bibliographyLibraryR } from './bibliographyLibraryR';
 import { bibliographyLibraryS } from './bibliographyLibraryS';
+import { bibliographyLibraryT } from './bibliographyLibraryT';
 
 export const bibliographyAll = [
   ...bibliography,
@@ -41,7 +42,8 @@ export const bibliographyAll = [
   ...bibliographyLibraryO,
   ...bibliographyLibraryP,
   ...bibliographyLibraryR,
-  ...bibliographyLibraryS
+  ...bibliographyLibraryS,
+  ...bibliographyLibraryT
 ] as const;
 
 export const bibliographyYears = [...new Set(bibliographyAll.map((item) => item.year).filter((year): year is number => typeof year === 'number'))].sort((a, b) => b - a);

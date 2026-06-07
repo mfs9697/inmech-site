@@ -1,0 +1,255 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../data/site';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+
+const accreditationDocuments = [
+  {
+    title: 'Програма роботи експертної групи',
+    description:
+      'Програма роботи експертної групи під час проведення акредитаційної експертизи в Інституті механіки ім. С. П. Тимошенка НАН України у період 6–8 травня 2026 року.',
+    href: 'https://inmech.kyiv.ua/doc/postgraduate/program.pdf'
+  },
+  {
+    title: 'Відомості про самооцінювання',
+    description: 'Самооцінювання освітньо-наукової програми за третім рівнем вищої освіти.',
+    href: 'https://inmech.kyiv.ua/doc/postgraduate/self-assessment.pdf'
+  }
+];
+---
+
+<BaseLayout
+  title={`Акредитація ОНП | ${site.shortName}`}
+  description="Акредитація освітньо-наукової програми аспірантури Інституту механіки ім. С. П. Тимошенка НАН України."
+  activePage="education"
+>
+  <main class="postgraduate-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumbs">
+      <a href={withBase('/postgraduate/')}>Аспірантура</a>
+      <span>›</span>
+      <span>Акредитація</span>
+    </nav>
+
+    <section class="page-hero">
+      <p class="eyebrow">Акредитація</p>
+      <h1>Акредитація освітньо-наукової програми</h1>
+      <p class="lead">
+        Матеріали акредитаційної експертизи освітньої програми
+        <strong>«Механіка деформівного твердого тіла і теоретична механіка»</strong>
+        за спеціальністю <strong>113 Прикладна математика</strong> за третім рівнем вищої освіти.
+      </p>
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Експертна група</p>
+          <h2>Акредитаційна експертиза</h2>
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <article class="info-card accent-card">
+          <span>Період проведення</span>
+          <h3>6–8 травня 2026 року</h3>
+          <p>
+            Акредитаційна експертиза проводилася в Інституті механіки ім. С. П. Тимошенка
+            НАН України за освітньою програмою з ID ОП у ЄДЕБО 22305.
+          </p>
+        </article>
+
+        <article class="info-card">
+          <span>Освітня програма</span>
+          <h3>Механіка деформівного твердого тіла і теоретична механіка</h3>
+          <p>
+            Третій освітньо-науковий рівень вищої освіти, спеціальність 113 Прикладна математика.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Документи</p>
+          <h2>Матеріали акредитації</h2>
+        </div>
+        <p>Документи відкриваються у новій вкладці з офіційного архіву Інституту.</p>
+      </div>
+
+      <div class="document-grid">
+        {accreditationDocuments.map((document) => (
+          <a class="document-card" href={document.href} target="_blank" rel="noopener noreferrer">
+            <span>PDF</span>
+            <h3>{document.title}</h3>
+            <p>{document.description}</p>
+            <strong>Відкрити документ →</strong>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="section-block meeting-panel">
+      <div>
+        <p class="eyebrow">Відкрита зустріч</p>
+        <h2>Зустріч з експертною групою</h2>
+        <p>
+          Відкрита зустріч з експертною групою щодо освітньої програми ЄДЕБО 22305
+          відбулася <strong>7 травня 2026 року</strong> з <strong>12:30</strong> до <strong>13:15</strong>.
+        </p>
+      </div>
+      <aside>
+        <span>ZOOM</span>
+        <p>Дані підключення збережено в архівній версії сторінки та можуть бути перенесені за потреби.</p>
+      </aside>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .postgraduate-page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 46px 20px 72px;
+  }
+
+  .breadcrumbs {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 22px;
+    color: var(--muted);
+    font-weight: 750;
+  }
+
+  .page-hero,
+  .info-card,
+  .document-card,
+  .meeting-panel {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .page-hero {
+    padding: clamp(28px, 5vw, 52px);
+  }
+
+  .page-hero h1 {
+    margin: 0 0 18px;
+    font-size: clamp(2.2rem, 4.8vw, 4.3rem);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+  }
+
+  .lead {
+    max-width: 920px;
+    color: var(--muted);
+    font-size: 1.08rem;
+    line-height: 1.7;
+  }
+
+  .section-block {
+    margin-top: 34px;
+  }
+
+  .info-grid,
+  .document-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .info-card,
+  .document-card {
+    padding: 24px;
+  }
+
+  .info-card span,
+  .document-card span,
+  .meeting-panel aside span {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-size: 0.78rem;
+    font-weight: 850;
+  }
+
+  .info-card h3,
+  .document-card h3 {
+    margin: 0 0 12px;
+    font-size: 1.25rem;
+  }
+
+  .info-card p,
+  .document-card p,
+  .meeting-panel p {
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .accent-card {
+    background: linear-gradient(145deg, var(--accent-dark), var(--accent));
+    color: #fff;
+  }
+
+  .accent-card span {
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+  }
+
+  .accent-card p {
+    color: rgba(255, 255, 255, 0.86);
+  }
+
+  .document-card {
+    display: flex;
+    min-height: 260px;
+    flex-direction: column;
+    color: var(--text);
+    text-decoration: none;
+    transition: transform 0.22s ease;
+  }
+
+  .document-card:hover {
+    transform: translateY(-4px);
+    text-decoration: none;
+  }
+
+  .document-card strong {
+    margin-top: auto;
+    color: var(--accent-dark);
+  }
+
+  .meeting-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 24px;
+    align-items: center;
+    padding: 28px;
+  }
+
+  .meeting-panel h2 {
+    margin-top: 0;
+  }
+
+  .meeting-panel aside {
+    padding: 20px;
+    border-radius: 22px;
+    background: var(--surface-soft);
+  }
+
+  @media (max-width: 860px) {
+    .info-grid,
+    .document-grid,
+    .meeting-panel {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

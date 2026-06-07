@@ -2,7 +2,14 @@
 import { site } from '../data/site';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
 ---
 
 <footer class="site-footer" id="contacts">
@@ -18,7 +25,7 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
         <li><a href={withBase('/news/')}>Новини</a></li>
         <li><a href={withBase('/departments/')}>Наукові відділи</a></li>
         <li><a href={withBase('/postgraduate/')}>Аспірантура</a></li>
-        <li><a href="#">Журнал «Прикладна механіка»</a></li>
+        <li><a href="https://applied-mechanics.inmech.kyiv.ua/" target="_blank" rel="noopener noreferrer">Журнал «Прикладна механіка»</a></li>
       </ul>
     </section>
     <section>
@@ -26,7 +33,7 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
       <ul class="footer-links">
         <li><a href={withBase('/sitemap/')}>Карта сайту</a></li>
         <li><a href="#">Політика доступності</a></li>
-        <li><a href="#">Адміністрація сайту</a></li>
+        <li><a href={withBase('/site-administration/')}>Адміністрація сайту</a></li>
       </ul>
     </section>
   </div>

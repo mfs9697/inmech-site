@@ -4,7 +4,6 @@ import { site } from '../../data/site';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
-
 const photoBase = '/postgraduate/students/photos/';
 
 const studentGroups = [
@@ -20,7 +19,7 @@ const studentGroups = [
         supervisor: 'Максимюк Володимир Ананійович, доктор фізико-математичних наук',
         publications: [],
         materials: [
-          ['Сертифікат Prometheus', 'https://certs.prometheus.org.ua/downloads/1efb6f8ac8674d25aa8a4af4d31de1aa/Certificate.pdf']
+          ['Сертифікат Prometheus: курс підвищення кваліфікації «Академічна доброчесність: онлайн-курс для викладачів», 60 годин / 2 кредити ЄКТС, 28.05.2026', 'https://certs.prometheus.org.ua/downloads/1efb6f8ac8674d25aa8a4af4d31de1aa/Certificate.pdf']
         ]
       },
       {
@@ -29,9 +28,11 @@ const studentGroups = [
         photo: `${photoBase}nazarchuk.svg`,
         topic: 'Руйнування в’язкопружних кусково-неоднорідних матеріалів із когезійними інтерфейсами: застосування до асфальтобетону',
         supervisor: 'Селіванов Михайло Федорович, доктор фізико-математичних наук, член-кореспондент НАН України',
-        publications: [],
+        publications: [
+          ['Yu. Nazarchuk, M. Selivanov. Time-dependent propagation of a coin-shaped crack in viscoelastic solid within cohesive-zone framework. In: Book of Abstracts of the 7th International Conference “Fracture Mechanics of Materials and Structural Integrity”, Lviv, Ukraine, March 3–5, 2026, p. 71.', 'https://www.ipm.lviv.ua/fmsi2026/FMSI2026_Book%20of%20Abstracts.pdf']
+        ],
         materials: [
-          ['Сертифікат Prometheus', 'https://certs.prometheus.org.ua/cert/f3e667afa6854f088d2ca872982dac52']
+          ['Сертифікат Prometheus: курс підвищення кваліфікації «Академічна доброчесність: онлайн-курс для викладачів», 60 годин / 2 кредити ЄКТС, 25.01.2026', 'https://certs.prometheus.org.ua/cert/f3e667afa6854f088d2ca872982dac52']
         ]
       },
       {
@@ -40,9 +41,12 @@ const studentGroups = [
         photo: `${photoBase}proshchenko.svg`,
         topic: 'Плоскі задачі руйнування матеріалів при стиску вздовж паралельних тріщин зі зміщеними в напрямку стиску центрами',
         supervisor: 'Назаренко Володимир Михайлович, академік НАН України',
-        publications: [],
+        publications: [
+          ['Назаренко В. М., Декрет В. А., Бистров В. М., Прощенко О. А. Локальна втрата стійкості у склопластику при стиску вздовж приповерхневої тріщини. В кн.: Матеріали Міжнародної наукової конференції “Математичні проблеми технічної механіки – 2025”, Дніпро, 13–14 листопада 2025 р., с. 15–16.', ''],
+          ['Бистров В. М., Декрет В. А., Зеленський В. С., Прощенко О. А. Локальна втрата стійкості при стиску волокнисто-металевого ламінату із приповерхневим розшаруванням. В кн.: Матеріали Міжнародної наукової конференції “Математичні проблеми технічної механіки – 2025”, Дніпро, 13–14 листопада 2025 р., с. 45–46.', '']
+        ],
         materials: [
-          ['Сертифікат Prometheus', 'https://certs.prometheus.org.ua/cert/92cfe53697cc4b68b66d9e66a03278dd']
+          ['Сертифікат Prometheus: курс підвищення кваліфікації «Академічна доброчесність: онлайн-курс для викладачів», 60 годин / 2 кредити ЄКТС, 28.05.2026', 'https://certs.prometheus.org.ua/cert/92cfe53697cc4b68b66d9e66a03278dd']
         ]
       },
       {
@@ -51,9 +55,12 @@ const studentGroups = [
         photo: `${photoBase}syniavskyi.svg`,
         topic: 'Стиск тонкоплівкових систем вздовж межі поділу плівки та підкладки обмеженої товщини',
         supervisor: 'Назаренко Володимир Михайлович, академік НАН України',
-        publications: [],
+        publications: [
+          ['Синявський О. Критичні параметри зморщування тонкої плівки на обмеженій підкладці. Міжнародна конференція студентів і молодих науковців з теоретичної та експериментальної фізики “ЕВРИКА-2026”. Тези доповідей, Н16, 2026.', ''],
+          ['Кіпніс О., Синявський О. Оцінка застосовності моделі напівобмеженої підкладки при визначенні критичних параметрів зморщування неогуківського бішару. Міжнародна наукова конференція “Актуальні проблеми механіки і машинознавства – 2026”, с. 172–173.', 'https://ipp.kiev.ua/conference_2026/abstracts_apmme_2026.pdf']
+        ],
         materials: [
-          ['Сертифікат Prometheus', 'https://certs.prometheus.org.ua/cert/2fa8d83bb85d4639869c7a35a6a13c51']
+          ['Сертифікат Prometheus: курс підвищення кваліфікації «Академічна доброчесність: онлайн-курс для викладачів», 60 годин / 2 кредити ЄКТС, 17.01.2026', 'https://certs.prometheus.org.ua/cert/2fa8d83bb85d4639869c7a35a6a13c51']
         ]
       }
     ]
@@ -69,13 +76,16 @@ const studentGroups = [
         topic: 'Фізично нелінійні задачі для тришарової циліндричної оболонки з отворами',
         supervisor: 'Сторожук Євген Анатолійович, доктор фізико-математичних наук, професор, член-кореспондент НАН України',
         publications: [
-          ['Матеріали Форуму механіків, 2025', 'https://science.nmu.org.ua/ua/conferences/Forum_Mechanic/Zbirnyk_19_05-01.pdf'],
-          ['Тези доповіді, 2025', 'https://repositsc.nuczu.edu.ua/bitstream/123456789/25314/1/%D0%A2%D0%B5%D0%B7%D0%B8%D1%81%D0%B8%202025.pdf'],
-          ['Серафимович Р., Сторожук Є. Підстригачівські читання, 2025', 'http://www.iapmm.lviv.ua/chyt2025/abstracts/SerafymovychStorozhuk.pdf'],
-          ['Матеріали конференції КМОСС-2025', 'https://udhtu.edu.ua/wp-content/uploads/2025/11/zbirnyk-kmoss-2025_compressed.pdf']
+          ['Сторожук Є. А., Серафимович Р. В. Про моделювання концентрації напружень навколо кругових отворів у тришарових циліндричних елементах ракет. Збірник наукових праць І Міжнародної науково-технічної конференції «Сучасні проблеми механіки у конструкціях спеціального призначення», 26–28 березня 2025 р., Дніпро. НТУ «Дніпровська політехніка», 2025, с. 339–342.', 'https://science.nmu.org.ua/ua/conferences/Forum_Mechanic/Zbirnyk_19_05-01.pdf'],
+          ['Сторожук Є. А., Серафимович Р. В. Деформування за межею пружності тришарової циліндричної оболонки з круговим отвором за дії осьових зусиль. Тези доповідей ХІ Міжнародної науково-практичної конференції «Актуальні проблеми інженерної механіки», 21–23 травня 2025 р., Одеса. ОДАБА, 2025, с. 182–184.', 'https://repositsc.nuczu.edu.ua/bitstream/123456789/25314/1/%D0%A2%D0%B5%D0%B7%D0%B8%D1%81%D0%B8%202025.pdf'],
+          ['Серафимович Р., Сторожук Є. Про методику дослідження концентрації напружень в пружнопластичній тришаровій циліндричній оболонці з круговим отвором. Матеріали конференції молодих вчених «Підстригачівські читання – 2025», 27–29 травня 2025 р., Львів. ІППММ, 2025, с. 41–42.', 'http://www.iapmm.lviv.ua/chyt2025/abstracts/SerafymovychStorozhuk.pdf'],
+          ['Сторожук Є. А., Серафимович Р. В., Чернишенко І. С. Розрахунок за межею пружності концентрації напружень в тришаровій циліндричній оболонці з круговим отвором. Матеріали VIII Міжнародної наукової конференції «Сучасні проблеми механіки», 28–29 серпня 2025 р., Київ. КНУ імені Тараса Шевченка, 2025, с. 62.', 'https://drive.google.com/file/d/11GQT6qrWUtEIijYfhTil0HB-cNTdgyVC/view?usp=sharing'],
+          ['Сторожук Є. А., Серафимович Р. В., Чернишенко І. С. До розрахунку концентрації напружень навколо кругового отвору в тришаровій циліндричній оболонці з врахуванням пластичних і поперечних деформацій. Матеріали IX Міжнародної науково-технічної конференції «Комп’ютерне моделювання та оптимізація складних систем КМОСС–2025», 5–7 листопада 2025 р., Дніпро. ДВНЗ «УДХТУ», 2025, с. 101.', 'https://udhtu.edu.ua/wp-content/uploads/2025/11/zbirnyk-kmoss-2025_compressed.pdf']
         ],
         materials: [
-          ['Сертифікат Prometheus', 'https://certs.prometheus.org.ua/cert/a74694ff976543c88ed4cf556545fc2f']
+          ['Сертифікат Prometheus: «Академічна доброчесність», 60 годин / 2 кредити, 22.01.2026', 'https://certs.prometheus.org.ua/cert/a74694ff976543c88ed4cf556545fc2f'],
+          ['Сертифікат «Академія ШІ для освітян від Google», 30 годин / 1 кредит, 07.04.2025–18.05.2025', 'https://drive.google.com/file/d/1RN9EMcomYvSg8jgeHNCnsKUUcSd3Dh4_/view?usp=sharing'],
+          ['Сертифікат Web of Science: навички пошуку та аналізу наукової літератури, 15 годин / 0,5 кредиту, 10.10.2024–27.10.2024', 'https://drive.google.com/file/d/1X04vdABP4KMrGH02IS9Zv5gQyar92JlK/view?usp=sharing']
         ]
       },
       {
@@ -85,12 +95,12 @@ const studentGroups = [
         topic: 'Чисельне моделювання термомеханічних процесів друку тіл обертання шарами в’язкопластичного матеріалу',
         supervisor: 'Сенченков Ігор Константинович, доктор фізико-математичних наук',
         publications: [
-          ['Публікація у матеріалах конференції «Зварювання та споріднені технології», 2025', 'https://patonpublishinghouse.com/ukr/proceedings/WRT2025/26'],
-          ['Матеріали конференції «Актуальні проблеми механіки і машинознавства», 2026', 'https://ipp.kiev.ua/conference_2026/abstracts_apmme_2026.pdf']
+          ['Сенченков І. К., Юрженко М. В., Червінко О. П., Усов В. О. Розрахунок залишкового НДС при нарощуванні циліндричних тіл із в’язкопластичних матеріалів. Зварювання та споріднені технології для відновлення України: конференція, під ред. О. Т. Зельніченка. Київ: ТОВ «Видавничий Дім «Патон», 2025, с. 100.', 'https://patonpublishinghouse.com/ukr/proceedings/WRT2025/26'],
+          ['Сенченков І., Червінко О., Усов В. Модель термомеханічних процесів при блочному нарощуванні в’язкопластичних тіл. Тези доповідей Міжнародної наукової конференції «Актуальні проблеми механіки і машинознавства – 2026», 26–28 травня 2026 р., Київ. Інститут проблем міцності імені Г. С. Писаренка НАН України, 2026, с. 248–249.', 'https://ipp.kiev.ua/conference_2026/abstracts_apmme_2026.pdf']
         ],
         materials: [
-          ['Сертифікат Web of Science', 'https://drive.google.com/file/d/1lYXuSNp-MQZ_Bs7uSjRE-WgpIedIQSBE/view?usp=sharing'],
-          ['Сертифікат KAU', 'https://drive.google.com/file/d/1NRyKqAlHM9fQCpnpu8sFfpUesv9wW4ds/view']
+          ['Сертифікат Web of Science: демонстрація здобутків за допомогою профілів дослідників у Web of Science, 26.09.2024', 'https://drive.google.com/file/d/1lYXuSNp-MQZ_Bs7uSjRE-WgpIedIQSBE/view?usp=sharing'],
+          ['Сертифікат Kyiv Academic University: Artificial Intelligence and Machine Learning in Additive Manufacturing, 15 годин / 0,5 кредиту, 29.10.2025–31.10.2025', 'https://drive.google.com/file/d/1NRyKqAlHM9fQCpnpu8sFfpUesv9wW4ds/view']
         ]
       },
       {
@@ -100,12 +110,12 @@ const studentGroups = [
         topic: 'Чисельний аналіз напружено-деформованого стану пологих ортотропних оболонок непрямокутних в плані',
         supervisor: 'Григоренко Олександр Ярославович, доктор фізико-математичних наук, професор, академік НАН України',
         publications: [
-          ['Філь Є. Підстригачівські читання, 2025', 'http://www.iapmm.lviv.ua/chyt2025/abstracts/Fil.pdf'],
-          ['Матеріали конференції', 'https://drive.google.com/file/d/1fSL1t_La3SjAvsuQ9CrkjR9QCIroAEIa/view'],
-          ['Матеріали конференції МПТМ, 2026', 'https://www.dnu.dp.ua/docs/ndc/materiali%20conf/2026/9_2%20%D1%87%D0%B0%D1%81%D1%82%D0%B8%D0%BD%D0%B0%20%D0%9C%D0%9F%D0%A2%D0%9C%202026.pdf']
+          ['Філь Є. В. Побудова розрахункової схеми для чисельного аналізу ортотропної непрямокутної в плані пологої оболонки на основі дискретно-континуального підходу. Конференція молодих учених «Підстригачівські читання – 2025», 2025.', 'http://www.iapmm.lviv.ua/chyt2025/abstracts/Fil.pdf'],
+          ['Григоренко О. Я., Філь Є. В. Дискретно-континуальний підхід до розрахунку напружено-деформованого стану ортотропних оболонок непрямокутних в плані. Міжнародна науково-технічна конференція «Інноваційна інженерія та будівництво для повоєнного відновлення: механіка, машини, транспорт», 2025, с. 35–38.', 'https://drive.google.com/file/d/1fSL1t_La3SjAvsuQ9CrkjR9QCIroAEIa/view'],
+          ['Григоренко О. Я., Філь Є. В. Аналіз впливу кривизни на напружено-деформований стан ортотропних оболонок непрямокутних в плані. XXVI Міжнародна наукова конференція «Математичні проблеми технічної механіки – 2026», 2026, с. 18–19.', 'https://www.dnu.dp.ua/docs/ndc/materiali%20conf/2026/9_2%20%D1%87%D0%B0%D1%81%D1%82%D0%B8%D0%BD%D0%B0%20%D0%9C%D0%9F%D0%A2%D0%9C%202026.pdf']
         ],
         materials: [
-          ['Сертифікат Prometheus', 'https://certs.prometheus.org.ua/cert/4d6caeee7bfa4b828a3b271084a2dd11']
+          ['Сертифікат Prometheus: курс підвищення кваліфікації «Академічна доброчесність: онлайн-курс для викладачів»', 'https://certs.prometheus.org.ua/cert/4d6caeee7bfa4b828a3b271084a2dd11']
         ]
       }
     ]
@@ -121,17 +131,25 @@ const studentGroups = [
         topic: 'Генерування хрестоподібних поверхневих хвиль у воді в циліндричній ємності з вібруючими стінками при випромінюванні звуку',
         supervisor: 'Жук Ярослав Олександрович, доктор фізико-математичних наук, член-кореспондент НАН України, професор',
         publications: [
-          ['Публікація у Віснику Київського національного університету імені Тараса Шевченка, 2024', 'https://doi.org/10.17721/1812-5409.2024/1.12']
+          ['Горський Ю. В., Краснопольська Т. С. Побудова математичних моделей збудження хрестоподібних поверхневих хвиль у воді у бокалах при випромінюванні бокалами звукових хвиль. Вісник Київського національного університету імені Тараса Шевченка, 2024, с. 66–69.', 'https://doi.org/10.17721/1812-5409.2024/1.12'],
+          ['Горський Ю. В., Краснопольська Т. С., Жук Я. О. Хрестоподібні хвилі на поверхні рідини в частково заповненій циліндричній ємності. Прикладна механіка, 2025, т. 61, № 6, с. 40–55.', ''],
+          ['Горський Ю. В., Краснопольська Т. С., van Heijst G. J. F., Філімонов В. Ю. Побудова математичних моделей збудження хрестоподібних поверхневих хвиль у воді в «співаючих бокалах» при випромінюванні бокалами звукових хвиль. VII Міжнародна наукова конференція «Сучасні проблеми механіки», 28–29 серпня 2023 р., Київ, с. 3.', ''],
+          ['Горський Ю. В. Експериментальне дослідження генерування хрестоподібних поверхневих хвиль у воді в циліндричній ємності. Міжнародна наукова конференція «Математичні проблеми технічної механіки», квітень 2026 р., с. 59.', '']
         ],
         materials: []
       },
       {
         name: 'Кобзар Петро Юрійович',
         englishName: 'Kobzar Petro Yuriyovych',
-        photo: '',
+        photo: `${photoBase}kobzar.svg`,
         topic: 'Моделювання розподілу напружень у п’єзоелектричному тілі поблизу жорстких плоских включень і тріщин кругової та еліптичної форми',
         supervisor: 'Кирилюк Віталій Семенович, доктор фізико-математичних наук',
-        publications: [],
+        publications: [
+          ['Kirilyuk V. S., Levchuk O. I., Kobzar P. Yu., Witer M. B. Mathematical Modeling of Displacement of Rigid Elliptic Disc in Piezoelectric Space. International Applied Mechanics, 2024, vol. 60, no. 6, pp. 37–44.', 'https://doi.org/10.1007/s10778-024-01294-6'],
+          ['Golub V. P., Plashchynska A. V., Kobzar P. Yu. Numerical Modeling of Fatigue Crack Propagation Kinetics in Thin Finite-Size Isotropic Plates. International Applied Mechanics, 2024, vol. 60, no. 6, pp. 67–76.', 'https://doi.org/10.1007/s10778-025-01321-0'],
+          ['Голуб В. П., Кобзар П. Ю. Метод чисельної ідентифікації графічних експериментальних даних. Міжнародна наукова конференція «Механіка: сучасність і перспективи», 2024, Матеріали доповідей, с. 257.', ''],
+          ['Кобзар П. Ю., Кобзар А. Ю. Програмне забезпечення методики перетворення графічних експериментальних даних у табличні. Міжнародна наукова конференція «Математичні проблеми технічної механіки – 2024», с. 77–79.', '']
+        ],
         materials: []
       },
       {
@@ -141,20 +159,31 @@ const studentGroups = [
         topic: 'Плоскі задачі механіки руйнування матеріалів з взаємодіючими тріщинами за дії спрямованих вздовж тріщин зусиль',
         supervisor: 'Богданов Вячеслав Леонідович, академік НАН України, доктор фізико-математичних наук',
         publications: [
-          ['Публікація у журналі «Доповіді НАН України», 2025', 'https://doi.org/10.15407/dopovidi2025.02.024']
+          ['Богданов В., Лесик О. Напружено-деформований стан попередньо напруженої півплощини з приповерхневою тріщиною нормального відриву. Доповіді Національної академії наук України, 2025, № 2, с. 24–41.', 'https://doi.org/10.15407/dopovidi2025.02.024'],
+          ['Богданов В. Л., Лесик О. І. Плоска задача механіки руйнування для півпростору з приповерхневою тріщиною нормального відриву за дії спрямованих вздовж тріщини зусиль. Міжнародний науковий журнал «Прикладна механіка», 2025, т. 61, № 4, с. 3–25.', ''],
+          ['Лесик О. І. Дослідження коефіцієнтів інтенсивності напружень в попередньо напруженій півплощині з приповерхневою тріщиною нормального відриву для матеріалу з квадратичним потенціалом. Матеріали IX Міжнародної науково-технічної конференції «Комп’ютерне моделювання та оптимізація складних систем КМОСС–2025», 5–7 листопада 2025 р., Дніпро. ДВНЗ «УДХТУ», 2025, с. 64–66.', ''],
+          ['Богданов В. Л., Лесик О. І. Коефіцієнти інтенсивності напружень в попередньо напруженій півплощині з приповерхневою тріщиною нормального відриву. Міжнародна наукова конференція «Механіка: сучасність і перспективи – 2024», с. 285–288.', '']
         ],
         materials: []
       },
       {
         name: 'Ольховський Антон Стефанович',
         englishName: 'Olkhovskyi Anton',
-        photo: '',
+        photo: `${photoBase}olkhovskyi.svg`,
         topic: 'Математичне моделювання впливу локальних пошкоджень та експлуатаційних навантажень на вібронапруженість лопаток останньої ступені парової турбіни АЕС',
         supervisor: 'Сенченков Ігор Костянтинович, доктор фізико-математичних наук',
         publications: [
-          ['Strength of Materials, Part 1', 'https://doi.org/10.1007/s11223-024-00622-y'],
-          ['Strength of Materials, Part 2', 'https://doi.org/10.1007/s11223-024-00643-7'],
-          ['Procedia Structural Integrity', 'https://doi.org/10.1016/j.prostr.2024.04.048']
+          ['Shulzhenko M. G., Olkhovskyi A. S., Derkach O. L. Vibrational Stresses in the Last-Stage Blades of a Powerful Steam Turbine Under Kinematic Excitation of Oscillations. Part 1. Investigation of Cyclic-Symmetric Systems. Strength of Materials, 2024, vol. 56, no. 1, pp. 11–19.', 'https://doi.org/10.1007/s11223-024-00622-y'],
+          ['Shulzhenko M. G., Olkhovskyi A. S., Derkach O. L. Vibrational Stresses in the Last-Stage Blades of a Powerful Steam Turbine Under Kinematic Excitation of Oscillations. Part 2. Investigation of System with Cyclic Symmetry Violations. Strength of Materials, 2024, vol. 56, no. 2, pp. 234–245.', 'https://doi.org/10.1007/s11223-024-00643-7'],
+          ['Shulzhenko M. G., Olkhovskyi A. S., Derkach O. L. The influence of kinematic excitation on the vibrational stress of the mistuned bladed disk of the last stage of a high-power steam turbine. Procedia Structural Integrity, 2024, vol. 59, pp. 337–343.', 'https://doi.org/10.1016/j.prostr.2024.04.048'],
+          ['Ольховський А. С., Деркач О. Л. Вібронапружений стан робочих лопаток останнього ступеня потужної парової турбіни за умов порушення циклічної симетрії. Повідомлення 1. Статичний напружений стан та вільні коливання з урахуванням дії відцентрових сил. Проблеми міцності, 2026, № 1, с. 14–29.', ''],
+          ['Ольховський А. С., Деркач О. Л. Вібронапружений стан робочих лопаток останнього ступеня потужної парової турбіни за умов порушення циклічної симетрії. Повідомлення 2. Динамічний напружений стан та оцінка залишкового ресурсу. Проблеми міцності, 2026, № 2, с. 20–32.', ''],
+          ['Шульженко М. Г., Ольховський А. С., Деркач О. Л. Аналіз впливу розладу частоти коливань лопаткових вінців на вібронапруженість робочих коліс турбомашин. XXVIII Міжнародний конгрес двигунобудівників: тези доповідей. Харків: Національний аерокосмічний університет «ХАІ», 2023, с. 33–34.', ''],
+          ['Shulzhenko M. G., Olkhovskyi A. S., Derkach O. L. The effect of kinematic excitation on the blades vibration stress state of the last stage high-power steam turbine with blade mistuning. 2023 IEEE 4th KhPI Week on Advanced Technology (KhPIWeek), 2023, pp. 622–625.', ''],
+          ['Луговий П. З., Ольховський А. С. Вплив ерозійно-корозійних пошкоджень лопатей на час їх експлуатації. Тези Міжнародної наукової конференції «Актуальні проблеми механіки – 2023», Інститут механіки, с. 81.', ''],
+          ['Шульженко М. Г., Ольховський А. С., Деркач О. Л. Особливості напружено-деформівного стану системи диск–лопатки з розладом частот коливань. Міжнародна наукова конференція «Актуальні проблеми механіки – 2023», Інститут механіки, с. 336–337.', ''],
+          ['Derkach O., Ratynskyi A., Olkhovskyi A. Analysis of the effect of blade mistuning on the vibrational stress state of an aircraft GTE compressor disk. XVIII Vibration Engineering & Technology of Machinery Conference VETOMAC 2024, Institute of Fluid-Flow Machinery, Gdansk, Poland, September 16–18, 2024.', ''],
+          ['Ольховський А. С., Деркач О. Л., Сенченков І. К. Чисельне дослідження впливу локальних пошкоджень лопаток парової турбіни внаслідок ерозійного зносу на їх напружено-деформований стан. The International Scientific Conference «Actual Problems of Mechanics and Mechanical Engineering – 2026», Kyiv, 2026.', '']
         ],
         materials: []
       },
@@ -165,10 +194,12 @@ const studentGroups = [
         topic: 'Застосування моделі когезійної зони до дослідження задач про відтерміноване руйнування тіл з тріщинами змішаної моди',
         supervisor: 'Богданов Вячеслав Леонідович, академік НАН України, доктор фізико-математичних наук',
         publications: [
-          ['Публікація у журналі «Доповіді НАН України», 2024', 'https://doi.org/10.15407/dopovidi2024.05.053'],
-          ['Тези доповіді IWPDF 2025', 'https://iwpdf.metu.edu.tr/IWPDF2025_BoA.pdf'],
-          ['Тези доповіді FMSI 2026', 'https://www.ipm.lviv.ua/fmsi2026/FMSI2026_Book%20of%20Abstracts.pdf'],
-          ['Тези доповіді APMME 2026', 'https://ipp.kiev.ua/conference_2026/abstracts_apmme_2026.pdf']
+          ['Bogdanov V. L., Selivanov D. M. Study of the impact of crack resistance parameters on the critical load of a specimen with a mode I crack under three-point bending in the framework of the cohesive zone model. Dopovidi Natsionalnoi akademii nauk Ukrainy, 2024, no. 5, pp. 53–61 [in Ukrainian].', 'https://doi.org/10.15407/dopovidi2024.05.053'],
+          ['Selivanov D. M. Numerical simulation of crack kinking with cohesive zone extensions. In: Book of Abstracts of the 4th International Workshop on Plasticity, Damage and Fracture of Engineering Materials, IWPDF 2025, Istanbul, Türkiye, September 24–26, 2025, p. 62.', 'https://iwpdf.metu.edu.tr/IWPDF2025_BoA.pdf'],
+          ['Bogdanov V., Selivanov D. Numerical simulation of crack kinking with cohesive-zone extensions. Procedia Structural Integrity, submitted.', ''],
+          ['Bogdanov V., Selivanov D. Potential-based cohesive modeling of mixed-mode crack kinking. International Journal of Fracture, in press.', ''],
+          ['Bogdanov V., Selivanov D. Incremental crack propagation under mixed-mode loading within a potential-based cohesive zone framework. In: Book of Abstracts of the 7th International Conference “Fracture Mechanics of Materials and Structural Integrity”, Lviv, Ukraine, March 3–5, 2026, p. 33.', 'https://www.ipm.lviv.ua/fmsi2026/FMSI2026_Book%20of%20Abstracts.pdf'],
+          ['Bogdanov V. L., Selivanov D. M. Determination of the crack-propagation trajectory in a perforated plate within the cohesive zone model. In: Abstracts of the International Scientific Conference “Actual Problems of Mechanics and Mechanical Engineering – 2026”, Kyiv, Ukraine, May 26–28, 2026, pp. 261–262 [in Ukrainian].', 'https://ipp.kiev.ua/conference_2026/abstracts_apmme_2026.pdf']
         ],
         materials: []
       }
@@ -264,7 +295,7 @@ const totalStudents = studentGroups.reduce((sum, group) => sum + group.students.
                 {student.publications.length > 0 ? (
                   <ol class="publication-list">
                     {student.publications.map(([label, href]) => (
-                      <li><a href={href} target="_blank" rel="noopener noreferrer">{label}</a></li>
+                      <li>{href ? <a href={href} target="_blank" rel="noopener noreferrer">{label}</a> : <span>{label}</span>}</li>
                     ))}
                   </ol>
                 ) : (
@@ -321,10 +352,11 @@ const totalStudents = studentGroups.reduce((sum, group) => sum + group.students.
   .student-info-block p { margin: 0; color: var(--muted); line-height: 1.65; }
   .publication-list { margin: 0; padding-left: 22px; color: var(--muted); }
   .publication-list li { margin-bottom: 9px; line-height: 1.55; }
+  .publication-list span { color: var(--muted); }
   .materials-details { margin-top: auto; padding-top: 4px; }
   .materials-details summary { cursor: pointer; }
-  .material-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-  .material-links a { display: inline-flex; align-items: center; padding: 7px 10px; border-radius: 999px; background: var(--surface-soft); color: var(--accent-dark); font-size: 0.86rem; font-weight: 850; text-decoration: none; }
+  .material-links { display: grid; gap: 8px; margin-top: 12px; }
+  .material-links a { display: block; padding: 9px 12px; border-radius: 14px; background: var(--surface-soft); color: var(--accent-dark); font-size: 0.9rem; font-weight: 750; text-decoration: none; line-height: 1.45; }
   .material-links a:hover { background: var(--accent-soft); text-decoration: none; }
   .no-materials { margin: 0; color: var(--muted); }
   @media (max-width: 920px) { .page-hero, .summary-grid, .student-grid { grid-template-columns: 1fr; } }

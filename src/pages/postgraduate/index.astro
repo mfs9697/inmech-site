@@ -49,10 +49,6 @@ const activeCards = [
     href: '/postgraduate/research-topics/'
   }
 ];
-
-const plannedCards = [
-  'Новини для аспірантів'
-];
 ---
 
 <BaseLayout
@@ -98,7 +94,6 @@ const plannedCards = [
           <p class="eyebrow">Навігація</p>
           <h2>Основні сторінки</h2>
         </div>
-        <p>Розділ поступово розділено на окремі сторінки, щоб вступ, програма, акредитація, розклад, дані про аспірантів, кадрове забезпечення і тематика досліджень не змішувалися в одному довгому матеріалі.</p>
       </div>
 
       <div class="card-grid">
@@ -109,25 +104,6 @@ const plannedCards = [
             <p>{card.text}</p>
             <strong>Перейти до сторінки →</strong>
           </a>
-        ))}
-      </div>
-    </section>
-
-    <section class="section-block">
-      <div class="section-heading compact-header">
-        <div>
-          <p class="eyebrow">Наступний етап</p>
-          <h2>Сторінки, які доцільно винести окремо</h2>
-        </div>
-        <p>Залишився новинний блок, який зручно винести в архів оголошень для аспірантів.</p>
-      </div>
-
-      <div class="card-grid compact">
-        {plannedCards.map((title) => (
-          <article class="nav-card muted-card">
-            <span>Заплановано</span>
-            <h3>{title}</h3>
-          </article>
         ))}
       </div>
     </section>
@@ -223,10 +199,6 @@ const plannedCards = [
     gap: 18px;
   }
 
-  .card-grid.compact {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
-
   .nav-card {
     display: flex;
     min-height: 220px;
@@ -271,16 +243,9 @@ const plannedCards = [
     color: var(--accent-dark);
   }
 
-  .muted-card {
-    min-height: 150px;
-    background: var(--surface-soft);
-    box-shadow: none;
-  }
-
   @media (max-width: 860px) {
     .postgraduate-hero,
-    .card-grid,
-    .card-grid.compact {
+    .card-grid {
       grid-template-columns: 1fr;
     }
 

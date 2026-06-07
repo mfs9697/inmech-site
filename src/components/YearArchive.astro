@@ -1,15 +1,12 @@
 ---
-import { archiveYears } from '../data/site';
-
 interface Props {
   activeYear?: number;
 }
 
-const { activeYear = 2026 } = Astro.props;
+const { activeYear = new Date().getFullYear() } = Astro.props;
+const currentYear = new Date().getFullYear();
 ---
 
 <nav class="year-nav" aria-label="Архів за роками">
-  {archiveYears.map((year) => (
-    <a class={year === activeYear ? 'active' : ''} href="#">{year}</a>
-  ))}
+  <a class={currentYear === activeYear ? 'active' : ''} href="#">{currentYear}</a>
 </nav>

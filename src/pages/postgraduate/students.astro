@@ -1,0 +1,479 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../data/site';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+
+const studentGroups = [
+  {
+    year: 'Вступ 2025',
+    badge: '1-й курс',
+    students: [
+      {
+        name: 'Грисевич Роман Юрійович',
+        englishName: 'Hrysevych Roman',
+        topic: 'Теоретико-експериментальне моделювання деформування елементів протеза кисті руки при статичних, квазістатичних та динамічних навантаженнях',
+        supervisor: 'Максимюк Володимир Ананійович, доктор фізико-математичних наук',
+        materials: [
+          ['Сертифікат Prometheus', 'https://certs.prometheus.org.ua/downloads/1efb6f8ac8674d25aa8a4af4d31de1aa/Certificate.pdf']
+        ]
+      },
+      {
+        name: 'Назарчук Юрій Олександрович',
+        englishName: 'Nazarchuk Yurii',
+        topic: 'Руйнування в’язкопружних кусково-неоднорідних матеріалів із когезійними інтерфейсами: застосування до асфальтобетону',
+        supervisor: 'Селіванов Михайло Федорович, доктор фізико-математичних наук, член-кореспондент НАН України',
+        materials: [
+          ['Сертифікат Prometheus', 'https://certs.prometheus.org.ua/cert/f3e667afa6854f088d2ca872982dac52']
+        ]
+      },
+      {
+        name: 'Прощенко Олександр Анатолійович',
+        englishName: 'Proshchenko Oleksandr',
+        topic: 'Плоскі задачі руйнування матеріалів при стиску вздовж паралельних тріщин зі зміщеними в напрямку стиску центрами',
+        supervisor: 'Назаренко Володимир Михайлович, академік НАН України',
+        materials: [
+          ['Сертифікат Prometheus', 'https://certs.prometheus.org.ua/cert/92cfe53697cc4b68b66d9e66a03278dd']
+        ]
+      },
+      {
+        name: 'Синявський Олексій Ігорович',
+        englishName: 'Syniavskyi Oleksii',
+        topic: 'Стиск тонкоплівкових систем вздовж межі поділу плівки та підкладки обмеженої товщини',
+        supervisor: 'Назаренко Володимир Михайлович, академік НАН України',
+        materials: [
+          ['Сертифікат Prometheus', 'https://certs.prometheus.org.ua/cert/2fa8d83bb85d4639869c7a35a6a13c51']
+        ]
+      }
+    ]
+  },
+  {
+    year: 'Вступ 2024',
+    badge: '2-й курс',
+    students: [
+      {
+        name: 'Серафимович Роман Вікторович',
+        englishName: 'Serafymovych Roman',
+        topic: 'Фізично нелінійні задачі для тришарової циліндричної оболонки з отворами',
+        supervisor: 'Сторожук Євген Анатолійович, доктор фізико-математичних наук, професор, член-кореспондент НАН України',
+        materials: [
+          ['Збірник конференції', 'https://science.nmu.org.ua/ua/conferences/Forum_Mechanic/Zbirnyk_19_05-01.pdf'],
+          ['Тези 2025', 'https://repositsc.nuczu.edu.ua/bitstream/123456789/25314/1/%D0%A2%D0%B5%D0%B7%D0%B8%D1%81%D0%B8%202025.pdf'],
+          ['Підстригачівські читання', 'http://www.iapmm.lviv.ua/chyt2025/abstracts/SerafymovychStorozhuk.pdf'],
+          ['КМОСС-2025', 'https://udhtu.edu.ua/wp-content/uploads/2025/11/zbirnyk-kmoss-2025_compressed.pdf'],
+          ['Сертифікат Prometheus', 'https://certs.prometheus.org.ua/cert/a74694ff976543c88ed4cf556545fc2f']
+        ]
+      },
+      {
+        name: 'Усов Василь Олександрович',
+        englishName: 'Vasyl Usov',
+        topic: 'Чисельне моделювання термомеханічних процесів друку тіл обертання шарами в’язкопластичного матеріалу',
+        supervisor: 'Не зазначено в наданій версії сторінки',
+        materials: [
+          ['Зварювання та споріднені технології', 'https://patonpublishinghouse.com/ukr/proceedings/WRT2025/26'],
+          ['Актуальні проблеми механіки і машинознавства — 2026', 'https://ipp.kiev.ua/conference_2026/abstracts_apmme_2026.pdf'],
+          ['Сертифікат Web of Science', 'https://drive.google.com/file/d/1lYXuSNp-MQZ_Bs7uSjRE-WgpIedIQSBE/view?usp=sharing'],
+          ['Сертифікат KAU', 'https://drive.google.com/file/d/1NRyKqAlHM9fQCpnpu8sFfpUesv9wW4ds/view']
+        ]
+      },
+      {
+        name: 'Філь Євген Вадимович',
+        englishName: 'Fil Yevhen',
+        topic: 'Чисельний аналіз напружено-деформованого стану пологих ортотропних оболонок непрямокутних в плані',
+        supervisor: 'Григоренко Олександр Ярославович, доктор фізико-математичних наук, професор, академік НАН України',
+        materials: [
+          ['Підстригачівські читання', 'http://www.iapmm.lviv.ua/chyt2025/abstracts/Fil.pdf'],
+          ['Матеріали конференції', 'https://drive.google.com/file/d/1fSL1t_La3SjAvsuQ9CrkjR9QCIroAEIa/view'],
+          ['МПТМ 2026', 'https://www.dnu.dp.ua/docs/ndc/materiali%20conf/2026/9_2%20%D1%87%D0%B0%D1%81%D1%82%D0%B8%D0%BD%D0%B0%20%D0%9C%D0%9F%D0%A2%D0%9C%202026.pdf'],
+          ['Сертифікат Prometheus', 'https://certs.prometheus.org.ua/cert/4d6caeee7bfa4b828a3b271084a2dd11']
+        ]
+      }
+    ]
+  },
+  {
+    year: 'Вступ 2023',
+    badge: '3-й курс',
+    students: [
+      {
+        name: 'Горський Юрій Вікторович',
+        englishName: 'Horskyi Yurii',
+        topic: 'Генерування хрестоподібних поверхневих хвиль у воді в циліндричній ємності з вібруючими стінками при випромінюванні звуку',
+        supervisor: 'Жук Ярослав Олександрович, доктор фізико-математичних наук, член-кореспондент НАН України, професор',
+        materials: [
+          ['Публікація DOI', 'https://doi.org/10.17721/1812-5409.2024/1.12']
+        ]
+      },
+      {
+        name: 'Кобзар Петро Юрійович',
+        englishName: 'Kobzar Petro Yuriyovych',
+        topic: 'Моделювання розподілу напружень у п’єзоелектричному тілі поблизу жорстких плоских включень і тріщин кругової та еліптичної форми',
+        supervisor: 'Кирилюк Віталій Семенович, доктор фізико-математичних наук',
+        materials: []
+      },
+      {
+        name: 'Лесик Олексій Іванович',
+        englishName: '',
+        topic: 'Плоскі задачі механіки руйнування матеріалів з взаємодіючими тріщинами за дії спрямованих вздовж тріщин зусиль',
+        supervisor: 'Богданов Вячеслав Леонідович, академік НАН України, доктор фізико-математичних наук',
+        materials: [
+          ['Публікація DOI', 'https://doi.org/10.15407/dopovidi2025.02.024']
+        ]
+      },
+      {
+        name: 'Ольховський Антон Стефанович',
+        englishName: 'Olkhovskyi Anton',
+        topic: 'Математичне моделювання впливу локальних пошкоджень та експлуатаційних навантажень на вібронапруженість лопаток останньої ступені парової турбіни АЕС',
+        supervisor: 'Сенченков Ігор Костянтинович, доктор фізико-математичних наук',
+        materials: [
+          ['Strength of Materials, Part 1', 'https://doi.org/10.1007/s11223-024-00622-y'],
+          ['Strength of Materials, Part 2', 'https://doi.org/10.1007/s11223-024-00643-7'],
+          ['Procedia Structural Integrity', 'https://doi.org/10.1016/j.prostr.2024.04.048']
+        ]
+      },
+      {
+        name: 'Селіванов Данило Михайлович',
+        englishName: '',
+        topic: 'Застосування моделі когезійної зони до дослідження задач про відтерміноване руйнування тіл з тріщинами змішаної моди',
+        supervisor: 'Богданов Вячеслав Леонідович, академік НАН України, доктор фізико-математичних наук',
+        materials: [
+          ['Dopovidi NANU DOI', 'https://doi.org/10.15407/dopovidi2024.05.053'],
+          ['IWPDF 2025 Book of Abstracts', 'https://iwpdf.metu.edu.tr/IWPDF2025_BoA.pdf'],
+          ['FMSI 2026 Book of Abstracts', 'https://www.ipm.lviv.ua/fmsi2026/FMSI2026_Book%20of%20Abstracts.pdf'],
+          ['APMME 2026 abstracts', 'https://ipp.kiev.ua/conference_2026/abstracts_apmme_2026.pdf']
+        ]
+      }
+    ]
+  }
+];
+
+const totalStudents = studentGroups.reduce((sum, group) => sum + group.students.length, 0);
+---
+
+<BaseLayout
+  title={`Аспіранти | ${site.shortName}`}
+  description="Сторінка аспірантів Інституту механіки ім. С. П. Тимошенка НАН України: здобувачі, теми дисертацій, наукові керівники та матеріали."
+  activePage="education"
+>
+  <main class="postgraduate-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumbs">
+      <a href={withBase('/postgraduate/')}>Аспірантура</a>
+      <span>›</span>
+      <span>Аспіранти</span>
+    </nav>
+
+    <section class="page-hero">
+      <div>
+        <p class="eyebrow">Аспіранти</p>
+        <h1>Здобувачі освітньо-наукового ступеня</h1>
+        <p class="lead">
+          На сторінці подано інформацію про аспірантів Інституту: рік вступу, тему дисертації,
+          наукового керівника та доступні матеріали, перенесені з попередньої версії сайту.
+        </p>
+      </div>
+      <aside class="stats-card">
+        <strong>{totalStudents}</strong>
+        <span>аспірантів у поточному переліку</span>
+      </aside>
+    </section>
+
+    <section class="section-block summary-grid">
+      {studentGroups.map((group) => (
+        <a class="summary-card" href={`#${group.year.replaceAll(' ', '-').toLowerCase()}`}>
+          <span>{group.badge}</span>
+          <strong>{group.year}</strong>
+          <p>{group.students.length} аспірант{group.students.length === 1 ? '' : group.students.length < 5 ? 'и' : 'ів'}</p>
+        </a>
+      ))}
+    </section>
+
+    {studentGroups.map((group) => (
+      <section class="section-block" id={group.year.replaceAll(' ', '-').toLowerCase()}>
+        <div class="section-heading compact-header">
+          <div>
+            <p class="eyebrow">{group.badge}</p>
+            <h2>{group.year}</h2>
+          </div>
+          <p>{group.students.length} аспірант{group.students.length === 1 ? '' : group.students.length < 5 ? 'и' : 'ів'} у переліку.</p>
+        </div>
+
+        <div class="student-grid">
+          {group.students.map((student) => (
+            <article class="student-card">
+              <div class="student-card-header">
+                <div class="student-avatar" aria-hidden="true">
+                  {student.name.split(' ').slice(0, 2).map((part) => part[0]).join('')}
+                </div>
+                <div>
+                  <h3>{student.name}</h3>
+                  {student.englishName && <p class="english-name">{student.englishName}</p>}
+                </div>
+              </div>
+
+              <div class="student-info-block">
+                <span>Тема дисертації</span>
+                <p>{student.topic}</p>
+              </div>
+
+              <div class="student-info-block">
+                <span>Науковий керівник</span>
+                <p>{student.supervisor}</p>
+              </div>
+
+              <details class="materials-details">
+                <summary>Матеріали та посилання</summary>
+                {student.materials.length > 0 ? (
+                  <div class="material-links">
+                    {student.materials.map(([label, href]) => (
+                      <a href={href} target="_blank" rel="noopener noreferrer">{label}</a>
+                    ))}
+                  </div>
+                ) : (
+                  <p class="no-materials">Окремі посилання в попередній версії сторінки не були зазначені.</p>
+                )}
+              </details>
+            </article>
+          ))}
+        </div>
+      </section>
+    ))}
+
+    <section class="section-block note-panel">
+      <p class="eyebrow">Примітка</p>
+      <h2>Перевірка даних</h2>
+      <p>
+        Для окремих аспірантів у попередній версії сторінки наведено не всі поля або не всі посилання.
+        Цю сторінку зручно доповнювати поступово: можна додати повні списки публікацій,
+        сертифікати, посилання на профілі та відповідність тем науковим напрямам керівників.
+      </p>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .postgraduate-page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 46px 20px 72px;
+  }
+
+  .breadcrumbs {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 22px;
+    color: var(--muted);
+    font-weight: 750;
+  }
+
+  .page-hero,
+  .summary-card,
+  .student-card,
+  .note-panel {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .page-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 250px;
+    gap: 24px;
+    align-items: stretch;
+    padding: clamp(28px, 5vw, 52px);
+  }
+
+  .page-hero h1 {
+    margin: 0 0 18px;
+    font-size: clamp(2.2rem, 4.8vw, 4.3rem);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+  }
+
+  .lead {
+    max-width: 860px;
+    color: var(--muted);
+    font-size: 1.08rem;
+    line-height: 1.7;
+  }
+
+  .stats-card {
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 10px;
+    padding: 24px;
+    border-radius: 28px;
+    background: linear-gradient(145deg, var(--accent-dark), var(--accent));
+    color: #fff;
+    text-align: center;
+  }
+
+  .stats-card strong {
+    font-size: 4rem;
+    line-height: 1;
+  }
+
+  .stats-card span {
+    max-width: 160px;
+    color: rgba(255, 255, 255, 0.86);
+    font-weight: 850;
+  }
+
+  .section-block {
+    margin-top: 34px;
+  }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .summary-card {
+    display: flex;
+    min-height: 150px;
+    flex-direction: column;
+    padding: 22px;
+    color: var(--text);
+    text-decoration: none;
+    transition: transform 0.22s ease;
+  }
+
+  .summary-card:hover {
+    transform: translateY(-4px);
+    text-decoration: none;
+  }
+
+  .summary-card span,
+  .student-info-block span,
+  .materials-details summary,
+  .note-panel .eyebrow {
+    width: fit-content;
+    margin-bottom: 10px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-size: 0.78rem;
+    font-weight: 850;
+  }
+
+  .summary-card strong {
+    font-size: 1.35rem;
+  }
+
+  .summary-card p {
+    margin-top: auto;
+    color: var(--muted);
+  }
+
+  .student-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .student-card {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 24px;
+  }
+
+  .student-card-header {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .student-avatar {
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    width: 70px;
+    height: 70px;
+    border-radius: 24px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-weight: 950;
+  }
+
+  .student-card h3 {
+    margin: 0 0 6px;
+    font-size: 1.22rem;
+  }
+
+  .english-name {
+    margin: 0;
+    color: var(--muted);
+    font-weight: 750;
+  }
+
+  .student-info-block p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .materials-details {
+    margin-top: auto;
+    padding-top: 4px;
+  }
+
+  .materials-details summary {
+    cursor: pointer;
+  }
+
+  .material-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .material-links a {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 10px;
+    border-radius: 999px;
+    background: var(--surface-soft);
+    color: var(--accent-dark);
+    font-size: 0.86rem;
+    font-weight: 850;
+    text-decoration: none;
+  }
+
+  .material-links a:hover {
+    background: var(--accent-soft);
+    text-decoration: none;
+  }
+
+  .no-materials {
+    margin: 12px 0 0;
+    color: var(--muted);
+  }
+
+  .note-panel {
+    padding: 28px;
+  }
+
+  .note-panel h2 {
+    margin-top: 0;
+  }
+
+  .note-panel p {
+    max-width: 900px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 920px) {
+    .page-hero,
+    .summary-grid,
+    .student-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

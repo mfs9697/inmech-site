@@ -1,5 +1,8 @@
 ---
 import { site } from '../data/site';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
 ---
 
 <footer class="site-footer" id="contacts">
@@ -12,22 +15,22 @@ import { site } from '../data/site';
     <section>
       <h3>Розділи</h3>
       <ul class="footer-links">
-        <li><a href="/news/">Новини</a></li>
-        <li><a href="/departments/">Наукові відділи</a></li>
-        <li><a href="#">Аспірантура</a></li>
+        <li><a href={withBase('/news/')}>Новини</a></li>
+        <li><a href={withBase('/departments/')}>Наукові відділи</a></li>
+        <li><a href={withBase('/postgraduate/')}>Аспірантура</a></li>
         <li><a href="#">Журнал «Прикладна механіка»</a></li>
       </ul>
     </section>
     <section>
       <h3>Службові посилання</h3>
       <ul class="footer-links">
-        <li><a href="#">Карта сайту</a></li>
+        <li><a href={withBase('/sitemap/')}>Карта сайту</a></li>
         <li><a href="#">Політика доступності</a></li>
         <li><a href="#">Адміністрація сайту</a></li>
       </ul>
     </section>
   </div>
   <div class="container copyright">
-    © {new Date().getFullYear()} Інститут механіки ім. С.П. Тимошенка НАН України. Astro-прототип.
+    © {new Date().getFullYear()} Інститут механіки ім. С.П. Тимошенка НАН України.
   </div>
 </footer>

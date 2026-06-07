@@ -1,0 +1,206 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../data/site';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+
+const stages = [
+  {
+    title: 'Етап І',
+    subtitle: 'ЄВІ та ЄВВ',
+    items: [
+      ['Реєстрація на ЄВІ та ЄВВ', '23 квітня – 14 травня — основний період; 26–28 травня 2026 — додатковий період.'],
+      ['Отримання запрошень', 'до 19 червня — учасникам основної сесії; до 28 липня — учасникам додаткової сесії.'],
+      ['Проведення тестування', '26 червня – 14 липня — основна сесія; 3 серпня – 21 серпня — додаткова сесія.'],
+      ['Оголошення результатів', 'до 23 липня — основна сесія; до 21 серпня — додаткова сесія.']
+    ]
+  },
+  {
+    title: 'Етап ІІ',
+    subtitle: 'Реєстрація та конкурсний відбір',
+    items: [
+      ['Реєстрація особистого кабінету на сайті ЄДЕБО', 'з 01 липня.'],
+      ['Реєстрація на конкурсний відбір', '07 серпня – 25 серпня до 18:00.'],
+      ['Реєстрація на іспит зі спеціальності', '07 серпня – 25 серпня до 18:00.']
+    ]
+  },
+  {
+    title: 'Етап ІІІ',
+    subtitle: 'Іспит і зарахування',
+    items: [
+      ['Іспит зі спеціальності', 'з 26 серпня до 07 вересня 2026 р.'],
+      ['Оголошення рейтингового списку', 'до 12 вересня 2026 р.'],
+      ['Наказ на зарахування', 'до 14 вересня 2026 р.']
+    ]
+  }
+];
+
+const documents = [
+  ['Правила прийому на навчання 2026', 'https://inmech.kyiv.ua/doc/postgraduate/2026/pravyla_pryjomu_2026.pdf'],
+  ['Вимоги до дослідницької пропозиції', 'https://inmech.kyiv.ua/doc/postgraduate/2026/vymogy_do_dd_2026.pdf'],
+  ['Програма вступного іспиту', 'https://inmech.kyiv.ua/doc/postgraduate/2026/exame_program.pdf'],
+  ['Порядок оцінювання', 'https://inmech.kyiv.ua/doc/postgraduate/2026/poryadok_ocinyuvannya_2026.pdf'],
+  ['Архів для вступників 2025', 'https://inmech.kyiv.ua/l/ua/postgraduate/for_applicants/2025/']
+];
+
+const requiredDocumentsLeft = [
+  'заява на ім’я директора Інституту механіки ім. С. П. Тимошенка НАН України;',
+  'особовий листок з обліку кадрів, засвідчений печаткою установи, в якій вступник навчається або працює;',
+  '2 фотокартки 3×4 см;',
+  'документ, що посвідчує особу і громадянство;',
+  'документ про зміну прізвища — у разі зміни прізвища;',
+  'військовий квиток або посвідчення про приписку — для військовозобов’язаних;',
+  'список опублікованих наукових праць і винаходів за спеціальністю — за наявності;',
+  'дослідницька пропозиція з обраної спеціальності.'
+];
+
+const requiredDocumentsRight = [
+  'диплом про закінчення закладу вищої освіти і додаток до нього;',
+  'для осіб, які здобули вищу освіту за кордоном, — документи для встановлення еквівалентності диплома;',
+  'рекомендація Вченої ради закладу вищої освіти — за наявності;',
+  'довідка про присвоєння ідентифікаційного номера;',
+  'довідка з постійного місця реєстрації — для осіб, які мають намір проживати в гуртожитку;',
+  'міжнародний сертифікат з іноземної мови — за наявності;',
+  'згода на збір та обробку персональних даних.'
+];
+
+const supervisors = [
+  ['Юрчук Василь Миколайович', 'доктор фізико-математичних наук'],
+  ['Кіпніс Олександр Леонідович', 'кандидат фізико-математичних наук'],
+  ['Борисенко Максим Юрійович', 'доктор технічних наук'],
+  ['Хорошун Анатолій Сергійович', 'доктор фізико-математичних наук'],
+  ['Григоренко Олександр Ярославович', 'доктор фізико-математичних наук, професор, академік НАН України'],
+  ['Селіванов Михайло Федорович', 'доктор фізико-математичних наук, член-кореспондент НАН України']
+];
+---
+
+<BaseLayout
+  title={`Вступникам до аспірантури | ${site.shortName}`}
+  description="Вступ до аспірантури Інституту механіки ім. С. П. Тимошенка НАН України у 2026 році: етапи вступної кампанії, нормативні документи, вимоги та перелік документів."
+  activePage="education"
+>
+  <main class="postgraduate-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumbs">
+      <a href={withBase('/postgraduate/')}>Аспірантура</a>
+      <span>›</span>
+      <span>Вступникам</span>
+    </nav>
+
+    <section class="page-hero">
+      <p class="eyebrow">Вступникам до аспірантури</p>
+      <h1>Вступ до аспірантури у 2026 році</h1>
+      <p class="lead">
+        Інститут механіки ім. С. П. Тимошенка НАН України оголошує набір до аспірантури
+        денної форми навчання на 2026 рік за спеціальністю
+        <strong>F1 Прикладна математика</strong>.
+      </p>
+    </section>
+
+    <section class="section-block">
+      <div class="stage-grid">
+        {stages.map((stage) => (
+          <article class="stage-card">
+            <span>{stage.title}</span>
+            <h2>{stage.subtitle}</h2>
+            <ul>
+              {stage.items.map(([label, details]) => (
+                <li><strong>{label}:</strong> {details}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="requirement-note">
+      <strong>Обов’язкова умова допуску до вступних випробувань:</strong>
+      успішне складання ЄВВ з методології наукових досліджень у 2025 або 2026 роках та
+      успішне складання ЄВІ у 2024–2026 роках; мінімальна сума оцінок тесту загальної
+      навчальної компетентності ЄВІ та тесту з іноземної мови ЄВІ не може бути меншою ніж 300.
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Нормативна база</p>
+          <h2>Документи для вступників</h2>
+        </div>
+      </div>
+      <div class="document-grid">
+        {documents.map(([title, href]) => (
+          <a class="document-card" href={href} target="_blank" rel="noopener noreferrer">
+            <span>PDF</span>
+            <strong>{title}</strong>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Перелік документів</p>
+          <h2>Документи для участі у конкурсному відборі</h2>
+        </div>
+      </div>
+      <div class="required-documents-grid">
+        <ul class="check-list">
+          {requiredDocumentsLeft.map((item) => <li>{item}</li>)}
+        </ul>
+        <ul class="check-list">
+          {requiredDocumentsRight.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+      <div class="warning-note"><strong>Увага!</strong> Копії документів без пред’явлення оригіналів не приймаються.</div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Наукове керівництво</p>
+          <h2>Потенційні наукові керівники аспірантів</h2>
+        </div>
+      </div>
+      <div class="supervisor-grid">
+        {supervisors.map(([name, degree]) => (
+          <article class="supervisor-card">
+            <div class="avatar" aria-hidden="true">{name.split(' ').slice(0, 2).map((part) => part[0]).join('')}</div>
+            <h3>{name}</h3>
+            <p>{degree}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .postgraduate-page { max-width: 1180px; margin: 0 auto; padding: 46px 20px 72px; }
+  .breadcrumbs { display: flex; gap: 10px; align-items: center; margin-bottom: 22px; color: var(--muted); font-weight: 750; }
+  .page-hero, .stage-card, .document-card, .required-documents-grid, .supervisor-card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+  .page-hero { padding: clamp(28px, 5vw, 52px); }
+  .page-hero h1 { margin: 0 0 18px; font-size: clamp(2.2rem, 4.8vw, 4.3rem); line-height: 1.04; letter-spacing: -0.04em; }
+  .lead { max-width: 860px; color: var(--muted); font-size: 1.08rem; line-height: 1.7; }
+  .section-block { margin-top: 34px; }
+  .stage-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .stage-card { padding: 24px; }
+  .stage-card span { display: inline-block; margin-bottom: 12px; padding: 6px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-dark); font-weight: 850; }
+  .stage-card h2 { margin: 0 0 14px; font-size: 1.25rem; }
+  .stage-card ul, .check-list { margin: 0; padding-left: 20px; color: var(--muted); }
+  .stage-card li, .check-list li { margin-bottom: 10px; }
+  .requirement-note, .warning-note { margin-top: 22px; padding: 18px 20px; border-radius: 18px; line-height: 1.65; }
+  .requirement-note { border-left: 5px solid var(--accent); background: var(--accent-soft); }
+  .warning-note { border-left: 5px solid #b91c1c; background: #fef2f2; color: #7f1d1d; }
+  .document-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+  .document-card { display: flex; min-height: 132px; flex-direction: column; justify-content: space-between; padding: 18px; color: var(--text); text-decoration: none; }
+  .document-card:hover { text-decoration: none; transform: translateY(-3px); }
+  .document-card span { width: fit-content; padding: 5px 9px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-dark); font-size: 0.76rem; font-weight: 850; }
+  .required-documents-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; padding: 24px; }
+  .supervisor-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .supervisor-card { padding: 22px; }
+  .avatar { display: grid; place-items: center; width: 68px; height: 68px; margin-bottom: 14px; border-radius: 22px; background: var(--accent-soft); color: var(--accent-dark); font-weight: 950; }
+  .supervisor-card h3 { margin: 0 0 8px; }
+  .supervisor-card p { margin: 0; color: var(--muted); }
+  @media (max-width: 920px) { .stage-grid, .document-grid, .required-documents-grid, .supervisor-grid { grid-template-columns: 1fr; } }
+</style>

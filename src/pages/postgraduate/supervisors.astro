@@ -4,48 +4,17 @@ import { site } from '../../data/site';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+const photoBase = '/people/';
 
 const requiredCourseTeachers = [
-  {
-    code: 'ОК1',
-    course: 'Філософія науки і культури',
-    teachers: 'Вільчинська С. В., кандидат філософських наук, доцент; Літус І. І., кандидат філософських наук'
-  },
-  {
-    code: 'ОК2',
-    course: 'Іноземна мова професійного спрямування для підготовки аспірантів до рівня С1',
-    teachers: 'Рубашова Л. М., кандидат філологічних наук'
-  },
-  {
-    code: 'ОК3',
-    course: 'Методологія, організація та технологія наукових досліджень в механіці',
-    teachers: 'Жук Я. О., доктор фізико-математичних наук, член-кореспондент НАН України; Васильєва Н. В., кандидат фізико-математичних наук'
-  },
-  {
-    code: 'ОК4',
-    course: 'Поглиблений курс теоретичної механіки',
-    teachers: 'Іванов І. Л., кандидат фізико-математичних наук'
-  },
-  {
-    code: 'ОК5',
-    course: 'Механіка деформівного твердого тіла',
-    teachers: 'Селіванов М. Ф., доктор фізико-математичних наук, член-кореспондент НАН України'
-  },
-  {
-    code: 'ОК6',
-    course: 'Чисельні методи розв’язання задач прикладної математики',
-    teachers: 'Янчевський І. В., доктор фізико-математичних наук'
-  },
-  {
-    code: 'ОК7',
-    course: 'Педагогіка і методика викладання прикладної математики',
-    teachers: 'Борисенко М. Ю., доктор технічних наук'
-  },
-  {
-    code: 'ОК8',
-    course: 'Педагогічна практика',
-    teachers: 'Борисенко М. Ю., доктор технічних наук'
-  }
+  { code: 'ОК1', course: 'Філософія науки і культури', teachers: 'Вільчинська С. В., кандидат філософських наук, доцент; Літус І. І., кандидат філософських наук' },
+  { code: 'ОК2', course: 'Іноземна мова професійного спрямування для підготовки аспірантів до рівня С1', teachers: 'Рубашова Л. М., кандидат філологічних наук' },
+  { code: 'ОК3', course: 'Методологія, організація та технологія наукових досліджень в механіці', teachers: 'Жук Я. О., доктор фізико-математичних наук, член-кореспондент НАН України; Васильєва Н. В., кандидат фізико-математичних наук' },
+  { code: 'ОК4', course: 'Поглиблений курс теоретичної механіки', teachers: 'Іванов І. Л., кандидат фізико-математичних наук' },
+  { code: 'ОК5', course: 'Механіка деформівного твердого тіла', teachers: 'Селіванов М. Ф., доктор фізико-математичних наук, член-кореспондент НАН України' },
+  { code: 'ОК6', course: 'Чисельні методи розв’язання задач прикладної математики', teachers: 'Янчевський І. В., доктор фізико-математичних наук' },
+  { code: 'ОК7', course: 'Педагогіка і методика викладання прикладної математики', teachers: 'Борисенко М. Ю., доктор технічних наук' },
+  { code: 'ОК8', course: 'Педагогічна практика', teachers: 'Борисенко М. Ю., доктор технічних наук' }
 ];
 
 const electiveCourseTeachers = [
@@ -65,31 +34,37 @@ const potentialSupervisors = [
   {
     name: 'Юрчук Василь Миколайович',
     degree: 'доктор фізико-математичних наук',
+    photo: `${photoBase}yurchuk.png`,
     area: 'хвильові процеси, механіка структурно неоднорідних матеріалів, математичне моделювання у механіці'
   },
   {
     name: 'Кіпніс Олександр Леонідович',
     degree: 'кандидат фізико-математичних наук',
+    photo: `${photoBase}kipnis.png`,
     area: 'стійкість тонкоплівкових систем, механіка покриттів, контактні та міжфазні задачі'
   },
   {
     name: 'Борисенко Максим Юрійович',
     degree: 'доктор технічних наук',
+    photo: `${photoBase}borysenko.png`,
     area: 'чисельний аналіз механічної поведінки оболонкових систем, педагогіка і методика викладання прикладної математики'
   },
   {
     name: 'Хорошун Анатолій Сергійович',
     degree: 'доктор фізико-математичних наук',
+    photo: `${photoBase}khoroshun.png`,
     area: 'прикладна математика, механіка деформівного твердого тіла, моделювання складних механічних систем'
   },
   {
     name: 'Григоренко Олександр Ярославович',
     degree: 'доктор фізико-математичних наук, професор, академік НАН України',
+    photo: `${photoBase}hryhorenko.png`,
     area: 'механіка оболонок, чисельний аналіз напружено-деформованого стану, прикладна теорія оболонок'
   },
   {
     name: 'Селіванов Михайло Федорович',
     degree: 'доктор фізико-математичних наук, член-кореспондент НАН України',
+    photo: `${photoBase}selivanov.png`,
     area: 'механіка руйнування, когезійні моделі тріщин, в’язкопружність, чисельне моделювання росту тріщин'
   }
 ];
@@ -146,20 +121,10 @@ const initials = (name: string) => name.split(' ').slice(0, 2).map((part) => par
       <div class="table-panel">
         <div class="table-scroll">
           <table>
-            <thead>
-              <tr>
-                <th>Код</th>
-                <th>Назва дисципліни</th>
-                <th>Викладачі</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Код</th><th>Назва дисципліни</th><th>Викладачі</th></tr></thead>
             <tbody>
               {electiveCourseTeachers.map(([code, course, teachers]) => (
-                <tr>
-                  <td>{code}</td>
-                  <td>{course}</td>
-                  <td>{teachers}</td>
-                </tr>
+                <tr><td>{code}</td><td>{course}</td><td>{teachers}</td></tr>
               ))}
             </tbody>
           </table>
@@ -178,7 +143,17 @@ const initials = (name: string) => name.split(' ').slice(0, 2).map((part) => par
       <div class="supervisor-grid">
         {potentialSupervisors.map((person) => (
           <article class="supervisor-card">
-            <div class="avatar" aria-hidden="true">{initials(person.name)}</div>
+            <div class="supervisor-photo-frame">
+              {person.photo && (
+                <img
+                  src={withBase(person.photo)}
+                  alt={`Фото: ${person.name}`}
+                  loading="lazy"
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"
+                />
+              )}
+              <div class={`avatar ${person.photo ? 'avatar-fallback' : ''}`} aria-hidden="true">{initials(person.name)}</div>
+            </div>
             <div>
               <h3>{person.name}</h3>
               <p class="degree">{person.degree}</p>
@@ -212,8 +187,11 @@ const initials = (name: string) => name.split(' ').slice(0, 2).map((part) => par
   td { color: var(--muted); }
   td:first-child { color: var(--text); font-weight: 850; white-space: nowrap; }
   .supervisor-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-  .supervisor-card { display: flex; gap: 18px; padding: 24px; }
-  .avatar { display: grid; place-items: center; flex: 0 0 auto; width: 72px; height: 72px; border-radius: 24px; background: var(--accent-soft); color: var(--accent-dark); font-weight: 950; }
+  .supervisor-card { display: flex; gap: 18px; padding: 24px; align-items: flex-start; }
+  .supervisor-photo-frame { display: grid; place-items: center; flex: 0 0 auto; width: 88px; height: 88px; overflow: hidden; border-radius: 28px; background: var(--accent-soft); }
+  .supervisor-photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .avatar { display: grid; place-items: center; width: 100%; height: 100%; color: var(--accent-dark); font-weight: 950; font-size: 1.1rem; }
+  .avatar-fallback { display: none; }
   .supervisor-card h3 { margin: 0 0 8px; font-size: 1.18rem; }
   .degree { margin: 0 0 10px; font-weight: 800; }
   @media (max-width: 920px) { .course-grid, .supervisor-grid { grid-template-columns: 1fr; } }

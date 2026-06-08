@@ -6,7 +6,7 @@ department: "Відділ динаміки та стійкості суціль�
 departmentUrl: "/departments/01-dynamics-stability/"
 degree: "Доктор технічних наук"
 academicTitle: "Академік НАН України, член Європейської академії наук"
-photo: "/people/huz.png"
+photo: "/people/guz.png"
 featured: false
 order: 2
 

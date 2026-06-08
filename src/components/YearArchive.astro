@@ -5,8 +5,9 @@ interface Props {
 
 const { activeYear = new Date().getFullYear() } = Astro.props;
 const currentYear = new Date().getFullYear();
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <nav class="year-nav" aria-label="Архів за роками">
-  <a class={currentYear === activeYear ? 'active' : ''} href="#">{currentYear}</a>
+  <a class={currentYear === activeYear ? 'active' : ''} href={`${base}/news/`}>{currentYear}</a>
 </nav>

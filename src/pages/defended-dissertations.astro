@@ -2,6 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
 import DefendedDissertationCatalog from '../components/DefendedDissertationCatalog.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
 ---
 
 <BaseLayout
@@ -14,12 +17,11 @@ import DefendedDissertationCatalog from '../components/DefendedDissertationCatal
       <p class="eyebrow">Освітньо-наукова діяльність</p>
       <h1>Захищені дисертації</h1>
       <p class="lead">
-        Каталог дисертацій, захищених в Інституті механіки. Перший перенесений фрагмент
-        містить записи на літери А–В зі старої сторінки бібліотеки.
+        Каталог дисертацій, захищених в Інституті механіки ім. С. П. Тимошенка НАН України.
       </p>
       <div class="catalog-hero-actions">
         <a class="button primary" href="#defended-catalog">Перейти до каталогу</a>
-        <a class="button secondary" href="/inmech-site/dissertations/">До сторінки захистів</a>
+        <a class="button secondary" href={withBase('/dissertations/')}>До сторінки захистів</a>
       </div>
     </div>
   </section>

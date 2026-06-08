@@ -34,4 +34,3 @@ publications:
         Bespalova O.I., Boreiko N.P. Stability of Shells of Revolution with Different Gaussian Curvature in the Field of Combined Static Loads // International Applied Mechanics. 2021. Vol. 57, No. 4. P. 405–413.
 ---
 
-Сторінку підготовлено за матеріалами старої сторінки відділу.

@@ -6,7 +6,7 @@ department: "Відділ реології"
 departmentUrl: "/departments/02-rheology/"
 degree: "Кандидат фізико-математичних наук"
 email: "h.khotenko@gmail.com"
-photo: "/people/hotenko.png"
+photo: "/people/khotenko.png"
 featured: false
 order: 4
 

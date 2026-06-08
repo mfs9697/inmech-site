@@ -7,7 +7,7 @@ departmentUrl: "/departments/10-stability-processes/"
 degree: "Доктор фізико-математичних наук"
 academicTitle: "Професор, академік НАН України"
 email: "martynyukanan@gmail.com"
-photo: "/people/martyniuk-anatolii.png"
+photo: "/people/martynyuk.png"
 featured: false
 order: 1
 

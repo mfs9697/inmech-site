@@ -178,5 +178,176 @@ function withBase(path: string) {
     justify-content: space-between;
     gap: 28px;
     align-items: flex-end;
+    margin-bottom: 22px;
+  }
+
+  .section-heading h2 {
+    margin: 0;
+    font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .section-heading p:last-child {
+    max-width: 620px;
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .textbooks-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--surface-soft);
+  }
+
+  .textbooks-toolbar a,
+  .textbooks-toolbar span {
+    font-weight: 850;
+  }
+
+  .textbooks-toolbar span {
+    color: var(--muted);
+  }
+
+  .year-groups {
+    display: grid;
+    gap: 18px;
+  }
+
+  .year-group {
+    padding: clamp(18px, 3vw, 28px);
+  }
+
+  .year-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .year-header h3 {
+    margin: 0;
+    color: var(--accent-dark);
+    font-size: 1.5rem;
+  }
+
+  .year-header span {
+    color: var(--muted);
+    font-weight: 850;
+  }
+
+  .textbook-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .textbook-card {
+    display: flex;
+    min-height: 260px;
+    flex-direction: column;
+    padding: 18px;
+    box-shadow: none;
+    background: var(--surface-soft);
+  }
+
+  .textbook-card-topline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .textbook-card-topline span,
+  .textbook-card-topline strong,
+  .loc-badge {
+    display: inline-flex;
+    width: fit-content;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 850;
+    line-height: 1.2;
+  }
+
+  .textbook-card-topline span {
+    background: var(--surface);
+    color: var(--accent-dark);
+  }
+
+  .textbook-card-topline strong,
+  .loc-badge {
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+  }
+
+  .textbook-card h4 {
+    margin: 0 0 10px;
+    color: var(--text);
+    font-size: 1.05rem;
+    line-height: 1.3;
+  }
+
+  .textbook-card .authors {
+    margin: 0 0 10px;
+    color: var(--accent-dark);
+    font-weight: 850;
+    line-height: 1.45;
+  }
+
+  .textbook-card .details {
+    margin: 0 0 14px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .loc-badge {
+    margin: auto 0 12px;
+  }
+
+  .textbook-card .card-link {
+    margin-top: auto;
+  }
+
+  @media (max-width: 1180px) {
+    .textbook-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 900px) {
+    .textbooks-hero-panel,
+    .section-heading,
+    .year-header {
+      display: block;
+    }
+
+    .textbooks-stats {
+      width: 158px;
+      margin-top: 22px;
+    }
+
+    .section-heading p:last-child,
+    .year-header span {
+      display: block;
+      margin-top: 12px;
+    }
+
+    .textbook-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

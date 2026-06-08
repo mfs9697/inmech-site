@@ -17,7 +17,6 @@ const date = entry.data.date.toLocaleDateString('uk-UA', {
 });
 const TitleTag = level;
 const visibleTags = getVisibleNewsTags(entry);
-const localUrl = withBase(`/news/${entry.id}/`);
 const hasLocalBody = !entry.data.externalUrl && Boolean(entry.body?.trim());
 const renderedEntry = hasLocalBody ? await render(entry) : null;
 const Content = renderedEntry?.Content;
@@ -30,7 +29,7 @@ const Content = renderedEntry?.Content;
       {entry.data.externalUrl ? (
         <a href={entry.data.externalUrl} target="_blank" rel="noopener noreferrer">{entry.data.title}</a>
       ) : (
-        <a href={localUrl}>{entry.data.title}</a>
+        entry.data.title
       )}
     </TitleTag>
     <p>{entry.data.description}</p>
@@ -49,12 +48,10 @@ const Content = renderedEntry?.Content;
       </details>
     )}
 
-    {entry.data.externalUrl ? (
+    {entry.data.externalUrl && (
       <a class="card-link news-more-link" href={entry.data.externalUrl} target="_blank" rel="noopener noreferrer">
         Перейти до матеріалу →
       </a>
-    ) : (
-      <a class="card-link news-more-link" href={localUrl}>Читати окремою сторінкою →</a>
     )}
   </div>
 </article>

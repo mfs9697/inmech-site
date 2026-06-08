@@ -8,6 +8,7 @@ degree: "Доктор фізико-математичних наук"
 academicTitle: "Професор, академік НАН України, академік Європейської академії наук і мистецтв"
 email: "vdk@inmech.kiev.ua"
 featured: false
+photo: "public/people/kubenko.png"
 order: 1
 
 profiles:

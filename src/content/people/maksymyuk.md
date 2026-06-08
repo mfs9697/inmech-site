@@ -6,7 +6,7 @@ department: "Відділ динаміки та стійкості суціль�
 departmentUrl: "/departments/01-dynamics-stability/"
 degree: "Доктор фізико-математичних наук"
 email: "volmak@ukr.net"
-photo: "/people/maksymyuk.png"
+photo: "/people/maksymiuk.png"
 featured: false
 order: 8
 

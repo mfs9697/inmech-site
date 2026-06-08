@@ -7,7 +7,7 @@ departmentUrl: "/departments/02-rheology/"
 degree: "Кандидат фізико-математичних наук"
 academicTitle: "Старший науковий співробітник"
 email: "i.khotenko@gmail.com"
-photo: "/people/khotenkoi.png"
+photo: "/people/hotenkoi.png"
 featured: false
 order: 5
 

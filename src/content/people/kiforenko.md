@@ -8,6 +8,7 @@ degree: "Доктор фізико-математичних наук"
 academicTitle: "Професор"
 email: "bkifor@ukr.net"
 featured: false
+photo: "public/people/kiforenko.png"
 order: 2
 
 profiles: []

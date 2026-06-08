@@ -5,7 +5,7 @@ position: "Старший науковий співробітник"
 department: "Відділ динаміки та стійкості суцільних середовищ"
 departmentUrl: "/departments/01-dynamics-stability/"
 degree: "Кандидат фізико-математичних наук"
-photo: "/people/glukhov-andrii.png"
+photo: "/people/glukhova.png"
 featured: false
 order: 13
 

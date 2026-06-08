@@ -1,0 +1,91 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../data/site';
+import { getVisibleNewsTags } from '../../utils/newsTags';
+
+export async function getStaticPaths() {
+  const news = (await getCollection('news')).filter((entry) => !entry.data.externalUrl);
+
+  return news.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry }
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+const date = entry.data.date.toLocaleDateString('uk-UA', {
+  day: '2-digit',
+  month: 'long',
+  year: 'numeric'
+});
+const visibleTags = getVisibleNewsTags(entry);
+---
+
+<BaseLayout
+  title={`${entry.data.title} | ${site.name}`}
+  description={entry.data.description}
+  activePage="news"
+>
+  <section class="page-hero news-detail-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">{entry.data.category}</p>
+        <h1>{entry.data.title}</h1>
+        <div class="meta-line">
+          <time datetime={entry.data.date.toISOString()}>{date}</time>
+          {visibleTags.length > 0 && (
+            <span>{visibleTags.join(' · ')}</span>
+          )}
+        </div>
+        <p class="lead">{entry.data.description}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container news-detail-container">
+      <article class="panel news-detail-panel">
+        <div class="content-body news-content">
+          <Content />
+        </div>
+
+        <p class="back-link">
+          <a href={withBase('/news/')}>← До всіх новин</a>
+        </p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .news-detail-hero .lead {
+    margin-top: 18px;
+  }
+
+  .news-detail-container {
+    max-width: 900px;
+  }
+
+  .news-detail-panel {
+    padding: clamp(24px, 4vw, 42px);
+  }
+
+  .news-content {
+    color: var(--text);
+    font-size: 1.06rem;
+    line-height: 1.78;
+  }
+
+  .news-content :global(p) {
+    margin: 0 0 1.15rem;
+  }
+
+  .back-link {
+    margin: 28px 0 0;
+    font-weight: 750;
+  }
+</style>

@@ -1,6 +1,6 @@
 ---
 name: "Григоренко Олександр Ярославович"
-nameEn: "Oleksandr Ya. Hryhorenko"
+nameEn: "Oleksandr Ya. Grigorenko"
 position: "Завідувач відділу обчислювальних методів"
 department: "Відділ обчислювальних методів"
 departmentUrl: "/departments/04-computational-methods/"

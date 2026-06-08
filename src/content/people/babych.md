@@ -7,7 +7,7 @@ departmentUrl: "/departments/01-dynamics-stability/"
 degree: "Доктор технічних наук"
 academicTitle: "Професор"
 email: "babich_sy@ukr.net"
-photo: "/people/babych.png"
+photo: "/people/babych.jpg"
 featured: false
 order: 5
 

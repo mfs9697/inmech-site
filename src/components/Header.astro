@@ -163,9 +163,28 @@ function withBase(path: string) {
   .nav-row {
     position: relative;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
-    min-height: 54px;
+    min-height: 52px;
+  }
+
+  .primary-nav {
+    width: 100%;
+  }
+
+  .primary-nav > ul {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 4px;
+    width: 100%;
+  }
+
+  .primary-nav a,
+  .primary-nav .nav-label {
+    padding: 8px 10px;
+    font-size: 0.94rem;
+    white-space: nowrap;
   }
 
   .menu-toggle {
@@ -201,18 +220,13 @@ function withBase(path: string) {
 
   .primary-nav .submenu a {
     color: var(--text);
+    font-size: 0.95rem;
   }
 
   .primary-nav .submenu a:hover,
   .primary-nav .submenu a.active {
     background: var(--accent-soft);
     color: var(--accent-dark);
-  }
-
-  @media (min-width: 941px) {
-    .primary-nav {
-      flex: 1 1 auto;
-    }
   }
 
   @media (max-width: 940px) {
@@ -225,6 +239,17 @@ function withBase(path: string) {
       top: 58px;
       background: #0f1f34;
       border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .primary-nav > ul {
+      display: block;
+      width: auto;
+    }
+
+    .primary-nav a,
+    .primary-nav .nav-label {
+      padding: 10px 12px;
+      font-size: 1rem;
     }
 
     .primary-nav .submenu {

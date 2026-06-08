@@ -84,6 +84,7 @@ function withBase(path: string) {
 
         <li><a class={isActive('news')} href={withBase('/news/')}>Новини</a></li>
         <li><a href={withBase('/#contacts')}>Контакти</a></li>
+        <li><a class="search-nav-link" href={withBase('/search/')} aria-label="Пошук по сайту">Пошук</a></li>
       </ul>
     </nav>
   </div>
@@ -155,9 +156,16 @@ function withBase(path: string) {
   .primary-nav a:hover,
   .primary-nav a.active,
   .primary-nav .nav-label:hover,
-  .primary-nav .nav-label.active {
+  .primary-nav .nav-label.active,
+  .search-nav-link {
     background: rgba(255, 255, 255, 0.13);
     color: #fff;
+  }
+
+  .search-nav-link::before {
+    content: '⌕';
+    margin-right: 6px;
+    font-weight: 900;
   }
 
   .primary-nav .submenu {

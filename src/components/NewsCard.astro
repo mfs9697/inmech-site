@@ -17,6 +17,7 @@ const date = entry.data.date.toLocaleDateString('uk-UA', {
 });
 const TitleTag = level;
 const visibleTags = getVisibleNewsTags(entry);
+const localUrl = withBase(`/news/${entry.id}/`);
 ---
 
 <article class="news-card">
@@ -26,7 +27,7 @@ const visibleTags = getVisibleNewsTags(entry);
       {entry.data.externalUrl ? (
         <a href={entry.data.externalUrl} target="_blank" rel="noopener noreferrer">{entry.data.title}</a>
       ) : (
-        entry.data.title
+        <a href={localUrl}>{entry.data.title}</a>
       )}
     </TitleTag>
     <p>{entry.data.description}</p>
@@ -35,10 +36,12 @@ const visibleTags = getVisibleNewsTags(entry);
         <a class="tag" href={withBase(`/news/tags/${encodeURIComponent(tag)}/`)}>{tag}</a>
       ))}
     </div>
-    {entry.data.externalUrl && (
+    {entry.data.externalUrl ? (
       <a class="card-link news-more-link" href={entry.data.externalUrl} target="_blank" rel="noopener noreferrer">
         Перейти до матеріалу →
       </a>
+    ) : (
+      <a class="card-link news-more-link" href={localUrl}>Читати повністю →</a>
     )}
   </div>
 </article>

@@ -7,7 +7,7 @@ departmentUrl: "/departments/01-dynamics-stability/"
 degree: "Кандидат фізико-математичних наук"
 academicTitle: "Доцент"
 email: "gluchov.uriy@gmail.com"
-photo: "/people/glukhov-yurii.png"
+photo: "/people/glukhov.png"
 featured: false
 order: 9
 

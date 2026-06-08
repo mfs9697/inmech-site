@@ -65,6 +65,8 @@ const catalog = [
 
 const totalItems = catalog.reduce((sum, group) => sum + group.items.length, 0);
 const totalArchiveItems = defenseMaterialsArchiveGroups.reduce((sum, [, items]) => sum + items.length, 0);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
 ---
 
 <section class="section" id="defended-catalog">
@@ -75,8 +77,8 @@ const totalArchiveItems = defenseMaterialsArchiveGroups.reduce((sum, [, items]) 
         <h2>Захищені дисертації</h2>
       </div>
       <p>
-        Алфавітний каталог подано для літер А–Я. У ньому розміщено {totalItems}
-        бібліографічних записів зі старого розділу бібліотеки.
+        Каталог містить {totalItems} бібліографічних записів, згрупованих за першою літерою
+        прізвища здобувача. Для швидкого переходу скористайтеся алфавітною навігацією.
       </p>
     </div>
 
@@ -88,9 +90,9 @@ const totalArchiveItems = defenseMaterialsArchiveGroups.reduce((sum, [, items]) 
     </nav>
 
     <div class="diss-note">
-      <strong>Примітка.</strong> Каталог перенесено зі старої сторінки бібліотеки та збережено
-      максимально близьким до її бібліографічного формату. Окремо нижче подано архів матеріалів
-      захистів попередніх років.
+      <strong>Навігація.</strong> У цьому розділі подано бібліографічний каталог захищених дисертацій.
+      Матеріали окремих захистів — дисертації, автореферати, відгуки та відеозаписи — розміщено
+      в архіві нижче та на сторінці <a href={withBase('/dissertations/')}>«Захист дисертацій»</a>.
     </div>
 
     <div class="diss-groups">
@@ -124,8 +126,8 @@ const totalArchiveItems = defenseMaterialsArchiveGroups.reduce((sum, [, items]) 
         <h2>Матеріали попередніх захистів</h2>
       </div>
       <p>
-        Архів матеріалів захистів за 2015–2021 роки перенесено до каталогу. Усього подано
-        {totalArchiveItems} записів із посиланнями на автореферати, дисертації та відеозаписи, якщо вони є.
+        Архів згруповано за роками. Усього подано {totalArchiveItems} записів із посиланнями
+        на доступні матеріали захистів.
       </p>
     </div>
 
@@ -193,6 +195,11 @@ const totalArchiveItems = defenseMaterialsArchiveGroups.reduce((sum, [, items]) 
     border-radius: 16px;
     background: var(--surface-soft);
     color: var(--muted);
+  }
+
+  .diss-note a {
+    color: var(--accent-dark);
+    font-weight: 850;
   }
 
   .diss-groups,

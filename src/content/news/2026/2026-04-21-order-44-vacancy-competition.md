@@ -5,5 +5,5 @@ date: 2026-04-21
 category: "Наказ"
 tags: ["конкурс", "вакансії"]
 year: 2026
-externalUrl: "https://inmech.kyiv.ua/doc/Order44.pdf"
+externalUrl: "/documents/news/2026/orders/order-44-vacancy-competition.pdf"
 ---

@@ -5,5 +5,5 @@ date: 2026-03-05
 category: "Бібліотека"
 tags: ["Динник", "історія механіки", "видання"]
 year: 2026
-externalUrl: "https://inmech.kyiv.ua/doc/Dynnik.pdf"
+externalUrl: "/documents/library/history-publications/dynnik.pdf"
 ---

@@ -5,5 +5,5 @@ date: 2026-04-16
 category: "Вибори директора"
 tags: ["наказ", "директор", "2026"]
 year: 2026
-externalUrl: "https://inmech.kyiv.ua/doc/Document_2026-04-16_114124.pdf"
+externalUrl: "/documents/news/2026/orders/director-election-order-2026-04-16.pdf"
 ---

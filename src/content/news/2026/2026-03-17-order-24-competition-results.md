@@ -5,5 +5,5 @@ date: 2026-03-17
 category: "Наказ"
 tags: ["конкурс", "результати"]
 year: 2026
-externalUrl: "https://inmech.kyiv.ua/doc/Order24.pdf"
+externalUrl: "/documents/news/2026/orders/order-24-competition-results.pdf"
 ---

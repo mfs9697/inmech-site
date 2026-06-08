@@ -7,7 +7,7 @@ departmentUrl: "/departments/06-thermoplasticity/"
 degree: "Доктор фізико-математичних наук"
 academicTitle: "Член-кореспондент НАН України, професор"
 email: "y.zhuk@i.ua"
-photo: "/people/zhuk-yaroslav.png"
+photo: "/people/zhuk.png"
 featured: false
 order: 1
 

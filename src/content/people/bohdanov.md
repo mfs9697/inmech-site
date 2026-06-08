@@ -7,7 +7,7 @@ departmentUrl: "/departments/01-dynamics-stability/"
 degree: "Доктор фізико-математичних наук"
 academicTitle: "Академік НАН України"
 email: "desc@inmech.kiev.ua"
-photo: "/people/bohdanov.png"
+photo: "/people/bogdanov.png"
 featured: false
 order: 1
 

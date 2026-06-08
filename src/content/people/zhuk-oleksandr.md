@@ -6,7 +6,7 @@ department: "Відділ динаміки та стійкості суціль�
 departmentUrl: "/departments/01-dynamics-stability/"
 degree: "Доктор фізико-математичних наук"
 email: "opzhuk1939@gmail.com"
-photo: "/people/zhuk-oleksandr.png"
+photo: "/people/zhuko.png"
 featured: false
 order: 7
 

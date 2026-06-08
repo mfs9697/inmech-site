@@ -8,6 +8,7 @@ degree: "Доктор фізико-математичних наук"
 academicTitle: "Професор"
 email: "i.yanchevskyi@ukr.net"
 featured: false
+ianchevsky
 order: 4
 
 profiles:

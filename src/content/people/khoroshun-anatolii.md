@@ -6,7 +6,7 @@ department: "Відділ стійкості процесів"
 departmentUrl: "/departments/10-stability-processes/"
 degree: "Доктор фізико-математичних наук"
 email: "khoroshunanatoliy@gmail.com"
-photo: "/people/khoroshun-anatolii.png"
+photo: "/people/khoroshun.png"
 featured: false
 order: 2
 

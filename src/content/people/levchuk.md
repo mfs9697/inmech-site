@@ -7,6 +7,7 @@ departmentUrl: "/departments/11-vibrations/"
 degree: "Кандидат фізико-математичних наук"
 email: "inmech2021@gmail.com"
 featured: false
+photo: "/people/levchuk.png"
 order: 6
 
 profiles:

@@ -7,6 +7,7 @@ departmentUrl: "/departments/11-vibrations/"
 degree: "Доктор фізико-математичних наук"
 email: "kirilyuk_v@ukr.net"
 featured: false
+photo: "/people/kyryliuk.png"
 order: 3
 
 profiles:

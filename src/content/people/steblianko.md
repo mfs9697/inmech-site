@@ -7,7 +7,7 @@ departmentUrl: "/departments/06-thermoplasticity/"
 degree: "Доктор фізико-математичних наук"
 academicTitle: "Професор"
 email: "caf-vmi@ukr.net"
-photo: "/people/steblyanko.png"
+photo: "/people/steblyаnko.png"
 featured: false
 order: 5
 

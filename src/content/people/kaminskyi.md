@@ -10,7 +10,7 @@ email: "fract@inmech.kyiv.ua"
 order: 2
 featured: true
 # Додайте фото у public/people/kaminskyi.png і розкоментуйте наступний рядок:
-photo: "public/people/kaminsky.png"
+photo: "/people/kaminsky.png"
 
 profiles:
   - label: "Scopus"

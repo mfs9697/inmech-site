@@ -6,6 +6,7 @@ import DepartmentCard from '../components/DepartmentCard.astro';
 import { quickLinks, site } from '../data/site';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const currentYear = new Date().getFullYear();
 
 function withBase(path: string) {
   if (path.startsWith('http') || path.startsWith('#')) {
@@ -16,6 +17,7 @@ function withBase(path: string) {
 }
 
 const news = (await getCollection('news'))
+  .filter((entry) => entry.data.year === currentYear || entry.data.date.getFullYear() === currentYear)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
 
@@ -44,7 +46,7 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
       <div class="hero-card hero-card-visual">
         <div class="hero-text">
           <p class="eyebrow">Національна академія наук України</p>
-          <h1>Інститут механіки ім. С.П. Тимошенка НАН України</h1>
+          <h1>Інститут механіки ім. С.П.&nbsp;Тимошенка НАН України</h1>
           <p class="lead">
             Провідна наукова установа НАН України, що здійснює фундаментальні та прикладні дослідження
             в галузі механіки деформівного твердого тіла, динаміки, стійкості, термопружності,
@@ -89,7 +91,7 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
           <p class="eyebrow">Про інститут</p>
           <h2 class="section-title">Наукова школа, дослідження та інженерні застосування</h2>
           <p class="section-text">
-            Інститут механіки ім. С.П. Тимошенка НАН України проводить дослідження у ключових напрямах
+            Інститут механіки ім. С.П.&nbsp;Тимошенка НАН України проводить дослідження у ключових напрямах
             теоретичної та прикладної механіки, поєднуючи розвиток математичних моделей, експериментальні
             дослідження, чисельне моделювання та впровадження результатів у практику.
           </p>
@@ -186,14 +188,20 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
         <div>
           <p class="eyebrow">Швидкий доступ</p>
           <h2 class="section-title">Основні розділи сайту</h2>
-          <p class="section-text">
-            Ці посилання можна поступово підключати до окремих сторінок у міру наповнення сайту.
-          </p>
         </div>
       </div>
 
       <div class="quick-links">
-        {quickLinks.map((link) => <a class="quick-link" href={link.href}>{link.title}</a>)}
+        {quickLinks.map((link) => (
+          <a
+            class="quick-link"
+            href={withBase(link.href)}
+            target={link.href.startsWith('http') ? '_blank' : undefined}
+            rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+          >
+            {link.title}
+          </a>
+        ))}
       </div>
     </div>
   </section>

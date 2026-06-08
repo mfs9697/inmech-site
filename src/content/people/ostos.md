@@ -5,6 +5,7 @@ position: "Старший науковий співробітник"
 department: "Відділ теорії коливань"
 departmentUrl: "/departments/11-vibrations/"
 featured: false
+photo: "/people/ostos.png"
 order: 8
 
 profiles:

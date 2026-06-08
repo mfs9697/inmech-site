@@ -6,7 +6,7 @@ department: "Відділ термопружності"
 departmentUrl: "/departments/07-thermoelasticity/"
 degree: "Кандидат фізико-математичних наук"
 email: "yult84@ukr.net"
-photo: "/people/leliukh.png"
+photo: "/people/lelyukh.png"
 featured: false
 order: 2
 

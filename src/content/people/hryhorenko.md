@@ -7,7 +7,7 @@ departmentUrl: "/departments/04-computational-methods/"
 degree: "Доктор фізико-математичних наук"
 academicTitle: "Професор, академік НАН України"
 email: "ayagrigorenko1991@gmail.com"
-photo: "/people/hryhorenko.png"
+photo: "/people/grygorenko.png"
 featured: false
 order: 1
 

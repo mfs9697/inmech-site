@@ -29,7 +29,7 @@ function withBase(path: string) {
     </div>
   </div>
 
-  <div class="container header-main">
+  <div class="container header-main brand-main">
     <a class="brand" href={withBase('/')} aria-label="Головна сторінка">
       <img src={withBase('/assets/img/inmech-logo-new.svg')} alt="Логотип Інституту механіки" />
       <span class="brand-text">
@@ -37,7 +37,11 @@ function withBase(path: string) {
         <span class="brand-subtitle">{site.subtitle}</span>
       </span>
     </a>
+  </div>
+</header>
 
+<div class="nav-shell">
+  <div class="container nav-row">
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
       Меню
     </button>
@@ -88,12 +92,15 @@ function withBase(path: string) {
       </ul>
     </nav>
   </div>
-</header>
+</div>
 
 <style>
   .site-header {
+    position: relative;
+    top: auto;
+    z-index: 20;
     background: #0f1f34;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    border-bottom: 0;
     color: #fff;
     backdrop-filter: none;
   }
@@ -108,9 +115,10 @@ function withBase(path: string) {
     color: #cce3ff;
   }
 
-  .header-main {
+  .header-main.brand-main {
+    justify-content: flex-start;
     align-items: center;
-    padding: 1px 0;
+    padding: 14px 0 18px;
   }
 
   .brand {
@@ -140,6 +148,24 @@ function withBase(path: string) {
   .brand-subtitle {
     color: rgba(255, 255, 255, 0.74);
     font-size: 1.02rem;
+  }
+
+  .nav-shell {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: #0f1f34;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    color: #fff;
+  }
+
+  .nav-row {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 54px;
   }
 
   .menu-toggle {
@@ -183,9 +209,20 @@ function withBase(path: string) {
     color: var(--accent-dark);
   }
 
-  @media (max-width: 940px) {
+  @media (min-width: 941px) {
     .primary-nav {
-      top: 148px;
+      flex: 1 1 auto;
+    }
+  }
+
+  @media (max-width: 940px) {
+    .nav-row {
+      justify-content: flex-end;
+      min-height: 58px;
+    }
+
+    .primary-nav {
+      top: 58px;
       background: #0f1f34;
       border-color: rgba(255, 255, 255, 0.18);
     }

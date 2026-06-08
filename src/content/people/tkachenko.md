@@ -7,7 +7,7 @@ departmentUrl: "/departments/11-vibrations/"
 degree: "Кандидат фізико-математичних наук"
 email: "yaroslavvt@ukr.net"
 featured: false
-photo: "public/tkachenko.png"
+photo: "/people/tkachenko.png"
 order: 5
 
 profiles: []

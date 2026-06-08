@@ -16,7 +16,8 @@ export const archiveYears = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 202
 export const quickLinks = [
   { title: 'Наукові відділи', href: '/departments/' },
   { title: 'Аспірантура', href: '/postgraduate/' },
-  { title: 'Журнал «Прикладна механіка»', href: '#' },
-  { title: 'Конференції', href: '#' },
-  { title: 'Контакти', href: '#contacts' }
+  { title: 'Бібліотека', href: '/library/' },
+  { title: 'Вчена рада', href: '/scientific-council/' },
+  { title: 'Журнал «Прикладна механіка»', href: 'https://applied-mechanics.inmech.kyiv.ua/' },
+  { title: 'Контакти', href: '/#contacts' }
 ];

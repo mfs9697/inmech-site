@@ -47,12 +47,6 @@ const Content = renderedEntry?.Content;
         </div>
       </details>
     )}
-
-    {entry.data.externalUrl && (
-      <a class="card-link news-more-link" href={entry.data.externalUrl} target="_blank" rel="noopener noreferrer">
-        Перейти до матеріалу →
-      </a>
-    )}
   </div>
 </article>
 
@@ -77,10 +71,5 @@ const Content = renderedEntry?.Content;
 
   .news-card-content :global(p) {
     margin: 0 0 1rem;
-  }
-
-  .news-more-link {
-    display: inline-flex;
-    margin-top: 14px;
   }
 </style>

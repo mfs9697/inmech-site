@@ -5,5 +5,5 @@ date: 2026-02-05
 category: "Наказ"
 tags: ["конкурс", "вакансії"]
 year: 2026
-externalUrl: "/documents/news/2026/orders/order-12-vacancy-competition.pdf"
+externalUrl: "/inmech-site/documents/news/2026/orders/order-12-vacancy-competition.pdf"
 ---

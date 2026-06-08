@@ -5,7 +5,7 @@ position: "Старший науковий співробітник"
 department: "Відділ стійкості процесів"
 departmentUrl: "/departments/10-stability-processes/"
 email: "ihorivanov@ukr.net"
-photo: "/people/ivanov-ihor.png"
+photo: "/people/ivanov.png"
 featured: false
 order: 3
 

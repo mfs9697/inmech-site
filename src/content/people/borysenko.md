@@ -53,5 +53,7 @@ publications:
       - >-
         Grigorenko O.Y., Borysenko M.Y., Boychuk O.V. Numerical Evaluation of Frequencies and the Modes of Free Vibrations of Isosceles Triangular Plates with Free Edges // Journal of Mathematical Sciences. 2023. Vol. 273. P. 27–43.
       - >-
-        Grigorenko O.Y., Borysenko M.Y., Boreiko N.P., Baburov V.V. Numerical Analysis of Frequencies of Free Vibrations of Pentagonal Plates with One Edge Rigidly Fixed // International Applied Mechanics. 2025. Vol. 61, No. 1. P. 31–41.
+        Grigorenko O.Y., Borysenko M.Y., Boreiko N.P., Baburov V.V. Numerical Analysis of Frequencies of Free Vibrations of Pentagonal Plates
+---
+   with One Edge Rigidly Fixed // International Applied Mechanics. 2025. Vol. 61, No. 1. P. 31–41.
 ---

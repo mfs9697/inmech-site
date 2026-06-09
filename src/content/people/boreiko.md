@@ -42,4 +42,3 @@ publications:
         Grigorenko O.Ya., Rozhok L.S., Boreiko N.P., Kharytonova L.V. Numerical analysis of stress state of non-thin elliptical cylindrical shells made of continuously inhomogeneous materials // International Applied Mechanics. 2024. Vol. 60, No. 6. P. 653–664.
 ---
 
-**Індекс Гірша:** Scopus: 4.

@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import NewsCard from '../components/NewsCard.astro';
 import DepartmentCard from '../components/DepartmentCard.astro';
-import { quickLinks, site } from '../data/site';
+import { site } from '../data/site';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const currentYear = new Date().getFullYear();
@@ -178,30 +178,6 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
 
       <div class="news-list">
         {news.map((entry) => <NewsCard entry={entry} level="h3" />)}
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <p class="eyebrow">Швидкий доступ</p>
-          <h2 class="section-title">Основні розділи сайту</h2>
-        </div>
-      </div>
-
-      <div class="quick-links">
-        {quickLinks.map((link) => (
-          <a
-            class="quick-link"
-            href={withBase(link.href)}
-            target={link.href.startsWith('http') ? '_blank' : undefined}
-            rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-          >
-            {link.title}
-          </a>
-        ))}
       </div>
     </div>
   </section>

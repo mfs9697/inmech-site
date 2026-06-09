@@ -50,3 +50,4 @@ publications:
         Григоренко О.Я., Рожок Л.С., Крук Л.А., Борейко Н.П., Харитонова Л.В. Чисельний розв’язок задачі про напружений стан нетонких неоднорідних циліндричних еліптичних оболонок на основі просторової моделі // Доповіді НАН України. 2024. № 3. С. 18–26.
       - >-
         Grigorenko O.Ya., Rozhok L.S., Boreiko N.P., Kharitonova L.V. Numerical Analysis of Stress State of Non-Thin Elliptical Cylindrical Shells Made of Continuously Inhomogeneous Materials // International Applied Mechanics. 2024. Vol. 60, No. 6. P. 653–664.
+---

@@ -12,6 +12,40 @@ function withBase(path: string) {
   return `${base}${path.startsWith('/') ? path : `/${path}`}`;
 }
 
+const councilTerms = [
+  {
+    period: '2021–2023',
+    members: [
+      { name: 'Скосаренко Ю.В.', role: 'голова' },
+      { name: 'Голуб В.П.', role: 'заступник голови' },
+      { name: 'Карнаухов В.Г.' },
+      { name: 'Луговий П.З.' },
+      { name: 'Григоренко О.Я.' },
+      { name: 'Хотенко О.О.', role: 'секретар' }
+    ]
+  },
+  {
+    period: '2022–2025',
+    members: [
+      { name: 'Максимюк В.А.', role: 'голова' },
+      { name: 'Голуб В.П.', role: 'заступник голови' },
+      { name: 'Луговий П.З.' },
+      { name: 'Григоренко О.Я.' },
+      { name: 'Остос О.Х.', role: 'секретар' }
+    ]
+  },
+  {
+    period: '2025–2026',
+    members: [
+      { name: 'Максимюк В.А.', role: 'голова' },
+      { name: 'Григоренко О.Я.', role: 'заступник голови' },
+      { name: 'Кирилюк В.С.' },
+      { name: 'Кіпніс О.Л.' },
+      { name: 'Остос О.Х.', role: 'секретар' }
+    ]
+  }
+];
+
 const activityCards = [
   {
     title: 'Методичне забезпечення ОНП',
@@ -37,28 +71,17 @@ const activityCards = [
 
 const documentGroups = [
   {
-    title: 'Склад ради',
-    description: 'Документ із персональним складом Науково-методичної ради Інституту.',
-    documents: [
-      {
-        title: 'Склад НМР',
-        href: '/inmech-site/documents/postgraduate/nmr/nmr-members.docx',
-        type: 'DOCX'
-      }
-    ]
-  },
-  {
     title: 'Рейтингування викладачів',
     description: 'Порядок рейтингування та результати рейтингу науково-педагогічних працівників.',
     documents: [
       {
         title: 'Порядок рейтингування науково-педагогічних працівників Інституту механіки ім. С. П. Тимошенка НАН України',
-        href: '/inmech-site/documents/postgraduate/nmr/teacher-rating-rules.pdf',
+        href: '/documents/postgraduate/nmr/teacher-rating-rules.pdf',
         type: 'PDF'
       },
       {
         title: 'Рейтинг викладачів 2024–2025',
-        href: '/inmech-site/documents/postgraduate/nmr/teacher-rating-2024-2025.pdf',
+        href: '/documents/postgraduate/nmr/teacher-rating-2024-2025.pdf',
         type: 'PDF'
       }
     ]
@@ -69,7 +92,7 @@ const documentGroups = [
     documents: [
       {
         title: 'Порядок відбору / добору наукових працівників Інституту механіки ім. С. П. Тимошенка НАН України до викладацького складу',
-        href: '/inmech-site/documents/postgraduate/nmr/teacher-selection-procedure.pdf',
+        href: '/documents/postgraduate/nmr/teacher-selection-procedure.pdf',
         type: 'PDF'
       }
     ]
@@ -89,9 +112,9 @@ const relatedLinks = [
   description="Науково-методична рада Інституту механіки ім. С. П. Тимошенка НАН України: методичне забезпечення освітньо-наукової діяльності, рейтингування викладачів, добір викладацького складу та документи."
   activePage="education"
 >
-  <section class="nmr-hero">
-    <div class="container nmr-hero-grid">
-      <div class="nmr-hero-panel">
+  <section class="page-hero nmr-hero">
+    <div class="container">
+      <div class="panel nmr-hero-panel">
         <p class="eyebrow">Освітньо-наукова діяльність</p>
         <h1>Науково-методична рада</h1>
         <p class="lead">
@@ -101,57 +124,61 @@ const relatedLinks = [
           викладацького складу та підготовку документів, пов’язаних із реалізацією
           освітньо-наукової програми.
         </p>
-        <div class="nmr-hero-actions">
-          <a class="button primary" href="#documents">Документи НМР</a>
-          <a class="button secondary" href="#activities">Напрями діяльності</a>
+        <div class="hero-actions">
+          <a class="button primary" href="#composition">Склад ради</a>
+          <a class="button secondary" href="#documents">Документи НМР</a>
         </div>
       </div>
-
-      <aside class="nmr-mark-card">
-        <span>НМР</span>
-        <h2>Методична координація</h2>
-        <p>
-          Підтримка якості освітньо-наукової програми, прозорих процедур і методичного
-          супроводу підготовки здобувачів.
-        </p>
-      </aside>
     </div>
   </section>
 
-  <section class="section nmr-summary-section">
-    <div class="container nmr-summary-grid">
-      <article class="nmr-summary-card">
-        <span>ОНП</span>
-        <p>методичне забезпечення освітньо-наукової програми</p>
-      </article>
-      <article class="nmr-summary-card">
-        <span>Якість</span>
-        <p>моніторинг і підтримка якості освітнього процесу</p>
-      </article>
-      <article class="nmr-summary-card">
-        <span>Рейтинг</span>
-        <p>процедури рейтингування викладачів</p>
-      </article>
+  <section class="section" id="composition">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Склад ради</p>
+          <h2 class="section-title">Склад Науково-методичної ради</h2>
+          <p class="section-text">
+            Склад ради подано без окремого Word-документа: інформацію розміщено безпосередньо на сторінці.
+          </p>
+        </div>
+      </div>
+
+      <div class="nmr-composition-grid">
+        {councilTerms.map((term) => (
+          <article class="card nmr-composition-card">
+            <h3>{term.period}</h3>
+            <ol>
+              {term.members.map((member) => (
+                <li>
+                  <span>{member.name}</span>
+                  {member.role && <em> — {member.role}</em>}
+                </li>
+              ))}
+            </ol>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 
   <section class="section" id="activities">
     <div class="container">
-      <div class="section-heading compact-header">
+      <div class="section-header">
         <div>
           <p class="eyebrow">Сфера відповідальності</p>
-          <h2>Основні напрями діяльності</h2>
+          <h2 class="section-title">Основні напрями діяльності</h2>
+          <p class="section-text">
+            НМР забезпечує методичну узгодженість освітньо-наукової діяльності та підтримує
+            прозорі процедури, пов’язані з якістю освітнього процесу й викладацьким складом.
+          </p>
         </div>
-        <p>
-          НМР забезпечує методичну узгодженість освітньо-наукової діяльності та підтримує
-          прозорі процедури, пов’язані з якістю освітнього процесу й викладацьким складом.
-        </p>
       </div>
 
-      <div class="nmr-activity-grid">
+      <div class="cards-grid nmr-activity-grid">
         {activityCards.map((card) => (
-          <article class="nmr-activity-card">
-            <span>{card.icon}</span>
+          <article class="card nmr-activity-card">
+            <span aria-hidden="true">{card.icon}</span>
             <h3>{card.title}</h3>
             <p>{card.text}</p>
           </article>
@@ -160,44 +187,27 @@ const relatedLinks = [
     </div>
   </section>
 
-  <section class="section" id="composition">
-    <div class="container">
-      <div class="nmr-composition-panel">
-        <div>
-          <p class="eyebrow">Склад ради</p>
-          <h2>Склад Науково-методичної ради</h2>
-          <p>
-            Актуальний склад Науково-методичної ради подано в окремому документі.
-          </p>
-        </div>
-        <a class="button primary" href="/inmech-site/documents/postgraduate/nmr/nmr-members.docx" target="_blank" rel="noopener noreferrer">
-          Завантажити склад НМР
-        </a>
-      </div>
-    </div>
-  </section>
-
   <section class="section" id="documents">
     <div class="container">
-      <div class="section-heading compact-header">
+      <div class="section-header">
         <div>
           <p class="eyebrow">Документи</p>
-          <h2>Документи НМР</h2>
+          <h2 class="section-title">Документи НМР</h2>
+          <p class="section-text">
+            Основні матеріали згруповано за призначенням: рейтингування викладачів і добір
+            наукових працівників до викладацького складу.
+          </p>
         </div>
-        <p>
-          Основні матеріали згруповано за призначенням: склад ради, рейтингування викладачів
-          і добір наукових працівників до викладацького складу.
-        </p>
       </div>
 
       <div class="nmr-document-group-grid">
         {documentGroups.map((group) => (
-          <article class="nmr-document-group-card">
+          <article class="card nmr-document-group-card">
             <h3>{group.title}</h3>
             <p>{group.description}</p>
             <div class="nmr-document-list">
               {group.documents.map((document) => (
-                <a href={document.href} target="_blank" rel="noopener noreferrer">
+                <a href={withBase(document.href)} target="_blank" rel="noopener noreferrer">
                   <span>{document.type}</span>
                   <strong>{document.title}</strong>
                 </a>
@@ -211,7 +221,7 @@ const relatedLinks = [
 
   <section class="section">
     <div class="container">
-      <div class="related-panel">
+      <div class="related-panel nmr-related-panel">
         <div>
           <p class="eyebrow">Пов’язані розділи</p>
           <h2>Освітньо-наукова діяльність</h2>
@@ -227,14 +237,135 @@ const relatedLinks = [
 </BaseLayout>
 
 <style>
-  .nmr-hero {
-    padding: 52px 0 18px;
+  .nmr-hero .panel {
+    max-width: 980px;
   }
 
-  .nmr-hero-grid {
+  .nmr-composition-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
-    gap: 24px;
-    align-items: stretch;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .nmr-composition-card {
+    min-height: 0;
+  }
+
+  .nmr-composition-card h3 {
+    margin: 0 0 12px;
+    color: var(--accent-dark);
+    font-size: 1.25rem;
+  }
+
+  .nmr-composition-card ol {
+    margin: 0;
+    padding-left: 1.35rem;
+  }
+
+  .nmr-composition-card li {
+    margin: 8px 0;
+    color: var(--text);
+  }
+
+  .nmr-composition-card em {
+    color: var(--muted);
+    font-style: normal;
+  }
+
+  .nmr-activity-card span {
+    display: inline-grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    margin-bottom: 12px;
+    border-radius: 14px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-weight: 900;
+  }
+
+  .nmr-document-group-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .nmr-document-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .nmr-document-list a {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 10px;
+    align-items: start;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface-soft);
+  }
+
+  .nmr-document-list span {
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 800;
+  }
+
+  .nmr-document-list strong {
+    font-weight: 750;
+  }
+
+  .nmr-related-panel,
+  .related-panel {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    align-items: center;
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .related-panel h2 {
+    margin: 0;
+  }
+
+  .related-link-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+
+  .related-link-grid a {
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: #fff;
+    font-weight: 750;
+  }
+
+  @media (max-width: 940px) {
+    .nmr-composition-grid,
+    .nmr-document-group-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .nmr-related-panel,
+    .related-panel {
+      display: block;
+    }
+
+    .related-link-grid {
+      justify-content: flex-start;
+      margin-top: 16px;
+    }
   }
 </style>

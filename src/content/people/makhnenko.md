@@ -47,7 +47,8 @@ publications:
         Makhnenko O.V., Milenin O.S., Saprykina G.Yu., Velikoivanenko O.A., Rozynka G.P., Kandala S.M., Makhnenko O.O. Mathematical modeling of welding deformations of large-sized structures using the shrinkage function method // Applied Mechanics. 2025. Vol. 61, No. 4. P. 58–70.
       - >-
         Makhnenko O.V., Milenin O.S., Saprykina H.Y. et al. Mathematical Modeling of Welding Stresses and Strains in Large-Sized Structures Using Inherent Strain Method // International Applied Mechanics. 2025. Vol. 61. P. 468–478.
-      - >-
+---
+
         Milenin O., Velikoivanenko E., Rozynka G., Makhnenko O. Numerical Assessment of Structural Integrity of Welded Absorbing Elements in VVER-1000 Control and Protection System. In: Advances in Mechanical and Power Engineering III. Lecture Notes in Mechanical Engineering. Springer, 2026.
 ---
 

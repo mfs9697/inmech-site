@@ -11,30 +11,48 @@ photo: "/people/grygorenko.png"
 featured: false
 order: 1
 
-profiles: []
+profiles:
+  - label: "Scopus"
+    value: "h-index: 14"
+    url: "https://www.scopus.com/authid/detail.uri?authorId=7005549978"
+    kind: "scopus"
+  - label: "Web of Science"
+    value: "h-index: 12"
+    url: "https://www.webofscience.com/wos/author/record/GSM-7556-2022"
+    kind: "wos"
+  - label: "Google Scholar"
+    value: "h-index: 20"
+    url: "https://scholar.google.com/citations?user=ibKrt9sAAAAJ&hl=uk"
+    kind: "scholar"
+  - label: "ORCID iD"
+    url: "https://orcid.org/0000-0003-1113-0524"
+    kind: "orcid"
+  - label: "ResearchGate"
+    url: "https://www.researchgate.net/profile/A-Grigorenko"
+    kind: "researchgate"
 
 researchAreas:
-  - "Дослідження полів переміщень, деформацій і напружень оболонкових систем з анізотропних неоднорідних матеріалів."
-  - "Дослідження динамічних характеристик оболонкових систем у класичній, уточненій та просторовій постановках."
+  - "Поля переміщень, деформацій і напружень оболонкових систем з анізотропних неоднорідних матеріалів."
+  - "Динамічні характеристики оболонкових систем у класичній, уточненій та просторовій постановках."
+  - "Динамічні процеси в п’єзокерамічних неоднорідних тілах на основі просторової теорії електропружності."
   - "Біомеханічні процеси в галузі ортопедичної та ортодонтичної стоматології."
-  - "Обчислювальні методи в задачах механіки деформівного твердого тіла."
 
-professionalActivity: "Наукова діяльність пов’язана з обчислювальними методами механіки оболонкових систем, динамікою анізотропних неоднорідних конструкцій і застосуванням механіки деформівного твердого тіла до задач стоматології."
+professionalActivity: "Працює в Інституті механіки ім. С.П. Тимошенка НАН України з 1981 року; з 2005 року очолює відділ обчислювальних методів. Наукова діяльність пов’язана з обчислювальними методами механіки оболонкових систем, електропружністю п’єзокерамічних тіл та застосуваннями механіки деформівного твердого тіла до задач стоматології."
 
 publications:
   - title: "Основні публікації"
     type: "ordered"
     items:
       - >-
-        Grigorenko A.Y., Müller W.H., Loza I.A. Selected Problems in the Elastodynamics of Piezoceramic Bodies. Springer International Publishing, 2021.
+        Grigorenko O.Ya., Borisenko M.Yu., Boichuk O.V. Free vibrations of a corrugated closed cylindrical shell // International Applied Mechanics. 2022. Vol. 58, No. 1. P. 43–52.
       - >-
-        Grigorenko A.Y., Yaremchenko S.N. On the Stress-Strain State of Elliptic Cylinders in the Three-Dimensional Statement // Journal of Mathematical Sciences. 2022. Vol. 261. P. 143–150.
+        Bogdanov V.L., Grigorenko O.Ya., Malanchuk V.O., Sorochenko G.V., Tormakhov M.M. Support reactions of removable partial dentures // International Applied Mechanics. 2022. Vol. 58, No. 2. P. 147–153.
       - >-
-        Grigorenko O.Y., Borisenko M.Y., Boichuk O.V. et al. Free Vibrations of Triangular Plates with a Hole // International Applied Mechanics. 2021. Vol. 57. P. 534–542.
+        Grigorenko A.Ya., Yaremchenko S.N. On the stress-strain state of elliptic cylinders in the three-dimensional statement // Journal of Mathematical Sciences. 2022. Vol. 261, No. 1. P. 143–150.
       - >-
-        Grigorenko A.Y., Malanchuk V.A., Sorochenko G.V. et al. Application of the Inhomogeneous Elasticity Theory to the Description of the Mechanical State of a Single-Rooted Tooth // International Applied Mechanics. 2021. Vol. 57. P. 249–262.
+        Altenbach H., Bogdanov V., Grigorenko A., Khimich O., Kushnir R., Nazarenko V. Selected Problems of Solid Mechanics and Solving Methods. Advanced Structured Materials. Springer, 2024.
       - >-
-        Grigorenko A.Ya., Loza I.A., Yaremchenko S.N. Numerical analysis of free vibrations of piezoelectric cylinders. In: New Achievements in Continuum Mechanics and Thermodynamics. Advanced Structured Materials, vol. 108. Cham: Springer, 2019. P. 187–196.
+        Bogdanov V.L., Grigorenko A.Ya., Chepkov I.B. et al. Identification of Special-Purpose Structures by Their Fragments Based on Scanning Electron Microscopy Methods. Advanced Structured Materials. Springer, 2025.
 ---
 
-**Відзнаки:** лауреат дослідницької стипендії DAAD у 2002, 2013 та 2016 роках; нагороджений відзнаками НАН України «За наукові досягнення» та «За підготовку наукової зміни».
+**Індекс Гірша:** Scopus: 14; Web of Science: 12; Google Scholar: 20.

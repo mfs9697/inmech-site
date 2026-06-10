@@ -1,4 +1,4 @@
----
+﻿---
 name: "Рущицький Ярема Ярославович"
 nameEn: "Yarema Ya. Rushchytskyi"
 position: "Завідувач відділу реології"

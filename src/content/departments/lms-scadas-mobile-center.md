@@ -6,7 +6,7 @@ group: "Механіка композитних та неоднорідних с
 head: "д.ф.-м. наук В.А. Максимюк"
 summary: "Центр колективного користування портативною апаратурою LMS SCADAS Mobile для вимірювання, реєстрації та аналізу вібраційних, акустичних і тензометричних сигналів."
 order: 3.5
-contactEmail: "desc@inmech.kiev.ua"
+contactEmail: "desc@inmech.kyiv.ua"
 staff:
   - name: "Максимюк Володимир Ананійович"
 ---
@@ -40,7 +40,7 @@ LMS SCADAS Mobile — це універсальний мобільний ана�
 Контроль за діяльністю Центру здійснює заступник директора Інституту механіки ім. С.П. Тимошенка НАН України член-кореспондент НАН України Селіванов М.Ф.
 
 **Контактні телефони:** (044) 454-77-12, (098) 214-35-59  
-**E-mail:** [desc@inmech.kiev.ua](mailto:desc@inmech.kiev.ua), [volmak@ukr.net](mailto:volmak@ukr.net)
+**E-mail:** [desc@inmech.kyiv.ua](mailto:desc@inmech.kyiv.ua), [volmak@ukr.net](mailto:volmak@ukr.net)
 
 ### Документи
 

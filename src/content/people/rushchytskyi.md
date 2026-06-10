@@ -6,7 +6,7 @@ department: "Відділ реології"
 departmentUrl: "/departments/02-rheology/"
 degree: "Доктор фізико-математичних наук"
 academicTitle: "Член-кореспондент НАН України, професор, почесний професор University of Aberdeen (UK)"
-email: "rushch@inmech.kiev.ua"
+email: "rushch@inmech.kyiv.ua"
 photo: "/people/rushchitsky.png"
 featured: false
 order: 1

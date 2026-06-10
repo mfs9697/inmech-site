@@ -6,8 +6,10 @@ import { site } from '../data/site';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
 
-function normalizeSearchText(value?: string) {
+function cleanSearchText(value?: string) {
   if (!value) return '';
 
   return value
-    .replace(/
+    .replaceAll('<', ' ')
+    .replaceAll('>', ' ')
+    .replaceAll('{

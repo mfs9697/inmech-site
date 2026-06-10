@@ -5,5 +5,4 @@ shortTitle: "ЦКК LMS SCADAS Mobile"
 group: "Механіка композитних та неоднорідних середовищ"
 head: "д.ф.-м.н. В.А. Максимюк"
 summary: "Центр колективного користування портативної апаратури LMS SCADAS Mobile для вимірювання вібраційних, акустичних і тензометричних сигналів."
-order: 3.5
-contactEmail: "desc@inmech.kiev.ua
+order: 

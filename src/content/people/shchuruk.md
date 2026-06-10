@@ -5,7 +5,7 @@ position: "Старший науковий співробітник"
 department: "Відділ динаміки та стійкості суцільних середовищ"
 departmentUrl: "/departments/01-dynamics-stability/"
 degree: "Кандидат фізико-математичних наук"
-email: "prikl@inmech.kiev.ua"
+email: "prikl@inmech.kyiv.ua"
 photo: "/people/shchuruk.png"
 featured: false
 order: 11

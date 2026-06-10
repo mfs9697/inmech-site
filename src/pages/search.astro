@@ -1,13 +1,10 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
-
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
-
-const newsEntries = await getCollection('news');
-const departmentEntries = await getCollection('departments');
-const peopleEntries = await getCollection('people');
-
-const staticPages = [
+---
+<BaseLayout title={`Пошук | ${site.shortName}`} description="Пошук по сайту Інституту механіки." activePage="home">
+  <main class="search-page">
+    <h1>Пошук по сайту</h1>
+    <p>Сторінку пошуку буде оновлено після локального внесення повного коду.</p>
+  </main>
+</BaseLayout>

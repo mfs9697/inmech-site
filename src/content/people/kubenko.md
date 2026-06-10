@@ -6,7 +6,7 @@ department: "Відділ теорії коливань"
 departmentUrl: "/departments/11-vibrations/"
 degree: "Доктор фізико-математичних наук"
 academicTitle: "Професор, академік НАН України, академік Європейської академії наук і мистецтв"
-email: "vdk@inmech.kiev.ua"
+email: "vdk@inmech.kyiv.ua"
 featured: false
 photo: "public/people/kubenko.png"
 order: 1

@@ -6,10 +6,7 @@ import { site } from '../data/site';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
 
-function cleanSearchText(value?: string) {
-  if (!value) return '';
-
-  return value
-    .replaceAll('<', ' ')
-    .replaceAll('>', ' ')
-    .replaceAll('{
+const staticPages = [
+  ['Головна', '/', 'Головна сторінка Інституту механіки ім. С. П. Тимошенка НАН України.'],
+  ['Новини', '/news/', 'Новини та оголошення Інституту.'],
+  ['Науков

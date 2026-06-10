@@ -5,7 +5,7 @@ position: "Головний науковий співробітник"
 department: "Відділ термопластичності"
 departmentUrl: "/departments/06-thermoplasticity/"
 degree: "Доктор технічних наук"
-email: "plast@inmech.kiev.ua"
+email: "plast@inmech.kyiv.ua"
 photo: "/people/savchenko.png"
 featured: false
 order: 3

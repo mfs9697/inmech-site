@@ -5,7 +5,7 @@ position: "Головний науковий співробітник"
 department: "Відділ термопружності"
 departmentUrl: "/departments/07-thermoelasticity/"
 degree: "Доктор фізико-математичних наук"
-email: "term@inmech.kiev.ua"
+email: "term@inmech.kyiv.ua"
 photo: "/people/senchenkov.png"
 featured: false
 order: 3

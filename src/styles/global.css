@@ -512,3 +512,37 @@ a:hover { color: var(--accent-dark); text-decoration: underline; }
   color: var(--accent-dark);
   font-weight: 700;
 }
+.info-panel {
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--line, #d9e2ef);
+  border-radius: 22px;
+  padding: clamp(20px, 3vw, 32px);
+  margin: 22px 0;
+  box-shadow: var(--shadow, 0 12px 30px rgba(15, 23, 42, 0.08));
+}
+
+.info-panel h2 {
+  margin-top: 0;
+}
+
+.content-figure {
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--line, #d9e2ef);
+  border-radius: 22px;
+  padding: clamp(14px, 2vw, 22px);
+  margin: 24px 0;
+  text-align: center;
+  box-shadow: var(--shadow, 0 12px 30px rgba(15, 23, 42, 0.08));
+}
+
+.content-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+.content-figure figcaption {
+  margin-top: 10px;
+  color: var(--muted, #64748b);
+  font-weight: 650;
+}

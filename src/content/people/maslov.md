@@ -5,7 +5,7 @@ position: "Головний науковий співробітник"
 department: "Відділ механіки повзучості"
 departmentUrl: "/departments/08-creep/"
 degree: "Доктор фізико-математичних наук"
-email: "creep@inmech.kiev.ua"
+email: "creep@inmech.kyiv.ua"
 photo: "/people/maslov.png"
 featured: false
 order: 2
@@ -18,7 +18,7 @@ researchAreas:
   - "Теорія та методи механіки композитних матеріалів."
   - "Чисельно-аналітичні методи досліджень."
 
-professionalActivity: "Наукова діяльність пов’язана з механікою повзучості, нелінійною спадковою повзучістю композитів, довготривалим руйнуванням тонкостінних шаруватих структур та чисельно-аналітичними методами досліджень."
+professionalActivity: "Наукова діяльність пов'язана з механікою повзучості, нелінійною спадковою повзучістю композитів, довготривалим руйнуванням тонкостінних шаруватих структур та чисельно-аналітичними методами досліджень."
 
 publications:
   - title: "Основні публікації"
@@ -33,15 +33,15 @@ publications:
       - >-
         Maslov B.P. Nonlinear Hereditary Creep of Isotropic Composites of Random Structure // International Applied Mechanics. 2022. Vol. 58. P. 75–90. DOI: https://doi.org/10.1007/s10778-022-01136-3.
       - >-
-        Маслов Б.П. Нелінійна спадкова повзучість ізотропних композитів випадкової структури // Прикладна механіка. 2022. Т. 58, № 1. С. 85–101.
+        Маслов Б.П. Нелінійна спадкова повзучість ізотропних композитів випадкової структури // Прикладна механіка. 2022. Т. 58, № 1. С. 83–100.
       - >-
-        Маслов Б.П. Hereditary creep of isotropic composites of random structure under a complex stress state // Вісник Київського національного університету імені Тараса Шевченка. Фізико-математичні науки. 2021. № 3. С. 77–80. DOI: https://doi.org/10.17721/1812-5409.2021/3.13.
+        Маслов Б.П. Hereditary creep of isotropic composites of random structure under a complex stress state // Вісник Київського національного університету імені Тараса Шевченка. Серія фізико-математичні науки. 2021. № 4. С. 44–65.
       - >-
-        Maslov B.P. Combined Numerical and Analytical Determination of Poisson’s Ratio for Viscoelastic Isotropic Materials // International Applied Mechanics. 2018. Vol. 54, No. 2. P. 220–230.
+        Maslov B.P. Combined Numerical and Analytical Determination of Poisson's Ratio for Viscoelastic Isotropic Materials // International Applied Mechanics. 2018. Vol. 54, No. 2. P. 220–230. DOI: https://doi.org/10.1007/s10778-018-0876-0.
       - >-
-        Хорошун Л.П., Маслов Б.П. Нелинейные свойства композитных материалов стохастической структуры. Київ: Наукова думка, 1993. 132 с.
+        Хорошун Л.П., Маслов Б.П. Нелинейные свойства композитных материалов стохастической структуры. Київ: Наукова думка, 2013. 412 с.
 ---
 
-**Освіта:** Київський державний університет ім. Т.Г. Шевченка, механіко-математичний факультет, спеціальність «механіка».
+**Освіта:** Київський державний університет ім. Т.Г. Шевченка, механіко-математичний факультет, спеціальність «Прикладна математика».
 
 **Відзнаки:** лауреат Державної премії України 1988 року.

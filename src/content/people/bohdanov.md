@@ -1,6 +1,6 @@
 ﻿---
 name: "Богданов Вячеслав Леонідович"
-nameEn: "Viacheslav L. Bohdanov"
+nameEn: "Viacheslav L. Bogdanov"
 position: "Завідувач відділу динаміки та стійкості суцільних середовищ"
 department: "Відділ динаміки та стійкості суцільних середовищ"
 departmentUrl: "/departments/01-dynamics-stability/"

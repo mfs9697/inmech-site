@@ -6,7 +6,8 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const number = String(entry.data.number).padStart(2, '0');
+const isSharedUseCenter = entry.id === 'lms-scadas-mobile-center';
+const number = isSharedUseCenter ? '01Ц' : String(entry.data.number).padStart(2, '0');
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const departmentUrl = `${base}/departments/${entry.id}/`;

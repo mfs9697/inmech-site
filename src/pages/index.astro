@@ -27,11 +27,16 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
   if (!acc.has(group)) acc.set(group, []);
   acc.get(group)?.push(entry);
   return acc;
-}, new Map<string, typeof departments>())].map(([group, entries], index) => ({
-  group,
-  entries,
-  id: `home-department-group-${index + 1}`
-}));
+}, new Map<string, typeof departments>())].map(([group, entries], index) => {
+  const departmentCount = entries.filter((entry) => entry.id !== 'lms-scadas-mobile-center').length;
+
+  return {
+    group,
+    entries,
+    departmentCount,
+    id: `home-department-group-${index + 1}`
+  };
+});
 ---
 
 <BaseLayout
@@ -145,11 +150,11 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
       </div>
 
       <div class="home-department-groups">
-        {groupedDepartments.map(({ group, entries, id }) => (
+        {groupedDepartments.map(({ group, entries, departmentCount, id }) => (
           <section class="home-department-group" aria-labelledby={id}>
             <div class="home-department-group-header">
               <h3 id={id}>{group}</h3>
-              <span>{entries.length} {entries.length === 1 ? 'відділ' : 'відділи'}</span>
+              <span>{departmentCount} {departmentCount === 1 ? 'відділ' : 'відділи'}</span>
             </div>
             <div class="department-grid">
               {entries.map((entry) => <DepartmentCard entry={entry} />)}
@@ -179,29 +184,4 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
       </div>
     </div>
   </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <p class="eyebrow">Швидкий доступ</p>
-          <h2 class="section-title">Основні розділи сайту</h2>
-          <p class="section-text">
-            Ці посилання можна поступово підключати до окремих сторінок у міру наповнення сайту.
-          </p>
-        </div>
-      </div>
-
-      <div class="quick-links">
-        {quickLinks.map((link) => <a class="quick-link" href={link.href}>{link.title}</a>)}
-      </div>
-    </div>
-  </section>
 </BaseLayout>
-
-<style>
-  .card-links-stack {
-    display: grid;
-    gap: 8px;
-  }
-</style>

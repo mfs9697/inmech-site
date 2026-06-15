@@ -15,7 +15,11 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 
-const number = String(entry.data.number).padStart(2, '0');
+const isSharedUseCenter = entry.id === 'lms-scadas-mobile-center';
+const number = isSharedUseCenter ? '01Ц' : String(entry.data.number).padStart(2, '0');
+const eyebrow = isSharedUseCenter ? `Структурний підрозділ відділу 01 · ${number}` : `Науковий відділ ${number}`;
+const staffTitle = isSharedUseCenter ? 'Співробітники ЦКК' : 'Співробітники відділу';
+
 const staff = entry.data.staff ?? [];
 const contactEmail = entry.data.contactEmail;
 
@@ -38,7 +42,7 @@ function withBase(url: string) {
   <section class="page-hero">
     <div class="container">
       <div class="panel">
-        <p class="eyebrow">Науковий відділ {number}</p>
+        <p class="eyebrow">{eyebrow}</p>
         <h1>{entry.data.title}</h1>
         <p class="lead">{entry.data.summary}</p>
         {entry.data.head && <p><strong>Керівник:</strong> {entry.data.head}</p>}
@@ -53,7 +57,7 @@ function withBase(url: string) {
 
         {staff.length > 0 && (
           <>
-            <h2>Співробітники відділу</h2>
+            <h2>{staffTitle}</h2>
             <ul>
               {staff.map((person) => (
                 <li>

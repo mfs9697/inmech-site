@@ -6,7 +6,6 @@ import DepartmentCard from '../components/DepartmentCard.astro';
 import { quickLinks, site } from '../data/site';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const currentYear = new Date().getFullYear();
 
 function withBase(path: string) {
   if (path.startsWith('http') || path.startsWith('#')) {
@@ -17,7 +16,6 @@ function withBase(path: string) {
 }
 
 const news = (await getCollection('news'))
-  .filter((entry) => entry.data.year === currentYear || entry.data.date.getFullYear() === currentYear)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
 
@@ -55,7 +53,7 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
         </div>
 
         <figure class="hero-image-card">
-          <img src={withBase('/assets/img/logo-jacket-upload.svg')} alt="Значок Інституту механіки ім. С. П. Тимошенка" loading="eager" />
+          <img src={withBase('/assets/img/logo-jacket-upload.svg?v=20260615-2')} alt="Значок Інституту механіки ім. С. П. Тимошенка" loading="eager" />
           <div class="hero-actions hero-image-actions">
             <a class="button primary" href={withBase('/departments/')}>Наукові відділи</a>
             <a class="button secondary" href={withBase('/news/')}>Останні новини</a>
@@ -189,13 +187,13 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
           <p class="eyebrow">Швидкий доступ</p>
           <h2 class="section-title">Основні розділи сайту</h2>
           <p class="section-text">
-            Ці посилання допомагають швидко перейти до ключових матеріалів сайту.
+            Ці посилання можна поступово підключати до окремих сторінок у міру наповнення сайту.
           </p>
         </div>
       </div>
 
       <div class="quick-links">
-        {quickLinks.map((link) => <a class="quick-link" href={withBase(link.href)}>{link.title}</a>)}
+        {quickLinks.map((link) => <a class="quick-link" href={link.href}>{link.title}</a>)}
       </div>
     </div>
   </section>

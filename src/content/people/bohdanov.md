@@ -1,4 +1,4 @@
-﻿---
+---
 name: "Богданов Вячеслав Леонідович"
 nameEn: "Viacheslav L. Bogdanov"
 position: "Завідувач відділу динаміки та стійкості суцільних середовищ"
@@ -33,24 +33,28 @@ researchAreas:
   - "Системний аналіз складних систем."
   - "Історія науки і наукознавство."
 
-professionalActivity: "Наукова діяльність пов’язана з механікою деформівного твердого тіла, некласичними задачами механіки руйнування, стійкістю деформованих тіл і механікою композитних матеріалів."
+professionalActivity: "Наукова діяльність пов’язана з механікою деформівного твердого тіла, некласичними задачами механіки руйнування, стійкістю деформованих тіл, механікою композитних матеріалів, системним аналізом складних систем, історією науки і наукознавством. Є автором і співавтором 265 наукових праць, зокрема 21 монографії та 2 навчальних посібників."
 
 publications:
-  - title: "Основні публікації"
+  - title: "Основні наукові публікації (монографії)"
     type: "ordered"
     items:
       - >-
-        Guz A.N., Altenbach H., Bogdanov V., Nazarenko V.M. (eds). Advances in Mechanics: Current Research Results of the NAS of Ukraine. Advanced Structured Materials, vol. 191. Cham: Springer, 2023. DOI: https://doi.org/10.1007/978-3-031-37313-8.
+        Zagorodny A., Bogdanov V., Zaporozhets A., Ermolieva T. (eds). Nexus of Sustainability. Understanding of FEWSE Systems II. Studies in Systems, Decision and Control, vol. 627. Cham: Springer, 2026. 656 p. DOI: https://doi.org/10.1007/978-3-032-03616-2.
       - >-
-        Bogdanov V., Guz A., Nazarenko V. Fracture of Materials Loaded Along Cracks: Approach and Results. In: Advances in Mechanics. Advanced Structured Materials, vol. 191. Cham: Springer, 2023. P. 51–89. DOI: https://doi.org/10.1007/978-3-031-37313-8_4.
+        Bogdanov V.L., Grigorenko A.Ya., Chepkov I.B., Odnoralov I.V., Kuchynskyi A.V., Kremenytskyi V.V., Sperkach S.O. Identification of Special-Purpose Structures by Their Fragments Based on Scanning Electron Microscopy. Advanced Structured Materials, vol. 233. Cham: Springer, 2025. 406 p. DOI: https://doi.org/10.1007/978-3-031-88827-4.
       - >-
-        Bogdanov V.L. On one approach in fracture mechanics of composites with parallel cracks under the action of initial (residual) stresses // Mechanics of Composite Materials. 2023. Vol. 59, No. 2. P. 239–262. DOI: https://doi.org/10.1007/s11029-023-10094-x.
+        Zagorodny A., Bogdanov V., Zaporozhets A. (eds). Nexus of Sustainability. Understanding of FEWSE Systems I. Studies in Systems, Decision and Control, vol. 559. Cham: Springer, 2024. 356 p. DOI: https://doi.org/10.1007/978-3-031-66764-0.
       - >-
-        Bogdanov V.L., Dovzhik M.V., Nazarenko V.M. Fracture of highly elastic and composite materials in compression along near-surface crack // Mechanics of Composite Materials. 2023. Vol. 59, No. 2. P. 411–418. DOI: https://doi.org/10.1007/s11029-023-10105-x.
+        Altenbach H., Bogdanov V., Grigorenko A.Ya., Kushnir R.M., Nazarenko V.M., Eremeyev V.A. (eds). Selected Problems of Solid Mechanics and Solving Methods. Advanced Structured Materials, vol. 204. Cham: Springer, 2024. 390 p. DOI: https://doi.org/10.1007/978-3-031-54063-9.
       - >-
-        Guz A.N., Bogdanov V.L., Nazarenko V.M. Fracture of Materials Under Compression Along Cracks. Advanced Structured Materials, vol. 138. Cham: Springer, 2020. DOI: https://doi.org/10.1007/978-3-030-51814-1.
+        Guz A.N., Altenbach H., Bogdanov V., Nazarenko V.M. (eds). Advances in Mechanics: Current Research Results of the NAS of Ukraine. Advanced Structured Materials, vol. 191. Cham: Springer, 2023. 560 p. DOI: https://doi.org/10.1007/978-3-031-37313-8.
       - >-
-        Богданов В.Л., Жук Я.О., Богданова О.С. Основи експериментальних методів механіки деформівного твердого тіла. Київ: Академперіодика, 2016. 280 с.
+        Guz A.N., Bogdanov V.L., Nazarenko V.M. Fracture of Materials Under Compression Along Cracks. Advanced Structured Materials, vol. 138. Cham: Springer, 2020. 490 p. DOI: https://doi.org/10.1007/978-3-030-51814-1.
+      - >-
+        Богданов В.Л., Гузь А.Н., Назаренко В.М. Объединенный подход в неклассических проблемах механики разрушения. Саарбрюккен: LAP Lambert Academic Publishing, 2017. 528 с.
 ---
 
 **Освіта:** Київський державний університет імені Т.Г. Шевченка, механіко-математичний факультет.
+
+**Науковий доробок:** автор і співавтор 265 наукових праць, у тому числі 21 монографії та 2 навчальних посібників.

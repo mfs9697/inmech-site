@@ -97,7 +97,6 @@ function withBase(path: string) {
 <style>
   .site-header {
     position: relative;
-    top: auto;
     z-index: 20;
     background: #0f1f34;
     border-bottom: 0;
@@ -118,5 +117,38 @@ function withBase(path: string) {
   .header-main.brand-main {
     justify-content: flex-start;
     align-items: center;
+  }
+
+  .nav-shell {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.96);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 12px 28px rgba(15, 31, 52, 0.08);
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-row {
+    min-height: 54px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+  }
+
+  .primary-nav .submenu {
+    z-index: 1100;
+  }
+
+  @media (max-width: 940px) {
+    .nav-row {
+      justify-content: flex-start;
+      padding: 8px 0;
+    }
+
+    .primary-nav {
+      z-index: 1100;
+    }
   }
 </style>

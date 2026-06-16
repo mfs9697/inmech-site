@@ -2,10 +2,14 @@
 name: "Карнаухов Василь Гаврилович"
 nameEn: "Vasyl H. Karnaukhov"
 position: "Завідувач відділу термопружності"
+positionEn: "Head of the Department of Thermoelasticity"
 department: "Відділ термопружності"
+departmentEn: "Department of Thermoelasticity"
 departmentUrl: "/departments/07-thermoelasticity/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Physical and Mathematical Sciences"
 academicTitle: "Професор"
+academicTitleEn: "Professor"
 email: "karn@inmech.kyiv.ua"
 photo: "/people/karnaukhov.png"
 featured: false
@@ -17,11 +21,17 @@ researchAreas:
   - "Нелінійні моделі термомеханіки зв'язаних полів у непружних матеріалах та елементах конструкцій."
   - "Чисельно-аналітичні методи розв'язування зв'язаних задач термоелектромеханіки."
   - "Математичні моделі і методи дослідження активного демпфування вимушених коливань тонкостінних елементів конструкцій за допомогою п'єзоелектричних включень."
+researchAreasEn:
+  - "Nonlinear models of coupled-field thermomechanics in inelastic materials and structural elements."
+  - "Numerical and analytical methods for solving coupled problems of thermoelectromechanics."
+  - "Mathematical models and methods for studying active damping of forced vibrations of thin-walled structural elements using piezoelectric inclusions."
 
 professionalActivity: "Наукова діяльність пов'язана з термомеханікою зв'язаних полів, електротермов'язкопружністю, дисипативним розігрівом непружних тіл та активним демпфуванням коливань тонкостінних елементів конструкцій."
+professionalActivityEn: "Scientific activity is related to coupled-field thermomechanics, electrothermoviscoelasticity, dissipative heating of inelastic bodies, and active damping of vibrations of thin-walled structural elements."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-
@@ -42,4 +52,4 @@ publications:
         Карнаухов В.Г. Связанные задачи термовязкоупругости. Київ: Наукова думка, 1982. 260 с.
 ---
 
-**Освіта:** Київський державний університет імені Т.Г. Шевченка, механіко-математичний факультет, спеціальність «Механіка».}
+**Освіта:** Київський державний університет імені Т.Г. Шевченка, механіко-математичний факультет, спеціальність «Механіка».

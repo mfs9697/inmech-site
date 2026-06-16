@@ -1,0 +1,113 @@
+---
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../data/site-en';
+
+const edrpou = '05417070';
+const prozorroSearchUrl = `https://prozorro.gov.ua/uk/search/tender?text=${edrpou}`;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+---
+
+<BaseLayoutEn
+  title={`Procurement and tenders | ${siteEn.shortName}`}
+  description="Procurement and tender information of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine. Data are provided through the Prozorro public procurement system."
+  activePage="about"
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel tender-hero-panel">
+        <p class="eyebrow">About the Institute</p>
+        <h1>Procurement and tenders</h1>
+        <p class="lead">
+          This page provides access to procurement and tender information of the
+          S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine through the
+          electronic public procurement system Prozorro.
+        </p>
+        <div class="hero-actions">
+          <a class="button" href={prozorroSearchUrl} target="_blank" rel="noopener noreferrer">
+            Open in Prozorro
+          </a>
+          <a class="button secondary" href={withBase('/tender/')}>Ukrainian version</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="panel tender-widget-panel">
+        <div class="section-header compact-header">
+          <div>
+            <p class="eyebrow">Prozorro</p>
+            <h2 class="section-title">Institute procurements</h2>
+            <p class="section-text">
+              The procurement widget is configured by the Institute’s EDRPOU code:
+              <strong>{edrpou}</strong>. If the widget does not load, use the button
+              to open the corresponding search results directly in Prozorro.
+            </p>
+          </div>
+          <a class="button secondary" href={prozorroSearchUrl} target="_blank" rel="noopener noreferrer">
+            Open in Prozorro
+          </a>
+        </div>
+
+        <div class="tender-widget-frame" id="prom_state_purchase"></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-column-grid">
+      <article class="panel tender-note">
+        <p class="eyebrow">Data source</p>
+        <h2>Public procurement information</h2>
+        <p>
+          The data are displayed through an external widget of the public procurement
+          system. For detailed filtering, please open Prozorro and search by the
+          Institute’s EDRPOU code, procurement year, status or keywords.
+        </p>
+      </article>
+
+      <article class="panel tender-note">
+        <p class="eyebrow">Official materials</p>
+        <h2>Language of source data</h2>
+        <p>
+          The English page provides translated navigation and explanatory text. The
+          procurement records and tender documentation are official source materials
+          of the public procurement system and may be displayed in Ukrainian.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <script is:inline>
+    var _zk_uaprom = window._zk_uaprom || [];
+    window._zk_uaprom = _zk_uaprom;
+
+    _zk_uaprom.push(
+      ['APP_ID', '42fce870-4490-41e0-a744-f14cdaa0d393'],
+      ['CONTAINER_ID', 'prom_state_purchase'],
+      ['LOCALE', 'uk'],
+      ['ENTITYTYPE', 0],
+      ['SRN', ['05417070']]
+    );
+
+    (function (d, tag, id) {
+      if (d.getElementById(id)) return;
+      var script = d.createElement(tag);
+      script.id = id;
+      script.type = 'text/javascript';
+      script.src = 'https://zk-cabinet.c.prom.st/js/build/zakupki_widget_init_v2/zakupki_widget_init_v2_wp.d7ecb.js';
+      script.async = true;
+      var firstScript = d.getElementsByTagName(tag)[0];
+      firstScript.parentNode.insertBefore(script, firstScript);
+    })(document, 'script', 'zakupki_uaprom_id');
+  </script>
+</BaseLayoutEn>

@@ -1,0 +1,157 @@
+---
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../data/site-en';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+---
+
+<BaseLayoutEn
+  title={`${siteEn.name}`}
+  description={siteEn.description}
+  activePage="home"
+>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-card hero-card-visual">
+        <div class="hero-text">
+          <p class="eyebrow">National Academy of Sciences of Ukraine</p>
+          <h1>S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine</h1>
+          <p class="lead">
+            A leading research institution of the National Academy of Sciences of Ukraine carrying out
+            fundamental and applied studies in solid mechanics, dynamics, stability, thermoelasticity,
+            creep, fracture mechanics and mechanics of composite materials.
+          </p>
+        </div>
+
+        <figure class="hero-image-card">
+          <img src={withBase('/assets/img/logo-jacket.png?v=20260615-2')} alt="Badge of the S.P. Timoshenko Institute of Mechanics" loading="eager" />
+          <div class="hero-actions hero-image-actions">
+            <a class="button primary" href={withBase('/en/departments/')}>Research departments</a>
+            <a class="button secondary" href={withBase('/en/news/')}>Latest news</a>
+          </div>
+        </figure>
+      </div>
+
+      <aside class="aside-card" aria-labelledby="institute-sites-title">
+        <h2 id="institute-sites-title">Institute websites</h2>
+        <p>
+          Separate information resources of the Institute for specialised projects, events and institutional announcements.
+        </p>
+        <ul class="aside-list">
+          <li>
+            <a href="https://natcommmech.inmech.kyiv.ua/" target="_blank" rel="noopener">
+              National Committee of Ukraine for Theoretical and Applied Mechanics
+            </a>
+          </li>
+          <li>
+            <a href="https://election.inmech.kyiv.ua/" target="_blank" rel="noopener">
+              Election of the Director of the Institute, 2026
+            </a>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">About the Institute</p>
+          <h2 class="section-title">Scientific schools, research and engineering applications</h2>
+          <p class="section-text">
+            The Institute develops mathematical models, experimental methods and numerical approaches
+            for the analysis of materials, structures and processes in mechanics. Its research combines
+            theoretical studies with engineering applications and the implementation of scientific results.
+          </p>
+        </div>
+      </div>
+
+      <div class="cards-grid">
+        <article class="card">
+          <h3>Research</h3>
+          <p>
+            Fundamental and applied problems of continuum mechanics, material science, strength,
+            durability and structural reliability.
+          </p>
+          <a class="card-link" href={withBase('/en/departments/')}>View research areas →</a>
+        </article>
+
+        <article class="card">
+          <h3>Education and research training</h3>
+          <p>
+            Postgraduate and doctoral studies, specialised academic councils, scientific seminars and
+            the involvement of young scientists in research projects.
+          </p>
+          <a class="card-link" href={withBase('/en/education/')}>Postgraduate and doctoral studies →</a>
+        </article>
+
+        <article class="card">
+          <h3>Publications and cooperation</h3>
+          <p>
+            Scientific journals, international cooperation, conferences, library resources and the dissemination
+            of research results in the international scientific community.
+          </p>
+          <div class="card-links-stack">
+            <a class="card-link" href="https://applied-mechanics.inmech.kyiv.ua/" target="_blank" rel="noopener">Applied Mechanics journal →</a>
+            <a class="card-link" href={withBase('/en/library/')}>Library →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Scientific activity</p>
+          <h2 class="section-title">Main research areas</h2>
+          <p class="section-text">
+            The Institute’s departments cover a broad spectrum of modern theoretical and applied mechanics.
+          </p>
+        </div>
+        <a class="button secondary" href={withBase('/en/departments/')}>All departments</a>
+      </div>
+
+      <div class="cards-grid">
+        <article class="card">
+          <h3>Mechanics of deformable solids</h3>
+          <p>Modelling of stress, strain, stability and damage in solids, plates, shells and structural elements.</p>
+        </article>
+        <article class="card">
+          <h3>Dynamics and vibrations</h3>
+          <p>Analysis of dynamic processes, wave propagation, oscillations and structural response under time-dependent loads.</p>
+        </article>
+        <article class="card">
+          <h3>Thermomechanics, creep and fracture</h3>
+          <p>Thermoelasticity, thermoplasticity, creep, fatigue, fracture mechanics and long-term durability of materials and structures.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Information</p>
+          <h2 class="section-title">News and announcements</h2>
+          <p class="section-text">
+            The English news archive is being prepared. Current institutional announcements are available
+            in the Ukrainian version of the website.
+          </p>
+        </div>
+        <a class="button secondary" href={withBase('/news/')}>Ukrainian news archive</a>
+      </div>
+    </div>
+  </section>
+</BaseLayoutEn>

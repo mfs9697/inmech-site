@@ -2,10 +2,14 @@
 name: "Багно Олександр Михайлович"
 nameEn: "Oleksandr M. Bahno"
 position: "Провідний науковий співробітник"
+positionEn: "Leading Researcher"
 department: "Відділ динаміки та стійкості суцільних середовищ"
+departmentEn: "Department of Dynamics and Stability of Continua"
 departmentUrl: "/departments/01-dynamics-stability/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Physical and Mathematical Sciences"
 academicTitle: "Старший науковий співробітник"
+academicTitleEn: "Senior Researcher"
 email: "alexbag2016@gmail.com"
 photo: "/people/bahno.png"
 featured: false
@@ -32,11 +36,18 @@ researchAreas:
   - "Динаміка пружно-рідинних систем."
   - "Хвильові процеси в системах, що складаються з в’язкої стисливої рідини і попередньо деформованих пружних тіл."
   - "Поверхнева нестійкість попередньо деформованих тіл у взаємодії з рідиною."
+researchAreasEn:
+  - "Three-dimensional linearized hydroelasticity theory for bodies with initial stresses and viscous fluids."
+  - "Dynamics of elastic-fluid systems."
+  - "Wave processes in systems consisting of a viscous compressible fluid and predeformed elastic bodies."
+  - "Surface instability of predeformed bodies interacting with fluids."
 
 professionalActivity: "Наукова діяльність пов’язана з механікою попередньо напружених тіл, гідропружністю та хвильовими процесами у пружно-рідинних системах."
+professionalActivityEn: "Scientific activity is related to the mechanics of prestressed bodies, hydroelasticity, and wave processes in elastic-fluid systems."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

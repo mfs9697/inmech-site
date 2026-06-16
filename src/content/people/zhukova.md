@@ -2,9 +2,12 @@
 name: "Жукова Наталія Борисівна"
 nameEn: "Nataliia B. Zhukova"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ обчислювальної механіки та техніки"
+departmentEn: "Department of Computational Mechanics and Engineering"
 departmentUrl: "/departments/03-computational-mechanics-engineering/"
 degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 email: "zhukova_n@ukr.net"
 photo: "/people/zhukova.png"
 featured: false
@@ -16,11 +19,17 @@ researchAreas:
   - "Стійкість композитних оболонок з початковими недосконалостями."
   - "Початковий закритичний стан оболонкових елементів конструкцій."
   - "Нелінійне деформування композитних оболонок."
+researchAreasEn:
+  - "Stability of composite shells with initial imperfections."
+  - "Initial post-critical state of shell structural elements."
+  - "Nonlinear deformation of composite shells."
 
 professionalActivity: "Наукова діяльність пов’язана зі стійкістю та закритичною поведінкою композитних оболонок, зокрема оболонок з початковими геометричними недосконалостями."
+professionalActivityEn: "Scientific activity is related to stability and post-critical behaviour of composite shells, in particular shells with initial geometric imperfections."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

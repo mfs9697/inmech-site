@@ -2,9 +2,12 @@
 name: "Довжик Михайло Вікторович"
 nameEn: "Mykhailo V. Dovzhyk"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ обчислювальної механіки та техніки"
+departmentEn: "Department of Computational Mechanics and Engineering"
 departmentUrl: "/departments/03-computational-mechanics-engineering/"
 degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 email: "medved_mik@ukr.net"
 photo: "/people/dovzhyk.png"
 featured: false
@@ -19,11 +22,16 @@ profiles:
 researchAreas:
   - "Руйнування матеріалів при стисканні вздовж близькорозташованих тріщин."
   - "Руйнування композитних та еластичних матеріалів при стисканні вздовж приповерхневих тріщин."
+researchAreasEn:
+  - "Fracture of materials under compression along closely spaced cracks."
+  - "Fracture of composite and elastic materials under compression along near-surface cracks."
 
 professionalActivity: "Наукова діяльність пов’язана з механікою руйнування матеріалів за стискання вздовж приповерхневих і близькорозташованих тріщин."
+professionalActivityEn: "Scientific activity is related to fracture mechanics of materials under compression along near-surface and closely spaced cracks."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

@@ -1,10 +1,14 @@
-﻿---
+---
 number: 1
 title: "Відділ динаміки та стійкості суцільних середовищ"
+titleEn: "Department of Dynamics and Stability of Continua"
 shortTitle: "Динаміка та стійкість"
+shortTitleEn: "Dynamics and Stability"
 group: "Механіка композитних та неоднорідних середовищ"
+groupEn: "Mechanics of Composite and Heterogeneous Media"
 head: "акад. НАН України В.Л. Богданов"
 summary: "Тривимірна теорія стійкості деформівних тіл, поширення та дифракція хвиль у деформованих тілах, некласичні проблеми механіки руйнування, механіка композитних матеріалів і тонкостінних елементів конструкцій."
+summaryEn: "Three-dimensional stability theory, wave propagation and diffraction, non-classical problems of fracture mechanics, composite materials and thin-walled structural elements."
 order: 1
 contactEmail: "desc@inmech.kyiv.ua"
 staff:

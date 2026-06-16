@@ -21,10 +21,15 @@ const departments = defineCollection({
   schema: z.object({
     number: z.number(),
     title: z.string(),
+    titleEn: z.string().optional(),
     shortTitle: z.string().optional(),
+    shortTitleEn: z.string().optional(),
     group: z.string(),
+    groupEn: z.string().optional(),
     head: z.string().optional(),
+    headEn: z.string().optional(),
     summary: z.string(),
+    summaryEn: z.string().optional(),
     order: z.number(),
 
     contactEmail: z.string().email().optional(),
@@ -32,8 +37,10 @@ const departments = defineCollection({
     staff: z.array(
       z.object({
         name: z.string(),
+        nameEn: z.string().optional(),
         url: z.string().optional(),
-        position: z.string().optional()
+        position: z.string().optional(),
+        positionEn: z.string().optional()
       })
     ).default([])
   })
@@ -45,10 +52,14 @@ const people = defineCollection({
     name: z.string(),
     nameEn: z.string().optional(),
     position: z.string().optional(),
+    positionEn: z.string().optional(),
     department: z.string().optional(),
+    departmentEn: z.string().optional(),
     departmentUrl: z.string().optional(),
     degree: z.string().optional(),
+    degreeEn: z.string().optional(),
     academicTitle: z.string().optional(),
+    academicTitleEn: z.string().optional(),
     email: z.string().email().optional(),
     phone: z.string().optional(),
     office: z.string().optional(),
@@ -66,13 +77,17 @@ const people = defineCollection({
     ).default([]),
 
     researchAreas: z.array(z.string()).default([]),
+    researchAreasEn: z.array(z.string()).default([]),
     professionalActivity: z.string().optional(),
+    professionalActivityEn: z.string().optional(),
 
     publications: z.array(
       z.object({
         title: z.string(),
+        titleEn: z.string().optional(),
         type: z.enum(['ordered', 'unordered']).default('ordered'),
-        items: z.array(z.string())
+        items: z.array(z.string()),
+        itemsEn: z.array(z.string()).optional()
       })
     ).default([])
   })

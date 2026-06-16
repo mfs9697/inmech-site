@@ -2,9 +2,12 @@
 name: "Ткаченко Ярослав Володимирович"
 nameEn: "Yaroslav V. Tkachenko"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ теорії коливань"
+departmentEn: "Department of Theory of Vibrations"
 departmentUrl: "/departments/11-vibrations/"
 degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 email: "yaroslavvt@ukr.net"
 featured: false
 photo: "/people/tkachenko.png"
@@ -12,14 +15,19 @@ order: 5
 
 profiles: []
 
+researchAreasEn:
+  - "Optimal control of spacecraft motion."
+  - "Modelling of processes in dynamical systems."
 researchAreas:
   - "Оптимальне керування рухом космічних апаратів."
   - "Моделювання процесів у динамічних системах."
 
+professionalActivityEn: "His scientific work is related to optimization of spacecraft maneuvers, space-flight mechanics, and modelling of dynamical systems."
 professionalActivity: "Наукова діяльність пов’язана з оптимізацією маневрів космічних апаратів, механікою космічного польоту та моделюванням динамічних систем."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

@@ -1,0 +1,113 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../../data/site-en';
+
+export async function getStaticPaths() {
+  const departments = await getCollection('departments');
+
+  return departments.map((entry) => ({
+    params: { id: entry.id },
+    props: { entry }
+  }));
+}
+
+const { entry } = Astro.props;
+
+const isSharedUseCenter = entry.id === 'lms-scadas-mobile-center';
+const number = isSharedUseCenter ? '01C' : String(entry.data.number).padStart(2, '0');
+const eyebrow = isSharedUseCenter ? `Structural unit of Department 01 · ${number}` : `Research department ${number}`;
+const staffTitle = isSharedUseCenter ? 'Staff of the shared-use centre' : 'Department staff';
+
+const title = entry.data.titleEn ?? entry.data.title;
+const summary = entry.data.summaryEn ?? entry.data.summary;
+const group = entry.data.groupEn ?? entry.data.group;
+const head = entry.data.headEn ?? entry.data.head;
+const staff = entry.data.staff ?? [];
+const contactEmail = entry.data.contactEmail;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(url: string) {
+  if (url.startsWith('http') || url.startsWith('mailto:') || url.startsWith('#')) {
+    return url;
+  }
+
+  return `${base}${url.startsWith('/') ? url : `/${url}`}`;
+}
+
+function englishPersonName(person: { name: string; nameEn?: string }) {
+  return person.nameEn ?? person.name;
+}
+
+function englishPosition(person: { position?: string; positionEn?: string }) {
+  return person.positionEn ?? person.position;
+}
+---
+
+<BaseLayoutEn
+  title={`${title} | ${siteEn.shortName}`}
+  description={summary}
+  activePage="departments"
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">{eyebrow}</p>
+        <h1>{title}</h1>
+        <p class="lead">{summary}</p>
+        <p><strong>Research area:</strong> {group}</p>
+        {head && <p><strong>Head:</strong> {head}</p>}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="panel" style="padding: clamp(24px, 4vw, 42px);">
+        <h2>Overview</h2>
+        <p>
+          This English department page is generated from the same institutional data record as the Ukrainian version.
+          A detailed English description is being prepared. The Ukrainian page contains the full current department information.
+        </p>
+
+        <p>
+          <a href={withBase(`/departments/${entry.id}/`)}>Open the full Ukrainian department page →</a>
+        </p>
+
+        {staff.length > 0 && (
+          <>
+            <h2>{staffTitle}</h2>
+            <ul>
+              {staff.map((person) => {
+                const position = englishPosition(person);
+
+                return (
+                  <li>
+                    {person.url ? (
+                      <a href={withBase(person.url)}>{englishPersonName(person)}</a>
+                    ) : (
+                      englishPersonName(person)
+                    )}
+                    {position && <> — {position}</>}
+                  </li>
+                );
+              })}
+            </ul>
+          </>
+        )}
+
+        {contactEmail && (
+          <p>
+            <strong>Contact:</strong>{' '}
+            <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+          </p>
+        )}
+
+        <p>
+          <a href={withBase('/en/departments/')}>← Back to research departments</a>
+        </p>
+      </article>
+    </div>
+  </section>
+</BaseLayoutEn>

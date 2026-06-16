@@ -1,0 +1,200 @@
+---
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../data/site-en';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  const cleanPath = path.replace(/^\/inmech-site/, '');
+  return `${base}${cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`}`;
+}
+
+const agreements = [
+  {
+    date: '12.03.2026',
+    type: 'Cooperation agreement',
+    institution: 'G.S. Pisarenko Institute for Problems of Strength of the NAS of Ukraine',
+    href: '/documents/scientific-cooperation/2026-03-12-dogovor-imp.pdf'
+  },
+  {
+    date: '13.02.2026',
+    type: 'Cooperation agreement',
+    institution: 'National Technical University of Ukraine “Igor Sikorsky Kyiv Polytechnic Institute”',
+    href: '/documents/scientific-cooperation/2026-02-13-kpi.pdf'
+  },
+  {
+    date: '27.02.2026',
+    type: 'Agreement on postgraduate practical training',
+    institution: 'National Technical University of Ukraine “Igor Sikorsky Kyiv Polytechnic Institute”',
+    href: '/documents/scientific-cooperation/2026-02-27-kpi.pdf'
+  },
+  {
+    date: '26.12.2025',
+    type: 'Cooperation agreement',
+    institution: 'Admiral Makarov National University of Shipbuilding',
+    href: '/documents/scientific-cooperation/2025-12-26-nuk.pdf'
+  },
+  {
+    date: '01.01.2025',
+    type: 'Cooperation agreement',
+    institution: 'Separate Subdivision of the Open International University of Human Development “Ukraine” — Mykolaiv Institute of Human Development',
+    href: '/documents/scientific-cooperation/2025-01-01-vmurl.pdf'
+  },
+  {
+    date: '2025',
+    type: 'Cooperation agreement',
+    institution: 'National Transport University',
+    href: '/documents/scientific-cooperation/2025-ntu.pdf'
+  },
+  {
+    date: '02.05.2024',
+    type: 'Cooperation agreement',
+    institution: 'National University of Life and Environmental Sciences of Ukraine',
+    href: '/documents/scientific-cooperation/2024-05-02-nubip.pdf'
+  },
+  {
+    date: '17.04.2025',
+    type: 'Cooperation agreement',
+    institution: 'Taras Shevchenko National University of Kyiv',
+    href: '/documents/scientific-cooperation/2025-04-17-knu.pdf'
+  },
+  {
+    date: '25.03.2025',
+    type: 'Agreement on research, educational and cultural cooperation',
+    institution: 'Julius-Maximilians-Universität Würzburg',
+    href: '/documents/scientific-cooperation/2025-03-25-agreement-wurzburg.pdf'
+  },
+  {
+    date: '04.03.2025',
+    type: 'Partnership and cooperation agreement',
+    institution: 'Kyiv National University of Construction and Architecture',
+    href: '/documents/scientific-cooperation/2025-03-04-knuba.pdf'
+  },
+  {
+    date: '28.03.2022',
+    type: 'Cooperation agreement',
+    institution: 'Centro de Investigación Científica de Yucatán A.C. (CICY)',
+    href: '/documents/scientific-cooperation/2022-03-28-cicy.pdf'
+  },
+  {
+    date: '22.10.2024',
+    type: 'Cooperation agreement',
+    institution: 'Mykolaiv National Agrarian University',
+    href: '/documents/scientific-cooperation/2024-10-22-mnau.pdf'
+  },
+  {
+    date: '05.08.2025',
+    type: 'Agreement on access to a text-checking system',
+    institution: 'Text document verification service',
+    href: '/documents/scientific-cooperation/2025-08-05-plagiat.pdf'
+  },
+  {
+    date: '15.01.2026',
+    type: 'Cooperation agreement',
+    institution: 'Institute of Hydromechanics of the NAS of Ukraine',
+    href: '/documents/scientific-cooperation/2026-01-15-gidro.pdf'
+  }
+];
+
+const cooperationAreas = [
+  'joint research in mechanics, materials science, strength, stability, vibrations and related engineering fields',
+  'academic exchange, participation in conferences, seminars and research discussions',
+  'cooperation with universities in postgraduate training, practical training and supervision of young researchers',
+  'access to research infrastructure, analytical methods and specialised expertise',
+  'international research, educational and cultural cooperation with partner institutions abroad'
+];
+---
+
+<BaseLayoutEn
+  title={`Scientific cooperation | ${siteEn.name}`}
+  description="Scientific cooperation of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine: cooperation agreements, partner institutions and academic links."
+  activePage="about"
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel cooperation-hero-panel">
+        <p class="eyebrow">About the Institute</p>
+        <h1>Scientific cooperation</h1>
+        <p class="lead">
+          The Institute develops cooperation with academic institutions, universities and research
+          organisations in Ukraine and abroad. This page provides access to cooperation agreements,
+          partnership documents and related materials.
+        </p>
+        <div class="hero-actions">
+          <a class="button secondary" href={withBase('/scientific-cooperation/')}>Ukrainian version</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split-layout">
+      <article class="panel content-card">
+        <p class="eyebrow">Partnership framework</p>
+        <h2>Purpose of cooperation</h2>
+        <p>
+          Scientific cooperation supports the Institute’s mission by linking fundamental and applied
+          research in mechanics with university education, experimental facilities, engineering
+          applications and international academic exchange.
+        </p>
+        <p>
+          The agreements listed below document institutional partnerships and provide a transparent
+          reference point for joint research, educational activities and professional contacts.
+        </p>
+      </article>
+
+      <aside class="panel content-card accent-card">
+        <p class="eyebrow">Main areas</p>
+        <ul class="check-list">
+          {cooperationAreas.map((item) => <li>{item}</li>)}
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section muted-section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Agreements and partner institutions</p>
+          <h2 class="section-title">Established partnership relations</h2>
+          <p class="section-text">
+            The list is based on the documents published in the Scientific cooperation section of
+            the Institute website. The PDF files are official documents, mostly in Ukrainian.
+          </p>
+        </div>
+      </div>
+
+      <div class="agreement-grid">
+        {agreements.map((agreement) => (
+          <article class="agreement-card">
+            <div class="agreement-meta">{agreement.date}</div>
+            <h2>{agreement.institution}</h2>
+            <p>{agreement.type}</p>
+            <a class="button secondary" href={withBase(agreement.href)} target="_blank" rel="noopener">
+              Open PDF
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="panel content-card">
+        <p class="eyebrow">Note</p>
+        <h2>Official documents</h2>
+        <p>
+          The English page provides translated titles and explanatory text for navigation. The PDF
+          files themselves remain official source documents in the language in which they were signed
+          or published.
+        </p>
+      </article>
+    </div>
+  </section>
+</BaseLayoutEn>

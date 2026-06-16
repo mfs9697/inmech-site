@@ -1,10 +1,13 @@
-﻿---
+---
 name: "Сенченков Ігор Костянтинович"
 nameEn: "Ihor K. Senchenkov"
 position: "Головний науковий співробітник"
+positionEn: "Principal Researcher"
 department: "Відділ термопружності"
+departmentEn: "Department of Thermoelasticity"
 departmentUrl: "/departments/07-thermoelasticity/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Physical and Mathematical Sciences"
 email: "term@inmech.kyiv.ua"
 photo: "/people/senchenkov.png"
 featured: false
@@ -16,12 +19,19 @@ researchAreas:
   - "Механіка зв’язаних полів у матеріалах і елементах конструкцій."
   - "Зв’язані задачі термомеханіки фізично нелінійних матеріалів при гармонічному навантаженні."
   - "Зв’язані задачі термов’язкопластичності з урахуванням мікроструктурних перетворень."
-  - "Чисельне моделювання термомеханічних процесів при наплавленні та 3D-друку."
+  - "Чисельне моделювання термомеханічних процесів при наплавленні та 3D-друці."
+researchAreasEn:
+  - "Mechanics of coupled fields in materials and structural elements."
+  - "Coupled problems of thermomechanics of physically nonlinear materials under harmonic loading."
+  - "Coupled problems of thermoviscoplasticity with account of microstructural transformations."
+  - "Numerical modelling of thermomechanical processes in surfacing and 3D printing."
 
 professionalActivity: "Наукова діяльність пов’язана зі зв’язаними задачами термомеханіки, термов’язкопластичністю, мікроструктурними перетвореннями та чисельним моделюванням технологічних термомеханічних процесів."
+professionalActivityEn: "Scientific activity is related to coupled problems of thermomechanics, thermoviscoplasticity, microstructural transformations, and numerical modelling of technological thermomechanical processes."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

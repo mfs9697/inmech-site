@@ -16,6 +16,23 @@ const featuredDefenses = [
   {
     status: 'Анонс захисту',
     year: '2026',
+    name: 'Глухов Юрій Петрович',
+    title: 'Динамічні задачі для шаруватої основи з початковими напруженнями при дії рухомого поверхневого навантаження',
+    date: '09.07.2026 об 11:00',
+    place: 'м. Київ, вул. Нестерова, 3, аудиторія 311',
+    degree: 'доктор технічних наук',
+    specialty: '01.02.04 — механіка деформівного твердого тіла',
+    consultant: '',
+    links: [
+      ['Автореферат', '/inmech-site/documents/dissertations/2026/03/abstract.pdf'],
+      ['Дисертація', '/inmech-site/documents/dissertations/2026/03/dissertation.pdf'],
+      ['Висновок', '/inmech-site/documents/dissertations/2026/03/conclusion.pdf']
+    ],
+    opponents: []
+  },
+  {
+    status: 'Анонс захисту',
+    year: '2026',
     name: 'Молтасов Андрій Валерійович',
     title: 'Побудова ефективних інженерних оцінок напружень в зонах концентрації тонколистових стикових зварних з’єднань',
     date: '07.07.2026 об 11:00',
@@ -218,7 +235,9 @@ const featuredDefenses = [
               </div>
             </dl>
 
-            <p class="consultant-line"><strong>Науковий консультант:</strong> {defense.consultant}</p>
+            {defense.consultant && (
+              <p class="consultant-line"><strong>Науковий консультант:</strong> {defense.consultant}</p>
+            )}
 
             {defense.links.length > 0 && (
               <div class="defense-links">

@@ -14,7 +14,20 @@ function withBase(path: string) {
 
 const featuredDefenses = [
   {
-    status: 'Анонс / матеріали захисту',
+    status: 'Анонс захисту',
+    year: '2026',
+    name: 'Молтасов Андрій Валерійович',
+    title: 'Побудова ефективних інженерних оцінок напружень в зонах концентрації тонколистових стикових зварних з’єднань',
+    date: '07.07.2026 об 11:00',
+    place: 'м. Київ, вул. Нестерова, 3, аудиторія 311',
+    degree: 'доктор технічних наук',
+    specialty: '01.02.04 — механіка деформівного твердого тіла',
+    consultant: 'Книш Віталій Васильович, член-кореспондент НАН України, доктор технічних наук, професор',
+    links: [],
+    opponents: []
+  },
+  {
+    status: 'Архів 2026',
     year: '2026',
     name: 'Кіпніс Олександр Леонідович',
     title: 'Стійкість матеріалів з покриттям при стиску вздовж межі поділу за різних умов міжфазного контакту',
@@ -165,7 +178,7 @@ const featuredDefenses = [
         </div>
         <p>
           Для захистів поточного та попереднього року подано повні картки з ключовими
-          відомостями, основними файлами та відгуками офіційних опонентів.
+          відомостями, доступними файлами та, за наявності, відгуками офіційних опонентів.
         </p>
       </div>
 
@@ -203,23 +216,29 @@ const featuredDefenses = [
 
             <p class="consultant-line"><strong>Науковий консультант:</strong> {defense.consultant}</p>
 
-            <div class="defense-links">
-              {defense.links.map(([label, href]) => (
-                <a href={href} target="_blank" rel="noopener noreferrer">{label}</a>
-              ))}
-            </div>
+            {defense.links.length > 0 && (
+              <div class="defense-links">
+                {defense.links.map(([label, href]) => (
+                  <a href={href} target="_blank" rel="noopener noreferrer">{label}</a>
+                ))}
+              </div>
+            )}
 
             <details class="opponents-details">
               <summary>Офіційні опоненти</summary>
-              <div class="opponents-grid">
-                {defense.opponents.map(([name, degree, href]) => (
-                  <a class="opponent-card" href={href} target="_blank" rel="noopener noreferrer">
-                    <strong>{name}</strong>
-                    <span>{degree}</span>
-                    <em>Переглянути відгук →</em>
-                  </a>
-                ))}
-              </div>
+              {defense.opponents.length > 0 ? (
+                <div class="opponents-grid">
+                  {defense.opponents.map(([name, degree, href]) => (
+                    <a class="opponent-card" href={href} target="_blank" rel="noopener noreferrer">
+                      <strong>{name}</strong>
+                      <span>{degree}</span>
+                      <em>Переглянути відгук →</em>
+                    </a>
+                  ))}
+                </div>
+              ) : (
+                <p class="opponents-empty">Відгуки офіційних опонентів буде додано після надходження.</p>
+              )}
             </details>
           </article>
         ))}
@@ -515,6 +534,12 @@ const featuredDefenses = [
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
     margin-top: 14px;
+  }
+
+  .opponents-empty {
+    margin: 12px 0 0;
+    color: var(--muted);
+    font-weight: 750;
   }
 
   .opponent-card {

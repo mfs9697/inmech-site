@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
+import DepartmentCard from '../../../components/DepartmentCard.astro';
+import { siteEn } from '../../../data/site-en';
+
+const departments = (await getCollection('departments'))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const groupedDepartments = [...departments.reduce((acc, entry) => {
+  const group = entry.data.groupEn ?? entry.data.group;
+  if (!acc.has(group)) acc.set(group, []);
+  acc.get(group)?.push(entry);
+  return acc;
+}, new Map<string, typeof departments>())].map(([group, entries], index) => ({
+  group,
+  entries,
+  id: `department-group-${index + 1}`
+}));
+---
+
+<BaseLayoutEn
+  title={`Research departments | ${siteEn.shortName}`}
+  description="Research departments and main scientific areas of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine."
+  activePage="departments"
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">Structure of the Institute</p>
+        <h1>Research departments</h1>
+        <p class="lead">
+          The research departments of the Institute are grouped according to the main areas of scientific activity.
+          Each department is presented using the same institutional data source as the Ukrainian version,
+          with English fields added gradually for bilingual publication.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container department-groups">
+      {groupedDepartments.map(({ group, entries, id }) => (
+        <section class="department-group" aria-labelledby={id}>
+          <h2 id={id}>{group}</h2>
+          <div class="department-grid">
+            {entries.map((entry) => <DepartmentCard entry={entry} lang="en" />)}
+          </div>
+        </section>
+      ))}
+    </div>
+  </section>
+</BaseLayoutEn>

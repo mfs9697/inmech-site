@@ -2,10 +2,14 @@
 name: "Харитонова Леся Василівна"
 nameEn: "Lesia V. Kharytonova"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ обчислювальних методів"
+departmentEn: "Department of Computational Methods"
 departmentUrl: "/departments/04-computational-methods/"
 degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 academicTitle: "Доцент"
+academicTitleEn: "Associate Professor"
 photo: "/people/kharytonova.jpg"
 featured: false
 order: 4
@@ -27,11 +31,18 @@ researchAreas:
   - "Дослідження напруженого стану нетонких циліндричних оболонок неоднорідної структури."
   - "Прикладна математика."
   - "Дослідження операцій."
+researchAreasEn:
+  - "Mechanics of deformable solids."
+  - "Study of the stress state of non-thin cylindrical shells of heterogeneous structure."
+  - "Applied mathematics."
+  - "Operations research."
 
 professionalActivity: "Наукова діяльність пов’язана з дослідженням напруженого стану нетонких циліндричних оболонок неоднорідної структури, прикладною математикою та задачами дослідження операцій."
+professionalActivityEn: "Scientific activity is related to the study of the stress state of non-thin cylindrical shells of heterogeneous structure, applied mathematics, and operations research problems."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-
@@ -43,4 +54,3 @@ publications:
       - >-
         Григоренко О.Я., Рожок Л.С, Борейко Н.П., Харитонова Л.В. Дослідження напруженого стану суцільних циліндрів неоднорідної структури за різних граничних умов на торцях // Проблеми машинобудування. 2025. Т. 28, № 2. С. 61–72.
 ---
-

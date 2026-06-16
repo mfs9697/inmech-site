@@ -2,9 +2,12 @@
 name: "Бабешко Майя Омелянівна"
 nameEn: "Maia O. Babeshko"
 position: "Провідний науковий співробітник"
+positionEn: "Leading Researcher"
 department: "Відділ термопластичності"
+departmentEn: "Department of Thermoplasticity"
 departmentUrl: "/departments/06-thermoplasticity/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Physical and Mathematical Sciences"
 email: "plast@inmech.kyiv.ua"
 photo: "/people/babeshko.png"
 featured: false
@@ -17,11 +20,18 @@ researchAreas:
   - "Термов'язкоупругопластичні процеси складного деформування елементів конструкцій."
   - "Термопружнопластичний стан гнучких шаруватих оболонок при осесиметричному навантаженні."
   - "Еластопластичний осесиметричний напружено-деформований стан тонких оболонок з матеріалів із різною міцністю на розтяг і стиск."
+researchAreasEn:
+  - "Spatial problems of thermoplasticity."
+  - "Thermoviscoelastoplastic processes of complex deformation of structural elements."
+  - "Thermoelastoplastic state of flexible laminated shells under axisymmetric loading."
+  - "Elastoplastic axisymmetric stress-strain state of thin shells made of materials with different tensile and compressive strength."
 
 professionalActivity: "Наукова діяльність пов'язана з термопластичністю, термов'язкоупругопластичністю та чисельним аналізом напружено-деформованого стану шаруватих оболонок і тіл обертання."
+professionalActivityEn: "Scientific activity is related to thermoplasticity, thermoviscoelastoplasticity, and numerical analysis of the stress-strain state of laminated shells and bodies of revolution."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

@@ -2,7 +2,9 @@
 name: "Остос Олександр Хосейович"
 nameEn: "Oleksandr Kh. Ostos"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ теорії коливань"
+departmentEn: "Department of Theory of Vibrations"
 departmentUrl: "/departments/11-vibrations/"
 featured: false
 photo: "/people/ostos.png"
@@ -17,14 +19,19 @@ profiles:
     url: "https://orcid.org/0009-0008-5329-1370"
     kind: "orcid"
 
+researchAreasEn:
+  - "Dynamic characteristics of an ideal compressible fluid excited by a spherical segment or a sphere in an infinite or semi-infinite cylindrical cavity."
+  - "Determination of hydrodynamic-parameter fields, including pressure and velocity, for different problem formulations."
 researchAreas:
   - "Динамічні характеристики ідеальної стисливої рідини, що збуджується сферичним сегментом або кулею в нескінченній чи напівнескінченній циліндричній порожнині."
   - "Визначення полів гідродинамічних параметрів, зокрема тиску та швидкості, для різних постановок задач."
 
+professionalActivityEn: "His scientific work is related to wave dynamics of compressible fluids, hydrodynamic characteristics of bodies in cylindrical cavities, and problems of body-medium interaction."
 professionalActivity: "Наукова діяльність пов’язана з хвильовою динамікою стисливої рідини, гідродинамічними характеристиками тіл у циліндричних порожнинах і задачами взаємодії тіл із середовищем."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

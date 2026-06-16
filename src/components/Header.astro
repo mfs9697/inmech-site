@@ -78,8 +78,8 @@ function getEnglishPath(pathname: string) {
     return ukToEnFallbacks[path];
   }
 
-  if (path.startsWith('/departments/') && path !== '/departments/') {
-    return '/en/departments/';
+  if (/^\/departments\/[^/]+\/$/.test(path)) {
+    return `/en${path}`;
   }
 
   const slug = path.replace(/^\//, '').replace(/\/$/, '');

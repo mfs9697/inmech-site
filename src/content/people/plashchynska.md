@@ -2,9 +2,12 @@
 name: "Плащинська Алла Вікторівна"
 nameEn: "Alla V. Plashchynska"
 position: "Заступник завідувача відділу, старший науковий співробітник"
+positionEn: "Deputy Head of Department, Senior Researcher"
 department: "Відділ механіки повзучості"
+departmentEn: "Department of Mechanics of Creep"
 departmentUrl: "/departments/08-creep/"
 degree: "Кандидат технічних наук"
+degreeEn: "Candidate of Technical Sciences"
 email: "creep@inmech.kyiv.ua"
 photo: "/people/plashchynska.png"
 featured: false
@@ -16,11 +19,17 @@ researchAreas:
   - "Кінетика тріщин втоми."
   - "Механіка неперервного пошкодження."
   - "Механіка руйнування."
+researchAreasEn:
+  - "Kinetics of fatigue cracks."
+  - "Continuum damage mechanics."
+  - "Fracture mechanics."
 
 professionalActivity: "Наукова діяльність пов'язана з кінетикою тріщин втоми, механікою неперервного пошкодження та моделюванням росту тріщин у тонких пластинах за циклічного навантаження."
+professionalActivityEn: "Scientific activity is related to the kinetics of fatigue cracks, continuum damage mechanics, and modelling of crack growth in thin plates under cyclic loading."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

@@ -40,15 +40,6 @@ function withBase(path: string) {
 
 export function getStaticPaths() {
   const pages: Record<string, PageData> = {
-    tender: {
-      title: 'Procurement and tenders',
-      description: 'Procurement and tender information of the Institute.',
-      activePage: 'about',
-      eyebrow: 'About the Institute',
-      heading: 'Procurement and tenders',
-      lead: 'This section provides access to procurement and tender information. The official detailed materials are maintained in Ukrainian.',
-      links: [{ title: 'Open the Ukrainian tender page', href: '/tender/' }]
-    },
     management: {
       title: 'Management',
       description: 'Management of the Institute.',

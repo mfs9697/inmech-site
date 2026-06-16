@@ -2,10 +2,14 @@
 name: "Глухов Юрій Петрович"
 nameEn: "Yurii P. Glukhov"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ динаміки та стійкості суцільних середовищ"
+departmentEn: "Department of Dynamics and Stability of Continua"
 departmentUrl: "/departments/01-dynamics-stability/"
 degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 academicTitle: "Доцент"
+academicTitleEn: "Associate Professor"
 email: "gluchov.uriy@gmail.com"
 photo: "/people/glukhov.png"
 featured: false
@@ -25,11 +29,17 @@ researchAreas:
   - "Хвильові процеси у попередньо деформованих пружних шаруватих тілах."
   - "Динаміка багатошарових тіл з початковими напруженнями під дією рухомих навантажень."
   - "Контактні задачі для попередньо напружених тіл."
+researchAreasEn:
+  - "Wave processes in predeformed elastic layered bodies."
+  - "Dynamics of multilayer bodies with initial stresses under moving loads."
+  - "Contact problems for prestressed bodies."
 
 professionalActivity: "Професійна діяльність пов’язана з Інститутом механіки ім. С.П. Тимошенка НАН України."
+professionalActivityEn: "Professional activity is associated with the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

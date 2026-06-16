@@ -1,11 +1,15 @@
 ---
 name: "Курчаков Євген Євгенович"
-nameEn: "Yevgen Kurchakov"
+nameEn: "Yevhen Ye. Kurchakov"
 position: "старший науковий співробітник"
+positionEn: "Senior Research Scientist"
 department: "Відділ механіки руйнування матеріалів"
+departmentEn: "Department of Fracture Mechanics of Materials"
 departmentUrl: "/departments/09-fracture-mechanics/"
 degree: "кандидат фізико-математичних наук"
+degreeEn: "Candidate of Sciences in Physics and Mathematics"
 academicTitle: "старший науковий співробітник"
+academicTitleEn: "Senior Research Scientist"
 email: "dfm11@ukr.net"
 order: 6
 featured: true
@@ -22,11 +26,17 @@ researchAreas:
   - "зв’язок напружень та деформацій у нелінійно пружних тілах;"
   - "механіка руйнування пружно-пластичних тіл загальної анізотропії;"
   - "моделі пластичних зон в околі вершин тріщин у анізотропних тілах."
+researchAreasEn:
+  - "Stress-strain relations in nonlinearly elastic bodies."
+  - "Fracture mechanics of elastic-plastic bodies with general anisotropy."
+  - "Models of plastic zones near crack tips in anisotropic bodies."
 
 professionalActivity: "Професійна діяльність пов’язана з Київським національним університетом імені Тараса Шевченка."
+professionalActivityEn: "Professional activity is connected with Taras Shevchenko National University of Kyiv."
 
 publications:
   - title: "Статті у реферованих виданнях"
+    titleEn: "Articles in peer-reviewed journals"
     type: "ordered"
     items:
       - "Kaminsky A. O., Kurchakov E. E., Chornoivan Yu. O., Gusev V. V. Numerical Analysis of Boundary Effects in Nonlinear Orthotropic Body with Crack. International Applied Mechanics. 2025. DOI: https://doi.org/10.1007/s10778-025-01335-8."
@@ -34,6 +44,7 @@ publications:
       - "Kaminsky A. O., Kurchakov E. E. Tensor-Nonlinear Constitutive Equations for an Elastic Body with Primary Anisotropy. International Applied Mechanics. 2022. Vol. 58, no. 2. P. 154–159. DOI: https://doi.org/10.1007/s10778-022-01142-5."
       - "Kaminsky A. O., Kurchakov E. E., Chornoivan Yu. O. Boundary-value problems of fracture mechanics for a nonlinear anisotropic body. International Applied Mechanics. 2022. Vol. 58, no. 3. P. 243–279. DOI: https://doi.org/10.1007/s10778-022-01152-3."
   - title: "Тези доповідей та матеріали конференцій"
+    titleEn: "Conference abstracts and proceedings"
     type: "ordered"
     items:
       - "Камінський А. О., Курчаков Є. Є., Чорноіван Ю. О. Чисельне дослідження крайових ефектів в нелінійному ортотропному тілі з тріщиною. Механіка: сучасність і перспективи – 2024 : матеріали міжнар. наук. конф. (Київ, 7–11 жовт. 2024 р.). Київ : Ін-т механіки ім. С. П. Тимошенка НАНУ, 2024. С. 251–253."

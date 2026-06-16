@@ -2,9 +2,12 @@
 name: "Подільчук Інна Юріївна"
 nameEn: "Inna Yu. Podilchuk"
 position: "Науковий співробітник"
+positionEn: "Researcher"
 department: "Відділ будівельної механіки тонкостінних конструкцій"
+departmentEn: "Department of Structural Mechanics of Thin-Walled Structures"
 departmentUrl: "/departments/05-thin-walled-structures/"
 degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 email: "ipodil19@gmail.com"
 photo: "/people/podilchuk.png"
 featured: false
@@ -17,11 +20,18 @@ researchAreas:
   - "Динамічні задачі теорії оболонок і пластин."
   - "Поширення хвиль в ортотропних циліндричних оболонках."
   - "Моделювання ефекту Баушингера в ортотропних матеріалах."
+researchAreasEn:
+  - "Viscoelasticity and plasticity."
+  - "Dynamic problems of shell and plate theory."
+  - "Wave propagation in orthotropic cylindrical shells."
+  - "Modelling of the Bauschinger effect in orthotropic materials."
 
 professionalActivity: "Наукова діяльність пов’язана з динамікою оболонок і пластин, в’язкопружністю, пластичністю та моделюванням механічної поведінки ортотропних матеріалів."
+professionalActivityEn: "Scientific activity is related to the dynamics of shells and plates, viscoelasticity, plasticity, and modelling of the mechanical behaviour of orthotropic materials."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

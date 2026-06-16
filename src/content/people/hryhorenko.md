@@ -2,10 +2,14 @@
 name: "Григоренко Олександр Ярославович"
 nameEn: "Oleksandr Ya. Grigorenko"
 position: "Завідувач відділу обчислювальних методів"
+positionEn: "Head of the Department of Computational Methods"
 department: "Відділ обчислювальних методів"
+departmentEn: "Department of Computational Methods"
 departmentUrl: "/departments/04-computational-methods/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Physical and Mathematical Sciences"
 academicTitle: "Професор, академік НАН України"
+academicTitleEn: "Professor, Academician of the NAS of Ukraine"
 email: "ayagrigorenko1991@gmail.com"
 photo: "/people/grygorenko.png"
 featured: false
@@ -36,11 +40,18 @@ researchAreas:
   - "Динамічні характеристики оболонкових систем у класичній, уточненій та просторовій постановках."
   - "Динамічні процеси в п’єзокерамічних неоднорідних тілах на основі просторової теорії електропружності."
   - "Біомеханічні процеси в галузі ортопедичної та ортодонтичної стоматології."
+researchAreasEn:
+  - "Displacement, strain and stress fields of shell systems made of anisotropic heterogeneous materials."
+  - "Dynamic characteristics of shell systems in classical, refined and spatial formulations."
+  - "Dynamic processes in piezoceramic heterogeneous bodies based on the spatial theory of electroelasticity."
+  - "Biomechanical processes in prosthetic and orthodontic dentistry."
 
 professionalActivity: "Працює в Інституті механіки ім. С.П. Тимошенка НАН України з 1981 року; з 2005 року очолює відділ обчислювальних методів. Наукова діяльність пов’язана з обчислювальними методами механіки оболонкових систем, електропружністю п’єзокерамічних тіл та застосуваннями механіки деформівного твердого тіла до задач стоматології."
+professionalActivityEn: "He has worked at the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine since 1981 and has headed the Department of Computational Methods since 2005. His scientific activity is related to computational methods in the mechanics of shell systems, electroelasticity of piezoceramic bodies, and applications of deformable solid mechanics to dentistry problems."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

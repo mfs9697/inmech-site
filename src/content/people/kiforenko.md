@@ -2,10 +2,14 @@
 name: "Кіфоренко Борис Микитович"
 nameEn: "Borys M. Kiforenko"
 position: "Провідний науковий співробітник"
+positionEn: "Leading Researcher"
 department: "Відділ теорії коливань"
+departmentEn: "Department of Theory of Vibrations"
 departmentUrl: "/departments/11-vibrations/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Physical and Mathematical Sciences"
 academicTitle: "Професор"
+academicTitleEn: "Professor"
 email: "bkifor@ukr.net"
 featured: false
 photo: "public/people/kiforenko.png"
@@ -13,15 +17,21 @@ order: 2
 
 profiles: []
 
+researchAreasEn:
+  - "Optimal control of spacecraft motion."
+  - "Optimization of multistage rockets of parallel configuration."
+  - "Mathematical modelling of principles for selecting real motions in living nature."
 researchAreas:
   - "Оптимальне керування рухом космічних апаратів."
   - "Оптимізація багатоступеневих ракет паралельної схеми."
   - "Математичне моделювання принципів відбору дійсних рухів у живій природі."
 
+professionalActivityEn: "His scientific work is related to optimal control, space-flight mechanics, and mathematical modelling of dynamical systems."
 professionalActivity: "Наукова діяльність пов’язана з оптимальним керуванням, механікою космічного польоту та математичним моделюванням динамічних систем."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

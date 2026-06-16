@@ -77,7 +77,7 @@ function getUkrainianPath(pathname: string) {
     return enToUkFallbacks[path];
   }
 
-  if (/^\/en\/departments\/[^/]+\/$/.test(path)) {
+  if (/^\/en\/departments\/[^/]+\/$/.test(path) || /^\/en\/people\/[^/]+\/$/.test(path)) {
     return path.replace(/^\/en/, '');
   }
 

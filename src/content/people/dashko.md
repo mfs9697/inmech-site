@@ -2,9 +2,12 @@
 name: "Дашко Ольга Геннадіївна"
 nameEn: "Olha H. Dashko"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ реології"
+departmentEn: "Department of Rheology"
 departmentUrl: "/departments/02-rheology/"
 degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 email: "olga.dashko@gmail.com"
 photo: "/people/dashko.png"
 featured: false
@@ -19,11 +22,17 @@ researchAreas:
   - "Теорія пружності."
   - "Взаємодія магнітних та механічних полів у пружних матеріалах."
   - "Магнітопружні задачі для тіл із порожнинами та включеннями."
+researchAreasEn:
+  - "Theory of elasticity."
+  - "Interaction of magnetic and mechanical fields in elastic materials."
+  - "Magnetoelastic problems for bodies with cavities and inclusions."
 
 professionalActivity: "Наукова діяльність пов’язана з теорією пружності, магнітопружністю та аналітичним розв’язуванням задач взаємодії механічних і магнітних полів у деформівних тілах."
+professionalActivityEn: "Scientific activity is related to elasticity theory, magnetoelasticity, and analytical solution of problems involving interaction of mechanical and magnetic fields in deformable bodies."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

@@ -2,10 +2,14 @@
 name: "Жук Ярослав Олександрович"
 nameEn: "Yaroslav O. Zhuk"
 position: "Завідувач відділу термопластичності"
+positionEn: "Head of the Department of Thermoplasticity"
 department: "Відділ термопластичності"
+departmentEn: "Department of Thermoplasticity"
 departmentUrl: "/departments/06-thermoplasticity/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Physical and Mathematical Sciences"
 academicTitle: "Член-кореспондент НАН України, професор"
+academicTitleEn: "Corresponding Member of the NAS of Ukraine, Professor"
 email: "y.zhuk@i.ua"
 photo: "/people/zhuk.png"
 featured: false
@@ -32,11 +36,19 @@ researchAreas:
   - "Зв’язані задачі термоелектромеханіки фізично нелінійних матеріалів."
   - "Механіка композиційних матеріалів."
   - "Нано- і мікромеханіка."
+researchAreasEn:
+  - "Mechanics of coupled fields in materials and structural elements."
+  - "Coupled thermomechanics problems for physically nonlinear materials under harmonic loading."
+  - "Coupled thermoelectromechanics problems for physically nonlinear materials."
+  - "Mechanics of composite materials."
+  - "Nano- and micromechanics."
 
 professionalActivity: "Наукова діяльність пов’язана з механікою зв’язаних полів, термомеханікою та термоелектромеханікою фізично нелінійних матеріалів, механікою композиційних матеріалів, а також нано- і мікромеханікою."
+professionalActivityEn: "Scientific activity is related to the mechanics of coupled fields, thermomechanics and thermoelectromechanics of physically nonlinear materials, mechanics of composite materials, and nano- and micromechanics."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

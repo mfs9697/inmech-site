@@ -2,22 +2,30 @@
 name: "Мартинюк-Чернієнко Юлія Анатоліївна"
 nameEn: "Yuliia A. Martyniuk-Cherniienko"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ теорії коливань"
+departmentEn: "Department of Theory of Vibrations"
 departmentUrl: "/departments/11-vibrations/"
 degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 featured: false
 order: 7
 
 profiles: []
 
+researchAreasEn:
+  - "Stability of dynamical systems with imprecise parameter values."
+  - "Control of dynamical systems with imprecise parameter values."
 researchAreas:
   - "Стійкість динамічних систем з неточними значеннями параметрів."
   - "Керування динамічними системами з неточними значеннями параметрів."
 
+professionalActivityEn: "Her scientific work is related to stability, motion control, and the study of dynamical systems with parametric uncertainty."
 professionalActivity: "Наукова діяльність пов’язана зі стійкістю, керуванням рухом і дослідженням динамічних систем з параметричною невизначеністю."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

@@ -2,9 +2,12 @@
 name: "Зеленський Валерій Степанович"
 nameEn: "Valerii S. Zelenskyi"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ обчислювальної механіки та техніки"
+departmentEn: "Department of Computational Mechanics and Engineering"
 departmentUrl: "/departments/03-computational-mechanics-engineering/"
 degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 email: "numer@inmech.kyiv.ua"
 photo: "/people/zelenskyi.png"
 featured: false
@@ -16,11 +19,17 @@ researchAreas:
   - "Чисельне дослідження стійкості традиційних та композитних матеріалів."
   - "Тривимірна лінеаризована теорія стійкості."
   - "Стійкість елементів конструкцій із шаруватих композитних матеріалів."
+researchAreasEn:
+  - "Numerical study of stability of conventional and composite materials."
+  - "Three-dimensional linearized stability theory."
+  - "Stability of structural elements made of layered composite materials."
 
 professionalActivity: "Наукова діяльність пов’язана з чисельними методами тривимірної теорії стійкості, крайовими ефектами та стійкістю композитних матеріалів."
+professionalActivityEn: "Scientific activity is related to numerical methods of three-dimensional stability theory, edge effects and stability of composite materials."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

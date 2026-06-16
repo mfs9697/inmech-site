@@ -2,7 +2,9 @@
 name: "Іванов Ігор Львович"
 nameEn: "Ihor L. Ivanov"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ стійкості процесів"
+departmentEn: "Department of Stability of Processes"
 departmentUrl: "/departments/10-stability-processes/"
 email: "ihorivanov@ukr.net"
 photo: "/people/ivanov.png"
@@ -18,11 +20,17 @@ researchAreas:
   - "Стійкість механічних систем із запізненням та імпульсною дією."
   - "Стійкість електроенергетичних систем."
   - "Моделювання складних динамічних і соціально-демографічних процесів."
+researchAreasEn:
+  - "Stability of mechanical systems with delay and impulsive action."
+  - "Stability of electric power systems."
+  - "Modelling of complex dynamic and socio-demographic processes."
 
 professionalActivity: "Наукова діяльність пов’язана зі стійкістю систем із запізненням та імпульсною дією, синхронізацією хаотичних енергосистем і математичним моделюванням складних процесів."
+professionalActivityEn: "Scientific activity is related to stability of systems with delay and impulsive action, synchronization of chaotic power systems, and mathematical modelling of complex processes."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

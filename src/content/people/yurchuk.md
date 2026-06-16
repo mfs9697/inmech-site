@@ -2,9 +2,12 @@
 name: "Юрчук Василь Миколайович"
 nameEn: "Vasyl M. Yurchuk"
 position: "Заступник завідувача відділу, старший науковий співробітник"
+positionEn: "Deputy Head of Department, Senior Researcher"
 department: "Відділ реології"
+departmentEn: "Department of Rheology"
 departmentUrl: "/departments/02-rheology/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Physical and Mathematical Sciences"
 email: "vasil_2008@ukr.net"
 photo: "/people/yurchuk.png"
 featured: false
@@ -28,11 +31,19 @@ researchAreas:
   - "Теорія лінійних і нелінійних хвиль."
   - "Вейвлетний аналіз."
   - "Комп’ютерне моделювання еволюції нелінійних пружних хвиль."
+researchAreasEn:
+  - "Mechanics of materials and rheology."
+  - "Theory of viscoelasticity, elasticity and seismic waves."
+  - "Theory of linear and nonlinear waves."
+  - "Wavelet analysis."
+  - "Computer modelling of nonlinear elastic wave evolution."
 
 professionalActivity: "Наукова діяльність пов’язана з реологією, теорією хвиль у матеріалах, моделюванням нелінійних пружних хвиль і дослідженням механічної поведінки ауксетичних матеріалів."
+professionalActivityEn: "Scientific activity is related to rheology, wave theory in materials, modelling of nonlinear elastic waves, and investigation of the mechanical behavior of auxetic materials."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

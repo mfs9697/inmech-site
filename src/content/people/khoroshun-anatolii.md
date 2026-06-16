@@ -2,9 +2,12 @@
 name: "Хорошун Анатолій Сергійович"
 nameEn: "Anatolii S. Khoroshun"
 position: "Провідний науковий співробітник"
+positionEn: "Leading Researcher"
 department: "Відділ стійкості процесів"
+departmentEn: "Department of Stability of Processes"
 departmentUrl: "/departments/10-stability-processes/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Physical and Mathematical Sciences"
 email: "khoroshunanatoliy@gmail.com"
 photo: "/people/khoroshun.png"
 featured: false
@@ -20,11 +23,18 @@ researchAreas:
   - "Динаміка та стійкість руху великомасштабних систем, включаючи різнотемпові системи."
   - "Динаміка та стійкість руху систем з неточними значеннями параметрів."
   - "Керування рухом механічних об’єктів."
+researchAreasEn:
+  - "Lyapunov function method in the theory of motion stability."
+  - "Dynamics and stability of large-scale systems, including multi-rate systems."
+  - "Dynamics and stability of systems with uncertain parameter values."
+  - "Motion control of mechanical objects."
 
 professionalActivity: "Наукова діяльність пов’язана з теорією стійкості руху, методом функцій Ляпунова, динамікою великомасштабних систем і задачами керування механічними об’єктами."
+professionalActivityEn: "Scientific activity is related to the theory of motion stability, the Lyapunov function method, dynamics of large-scale systems, and motion-control problems for mechanical objects."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

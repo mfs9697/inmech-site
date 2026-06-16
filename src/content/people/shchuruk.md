@@ -1,10 +1,13 @@
-﻿---
+---
 name: "Щурук Галина Іванівна"
 nameEn: "Halyna I. Shchuruk"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ динаміки та стійкості суцільних середовищ"
+departmentEn: "Department of Dynamics and Stability of Continua"
 departmentUrl: "/departments/01-dynamics-stability/"
 degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 email: "prikl@inmech.kyiv.ua"
 photo: "/people/shchuruk.png"
 featured: false
@@ -16,11 +19,17 @@ researchAreas:
   - "Хвильові процеси в циліндричних ортотропних оболонках, які містять ідеальну або в’язку стисливу рідину."
   - "Хвильові процеси у попередньо деформованих пружних півпросторах, які взаємодіють із шаром в’язкої стисливої рідини."
   - "Хвильові процеси в попередньо деформованому шарі, що знаходиться на стисливому в’язкому рідкому напівпросторі."
+researchAreasEn:
+  - "Wave processes in cylindrical orthotropic shells containing ideal or viscous compressible fluids."
+  - "Wave processes in predeformed elastic half-spaces interacting with a layer of viscous compressible fluid."
+  - "Wave processes in a predeformed layer resting on a compressible viscous fluid half-space."
 
 professionalActivity: "Наукова діяльність пов’язана з хвильовими процесами у пружних і гідропружних системах з початковими напруженнями."
+professionalActivityEn: "Scientific activity is related to wave processes in elastic and hydroelastic systems with initial stresses."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

@@ -44,6 +44,14 @@ function englishPersonName(person: { name: string; nameEn?: string }) {
 function englishPosition(person: { position?: string; positionEn?: string }) {
   return person.positionEn ?? person.position;
 }
+
+function englishPeopleUrl(url: string) {
+  if (!url.startsWith('/people/')) {
+    return url;
+  }
+
+  return url.replace(/^\/people\//, '/en/people/');
+}
 ---
 
 <BaseLayoutEn
@@ -104,7 +112,7 @@ function englishPosition(person: { position?: string; positionEn?: string }) {
                 return (
                   <li>
                     {person.url ? (
-                      <a href={withBase(person.url)}>{englishPersonName(person)}</a>
+                      <a href={withBase(englishPeopleUrl(person.url))}>{englishPersonName(person)}</a>
                     ) : (
                       englishPersonName(person)
                     )}

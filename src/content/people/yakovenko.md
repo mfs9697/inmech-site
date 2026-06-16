@@ -2,9 +2,12 @@
 name: "Яковенко Ніна Дмитрівна"
 nameEn: "Nina D. Yakovenko"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ термопружності"
+departmentEn: "Department of Thermoelasticity"
 departmentUrl: "/departments/07-thermoelasticity/"
 degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 email: "ndoksenchuk@gmail.com"
 photo: "/people/yakovenko.png"
 featured: false
@@ -19,11 +22,17 @@ researchAreas:
   - "Механіка зв’язаних полів у матеріалах і елементах конструкцій."
   - "Зв’язані задачі термомеханіки фізично нелінійних матеріалів при гармонічному навантаженні."
   - "Зв’язані задачі термов’язкопластичності з урахуванням мікроструктурних перетворень."
+researchAreasEn:
+  - "Mechanics of coupled fields in materials and structural elements."
+  - "Coupled problems of thermomechanics of physically nonlinear materials under harmonic loading."
+  - "Coupled problems of thermoviscoplasticity with account of microstructural transformations."
 
 professionalActivity: "Наукова діяльність пов’язана зі зв’язаними задачами термомеханіки, термов’язкопластичністю та чисельним моделюванням мікроструктурних перетворень за імпульсного термомеханічного навантаження."
+professionalActivityEn: "Scientific activity is related to coupled problems of thermomechanics, thermoviscoplasticity, and numerical modelling of microstructural transformations under impulsive thermomechanical loading."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

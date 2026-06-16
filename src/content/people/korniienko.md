@@ -2,9 +2,12 @@
 name: "Корнієнко Вікторія Федорівна"
 nameEn: "Viktoriia F. Korniienko"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ динаміки та стійкості суцільних середовищ"
+departmentEn: "Department of Dynamics and Stability of Continua"
 departmentUrl: "/departments/01-dynamics-stability/"
 degree: "Кандидат технічних наук"
+degreeEn: "Candidate of Technical Sciences"
 email: "vf_kornienko@ukr.net"
 photo: "/people/korniienko.png"
 featured: false
@@ -27,11 +30,17 @@ researchAreas:
   - "Нелінійна динамічна еволюція гнучких протяжних елементів з нелінійно-пружними і непотенціальними в’язкопружними характеристиками."
   - "Чисельне дослідження гармонічних коливань і хвиль у п’єзоелектричних та пружних тілах."
   - "Динаміка оболонок різної геометрії під дією розподілених навантажень."
+researchAreasEn:
+  - "Nonlinear dynamic evolution of flexible extended elements with nonlinearly elastic and non-potential viscoelastic characteristics."
+  - "Numerical study of harmonic vibrations and waves in piezoelectric and elastic bodies."
+  - "Dynamics of shells of various geometries under distributed loads."
 
 professionalActivity: "Наукова діяльність пов’язана з нелінійною динамікою гнучких елементів, хвильовими процесами в п’єзоелектричних і пружних тілах та динамікою тонкостінних конструкцій."
+professionalActivityEn: "Scientific activity is related to nonlinear dynamics of flexible elements, wave processes in piezoelectric and elastic bodies, and dynamics of thin-walled structures."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

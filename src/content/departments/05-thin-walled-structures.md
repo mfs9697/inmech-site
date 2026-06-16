@@ -1,10 +1,14 @@
 ---
 number: 5
 title: "Відділ будівельної механіки тонкостінних конструкцій"
+titleEn: "Department of Structural Mechanics of Thin-Walled Structures"
 shortTitle: "Будівельна механіка тонкостінних конструкцій"
+shortTitleEn: "Thin-Walled Structures"
 group: "Механіка оболонкових систем"
+groupEn: "Mechanics of Shell Systems"
 head: "к.т.н. А.С. Колядюк"
 summary: "Дослідження напружено-деформованого стану, міцності, стійкості та динаміки тонкостінних елементів і конструкцій складної геометрії, зокрема оболонок і пластин із конструктивними особливостями."
+summaryEn: "Stress-strain analysis, strength, stability and dynamics of thin-walled elements and structures of complex geometry, including shells and plates."
 order: 5
 contactEmail: "duk86@outlook.com"
 staff:

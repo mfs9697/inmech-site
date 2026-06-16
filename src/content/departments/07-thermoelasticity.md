@@ -1,10 +1,14 @@
 ---
 number: 7
 title: "Відділ термопружності"
+titleEn: "Department of Thermoelasticity"
 shortTitle: "Термопружність"
+shortTitleEn: "Thermoelasticity"
 group: "Механіка зв'язних полів у матеріалах та елементах конструкцій"
+groupEn: "Mechanics of Coupled Fields in Materials and Structural Elements"
 head: "проф. В.Г. Карнаухов"
 summary: "Термомеханіка непружних матеріалів і тіл, гармонічні коливання та дисипативний розігрів просторових і тонкостінних тіл, зв'язані задачі термоелектромеханіки та чисельне моделювання динамічних термомеханічних процесів."
+summaryEn: "Thermomechanics of inelastic materials and bodies, coupled thermoelectromechanical problems, dissipative heating and dynamic thermomechanical processes."
 order: 7
 contactEmail: "karn@inmech.kyiv.ua"
 staff:

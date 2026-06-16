@@ -100,7 +100,7 @@ const ukrainianPath = getUkrainianPath(Astro.url.pathname);
       <span>{siteEn.officialLabel}</span>
       <div class="lang-switch" aria-label="Language selection">
         <a href={withBase(ukrainianPath)}>Українська</a>
-        <a class="active" href={withBase(currentPath)}>English</a>
+        <a class="active" href={withBase(currentPath)} aria-current="page">English</a>
       </div>
     </div>
   </div>

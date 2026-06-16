@@ -2,9 +2,12 @@
 name: "Максимюк Володимир Ананійович"
 nameEn: "Volodymyr A. Maksymyuk"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ динаміки та стійкості суцільних середовищ"
+departmentEn: "Department of Dynamics and Stability of Continua"
 departmentUrl: "/departments/01-dynamics-stability/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Physical and Mathematical Sciences"
 email: "volmak@ukr.net"
 photo: "/people/maksymiuk.png"
 featured: false
@@ -16,11 +19,17 @@ researchAreas:
   - "Методи й алгоритми чисельного розв’язування нелінійних вироджуваних задач теорії композитних оболонок."
   - "Нелінійне деформування ортотропних і композитних оболонок."
   - "Чисельне моделювання тонкостінних елементів конструкцій з отворами."
+researchAreasEn:
+  - "Methods and algorithms for numerical solution of nonlinear degenerate problems in composite shell theory."
+  - "Nonlinear deformation of orthotropic and composite shells."
+  - "Numerical modelling of thin-walled structural elements with holes."
 
 professionalActivity: "Наукова діяльність пов’язана з чисельними методами теорії оболонок, нелінійним деформуванням композитних матеріалів і розрахунком тонкостінних елементів конструкцій."
+professionalActivityEn: "Scientific activity is related to numerical methods in shell theory, nonlinear deformation of composite materials, and analysis of thin-walled structural elements."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

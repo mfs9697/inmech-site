@@ -1,11 +1,15 @@
 ---
 name: "Чорноіван Юрій Олексійович"
-nameEn: "Yuri Chornoivan"
+nameEn: "Yurii O. Chornoivan"
 position: "старший науковий співробітник"
+positionEn: "Senior Research Scientist"
 department: "Відділ механіки руйнування матеріалів"
+departmentEn: "Department of Fracture Mechanics of Materials"
 departmentUrl: "/departments/09-fracture-mechanics/"
 degree: "кандидат фізико-математичних наук"
+degreeEn: "Candidate of Sciences in Physics and Mathematics"
 academicTitle: "доцент"
+academicTitleEn: "Associate Professor"
 email: "chornoivan@nas.gov.ua"
 order: 8
 featured: true
@@ -37,11 +41,17 @@ researchAreas:
   - "механіка контактної взаємодії;"
   - "моделі когезійних зон;"
   - "метод граничних елементів."
+researchAreasEn:
+  - "Mechanics of contact interaction."
+  - "Cohesive-zone models."
+  - "Boundary element method."
 
 professionalActivity: "Професійна діяльність пов’язана з Київським національним університетом імені Тараса Шевченка та Київським національним університетом будівництва і архітектури."
+professionalActivityEn: "Professional activity is connected with Taras Shevchenko National University of Kyiv and Kyiv National University of Construction and Architecture."
 
 publications:
   - title: "Статті у реферованих виданнях"
+    titleEn: "Articles in peer-reviewed journals"
     type: "ordered"
     items:
       - "Kaminsky, A. A., Dudyk, M. V. & Chornoivan, Y. O. An analytical evaluation of T-stress influence in the process zone modelling for the interface crack kinking. Int J Fract 250, 22 (2026)."
@@ -53,6 +63,7 @@ publications:
       - "Kaminsky A. O., Kurchakov E. E., Chornoivan Yu. O. Boundary-value problems of fracture mechanics for a nonlinear anisotropic body. International Applied Mechanics. 2022. Vol. 58, no. 3. P. 243–279."
       - "Kaminsky A. O., Dudyk M. V., Fenkiv V. M., Chornoivan Yu. O. On the Scope and Limitations of the Comninou Model for a Crack at a Polygonal Interface. International Applied Mechanics. 2022. Vol. 58, no. 4. P. 398–409."
   - title: "Тези доповідей та матеріали конференцій"
+    titleEn: "Conference abstracts and proceedings"
     type: "ordered"
     items:
       - "Dudyk M., Kaminsky A., Reshitnyk Yu., Chornoivan Yu. On analytical model of interface crack in bonding quasi-brittle material between distinct elastic media. European Conference on Fracture 2024: Book of Abstracts. P. 8."

@@ -1,11 +1,15 @@
 ---
 name: "Васильєва Наталія Володимирівна"
-nameEn: "Nataliya Vasylyeva"
+nameEn: "Nataliia V. Vasylieva"
 position: "старший науковий співробітник"
+positionEn: "Senior Research Scientist"
 department: "Відділ механіки руйнування матеріалів"
+departmentEn: "Department of Fracture Mechanics of Materials"
 departmentUrl: "/departments/09-fracture-mechanics/"
 degree: "кандидат фізико-математичних наук"
+degreeEn: "Candidate of Sciences in Physics and Mathematics"
 academicTitle: "старший науковий співробітник"
+academicTitleEn: "Senior Research Scientist"
 email: "Nataliy_v@gahoo.com"
 order: 5
 featured: true
@@ -35,9 +39,14 @@ profiles:
 
 researchAreas:
   - "обчислювальні методи механіки руйнування."
+researchAreasEn:
+  - "Computational methods of fracture mechanics."
+
+professionalActivityEn: "Research activity is focused on computational approaches in fracture mechanics and related applied problems."
 
 publications:
   - title: "Статті у реферованих виданнях"
+    titleEn: "Articles in peer-reviewed journals"
     type: "ordered"
     items:
       - "Analysis of a Radiotherapy Model for Brain Tumors / M. Chugunova, H. Ji, R. Taranets, N. Vasylyeva. Studies in Applied Mathematics. 2025. DOI: https://doi.org/10.1111/sapm.70074."

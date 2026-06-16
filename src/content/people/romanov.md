@@ -2,9 +2,12 @@
 name: "Романов Олександр Веніамінович"
 nameEn: "Oleksandr V. Romanov"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ механіки повзучості"
+departmentEn: "Department of Mechanics of Creep"
 departmentUrl: "/departments/08-creep/"
 degree: "Кандидат технічних наук"
+degreeEn: "Candidate of Technical Sciences"
 email: "creep@inmech.kyiv.ua"
 photo: "/people/romanov.png"
 featured: false
@@ -16,11 +19,17 @@ researchAreas:
   - "Вплив виду напруженого стану на процес тривалого деформування конструкційних матеріалів."
   - "Нелінійна повзучість."
   - "Довготривале в'язке руйнування конструкційних матеріалів."
+researchAreasEn:
+  - "Influence of the type of stress state on long-term deformation of structural materials."
+  - "Nonlinear creep."
+  - "Long-term viscous fracture of structural materials."
 
 professionalActivity: "Наукова діяльність пов'язана з дослідженням впливу напруженого стану на довготривале деформування, нелінійну повзучість і в'язке руйнування конструкційних матеріалів."
+professionalActivityEn: "Scientific activity is related to the study of the influence of stress state on long-term deformation, nonlinear creep, and viscous fracture of structural materials."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

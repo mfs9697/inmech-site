@@ -1,10 +1,14 @@
 ---
 number: 0
 title: "Центр колективного користування «Аналізатор динамічних процесів»"
+titleEn: "Shared-Use Centre “Dynamic Process Analyser”"
 shortTitle: "ЦКК «Аналізатор динамічних процесів»"
+shortTitleEn: "Shared-Use Centre “Dynamic Process Analyser”"
 group: "Механіка композитних та неоднорідних середовищ"
+groupEn: "Mechanics of Composite and Heterogeneous Media"
 head: "д.ф.-м.н. Максимюк В.А."
 summary: "Центр колективного користування портативною апаратурою LMS SCADAS Mobile для вимірювання, реєстрації та аналізу вібраційних, акустичних і тензометричних сигналів. Структурний підрозділ відділу 1."
+summaryEn: "A shared-use centre based on LMS SCADAS Mobile equipment for measurement, recording and analysis of vibration, acoustic and strain-gauge signals. A structural unit of Department 1."
 order: 1.5
 contactEmail: "desc@inmech.kyiv.ua"
 staff:

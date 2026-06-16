@@ -2,9 +2,12 @@
 name: "Прокопенко Ніна Яківна"
 nameEn: "Nina Ya. Prokopenko"
 position: "Науковий співробітник"
+positionEn: "Researcher"
 department: "Відділ будівельної механіки тонкостінних конструкцій"
+departmentEn: "Department of Structural Mechanics of Thin-Walled Structures"
 departmentUrl: "/departments/05-thin-walled-structures/"
 degree: "Кандидат технічних наук"
+degreeEn: "Candidate of Technical Sciences"
 email: "NJAProkopenko@nas.gov.ua"
 photo: "/people/prokopenko.png"
 featured: false
@@ -16,11 +19,17 @@ researchAreas:
   - "Статика та динаміка оболонок і пластин, підсилених сіткою ребер."
   - "Коливання підкріплених оболонок і пластин."
   - "Динаміка оболонкових систем на пружній основі."
+researchAreasEn:
+  - "Statics and dynamics of shells and plates reinforced by a grid of ribs."
+  - "Vibrations of reinforced shells and plates."
+  - "Dynamics of shell systems on elastic foundations."
 
 professionalActivity: "Наукова діяльність пов’язана з дослідженням статичної та динамічної поведінки пластин і оболонок, зокрема підкріплених ребрами та взаємодіючих із пружною основою."
+professionalActivityEn: "Scientific activity is related to the study of static and dynamic behaviour of plates and shells, including rib-reinforced elements and structures interacting with elastic foundations."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

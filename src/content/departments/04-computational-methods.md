@@ -1,10 +1,14 @@
-﻿---
+---
 number: 4
 title: "Відділ обчислювальних методів"
+titleEn: "Department of Computational Methods"
 shortTitle: "Обчислювальні методи"
+shortTitleEn: "Computational Methods"
 group: "Механіка оболонкових систем"
+groupEn: "Mechanics of Shell Systems"
 head: "акад. НАН України О.Я. Григоренко"
 summary: "Обчислювальні методи механіки оболонкових систем, задачі статики, динаміки, стійкості та коливань шаруватих, анізотропних і неоднорідних оболонок, а також застосування методів механіки деформівного твердого тіла до задач стоматології."
+summaryEn: "Computational methods for shell systems, statics, dynamics, stability and vibrations of layered, anisotropic and heterogeneous shells."
 order: 4
 contactEmail: "metod@inmech.kyiv.ua"
 staff:

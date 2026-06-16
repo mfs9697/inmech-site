@@ -2,9 +2,12 @@
 name: "Декрет Володимир Анатолійович"
 nameEn: "Volodymyr A. Dekret"
 position: "Провідний науковий співробітник"
+positionEn: "Leading Researcher"
 department: "Відділ обчислювальної механіки та техніки"
+departmentEn: "Department of Computational Mechanics and Engineering"
 departmentUrl: "/departments/03-computational-mechanics-engineering/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Physical and Mathematical Sciences"
 email: "dekret@ukr.net"
 photo: "/people/dekret.png"
 featured: false
@@ -17,11 +20,18 @@ researchAreas:
   - "Тривимірна теорія стійкості композитних матеріалів."
   - "Моделювання коротких волокон у теорії стійкості композитів."
   - "Чисельне дослідження стійкості композитних матеріалів."
+researchAreasEn:
+  - "Mechanics of deformable solids."
+  - "Three-dimensional stability theory of composite materials."
+  - "Modelling of short fibres in the stability theory of composites."
+  - "Numerical study of stability of composite materials."
 
 professionalActivity: "Наукова діяльність пов’язана з тривимірною теорією стійкості композитних матеріалів, чисельним моделюванням композитів і розробленням моделей коротких волокон."
+professionalActivityEn: "Scientific activity is related to the three-dimensional stability theory of composite materials, numerical modelling of composites, and development of short-fibre models."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

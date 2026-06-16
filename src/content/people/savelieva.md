@@ -2,10 +2,14 @@
 name: "Савельєва Катерина Володимирівна"
 nameEn: "Kateryna V. Savelieva"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ реології"
+departmentEn: "Department of Rheology"
 departmentUrl: "/departments/02-rheology/"
 degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 academicTitle: "Доцент"
+academicTitleEn: "Associate Professor"
 email: "katerina1971s@gmail.com"
 photo: "/people/savelieva.png"
 featured: false
@@ -17,11 +21,17 @@ researchAreas:
   - "Теорія поширення лінійних і нелінійних хвиль у пружних і в’язкопружних матеріалах."
   - "Хвилі у твердих сумішах, композитних і нанокомпозитних матеріалах."
   - "Взаємодія плоских пружних хвиль з урахуванням нелінійності."
+researchAreasEn:
+  - "Theory of propagation of linear and nonlinear waves in elastic and viscoelastic materials."
+  - "Waves in solid mixtures, composite and nanocomposite materials."
+  - "Interaction of plane elastic waves with nonlinear effects."
 
 professionalActivity: "Наукова діяльність пов’язана з теорією хвиль у пружних, в’язкопружних, композитних і нанокомпозитних матеріалах, а також із дослідженням нелінійних хвильових ефектів."
+professionalActivityEn: "Scientific activity is related to wave theory in elastic, viscoelastic, composite and nanocomposite materials, as well as the study of nonlinear wave effects."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

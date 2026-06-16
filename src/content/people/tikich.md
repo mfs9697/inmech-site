@@ -2,7 +2,9 @@
 name: "Тікіч Максим Леонідович"
 nameEn: "Maksym L. Tikich"
 position: "Молодший науковий співробітник"
+positionEn: "Junior Researcher"
 department: "Відділ обчислювальних методів"
+departmentEn: "Department of Computational Methods"
 departmentUrl: "/departments/04-computational-methods/"
 photo: "/people/tikich.jpg"
 featured: false
@@ -13,11 +15,16 @@ profiles: []
 researchAreas:
   - "Чисельний і експериментальний аналіз вільних коливань анізотропних та ортотропних пластин складної форми."
   - "Чисельний і експериментальний аналіз вільних коливань з’єднаних пластин."
+researchAreasEn:
+  - "Numerical and experimental analysis of free vibrations of anisotropic and orthotropic plates of complex shape."
+  - "Numerical and experimental analysis of free vibrations of connected plates."
 
 professionalActivity: "Професійна підготовка пов’язана з механікою; наукові інтереси зосереджені на чисельному та експериментальному аналізі коливань пластин складної форми і з’єднаних пластин."
+professionalActivityEn: "Professional training is related to mechanics; research interests focus on numerical and experimental analysis of vibrations of complex-shaped plates and connected plates."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

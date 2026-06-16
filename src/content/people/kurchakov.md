@@ -13,8 +13,7 @@ academicTitleEn: "Senior Research Scientist"
 email: "dfm11@ukr.net"
 order: 6
 featured: true
-# Фото поки не підключено: файл public/people/kurchakov.png у репозиторії не знайдено.
-# photo: "/people/kurchakov.png"
+photo: "/people/kurchakov.jpg"
 
 profiles:
   - label: "Scopus"

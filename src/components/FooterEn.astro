@@ -1,0 +1,43 @@
+---
+import { siteEn } from '../data/site-en';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+---
+
+<footer class="site-footer" id="contacts">
+  <div class="container footer-grid">
+    <section>
+      <h2>{siteEn.name}</h2>
+      <p>{siteEn.address}</p>
+      <p>Tel.: <a href={`tel:${siteEn.phone.replaceAll(' ', '')}`}>{siteEn.phone}</a><br />E-mail: <a href={`mailto:${siteEn.email}`}>{siteEn.email}</a></p>
+    </section>
+    <section>
+      <h3>Sections</h3>
+      <ul class="footer-links">
+        <li><a href={withBase('/en/news/')}>News</a></li>
+        <li><a href={withBase('/en/departments/')}>Research departments</a></li>
+        <li><a href={withBase('/en/postgraduate/')}>Postgraduate studies</a></li>
+        <li><a href="https://applied-mechanics.inmech.kyiv.ua/" target="_blank" rel="noopener noreferrer">Applied Mechanics journal</a></li>
+      </ul>
+    </section>
+    <section>
+      <h3>Service links</h3>
+      <ul class="footer-links">
+        <li><a href={withBase('/en/sitemap/')}>Sitemap</a></li>
+        <li><a href={withBase('/en/accessibility/')}>Accessibility policy</a></li>
+        <li><a href={withBase('/en/site-administration/')}>Site administration</a></li>
+      </ul>
+    </section>
+  </div>
+  <div class="container copyright">
+    © {new Date().getFullYear()} S.P. Timoshenko Institute of Mechanics, NAS of Ukraine.
+  </div>
+</footer>

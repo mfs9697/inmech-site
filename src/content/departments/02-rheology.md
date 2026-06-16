@@ -1,10 +1,14 @@
 ---
 number: 2
 title: "Відділ реології"
+titleEn: "Department of Rheology"
 shortTitle: "Реологія"
+shortTitleEn: "Rheology"
 group: "Механіка композитних та неоднорідних середовищ"
+groupEn: "Mechanics of Composite and Heterogeneous Media"
 head: "чл.-кор. НАН України Я.Я. Рущицький"
 summary: "Сучасні проблеми реології, макро-, мікро- та наномеханіка композитних матеріалів, механіка ауксетичних матеріалів, лінійні та нелінійні хвилі в матеріалах."
+summaryEn: "Modern problems of rheology, macro-, micro- and nanomechanics of composite materials, mechanics of auxetic materials, and linear and nonlinear waves in materials."
 order: 2
 contactEmail: "reolog@inmech.kyiv.ua"
 staff:

@@ -78,7 +78,7 @@ function getEnglishPath(pathname: string) {
     return ukToEnFallbacks[path];
   }
 
-  if (/^\/departments\/[^/]+\/$/.test(path)) {
+  if (/^\/departments\/[^/]+\/$/.test(path) || /^\/people\/[^/]+\/$/.test(path)) {
     return `/en${path}`;
   }
 

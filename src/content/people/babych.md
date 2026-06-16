@@ -2,10 +2,14 @@
 name: "Бабич Степан Юрійович"
 nameEn: "Stepan Yu. Babych"
 position: "Провідний науковий співробітник"
+positionEn: "Leading Researcher"
 department: "Відділ динаміки та стійкості суцільних середовищ"
+departmentEn: "Department of Dynamics and Stability of Continua"
 departmentUrl: "/departments/01-dynamics-stability/"
 degree: "Доктор технічних наук"
+degreeEn: "Doctor of Technical Sciences"
 academicTitle: "Професор"
+academicTitleEn: "Professor"
 email: "babich_sy@ukr.net"
 photo: "/people/babych.jpg"
 featured: false
@@ -28,11 +32,17 @@ researchAreas:
   - "Методи розв’язування контактних задач для тіл з початковими напруженнями."
   - "Поверхневі хвилі Релея для попередньо напружених тіл з криволінійними границями."
   - "Статика і динаміка пружних основ з початковими напруженнями."
+researchAreasEn:
+  - "Methods for solving contact problems for bodies with initial stresses."
+  - "Rayleigh surface waves for prestressed bodies with curvilinear boundaries."
+  - "Statics and dynamics of elastic foundations with initial stresses."
 
 professionalActivity: "Професійна діяльність пов’язана з підготовкою наукових статей, доповідей, звітів та участю у роботі спеціалізованої вченої ради із захисту дисертацій."
+professionalActivityEn: "Professional activity is related to the preparation of scientific papers, conference reports and research reports, as well as participation in the work of a specialized academic council for dissertation defenses."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import DepartmentCard from '../../components/DepartmentCard.astro';
 import { siteEn } from '../../data/site-en';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -17,7 +18,7 @@ const departments = (await getCollection('departments'))
   .sort((a, b) => a.data.order - b.data.order);
 
 const groupedDepartments = [...departments.reduce((acc, entry) => {
-  const group = entry.data.group;
+  const group = entry.data.groupEn ?? entry.data.group;
   if (!acc.has(group)) acc.set(group, []);
   acc.get(group)?.push(entry);
   return acc;
@@ -31,69 +32,6 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
     id: `home-department-group-${index + 1}`
   };
 });
-
-const groupNamesEn: Record<string, string> = {
-  'Механіка композитних та неоднорідних середовищ': 'Mechanics of composite and heterogeneous media',
-  'Механіка оболонкових систем': 'Mechanics of shell systems',
-  "Механіка зв'язних полів у матеріалах та елементах конструкцій": 'Mechanics of coupled fields in materials and structural elements',
-  'Механіка руйнування та втома': 'Fracture mechanics and fatigue',
-  'Динаміка та стійкість руху механічних систем': 'Dynamics and stability of mechanical systems'
-};
-
-const departmentTextEn: Record<string, { title: string; summary: string }> = {
-  '01-dynamics-stability': {
-    title: 'Department of Dynamics and Stability of Continua',
-    summary: 'Three-dimensional stability theory, wave propagation and diffraction, non-classical problems of fracture mechanics, composite materials and thin-walled structural elements.'
-  },
-  '02-rheology': {
-    title: 'Department of Rheology',
-    summary: 'Modern problems of rheology, macro-, micro- and nanomechanics of composite materials, mechanics of auxetic materials, and linear and nonlinear waves in materials.'
-  },
-  'lms-scadas-mobile-center': {
-    title: 'Shared-Use Centre “Dynamic Process Analyser”',
-    summary: 'A shared-use centre based on LMS SCADAS Mobile equipment for measurement, recording and analysis of vibration, acoustic and strain-gauge signals.'
-  },
-  '03-computational-mechanics-engineering': {
-    title: 'Department of Computational Mechanics and Engineering',
-    summary: 'Numerical studies of edge effects, three-dimensional stability of composites, fracture of reinforced materials, interfacial cracks and software for computational mechanics.'
-  },
-  '04-computational-methods': {
-    title: 'Department of Computational Methods',
-    summary: 'Computational methods for shell systems, statics, dynamics, stability and vibrations of layered, anisotropic and heterogeneous shells.'
-  },
-  '05-thin-walled-structures': {
-    title: 'Department of Structural Mechanics of Thin-Walled Structures',
-    summary: 'Stress-strain analysis, strength, stability and dynamics of thin-walled elements and structures of complex geometry, including shells and plates.'
-  },
-  '06-thermoplasticity': {
-    title: 'Department of Thermoplasticity',
-    summary: 'Thermoviscoelastoplastic deformation and fracture of structural elements under complex non-isothermal loading, heat conduction, material damage and numerical methods.'
-  },
-  '07-thermoelasticity': {
-    title: 'Department of Thermoelasticity',
-    summary: 'Thermomechanics of inelastic materials and bodies, coupled thermoelectromechanical problems, dissipative heating and dynamic thermomechanical processes.'
-  },
-  '08-creep': {
-    title: 'Department of Mechanics of Creep',
-    summary: 'Nonlinear three-dimensional viscoelasticity, long-term creep fracture, damage accumulation, fatigue life prediction and experimental validation of creep and fatigue models.'
-  },
-  '09-fracture-mechanics': {
-    title: 'Department of Fracture Mechanics of Materials',
-    summary: 'Long-term fracture, slow subcritical crack growth, crack resistance and fracture mechanics of elastic-plastic, viscoelastic and composite materials.'
-  },
-  '10-stability-processes': {
-    title: 'Department of Stability of Processes',
-    summary: 'Lyapunov matrix-valued functions for uncertain dynamic systems, stability of systems with fuzzy parameters, fractional-type derivatives and time-scale systems.'
-  },
-  '11-vibrations': {
-    title: 'Department of Theory of Vibrations',
-    summary: 'Diffraction problems of acoustics and elasticity, hydroelectroelasticity, interaction of structural elements with fluids and elastic media, and optimal motion control.'
-  }
-};
-
-function departmentNumber(entry: typeof departments[number]) {
-  return entry.id === 'lms-scadas-mobile-center' ? '01C' : String(entry.data.number).padStart(2, '0');
-}
 ---
 
 <BaseLayoutEn
@@ -200,7 +138,7 @@ function departmentNumber(entry: typeof departments[number]) {
           <h2 class="section-title">Research areas and departments</h2>
           <p class="section-text">
             The main areas of the Institute’s work are presented through groups of research departments.
-            This structure mirrors the Ukrainian version and keeps both language versions easy to maintain.
+            The English and Ukrainian versions now use the same department records, with optional English fields.
           </p>
         </div>
         <a class="button secondary" href={withBase('/en/departments/')}>All departments</a>
@@ -210,28 +148,11 @@ function departmentNumber(entry: typeof departments[number]) {
         {groupedDepartments.map(({ group, entries, departmentCount, id }) => (
           <section class="home-department-group" aria-labelledby={id}>
             <div class="home-department-group-header">
-              <h3 id={id}>{groupNamesEn[group] ?? group}</h3>
+              <h3 id={id}>{group}</h3>
               <span>{departmentCount} {departmentCount === 1 ? 'department' : 'departments'}</span>
             </div>
             <div class="department-grid">
-              {entries.map((entry) => {
-                const department = departmentTextEn[entry.id] ?? {
-                  title: entry.data.title,
-                  summary: entry.data.summary
-                };
-
-                return (
-                  <article class="department-card">
-                    <div class="department-number" aria-hidden="true">{departmentNumber(entry)}</div>
-                    <div>
-                      <h3>
-                        <a href={withBase('/en/departments/')}>{department.title}</a>
-                      </h3>
-                      <p>{department.summary}</p>
-                    </div>
-                  </article>
-                );
-              })}
+              {entries.map((entry) => <DepartmentCard entry={entry} lang="en" />)}
             </div>
           </section>
         ))}

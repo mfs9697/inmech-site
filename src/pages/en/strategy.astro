@@ -1,0 +1,220 @@
+---
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../data/site-en';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+const strategyPdf = withBase('/documents/institute/strategy/development-strategy-2021-2025.pdf');
+
+const values = [
+  'high professional competence',
+  'academic integrity and scientific ethics',
+  'creativity and team spirit',
+  'openness, cooperation and responsibility',
+  'academic freedom and self-development',
+  'contribution to world science and international cooperation'
+];
+
+const researchDirections = [
+  {
+    title: 'Mechanics of composite and heterogeneous media',
+    text:
+      'Research on composite and nanocomposite materials, non-classical fracture mechanics, auxetic materials, wave processes and high-performance computing.'
+  },
+  {
+    title: 'Mechanics of shell systems',
+    text:
+      'Development of numerical and numerical-analytical approaches to the analysis of structurally and materially heterogeneous shells, layered systems and complex shell elements.'
+  },
+  {
+    title: 'Mechanics of coupled fields',
+    text:
+      'Study of thermomechanical behaviour, durability and the interaction of mechanical, thermal and electromagnetic fields in materials and structural elements.'
+  },
+  {
+    title: 'Fracture mechanics and fatigue',
+    text:
+      'Development of long-term fracture models, analysis of crack-growth kinetics, durability assessment and investigation of delayed fracture in polymers and composites.'
+  },
+  {
+    title: 'Dynamics and stability of mechanical systems',
+    text:
+      'Development of qualitative and analytical methods for studying dynamics, stability, contact interaction, hydroelastic systems and motion control of aerospace systems.'
+  }
+];
+
+const strategicTasks = [
+  {
+    title: 'Continuity of scientific personnel',
+    text:
+      'Preserving and effectively renewing the research staff, supporting scientific continuity and transferring experience to young scientists.'
+  },
+  {
+    title: 'Postgraduate training and quality of education',
+    text:
+      'Improving the educational and scientific programme in specialty 113 Applied Mathematics, developing academic mobility and strengthening the practical component of training.'
+  },
+  {
+    title: 'International cooperation',
+    text:
+      'Developing partnerships with foreign institutions, participating in international projects, conferences, joint publications and editorial boards.'
+  },
+  {
+    title: 'Publications and conferences',
+    text:
+      'Supporting the international journal Applied Mechanics, organising scientific conferences and increasing the visibility of research results.'
+  },
+  {
+    title: 'Infrastructure and funding',
+    text:
+      'Strengthening the material and technical base, developing the Shared-Use Centre and expanding access to scientific publications and databases.'
+  }
+];
+---
+
+<BaseLayoutEn
+  title={`Development Strategy | ${siteEn.shortName}`}
+  description="Development strategy and prospective research directions of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine."
+  activePage="about"
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel strategy-hero-panel">
+        <p class="eyebrow">About the Institute</p>
+        <h1>Development Strategy</h1>
+        <p class="lead">
+          The Development Strategy of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine
+          for 2021–2025 defines the mission, vision, values, prospective research directions and main
+          institutional development tasks of the Institute.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href={strategyPdf} target="_blank" rel="noopener">
+            Open the full PDF document
+          </a>
+          <a class="button secondary" href={withBase('/strategy/')}>
+            Ukrainian version
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container strategy-grid two-columns">
+      <article class="panel strategy-card highlight-card">
+        <p class="eyebrow">Mission</p>
+        <h2>New knowledge for science and practice</h2>
+        <p>
+          The mission of the Institute is to conduct research aimed at obtaining new fundamental
+          knowledge in mechanics and using this knowledge for practical purposes, to train highly
+          qualified scientific personnel and to contribute to the innovative development of Ukraine.
+        </p>
+      </article>
+
+      <article class="panel strategy-card highlight-card">
+        <p class="eyebrow">Vision</p>
+        <h2>A leading institution in mechanics</h2>
+        <p>
+          The Institute’s vision is to strengthen its position as a leading Ukrainian institution in
+          mechanics and applied mathematics, while developing strong scientific schools and modern
+          research directions.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Values</p>
+          <h2 class="section-title">Principles of the Institute’s activity</h2>
+          <p class="section-text">
+            The Strategy emphasises professional competence, academic integrity, openness,
+            responsibility and international integration.
+          </p>
+        </div>
+      </div>
+
+      <div class="value-grid">
+        {values.map((value) => <div class="value-card">{value}</div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Prospective directions</p>
+          <h2 class="section-title">Research activity</h2>
+          <p class="section-text">
+            The priority directions are formulated according to the Institute’s scientific profile and
+            statutory tasks.
+          </p>
+        </div>
+      </div>
+
+      <div class="strategy-grid">
+        {researchDirections.map((item) => (
+          <article class="panel strategy-card">
+            <h2>{item.title}</h2>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Strategic tasks</p>
+          <h2 class="section-title">Institutional development</h2>
+          <p class="section-text">
+            Special attention is given to personnel policy, educational and scientific activity,
+            international cooperation, publication activity and strengthening of the material base.
+          </p>
+        </div>
+      </div>
+
+      <div class="strategy-grid">
+        {strategicTasks.map((item) => (
+          <article class="panel strategy-card">
+            <h2>{item.title}</h2>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="panel strategy-note">
+        <p class="eyebrow">Document</p>
+        <h2>Full text of the Strategy</h2>
+        <p>
+          The full document contains a detailed list of research tasks for each direction, measures
+          for the development of postgraduate training, international cooperation, the journal
+          Applied Mechanics, conference activity, grant funding and the material and technical base.
+        </p>
+        <p>
+          The official document is provided in Ukrainian.
+        </p>
+        <a class="button secondary" href={strategyPdf} target="_blank" rel="noopener">
+          Download or open PDF
+        </a>
+      </article>
+    </div>
+  </section>
+</BaseLayoutEn>

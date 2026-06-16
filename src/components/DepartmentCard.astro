@@ -3,23 +3,30 @@ import type { CollectionEntry } from 'astro:content';
 
 interface Props {
   entry: CollectionEntry<'departments'>;
+  lang?: 'uk' | 'en';
 }
 
-const { entry } = Astro.props;
+const { entry, lang = 'uk' } = Astro.props;
+const isEnglish = lang === 'en';
 const isSharedUseCenter = entry.id === 'lms-scadas-mobile-center';
-const number = isSharedUseCenter ? '01Ц' : String(entry.data.number).padStart(2, '0');
+const number = isSharedUseCenter ? (isEnglish ? '01C' : '01Ц') : String(entry.data.number).padStart(2, '0');
+
+const title = isEnglish ? entry.data.titleEn ?? entry.data.title : entry.data.title;
+const summary = isEnglish ? entry.data.summaryEn ?? entry.data.summary : entry.data.summary;
+const head = isEnglish ? entry.data.headEn : entry.data.head;
+const headLabel = isEnglish ? 'Head' : 'Керівник';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const departmentUrl = `${base}/departments/${entry.id}/`;
+const departmentUrl = isEnglish ? `${base}/en/departments/` : `${base}/departments/${entry.id}/`;
 ---
 
 <article class="department-card">
   <div class="department-number" aria-hidden="true">{number}</div>
   <div>
     <h3>
-      <a href={departmentUrl}>{entry.data.title}</a>
+      <a href={departmentUrl}>{title}</a>
     </h3>
-    <p>{entry.data.summary}</p>
-    {entry.data.head && <p class="department-head">Керівник: {entry.data.head}</p>}
+    <p>{summary}</p>
+    {head && <p class="department-head">{headLabel}: {head}</p>}
   </div>
 </article>

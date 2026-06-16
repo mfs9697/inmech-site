@@ -16,6 +16,64 @@ interface Props {
 const { title, description, activePage = 'home' } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const faviconPath = `${base}/favicon.png`;
+
+const siteBaseUrl = new URL(`${base || ''}/`, Astro.site).href.replace(/\/$/, '');
+const englishPaths = new Set([
+  '/en/',
+  '/en/history/',
+  '/en/regulations/',
+  '/en/strategy/',
+  '/en/scientific-cooperation/',
+  '/en/tender/',
+  '/en/management/',
+  '/en/departments/',
+  '/en/scientific-council/',
+  '/en/specialized-councils/',
+  '/en/young-scientists/',
+  '/en/services/',
+  '/en/education/',
+  '/en/postgraduate/',
+  '/en/doctoral/',
+  '/en/dissertations/',
+  '/en/license-and-regulations/',
+  '/en/trust-box/',
+  '/en/nmr/',
+  '/en/news/',
+  '/en/library/',
+  '/en/search/',
+  '/en/sitemap/',
+  '/en/accessibility/',
+  '/en/site-administration/'
+]);
+
+function stripBaseFromPath(pathname: string) {
+  if (!base) {
+    return pathname;
+  }
+
+  if (pathname === base) {
+    return '/';
+  }
+
+  return pathname.startsWith(`${base}/`) ? pathname.slice(base.length) : pathname;
+}
+
+function normalizePath(pathname: string) {
+  const withoutIndex = (pathname || '/').replace(/\/index\.html$/, '/');
+  const withLeadingSlash = withoutIndex.startsWith('/') ? withoutIndex : `/${withoutIndex}`;
+  return withLeadingSlash.endsWith('/') ? withLeadingSlash : `${withLeadingSlash}/`;
+}
+
+function absoluteUrl(pathname: string) {
+  return `${siteBaseUrl}${pathname}`;
+}
+
+const currentPath = normalizePath(stripBaseFromPath(Astro.url.pathname));
+const canonicalUrl = absoluteUrl(currentPath);
+const hasUkrainianAlternative = englishPaths.has(currentPath);
+const ukrainianAlternativePath = currentPath === '/en/' ? '/' : currentPath.replace(/^\/en/, '') || '/';
+const ukrainianAlternativeUrl = absoluteUrl(ukrainianAlternativePath);
+const englishAlternativeUrl = absoluteUrl(currentPath);
 ---
 
 <!doctype html>
@@ -25,6 +83,9 @@ const faviconPath = `${base}/favicon.png`;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {hasUkrainianAlternative && <link rel="alternate" hreflang="uk" href={ukrainianAlternativeUrl} />}
+    {hasUkrainianAlternative && <link rel="alternate" hreflang="en" href={englishAlternativeUrl} />}
     <link rel="icon" href={faviconPath} type="image/png" />
   </head>
   <body>

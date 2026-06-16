@@ -2,10 +2,14 @@
 name: "Янчевський Ігор Владиславович"
 nameEn: "Ihor V. Yanchevskyi"
 position: "Провідний науковий співробітник"
+positionEn: "Leading Researcher"
 department: "Відділ теорії коливань"
+departmentEn: "Department of Theory of Vibrations"
 departmentUrl: "/departments/11-vibrations/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Physical and Mathematical Sciences"
 academicTitle: "Професор"
+academicTitleEn: "Professor"
 email: "i.yanchevskyi@ukr.net"
 featured: false
 photo: "/people/ianchevsky.png"
@@ -17,15 +21,21 @@ profiles:
     url: "https://orcid.org/0000-0002-7113-2276"
     kind: "orcid"
 
+researchAreasEn:
+  - "Efficient methods for solving applied problems of nonstationary hydroelectroelasticity."
+  - "Acoustic interaction of bodies and media."
+  - "Modelling of hydrodynamic characteristics of wave-body interaction in cavities filled with compressible fluid."
 researchAreas:
   - "Розроблення ефективних методів розв’язання прикладних задач нестаціонарної гідроелектропружності."
   - "Акустична взаємодія тіл і середовищ."
   - "Моделювання гідродинамічних характеристик взаємодії хвиль і тіл у порожнинах, заповнених стисливою рідиною."
 
+professionalActivityEn: "His scientific work is related to nonstationary hydroelectroelasticity, wave dynamics, acoustic interaction of bodies, and applied optimization problems in mechanical systems."
 professionalActivity: "Наукова діяльність пов’язана з нестаціонарною гідроелектропружністю, хвильовою динамікою, акустичною взаємодією тіл і прикладними задачами оптимізації механічних систем."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

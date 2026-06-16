@@ -1,10 +1,14 @@
-﻿---
+---
 number: 8
 title: "Відділ механіки повзучості"
+titleEn: "Department of Mechanics of Creep"
 shortTitle: "Механіка повзучості"
+shortTitleEn: "Mechanics of Creep"
 group: "Механіка руйнування та втома"
+groupEn: "Fracture Mechanics and Fatigue"
 head: "к.т.н. А.В. Плащинська"
 summary: "Нелінійна тривимірна теорія в’язкопружності, довготривале руйнування внаслідок повзучості, накопичення пошкоджень, прогнозування втомної довговічності та експериментальна апробація моделей повзучості й втоми."
+summaryEn: "Nonlinear three-dimensional viscoelasticity, long-term creep fracture, damage accumulation, fatigue life prediction and experimental validation of creep and fatigue models."
 order: 8
 contactEmail: "creep@inmech.kyiv.ua"
 staff:

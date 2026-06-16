@@ -2,7 +2,9 @@
 name: "Абросов Юрій Юрійович"
 nameEn: "Yurii Yu. Abrosov"
 position: "Молодший науковий співробітник"
+positionEn: "Junior Researcher"
 department: "Відділ динаміки та стійкості суцільних середовищ"
+departmentEn: "Department of Dynamics and Stability of Continua"
 departmentUrl: "/departments/01-dynamics-stability/"
 email: "abrosovyuriy@gmail.com"
 photo: "/people/abrosov.png"
@@ -18,11 +20,17 @@ researchAreas:
   - "Дослідження напружено-деформованого стану довгих тонких замкнутих оболонок неколового поперечного перерізу."
   - "Розрахунок циліндричних оболонок супереліптичного та суперколового поперечного перерізу."
   - "Застосування чисельних методів до задач теорії оболонок."
+researchAreasEn:
+  - "Study of the stress-strain state of long thin closed shells of non-circular cross-section."
+  - "Analysis of cylindrical shells with superelliptic and supercircular cross-sections."
+  - "Application of numerical methods to shell-theory problems."
 
 professionalActivity: "Професійна діяльність пов’язана з підготовкою наукових статей, доповідей і звітів, а також із технічним забезпеченням конференцій, семінарів і захистів дисертацій."
+professionalActivityEn: "Professional activity is related to the preparation of scientific articles, presentations and reports, as well as technical support for conferences, seminars and dissertation defenses."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

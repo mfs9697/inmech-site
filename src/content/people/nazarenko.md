@@ -2,10 +2,14 @@
 name: "Назаренко Володимир Михайлович"
 nameEn: "Volodymyr M. Nazarenko"
 position: "Завідувач відділу обчислювальної механіки та техніки, в.о. директора Інституту"
+positionEn: "Head of the Department of Computational Mechanics and Engineering, Acting Director of the Institute"
 department: "Відділ обчислювальної механіки та техніки"
+departmentEn: "Department of Computational Mechanics and Engineering"
 departmentUrl: "/departments/03-computational-mechanics-engineering/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Physical and Mathematical Sciences"
 academicTitle: "Академік НАН України"
+academicTitleEn: "Academician of the NAS of Ukraine"
 email: "nazvm1@gmail.com"
 photo: "/people/nazarenko.png"
 featured: false
@@ -18,11 +22,18 @@ researchAreas:
   - "Механіка руйнування."
   - "Теорія стійкості деформівних тіл."
   - "Некласичні задачі руйнування матеріалів за стискання вздовж тріщин."
+researchAreasEn:
+  - "Mechanics of deformable solids."
+  - "Fracture mechanics."
+  - "Stability theory of deformable bodies."
+  - "Non-classical problems of material fracture under compression along cracks."
 
 professionalActivity: "Наукова діяльність пов’язана з механікою деформівного твердого тіла, механікою руйнування, теорією стійкості деформівних тіл і некласичними задачами руйнування композитних матеріалів."
+professionalActivityEn: "Scientific activity is related to the mechanics of deformable solids, fracture mechanics, stability theory of deformable bodies, and non-classical problems of fracture of composite materials."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-
@@ -32,7 +43,7 @@ publications:
       - >-
         Altenbach H., Bogdanov V., Bulat A., Guz A., Nazarenko V. A Brief Review of the Development of Mechanics in the National Academy of Sciences of Ukraine. In: Advances in Mechanics. Advanced Structured Materials, vol. 191. Cham: Springer, 2023. P. 1–19. DOI: https://doi.org/10.1007/978-3-031-37313-8_1.
       - >-
-        Bogdanov V.L., Nazarenko V.M., Kipnis O.L. Compression of Semibounded Body with Thin Coating Layer Along Interface Near Surface Crack. Part II // International Applied Mechanics. 2024. Vol. 60, No. 6. P. 641–652. DOI: https://doi.org/10.1007/s10778-025-01316-x.
+        Bogdanov V.L., Nazarenko V.M., Kipnis A.L. Compression of Semibounded Body with Thin Coating Layer Along Interface Near Surface Crack. Part II // International Applied Mechanics. 2024. Vol. 60, No. 6. P. 641–652. DOI: https://doi.org/10.1007/s10778-025-01316-x.
       - >-
         Bogdanov V.L., Nazarenko V.M., Kipnis A.L. Compression of a semi-bounded body with a coating layer along the interface sliding zone // ZAMM. 2024. DOI: https://doi.org/10.1002/zamm.202400799.
       - >-

@@ -1,10 +1,14 @@
-﻿---
+---
 number: 3
 title: "Відділ обчислювальної механіки та техніки"
+titleEn: "Department of Computational Mechanics and Engineering"
 shortTitle: "Обчислювальна механіка та техніка"
+shortTitleEn: "Computational Mechanics and Engineering"
 group: "Механіка композитних та неоднорідних середовищ"
+groupEn: "Mechanics of Composite and Heterogeneous Media"
 head: "акад. НАН України В.М. Назаренко"
 summary: "Чисельне дослідження крайових ефектів і тривимірної стійкості композитів, задач руйнування армованих матеріалів, міжфазних тріщин у кусково-однорідних композитах та розроблення програмного забезпечення для задач обчислювальної механіки."
+summaryEn: "Numerical studies of edge effects, three-dimensional stability of composites, fracture of reinforced materials, interfacial cracks and software for computational mechanics."
 order: 3
 contactEmail: "numer@inmech.kyiv.ua"
 staff:

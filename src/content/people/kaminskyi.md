@@ -1,11 +1,15 @@
 ---
 name: "Камінський Анатолій Олексійович"
-nameEn: "Anatoly Kaminsky"
+nameEn: "Anatolii O. Kaminskyi"
 position: "провідний науковий співробітник"
+positionEn: "Leading Research Scientist"
 department: "Відділ механіки руйнування матеріалів"
+departmentEn: "Department of Fracture Mechanics of Materials"
 departmentUrl: "/departments/09-fracture-mechanics/"
 degree: "доктор фізико-математичних наук"
+degreeEn: "Doctor of Sciences in Physics and Mathematics"
 academicTitle: "професор"
+academicTitleEn: "Professor"
 email: "fract@inmech.kyiv.ua"
 order: 2
 featured: true
@@ -34,11 +38,17 @@ researchAreas:
   - "механіка в’язкопружних тіл;"
   - "теорія довготривалого руйнування полімерних і композитних матеріалів;"
   - "задачі концентрації напружень."
+researchAreasEn:
+  - "Mechanics of viscoelastic bodies."
+  - "Theory of long-term fracture of polymer and composite materials."
+  - "Stress concentration problems."
 
 professionalActivity: "Професійна діяльність пов’язана з Дніпровським національним університетом імені Олеся Гончара."
+professionalActivityEn: "Professional activity is connected with Oles Honchar Dnipro National University."
 
 publications:
   - title: "Статті у реферованих виданнях"
+    titleEn: "Articles in peer-reviewed journals"
     type: "ordered"
     items:
       - "Kaminsky, A.A., Dudyk, M.V. & Chornoivan, Y.O. An analytical evaluation of T-stress influence in the process zone modelling for the interface crack kinking. Int J Fract 250, 22 (2026)."
@@ -60,6 +70,7 @@ publications:
       - "Камінський А. О., Дудик М. В., Феньків В. М. Про зрушення міжфазної тріщини з контактом берегів від кутової точки ламаної межі розділу. Прикладна механіка. 2022. Т. 58, № 5. С. 39–51."
       - "Kaminsky A. O. Studies of subcritical crack growth in viscoelastic anisotropic bodies using the continued fraction operator method: synthesis and summary. International Applied Mechanics. 2021. Vol. 57, no. 3. P. 263–281. DOI: https://doi.org/10.1007/s10778-021-01078-2."
   - title: "Тези доповідей та матеріали конференцій"
+    titleEn: "Conference abstracts and proceedings"
     type: "ordered"
     items:
       - "Dudyk M., Kaminsky A., Reshitnyk Yu., Chornoivan Yu. On analytical model of interface crack in bonding quasi-brittle material between distinct elastic media. European Conference on Fracture 2024: Book of Abstracts (Zagreb, Croatia, August 26–30, 2024). Zagreb : University of Zagreb, 2024. P. 81."

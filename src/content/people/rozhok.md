@@ -2,10 +2,14 @@
 name: "Рожок Лілія Степанівна"
 nameEn: "Liliia S. Rozhok"
 position: "Провідний науковий співробітник відділу обчислювальних методів (за сумісництвом)"
+positionEn: "Leading Researcher of the Department of Computational Methods (part-time)"
 department: "Відділ обчислювальних методів"
+departmentEn: "Department of Computational Methods"
 departmentUrl: "/departments/04-computational-methods/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Physical and Mathematical Sciences"
 academicTitle: "Професор"
+academicTitleEn: "Professor"
 photo: "/people/rozhok.jpg"
 featured: false
 order: 7
@@ -33,11 +37,16 @@ profiles:
 researchAreas:
   - "Просторові задачі стаціонарного деформування елементів конструкцій у вигляді нетонких оболонок складної геометрії та структури."
   - "Дослідження впливу неоднорідності матеріалу на характеристики напруженого стану оболонок."
+researchAreasEn:
+  - "Spatial problems of stationary deformation of structural elements in the form of non-thin shells of complex geometry and structure."
+  - "Study of the influence of material heterogeneity on the characteristics of the stress state of shells."
 
 professionalActivity: "Наукова діяльність пов’язана з просторовими задачами деформування нетонких оболонок складної геометрії та структури, а також з аналізом впливу неоднорідності матеріалу на характеристики напруженого стану."
+professionalActivityEn: "Scientific activity is related to spatial problems of deformation of non-thin shells of complex geometry and structure, as well as to analysis of the influence of material heterogeneity on stress-state characteristics."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

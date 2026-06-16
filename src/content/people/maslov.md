@@ -2,9 +2,12 @@
 name: "Маслов Борис Петрович"
 nameEn: "Borys P. Maslov"
 position: "Головний науковий співробітник"
+positionEn: "Principal Researcher"
 department: "Відділ механіки повзучості"
+departmentEn: "Department of Mechanics of Creep"
 departmentUrl: "/departments/08-creep/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Physical and Mathematical Sciences"
 email: "creep@inmech.kyiv.ua"
 photo: "/people/maslov.png"
 featured: false
@@ -17,11 +20,18 @@ researchAreas:
   - "Прикладна математика."
   - "Теорія та методи механіки композитних матеріалів."
   - "Чисельно-аналітичні методи досліджень."
+researchAreasEn:
+  - "Mechanics of creep."
+  - "Applied mathematics."
+  - "Theory and methods of mechanics of composite materials."
+  - "Numerical-analytical research methods."
 
 professionalActivity: "Наукова діяльність пов'язана з механікою повзучості, нелінійною спадковою повзучістю композитів, довготривалим руйнуванням тонкостінних шаруватих структур та чисельно-аналітичними методами досліджень."
+professionalActivityEn: "Scientific activity is related to mechanics of creep, nonlinear hereditary creep of composites, long-term fracture of thin-walled layered structures, and numerical-analytical research methods."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

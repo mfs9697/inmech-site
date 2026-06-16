@@ -1,6 +1,6 @@
 ---
 name: "Рущицький Ярема Ярославович"
-nameEn: "Yarema Ya. Rushchytskyi"
+nameEn: "Jeremiah Rushchitsky"
 position: "Завідувач відділу реології"
 positionEn: "Head of the Department of Rheology"
 department: "Відділ реології"

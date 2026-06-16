@@ -1,10 +1,14 @@
 ---
 number: 9
 title: "Відділ механіки руйнування матеріалів"
+titleEn: "Department of Fracture Mechanics of Materials"
 shortTitle: "Механіка руйнування матеріалів"
+shortTitleEn: "Fracture Mechanics of Materials"
 group: "Механіка руйнування та втома"
+groupEn: "Fracture Mechanics and Fatigue"
 head: "чл.-кор. НАН України М.Ф. Селіванов"
 summary: "Теорія довготривалого руйнування, повільного докритичного розвитку тріщин, тріщиностійкості та механіки руйнування пружно-пластичних, в’язкопружних і композитних матеріалів."
+summaryEn: "Long-term fracture, slow subcritical crack growth, crack resistance and fracture mechanics of elastic-plastic, viscoelastic and composite materials."
 order: 9
 contactEmail: "fract@inmech.kyiv.ua"
 staff:

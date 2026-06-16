@@ -2,7 +2,9 @@
 name: "Бистров Віктор Михайлович"
 nameEn: "Viktor M. Bystrov"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ обчислювальної механіки та техніки"
+departmentEn: "Department of Computational Mechanics and Engineering"
 departmentUrl: "/departments/03-computational-mechanics-engineering/"
 photo: "/people/bystrov.png"
 email: "tiger-cat@ukr.net"
@@ -15,11 +17,17 @@ researchAreas:
   - "Чисельне дослідження крайових ефектів у задачах статики і стійкості композитних матеріалів."
   - "Урахування структурної неоднорідності, анізотропії компонентів і складних умов навантаження композитів."
   - "Сучасні програмні технології для розв’язування задач обчислювальної механіки."
+researchAreasEn:
+  - "Numerical study of edge effects in problems of statics and stability of composite materials."
+  - "Accounting for structural heterogeneity, anisotropy of components and complex loading conditions of composites."
+  - "Modern software technologies for solving computational mechanics problems."
 
 professionalActivity: "Наукова діяльність пов’язана з чисельним дослідженням крайових ефектів, стійкістю композитних матеріалів і розробленням дискретних моделей у задачах обчислювальної механіки."
+professionalActivityEn: "Scientific activity is related to numerical investigation of edge effects, stability of composite materials, and development of discrete models in computational mechanics problems."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

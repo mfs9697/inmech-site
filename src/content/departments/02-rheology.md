@@ -7,7 +7,7 @@ shortTitleEn: "Rheology"
 group: "Механіка композитних та неоднорідних середовищ"
 groupEn: "Mechanics of Composite and Heterogeneous Media"
 head: "чл.-кор. НАН України Я.Я. Рущицький"
-headEn: "Corresponding Member of the NAS of Ukraine Ya.Ya. Rushchytskyi"
+headEn: "Corresponding Member of the NAS of Ukraine Jeremiah Rushchitsky"
 summary: "Сучасні проблеми реології, макро-, мікро- та наномеханіка композитних матеріалів, механіка ауксетичних матеріалів, лінійні та нелінійні хвилі в матеріалах."
 summaryEn: "Modern problems of rheology, macro-, micro- and nanomechanics of composite materials, mechanics of auxetic materials, and linear and nonlinear waves in materials."
 sectionsEn:
@@ -26,7 +26,7 @@ order: 2
 contactEmail: "reolog@inmech.kyiv.ua"
 staff:
   - name: "Рущицький Ярема Ярославович"
-    nameEn: "Yarema Ya. Rushchytskyi"
+    nameEn: "Jeremiah Rushchitsky"
     positionEn: "Head of Department"
     url: "/people/rushchytskyi/"
   - name: "Дашко Ольга Геннадіївна"

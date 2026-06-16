@@ -40,16 +40,6 @@ function withBase(path: string) {
 
 export function getStaticPaths() {
   const pages: Record<string, PageData> = {
-    strategy: {
-      title: 'Development strategy',
-      description: 'Development strategy of the Institute.',
-      activePage: 'about',
-      eyebrow: 'About the Institute',
-      heading: 'Development strategy',
-      lead:
-        'The Institute’s development strategy is focused on strengthening scientific excellence, international cooperation, modern research infrastructure and the training of young scientists.',
-      links: [{ title: 'Ukrainian version', href: '/strategy/' }]
-    },
     'scientific-cooperation': {
       title: 'Scientific cooperation',
       description: 'Scientific cooperation and international activity of the Institute.',

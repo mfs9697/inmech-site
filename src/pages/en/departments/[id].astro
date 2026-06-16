@@ -23,6 +23,7 @@ const title = entry.data.titleEn ?? entry.data.title;
 const summary = entry.data.summaryEn ?? entry.data.summary;
 const group = entry.data.groupEn ?? entry.data.group;
 const head = entry.data.headEn ?? entry.data.head;
+const sections = entry.data.sectionsEn ?? [];
 const staff = entry.data.staff ?? [];
 const contactEmail = entry.data.contactEmail;
 
@@ -65,11 +66,29 @@ function englishPosition(person: { position?: string; positionEn?: string }) {
   <section class="section">
     <div class="container">
       <article class="panel" style="padding: clamp(24px, 4vw, 42px);">
-        <h2>Overview</h2>
-        <p>
-          This English department page is generated from the same institutional data record as the Ukrainian version.
-          A detailed English description is being prepared. The Ukrainian page contains the full current department information.
-        </p>
+        {sections.length > 0 ? (
+          <>
+            {sections.map((section) => (
+              <section class="prose-section">
+                <h2>{section.title}</h2>
+                {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+                {section.items.length > 0 && (
+                  <ul>
+                    {section.items.map((item) => <li>{item}</li>)}
+                  </ul>
+                )}
+              </section>
+            ))}
+          </>
+        ) : (
+          <>
+            <h2>Overview</h2>
+            <p>
+              This English department page is generated from the same institutional data record as the Ukrainian version.
+              A detailed English description is being prepared. The Ukrainian page contains the full current department information.
+            </p>
+          </>
+        )}
 
         <p>
           <a href={withBase(`/departments/${entry.id}/`)}>Open the full Ukrainian department page →</a>

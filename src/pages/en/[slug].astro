@@ -40,15 +40,6 @@ function withBase(path: string) {
 
 export function getStaticPaths() {
   const pages: Record<string, PageData> = {
-    regulations: {
-      title: 'Statute',
-      description: 'Statutory documents of the Institute.',
-      activePage: 'about',
-      eyebrow: 'About the Institute',
-      heading: 'Statute',
-      lead: 'This page is intended for the English summary of the Institute’s statutory and regulatory documents.',
-      links: [{ title: 'Open the Ukrainian page', href: '/regulations/' }]
-    },
     strategy: {
       title: 'Development strategy',
       description: 'Development strategy of the Institute.',

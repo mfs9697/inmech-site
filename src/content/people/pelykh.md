@@ -2,7 +2,9 @@
 name: "Пелих Володимир Миколайович"
 nameEn: "Volodymyr M. Pelykh"
 position: "Молодший науковий співробітник"
+positionEn: "Junior Researcher"
 department: "Відділ механіки повзучості"
+departmentEn: "Department of Mechanics of Creep"
 departmentUrl: "/departments/08-creep/"
 email: "ut4ura@ukr.net"
 photo: "/people/pelykh.png"
@@ -15,11 +17,17 @@ researchAreas:
   - "Механіка деформівного твердого тіла."
   - "Інженерне матеріалознавство."
   - "Прогнозування втомної довговічності конструкційних матеріалів."
+researchAreasEn:
+  - "Mechanics of deformable solids."
+  - "Engineering materials science."
+  - "Prediction of fatigue life of structural materials."
 
 professionalActivity: "Наукова діяльність пов’язана з інженерним матеріалознавством, механікою деформівного твердого тіла та прогнозуванням втомної довговічності металевих матеріалів за асиметричного і комбінованого навантаження."
+professionalActivityEn: "Scientific activity is related to engineering materials science, mechanics of deformable solids, and prediction of fatigue life of metallic materials under asymmetric and combined loading."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

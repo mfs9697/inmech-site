@@ -2,10 +2,14 @@
 name: "Богданов Вячеслав Леонідович"
 nameEn: "Viacheslav L. Bogdanov"
 position: "Завідувач відділу динаміки та стійкості суцільних середовищ"
+positionEn: "Head of the Department of Dynamics and Stability of Continua"
 department: "Відділ динаміки та стійкості суцільних середовищ"
+departmentEn: "Department of Dynamics and Stability of Continua"
 departmentUrl: "/departments/01-dynamics-stability/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Physical and Mathematical Sciences"
 academicTitle: "Академік НАН України"
+academicTitleEn: "Academician of the NAS of Ukraine"
 email: "desc@inmech.kyiv.ua"
 photo: "/people/bogdanov.png"
 featured: false
@@ -32,11 +36,19 @@ researchAreas:
   - "Механіка композитних матеріалів і біомеханіка."
   - "Системний аналіз складних систем."
   - "Історія науки і наукознавство."
+researchAreasEn:
+  - "Mechanics of deformable solids, including fracture mechanics."
+  - "Three-dimensional linearized theory of stability of deformed bodies."
+  - "Mechanics of composite materials and biomechanics."
+  - "Systems analysis of complex systems."
+  - "History of science and science studies."
 
 professionalActivity: "Наукова діяльність пов’язана з механікою деформівного твердого тіла, некласичними задачами механіки руйнування, стійкістю деформованих тіл, механікою композитних матеріалів, системним аналізом складних систем, історією науки і наукознавством. Є автором і співавтором 265 наукових праць, зокрема 21 монографії та 2 навчальних посібників."
+professionalActivityEn: "Scientific activity is related to the mechanics of deformable solids, non-classical problems of fracture mechanics, stability of deformed bodies, mechanics of composite materials, systems analysis of complex systems, and the history and methodology of science. He is the author and co-author of 265 scientific works, including 21 monographs and 2 textbooks."
 
 publications:
   - title: "Основні наукові публікації (монографії)"
+    titleEn: "Selected scientific publications (monographs)"
     type: "ordered"
     items:
       - >-

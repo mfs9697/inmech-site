@@ -1,0 +1,152 @@
+---
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../data/site-en';
+
+const administration = [
+  {
+    name: 'Volodymyr M. Nazarenko',
+    originalName: 'Назаренко Володимир Михайлович',
+    role: 'Acting Director of the Institute',
+    degree: 'Academician of the NAS of Ukraine',
+    email: 'vm_nazarenko@inmech.kyiv.ua',
+    accent: 'Director',
+    photo: '/people/nazarenko.png'
+  },
+  {
+    name: 'Oleksandr M. Huz',
+    originalName: 'Гузь Олександр Миколайович',
+    role: 'Adviser to the Directorate',
+    degree: 'Academician of the NAS of Ukraine; Member of the European Academy of Sciences; Fellow of the New York Academy of Sciences; Fellow of the World Innovation Foundation',
+    email: 'guz@inmech.kyiv.ua',
+    accent: 'Adviser',
+    photo: '/people/guz.png'
+  },
+  {
+    name: 'Yevhen A. Storozhuk',
+    originalName: 'Сторожук Євген Анатолійович',
+    role: 'Deputy Director for Scientific and Organizational Work',
+    degree: 'Doctor of Physical and Mathematical Sciences; Corresponding Member of the NAS of Ukraine',
+    email: 'stevan@ukr.net',
+    accent: 'Scientific and organizational work',
+    photo: '/people/storozhuk.png'
+  },
+  {
+    name: 'Mykhailo F. Selivanov',
+    originalName: 'Селіванов Михайло Федорович',
+    role: 'Deputy Director for Scientific Work',
+    degree: 'Doctor of Physical and Mathematical Sciences; Corresponding Member of the NAS of Ukraine',
+    email: 'mfs@ukr.net',
+    accent: 'Scientific work',
+    photo: '/people/selivanov.png'
+  },
+  {
+    name: 'Volodymyr A. Korenev',
+    originalName: 'Корєнєв Володимир Антонович',
+    role: 'Deputy Director for General Affairs',
+    degree: '',
+    email: 'kvant2244@gmail.com',
+    accent: 'General affairs',
+    photo: '/people/korenev.png'
+  },
+  {
+    name: 'Yurii V. Skosarenko',
+    originalName: 'Скосаренко Юрій Валентинович',
+    role: 'Scientific Secretary of the Institute',
+    degree: 'Leading Researcher; Doctor of Technical Sciences',
+    email: 'yuskos@ukr.net',
+    accent: 'Scientific Secretary',
+    photo: '/people/skosarenko.png'
+  }
+];
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+function initials(name: string) {
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join('')
+    .toUpperCase();
+}
+---
+
+<BaseLayoutEn
+  title={`Management | ${siteEn.shortName}`}
+  description="Management of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine."
+  activePage="departments"
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel management-hero-panel">
+        <p class="eyebrow">Structure</p>
+        <h1>Management of the Institute</h1>
+        <p class="lead">
+          The Directorate of the S.P. Timoshenko Institute of Mechanics of the National Academy of Sciences of Ukraine
+          coordinates the Institute’s scientific, educational, organizational, administrative and general institutional activity.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-secondary" href={withBase('/management/')}>Ukrainian version</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Administration</p>
+          <h2 class="section-title">Directorate and scientific administration</h2>
+          <p class="section-text">
+            This page provides contact information and areas of responsibility for the Institute’s management team.
+          </p>
+        </div>
+      </div>
+
+      <div class="management-grid">
+        {administration.map((person) => (
+          <article class="management-card">
+            <div class="management-avatar-frame">
+              {person.photo && (
+                <img
+                  src={withBase(person.photo)}
+                  alt={`Photo: ${person.name}`}
+                  class="management-photo"
+                  loading="lazy"
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"
+                />
+              )}
+              <div class={`management-avatar ${person.photo ? 'avatar-fallback' : ''}`} aria-hidden="true">
+                {initials(person.name)}
+              </div>
+            </div>
+
+            <div class="management-body">
+              <p class="management-accent">{person.accent}</p>
+              <h2>{person.name}</h2>
+              <p class="management-original-name">{person.originalName}</p>
+              <p class="management-role">{person.role}</p>
+              {person.degree && <p class="management-degree">{person.degree}</p>}
+              {person.email && (
+                <p class="management-email">
+                  <span>E-mail:</span>
+                  <a href={`mailto:${person.email}`}>{person.email}</a>
+                </p>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayoutEn>

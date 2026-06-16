@@ -1,11 +1,15 @@
 ---
 name: "Мартиняк Ростислав Михайлович"
-nameEn: "Rostyslav Martynyak"
+nameEn: "Rostyslav M. Martyniak"
 position: "провідний науковий співробітник"
+positionEn: "Leading Research Scientist"
 department: "Відділ механіки руйнування матеріалів"
+departmentEn: "Department of Fracture Mechanics of Materials"
 departmentUrl: "/departments/09-fracture-mechanics/"
 degree: "доктор фізико-математичних наук"
+degreeEn: "Doctor of Sciences in Physics and Mathematics"
 academicTitle: "професор"
+academicTitleEn: "Professor"
 email: "mrostyslav@gmail.com"
 order: 3
 featured: true
@@ -25,11 +29,17 @@ researchAreas:
   - "контактна взаємодія об’єктів з текстурованими поверхнями;"
   - "основи теорії механотермодифузійної взаємодії структур з приповерхневими неоднорідностями;"
   - "математичні моделі контакту тіл з локальними нерівностями поверхонь і тонкими межовими шарами за наявності міжповерхневого середовища, зокрема модель фізико-механічного контакту тіл через неоднорідні за товщиною прошарки."
+researchAreasEn:
+  - "Contact interaction of bodies with textured surfaces."
+  - "Fundamentals of the theory of mechanothermodiffusive interaction of structures with near-surface inhomogeneities."
+  - "Mathematical models of contact between bodies with local surface irregularities and thin boundary layers in the presence of an intersurface medium, including a physical-mechanical model of contact through thickness-inhomogeneous interlayers."
 
 professionalActivity: "Професійна діяльність пов’язана з факультетом прикладної математики та інформатики Львівського національного університету імені Івана Франка."
+professionalActivityEn: "Professional activity is connected with the Faculty of Applied Mathematics and Informatics of Ivan Franko National University of Lviv."
 
 publications:
   - title: "Статті у реферованих виданнях"
+    titleEn: "Articles in peer-reviewed journals"
     type: "ordered"
     items:
       - "Martynyak R. M., Mykytyn M. M., Malanchuk N. I. Thermomechanical contact of an elastic half-space and a rigid base under the action of a circular heat sink. Materials Science. 2025."

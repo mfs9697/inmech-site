@@ -1,0 +1,49 @@
+---
+import HeaderEn from '../components/HeaderEn.astro';
+import FooterEn from '../components/FooterEn.astro';
+import '../styles/global.css';
+import '../styles/overrides.css';
+import '../styles/specialized-councils.css';
+import '../styles/home-hero.css';
+import '../styles/navigation.css';
+
+interface Props {
+  title: string;
+  description: string;
+  activePage?: 'home' | 'news' | 'departments' | 'about' | 'education';
+}
+
+const { title, description, activePage = 'home' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const faviconPath = `${base}/favicon.png`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href={faviconPath} type="image/png" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <HeaderEn activePage={activePage} />
+    <main id="main">
+      <slot />
+    </main>
+    <FooterEn />
+    <script>
+      const menuToggle = document.querySelector('.menu-toggle');
+      const nav = document.querySelector('.primary-nav');
+
+      if (menuToggle && nav) {
+        menuToggle.addEventListener('click', () => {
+          const isOpen = nav.classList.toggle('open');
+          menuToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+      }
+    </script>
+  </body>
+</html>

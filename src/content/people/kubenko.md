@@ -1,11 +1,15 @@
-﻿---
+---
 name: "Кубенко Веніамін Дмитрович"
 nameEn: "Veniamin D. Kubenko"
 position: "Завідувач відділу теорії коливань"
+positionEn: "Head of the Department of Theory of Vibrations"
 department: "Відділ теорії коливань"
+departmentEn: "Department of Theory of Vibrations"
 departmentUrl: "/departments/11-vibrations/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Physical and Mathematical Sciences"
 academicTitle: "Професор, академік НАН України, академік Європейської академії наук і мистецтв"
+academicTitleEn: "Professor, Academician of the NAS of Ukraine, Member of the European Academy of Sciences and Arts"
 email: "vdk@inmech.kyiv.ua"
 featured: false
 photo: "public/people/kubenko.png"
@@ -23,6 +27,12 @@ profiles:
     url: "https://orcid.org/0000-0002-8863-8580"
     kind: "orcid"
 
+researchAreasEn:
+  - "Dynamic problems of deformation of structural elements interacting with fluids and elastic media."
+  - "Nonstationary hydroelasticity of thin-walled shells."
+  - "Nonlinear vibrations of elastic shells using multimode displacement representations."
+  - "Impact interaction of structural elements with the surface of layered fluids and elastic bodies."
+  - "Diffraction problems in acoustics and elasticity, and acoustic interaction in systems of dissimilar bodies."
 researchAreas:
   - "Динамічні задачі деформування елементів конструкцій при взаємодії з рідиною і пружним середовищем."
   - "Нестаціонарна гідропружність тонкостінних оболонок."
@@ -30,10 +40,12 @@ researchAreas:
   - "Ударна взаємодія конструктивних елементів з поверхнею шаруватої рідини і пружного тіла."
   - "Дифракційні задачі акустики і теорії пружності та акустична взаємодія систем неоднотипних тіл."
 
+professionalActivityEn: "His scientific work is related to the development of methods for solving dynamic problems in the mechanics of deformable systems, hydroelasticity, acoustics, and interaction of structures with surrounding media."
 professionalActivity: "Наукова діяльність пов’язана з розвитком методів розв’язування динамічних задач механіки деформівних систем, гідропружності, акустики та взаємодії конструкцій із середовищем."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

@@ -2,9 +2,12 @@
 name: "Хотенко Олена Олександрівна"
 nameEn: "Olena O. Khotenko"
 position: "Науковий співробітник"
+positionEn: "Researcher"
 department: "Відділ реології"
+departmentEn: "Department of Rheology"
 departmentUrl: "/departments/02-rheology/"
 degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 email: "h.khotenko@gmail.com"
 photo: "/people/khotenko.png"
 featured: false
@@ -17,11 +20,18 @@ researchAreas:
   - "Теорія пружності та теорія лінійних і нелінійних хвиль."
   - "Акустика, акустоелектроніка та акустотехніка."
   - "Нелінійні хвилі Релея у пружних матеріалах."
+researchAreasEn:
+  - "Mechanics of materials and rheology."
+  - "Theory of elasticity and theory of linear and nonlinear waves."
+  - "Acoustics, acoustoelectronics and acoustic engineering."
+  - "Nonlinear Rayleigh waves in elastic materials."
 
 professionalActivity: "Наукова діяльність пов’язана з теорією нелінійних пружних хвиль, акустикою та задачами реології матеріалів."
+professionalActivityEn: "Scientific activity is related to the theory of nonlinear elastic waves, acoustics, and problems of material rheology."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

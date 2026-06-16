@@ -1,10 +1,14 @@
-﻿---
+---
 number: 10
 title: "Відділ стійкості процесів"
+titleEn: "Department of Stability of Processes"
 shortTitle: "Стійкість процесів"
+shortTitleEn: "Stability of Processes"
 group: "Динаміка та стійкість руху механічних систем"
+groupEn: "Dynamics and Stability of Mechanical Systems"
 head: "акад. НАН України А.А. Мартинюк"
 summary: "Метод матрично-значних функцій Ляпунова для неточних динамічних систем, стійкість систем з нечіткими параметрами, керування рухом систем із дробово-подібною похідною та стійкість систем на часових шкалах."
+summaryEn: "Lyapunov matrix-valued functions for uncertain dynamic systems, stability of systems with fuzzy parameters, fractional-type derivatives and time-scale systems."
 order: 10
 contactEmail: "center@inmech.kyiv.ua"
 staff:

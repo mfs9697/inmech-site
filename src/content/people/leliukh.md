@@ -2,9 +2,12 @@
 name: "Лелюх Юрій Іванович"
 nameEn: "Yurii I. Leliukh"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ термопружності"
+departmentEn: "Department of Thermoelasticity"
 departmentUrl: "/departments/07-thermoelasticity/"
 degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 email: "yult84@ukr.net"
 photo: "/people/lelyukh.png"
 featured: false
@@ -17,11 +20,18 @@ researchAreas:
   - "Задачі термопластичності неоднорідних тіл."
   - "Чисельні методи математичної фізики."
   - "Чисельне моделювання термодинамічних ефектів низькотемпературної плазми."
+researchAreasEn:
+  - "Coupled problems of electrothermomechanics of heterogeneous bodies made of piezomagnetic viscoelastic materials under harmonic loading."
+  - "Problems of thermoplasticity of heterogeneous bodies."
+  - "Numerical methods of mathematical physics."
+  - "Numerical modelling of thermodynamic effects in low-temperature plasma."
 
 professionalActivity: "Наукова діяльність пов’язана зі зв’язаними задачами електротермомеханіки, термопластичністю неоднорідних тіл та чисельним моделюванням процесів у низькотемпературній плазмі."
+professionalActivityEn: "Scientific activity is related to coupled problems of electrothermomechanics, thermoplasticity of heterogeneous bodies, and numerical modelling of processes in low-temperature plasma."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

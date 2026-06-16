@@ -30,6 +30,13 @@ const departments = defineCollection({
     headEn: z.string().optional(),
     summary: z.string(),
     summaryEn: z.string().optional(),
+    sectionsEn: z.array(
+      z.object({
+        title: z.string(),
+        paragraphs: z.array(z.string()).default([]),
+        items: z.array(z.string()).default([])
+      })
+    ).default([]),
     order: z.number(),
 
     contactEmail: z.string().email().optional(),

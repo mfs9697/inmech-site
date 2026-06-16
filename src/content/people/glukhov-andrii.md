@@ -2,9 +2,12 @@
 name: "Глухов Андрій Юрійович"
 nameEn: "Andrii Yu. Glukhov"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ динаміки та стійкості суцільних середовищ"
+departmentEn: "Department of Dynamics and Stability of Continua"
 departmentUrl: "/departments/01-dynamics-stability/"
 degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 photo: "/people/glukhova.png"
 featured: false
 order: 13
@@ -23,11 +26,17 @@ researchAreas:
   - "Дослідження хвильових процесів у композитних матеріалах з початковими напруженнями."
   - "Осесиметричні хвилі у високоеластичних композитних матеріалах з початковими напруженнями."
   - "Хвилі кручення в шаруватих композитних матеріалах з початковими напруженнями."
+researchAreasEn:
+  - "Wave processes in composite materials with initial stresses."
+  - "Axisymmetric waves in highly elastic composite materials with initial stresses."
+  - "Torsional waves in layered composite materials with initial stresses."
 
 professionalActivity: "Професійна діяльність пов’язана з Інститутом механіки ім. С.П. Тимошенка НАН України."
+professionalActivityEn: "Professional activity is associated with the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

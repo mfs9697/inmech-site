@@ -1,11 +1,15 @@
-﻿---
+---
 name: "Рущицький Ярема Ярославович"
 nameEn: "Yarema Ya. Rushchytskyi"
 position: "Завідувач відділу реології"
+positionEn: "Head of the Department of Rheology"
 department: "Відділ реології"
+departmentEn: "Department of Rheology"
 departmentUrl: "/departments/02-rheology/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Physical and Mathematical Sciences"
 academicTitle: "Член-кореспондент НАН України, професор, почесний професор University of Aberdeen (UK)"
+academicTitleEn: "Corresponding Member of the NAS of Ukraine, Professor, Honorary Professor of the University of Aberdeen (UK)"
 email: "rushch@inmech.kyiv.ua"
 photo: "/people/rushchitsky.png"
 featured: false
@@ -22,11 +26,19 @@ researchAreas:
   - "Механіка композитних, нанокомпозитних та ауксетичних матеріалів."
   - "Теорія сейсмічних хвиль, лінійних і нелінійних хвиль у матеріалах."
   - "Вейвлетний аналіз і бібліометрія."
+researchAreasEn:
+  - "Mechanics of materials and modern problems of rheology."
+  - "Theory of viscoelasticity, elasticity, piezoelasticity and solid mixtures."
+  - "Mechanics of composite, nanocomposite and auxetic materials."
+  - "Theory of seismic waves, linear and nonlinear waves in materials."
+  - "Wavelet analysis and bibliometrics."
 
 professionalActivity: "Наукова діяльність пов’язана з розвитком реології, механіки композитних і нанокомпозитних матеріалів, теорії лінійних і нелінійних хвиль, а також механіки ауксетичних матеріалів."
+professionalActivityEn: "Scientific activity is related to the development of rheology, mechanics of composite and nanocomposite materials, theory of linear and nonlinear waves, and mechanics of auxetic materials."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

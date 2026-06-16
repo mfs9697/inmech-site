@@ -2,9 +2,12 @@
 name: "Ушакова Віра Сергіївна"
 nameEn: "Vira S. Ushakova"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ механіки повзучості"
+departmentEn: "Department of Mechanics of Creep"
 departmentUrl: "/departments/08-creep/"
 degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 email: "creep@inmech.kyiv.ua"
 photo: "/people/ushakova.png"
 featured: false
@@ -19,11 +22,17 @@ researchAreas:
   - "Ідентифікація ядер спадковості нелінійно-в'язкопружних матеріалів за умов складного напруженого стану."
   - "Нелінійна теорія в'язкопружності."
   - "Повзучість і релаксація напружень у тонкостінних трубчастих елементах з лінійно-в'язкопружних матеріалів."
+researchAreasEn:
+  - "Identification of heredity kernels of nonlinear viscoelastic materials under complex stress states."
+  - "Nonlinear theory of viscoelasticity."
+  - "Creep and stress relaxation in thin-walled tubular elements made of linearly viscoelastic materials."
 
 professionalActivity: "Наукова діяльність пов'язана з ідентифікацією ядер спадковості нелінійно-в'язкопружних матеріалів, розрахунком деформацій повзучості та релаксації напружень за складного напруженого стану. Дані підготовлено за старим профілем Резнік Віри Сергіївни."
+professionalActivityEn: "Scientific activity is related to the identification of heredity kernels of nonlinear viscoelastic materials and the calculation of creep deformation and stress relaxation under complex stress states. The data were prepared using the old profile of Vira S. Reznik."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

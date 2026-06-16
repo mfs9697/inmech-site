@@ -2,10 +2,14 @@
 name: "Зінчук Любов Павлівна"
 nameEn: "Liubov P. Zinchuk"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ термопружності"
+departmentEn: "Department of Thermoelasticity"
 departmentUrl: "/departments/07-thermoelasticity/"
 degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 academicTitle: "Професор"
+academicTitleEn: "Professor"
 email: "zinchuk_imech@ukr.net"
 photo: "/people/zinchuk.png"
 featured: false
@@ -18,11 +22,18 @@ researchAreas:
   - "Чисельні та аналітичні методи розв’язування динамічних задач у механіці неоднорідних п’єзоелектричних середовищ."
   - "Дослідження термоелектромеханічної поведінки елементів конструкцій із в’язкопружних п’єзоелектричних матеріалів при вимушених коливаннях."
   - "Дослідження поширення хвиль у шарувато-періодичних п’єзоелектричних середовищах."
+researchAreasEn:
+  - "Coupled problems of thermoelectromechanics of geometrically nonlinear materials under harmonic loading."
+  - "Numerical and analytical methods for solving dynamic problems in the mechanics of heterogeneous piezoelectric media."
+  - "Thermoelectromechanical behaviour of structural elements made of viscoelastic piezoelectric materials under forced vibrations."
+  - "Wave propagation in periodically layered piezoelectric media."
 
 professionalActivity: "Наукова діяльність пов’язана з термоелектромеханікою п’єзоелектричних матеріалів, вимушеними коливаннями, дисипативним розігрівом і хвильовими процесами в шарувато-періодичних середовищах."
+professionalActivityEn: "Scientific activity is related to thermoelectromechanics of piezoelectric materials, forced vibrations, dissipative heating, and wave processes in periodically layered media."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

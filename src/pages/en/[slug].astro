@@ -40,15 +40,6 @@ function withBase(path: string) {
 
 export function getStaticPaths() {
   const pages: Record<string, PageData> = {
-    management: {
-      title: 'Management',
-      description: 'Management of the Institute.',
-      activePage: 'departments',
-      eyebrow: 'Structure',
-      heading: 'Management',
-      lead: 'The Institute is managed by the directorate and administrative units responsible for scientific, organisational and institutional activity.',
-      links: [{ title: 'Ukrainian version', href: '/management/' }]
-    },
     'scientific-council': {
       title: 'Scientific Council',
       description: 'Scientific Council of the Institute.',

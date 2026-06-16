@@ -1,11 +1,15 @@
 ---
 name: "Селіванов Михайло Федорович"
-nameEn: "Mikhailo F. Selivanov"
+nameEn: "Mykhailo F. Selivanov"
 position: "Завідувач відділу механіки руйнування матеріалів"
+positionEn: "Head of the Department of Fracture Mechanics of Materials"
 department: "Відділ механіки руйнування матеріалів"
+departmentEn: "Department of Fracture Mechanics of Materials"
 departmentUrl: "/departments/09-fracture-mechanics/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Sciences in Physics and Mathematics"
 academicTitle: "Член-кореспондент НАН України"
+academicTitleEn: "Corresponding Member of the NAS of Ukraine"
 email: "mfs@ukr.net"
 # Щоб додати фото: помістіть файл у public/people/selivanov.png і розкоментуйте наступний рядок.
 photo: "/people/selivanov.png"
@@ -34,11 +38,17 @@ researchAreas:
   - "Механіка руйнування в’язкопружних тіл за умов повільного поширення тріщин під дією статичних і змінних у часі навантажень."
   - "Когезивні моделі тріщин у пружних та в’язкопружних тілах."
   - "Чисельне моделювання задач механіки руйнування пружних і в’язкопружних тіл методом скінченних елементів."
+researchAreasEn:
+  - "Fracture mechanics of viscoelastic bodies with slow crack propagation under static and time-dependent loading."
+  - "Cohesive crack models in elastic and viscoelastic bodies."
+  - "Finite element simulation of fracture mechanics problems for elastic and viscoelastic bodies."
 
 professionalActivity: "Професійна діяльність пов’язана з Київським національним університетом імені Тараса Шевченка та Інститутом механіки ім. С.П. Тимошенка НАН України."
+professionalActivityEn: "Professional activity is connected with Taras Shevchenko National University of Kyiv and the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine."
 
 publications:
   - title: "Статті у реферованих виданнях"
+    titleEn: "Articles in peer-reviewed journals"
     type: "ordered"
     items:
       - "Selivanov M., Nazarenko L., Altenbach H. Modeling the slow crack growth of an edge crack within the cohesive zone model approach // Theoretical Analyses, Computations, and Experiments of Multiscale Materials. Cham : Springer, 2022. P. 505–535. DOI: https://doi.org/10.1007/978-3-031-04548-6_256."
@@ -49,6 +59,7 @@ publications:
       - "Selivanov M., Fernati P. Initiation and slow propagation of a crack along the plane of symmetry of a 3-d viscoelastic transversely isotropic plate // Доповіді Національної академії наук України. 2023. № 4. С. 26–32."
       - "Mechanics of inner core debonding of composite sandwich beam with CFRP hexagonal honeycomb / P. Xue, X. Wei, Z. Li, Y. Wang, M. F. Selivanov, J. Xiong // International Journal of Solids and Structures. 2024. Vol. 293. 112760. DOI: https://doi.org/10.1016/j.ijsolstr.2024.112760."
   - title: "Тези доповідей та матеріали конференцій"
+    titleEn: "Conference abstracts and proceedings"
     type: "unordered"
     items:
       - "Селіванов М. Ф., Чорноіван Ю. О. Застосування моделі мультилінійної когезійної зони до задачі про крайову тріщину в ізотропному та ортотропному тілі // Сучасні проблеми механіки : матеріали VI Міжнар. наук. конф. (Київ, 30–31 серп. 2021 р.). Київ : КНУ, 2021. С. 71."

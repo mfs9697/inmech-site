@@ -2,10 +2,14 @@
 name: "Борейко Наталія Петрівна"
 nameEn: "Nataliia P. Boreiko"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ обчислювальних методів"
+departmentEn: "Department of Computational Methods"
 departmentUrl: "/departments/04-computational-methods/"
 degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 academicTitle: "Старший дослідник"
+academicTitleEn: "Senior Researcher"
 email: "nataliya.petrivna@ukr.net"
 photo: "/people/boreiko.png"
 featured: false
@@ -25,11 +29,18 @@ researchAreas:
   - "Прикладна математика, математична фізика та чисельний аналіз."
   - "Стаціонарне деформування анізотропних оболонкових систем складної структури при різних видах навантаження."
   - "Застосування чисельних алгоритмів до прикладних задач для різних галузей промисловості."
+researchAreasEn:
+  - "Mechanics of deformable solids."
+  - "Applied mathematics, mathematical physics and numerical analysis."
+  - "Stationary deformation of anisotropic shell systems of complex structure under different types of loading."
+  - "Application of numerical algorithms to applied problems in different branches of industry."
 
 professionalActivity: "Наукова діяльність пов’язана з розробленням підходів до дослідження стаціонарного деформування анізотропних оболонкових систем складної структури та фізичною інтерпретацією результатів чисельного аналізу."
+professionalActivityEn: "Scientific activity is related to the development of approaches for studying stationary deformation of anisotropic shell systems of complex structure and to the physical interpretation of numerical-analysis results."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-
@@ -41,4 +52,3 @@ publications:
       - >-
         Grigorenko O.Ya., Rozhok L.S., Boreiko N.P., Kharytonova L.V. Numerical analysis of stress state of non-thin elliptical cylindrical shells made of continuously inhomogeneous materials // International Applied Mechanics. 2024. Vol. 60, No. 6. P. 653–664.
 ---
-

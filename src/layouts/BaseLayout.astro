@@ -72,7 +72,8 @@ const currentPath = normalizePath(stripBaseFromPath(Astro.url.pathname));
 const canonicalUrl = absoluteUrl(currentPath);
 const englishAlternativePath = currentPath === '/' ? '/en/' : `/en${currentPath}`;
 const isDepartmentDetailPage = /^\/departments\/[^/]+\/$/.test(currentPath);
-const hasEnglishAlternative = englishPaths.has(englishAlternativePath) || isDepartmentDetailPage;
+const isPersonDetailPage = /^\/people\/[^/]+\/$/.test(currentPath);
+const hasEnglishAlternative = englishPaths.has(englishAlternativePath) || isDepartmentDetailPage || isPersonDetailPage;
 const ukrainianAlternativeUrl = absoluteUrl(currentPath);
 const englishAlternativeUrl = absoluteUrl(englishAlternativePath);
 ---

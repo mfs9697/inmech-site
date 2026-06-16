@@ -1,10 +1,14 @@
 ---
 number: 11
 title: "Відділ теорії коливань"
+titleEn: "Department of Theory of Vibrations"
 shortTitle: "Теорія коливань"
+shortTitleEn: "Theory of Vibrations"
 group: "Динаміка та стійкість руху механічних систем"
+groupEn: "Dynamics and Stability of Mechanical Systems"
 head: "акад. НАН України В.Д. Кубенко"
 summary: "Дифракційні задачі акустики і теорії пружності, гідроелектропружність, взаємодія конструктивних елементів із рідиною та пружним середовищем, оптимальне керування рухом ракет і космічних апаратів."
+summaryEn: "Diffraction problems of acoustics and elasticity, hydroelectroelasticity, interaction of structural elements with fluids and elastic media, and optimal motion control."
 order: 11
 staff:
   - name: "Кубенко Веніамін Дмитрович"

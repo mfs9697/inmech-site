@@ -2,9 +2,12 @@
 name: "Червінко Ольга Петрівна"
 nameEn: "Olha P. Chervinko"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ термопружності"
+departmentEn: "Department of Thermoelasticity"
 departmentUrl: "/departments/07-thermoelasticity/"
 degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 email: "chop497@gmail.com"
 photo: "/people/chervinko.png"
 featured: false
@@ -17,11 +20,18 @@ researchAreas:
   - "Зв’язані задачі термомеханіки фізично нелінійних матеріалів при гармонічному навантаженні."
   - "Зв’язані задачі термов’язкопластичності з урахуванням мікроструктурних перетворень."
   - "Чисельне моделювання термомеханічних процесів при наплавленні і 3D-друці."
+researchAreasEn:
+  - "Mechanics of coupled fields in materials and structural elements."
+  - "Coupled problems of thermomechanics of physically nonlinear materials under harmonic loading."
+  - "Coupled problems of thermoviscoplasticity with account of microstructural transformations."
+  - "Numerical modelling of thermomechanical processes in surfacing and 3D printing."
 
 professionalActivity: "Наукова діяльність пов’язана зі зв’язаними задачами термомеханіки, термов’язкопластичністю, моделюванням мікроструктурних перетворень і чисельним аналізом технологічних процесів наплавлення та 3D-друку."
+professionalActivityEn: "Scientific activity is related to coupled problems of thermomechanics, thermoviscoplasticity, modelling of microstructural transformations, and numerical analysis of technological processes of surfacing and 3D printing."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

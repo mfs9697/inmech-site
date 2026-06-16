@@ -2,10 +2,14 @@
 name: "Хотенко Ірина Миколаївна"
 nameEn: "Iryna M. Khotenko"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ реології"
+departmentEn: "Department of Rheology"
 departmentUrl: "/departments/02-rheology/"
 degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 academicTitle: "Старший науковий співробітник"
+academicTitleEn: "Senior Researcher"
 email: "i.khotenko@gmail.com"
 photo: "/people/hotenkoi.png"
 featured: false
@@ -18,11 +22,18 @@ researchAreas:
   - "Теорія пружності та теорія п’єзопружності."
   - "Теорія лінійних і нелінійних хвиль."
   - "Акустика, акустоелектроніка та акустотехніка."
+researchAreasEn:
+  - "Mechanics of materials and rheology."
+  - "Theory of elasticity and theory of piezoelasticity."
+  - "Theory of linear and nonlinear waves."
+  - "Acoustics, acoustoelectronics and acoustic engineering."
 
 professionalActivity: "Наукова діяльність пов’язана з нелінійними хвилями у п’єзоактивних сумішах, акустикою та механікою матеріалів."
+professionalActivityEn: "Scientific activity is related to nonlinear waves in piezoactive mixtures, acoustics and mechanics of materials."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

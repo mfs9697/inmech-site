@@ -1,11 +1,15 @@
 ---
 name: "Терещенко Лідія Миколаївна"
-nameEn: "Lidiia Tereshchenko"
+nameEn: "Lidiia M. Tereshchenko"
 position: "старший науковий співробітник"
+positionEn: "Senior Research Scientist"
 department: "Відділ механіки руйнування матеріалів"
+departmentEn: "Department of Fracture Mechanics of Materials"
 departmentUrl: "/departments/09-fracture-mechanics/"
 degree: "кандидат фізико-математичних наук"
+degreeEn: "Candidate of Sciences in Physics and Mathematics"
 academicTitle: "старший науковий співробітник"
+academicTitleEn: "Senior Research Scientist"
 email: "litere70@gmail.com"
 order: 7
 featured: true
@@ -23,11 +27,15 @@ profiles:
 
 researchAreas:
   - "обчислювальні методи механіки руйнування."
+researchAreasEn:
+  - "Computational methods of fracture mechanics."
 
 professionalActivity: "Професійна діяльність пов’язана з Київським національним університетом імені Тараса Шевченка."
+professionalActivityEn: "Professional activity is connected with Taras Shevchenko National University of Kyiv."
 
 publications:
   - title: "Тези доповідей та матеріали конференцій"
+    titleEn: "Conference abstracts and proceedings"
     type: "ordered"
     items:
       - "Терещенко Л. М., Ткаченко В. О., Абрамова Л. П. Математичне моделювання взаємодії та поширення хвиль в околі проникного хвилелому. MODERN RESEARCH IN SCIENCE AND EDUCATION : матеріали XI Міжнар. наук.-практ. конф. (Чикаго, 27–29 черв. 2024 р.). Чикаго, 2024. С. 153–157."

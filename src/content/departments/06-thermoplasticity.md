@@ -1,10 +1,14 @@
 ---
 number: 6
 title: "Відділ термопластичності"
+titleEn: "Department of Thermoplasticity"
 shortTitle: "Термопластичність"
+shortTitleEn: "Thermoplasticity"
 group: "Механіка зв'язних полів у матеріалах та елементах конструкцій"
+groupEn: "Mechanics of Coupled Fields in Materials and Structural Elements"
 head: "чл.-кор. НАН України Я.О. Жук"
 summary: "Механіка термов’язкопружнопластичного деформування і руйнування елементів конструкцій при складних неізотермічних процесах навантаження, теплопровідність, пошкодження матеріалів, алгоритми та чисельні методи термопластичності."
+summaryEn: "Thermoviscoelastoplastic deformation and fracture of structural elements under complex non-isothermal loading, heat conduction, material damage and numerical methods."
 order: 6
 contactEmail: "plast@inmech.kyiv.ua"
 staff:

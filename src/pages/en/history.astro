@@ -1,0 +1,218 @@
+---
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../data/site-en';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+const milestones = [
+  {
+    year: '1918',
+    title: 'Foundation of the Institute',
+    text: 'On 30 November 1918, the institution was established as the Institute of Technical Mechanics within the Ukrainian Academy of Sciences. Its first director was Stepan Prokopovych Timoshenko.'
+  },
+  {
+    year: '1929',
+    title: 'Reorganisation of the institution',
+    text: 'The Institute of Technical Mechanics was reorganised into the Institute of Structural Mechanics and the Cabinet of Transport Mechanics.'
+  },
+  {
+    year: '1941–1944',
+    title: 'Work during evacuation',
+    text: 'During the Second World War, the Institute continued its activity in evacuation, preserving its scientific school and research potential.'
+  },
+  {
+    year: '1959',
+    title: 'A new name',
+    text: 'The institution received the name Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR, reflecting the expansion of its scientific profile.'
+  },
+  {
+    year: '1993',
+    title: 'Named after S.P. Timoshenko',
+    text: 'The Institute was named after its founder, the outstanding scientist in mechanics Stepan Prokopovych Timoshenko.'
+  }
+];
+
+const directors = [
+  'S.P. Timoshenko (1918–1920)',
+  'D.O. Grave (1921)',
+  'K.K. Siminskyi (1921–1932)',
+  'S.V. Serensen (1932–1940)',
+  'M.V. Kornoukhov (1940–1944)',
+  'F.P. Bieliankin (1944–1958)',
+  'H.M. Savin (1958–1959)',
+  'A.D. Kovalenko (1959–1965)',
+  'V.O. Kononenko (1965–1975)',
+  'O.M. Huz (1976–2022)',
+  'V.M. Nazarenko (since 2022)'
+];
+
+const researchDirections = [
+  'mechanics of composite and heterogeneous media;',
+  'mechanics of shell systems;',
+  'mechanics of coupled fields in materials and structural elements;',
+  'fracture mechanics and fatigue;',
+  'dynamics and stability of mechanical systems.'
+];
+---
+
+<BaseLayoutEn
+  title={`History and mission | ${siteEn.shortName}`}
+  description="History, mission and main research directions of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine."
+  activePage="about"
+>
+  <section class="page-hero history-hero">
+    <div class="container">
+      <div class="panel history-hero-panel">
+        <p class="eyebrow">About the Institute</p>
+        <h1>History and mission</h1>
+        <p class="lead">
+          The S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine is one of the oldest
+          academic research institutions in Ukraine in the field of mechanics. It combines fundamental
+          research with engineering applications in the mechanics of materials, structures and complex systems.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container history-grid">
+      <article class="panel history-main-card">
+        <p class="eyebrow">Historical continuity</p>
+        <h2>From the Institute of Technical Mechanics to a modern research centre</h2>
+        <p>
+          The Institute was founded on 30 November 1918 as the Institute of Technical Mechanics within
+          the Ukrainian Academy of Sciences. From the beginning, it developed scientific schools focused
+          on fundamental problems of mechanics and on the needs of engineering practice.
+        </p>
+        <p>
+          Over different periods of its development, the Institute changed its organisational structure
+          and name, but preserved its central purpose: the development of theoretical, experimental and
+          computational methods for studying strength, deformation, stability, dynamics and fracture of
+          materials and structures.
+        </p>
+      </article>
+
+      <aside class="panel mission-card">
+        <p class="eyebrow">Mission</p>
+        <h2>Science for strength, reliability and durability</h2>
+        <p>
+          The mission of the Institute is to develop modern mechanics as a fundamental basis for the
+          creation, analysis and safe operation of materials, structural elements and technical systems.
+        </p>
+        <a class="button secondary" href={withBase('/en/departments/')}>Explore research departments</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Development milestones</p>
+          <h2 class="section-title">Key events in the history of the Institute</h2>
+        </div>
+      </div>
+
+      <div class="timeline">
+        {milestones.map((item) => (
+          <article class="timeline-item">
+            <div class="timeline-year">{item.year}</div>
+            <div class="timeline-content">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container history-grid">
+      <article class="panel">
+        <p class="eyebrow">Research directions</p>
+        <h2>Scope of research</h2>
+        <p>
+          The research activity of the Institute covers key areas of theoretical and applied mechanics.
+          It combines mathematical modelling, analytical approaches, computational methods, experimental
+          studies and engineering applications.
+        </p>
+        <ul class="history-list">
+          {researchDirections.map((direction) => <li>{direction}</li>)}
+        </ul>
+      </article>
+
+      <article class="panel">
+        <p class="eyebrow">Practical relevance</p>
+        <h2>Application of research results</h2>
+        <p>
+          Research results obtained at the Institute have been used in aerospace engineering, aviation,
+          shipbuilding and other branches of industry. They support the assessment of strength, reliability
+          and durability of materials and structural elements for various technical applications.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Institutional leadership</p>
+          <h2 class="section-title">Directors of the Institute</h2>
+          <p class="section-text">
+            The history of the Institute is connected with outstanding scientists who shaped its research
+            schools and development directions.
+          </p>
+        </div>
+      </div>
+
+      <div class="director-grid">
+        {directors.map((director) => <div class="director-card">{director}</div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container history-grid">
+      <article class="panel">
+        <p class="eyebrow">Educational role</p>
+        <h2>Training of scientific personnel</h2>
+        <p>
+          The Institute provides postgraduate and doctoral training. Scientific training is combined with
+          the participation of young researchers in research projects, seminars, conferences and the work
+          of scientific departments.
+        </p>
+        <p>
+          For many years, specialised academic councils at the Institute have supported the defence of
+          candidate and doctoral dissertations, confirming the role of the Institute as an important centre
+          for training scientific personnel in mechanics.
+        </p>
+      </article>
+
+      <article class="panel">
+        <p class="eyebrow">The Institute today</p>
+        <h2>Scientific community and continuity</h2>
+        <p>
+          The Institute’s scientific community includes academicians and corresponding members of the NAS
+          of Ukraine, doctors and candidates of sciences, researchers, engineers and technical specialists.
+          The achievements of Institute scientists have been recognised by state awards and prizes of the
+          NAS of Ukraine named after outstanding scientists.
+        </p>
+        <p>
+          The Institute also publishes the international scientific journal
+          <a href="https://pm.inmech.kyiv.ua/" target="_blank" rel="noopener">Applied Mechanics</a>,
+          founded in 1955.
+        </p>
+      </article>
+    </div>
+  </section>
+</BaseLayoutEn>

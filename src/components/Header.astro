@@ -24,7 +24,7 @@ function withBase(path: string) {
       <span>{site.officialLabel}</span>
       <div class="lang-switch" aria-label="Вибір мови">
         <a class="active" href={Astro.url.pathname}>Українська</a>
-        <a href="#" aria-disabled="true">English</a>
+        <a href={withBase('/en/')}>English</a>
       </div>
     </div>
   </div>

@@ -2,10 +2,14 @@
 name: "Стеблянко Павло Олексійович"
 nameEn: "Pavlo O. Steblianko"
 position: "Провідний науковий співробітник"
+positionEn: "Leading Researcher"
 department: "Відділ термопластичності"
+departmentEn: "Department of Thermoplasticity"
 departmentUrl: "/departments/06-thermoplasticity/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Physical and Mathematical Sciences"
 academicTitle: "Професор"
+academicTitleEn: "Professor"
 email: "caf-vmi@ukr.net"
 photo: "/people/steblyаnko.png"
 featured: false
@@ -21,11 +25,18 @@ researchAreas:
   - "Математичне та комп’ютерне моделювання поведінки елементів конструкцій з функціонально-неоднорідних матеріалів."
   - "Моделювання псевдопружнопластичних матеріалів при великих деформаціях."
   - "Методи розщеплення у просторових задачах теорії пластичності."
+researchAreasEn:
+  - "Theory and numerical methods for nonstationary and stationary geometrically nonlinear thermoviscoplasticity problems for spatial bodies."
+  - "Mathematical and computer modelling of the behaviour of structural elements made of functionally graded materials."
+  - "Modelling of pseudo-elastoplastic materials under large deformations."
+  - "Splitting methods in spatial problems of plasticity theory."
 
 professionalActivity: "Наукова діяльність пов’язана з просторовими задачами термопружнопластичності, чисельними методами високої точності та моделюванням поведінки функціонально-неоднорідних і псевдопружнопластичних матеріалів."
+professionalActivityEn: "Scientific activity is related to spatial problems of thermoelastoplasticity, high-accuracy numerical methods, and modelling of the behaviour of functionally graded and pseudo-elastoplastic materials."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

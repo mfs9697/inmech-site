@@ -1,10 +1,13 @@
-﻿---
+---
 name: "Савченко Віталій Григорович"
 nameEn: "Vitalii H. Savchenko"
 position: "Головний науковий співробітник"
+positionEn: "Principal Researcher"
 department: "Відділ термопластичності"
+departmentEn: "Department of Thermoplasticity"
 departmentUrl: "/departments/06-thermoplasticity/"
 degree: "Доктор технічних наук"
+degreeEn: "Doctor of Technical Sciences"
 email: "plast@inmech.kyiv.ua"
 photo: "/people/savchenko.png"
 featured: false
@@ -16,11 +19,17 @@ researchAreas:
   - "Теорія та чисельні методи розв’язування задач термов’язкопластичності для дискретно однорідних тонкостінних і товстостінних тіл обертання складної форми."
   - "Дослідження фізико-механічних полів у шаруватих елементах конструкцій з ізотропних та ортотропних матеріалів."
   - "Змінне термосилове навантаження, пошкодження структури матеріалу, вид напруженого стану, історія навантаження та повзучість матеріалу."
+researchAreasEn:
+  - "Theory and numerical methods for thermoviscoplasticity problems of discretely homogeneous thin-walled and thick-walled bodies of revolution of complex shape."
+  - "Study of physicomechanical fields in layered structural elements made of isotropic and orthotropic materials."
+  - "Variable thermomechanical loading, material-structure damage, type of stress state, loading history and material creep."
 
 professionalActivity: "Наукова діяльність пов’язана з просторовими задачами термов’язкопластичності, чисельним моделюванням термосилового навантаження та дослідженням деформування тонкостінних і товстостінних тіл обертання."
+professionalActivityEn: "Scientific activity is related to spatial problems of thermoviscoplasticity, numerical modelling of thermomechanical loading, and the study of deformation of thin-walled and thick-walled bodies of revolution."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

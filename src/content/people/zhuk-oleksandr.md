@@ -2,9 +2,12 @@
 name: "Жук Олександр Петрович"
 nameEn: "Oleksandr P. Zhuk"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ динаміки та стійкості суцільних середовищ"
+departmentEn: "Department of Dynamics and Stability of Continua"
 departmentUrl: "/departments/01-dynamics-stability/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Physical and Mathematical Sciences"
 email: "opzhuk1939@gmail.com"
 photo: "/people/zhuko.png"
 featured: false
@@ -20,11 +23,18 @@ researchAreas:
   - "Акустика і хвильові процеси."
   - "Взаємодія акустичних хвиль з твердими та еластичними частинками в рідині."
   - "Акустичні радіаційні сили."
+researchAreasEn:
+  - "Mechanics of deformable solids."
+  - "Acoustics and wave processes."
+  - "Interaction of acoustic waves with rigid and elastic particles in fluids."
+  - "Acoustic radiation forces."
 
 professionalActivity: "Наукова діяльність пов’язана з акустичними хвилями, взаємодією тіл і частинок з рідиною та дослідженням акустичних радіаційних сил."
+professionalActivityEn: "Scientific activity is related to acoustic waves, interaction of bodies and particles with fluids, and the study of acoustic radiation forces."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

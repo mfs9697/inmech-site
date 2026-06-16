@@ -2,10 +2,14 @@
 name: "Сторожук Євген Анатолійович"
 nameEn: "Yevhen A. Storozhuk"
 position: "Заступник завідувача відділу"
+positionEn: "Deputy Head of Department"
 department: "Відділ динаміки та стійкості суцільних середовищ"
+departmentEn: "Department of Dynamics and Stability of Continua"
 departmentUrl: "/departments/01-dynamics-stability/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Physical and Mathematical Sciences"
 academicTitle: "Професор, член-кореспондент НАН України"
+academicTitleEn: "Professor, Corresponding Member of the NAS of Ukraine"
 email: "stevan@ukr.net"
 photo: "/people/storozhuk.png"
 featured: false
@@ -32,11 +36,17 @@ researchAreas:
   - "Аналітичні, чисельні та аналітично-чисельні методи розв’язання нелінійних і лінійних задач теорії металевих і композитних оболонок."
   - "Нелінійна деформація та стійкість оболонок неканонічної форми."
   - "Задачі для оболонок з отворами та елементів конструкцій з композитних матеріалів."
+researchAreasEn:
+  - "Analytical, numerical, and analytical-numerical methods for solving nonlinear and linear problems in the theory of metal and composite shells."
+  - "Nonlinear deformation and stability of shells of non-canonical shape."
+  - "Problems for shells with holes and structural elements made of composite materials."
 
 professionalActivity: "Професійна діяльність пов’язана з Інститутом механіки ім. С.П. Тимошенка НАН України."
+professionalActivityEn: "Professional activity is associated with the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

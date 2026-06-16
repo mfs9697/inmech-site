@@ -9,6 +9,37 @@ const { activePage = 'home' } = Astro.props;
 const isActive = (page: Props['activePage']) => activePage === page ? 'active' : '';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
+const englishSlugs = new Set([
+  'history',
+  'regulations',
+  'strategy',
+  'scientific-cooperation',
+  'tender',
+  'management',
+  'departments',
+  'scientific-council',
+  'specialized-councils',
+  'young-scientists',
+  'services',
+  'education',
+  'postgraduate',
+  'doctoral',
+  'dissertations',
+  'license-and-regulations',
+  'trust-box',
+  'nmr',
+  'news',
+  'library',
+  'search',
+  'sitemap',
+  'accessibility',
+  'site-administration'
+]);
+
+const enToUkFallbacks: Record<string, string> = {
+  '/en/': '/'
+};
+
 function withBase(path: string) {
   if (path.startsWith('http') || path.startsWith('#')) {
     return path;
@@ -16,6 +47,51 @@ function withBase(path: string) {
 
   return `${base}${path.startsWith('/') ? path : `/${path}`}`;
 }
+
+function normalizePath(pathname: string) {
+  let path = pathname;
+
+  if (base && path === base) {
+    path = '/';
+  } else if (base && path.startsWith(`${base}/`)) {
+    path = path.slice(base.length);
+  }
+
+  if (!path.startsWith('/')) {
+    path = `/${path}`;
+  }
+
+  path = path.replace(/\/index\.html$/, '/');
+
+  if (!path.endsWith('/')) {
+    path = `${path}/`;
+  }
+
+  return path;
+}
+
+function getUkrainianPath(pathname: string) {
+  const path = normalizePath(pathname);
+
+  if (enToUkFallbacks[path]) {
+    return enToUkFallbacks[path];
+  }
+
+  if (!path.startsWith('/en/')) {
+    return '/';
+  }
+
+  const slug = path.replace(/^\/en\//, '').replace(/\/$/, '');
+
+  if (englishSlugs.has(slug)) {
+    return `/${slug}/`;
+  }
+
+  return '/';
+}
+
+const currentPath = normalizePath(Astro.url.pathname);
+const ukrainianPath = getUkrainianPath(Astro.url.pathname);
 ---
 
 <header class="site-header">
@@ -23,8 +99,8 @@ function withBase(path: string) {
     <div class="container">
       <span>{siteEn.officialLabel}</span>
       <div class="lang-switch" aria-label="Language selection">
-        <a href={withBase('/')}>Українська</a>
-        <a class="active" href={Astro.url.pathname}>English</a>
+        <a href={withBase(ukrainianPath)}>Українська</a>
+        <a class="active" href={withBase(currentPath)}>English</a>
       </div>
     </div>
   </div>

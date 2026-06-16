@@ -2,10 +2,14 @@
 name: "Махненко Олег Володимирович"
 nameEn: "Oleh V. Makhnenko"
 position: "Провідний науковий співробітник відділу обчислювальних методів (за сумісництвом)"
+positionEn: "Leading Researcher of the Department of Computational Methods (part-time)"
 department: "Відділ обчислювальних методів"
+departmentEn: "Department of Computational Methods"
 departmentUrl: "/departments/04-computational-methods/"
 degree: "Доктор технічних наук"
+degreeEn: "Doctor of Technical Sciences"
 academicTitle: "Професор, член-кореспондент НАН України"
+academicTitleEn: "Professor, Corresponding Member of the NAS of Ukraine"
 photo: "/people/makhnenko.jpg"
 featured: false
 order: 6
@@ -36,11 +40,19 @@ researchAreas:
   - "Механіка зв’язаних полів у зварних конструктивних елементах."
   - "Теплові, механічні та радіаційні поля в елементах обладнання ядерних енергетичних реакторів."
   - "Моделювання процесів адитивного пошарового формування 3D-деталей."
+researchAreasEn:
+  - "Mathematical modelling of the stress-strain state of welded structures."
+  - "Strength and service life of welded joints."
+  - "Mechanics of coupled fields in welded structural elements."
+  - "Thermal, mechanical and radiation fields in equipment elements of nuclear power reactors."
+  - "Modelling of additive layer-by-layer forming processes for 3D parts."
 
 professionalActivity: "Наукова діяльність охоплює проблеми зварювання та споріднених процесів, математичне моделювання напружено-деформованого стану зварних конструкцій, міцність і ресурс зварних вузлів, а також розрахункові дослідження технологій ремонту та післязварювальної термообробки."
+professionalActivityEn: "Scientific activity covers welding and related processes, mathematical modelling of the stress-strain state of welded structures, strength and service life of welded joints, and computational studies of repair technologies and post-weld heat treatment."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-
@@ -50,4 +62,3 @@ publications:
       - >-
         Milenin O., Velikoivanenko E., Rozynka G., Makhnenko O. Numerical Assessment of Structural Integrity of Welded Absorbing Elements in VVER-1000 Control and Protection System. In: Advances in Mechanical and Power Engineering III. Lecture Notes in Mechanical Engineering. Springer, 2026.
 ---
-

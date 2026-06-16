@@ -2,9 +2,12 @@
 name: "Кирилюк Віталій Семенович"
 nameEn: "Vitaliy S. Kyryliuk"
 position: "Провідний науковий співробітник"
+positionEn: "Leading Researcher"
 department: "Відділ теорії коливань"
+departmentEn: "Department of Theory of Vibrations"
 departmentUrl: "/departments/11-vibrations/"
 degree: "Доктор фізико-математичних наук"
+degreeEn: "Doctor of Physical and Mathematical Sciences"
 email: "kirilyuk_v@ukr.net"
 featured: false
 photo: "/people/kyryliuk.png"
@@ -16,15 +19,21 @@ profiles:
     url: "https://orcid.org/0000-0002-8513-0378"
     kind: "orcid"
 
+researchAreasEn:
+  - "Mechanics of coupled fields."
+  - "Fracture mechanics."
+  - "Mechanics of contact interaction."
 researchAreas:
   - "Механіка зв’язаних полів."
   - "Механіка руйнування."
   - "Механіка контактної взаємодії."
 
+professionalActivityEn: "His scientific work is related to mathematical modelling of contact interaction, fracture-mechanics problems, and electroelastic media."
 professionalActivity: "Наукова діяльність пов’язана з математичним моделюванням контактної взаємодії, задачами механіки руйнування та електропружних середовищ."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

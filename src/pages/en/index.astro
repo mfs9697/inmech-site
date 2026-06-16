@@ -15,7 +15,7 @@ function withBase(path: string) {
 
 <BaseLayoutEn
   title={`${siteEn.name}`}
-  description={siteEn.description}
+  description="The English homepage of the S.P. Timoshenko Institute of Mechanics of the National Academy of Sciences of Ukraine: research in mechanics of deformable solids, dynamics, stability, thermomechanics, creep, fracture and composite materials."
   activePage="home"
 >
   <section class="hero">
@@ -25,9 +25,9 @@ function withBase(path: string) {
           <p class="eyebrow">National Academy of Sciences of Ukraine</p>
           <h1>S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine</h1>
           <p class="lead">
-            A leading research institution of the National Academy of Sciences of Ukraine carrying out
-            fundamental and applied studies in solid mechanics, dynamics, stability, thermoelasticity,
-            creep, fracture mechanics and mechanics of composite materials.
+            A leading Ukrainian research institution in theoretical and applied mechanics,
+            combining fundamental research, computational modelling, experimental studies
+            and engineering-oriented analysis of materials, structures and mechanical processes.
           </p>
         </div>
 
@@ -35,27 +35,26 @@ function withBase(path: string) {
           <img src={withBase('/assets/img/logo-jacket.png?v=20260615-2')} alt="Badge of the S.P. Timoshenko Institute of Mechanics" loading="eager" />
           <div class="hero-actions hero-image-actions">
             <a class="button primary" href={withBase('/en/departments/')}>Research departments</a>
-            <a class="button secondary" href={withBase('/en/news/')}>Latest news</a>
+            <a class="button secondary" href={withBase('/en/education/')}>Academic training</a>
           </div>
         </figure>
       </div>
 
-      <aside class="aside-card" aria-labelledby="institute-sites-title">
-        <h2 id="institute-sites-title">Institute websites</h2>
+      <aside class="aside-card" aria-labelledby="visitor-links-title">
+        <h2 id="visitor-links-title">For international visitors</h2>
         <p>
-          Separate information resources of the Institute for specialised projects, events and institutional announcements.
+          Key English-language entry points to the Institute’s research, academic training,
+          publications and institutional information.
         </p>
         <ul class="aside-list">
+          <li><a href={withBase('/en/departments/')}>Research departments</a></li>
+          <li><a href={withBase('/en/education/')}>Postgraduate and doctoral studies</a></li>
           <li>
-            <a href="https://natcommmech.inmech.kyiv.ua/" target="_blank" rel="noopener">
-              National Committee of Ukraine for Theoretical and Applied Mechanics
+            <a href="https://applied-mechanics.inmech.kyiv.ua/" target="_blank" rel="noopener">
+              Journal “Applied Mechanics”
             </a>
           </li>
-          <li>
-            <a href="https://election.inmech.kyiv.ua/" target="_blank" rel="noopener">
-              Election of the Director of the Institute, 2026
-            </a>
-          </li>
+          <li><a href={withBase('/en/contacts/')}>Contacts</a></li>
         </ul>
       </aside>
     </div>
@@ -66,39 +65,138 @@ function withBase(path: string) {
       <div class="section-header">
         <div>
           <p class="eyebrow">About the Institute</p>
-          <h2 class="section-title">Scientific schools, research and engineering applications</h2>
+          <h2 class="section-title">Mechanics as a foundation for science and engineering</h2>
           <p class="section-text">
-            The Institute develops mathematical models, experimental methods and numerical approaches
-            for the analysis of materials, structures and processes in mechanics. Its research combines
-            theoretical studies with engineering applications and the implementation of scientific results.
+            The Institute develops analytical, numerical and experimental approaches for studying
+            the behaviour of materials, structural elements and mechanical systems. Its work covers
+            both fundamental problems of continuum mechanics and applied tasks related to strength,
+            durability, reliability and safe operation of engineering structures.
           </p>
         </div>
       </div>
 
       <div class="cards-grid">
         <article class="card">
-          <h3>Research</h3>
+          <h3>Fundamental research</h3>
           <p>
-            Fundamental and applied problems of continuum mechanics, material science, strength,
-            durability and structural reliability.
+            Development of theories, models and methods in mechanics of deformable solids,
+            dynamics, stability, thermomechanics, creep and fracture.
           </p>
-          <a class="card-link" href={withBase('/en/departments/')}>View research areas →</a>
+          <a class="card-link" href={withBase('/en/history/')}>History and mission →</a>
         </article>
 
         <article class="card">
-          <h3>Education and research training</h3>
+          <h3>Computational and experimental methods</h3>
           <p>
-            Postgraduate and doctoral studies, specialised academic councils, scientific seminars and
-            the involvement of young scientists in research projects.
+            Mathematical modelling, finite-element analysis, experimental mechanics and validation
+            of models for materials, structures and coupled mechanical processes.
           </p>
-          <a class="card-link" href={withBase('/en/education/')}>Postgraduate and doctoral studies →</a>
+          <a class="card-link" href={withBase('/en/departments/')}>View departments →</a>
         </article>
 
         <article class="card">
-          <h3>Publications and cooperation</h3>
+          <h3>Engineering applications</h3>
           <p>
-            Scientific journals, international cooperation, conferences, library resources and the dissemination
-            of research results in the international scientific community.
+            Research aimed at strength assessment, durability prediction, structural reliability,
+            advanced materials, composite systems and modern engineering technologies.
+          </p>
+          <a class="card-link" href={withBase('/en/contacts/')}>Contact the Institute →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="research">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Research profile</p>
+          <h2 class="section-title">Main scientific areas</h2>
+          <p class="section-text">
+            The Institute’s departments cover a broad spectrum of modern theoretical and applied mechanics,
+            from classical problems of solid mechanics to advanced modelling of materials, structures and processes.
+          </p>
+        </div>
+        <a class="button secondary" href={withBase('/en/departments/')}>All departments</a>
+      </div>
+
+      <div class="cards-grid">
+        <article class="card">
+          <h3>Mechanics of deformable solids</h3>
+          <p>
+            Stress, strain, stability, damage and long-term behaviour of solids, plates, shells,
+            structural elements and engineering systems.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Dynamics, stability and vibrations</h3>
+          <p>
+            Dynamic processes, wave propagation, oscillations, stability loss and response of
+            structures under static, cyclic and time-dependent loads.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Thermomechanics, creep and fracture</h3>
+          <p>
+            Thermoelasticity, thermoplasticity, hereditary material behaviour, creep, fatigue,
+            fracture mechanics and durability of materials and structures.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Composite and advanced materials</h3>
+          <p>
+            Mechanics of composite materials, layered and thin-walled systems, metamaterial-inspired
+            structures and computational approaches for modern material design.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="academic-life">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Academic life</p>
+          <h2 class="section-title">Research training, councils and scientific communication</h2>
+          <p class="section-text">
+            The Institute provides postgraduate and doctoral training, supports scientific seminars,
+            participates in academic councils and contributes to the development of the Ukrainian
+            and international mechanics community.
+          </p>
+        </div>
+      </div>
+
+      <div class="cards-grid">
+        <article class="card">
+          <h3>Postgraduate and doctoral studies</h3>
+          <p>
+            Training of early-career researchers through postgraduate programmes, doctoral studies,
+            research supervision and participation in scientific projects.
+          </p>
+          <a class="card-link" href={withBase('/en/education/')}>Academic training →</a>
+        </article>
+
+        <article class="card">
+          <h3>Scientific and specialised councils</h3>
+          <p>
+            Institutional bodies that support research coordination, expert evaluation and academic
+            certification in the field of mechanics.
+          </p>
+          <div class="card-links-stack">
+            <a class="card-link" href={withBase('/en/scientific-council/')}>Scientific Council →</a>
+            <a class="card-link" href={withBase('/en/specialized-councils/')}>Specialised councils →</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Publications and library resources</h3>
+          <p>
+            Dissemination of research results through journals, conferences, monographs,
+            institutional publications and library collections.
           </p>
           <div class="card-links-stack">
             <a class="card-link" href="https://applied-mechanics.inmech.kyiv.ua/" target="_blank" rel="noopener">Applied Mechanics journal →</a>
@@ -109,48 +207,50 @@ function withBase(path: string) {
     </div>
   </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <p class="eyebrow">Scientific activity</p>
-          <h2 class="section-title">Main research areas</h2>
-          <p class="section-text">
-            The Institute’s departments cover a broad spectrum of modern theoretical and applied mechanics.
-          </p>
-        </div>
-        <a class="button secondary" href={withBase('/en/departments/')}>All departments</a>
-      </div>
-
-      <div class="cards-grid">
-        <article class="card">
-          <h3>Mechanics of deformable solids</h3>
-          <p>Modelling of stress, strain, stability and damage in solids, plates, shells and structural elements.</p>
-        </article>
-        <article class="card">
-          <h3>Dynamics and vibrations</h3>
-          <p>Analysis of dynamic processes, wave propagation, oscillations and structural response under time-dependent loads.</p>
-        </article>
-        <article class="card">
-          <h3>Thermomechanics, creep and fracture</h3>
-          <p>Thermoelasticity, thermoplasticity, creep, fatigue, fracture mechanics and long-term durability of materials and structures.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
+  <section class="section" id="information">
     <div class="container">
       <div class="section-header">
         <div>
           <p class="eyebrow">Information</p>
-          <h2 class="section-title">News and announcements</h2>
+          <h2 class="section-title">News, announcements and contacts</h2>
           <p class="section-text">
-            The English news archive is being prepared. Current institutional announcements are available
-            in the Ukrainian version of the website.
+            The English news archive is being prepared. Current institutional announcements are
+            available in the Ukrainian version of the website; contact information and main
+            institutional links are available in English.
           </p>
         </div>
-        <a class="button secondary" href={withBase('/news/')}>Ukrainian news archive</a>
+      </div>
+
+      <div class="cards-grid">
+        <article class="card">
+          <h3>News and announcements</h3>
+          <p>
+            Follow current institutional updates in the Ukrainian news archive while the English
+            news section is being prepared.
+          </p>
+          <a class="card-link" href={withBase('/news/')}>Ukrainian news archive →</a>
+        </article>
+
+        <article class="card">
+          <h3>Contact the Institute</h3>
+          <p>
+            Address, telephone numbers, e-mail and general contact information for institutional
+            communication and cooperation requests.
+          </p>
+          <a class="card-link" href={withBase('/en/contacts/')}>Contacts →</a>
+        </article>
+
+        <article class="card">
+          <h3>Institute websites</h3>
+          <p>
+            Additional resources for specialised projects, academic organisations, events and
+            institutional announcements connected with the Institute.
+          </p>
+          <div class="card-links-stack">
+            <a class="card-link" href="https://natcommmech.inmech.kyiv.ua/" target="_blank" rel="noopener">National Committee of Ukraine for Mechanics →</a>
+            <a class="card-link" href="https://election.inmech.kyiv.ua/" target="_blank" rel="noopener">Director election website →</a>
+          </div>
+        </article>
       </div>
     </div>
   </section>

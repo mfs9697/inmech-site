@@ -2,9 +2,12 @@
 name: "Кіпніс Олександр Леонідович"
 nameEn: "Oleksandr L. Kipnis"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ обчислювальної механіки та техніки"
+departmentEn: "Department of Computational Mechanics and Engineering"
 departmentUrl: "/departments/03-computational-mechanics-engineering/"
 degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 email: "a.l.kipnis@gmail.com"
 photo: "/people/kipnis.png"
 featured: false
@@ -27,11 +30,18 @@ researchAreas:
   - "Тривимірна лінеаризована теорія стійкості деформівних тіл."
   - "Нелінійна механіка м’яких шаруватих структур."
   - "Стійкість і руйнування гіперпружних шаруватих тіл з міжфазними дефектами."
+researchAreasEn:
+  - "Fracture mechanics of composite materials."
+  - "Three-dimensional linearized stability theory of deformable bodies."
+  - "Nonlinear mechanics of soft layered structures."
+  - "Stability and fracture of hyperelastic layered bodies with interfacial defects."
 
 professionalActivity: "Наукова діяльність пов’язана з механікою руйнування композитів, стійкістю попередньо напружених тіл і нелінійною механікою м’яких шаруватих структур."
+professionalActivityEn: "Scientific activity is related to fracture mechanics of composites, stability of prestressed bodies, and nonlinear mechanics of soft layered structures."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

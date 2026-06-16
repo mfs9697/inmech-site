@@ -2,9 +2,12 @@
 name: "Левчук Ольга Іванівна"
 nameEn: "Olha I. Levchuk"
 position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ теорії коливань"
+departmentEn: "Department of Theory of Vibrations"
 departmentUrl: "/departments/11-vibrations/"
 degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 email: "inmech2021@gmail.com"
 featured: false
 photo: "/people/levchuk.png"
@@ -22,15 +25,21 @@ profiles:
     url: "https://orcid.org/0000-0002-6514-6225"
     kind: "orcid"
 
+researchAreasEn:
+  - "Mechanics of coupled fields."
+  - "Mechanics of contact interaction."
+  - "Fracture mechanics."
 researchAreas:
   - "Механіка зв’язаних полів."
   - "Механіка контактної взаємодії."
   - "Механіка руйнування."
 
+professionalActivityEn: "Her scientific work is related to contact interaction, electroelastic media, and fracture-mechanics problems."
 professionalActivity: "Наукова діяльність пов’язана з контактною взаємодією, електропружними середовищами та задачами механіки руйнування."
 
 publications:
   - title: "Основні публікації"
+    titleEn: "Selected publications"
     type: "ordered"
     items:
       - >-

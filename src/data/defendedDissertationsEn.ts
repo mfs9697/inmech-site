@@ -1,6 +1,7 @@
 import { defendedDissertationsEnA } from './defendedDissertationsEnA';
 import { defendedDissertationsEnB } from './defendedDissertationsEnB';
 import { defendedDissertationsEnS } from './defendedDissertationsEnS';
+import { defendedDissertationsEnV } from './defendedDissertationsEnV';
 
 export type OriginalLanguage = 'uk' | 'ru';
 
@@ -129,7 +130,8 @@ export const defendedDissertationLanguageLabels: Record<OriginalLanguage, string
 export const defendedDissertationsEn: DefendedDissertationEntryEn[] = [
   ...defendedDissertationsEnA,
   ...defendedDissertationsEnB,
-  ...defendedDissertationsEnS
+  ...defendedDissertationsEnS,
+  ...defendedDissertationsEnV
 ];
 
 export function groupDefendedDissertationsEn(

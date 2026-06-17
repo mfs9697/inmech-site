@@ -26,19 +26,6 @@ function withBase(path: string) {
 
 export function getStaticPaths() {
   const genericPages: Record<string, PageData> = {
-    education: {
-      title: 'Education and research training',
-      description: 'Postgraduate and doctoral training at the Institute.',
-      activePage: 'education',
-      eyebrow: 'Education and research training',
-      heading: 'Education and research training',
-      lead: 'The Institute provides postgraduate and doctoral training, organises scientific seminars and supports the preparation of highly qualified research personnel.',
-      cards: [
-        { title: 'Postgraduate studies', text: 'Training of PhD students in mechanics and related research fields.', href: '/en/postgraduate/' },
-        { title: 'Doctoral studies', text: 'Research development and preparation of doctoral dissertations.', href: '/en/doctoral/' },
-        { title: 'Dissertation defences', text: 'Information about dissertation defence procedures and specialised academic councils.', href: '/en/dissertations/' }
-      ]
-    },
     postgraduate: {
       title: 'Postgraduate studies',
       description: 'Postgraduate studies at the Institute.',

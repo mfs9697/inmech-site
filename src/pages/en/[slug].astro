@@ -24,156 +24,156 @@ function withBase(path: string) {
   return `${base}${path.startsWith('/') ? path : `/${path}`}`;
 }
 
-const genericPages: Record<string, PageData> = {
-  'young-scientists': {
-    title: 'Council of Young Scientists',
-    description: 'Council of Young Scientists of the Institute.',
-    activePage: 'departments',
-    eyebrow: 'Structure',
-    heading: 'Council of Young Scientists',
-    lead: 'The Council of Young Scientists supports the research activity, professional development and scientific initiatives of early-career researchers.',
-    links: [{ title: 'Ukrainian version', href: '/young-scientists/' }]
-  },
-  services: {
-    title: 'Institute services',
-    description: 'Administrative and support services of the Institute.',
-    activePage: 'departments',
-    eyebrow: 'Structure',
-    heading: 'Institute services',
-    lead: 'Administrative and technical services support the scientific, educational and organisational activity of the Institute.',
-    links: [{ title: 'Ukrainian version', href: '/services/' }]
-  },
-  education: {
-    title: 'Education and research training',
-    description: 'Postgraduate and doctoral training at the Institute.',
-    activePage: 'education',
-    eyebrow: 'Education and research training',
-    heading: 'Education and research training',
-    lead: 'The Institute provides postgraduate and doctoral training, organises scientific seminars and supports the preparation of highly qualified research personnel.',
-    cards: [
-      { title: 'Postgraduate studies', text: 'Training of PhD students in mechanics and related research fields.', href: '/en/postgraduate/' },
-      { title: 'Doctoral studies', text: 'Research development and preparation of doctoral dissertations.', href: '/en/doctoral/' },
-      { title: 'Dissertation defences', text: 'Information about dissertation defence procedures and specialised academic councils.', href: '/en/dissertations/' }
-    ]
-  },
-  postgraduate: {
-    title: 'Postgraduate studies',
-    description: 'Postgraduate studies at the Institute.',
-    activePage: 'education',
-    eyebrow: 'Education and research training',
-    heading: 'Postgraduate studies',
-    lead: 'The postgraduate programme is aimed at training researchers in mechanics and related areas of applied mathematics, materials science and engineering analysis.',
-    links: [{ title: 'Detailed Ukrainian information', href: '/postgraduate/' }]
-  },
-  doctoral: {
-    title: 'Doctoral studies',
-    description: 'Doctoral studies at the Institute.',
-    activePage: 'education',
-    eyebrow: 'Education and research training',
-    heading: 'Doctoral studies',
-    lead: 'Doctoral studies support advanced research leading to the preparation of doctoral dissertations and the development of independent scientific directions.',
-    links: [{ title: 'Ukrainian version', href: '/doctoral/' }]
-  },
-  dissertations: {
-    title: 'Dissertation defences',
-    description: 'Information about dissertation defences at the Institute.',
-    activePage: 'education',
-    eyebrow: 'Education and research training',
-    heading: 'Dissertation defences',
-    lead: 'This section provides information on dissertation defences, specialised academic councils and related documents.',
-    links: [{ title: 'Ukrainian version', href: '/dissertations/' }]
-  },
-  'license-and-regulations': {
-    title: 'Licences and regulations',
-    description: 'Licences and regulations related to educational activity.',
-    activePage: 'education',
-    eyebrow: 'Education and research training',
-    heading: 'Licences and regulations',
-    lead: 'Official documents regulating educational and research training activity are maintained in Ukrainian.',
-    links: [{ title: 'Ukrainian version', href: '/license-and-regulations/' }]
-  },
-  'trust-box': {
-    title: 'Trust box',
-    description: 'Trust box page of the Institute.',
-    activePage: 'education',
-    eyebrow: 'Education and research training',
-    heading: 'Trust box',
-    lead: 'The trust box is intended for messages and feedback related to the educational and scientific environment.',
-    links: [{ title: 'Ukrainian version', href: '/trust-box/' }]
-  },
-  nmr: {
-    title: 'Scientific and Methodological Council',
-    description: 'Scientific and Methodological Council of the Institute.',
-    activePage: 'education',
-    eyebrow: 'Education and research training',
-    heading: 'Scientific and Methodological Council',
-    lead: 'The Scientific and Methodological Council coordinates issues related to educational programmes, research training and methodological support.',
-    links: [{ title: 'Ukrainian version', href: '/nmr/' }]
-  },
-  news: {
-    title: 'News',
-    description: 'News and announcements of the Institute.',
-    activePage: 'news',
-    eyebrow: 'News',
-    heading: 'News and announcements',
-    lead: 'The English news archive is being prepared. Current institutional announcements are available in the Ukrainian version of the website.',
-    links: [{ title: 'Open Ukrainian news archive', href: '/news/' }]
-  },
-  library: {
-    title: 'Library',
-    description: 'Library resources and publications of the Institute.',
-    activePage: 'about',
-    eyebrow: 'Publications',
-    heading: 'Library',
-    lead: 'The library section contains information on monographs, textbooks, scientific publications and archival materials of the Institute.',
-    links: [{ title: 'Ukrainian library page', href: '/library/' }]
-  },
-  search: {
-    title: 'Search',
-    description: 'Search page of the English section.',
-    activePage: 'home',
-    eyebrow: 'Search',
-    heading: 'Search the website',
-    lead: 'The English search page is being prepared. You may use the Ukrainian search page to search the current site content.',
-    links: [{ title: 'Open Ukrainian search', href: '/search/' }]
-  },
-  sitemap: {
-    title: 'Sitemap',
-    description: 'Sitemap of the English section.',
-    activePage: 'home',
-    eyebrow: 'Service links',
-    heading: 'Sitemap',
-    lead: 'Main pages of the English section are listed below.',
-    links: [
-      { title: 'Home', href: '/en/' },
-      { title: 'History and mission', href: '/en/history/' },
-      { title: 'Research departments', href: '/en/departments/' },
-      { title: 'Education and research training', href: '/en/education/' },
-      { title: 'News', href: '/en/news/' },
-      { title: 'Contacts', href: '/en/#contacts' }
-    ]
-  },
-  accessibility: {
-    title: 'Accessibility policy',
-    description: 'Accessibility policy of the website.',
-    activePage: 'home',
-    eyebrow: 'Service links',
-    heading: 'Accessibility policy',
-    lead: 'The website is being developed with attention to clear structure, readable content and keyboard-accessible navigation.',
-    links: [{ title: 'Ukrainian version', href: '/accessibility/' }]
-  },
-  'site-administration': {
-    title: 'Site administration',
-    description: 'Website administration information.',
-    activePage: 'home',
-    eyebrow: 'Service links',
-    heading: 'Site administration',
-    lead: 'This page provides basic information about the administration and maintenance of the website.',
-    links: [{ title: 'Ukrainian version', href: '/site-administration/' }]
-  }
-};
-
 export function getStaticPaths() {
+  const genericPages: Record<string, PageData> = {
+    'young-scientists': {
+      title: 'Council of Young Scientists',
+      description: 'Council of Young Scientists of the Institute.',
+      activePage: 'departments',
+      eyebrow: 'Structure',
+      heading: 'Council of Young Scientists',
+      lead: 'The Council of Young Scientists supports the research activity, professional development and scientific initiatives of early-career researchers.',
+      links: [{ title: 'Ukrainian version', href: '/young-scientists/' }]
+    },
+    services: {
+      title: 'Institute services',
+      description: 'Administrative and support services of the Institute.',
+      activePage: 'departments',
+      eyebrow: 'Structure',
+      heading: 'Institute services',
+      lead: 'Administrative and technical services support the scientific, educational and organisational activity of the Institute.',
+      links: [{ title: 'Ukrainian version', href: '/services/' }]
+    },
+    education: {
+      title: 'Education and research training',
+      description: 'Postgraduate and doctoral training at the Institute.',
+      activePage: 'education',
+      eyebrow: 'Education and research training',
+      heading: 'Education and research training',
+      lead: 'The Institute provides postgraduate and doctoral training, organises scientific seminars and supports the preparation of highly qualified research personnel.',
+      cards: [
+        { title: 'Postgraduate studies', text: 'Training of PhD students in mechanics and related research fields.', href: '/en/postgraduate/' },
+        { title: 'Doctoral studies', text: 'Research development and preparation of doctoral dissertations.', href: '/en/doctoral/' },
+        { title: 'Dissertation defences', text: 'Information about dissertation defence procedures and specialised academic councils.', href: '/en/dissertations/' }
+      ]
+    },
+    postgraduate: {
+      title: 'Postgraduate studies',
+      description: 'Postgraduate studies at the Institute.',
+      activePage: 'education',
+      eyebrow: 'Education and research training',
+      heading: 'Postgraduate studies',
+      lead: 'The postgraduate programme is aimed at training researchers in mechanics and related areas of applied mathematics, materials science and engineering analysis.',
+      links: [{ title: 'Detailed Ukrainian information', href: '/postgraduate/' }]
+    },
+    doctoral: {
+      title: 'Doctoral studies',
+      description: 'Doctoral studies at the Institute.',
+      activePage: 'education',
+      eyebrow: 'Education and research training',
+      heading: 'Doctoral studies',
+      lead: 'Doctoral studies support advanced research leading to the preparation of doctoral dissertations and the development of independent scientific directions.',
+      links: [{ title: 'Ukrainian version', href: '/doctoral/' }]
+    },
+    dissertations: {
+      title: 'Dissertation defences',
+      description: 'Information about dissertation defences at the Institute.',
+      activePage: 'education',
+      eyebrow: 'Education and research training',
+      heading: 'Dissertation defences',
+      lead: 'This section provides information on dissertation defences, specialised academic councils and related documents.',
+      links: [{ title: 'Ukrainian version', href: '/dissertations/' }]
+    },
+    'license-and-regulations': {
+      title: 'Licences and regulations',
+      description: 'Licences and regulations related to educational activity.',
+      activePage: 'education',
+      eyebrow: 'Education and research training',
+      heading: 'Licences and regulations',
+      lead: 'Official documents regulating educational and research training activity are maintained in Ukrainian.',
+      links: [{ title: 'Ukrainian version', href: '/license-and-regulations/' }]
+    },
+    'trust-box': {
+      title: 'Trust box',
+      description: 'Trust box page of the Institute.',
+      activePage: 'education',
+      eyebrow: 'Education and research training',
+      heading: 'Trust box',
+      lead: 'The trust box is intended for messages and feedback related to the educational and scientific environment.',
+      links: [{ title: 'Ukrainian version', href: '/trust-box/' }]
+    },
+    nmr: {
+      title: 'Scientific and Methodological Council',
+      description: 'Scientific and Methodological Council of the Institute.',
+      activePage: 'education',
+      eyebrow: 'Education and research training',
+      heading: 'Scientific and Methodological Council',
+      lead: 'The Scientific and Methodological Council coordinates issues related to educational programmes, research training and methodological support.',
+      links: [{ title: 'Ukrainian version', href: '/nmr/' }]
+    },
+    news: {
+      title: 'News',
+      description: 'News and announcements of the Institute.',
+      activePage: 'news',
+      eyebrow: 'News',
+      heading: 'News and announcements',
+      lead: 'The English news archive is being prepared. Current institutional announcements are available in the Ukrainian version of the website.',
+      links: [{ title: 'Open Ukrainian news archive', href: '/news/' }]
+    },
+    library: {
+      title: 'Library',
+      description: 'Library resources and publications of the Institute.',
+      activePage: 'about',
+      eyebrow: 'Publications',
+      heading: 'Library',
+      lead: 'The library section contains information on monographs, textbooks, scientific publications and archival materials of the Institute.',
+      links: [{ title: 'Ukrainian library page', href: '/library/' }]
+    },
+    search: {
+      title: 'Search',
+      description: 'Search page of the English section.',
+      activePage: 'home',
+      eyebrow: 'Search',
+      heading: 'Search the website',
+      lead: 'The English search page is being prepared. You may use the Ukrainian search page to search the current site content.',
+      links: [{ title: 'Open Ukrainian search', href: '/search/' }]
+    },
+    sitemap: {
+      title: 'Sitemap',
+      description: 'Sitemap of the English section.',
+      activePage: 'home',
+      eyebrow: 'Service links',
+      heading: 'Sitemap',
+      lead: 'Main pages of the English section are listed below.',
+      links: [
+        { title: 'Home', href: '/en/' },
+        { title: 'History and mission', href: '/en/history/' },
+        { title: 'Research departments', href: '/en/departments/' },
+        { title: 'Education and research training', href: '/en/education/' },
+        { title: 'News', href: '/en/news/' },
+        { title: 'Contacts', href: '/en/#contacts' }
+      ]
+    },
+    accessibility: {
+      title: 'Accessibility policy',
+      description: 'Accessibility policy of the website.',
+      activePage: 'home',
+      eyebrow: 'Service links',
+      heading: 'Accessibility policy',
+      lead: 'The website is being developed with attention to clear structure, readable content and keyboard-accessible navigation.',
+      links: [{ title: 'Ukrainian version', href: '/accessibility/' }]
+    },
+    'site-administration': {
+      title: 'Site administration',
+      description: 'Website administration information.',
+      activePage: 'home',
+      eyebrow: 'Service links',
+      heading: 'Site administration',
+      lead: 'This page provides basic information about the administration and maintenance of the website.',
+      links: [{ title: 'Ukrainian version', href: '/site-administration/' }]
+    }
+  };
+
   return Object.entries(genericPages).map(([slug, page]) => ({ params: { slug }, props: { page } }));
 }
 

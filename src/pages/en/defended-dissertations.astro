@@ -1,0 +1,446 @@
+---
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../data/site-en';
+import {
+  defendedDissertationsEn,
+  defendedDissertationEnglishCatalogNotes,
+  defendedDissertationLanguageLabels,
+  groupDefendedDissertationsEn
+} from '../../data/defendedDissertationsEn';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) return path;
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+function formatDate(date?: string) {
+  if (!date) return null;
+  return new Intl.DateTimeFormat('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  }).format(new Date(`${date}T00:00:00`));
+}
+
+const groups = groupDefendedDissertationsEn(defendedDissertationsEn);
+const totalEntries = defendedDissertationsEn.length;
+const years = defendedDissertationsEn.map((entry) => entry.year);
+const earliestYear = Math.min(...years);
+const latestYear = Math.max(...years);
+const doctorCount = defendedDissertationsEn.filter((entry) => entry.degree.level === 'doctor-of-sciences').length;
+const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.level === 'candidate-of-sciences').length;
+---
+
+<BaseLayoutEn
+  title={`Catalogue of defended dissertations | ${siteEn.shortName}`}
+  description="English catalogue of dissertations defended at the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine."
+  activePage="education"
+>
+  <section class="catalog-hero">
+    <div class="container catalog-hero-panel">
+      <p class="eyebrow">Education and research training</p>
+      <h1>Catalogue of dissertations defended at the Institute of Mechanics</h1>
+      <p class="lead">
+        This English catalogue is being migrated from the official Ukrainian/Russian archival records.
+        It uses transliterated personal names and translated dissertation titles, while source-language metadata is retained in the data files for verification.
+      </p>
+      <div class="catalog-hero-actions">
+        <a class="button primary" href="#english-catalogue">Go to catalogue</a>
+        <a class="button secondary" href={withBase('/defended-dissertations/')}>Ukrainian catalogue</a>
+        <a class="button secondary" href={withBase('/en/dissertations/')}>Defense materials</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="catalog-summary-section">
+    <div class="container catalog-summary-grid">
+      <article class="catalog-stat-card">
+        <span>{totalEntries}</span>
+        <strong>migrated entries</strong>
+        <p>The English catalogue currently includes the S/С alphabetical group.</p>
+      </article>
+      <article class="catalog-stat-card">
+        <span>{earliestYear}–{latestYear}</span>
+        <strong>defence years</strong>
+        <p>The migrated batch covers historical and recent dissertation defences.</p>
+      </article>
+      <article class="catalog-stat-card">
+        <span>{candidateCount}</span>
+        <strong>candidate dissertations</strong>
+        <p>Candidate of Sciences records are rendered with stable English degree labels.</p>
+      </article>
+      <article class="catalog-stat-card">
+        <span>{doctorCount}</span>
+        <strong>doctoral dissertations</strong>
+        <p>Doctor of Sciences records are separated in the structured data.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="catalog-policy-section">
+    <div class="container catalog-policy-panel">
+      <div>
+        <p class="eyebrow">Language policy</p>
+        <h2>English display, source-language traceability</h2>
+      </div>
+      <p>{defendedDissertationEnglishCatalogNotes.languagePolicy}</p>
+      <p>{defendedDissertationEnglishCatalogNotes.sourcePolicy}</p>
+    </div>
+  </section>
+
+  <section class="catalog-section" id="english-catalogue">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Alphabetical catalogue</p>
+          <h2>Defended dissertations</h2>
+        </div>
+        <p>
+          The entries below are rendered from the new English data model. Original Cyrillic names and titles are stored for auditability,
+          but the English page displays only Latin-script names, translated titles and source-language notes.
+        </p>
+      </div>
+
+      <div class="catalog-groups">
+        {groups.map((group) => (
+          <section class="catalog-letter-group" aria-labelledby={`letter-${group.letter}`}>
+            <div class="letter-heading" id={`letter-${group.letter}`}>
+              <span>{group.letter}</span>
+              <strong>{group.items.length} entries</strong>
+            </div>
+
+            <div class="catalog-entry-grid">
+              {group.items.map((entry) => {
+                const defenceDate = formatDate(entry.defenceDate);
+                const sourceLanguage = entry.bibliography?.originalLanguage
+                  ? defendedDissertationLanguageLabels[entry.bibliography.originalLanguage]
+                  : null;
+
+                return (
+                  <article class="catalog-entry-card">
+                    <div class="entry-header">
+                      <div>
+                        <h3>{entry.author.en}</h3>
+                        <p class="entry-title">{entry.title.en}</p>
+                      </div>
+                      <span class="entry-year">{entry.year}</span>
+                    </div>
+
+                    <dl class="entry-meta-grid">
+                      {defenceDate && (
+                        <div>
+                          <dt>Defence date</dt>
+                          <dd>{defenceDate}</dd>
+                        </div>
+                      )}
+                      <div>
+                        <dt>Degree</dt>
+                        <dd>{entry.degree.en}</dd>
+                      </div>
+                      {entry.specialty && (
+                        <div>
+                          <dt>Specialty</dt>
+                          <dd>{entry.specialty.code ? `${entry.specialty.code} — ${entry.specialty.en}` : entry.specialty.en}</dd>
+                        </div>
+                      )}
+                      {entry.bibliography?.pages && (
+                        <div>
+                          <dt>Pages</dt>
+                          <dd>{entry.bibliography.pages}</dd>
+                        </div>
+                      )}
+                    </dl>
+
+                    {entry.bibliography?.en && <p class="entry-bibliography">{entry.bibliography.en}</p>}
+
+                    {sourceLanguage && (
+                      <p class="source-note">Source bibliographic record: [{sourceLanguage}].</p>
+                    )}
+
+                    {entry.tags && entry.tags.length > 0 && (
+                      <div class="tag-list" aria-label="Topic tags">
+                        {entry.tags.map((tag) => <span>{tag}</span>)}
+                      </div>
+                    )}
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayoutEn>
+
+<style>
+  .catalog-hero {
+    padding: 52px 0 18px;
+  }
+
+  .catalog-hero-panel,
+  .catalog-stat-card,
+  .catalog-policy-panel,
+  .catalog-entry-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .catalog-hero-panel {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(28px, 5vw, 54px);
+  }
+
+  .catalog-hero-panel::after {
+    content: '';
+    position: absolute;
+    right: -90px;
+    top: -110px;
+    width: 280px;
+    height: 280px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(29, 79, 145, 0.17), rgba(29, 79, 145, 0));
+  }
+
+  .catalog-hero-panel h1,
+  .catalog-hero-panel .lead,
+  .catalog-hero-panel .eyebrow,
+  .catalog-hero-actions {
+    position: relative;
+    z-index: 1;
+  }
+
+  .catalog-hero-panel h1 {
+    margin: 0 0 18px;
+    font-size: clamp(2.2rem, 4.6vw, 4.3rem);
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+  }
+
+  .catalog-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .catalog-summary-section,
+  .catalog-policy-section,
+  .catalog-section {
+    padding: 22px 0;
+  }
+
+  .catalog-section {
+    padding-bottom: 72px;
+  }
+
+  .catalog-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .catalog-stat-card {
+    padding: 20px;
+  }
+
+  .catalog-stat-card span {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--accent);
+    font-size: clamp(1.45rem, 3vw, 2.1rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+  }
+
+  .catalog-stat-card strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.02rem;
+  }
+
+  .catalog-stat-card p,
+  .catalog-policy-panel p,
+  .section-heading p,
+  .entry-bibliography,
+  .source-note {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .catalog-policy-panel {
+    display: grid;
+    grid-template-columns: minmax(240px, 0.65fr) minmax(0, 1fr) minmax(0, 1fr);
+    gap: 22px;
+    align-items: start;
+    padding: clamp(22px, 4vw, 34px);
+  }
+
+  .catalog-policy-panel h2 {
+    margin: 0;
+    font-size: clamp(1.35rem, 2.4vw, 2rem);
+    letter-spacing: -0.025em;
+  }
+
+  .compact-header {
+    display: grid;
+    grid-template-columns: minmax(240px, 0.7fr) minmax(0, 1fr);
+    gap: 22px;
+    align-items: end;
+    margin-bottom: 26px;
+  }
+
+  .catalog-groups {
+    display: grid;
+    gap: 32px;
+  }
+
+  .letter-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .letter-heading span {
+    display: inline-grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 1.45rem;
+    font-weight: 900;
+  }
+
+  .letter-heading strong {
+    color: var(--muted);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .catalog-entry-grid {
+    display: grid;
+    gap: 16px;
+  }
+
+  .catalog-entry-card {
+    padding: clamp(20px, 3vw, 28px);
+  }
+
+  .entry-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    align-items: flex-start;
+    margin-bottom: 18px;
+  }
+
+  .entry-header h3 {
+    margin: 0 0 10px;
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    letter-spacing: -0.02em;
+  }
+
+  .entry-title {
+    margin: 0;
+    color: var(--text);
+    font-size: 1.04rem;
+    font-weight: 750;
+    line-height: 1.45;
+  }
+
+  .entry-year {
+    flex: 0 0 auto;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 900;
+  }
+
+  .entry-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin: 0 0 16px;
+  }
+
+  .entry-meta-grid div {
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface-soft);
+  }
+
+  .entry-meta-grid dt {
+    margin-bottom: 4px;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .entry-meta-grid dd {
+    margin: 0;
+    color: var(--text);
+    font-weight: 750;
+  }
+
+  .entry-bibliography {
+    line-height: 1.55;
+  }
+
+  .source-note {
+    margin-top: 10px;
+    font-size: 0.92rem;
+    font-weight: 650;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .tag-list span {
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--surface-soft);
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 750;
+  }
+
+  @media (max-width: 980px) {
+    .catalog-summary-grid,
+    .entry-meta-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .catalog-policy-panel,
+    .compact-header {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .catalog-summary-grid,
+    .entry-meta-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .entry-header {
+      flex-direction: column;
+    }
+  }
+</style>

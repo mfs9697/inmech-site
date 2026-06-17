@@ -1,4 +1,5 @@
 import { defendedDissertationsEnA } from './defendedDissertationsEnA';
+import { defendedDissertationsEnB } from './defendedDissertationsEnB';
 import { defendedDissertationsEnS } from './defendedDissertationsEnS';
 
 export type OriginalLanguage = 'uk' | 'ru';
@@ -127,6 +128,7 @@ export const defendedDissertationLanguageLabels: Record<OriginalLanguage, string
  */
 export const defendedDissertationsEn: DefendedDissertationEntryEn[] = [
   ...defendedDissertationsEnA,
+  ...defendedDissertationsEnB,
   ...defendedDissertationsEnS
 ];
 

@@ -1,0 +1,500 @@
+---
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../data/site-en';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  const cleanPath = path.replace(/^\/inmech-site(?=\/)/, '');
+  return `${base}${cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`}`;
+}
+
+const documents = [
+  {
+    title: 'Admission rules for doctoral studies',
+    description: 'The main document for applicants to the Institute’s doctoral studies programme. Official source document in Ukrainian.',
+    href: '/documents/doctoral/admission/doctoral-admission-rules.docx',
+    type: 'DOCX'
+  }
+];
+
+const processSteps = [
+  {
+    title: 'Review the admission rules',
+    text: 'The applicant studies the current admission rules for doctoral studies and the requirements for submitting documents.'
+  },
+  {
+    title: 'Prepare research materials',
+    text: 'A document package is prepared to confirm research results, publications and the compliance of the proposed research area with the Institute’s profile.'
+  },
+  {
+    title: 'Consideration at the Institute',
+    text: 'The submitted materials are reviewed by the relevant structural units and academic bodies of the Institute according to the established procedures.'
+  }
+];
+
+const infoCards = [
+  {
+    label: 'Training level',
+    value: 'DSc',
+    text: 'training for applicants seeking the Doctor of Sciences degree'
+  },
+  {
+    label: 'Research profile',
+    value: 'Mechanics',
+    text: 'research in solid mechanics and related areas of applied mathematics'
+  },
+  {
+    label: 'Methodological support',
+    value: 'SMC',
+    text: 'coordination of educational, scientific and methodological issues'
+  }
+];
+
+const relatedLinks = [
+  {
+    title: 'Scientific and Methodological Council',
+    href: '/en/nmr/'
+  },
+  {
+    title: 'Licences and regulations',
+    href: '/en/license-and-regulations/'
+  },
+  {
+    title: 'Dissertation defences',
+    href: '/en/dissertations/'
+  }
+];
+---
+
+<BaseLayoutEn
+  title={`Doctoral studies | ${siteEn.shortName}`}
+  description="Doctoral studies at the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine: admission rules, documents, methodological support and useful links."
+  activePage="education"
+>
+  <section class="doctoral-hero">
+    <div class="container doctoral-hero-grid">
+      <div class="doctoral-hero-panel">
+        <p class="eyebrow">Education and research training</p>
+        <h1>Doctoral studies</h1>
+        <p class="lead">
+          Doctoral studies at the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine are aimed at
+          training Doctors of Sciences, developing independent research, and strengthening the Institute’s
+          scientific schools in mechanics and applied mathematics.
+        </p>
+        <div class="doctoral-hero-actions">
+          <a class="button primary" href="#documents">Documents</a>
+          <a class="button secondary" href={withBase('/en/education/')}>Education and research training</a>
+          <a class="button secondary" href={withBase('/doctoral/')}>Ukrainian version</a>
+        </div>
+      </div>
+
+      <aside class="doctoral-mark-card" aria-label="Doctoral studies">
+        <span>DSc</span>
+        <h2>Training of Doctors of Sciences</h2>
+        <p>A research trajectory for scholars with significant results and a well-developed research topic.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section doctoral-info-section">
+    <div class="container">
+      <div class="doctoral-info-grid">
+        {infoCards.map((card) => (
+          <article class="doctoral-info-card">
+            <p>{card.label}</p>
+            <span>{card.value}</span>
+            <strong>{card.text}</strong>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="documents">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Core materials</p>
+          <h2>Doctoral studies documents</h2>
+        </div>
+        <p>
+          This page collects the key documents for admission to doctoral studies and for organising the training
+          of applicants for the Doctor of Sciences degree. Official source documents are provided in Ukrainian.
+        </p>
+      </div>
+
+      <div class="doctoral-document-grid">
+        {documents.map((document) => (
+          <a class="doctoral-document-card" href={withBase(document.href)} target="_blank" rel="noopener noreferrer">
+            <span>{document.type}</span>
+            <div>
+              <h3>{document.title}</h3>
+              <p>{document.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container doctoral-two-column">
+      <article class="doctoral-panel">
+        <p class="eyebrow">Admission and support</p>
+        <h2>Main steps</h2>
+        <div class="doctoral-step-list">
+          {processSteps.map((step, index) => (
+            <div class="doctoral-step">
+              <span>{index + 1}</span>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </article>
+
+      <article class="doctoral-panel accent-panel">
+        <p class="eyebrow">Scientific and Methodological Council</p>
+        <h2>Methodological support</h2>
+        <p>
+          Methodological support and selection of research staff for teaching activities fall within the scope of
+          the Scientific and Methodological Council.
+        </p>
+        <a class="button primary" href={withBase('/en/nmr/')}>Open SMC page</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="related-panel">
+        <div>
+          <p class="eyebrow">Useful links</p>
+          <h2>Related sections</h2>
+        </div>
+        <div class="related-link-grid">
+          {relatedLinks.map((link) => (
+            <a href={withBase(link.href)}>{link.title} →</a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayoutEn>
+
+<style>
+  .doctoral-hero {
+    padding: 52px 0 18px;
+  }
+
+  .doctoral-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .doctoral-hero-panel,
+  .doctoral-mark-card,
+  .doctoral-info-card,
+  .doctoral-document-card,
+  .doctoral-panel,
+  .related-panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .doctoral-hero-panel {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(28px, 5vw, 54px);
+  }
+
+  .doctoral-hero-panel::after {
+    content: '';
+    position: absolute;
+    right: -90px;
+    top: -110px;
+    width: 280px;
+    height: 280px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(29, 79, 145, 0.17), rgba(29, 79, 145, 0));
+  }
+
+  .doctoral-hero-panel h1,
+  .doctoral-hero-panel .lead,
+  .doctoral-hero-panel .eyebrow,
+  .doctoral-hero-actions {
+    position: relative;
+    z-index: 1;
+  }
+
+  .doctoral-hero-panel h1 {
+    margin: 0 0 18px;
+    font-size: clamp(2.2rem, 4.6vw, 4.3rem);
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+  }
+
+  .doctoral-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .doctoral-mark-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(24px, 4vw, 40px);
+    background: linear-gradient(145deg, var(--accent-dark), var(--accent));
+    color: #fff;
+  }
+
+  .doctoral-mark-card span {
+    display: grid;
+    place-items: center;
+    width: 96px;
+    height: 96px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.14);
+    font-size: 2rem;
+    font-weight: 950;
+  }
+
+  .doctoral-mark-card h2 {
+    margin: 0 0 12px;
+    font-size: 1.7rem;
+    line-height: 1.15;
+  }
+
+  .doctoral-mark-card p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.84);
+  }
+
+  .doctoral-info-section {
+    padding-top: 16px;
+  }
+
+  .doctoral-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .doctoral-info-card {
+    padding: clamp(20px, 3vw, 30px);
+  }
+
+  .doctoral-info-card p {
+    margin: 0 0 10px;
+    color: var(--muted);
+    font-weight: 750;
+  }
+
+  .doctoral-info-card span {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--accent-dark);
+    font-size: clamp(1.45rem, 2.5vw, 2.2rem);
+    font-weight: 950;
+    letter-spacing: -0.04em;
+  }
+
+  .doctoral-info-card strong {
+    display: block;
+    color: var(--text);
+    line-height: 1.35;
+  }
+
+  .section-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 28px;
+    align-items: flex-end;
+    margin-bottom: 22px;
+  }
+
+  .section-heading h2 {
+    margin: 0;
+    font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .section-heading p:last-child {
+    max-width: 540px;
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .doctoral-document-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .doctoral-document-card {
+    display: grid;
+    grid-template-columns: 68px minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+    padding: clamp(20px, 3vw, 30px);
+    color: var(--text);
+  }
+
+  .doctoral-document-card:hover {
+    transform: translateY(-4px);
+    text-decoration: none;
+    border-color: rgba(29, 79, 145, 0.28);
+  }
+
+  .doctoral-document-card span {
+    display: grid;
+    place-items: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 18px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-size: 0.82rem;
+    font-weight: 950;
+  }
+
+  .doctoral-document-card h3 {
+    margin: 0 0 8px;
+    font-size: 1.24rem;
+  }
+
+  .doctoral-document-card p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .doctoral-two-column {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+    gap: 16px;
+  }
+
+  .doctoral-panel,
+  .related-panel {
+    padding: clamp(22px, 3vw, 34px);
+  }
+
+  .doctoral-panel h2,
+  .related-panel h2 {
+    margin-top: 0;
+    font-size: clamp(1.45rem, 2.3vw, 2.1rem);
+  }
+
+  .doctoral-panel p {
+    color: var(--muted);
+  }
+
+  .doctoral-step-list {
+    display: grid;
+    gap: 16px;
+  }
+
+  .doctoral-step {
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+  }
+
+  .doctoral-step span {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 16px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-weight: 950;
+  }
+
+  .doctoral-step h3 {
+    margin: 0 0 6px;
+  }
+
+  .doctoral-step p {
+    margin: 0;
+  }
+
+  .accent-panel {
+    background: linear-gradient(135deg, rgba(184, 135, 47, 0.12), rgba(29, 79, 145, 0.08));
+    border-color: rgba(184, 135, 47, 0.35);
+  }
+
+  .accent-panel .button {
+    margin-top: 12px;
+  }
+
+  .related-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 22px;
+    align-items: center;
+  }
+
+  .related-link-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .related-link-grid a {
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--surface-soft);
+    color: var(--accent-dark);
+    font-weight: 850;
+  }
+
+  .related-link-grid a:hover {
+    background: var(--accent-soft);
+    text-decoration: none;
+  }
+
+  @media (max-width: 900px) {
+    .doctoral-hero-grid,
+    .doctoral-info-grid,
+    .doctoral-document-grid,
+    .doctoral-two-column,
+    .related-panel,
+    .related-link-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-heading {
+      display: block;
+    }
+
+    .section-heading p:last-child {
+      margin-top: 10px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .doctoral-document-card,
+    .doctoral-step {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

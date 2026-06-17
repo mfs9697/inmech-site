@@ -1,0 +1,58 @@
+---
+import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../../data/site-en';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) return path;
+  const cleanPath = path.replace(/^\/inmech-site(?=\/)/, '');
+  return `${base}${cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`}`;
+}
+
+const topicGroups = [
+  {
+    year: '2025',
+    rows: [
+      { student: 'O. A. Proshchenko', studyYears: 'admission 2025', topic: 'Plane fracture problems for materials compressed along parallel cracks with centres shifted in the compression direction', supervisor: 'Volodymyr M. Nazarenko, Academician of the NAS of Ukraine, Acting Director of the Institute', publications: 4 },
+      { student: 'R. Yu. Hrysevych', studyYears: 'admission 2025', topic: 'Theoretical and experimental modelling of deformation of hand prosthesis elements under static, quasi-static and dynamic loading', supervisor: 'V. A. Maksymyuk, Doctor of Physical and Mathematical Sciences, Leading Researcher', publications: 3 },
+      { student: 'Yu. O. Nazarchuk', studyYears: 'admission 2025', topic: 'Modelling fracture of road pavements and mixture interfaces using cohesive models and viscoelasticity', supervisor: 'Mykhailo F. Selivanov, Corresponding Member of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences, Deputy Director for Scientific Work', publications: 5 },
+      { student: 'O. I. Syniavskyi', studyYears: 'admission 2025', topic: 'Compression of thin-film systems along the interface between a film and a substrate of finite thickness', supervisor: 'Volodymyr M. Nazarenko, Academician of the NAS of Ukraine, Acting Director of the Institute', publications: 5 }
+    ]
+  },
+  {
+    year: '2024',
+    rows: [
+      { student: 'R. V. Serafymovych', studyYears: 'admission 2024', topic: 'Physically nonlinear problems for a three-layer cylindrical shell with openings', supervisor: 'Yevhen A. Storozhuk, Corresponding Member of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences, Professor', publications: 5 },
+      { student: 'Ye. Fil', studyYears: 'admission 2024', topic: 'Numerical analysis of the stress-strain state of shallow orthotropic shells with non-rectangular planform', supervisor: 'Oleksandr Ya. Grygorenko, Academician of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences, Professor', publications: 5 },
+      { student: 'V. O. Usov', studyYears: 'admission 2024', topic: 'Numerical modelling of thermomechanical processes in layer-by-layer printing of bodies of revolution made of viscoplastic material', supervisor: 'Ihor K. Senchenkov, Doctor of Physical and Mathematical Sciences, Chief Researcher', publications: 2 }
+    ]
+  },
+  {
+    year: '2023',
+    rows: [
+      { student: 'Yu. V. Horskyi', studyYears: 'admission 2023', topic: 'Generation of cross-shaped surface waves in water in a cylindrical container with vibrating walls under acoustic radiation', supervisor: 'Yaroslav O. Zhuk, Corresponding Member of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences, Professor', publications: 4 },
+      { student: 'P. Yu. Kobzar', studyYears: 'admission 2023', topic: 'Modelling stress distribution in a piezoelectric body near rigid flat inclusions and circular or elliptical cracks', supervisor: 'Vitalii S. Kyryliuk, Doctor of Physical and Mathematical Sciences', publications: 4 },
+      { student: 'O. I. Lesyk', studyYears: 'admission 2023', topic: 'Plane fracture mechanics problems for materials with interacting cracks under forces directed along the cracks', supervisor: 'Viacheslav L. Bogdanov, Academician of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences', publications: 4 },
+      { student: 'A. S. Olkhovskyi', studyYears: 'admission 2023', topic: 'Mathematical modelling of the influence of local damage and operational loads on vibration stresses in last-stage blades of an NPP steam turbine', supervisor: 'Ihor K. Senchenkov, Doctor of Physical and Mathematical Sciences', publications: 10 }
+    ]
+  }
+];
+---
+
+<BaseLayoutEn
+  title={`Alignment of postgraduate research topics | ${siteEn.shortName}`}
+  description="Alignment of postgraduate dissertation topics with the research areas of their supervisors at the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine."
+  activePage="education"
+>
+  <main class="postgraduate-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href={withBase('/en/postgraduate/')}>Postgraduate studies</a><span>›</span><span>Research topics</span></nav>
+    <section class="page-hero"><p class="eyebrow">Research topics</p><h1>Alignment of dissertation topics with supervisors’ research areas</h1><p class="lead">This page presents the correspondence between postgraduate dissertation topics and the research areas and publications of their supervisors. The detailed publication lists are maintained in the Ukrainian source section.</p><p><a href={withBase('/postgraduate/research-topics/')}>Ukrainian version with full publication lists</a></p></section>
+    {topicGroups.map((group) => (
+      <section class="section-block"><div class="section-heading compact-header"><div><p class="eyebrow">Year</p><h2>{group.year}</h2></div></div><div class="table-panel"><div class="table-scroll"><table><thead><tr><th>Postgraduate student</th><th>Study years</th><th>Dissertation topic</th><th>Research supervisor</th><th>Related publications</th></tr></thead><tbody>{group.rows.map((row) => (<tr><td>{row.student}</td><td>{row.studyYears}</td><td>{row.topic}</td><td>{row.supervisor}</td><td>{row.publications}</td></tr>))}</tbody></table></div></div></section>
+    ))}
+  </main>
+</BaseLayoutEn>
+
+<style>
+  .postgraduate-page{max-width:1180px;margin:0 auto;padding:46px 20px 72px}.breadcrumbs{display:flex;gap:10px;align-items:center;margin-bottom:22px;color:var(--muted);font-weight:750}.page-hero,.table-panel{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow)}.page-hero{padding:clamp(28px,5vw,52px)}.page-hero h1{margin:0 0 18px;font-size:clamp(2.2rem,4.8vw,4.3rem);line-height:1.04;letter-spacing:-.04em}.lead{max-width:920px;color:var(--muted);font-size:1.08rem;line-height:1.7}.section-block{margin-top:34px}.table-panel{overflow:hidden}.table-scroll{overflow-x:auto}table{width:100%;border-collapse:collapse}th,td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:var(--surface-soft);font-weight:850}td{color:var(--muted);line-height:1.55}td:first-child{color:var(--text);font-weight:850}
+</style>

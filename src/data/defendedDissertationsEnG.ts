@@ -29,6 +29,11 @@ const doctorTechnical: DissertationDegreeEn = {
   fieldEn: 'Technical Sciences'
 };
 
+const degreeNotSpecified: DissertationDegreeEn = {
+  level: 'unknown',
+  en: 'Degree not specified'
+};
+
 const specialties: Record<string, DissertationSpecialtyEn> = {
   '01.02.03': { code: '01.02.03', en: 'Structural Mechanics' },
   '01.02.04': { code: '01.02.04', en: 'Mechanics of Deformable Solids' }
@@ -53,6 +58,7 @@ type EntryInput = {
 
 const instituteMechanicsAssUkrSsr = 'Institute of Mechanics, Academy of Sciences of the Ukrainian SSR';
 const instituteMechanicsNasUkraine = 'S.P. Timoshenko Institute of Mechanics, NAS of Ukraine';
+const nationalTransportUniversity = 'National Transport University';
 
 function entry(input: EntryInput): DefendedDissertationEntryEn {
   return {
@@ -231,5 +237,151 @@ export const defendedDissertationsEnG: DefendedDissertationEntryEn[] = [
     placeEn: 'Kyiv',
     institutionEn: instituteMechanicsAssUkrSsr,
     tags: ['fiberglass', 'stress analysis', 'variable thickness', 'circular holes']
+  }),
+  entry({
+    id: 'ganiev-rf-1969-nonlinear-spatial-vibrations-rigid-elastic-bodies',
+    year: 1969,
+    defenceDate: '1969-06-10',
+    authorEn: 'R.F. Ganiev',
+    sourceLanguage: 'ru',
+    titleEn: 'Nonlinear Spatial Vibrations of Rigid and Elastic Bodies',
+    degree: doctorTechnical,
+    bibliographyEn: 'Defended on 10 June 1969. Doctoral dissertation in Technical Sciences. Kyiv, 1969.',
+    pages: 428,
+    placeEn: 'Kyiv',
+    institutionEn: instituteMechanicsAssUkrSsr,
+    tags: ['nonlinear vibrations', 'spatial vibrations', 'rigid bodies', 'elastic bodies']
+  }),
+  entry({
+    id: 'ganiev-rf-1969-appendices-nonlinear-spatial-vibrations',
+    year: 1969,
+    authorEn: 'R.F. Ganiev',
+    sourceLanguage: 'ru',
+    titleEn: 'Appendices Nos. 1-8 to the Dissertation “Nonlinear Spatial Vibrations of Rigid and Elastic Bodies”',
+    degree: degreeNotSpecified,
+    bibliographyEn: 'Supplementary appendices to the dissertation. Kyiv, 1969.',
+    pages: 129,
+    placeEn: 'Kyiv',
+    institutionEn: instituteMechanicsAssUkrSsr,
+    tags: ['appendices', 'nonlinear vibrations', 'archival materials']
+  }),
+  entry({
+    id: 'garashchuk-ivan-1983-stability-composites-plates-nonuniform-precritical-deformations',
+    year: 1983,
+    defenceDate: '1983-12-27',
+    authorEn: 'Ivan N. Garashchuk',
+    sourceLanguage: 'ru',
+    titleEn: 'Stability of Composite Materials and Plates under Nonuniform Precritical Deformations',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 27 December 1983. Candidate dissertation in Physical and Mathematical Sciences. Kyiv, 1983.',
+    pages: 122,
+    placeEn: 'Kyiv',
+    institutionEn: instituteMechanicsAssUkrSsr,
+    tags: ['stability', 'composite materials', 'plates', 'precritical deformations']
+  }),
+  entry({
+    id: 'garf-me-1964-dynamic-foundations-fatigue-testing-machines',
+    year: 1964,
+    defenceDate: '1964-06-16',
+    authorEn: 'M.E. Garf',
+    sourceLanguage: 'ru',
+    titleEn: 'Dynamic Foundations for Designing Fatigue Testing Machines',
+    degree: doctorTechnical,
+    bibliographyEn: 'Defended on 16 June 1964. Doctoral dissertation in Technical Sciences. Kyiv, 1964.',
+    pages: 276,
+    placeEn: 'Kyiv',
+    institutionEn: instituteMechanicsAssUkrSsr,
+    tags: ['machine dynamics', 'fatigue testing', 'testing machines']
+  }),
+  entry({
+    id: 'gladkova-vi-1973-dynamics-elastic-spherical-shell-rigid-body-system',
+    year: 1973,
+    defenceDate: '1973-03-27',
+    authorEn: 'V.I. Gladkova',
+    sourceLanguage: 'ru',
+    titleEn: 'Dynamics of a System Consisting of an Elastic Spherical Shell and an Absolutely Rigid Body',
+    degree: candidatePhysical,
+    bibliographyEn: 'Defended on 27 March 1973. Candidate dissertation in Physical and Mathematical Sciences. Kyiv, 1973.',
+    pages: 120,
+    placeEn: 'Kyiv',
+    institutionEn: instituteMechanicsAssUkrSsr,
+    tags: ['dynamics', 'spherical shells', 'rigid bodies']
+  }),
+  entry({
+    id: 'hladun-olena-2003-three-dimensional-stability-plate-central-crack',
+    year: 2003,
+    defenceDate: '2003-09-30',
+    authorEn: 'Olena Yu. Hladun',
+    sourceLanguage: 'uk',
+    titleEn: 'Plane Problem of Three-Dimensional Stability of a Hingedly Supported Plate with a Central Crack',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 30 September 2003. Candidate dissertation in Physical and Mathematical Sciences. Kyiv, 2003.',
+    pages: 108,
+    placeEn: 'Kyiv',
+    institutionEn: instituteMechanicsNasUkraine,
+    tags: ['three-dimensional stability', 'plates', 'central crack', 'fracture mechanics']
+  }),
+  entry({
+    id: 'glukhov-andrii-2019-axisymmetric-elastic-waves-layered-composites-initial-stresses-slip',
+    year: 2019,
+    defenceDate: '2019-10-22',
+    authorEn: 'Andrii Yu. Glukhov',
+    sourceLanguage: 'uk',
+    titleEn:
+      'Propagation of Axisymmetric Elastic Waves in Layered Composite Materials with Initial Stresses under Interlayer Slip',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn:
+      'Candidate dissertation in Physical and Mathematical Sciences, specialty 01.02.04. Defended on 22 October 2019. Registration number 0419U001614.',
+    placeEn: 'Kyiv',
+    institutionEn: instituteMechanicsNasUkraine,
+    tags: ['elastic waves', 'layered composites', 'initial stresses', 'interlayer slip']
+  }),
+  entry({
+    id: 'glukhov-yuri-1987-two-layer-half-space-initial-stresses-moving-load',
+    year: 1987,
+    defenceDate: '1987-01-27',
+    authorEn: 'Yuri P. Glukhov',
+    sourceLanguage: 'ru',
+    titleEn: 'Dynamic Processes in an Elastic Two-Layer Half-Space with Initial Stresses under a Moving Load',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 27 January 1987. Candidate dissertation in Physical and Mathematical Sciences. Kyiv, 1986.',
+    pages: 170,
+    placeEn: 'Kyiv',
+    institutionEn: instituteMechanicsAssUkrSsr,
+    tags: ['dynamic processes', 'two-layer half-space', 'initial stresses', 'moving load']
+  }),
+  entry({
+    id: 'glushkova-olha-2012-relaxation-wave-torsional-self-oscillations-deep-drilling-columns',
+    year: 2012,
+    defenceDate: '2012-05-29',
+    authorEn: 'Olha V. Glushkova',
+    sourceLanguage: 'uk',
+    titleEn: 'Relaxation Wave Torsional Self-Oscillations of Deep Drilling Columns',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 29 May 2012. Candidate dissertation in Physical and Mathematical Sciences. Kyiv, 2012.',
+    pages: 207,
+    placeEn: 'Kyiv',
+    institutionEn: nationalTransportUniversity,
+    tags: ['torsional oscillations', 'relaxation waves', 'deep drilling columns']
+  }),
+  entry({
+    id: 'godzula-viktor-1989-stress-state-shallow-composite-shells-circular-hole',
+    year: 1989,
+    defenceDate: '1989-10-31',
+    authorEn: 'Viktor F. Godzula',
+    sourceLanguage: 'ru',
+    titleEn: 'Stress State of Shallow Composite Shells with a Circular Hole',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 31 October 1989. Candidate dissertation in Physical and Mathematical Sciences. Kyiv, 1989.',
+    pages: 132,
+    placeEn: 'Kyiv',
+    institutionEn: instituteMechanicsAssUkrSsr,
+    tags: ['composite shells', 'stress state', 'circular holes']
   })
 ];

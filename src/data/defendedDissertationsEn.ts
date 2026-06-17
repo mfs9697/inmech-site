@@ -2,6 +2,7 @@ import { defendedDissertationsEnA } from './defendedDissertationsEnA';
 import { defendedDissertationsEnB } from './defendedDissertationsEnB';
 import { defendedDissertationsEnD } from './defendedDissertationsEnD';
 import { defendedDissertationsEnD2 } from './defendedDissertationsEnD2';
+import { defendedDissertationsEnE } from './defendedDissertationsEnE';
 import { defendedDissertationsEnG } from './defendedDissertationsEnG';
 import { defendedDissertationsEnG2 } from './defendedDissertationsEnG2';
 import { defendedDissertationsEnS } from './defendedDissertationsEnS';
@@ -136,6 +137,7 @@ export const defendedDissertationsEn: DefendedDissertationEntryEn[] = [
   ...defendedDissertationsEnB,
   ...defendedDissertationsEnD,
   ...defendedDissertationsEnD2,
+  ...defendedDissertationsEnE,
   ...defendedDissertationsEnG,
   ...defendedDissertationsEnG2,
   ...defendedDissertationsEnS,

@@ -26,15 +26,6 @@ function withBase(path: string) {
 
 export function getStaticPaths() {
   const genericPages: Record<string, PageData> = {
-    services: {
-      title: 'Institute services',
-      description: 'Administrative and support services of the Institute.',
-      activePage: 'departments',
-      eyebrow: 'Structure',
-      heading: 'Institute services',
-      lead: 'Administrative and technical services support the scientific, educational and organisational activity of the Institute.',
-      links: [{ title: 'Ukrainian version', href: '/services/' }]
-    },
     education: {
       title: 'Education and research training',
       description: 'Postgraduate and doctoral training at the Institute.',

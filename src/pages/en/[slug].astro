@@ -26,15 +26,6 @@ function withBase(path: string) {
 
 export function getStaticPaths() {
   const genericPages: Record<string, PageData> = {
-    dissertations: {
-      title: 'Dissertation defences',
-      description: 'Information about dissertation defences at the Institute.',
-      activePage: 'education',
-      eyebrow: 'Education and research training',
-      heading: 'Dissertation defences',
-      lead: 'This section provides information on dissertation defences, specialised academic councils and related documents.',
-      links: [{ title: 'Ukrainian version', href: '/dissertations/' }]
-    },
     'license-and-regulations': {
       title: 'Licences and regulations',
       description: 'Licences and regulations related to educational activity.',

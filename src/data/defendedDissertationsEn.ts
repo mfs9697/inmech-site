@@ -1,3 +1,4 @@
+import { defendedDissertationsEnA } from './defendedDissertationsEnA';
 import { defendedDissertationsEnS } from './defendedDissertationsEnS';
 
 export type OriginalLanguage = 'uk' | 'ru';
@@ -125,6 +126,7 @@ export const defendedDissertationLanguageLabels: Record<OriginalLanguage, string
  * The existing Ukrainian/Russian catalogue data in src/data/defendedDissertations*.ts remains untouched.
  */
 export const defendedDissertationsEn: DefendedDissertationEntryEn[] = [
+  ...defendedDissertationsEnA,
   ...defendedDissertationsEnS
 ];
 

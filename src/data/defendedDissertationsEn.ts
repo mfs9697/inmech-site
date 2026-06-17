@@ -1,3 +1,5 @@
+import { defendedDissertationsEnS } from './defendedDissertationsEnS';
+
 export type OriginalLanguage = 'uk' | 'ru';
 
 export type DegreeLevel =
@@ -119,10 +121,12 @@ export const defendedDissertationLanguageLabels: Record<OriginalLanguage, string
 };
 
 /**
- * English catalogue entries will be added here gradually during migration.
+ * English catalogue entries are added gradually during migration.
  * The existing Ukrainian/Russian catalogue data in src/data/defendedDissertations*.ts remains untouched.
  */
-export const defendedDissertationsEn: DefendedDissertationEntryEn[] = [];
+export const defendedDissertationsEn: DefendedDissertationEntryEn[] = [
+  ...defendedDissertationsEnS
+];
 
 export function groupDefendedDissertationsEn(
   entries: readonly DefendedDissertationEntryEn[]

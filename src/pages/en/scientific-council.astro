@@ -1,0 +1,168 @@
+---
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../data/site-en';
+
+const councilMembers = [
+  {
+    name: 'Volodymyr M. Nazarenko',
+    title: 'Academician of the NAS of Ukraine, Doctor of Technical Sciences',
+    councilRole: 'Chair of the Council'
+  },
+  {
+    name: 'Oleksandr M. Guz',
+    title: 'Academician of the NAS of Ukraine, Doctor of Technical Sciences',
+    councilRole: ''
+  },
+  {
+    name: 'Viacheslav L. Bogdanov',
+    title: 'Academician of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
+    councilRole: ''
+  },
+  {
+    name: 'Mykhailo F. Selivanov',
+    title: 'Corresponding Member of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
+    councilRole: ''
+  },
+  {
+    name: 'Veniamin D. Kubenko',
+    title: 'Academician of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
+    councilRole: 'Deputy Chair'
+  },
+  {
+    name: 'Anatolii A. Martyniuk',
+    title: 'Academician of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
+    councilRole: 'Deputy Chair'
+  },
+  {
+    name: 'Yurii V. Skosarenko',
+    title: 'Scientific Secretary of the Institute, Doctor of Technical Sciences',
+    councilRole: 'Secretary'
+  },
+  {
+    name: 'Jeremiah Rushchitsky',
+    title: 'Corresponding Member of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
+    councilRole: ''
+  },
+  {
+    name: 'Oleksandr Ya. Grigorenko',
+    title: 'Academician of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
+    councilRole: ''
+  },
+  {
+    name: 'Ivan S. Chernyshenko',
+    title: 'Corresponding Member of the NAS of Ukraine, Doctor of Technical Sciences',
+    councilRole: ''
+  },
+  {
+    name: 'Yaroslav O. Zhuk',
+    title: 'Corresponding Member of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
+    councilRole: ''
+  },
+  {
+    name: 'Volodymyr A. Korieniev',
+    title: 'Deputy Director for General Affairs',
+    councilRole: ''
+  },
+  {
+    name: 'Yevhenii A. Storozhuk',
+    title: 'Corresponding Member of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
+    councilRole: ''
+  },
+  {
+    name: 'Anatolii O. Kaminskyi',
+    title: 'Doctor of Physical and Mathematical Sciences, Professor',
+    councilRole: ''
+  },
+  {
+    name: 'Vasyl H. Karnaukhov',
+    title: 'Doctor of Physical and Mathematical Sciences, Professor',
+    councilRole: ''
+  },
+  {
+    name: 'Andrii S. Kolyadiuk',
+    title: 'Candidate of Technical Sciences',
+    councilRole: ''
+  },
+  {
+    name: 'Neonila Ye. Tkachenko',
+    title: 'Candidate of Physical and Mathematical Sciences',
+    councilRole: 'Chair of the Trade Union Committee'
+  },
+  {
+    name: 'Oleksandr Kh. Ostos',
+    title: 'Doctor of Philosophy',
+    councilRole: 'Chair of the Council of Young Scientists'
+  }
+];
+
+const leadershipCount = councilMembers.filter((member) => member.councilRole).length;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const ukrainianUrl = `${base}/scientific-council/`;
+---
+
+<BaseLayoutEn
+  title={`Scientific Council | ${siteEn.shortName}`}
+  description="Scientific Council of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine."
+  activePage="departments"
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel council-hero-panel">
+        <p class="eyebrow">Structure</p>
+        <h1>Scientific Council of the Institute</h1>
+        <p class="lead">
+          The Scientific Council of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine
+          is a collegial body that considers key issues of scientific, scientific-organisational,
+          educational and research-training activity of the Institute.
+        </p>
+        <div class="hero-actions">
+          <a class="button ghost" href={ukrainianUrl}>Ukrainian version</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="council-summary-grid">
+        <article class="council-summary-card">
+          <span>{councilMembers.length}</span>
+          <p>members of the Scientific Council</p>
+        </article>
+        <article class="council-summary-card">
+          <span>{leadershipCount}</span>
+          <p>members of the Council leadership</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Council composition</p>
+          <h2 class="section-title">Members of the Scientific Council</h2>
+          <p class="section-text">
+            The Council brings together leading researchers of the Institute, representatives of its
+            administration, the scientific secretary, and representatives of the Institute's professional
+            and young-scientist communities.
+          </p>
+        </div>
+      </div>
+
+      <div class="council-grid">
+        {councilMembers.map((member, index) => (
+          <article class={`council-card ${member.councilRole ? 'has-role' : ''}`}>
+            <div class="council-number">{String(index + 1).padStart(2, '0')}</div>
+            <div class="council-card-body">
+              {member.councilRole && <p class="council-role">{member.councilRole}</p>}
+              <h2>{member.name}</h2>
+              <p>{member.title}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayoutEn>

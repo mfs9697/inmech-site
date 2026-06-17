@@ -24,7 +24,7 @@ function withBase(path: string) {
   return `${base}${path.startsWith('/') ? path : `/${path}`}`;
 }
 
-const pages: Record<string, PageData> = {
+const genericPages: Record<string, PageData> = {
   'young-scientists': {
     title: 'Council of Young Scientists',
     description: 'Council of Young Scientists of the Institute.',
@@ -174,7 +174,7 @@ const pages: Record<string, PageData> = {
 };
 
 export function getStaticPaths() {
-  return Object.entries(pages).map(([slug, page]) => ({ params: { slug }, props: { page } }));
+  return Object.entries(genericPages).map(([slug, page]) => ({ params: { slug }, props: { page } }));
 }
 
 const { page } = Astro.props as { page: PageData };

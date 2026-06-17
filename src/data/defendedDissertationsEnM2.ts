@@ -221,5 +221,20 @@ export const defendedDissertationsEnM2: DefendedDissertationEntryEn[] = [
       'Defended on 8 June 2021. Candidate dissertation in Physical and Mathematical Sciences, specialty 01.02.04 — Mechanics of Deformable Solids. Registration no. 0421U000091.',
     institutionEn: instituteMechanicsTimoshenkoNasUkraine,
     tags: ['conical shells', 'variable stiffness', 'forced vibrations']
+  }),
+  entry({
+    id: 'melnyk-svitlana-1995-acoustoelectric-waves-piezoelectric-cylinders-external-medium-interaction',
+    year: 1995,
+    defenceDate: '1995-12-26',
+    authorEn: 'Svitlana I. Melnyk',
+    sourceLanguage: 'uk',
+    titleEn: 'Propagation of Acoustoelectric Waves in Piezoelectric Cylinders Interacting with an External Medium',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 26 December 1995. Candidate dissertation in Physical and Mathematical Sciences. Kyiv, 1995.',
+    pages: 108,
+    placeEn: 'Kyiv',
+    institutionEn: instituteMechanicsNasUkraine,
+    tags: ['acoustoelectric waves', 'piezoelectric cylinders', 'external medium interaction']
   })
 ];

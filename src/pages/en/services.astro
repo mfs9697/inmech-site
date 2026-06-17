@@ -1,0 +1,538 @@
+---
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../data/site-en';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  const cleanPath = path.replace(/^\/inmech-site(?=\/)/, '');
+  return `${base}${cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`}`;
+}
+
+function initials(name: string) {
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join('')
+    .toUpperCase();
+}
+
+const serviceGroups = [
+  {
+    title: 'Planning and Economic Department',
+    titleUk: 'Планово-економічний відділ',
+    icon: '📊',
+    description: 'Planning and economic support for the Institute’s activity.',
+    staff: [
+      {
+        name: 'Liudmyla M. Makarova',
+        nameUk: 'Макарова Людмила Миколаївна',
+        position: 'Head of Department'
+      },
+      {
+        name: 'Tetiana V. Khromtsova',
+        nameUk: 'Хромцова Тетяна Валентинівна',
+        position: 'Leading Economist'
+      },
+      {
+        name: 'Kateryna P. Sapsai',
+        nameUk: 'Сапсай Катерина Петрівна',
+        position: 'Leading Economist'
+      }
+    ]
+  },
+  {
+    title: 'Human Resources Department',
+    titleUk: 'Відділ кадрів',
+    icon: '👥',
+    description: 'Personnel records, support of HR procedures and work with employees.',
+    staff: [
+      {
+        name: 'Nataliia M. Derevinska',
+        nameUk: 'Деревінська Наталія Миколаївна',
+        position: 'Head of Human Resources Department'
+      },
+      {
+        name: 'Maryna I. Demchuk',
+        nameUk: 'Демчук Марина Іванівна',
+        position: 'Senior Inspector'
+      }
+    ]
+  },
+  {
+    title: 'Accounting and Reporting Department',
+    titleUk: 'Відділ бухгалтерського обліку та звітності',
+    icon: '🧾',
+    description: 'Accounting, financial reporting and support of financial and administrative procedures.',
+    staff: [
+      {
+        name: 'Nadiia M. Bek',
+        nameUk: 'Бек Надія Миколаївна',
+        position: 'Chief Accountant'
+      },
+      {
+        name: 'Olena V. Hrybova',
+        nameUk: 'Грибова Олена Венидіктівна',
+        position: 'Deputy Chief Accountant'
+      },
+      {
+        name: 'Svitlana Yu. Ostapchuk',
+        nameUk: 'Остапчук Світлана Юріївна',
+        position: 'Leading Accountant'
+      },
+      {
+        name: 'Tetiana A. Ovsinska',
+        nameUk: 'Овсінська Тетяна Анатоліївна',
+        position: 'Leading Accountant'
+      }
+    ]
+  },
+  {
+    title: 'Office Administration',
+    titleUk: 'Канцелярія',
+    icon: '📁',
+    description: 'Official document flow, office administration and archive support.',
+    staff: [
+      {
+        name: 'Tetiana S. Sydorova',
+        nameUk: 'Сидорова Тетяна Сергіївна',
+        position: 'Head of Office Administration'
+      },
+      {
+        name: 'Liudmyla V. Bondarchuk',
+        nameUk: 'Бондарчук Людмила В’ячеславівна',
+        position: 'First-category Engineer, Archive'
+      }
+    ]
+  }
+];
+
+const totalStaff = serviceGroups.reduce((sum, group) => sum + group.staff.length, 0);
+
+const relatedLinks = [
+  ['Management', '/en/management/'],
+  ['Research departments', '/en/departments/'],
+  ['Scientific Council', '/en/scientific-council/'],
+  ['Council of Young Scientists', '/en/young-scientists/']
+];
+---
+
+<BaseLayoutEn
+  title={`Institute services | ${siteEn.shortName}`}
+  description="Services of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine: planning and economics, human resources, accounting and reporting, office administration."
+  activePage="departments"
+>
+  <section class="services-hero">
+    <div class="container services-hero-grid">
+      <div class="services-hero-panel">
+        <p class="eyebrow">Institute structure</p>
+        <h1>Institute services</h1>
+        <p class="lead">
+          The Institute services provide planning and economic, personnel, accounting and office-administration
+          support for the institution, helping maintain the daily work of research departments and administration.
+        </p>
+        <div class="services-hero-actions">
+          <a class="button primary" href="#services-list">Service structure</a>
+          <a class="button" href={withBase('/services/')}>Ukrainian version</a>
+        </div>
+      </div>
+
+      <aside class="services-mark-card">
+        <span>{serviceGroups.length}</span>
+        <h2>services</h2>
+        <p>
+          This page presents the structure and staff of the Institute services: {totalStaff} employees
+          in four administrative and support units.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section services-summary-section">
+    <div class="container services-summary-grid">
+      <article class="services-summary-card">
+        <span>Planning</span>
+        <p>planning and economic support</p>
+      </article>
+      <article class="services-summary-card">
+        <span>Personnel</span>
+        <p>HR procedures and personnel records</p>
+      </article>
+      <article class="services-summary-card">
+        <span>Documents</span>
+        <p>accounting, reporting, office administration and archive</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="services-list">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Structure and staff</p>
+          <h2>Institute services</h2>
+        </div>
+        <p>
+          The service units of the Institute and their staff are listed below. Each service is presented
+          as a separate card with staff members and positions.
+        </p>
+      </div>
+
+      <div class="service-group-grid">
+        {serviceGroups.map((group) => (
+          <section class="service-group-card">
+            <div class="service-group-header">
+              <span>{group.icon}</span>
+              <div>
+                <h3>{group.title}</h3>
+                <p class="service-original-title">{group.titleUk}</p>
+                <p>{group.description}</p>
+              </div>
+            </div>
+
+            <div class="staff-card-grid">
+              {group.staff.map((person) => (
+                <article class="staff-card">
+                  <div class="staff-avatar" aria-hidden="true">{initials(person.name)}</div>
+                  <div>
+                    <h4>{person.name}</h4>
+                    <p class="staff-original-name">{person.nameUk}</p>
+                    <p>{person.position}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="related-panel">
+        <div>
+          <p class="eyebrow">Related sections</p>
+          <h2>Institute structure</h2>
+        </div>
+        <div class="related-link-grid">
+          {relatedLinks.map(([title, href]) => (
+            <a href={withBase(href)}>{title} →</a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayoutEn>
+
+<style>
+  .services-hero {
+    padding: 52px 0 18px;
+  }
+
+  .services-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .services-hero-panel,
+  .services-mark-card,
+  .services-summary-card,
+  .service-group-card,
+  .staff-card,
+  .related-panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .services-hero-panel {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(28px, 5vw, 54px);
+  }
+
+  .services-hero-panel::after {
+    content: '';
+    position: absolute;
+    right: -90px;
+    top: -110px;
+    width: 280px;
+    height: 280px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(29, 79, 145, 0.17), rgba(29, 79, 145, 0));
+  }
+
+  .services-hero-panel h1,
+  .services-hero-panel .lead,
+  .services-hero-panel .eyebrow,
+  .services-hero-actions {
+    position: relative;
+    z-index: 1;
+  }
+
+  .services-hero-panel h1 {
+    margin: 0 0 18px;
+    font-size: clamp(2.2rem, 4.6vw, 4.3rem);
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+  }
+
+  .services-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .services-mark-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(24px, 4vw, 40px);
+    background: linear-gradient(145deg, var(--accent-dark), var(--accent));
+    color: #fff;
+  }
+
+  .services-mark-card span {
+    display: grid;
+    place-items: center;
+    width: 96px;
+    height: 96px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.14);
+    font-size: 2.4rem;
+    font-weight: 950;
+  }
+
+  .services-mark-card h2 {
+    margin: 0 0 12px;
+    font-size: 1.65rem;
+  }
+
+  .services-mark-card p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.84);
+  }
+
+  .services-summary-section {
+    padding-top: 16px;
+  }
+
+  .services-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .services-summary-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: clamp(20px, 3vw, 30px);
+  }
+
+  .services-summary-card span {
+    display: grid;
+    place-items: center;
+    min-width: 118px;
+    height: 70px;
+    border-radius: 22px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-weight: 950;
+  }
+
+  .services-summary-card p {
+    margin: 0;
+    color: var(--muted);
+    font-weight: 750;
+  }
+
+  .section-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 28px;
+    align-items: flex-end;
+    margin-bottom: 22px;
+  }
+
+  .section-heading h2 {
+    margin: 0;
+    font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .section-heading p:last-child {
+    max-width: 560px;
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .service-group-grid {
+    display: grid;
+    gap: 18px;
+  }
+
+  .service-group-card {
+    padding: clamp(22px, 3vw, 34px);
+  }
+
+  .service-group-header {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+    margin-bottom: 20px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .service-group-header > span {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 22px;
+    background: var(--surface-soft);
+    font-size: 1.6rem;
+  }
+
+  .service-group-header h3 {
+    margin: 0 0 4px;
+    font-size: clamp(1.32rem, 2vw, 1.8rem);
+    line-height: 1.15;
+  }
+
+  .service-original-title,
+  .staff-original-name {
+    margin: 0 0 8px !important;
+    color: var(--muted);
+    font-size: 0.92rem;
+    font-weight: 650;
+  }
+
+  .service-group-header p:last-child {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .staff-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .staff-card {
+    display: grid;
+    grid-template-columns: 58px minmax(0, 1fr);
+    gap: 14px;
+    align-items: center;
+    padding: 16px;
+    box-shadow: none;
+    background: var(--surface-soft);
+  }
+
+  .staff-avatar {
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--accent-soft), rgba(184, 135, 47, 0.16));
+    color: var(--accent-dark);
+    font-weight: 950;
+  }
+
+  .staff-card h4 {
+    margin: 0 0 4px;
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+
+  .staff-card p:last-child {
+    margin: 0;
+    color: var(--muted);
+    font-weight: 700;
+  }
+
+  .related-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 24px;
+    align-items: center;
+    padding: clamp(22px, 3vw, 34px);
+  }
+
+  .related-panel h2 {
+    margin: 0 0 12px;
+    font-size: clamp(1.45rem, 2.4vw, 2.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .related-link-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .related-link-grid a {
+    display: block;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface-soft);
+    color: var(--accent-dark);
+    font-weight: 850;
+  }
+
+  .related-link-grid a:hover {
+    text-decoration: none;
+    background: var(--accent-soft);
+  }
+
+  @media (max-width: 1040px) {
+    .staff-card-grid,
+    .related-link-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 900px) {
+    .services-hero-grid,
+    .services-summary-grid,
+    .related-panel {
+      grid-template-columns: 1fr;
+    }
+
+    .section-heading {
+      display: block;
+    }
+
+    .section-heading p:last-child {
+      margin-top: 10px;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .staff-card-grid,
+    .related-link-grid,
+    .service-group-header,
+    .staff-card {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

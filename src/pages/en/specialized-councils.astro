@@ -1,0 +1,367 @@
+---
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../data/site-en';
+
+type CouncilPerson = {
+  councilRole?: string;
+  name: string;
+  degree: string;
+  academicTitle?: string;
+  position: string;
+  institution?: string;
+  specialty: string;
+};
+
+const institute = 'S. P. Timoshenko Institute of Mechanics of the NAS of Ukraine';
+
+const councils: Array<{
+  code: string;
+  field: string;
+  profile: string;
+  order: string;
+  people: CouncilPerson[];
+}> = [
+  {
+    code: 'D 26.166.01',
+    field: 'Physical and Mathematical Sciences',
+    profile: '01.02.01 “Theoretical Mechanics”; 01.02.04 “Mechanics of Deformable Solids”',
+    order: 'Order of the Ministry of Education and Science of Ukraine No. 1309 dated 25 October 2023',
+    people: [
+      {
+        councilRole: 'Chair of the Council',
+        name: 'Anatolii A. Martyniuk',
+        degree: 'Doctor of Physical and Mathematical Sciences',
+        academicTitle: 'Professor',
+        position: 'Head of Department',
+        institution: institute,
+        specialty: '01.02.01'
+      },
+      {
+        councilRole: 'Deputy Chair',
+        name: 'Veniamin D. Kubenko',
+        degree: 'Doctor of Physical and Mathematical Sciences',
+        academicTitle: 'Professor',
+        position: 'Head of Department',
+        institution: institute,
+        specialty: '01.02.01'
+      },
+      {
+        councilRole: 'Scientific Secretary',
+        name: 'Anatolii S. Khoroshun',
+        degree: 'Doctor of Physical and Mathematical Sciences',
+        position: 'Leading Researcher',
+        institution: institute,
+        specialty: '01.02.01'
+      },
+      {
+        name: 'Viacheslav L. Bohdanov',
+        degree: 'Doctor of Physical and Mathematical Sciences',
+        position: 'Head of Department',
+        institution: institute,
+        specialty: '01.02.04'
+      },
+      {
+        name: 'Vasyl H. Karnaukhov',
+        degree: 'Doctor of Physical and Mathematical Sciences',
+        academicTitle: 'Professor',
+        position: 'Head of Department',
+        institution: institute,
+        specialty: '01.02.04'
+      },
+      {
+        name: 'Borys M. Kiforenko',
+        degree: 'Doctor of Physical and Mathematical Sciences',
+        academicTitle: 'Professor',
+        position: 'Leading Researcher',
+        institution: institute,
+        specialty: '01.02.01'
+      },
+      {
+        name: 'Volodymyr I. Kushch',
+        degree: 'Doctor of Physical and Mathematical Sciences',
+        academicTitle: 'Professor',
+        position: 'Leading Researcher',
+        institution: 'V. Bakul Institute for Superhard Materials of the NAS of Ukraine',
+        specialty: '01.02.04'
+      },
+      {
+        name: 'Ihor A. Loza',
+        degree: 'Doctor of Physical and Mathematical Sciences',
+        academicTitle: 'Professor',
+        position: 'Head of Department',
+        institution: 'National Transport University',
+        specialty: '01.02.04'
+      },
+      {
+        name: 'Oleksii H. Mazko',
+        degree: 'Doctor of Physical and Mathematical Sciences',
+        academicTitle: 'Professor',
+        position: 'Leading Researcher',
+        institution: 'Institute of Mathematics of the NAS of Ukraine',
+        specialty: '01.02.01'
+      },
+      {
+        name: 'Jeremiah Rushchitsky',
+        degree: 'Doctor of Physical and Mathematical Sciences',
+        academicTitle: 'Professor',
+        position: 'Acting Head of Department',
+        institution: institute,
+        specialty: '01.02.04'
+      },
+      {
+        name: 'Mykhailo F. Selivanov',
+        degree: 'Doctor of Physical and Mathematical Sciences',
+        academicTitle: 'Senior Researcher',
+        position: 'Leading Researcher',
+        institution: institute,
+        specialty: '01.02.04'
+      },
+      {
+        name: 'Yevhen A. Storozhuk',
+        degree: 'Doctor of Physical and Mathematical Sciences',
+        academicTitle: 'Professor',
+        position: 'Leading Researcher',
+        institution: institute,
+        specialty: '01.02.04'
+      },
+      {
+        name: 'Yurii V. Trotsenko',
+        degree: 'Doctor of Physical and Mathematical Sciences',
+        academicTitle: 'Senior Researcher',
+        position: 'Leading Researcher',
+        institution: 'Institute of Mathematics of the NAS of Ukraine',
+        specialty: '01.02.01'
+      }
+    ]
+  },
+  {
+    code: 'D 26.166.02',
+    field: 'Technical Sciences',
+    profile: '01.02.04 “Mechanics of Deformable Solids”',
+    order: 'Order of the Ministry of Education and Science of Ukraine No. 1309 dated 25 October 2023',
+    people: [
+      {
+        councilRole: 'Chair of the Council',
+        name: 'Volodymyr M. Nazarenko',
+        degree: 'Doctor of Technical Sciences',
+        academicTitle: 'Professor',
+        position: 'Acting Director',
+        institution: institute,
+        specialty: '01.02.04'
+      },
+      {
+        councilRole: 'Deputy Chair',
+        name: 'Oleksandr Ya. Grigorenko',
+        degree: 'Doctor of Physical and Mathematical Sciences',
+        academicTitle: 'Professor',
+        position: 'Head of Department',
+        institution: institute,
+        specialty: '01.02.04'
+      },
+      {
+        councilRole: 'Scientific Secretary',
+        name: 'Yurii V. Skosarenko',
+        degree: 'Doctor of Technical Sciences',
+        academicTitle: 'Senior Researcher',
+        position: 'Scientific Secretary',
+        institution: institute,
+        specialty: '01.02.04'
+      },
+      {
+        name: 'Stepan Yu. Babych',
+        degree: 'Doctor of Technical Sciences',
+        academicTitle: 'Professor',
+        position: 'Leading Researcher',
+        institution: institute,
+        specialty: '01.02.04'
+      },
+      {
+        name: 'Mykola I. Bobyr',
+        degree: 'Doctor of Technical Sciences',
+        academicTitle: 'Professor',
+        position: 'Professor of Department',
+        institution: 'National Technical University of Ukraine “Igor Sikorsky Kyiv Polytechnic Institute”',
+        specialty: '01.02.04'
+      },
+      {
+        name: 'Maksym Yu. Borysenko',
+        degree: 'Doctor of Technical Sciences',
+        academicTitle: 'Senior Researcher',
+        position: 'Leading Researcher',
+        institution: institute,
+        specialty: '01.02.04'
+      },
+      {
+        name: 'Oleh M. Herasymchuk',
+        degree: 'Doctor of Technical Sciences',
+        academicTitle: 'Senior Researcher',
+        position: 'Head of Department',
+        institution: 'G. S. Pisarenko Institute for Problems of Strength of the NAS of Ukraine',
+        specialty: '01.02.04'
+      },
+      {
+        name: 'Oleksandr M. Guz',
+        degree: 'Doctor of Technical Sciences',
+        academicTitle: 'Professor',
+        position: 'Advisor',
+        institution: institute,
+        specialty: '01.02.04'
+      },
+      {
+        name: 'Volodymyr A. Dekret',
+        degree: 'Doctor of Physical and Mathematical Sciences',
+        position: 'Leading Researcher',
+        institution: institute,
+        specialty: '01.02.04'
+      },
+      {
+        name: 'Vitalii S. Kyryliuk',
+        degree: 'Doctor of Physical and Mathematical Sciences',
+        academicTitle: 'Senior Researcher',
+        position: 'Leading Researcher',
+        institution: institute,
+        specialty: '01.02.04'
+      },
+      {
+        name: 'Oleksandr V. Marchuk',
+        degree: 'Doctor of Technical Sciences',
+        academicTitle: 'Professor',
+        position: 'Head of Department',
+        institution: 'National Transport University',
+        specialty: '01.02.04'
+      },
+      {
+        name: 'Vitalii H. Savchenko',
+        degree: 'Doctor of Technical Sciences',
+        academicTitle: 'Senior Researcher',
+        position: 'Principal Researcher',
+        institution: institute,
+        specialty: '01.02.04'
+      },
+      {
+        name: 'Ihor V. Yanchevskyi',
+        degree: 'Doctor of Physical and Mathematical Sciences',
+        academicTitle: 'Professor',
+        position: 'Professor of Department',
+        institution: 'National Technical University of Ukraine “Igor Sikorsky Kyiv Polytechnic Institute”',
+        specialty: '01.02.04'
+      }
+    ]
+  }
+];
+
+const totalMembers = councils.reduce((sum, council) => sum + council.people.length, 0);
+const leadershipMembers = councils.reduce((sum, council) => sum + council.people.filter((person) => person.councilRole).length, 0);
+---
+
+<BaseLayoutEn
+  title={`Specialized Academic Councils | ${siteEn.shortName}`}
+  description="Specialized academic councils of the S. P. Timoshenko Institute of Mechanics of the NAS of Ukraine."
+  activePage="departments"
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel specialized-hero-panel">
+        <p class="eyebrow">Structure</p>
+        <h1>Specialized Academic Councils</h1>
+        <p class="lead">
+          The S. P. Timoshenko Institute of Mechanics of the NAS of Ukraine has specialized
+          academic councils for awarding the scientific degree of Doctor of Sciences in
+          mechanics-related specialties.
+        </p>
+        <div class="hero-actions">
+          <a class="button secondary" href="/specialized-councils/">Ukrainian version</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="specialized-summary-grid">
+        <article class="specialized-summary-card">
+          <span>{councils.length}</span>
+          <p>specialized academic councils</p>
+        </article>
+        <article class="specialized-summary-card">
+          <span>{totalMembers}</span>
+          <p>council members</p>
+        </article>
+        <article class="specialized-summary-card">
+          <span>{leadershipMembers}</span>
+          <p>leadership positions</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="card prose-card">
+        <h2>Council profile</h2>
+        <p>
+          The councils consider doctoral dissertations in the fields of physical and mathematical
+          sciences and technical sciences. Their activity covers theoretical mechanics and the
+          mechanics of deformable solids, reflecting the Institute’s core scientific profile.
+        </p>
+        <p>
+          The information below is an English presentation of the current council composition.
+          Official records, orders and defence materials are maintained in Ukrainian.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  {councils.map((council) => (
+    <section class="section">
+      <div class="container">
+        <article class="specialized-council-panel">
+          <div class="specialized-council-header">
+            <div>
+              <p class="eyebrow">{council.field}</p>
+              <h2>{council.code}</h2>
+              <p class="specialized-profile"><strong>Council profile:</strong> {council.profile}</p>
+              <p class="specialized-order">{council.order}</p>
+            </div>
+          </div>
+
+          <div class="specialized-people-grid">
+            {council.people.map((person) => (
+              <article class={`specialized-person-card ${person.councilRole ? 'has-role' : ''}`}>
+                {person.councilRole && <p class="specialized-role-badge">{person.councilRole}</p>}
+                <h3>{person.name}</h3>
+
+                <dl class="specialized-person-details">
+                  <div>
+                    <dt>Scientific degree</dt>
+                    <dd>{person.degree}</dd>
+                  </div>
+                  {person.academicTitle && (
+                    <div>
+                      <dt>Academic title</dt>
+                      <dd>{person.academicTitle}</dd>
+                    </div>
+                  )}
+                  <div>
+                    <dt>Position</dt>
+                    <dd>{person.position}</dd>
+                  </div>
+                  {person.institution && (
+                    <div>
+                      <dt>Institution</dt>
+                      <dd>{person.institution}</dd>
+                    </div>
+                  )}
+                  <div>
+                    <dt>Specialty</dt>
+                    <dd>{person.specialty}</dd>
+                  </div>
+                </dl>
+              </article>
+            ))}
+          </div>
+        </article>
+      </div>
+    </section>
+  ))}
+</BaseLayoutEn>

@@ -1,0 +1,459 @@
+---
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../data/site-en';
+
+const educationSections = [
+  {
+    title: 'Postgraduate studies',
+    label: 'For applicants and PhD students',
+    href: '/en/postgraduate/',
+    icon: '🎓',
+    description:
+      'Admission rules, the educational and scientific programme, documents, supervisors, news and materials for postgraduate students.',
+    featured: true
+  },
+  {
+    title: 'Doctoral studies',
+    label: 'Training of Doctors of Sciences',
+    href: '/en/doctoral/',
+    icon: '📘',
+    description:
+      'Information on doctoral training, admission rules, regulatory materials and scientific supervision.'
+  },
+  {
+    title: 'Dissertation defences',
+    label: 'Announcements and archive',
+    href: '/en/dissertations/',
+    icon: '🛡️',
+    description:
+      'Scheduled and completed defences, dissertations, abstracts, conclusions, opponent reviews and video records.',
+    featured: true
+  },
+  {
+    title: 'Licences and regulations',
+    label: 'Regulatory framework',
+    href: '/en/license-and-regulations/',
+    icon: '📄',
+    description:
+      'Licensing documents, regulations on the educational process, academic integrity, mobility, practice and other procedures.'
+  },
+  {
+    title: 'Trust box',
+    label: 'Messages and suggestions',
+    href: '/en/trust-box/',
+    icon: '✉️',
+    description:
+      'A channel for messages, appeals and suggestions related to the educational and research environment of the Institute.'
+  },
+  {
+    title: 'Scientific and Methodological Council',
+    label: 'SMC',
+    href: '/en/nmr/',
+    icon: '🧭',
+    description:
+      'Council composition, methodological documents, teacher rating procedures and selection of researchers for teaching activity.'
+  }
+];
+
+const highlights = [
+  {
+    value: 'PhD',
+    text: 'training of Doctors of Philosophy within the educational and scientific programme'
+  },
+  {
+    value: 'DSc',
+    text: 'training of Doctors of Sciences and support for advanced research trajectories'
+  },
+  {
+    value: '6',
+    text: 'key sections of educational and research-training activity'
+  }
+];
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+---
+
+<BaseLayoutEn
+  title={`Education and research training | ${siteEn.shortName}`}
+  description="Education and research training at the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine: postgraduate studies, doctoral studies, dissertation defences, regulatory documents, methodological support and trust box."
+  activePage="education"
+>
+  <section class="education-hero">
+    <div class="container">
+      <div class="education-hero-panel">
+        <div class="education-hero-content">
+          <p class="eyebrow">Education and research training</p>
+          <h1>Training researchers in mechanics and applied mathematics</h1>
+          <p class="lead">
+            The S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine provides training for
+            applicants seeking the degrees of Doctor of Philosophy and Doctor of Sciences, supports
+            educational procedures, methodological coordination, dissertation defences and open access
+            to regulatory materials.
+          </p>
+          <div class="hero-actions">
+            <a class="button-link" href={withBase('/education/')}>Ukrainian version</a>
+          </div>
+        </div>
+
+        <div class="education-hero-mark" aria-hidden="true">
+          <span>PhD</span>
+          <span>DSc</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section education-highlights-section">
+    <div class="container">
+      <div class="education-highlights-grid">
+        {highlights.map((item) => (
+          <article class="education-highlight-card">
+            <span>{item.value}</span>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section education-sections-section">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Section navigation</p>
+          <h2>Main sections</h2>
+        </div>
+        <p>
+          Six areas are grouped into a single navigation panel — from postgraduate admission
+          to dissertation defences, methodological support and the regulatory framework.
+        </p>
+      </div>
+
+      <div class="education-card-grid">
+        {educationSections.map((section) => (
+          <a class={`education-card ${section.featured ? 'featured' : ''}`} href={withBase(section.href)}>
+            <span class="education-card-icon" aria-hidden="true">{section.icon}</span>
+            <span class="education-card-label">{section.label}</span>
+            <h2>{section.title}</h2>
+            <p>{section.description}</p>
+            <span class="education-card-action">Open section →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section education-note-section">
+    <div class="container">
+      <div class="education-note-panel">
+        <p class="eyebrow">A unified research-training environment</p>
+        <h2>Research training, methodological support and transparent procedures</h2>
+        <p>
+          The Institute’s educational and research-training activity combines the training of young
+          researchers, scientific supervision, methodological coordination, support for dissertation
+          defences and access to documents regulating the educational process and academic integrity.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayoutEn>
+
+<style>
+  .education-hero {
+    padding: 52px 0 18px;
+  }
+
+  .education-hero-panel {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 28px;
+    align-items: center;
+    overflow: hidden;
+    padding: clamp(28px, 5vw, 54px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background:
+      radial-gradient(circle at 85% 15%, rgba(184, 135, 47, 0.24), transparent 34%),
+      linear-gradient(135deg, var(--accent-dark), var(--accent));
+    color: #fff;
+    box-shadow: var(--shadow);
+  }
+
+  .education-hero-panel::after {
+    content: '';
+    position: absolute;
+    inset: auto -80px -120px auto;
+    width: 300px;
+    height: 300px;
+    border-radius: 999px;
+    border: 42px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .education-hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .education-hero .eyebrow {
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .education-hero h1 {
+    max-width: 900px;
+    margin: 0 0 18px;
+    font-size: clamp(2.15rem, 4.4vw, 4.1rem);
+    line-height: 1.03;
+    letter-spacing: -0.045em;
+  }
+
+  .education-hero .lead {
+    max-width: 850px;
+    color: rgba(255, 255, 255, 0.86);
+  }
+
+  .hero-actions {
+    margin-top: 22px;
+  }
+
+  .education-hero-mark {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 16px;
+  }
+
+  .education-hero-mark span {
+    display: grid;
+    place-items: center;
+    min-height: 112px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 950;
+    letter-spacing: -0.04em;
+    backdrop-filter: blur(8px);
+  }
+
+  .education-highlights-section {
+    padding-top: 18px;
+  }
+
+  .education-highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .education-highlight-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: clamp(20px, 3vw, 30px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .education-highlight-card span {
+    display: grid;
+    place-items: center;
+    min-width: 76px;
+    height: 76px;
+    border-radius: 22px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-size: 1.45rem;
+    font-weight: 950;
+  }
+
+  .education-highlight-card p {
+    margin: 0;
+    color: var(--muted);
+    font-weight: 750;
+  }
+
+  .education-sections-section {
+    padding-top: 18px;
+  }
+
+  .education-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .education-card {
+    position: relative;
+    display: flex;
+    min-height: 310px;
+    flex-direction: column;
+    overflow: hidden;
+    padding: clamp(22px, 3vw, 34px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  }
+
+  .education-card::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 6px;
+    background: linear-gradient(90deg, var(--accent), var(--gold));
+    opacity: 0.88;
+  }
+
+  .education-card::after {
+    content: '';
+    position: absolute;
+    right: -52px;
+    bottom: -52px;
+    width: 145px;
+    height: 145px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    opacity: 0.62;
+    transition: transform 0.22s ease;
+  }
+
+  .education-card:hover,
+  .education-card:focus-visible {
+    transform: translateY(-6px);
+    border-color: rgba(29, 79, 145, 0.28);
+    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.12);
+    text-decoration: none;
+  }
+
+  .education-card:hover::after,
+  .education-card:focus-visible::after {
+    transform: scale(1.16);
+  }
+
+  .education-card.featured {
+    grid-column: span 2;
+    background:
+      radial-gradient(circle at 100% 100%, rgba(184, 135, 47, 0.18), transparent 34%),
+      var(--surface);
+  }
+
+  .education-card-icon {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 68px;
+    height: 68px;
+    margin-bottom: 18px;
+    border-radius: 22px;
+    background: var(--surface-soft);
+    font-size: 2rem;
+  }
+
+  .education-card-label {
+    position: relative;
+    z-index: 1;
+    width: fit-content;
+    margin-bottom: 12px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-size: 0.84rem;
+    font-weight: 850;
+  }
+
+  .education-card h2 {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 12px;
+    color: var(--text);
+    font-size: clamp(1.32rem, 2vw, 1.85rem);
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+  }
+
+  .education-card p {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .education-card-action {
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+    padding-top: 22px;
+    color: var(--accent-dark);
+    font-weight: 900;
+  }
+
+  .education-note-section {
+    padding-top: 18px;
+  }
+
+  .education-note-panel {
+    padding: clamp(24px, 4vw, 42px);
+    border: 1px solid rgba(184, 135, 47, 0.35);
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, rgba(184, 135, 47, 0.12), rgba(29, 79, 145, 0.08));
+    box-shadow: var(--shadow);
+  }
+
+  .education-note-panel h2 {
+    margin: 0 0 12px;
+    font-size: clamp(1.45rem, 2.4vw, 2.2rem);
+  }
+
+  .education-note-panel p:last-child {
+    margin-bottom: 0;
+    color: var(--muted);
+  }
+
+  @media (max-width: 1020px) {
+    .education-card-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 900px) {
+    .education-hero-panel,
+    .education-highlights-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .education-hero-mark {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 680px) {
+    .education-card-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .education-card.featured {
+      grid-column: auto;
+    }
+
+    .education-highlight-card {
+      align-items: flex-start;
+    }
+  }
+</style>

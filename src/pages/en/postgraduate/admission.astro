@@ -1,0 +1,160 @@
+---
+import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../../data/site-en';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) return path;
+  const cleanPath = path.replace(/^\/inmech-site(?=\/)/, '');
+  return `${base}${cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`}`;
+}
+
+const stages = [
+  {
+    title: 'Stage I',
+    subtitle: 'Unified entrance examinations',
+    items: [
+      ['Registration for the unified entrance tests', '23 April – 14 May; additional period: 26–28 May 2026.'],
+      ['Invitations', 'By 19 June for the main session; by 28 July for the additional session.'],
+      ['Testing period', '26 June – 14 July for the main session; 3–21 August for the additional session.'],
+      ['Results', 'By 23 July for the main session; by 21 August for the additional session.']
+    ]
+  },
+  {
+    title: 'Stage II',
+    subtitle: 'Registration and competitive selection',
+    items: [
+      ['Applicant account in EDEBO', 'From 1 July.'],
+      ['Registration for competitive selection', '7 August – 25 August, until 18:00.'],
+      ['Registration for the specialty examination', '7 August – 25 August, until 18:00.']
+    ]
+  },
+  {
+    title: 'Stage III',
+    subtitle: 'Examination and enrolment',
+    items: [
+      ['Specialty examination', 'From 26 August to 7 September 2026.'],
+      ['Ranking list', 'By 12 September 2026.'],
+      ['Enrolment order', 'By 14 September 2026.']
+    ]
+  }
+];
+
+const documents = [
+  ['Admission rules for 2026', '/documents/postgraduate/admission/2026/admission-rules-2026.pdf'],
+  ['Research proposal requirements', '/documents/postgraduate/admission/2026/research-proposal-requirements-2026.pdf'],
+  ['Entrance examination programme', '/documents/postgraduate/admission/2026/entrance-exam-program-2026.pdf'],
+  ['Assessment procedure', '/documents/postgraduate/admission/2026/assessment-procedure-2026.pdf'],
+  ['Archive for applicants 2025', 'https://inmech.kyiv.ua/l/ua/postgraduate/for_applicants/2025/']
+];
+
+const requiredDocumentsLeft = [
+  'application addressed to the Director of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine;',
+  'personnel record form certified by the institution where the applicant studies or works;',
+  'two 3×4 cm photographs;',
+  'identity and citizenship document;',
+  'document confirming a surname change, if applicable;',
+  'military ID or registration certificate for persons liable for military service;',
+  'list of published research papers and inventions in the specialty, if available;',
+  'research proposal in the chosen specialty.'
+];
+
+const requiredDocumentsRight = [
+  'higher-education diploma and diploma supplement;',
+  'documents for establishing equivalence of a foreign higher-education diploma, where applicable;',
+  'recommendation of the academic council of a higher-education institution, if available;',
+  'taxpayer identification number certificate;',
+  'residence-registration certificate for applicants intending to live in a dormitory;',
+  'international certificate in a foreign language, if available;',
+  'consent to personal-data collection and processing.'
+];
+
+const supervisors = [
+  ['Vasyl M. Yurchuk', 'Doctor of Physical and Mathematical Sciences'],
+  ['Oleksandr L. Kipnis', 'Candidate of Physical and Mathematical Sciences'],
+  ['Maksym Yu. Borysenko', 'Doctor of Technical Sciences'],
+  ['Anatolii S. Khoroshun', 'Doctor of Physical and Mathematical Sciences'],
+  ['Oleksandr Ya. Grygorenko', 'Doctor of Physical and Mathematical Sciences, Professor, Academician of the NAS of Ukraine'],
+  ['Mykhailo F. Selivanov', 'Doctor of Physical and Mathematical Sciences, Corresponding Member of the NAS of Ukraine']
+];
+
+function initials(name: string) {
+  return name.split(/\s+/).slice(0, 2).map((part) => part[0]).join('');
+}
+---
+
+<BaseLayoutEn
+  title={`Admission to postgraduate studies | ${siteEn.shortName}`}
+  description="Admission to postgraduate studies at the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine in 2026: admission stages, documents, requirements and potential supervisors."
+  activePage="education"
+>
+  <main class="postgraduate-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumbs">
+      <a href={withBase('/en/postgraduate/')}>Postgraduate studies</a>
+      <span>›</span>
+      <span>Admission</span>
+    </nav>
+
+    <section class="page-hero">
+      <p class="eyebrow">Admission to postgraduate studies</p>
+      <h1>Admission to postgraduate studies in 2026</h1>
+      <p class="lead">
+        The S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine announces admission to full-time
+        postgraduate studies in 2026 in <strong>F1 Applied Mathematics</strong>.
+      </p>
+      <p><a href={withBase('/postgraduate/admission/')}>Ukrainian version</a></p>
+    </section>
+
+    <section class="section-block">
+      <div class="stage-grid">
+        {stages.map((stage) => (
+          <article class="stage-card">
+            <span>{stage.title}</span>
+            <h2>{stage.subtitle}</h2>
+            <ul>
+              {stage.items.map(([label, details]) => (
+                <li><strong>{label}:</strong> {details}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="requirement-note">
+      <strong>Mandatory admission condition:</strong> successful completion of the unified professional entrance test in research methodology in 2025 or 2026 and successful completion of the unified entrance examination in 2024–2026. The minimum total score for the general academic competence test and the foreign-language test may not be lower than 300.
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading compact-header"><div><p class="eyebrow">Regulatory basis</p><h2>Documents for applicants</h2></div></div>
+      <p class="section-note">Official PDF documents are provided in Ukrainian.</p>
+      <div class="document-grid">
+        {documents.map(([title, href]) => (
+          <a class="document-card" href={withBase(href)} target="_blank" rel="noopener noreferrer"><span>PDF</span><strong>{title}</strong></a>
+        ))}
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading compact-header"><div><p class="eyebrow">Application package</p><h2>Documents for competitive selection</h2></div></div>
+      <div class="required-documents-grid">
+        <ul class="check-list">{requiredDocumentsLeft.map((item) => <li>{item}</li>)}</ul>
+        <ul class="check-list">{requiredDocumentsRight.map((item) => <li>{item}</li>)}</ul>
+      </div>
+      <div class="warning-note"><strong>Attention:</strong> copies of documents are not accepted without presentation of the originals.</div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading compact-header"><div><p class="eyebrow">Research supervision</p><h2>Potential research supervisors</h2></div></div>
+      <div class="supervisor-grid">
+        {supervisors.map(([name, degree]) => (
+          <article class="supervisor-card"><div class="avatar" aria-hidden="true">{initials(name)}</div><h3>{name}</h3><p>{degree}</p></article>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayoutEn>
+
+<style>
+  .postgraduate-page{max-width:1180px;margin:0 auto;padding:46px 20px 72px}.breadcrumbs{display:flex;gap:10px;align-items:center;margin-bottom:22px;color:var(--muted);font-weight:750}.page-hero,.stage-card,.document-card,.required-documents-grid,.supervisor-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow)}.page-hero{padding:clamp(28px,5vw,52px)}.page-hero h1{margin:0 0 18px;font-size:clamp(2.2rem,4.8vw,4.3rem);line-height:1.04;letter-spacing:-.04em}.lead{max-width:860px;color:var(--muted);font-size:1.08rem;line-height:1.7}.section-block{margin-top:34px}.stage-grid,.document-grid,.supervisor-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.stage-card,.supervisor-card{padding:24px}.stage-card span,.document-card span{display:inline-block;margin-bottom:12px;padding:6px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent-dark);font-weight:850}.stage-card ul,.check-list{margin:0;padding-left:20px;color:var(--muted);line-height:1.65}.requirement-note,.warning-note{margin-top:24px;padding:18px 20px;border-radius:18px;background:var(--accent-soft);line-height:1.65}.document-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.document-card{display:flex;min-height:150px;flex-direction:column;padding:22px;color:var(--text);text-decoration:none}.document-card strong{margin-top:auto}.required-documents-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;padding:24px}.avatar{display:grid;place-items:center;width:58px;height:58px;margin-bottom:14px;border-radius:18px;background:var(--accent-soft);color:var(--accent-dark);font-weight:850}@media(max-width:900px){.stage-grid,.document-grid,.required-documents-grid,.supervisor-grid{grid-template-columns:1fr}}
+</style>

@@ -25,6 +25,9 @@ function formatDate(date?: string) {
 }
 
 const groups = groupDefendedDissertationsEn(defendedDissertationsEn);
+const allTags = Array.from(new Set(defendedDissertationsEn.flatMap((entry) => entry.tags ?? []))).sort((a, b) =>
+  a.localeCompare(b, 'en', { sensitivity: 'base' })
+);
 const totalEntries = defendedDissertationsEn.length;
 const years = defendedDissertationsEn.map((entry) => entry.year);
 const earliestYear = Math.min(...years);
@@ -59,7 +62,7 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
       <article class="catalog-stat-card">
         <span>{totalEntries}</span>
         <strong>migrated entries</strong>
-        <p>The English catalogue currently includes the S/С alphabetical group.</p>
+        <p>The English catalogue currently includes the migrated alphabetical groups.</p>
       </article>
       <article class="catalog-stat-card">
         <span>{earliestYear}–{latestYear}</span>
@@ -103,12 +106,37 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
         </p>
       </div>
 
+      {allTags.length > 0 && (
+        <div class="tag-filter-panel" aria-labelledby="tag-filter-heading">
+          <div class="tag-filter-header">
+            <div>
+              <p class="eyebrow">Topic filter</p>
+              <h3 id="tag-filter-heading">Browse by research topic</h3>
+            </div>
+            <p>
+              Choose a topic tag to narrow the catalogue. The filter works on the current English entries and does not change the source data.
+            </p>
+          </div>
+          <div class="tag-filter-list" role="list" aria-label="Dissertation topic filters">
+            <button class="tag-filter-button is-active" type="button" data-filter-tag="__all__" aria-pressed="true">
+              All topics
+            </button>
+            {allTags.map((tag) => (
+              <button class="tag-filter-button" type="button" data-filter-tag={tag} aria-pressed="false">
+                {tag}
+              </button>
+            ))}
+          </div>
+          <p class="catalog-filter-status" data-filter-status>{totalEntries} entries shown</p>
+        </div>
+      )}
+
       <div class="catalog-groups">
         {groups.map((group) => (
-          <section class="catalog-letter-group" aria-labelledby={`letter-${group.letter}`}>
+          <section class="catalog-letter-group" aria-labelledby={`letter-${group.letter}`} data-letter-group>
             <div class="letter-heading" id={`letter-${group.letter}`}>
               <span>{group.letter}</span>
-              <strong>{group.items.length} entries</strong>
+              <strong data-letter-count>{group.items.length} entries</strong>
             </div>
 
             <div class="catalog-entry-grid">
@@ -119,7 +147,7 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
                   : null;
 
                 return (
-                  <article class="catalog-entry-card">
+                  <article class="catalog-entry-card" data-entry-card data-entry-tags={(entry.tags ?? []).join('|')}>
                     <div class="entry-header">
                       <div>
                         <h3>{entry.author.en}</h3>
@@ -175,6 +203,55 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
   </section>
 </BaseLayoutEn>
 
+<script is:inline>
+  const tagFilterButtons = Array.from(document.querySelectorAll('[data-filter-tag]'));
+  const entryCards = Array.from(document.querySelectorAll('[data-entry-card]'));
+  const letterGroups = Array.from(document.querySelectorAll('[data-letter-group]'));
+  const filterStatus = document.querySelector('[data-filter-status]');
+  const allTagValue = '__all__';
+  const totalCatalogueEntries = entryCards.length;
+
+  function entryLabel(count) {
+    return `${count} ${count === 1 ? 'entry' : 'entries'}`;
+  }
+
+  function applyTagFilter(selectedTag) {
+    tagFilterButtons.forEach((button) => {
+      const isSelected = button.dataset.filterTag === selectedTag;
+      button.classList.toggle('is-active', isSelected);
+      button.setAttribute('aria-pressed', String(isSelected));
+    });
+
+    let visibleTotal = 0;
+
+    entryCards.forEach((card) => {
+      const tags = (card.dataset.entryTags || '').split('|').filter(Boolean);
+      const isVisible = selectedTag === allTagValue || tags.includes(selectedTag);
+      card.hidden = !isVisible;
+      if (isVisible) visibleTotal += 1;
+    });
+
+    letterGroups.forEach((group) => {
+      const visibleCards = Array.from(group.querySelectorAll('[data-entry-card]')).filter((card) => !card.hidden).length;
+      const letterCount = group.querySelector('[data-letter-count]');
+
+      group.hidden = visibleCards === 0;
+      if (letterCount) letterCount.textContent = entryLabel(visibleCards);
+    });
+
+    if (filterStatus) {
+      filterStatus.textContent =
+        selectedTag === allTagValue
+          ? `${entryLabel(totalCatalogueEntries)} shown`
+          : `${entryLabel(visibleTotal)} shown for “${selectedTag}”`;
+    }
+  }
+
+  tagFilterButtons.forEach((button) => {
+    button.addEventListener('click', () => applyTagFilter(button.dataset.filterTag || allTagValue));
+  });
+</script>
+
 <style>
   .catalog-hero {
     padding: 52px 0 18px;
@@ -183,6 +260,7 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
   .catalog-hero-panel,
   .catalog-stat-card,
   .catalog-policy-panel,
+  .tag-filter-panel,
   .catalog-entry-card {
     background: var(--surface);
     border: 1px solid var(--line);
@@ -267,6 +345,8 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
   .catalog-stat-card p,
   .catalog-policy-panel p,
   .section-heading p,
+  .tag-filter-header p,
+  .catalog-filter-status,
   .entry-bibliography,
   .source-note {
     margin: 0;
@@ -293,6 +373,63 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
     gap: 22px;
     align-items: end;
     margin-bottom: 26px;
+  }
+
+  .tag-filter-panel {
+    display: grid;
+    gap: 18px;
+    margin-bottom: 30px;
+    padding: clamp(20px, 3vw, 28px);
+  }
+
+  .tag-filter-header {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.55fr) minmax(0, 1fr);
+    gap: 18px;
+    align-items: end;
+  }
+
+  .tag-filter-header h3 {
+    margin: 0;
+    font-size: clamp(1.1rem, 2vw, 1.45rem);
+    letter-spacing: -0.02em;
+  }
+
+  .tag-filter-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .tag-filter-button {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface-soft);
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 800;
+    padding: 8px 12px;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+
+  .tag-filter-button:hover,
+  .tag-filter-button:focus-visible {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .tag-filter-button.is-active {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .catalog-filter-status {
+    font-size: 0.92rem;
+    font-weight: 750;
   }
 
   .catalog-groups {
@@ -428,7 +565,8 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
     }
 
     .catalog-policy-panel,
-    .compact-header {
+    .compact-header,
+    .tag-filter-header {
       grid-template-columns: 1fr;
     }
   }

@@ -1,0 +1,60 @@
+---
+import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../../data/site-en';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) return path;
+  const cleanPath = path.replace(/^\/inmech-site(?=\/)/, '');
+  return `${base}${cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`}`;
+}
+
+const accreditationDocuments = [
+  {
+    title: 'Expert group work programme',
+    description: 'Work programme of the expert group during the accreditation review at the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine on 6–8 May 2026.',
+    href: '/documents/postgraduate/accreditation/2026/expert-group-program-2026.pdf'
+  },
+  {
+    title: 'Self-assessment report',
+    description: 'Self-assessment materials for the educational and scientific programme at the third level of higher education.',
+    href: '/documents/postgraduate/accreditation/2026/self-assessment-2026.pdf'
+  }
+];
+---
+
+<BaseLayoutEn
+  title={`PhD programme accreditation | ${siteEn.shortName}`}
+  description="Accreditation materials for the educational and scientific postgraduate programme of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine."
+  activePage="education"
+>
+  <main class="postgraduate-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href={withBase('/en/postgraduate/')}>Postgraduate studies</a><span>›</span><span>Accreditation</span></nav>
+    <section class="page-hero">
+      <p class="eyebrow">Accreditation</p>
+      <h1>Accreditation of the educational and scientific programme</h1>
+      <p class="lead">Accreditation materials for the educational programme <strong>“Mechanics of Deformable Solids and Theoretical Mechanics”</strong> in specialty <strong>113 Applied Mathematics</strong> at the third level of higher education.</p>
+      <p><a href={withBase('/postgraduate/accreditation/')}>Ukrainian version</a></p>
+    </section>
+    <section class="section-block">
+      <div class="section-heading compact-header"><div><p class="eyebrow">Expert group</p><h2>Accreditation review</h2></div></div>
+      <div class="info-grid">
+        <article class="info-card accent-card"><span>Review period</span><h3>6–8 May 2026</h3><p>The accreditation review was conducted at the Institute for the educational programme with EDEBO programme ID 22305.</p></article>
+        <article class="info-card"><span>Educational programme</span><h3>Mechanics of Deformable Solids and Theoretical Mechanics</h3><p>Third educational and scientific level of higher education, specialty 113 Applied Mathematics.</p></article>
+      </div>
+    </section>
+    <section class="section-block">
+      <div class="section-heading compact-header"><div><p class="eyebrow">Documents</p><h2>Accreditation materials</h2></div><p>The PDF files are official source documents and are provided in Ukrainian.</p></div>
+      <div class="document-grid">
+        {accreditationDocuments.map((document) => (
+          <a class="document-card" href={withBase(document.href)} target="_blank" rel="noopener noreferrer"><span>PDF</span><h3>{document.title}</h3><p>{document.description}</p><strong>Open document →</strong></a>
+        ))}
+      </div>
+    </section>
+    <section class="section-block meeting-panel"><div><p class="eyebrow">Open meeting</p><h2>Meeting with the expert group</h2><p>The open meeting with the expert group on EDEBO educational programme 22305 took place on <strong>7 May 2026</strong>, from <strong>12:30</strong> to <strong>13:15</strong>.</p></div></section>
+  </main>
+</BaseLayoutEn>
+
+<style>
+  .postgraduate-page{max-width:1180px;margin:0 auto;padding:46px 20px 72px}.breadcrumbs{display:flex;gap:10px;align-items:center;margin-bottom:22px;color:var(--muted);font-weight:750}.page-hero,.info-card,.document-card,.meeting-panel{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow)}.page-hero{padding:clamp(28px,5vw,52px)}.page-hero h1{margin:0 0 18px;font-size:clamp(2.2rem,4.8vw,4.3rem);line-height:1.04;letter-spacing:-.04em}.lead{max-width:920px;color:var(--muted);font-size:1.08rem;line-height:1.7}.section-block{margin-top:34px}.info-grid,.document-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.info-card,.document-card{padding:24px}.info-card span,.document-card span{display:inline-block;margin-bottom:12px;padding:6px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent-dark);font-size:.78rem;font-weight:850}.info-card p,.document-card p,.meeting-panel p{color:var(--muted);line-height:1.65}.accent-card{background:linear-gradient(145deg,var(--accent-dark),var(--accent));color:#fff}.accent-card span{background:rgba(255,255,255,.16);color:#fff}.accent-card p{color:rgba(255,255,255,.86)}.document-card{display:flex;min-height:260px;flex-direction:column;color:var(--text);text-decoration:none;transition:transform .22s ease}.document-card:hover{transform:translateY(-4px);text-decoration:none}.document-card strong{margin-top:auto;color:var(--accent-dark)}.meeting-panel{padding:28px}@media(max-width:860px){.info-grid,.document-grid{grid-template-columns:1fr}}
+</style>

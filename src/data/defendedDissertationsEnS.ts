@@ -1,176 +1,824 @@
-import type { DefendedDissertationEntryEn } from './defendedDissertationsEn';
+import type {
+  DefendedDissertationEntryEn,
+  DissertationDegreeEn,
+  DissertationSpecialtyEn,
+  OriginalLanguage
+} from './defendedDissertationsEn';
+
+const candidatePhysical: DissertationDegreeEn = {
+  level: 'candidate-of-sciences',
+  en: 'Candidate of Physical and Mathematical Sciences',
+  fieldEn: 'Physical and Mathematical Sciences'
+};
+
+const candidateTechnical: DissertationDegreeEn = {
+  level: 'candidate-of-sciences',
+  en: 'Candidate of Technical Sciences',
+  fieldEn: 'Technical Sciences'
+};
+
+const doctorPhysical: DissertationDegreeEn = {
+  level: 'doctor-of-sciences',
+  en: 'Doctor of Physical and Mathematical Sciences',
+  fieldEn: 'Physical and Mathematical Sciences'
+};
+
+const doctorTechnical: DissertationDegreeEn = {
+  level: 'doctor-of-sciences',
+  en: 'Doctor of Technical Sciences',
+  fieldEn: 'Technical Sciences'
+};
+
+const specialties: Record<string, DissertationSpecialtyEn> = {
+  '01.02.01': { code: '01.02.01', en: 'Theoretical Mechanics' },
+  '01.02.03': { code: '01.02.03', en: 'Structural Mechanics' },
+  '01.02.04': { code: '01.02.04', en: 'Mechanics of Deformable Solids' },
+  '05.23.17': { code: '05.23.17', en: 'Structural Mechanics' }
+};
+
+type EntryInput = {
+  id: string;
+  year: number;
+  defenceDate?: string;
+  authorEn: string;
+  authorOriginal: string;
+  originalLanguage: OriginalLanguage;
+  titleEn: string;
+  titleOriginal: string;
+  degree: DissertationDegreeEn;
+  specialtyCode?: string;
+  bibliographyEn: string;
+  originalDetails: string;
+  pages?: number;
+  placeEn?: string;
+  institutionEn?: string;
+  tags?: string[];
+};
+
+function entry(input: EntryInput): DefendedDissertationEntryEn {
+  return {
+    id: input.id,
+    sortLetter: 'S',
+    year: input.year,
+    defenceDate: input.defenceDate,
+    author: {
+      en: input.authorEn,
+      original: input.authorOriginal,
+      originalLanguage: input.originalLanguage
+    },
+    title: {
+      en: input.titleEn,
+      original: input.titleOriginal,
+      originalLanguage: input.originalLanguage,
+      originalNoteEn: `Original title [${input.originalLanguage === 'uk' ? 'in Ukrainian' : 'in Russian'}]`
+    },
+    degree: input.degree,
+    specialty: input.specialtyCode ? specialties[input.specialtyCode] : undefined,
+    bibliography: {
+      en: input.bibliographyEn,
+      originalDetails: input.originalDetails,
+      originalLanguage: input.originalLanguage,
+      pages: input.pages,
+      placeEn: input.placeEn,
+      institutionEn: input.institutionEn
+    },
+    tags: input.tags
+  };
+}
 
 export const defendedDissertationsEnS: DefendedDissertationEntryEn[] = [
-  {
+  entry({
     id: 'savelieva-1997-plane-waves-multiphase-media',
-    sortLetter: 'S',
     year: 1997,
-    author: {
-      en: 'Kateryna V. Savelieva',
-      original: 'САВЕЛЬЄВА Катерина Володимирівна',
-      originalLanguage: 'uk'
-    },
-    title: {
-      en: 'Evolution of Plane Waves in Multiphase Media',
-      original: 'Еволюція плоских хвиль в багатофазних середовищах',
-      originalLanguage: 'uk',
-      originalNoteEn: 'Original title [in Ukrainian]'
-    },
-    degree: {
-      level: 'candidate-of-sciences',
-      en: 'Candidate of Physical and Mathematical Sciences',
-      fieldEn: 'Physical and Mathematical Sciences'
-    },
-    specialty: {
-      code: '01.02.04',
-      en: 'Mechanics of Deformable Solids'
-    },
-    bibliography: {
-      en: 'Defended in 1997. Candidate dissertation, specialty 01.02.04. S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine. Kyiv, 1997. 152 pages.',
-      originalDetails: 'Захист 1997 р. Дис. к.ф.-м.н. 01.02.04 / Ін-т механіки ім. С.П.Тимошенка НАН України. – Київ, 1997. – 152 с.',
-      originalLanguage: 'uk',
-      pages: 152,
-      placeEn: 'Kyiv',
-      institutionEn: 'S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine'
-    },
+    authorEn: 'Kateryna V. Savelieva',
+    authorOriginal: 'САВЕЛЬЄВА Катерина Володимирівна',
+    originalLanguage: 'uk',
+    titleEn: 'Evolution of Plane Waves in Multiphase Media',
+    titleOriginal: 'Еволюція плоских хвиль в багатофазних середовищах',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended in 1997. Candidate dissertation, specialty 01.02.04. S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine. Kyiv, 1997. 152 pages.',
+    originalDetails: 'Захист 1997 р. Дис. к.ф.-м.н. 01.02.04 / Ін-т механіки ім. С.П.Тимошенка НАН України. – Київ, 1997. – 152 с.',
+    pages: 152,
+    placeEn: 'Kyiv',
+    institutionEn: 'S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine',
     tags: ['multiphase media', 'wave propagation', 'mechanics of deformable solids']
-  },
-  {
+  }),
+  entry({
     id: 'savina-1990-electroelasticity-cylindrical-shells-fluids',
-    sortLetter: 'S',
     year: 1990,
-    author: {
-      en: 'Irina V. Savina',
-      original: 'САВИНА Ирина Владимировна',
-      originalLanguage: 'ru'
-    },
-    title: {
-      en: 'Dynamic Problems of Electroelasticity for a System of Cylindrical Shells in Contact with Ideal and Viscous Fluids',
-      original: 'Динамические задачи электроупругости системы цилиндрических оболочек, контактирующих с идеальной и вязкой жидкостями',
-      originalLanguage: 'ru',
-      originalNoteEn: 'Original title [in Russian]'
-    },
-    degree: {
-      level: 'candidate-of-sciences',
-      en: 'Candidate of Physical and Mathematical Sciences',
-      fieldEn: 'Physical and Mathematical Sciences'
-    },
-    specialty: {
-      code: '01.02.04',
-      en: 'Mechanics of Deformable Solids'
-    },
-    bibliography: {
-      en: 'Defended in 1990. Candidate dissertation, specialty 01.02.04. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1990. 134 pages.',
-      originalDetails: 'Защита 1990 г. Дисс. к.ф.-м.н. 01.02.04 / Ин-т механики АН УССР. – Киев, 1990. – 134 с.',
-      originalLanguage: 'ru',
-      pages: 134,
-      placeEn: 'Kyiv',
-      institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR'
-    },
+    authorEn: 'Irina V. Savina',
+    authorOriginal: 'САВИНА Ирина Владимировна',
+    originalLanguage: 'ru',
+    titleEn: 'Dynamic Problems of Electroelasticity for a System of Cylindrical Shells in Contact with Ideal and Viscous Fluids',
+    titleOriginal: 'Динамические задачи электроупругости системы цилиндрических оболочек, контактирующих с идеальной и вязкой жидкостями',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended in 1990. Candidate dissertation, specialty 01.02.04. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1990. 134 pages.',
+    originalDetails: 'Защита 1990 г. Дисс. к.ф.-м.н. 01.02.04 / Ин-т механики АН УССР. – Киев, 1990. – 134 с.',
+    pages: 134,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
     tags: ['electroelasticity', 'cylindrical shells', 'fluid-structure interaction']
-  },
-  {
+  }),
+  entry({
     id: 'savin-1993-hydroelasticity-piezoceramic-transducers',
-    sortLetter: 'S',
     year: 1993,
-    author: {
-      en: 'Viktor G. Savin',
-      original: 'САВИН Виктор Гурьевич',
-      originalLanguage: 'ru'
-    },
-    title: {
-      en: 'Nonstationary Hydroelasticity of Piezoceramic Transducers',
-      original: 'Нестационарная гидроупругость пьезокерамических преобразователей',
-      originalLanguage: 'ru',
-      originalNoteEn: 'Original title [in Russian]'
-    },
-    degree: {
-      level: 'doctor-of-sciences',
-      en: 'Doctor of Technical Sciences',
-      fieldEn: 'Technical Sciences'
-    },
-    specialty: {
-      code: '01.02.04',
-      en: 'Mechanics of Deformable Solids'
-    },
-    bibliography: {
-      en: 'Defended in 1993. Doctoral dissertation, specialty 01.02.04. S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine and the Slavutych Research-and-Production Association. Kyiv, 1993. 380 pages.',
-      originalDetails: 'Защита 1993 г. Дисс. д.т.н. 01.02.04 / Ин-т механики им. С.П.Тимошенко НАН Украины, Научно-производственное объединение «Славутич». – Киев, 1993. – 380 с.',
-      originalLanguage: 'ru',
-      pages: 380,
-      placeEn: 'Kyiv',
-      institutionEn: 'S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine; Slavutych Research-and-Production Association'
-    },
+    authorEn: 'Viktor G. Savin',
+    authorOriginal: 'САВИН Виктор Гурьевич',
+    originalLanguage: 'ru',
+    titleEn: 'Nonstationary Hydroelasticity of Piezoceramic Transducers',
+    titleOriginal: 'Нестационарная гидроупругость пьезокерамических преобразователей',
+    degree: doctorTechnical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended in 1993. Doctoral dissertation, specialty 01.02.04. S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine and the Slavutych Research-and-Production Association. Kyiv, 1993. 380 pages.',
+    originalDetails: 'Защита 1993 г. Дисс. д.т.н. 01.02.04 / Ин-т механики им. С.П.Тимошенко НАН Украины, Научно-производственное объединение «Славутич». – Киев, 1993. – 380 с.',
+    pages: 380,
+    placeEn: 'Kyiv',
+    institutionEn: 'S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine; Slavutych Research-and-Production Association',
     tags: ['hydroelasticity', 'piezoceramics', 'transducers']
-  },
-  {
+  }),
+  entry({
+    id: 'savichenko-1974-circular-holes-three-layer-spherical-shells',
+    year: 1974,
+    defenceDate: '1974-06-25',
+    authorEn: 'A.A. Savichenko',
+    authorOriginal: 'САВИЧЕНКО А.А',
+    originalLanguage: 'ru',
+    titleEn: 'Stress State near Circular Holes in Three-Layer Spherical Shells',
+    titleOriginal: 'Исследование напряженого состояния возле кругових отверстий в трехслойных сферических оболочках',
+    degree: candidateTechnical,
+    bibliographyEn: 'Defended on 25 June 1974. Candidate dissertation. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1974. 173 pages.',
+    originalDetails: 'Защита 25.06.74. Дисс. к.т.н. / Ин-т механики АН УССР. – Киев, 1974. – 173 с.',
+    pages: 173,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['spherical shells', 'circular holes', 'stress state']
+  }),
+  entry({
+    id: 'savluk-1991-stability-ribbed-conical-shells-ring-reinforcement',
+    year: 1991,
+    defenceDate: '1991-02-26',
+    authorEn: 'Alexander R. Savluk',
+    authorOriginal: 'САВЛУК Александр Романович',
+    originalLanguage: 'ru',
+    titleEn: 'Stability of Ribbed Conical Shells with Irregular Ring Reinforcement',
+    titleOriginal: 'Устойчивость ребристих конических оболочек с нерегулярным кольцевым подкреплением',
+    degree: candidateTechnical,
+    specialtyCode: '05.23.17',
+    bibliographyEn: 'Defended on 26 February 1991. Candidate dissertation, specialty 05.23.17. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1990. 150 pages.',
+    originalDetails: 'Защита 26.02.91. Дисс. к.т.н. 05.23.17 / Ин-т механики АН УССР. – Киев, 1990. – 150 с.',
+    pages: 150,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['conical shells', 'ribbed shells', 'stability']
+  }),
+  entry({
+    id: 'savchenko-vitalii-1969-plane-thermoelasticity-nonlinearities',
+    year: 1969,
+    defenceDate: '1969-02-18',
+    authorEn: 'Vitaliy G. Savchenko',
+    authorOriginal: 'САВЧЕНКО Виталий Григорьевич',
+    originalLanguage: 'ru',
+    titleEn: 'Plane Problem of Thermoelasticity Accounting for Physical and Geometric Nonlinearities',
+    titleOriginal: 'Плоская задача термоупругости с учетом физической и геометрической нелинейностей',
+    degree: candidateTechnical,
+    bibliographyEn: 'Defended on 18 February 1969. Candidate dissertation. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1968. 158 pages.',
+    originalDetails: 'Защита 18.02.69. Дисс. к.т.н. / Ин-т механики АН УССР. – Киев, 1968. – 158 с.',
+    pages: 158,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['thermoelasticity', 'nonlinear mechanics', 'plane problem']
+  }),
+  entry({
+    id: 'savchenko-vitalii-1983-elastoplastic-bodies-revolution-nonisothermal-loading',
+    year: 1983,
+    defenceDate: '1983-10-25',
+    authorEn: 'Vitaliy G. Savchenko',
+    authorOriginal: 'САВЧЕНКО Виталий Григорьевич',
+    originalLanguage: 'ru',
+    titleEn: 'Elastoplastic Deformation of Bodies of Revolution under Complex Non-Isothermal Loading Processes',
+    titleOriginal: 'Упругопластическое деформирование тел вращения при сложных неизотермических процесах нагружения',
+    degree: doctorTechnical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 25 October 1983. Doctoral dissertation, specialty 01.02.04. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1983. 274 pages.',
+    originalDetails: 'Защита 25.10.83. Дисс. д.т.н. 01.02.04 / Ин-т механики АН УССР. – Киев, 1983. – 274 с.',
+    pages: 274,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['elastoplasticity', 'bodies of revolution', 'non-isothermal loading']
+  }),
+  entry({
+    id: 'savchenko-pavel-1989-anisotropic-shells-revolution-transverse-shear',
+    year: 1989,
+    defenceDate: '1989-04-25',
+    authorEn: 'Pavel I. Savchenko',
+    authorOriginal: 'САВЧЕНКО Павел Иванович',
+    originalLanguage: 'ru',
+    titleEn: 'Solution of Static Problems for Anisotropic Shells of Revolution Accounting for Transverse Shear and Compression',
+    titleOriginal: 'Решение задач статики анизотропных оболочек вращения с учетом поперечних сдвигов обжатия',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 25 April 1989. Candidate dissertation, specialty 01.02.04. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1990. 133 pages.',
+    originalDetails: 'Защита 25.04.89. Дисс. к.ф.-м.н. 01.02.04 / Ин-т механики АН УССР. – Киев, 1990. – 133 с.',
+    pages: 133,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['anisotropic shells', 'shells of revolution', 'transverse shear']
+  }),
+  entry({
+    id: 'samborskaya-1991-stability-periodic-row-fibres-elastic-matrix',
+    year: 1991,
+    defenceDate: '1991-11-26',
+    authorEn: 'Alexandra N. Samborskaya',
+    authorOriginal: 'САМБОРСКАЯ Александра Николаевна',
+    originalLanguage: 'ru',
+    titleEn: 'General Stability Problem for a Periodic Row of Fibres in an Elastic Matrix',
+    titleOriginal: 'Общая задача устойчивости периодического ряда волокон в упругой матрице',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 26 November 1991. Candidate dissertation, specialty 01.02.04. Institute of Mechanics of the Academy of Sciences of Ukraine. Kyiv, 1991. 136 pages.',
+    originalDetails: 'Защита 26.11.91. Дисс. к.ф.-м.н. 01.02.04 / Ин-т механики АН Украины. – Киев, 1991. – 136 с.',
+    pages: 136,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of Ukraine',
+    tags: ['stability', 'fibres', 'elastic matrix']
+  }),
+  entry({
+    id: 'sannikov-1982-stability-reinforced-shells-zero-gaussian-curvature',
+    year: 1982,
+    authorEn: 'Yuri A. Sannikov',
+    authorOriginal: 'САННИКОВ Юрий Афанасьевич',
+    originalLanguage: 'ru',
+    titleEn: 'Stability of Reinforced Shells of Revolution with Zero Gaussian Curvature',
+    titleOriginal: 'Исследование устойчивости подкрепленных оболочек вращения нулевой гауссовой кривизны',
+    degree: candidateTechnical,
+    specialtyCode: '01.02.03',
+    bibliographyEn: 'Defended in 1982. Candidate dissertation, specialty 01.02.03. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1982. 199 pages.',
+    originalDetails: 'Защита 1982 г. Дисс. к.т.н. 01.02.03 / Ин-т механики АН УССР. – Киев, 1982. – 199 с.',
+    pages: 199,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['shell stability', 'reinforced shells', 'zero Gaussian curvature']
+  }),
+  entry({
+    id: 'saralyuk-1989-axisymmetric-elastic-equilibrium-piecewise-homogeneous-bodies',
+    year: 1989,
+    defenceDate: '1989-04-25',
+    authorEn: 'Igor S. Saralyuk',
+    authorOriginal: 'САРАЛЮК Игорь Степанович',
+    originalLanguage: 'ru',
+    titleEn: 'Axisymmetric Elastic Equilibrium of Piecewise-Homogeneous Bodies with Interfaces Close to Spherical Surfaces',
+    titleOriginal: 'Осесимметричное упругое равновесие кусочно-однородных тел с поверхностями раздела, близкими к сферическим',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 25 April 1989. Candidate dissertation, specialty 01.02.04. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1989. 168 pages.',
+    originalDetails: 'Защита 25.04.89. Дисс. к.ф.-м.н. 01.02.04 / Ин-т механики АН УССР. – Киев, 1989. – 168 с.',
+    pages: 168,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['elastic equilibrium', 'piecewise-homogeneous bodies', 'interfaces']
+  }),
+  entry({
+    id: 'sakhatskaya-1984-elastoplastic-bodies-revolution-nonaxisymmetric-nonisothermal-loading',
+    year: 1984,
+    authorEn: 'Irina K. Sakhatskaya',
+    authorOriginal: 'САХАЦКАЯ Ирина Константиновна',
+    originalLanguage: 'ru',
+    titleEn: 'Elastoplastic Stress State of Bodies of Revolution under Non-Axisymmetric Non-Isothermal Loading Processes',
+    titleOriginal: 'Упругопластическое напряженное состояние тел вращения при неосесимметричных неизотермических процессах нагружения',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended in 1984. Candidate dissertation, specialty 01.02.04. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1984. 137 pages.',
+    originalDetails: 'Защита 1984 г. Дисс. к.ф.-м.н. 01.02.04 / Ин-т механики АН УССР. – Киев, 1984. – 137 с.',
+    pages: 137,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['elastoplasticity', 'bodies of revolution', 'non-isothermal loading']
+  }),
+  entry({
+    id: 'svirkov-1985-three-dimensional-stability-triangular-plates',
+    year: 1985,
+    defenceDate: '1985-11-28',
+    authorEn: 'Nikolai N. Svirkov',
+    authorOriginal: 'СВИРКОВ Николай Николаевич',
+    originalLanguage: 'ru',
+    titleEn: 'Problems of the Three-Dimensional Theory of Stability of Triangular Plates',
+    titleOriginal: 'Задачи трехмерной теории устойчивости трехугольных пластин',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 28 November 1985. Candidate dissertation, specialty 01.02.04. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1985. 96 pages.',
+    originalDetails: 'Защита 28.11.85. Дисс. к.ф.-м.н. 01.02.04 / Ин-т механики АН УССР. – Киев, 1985. – 96 с.',
+    pages: 96,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['three-dimensional stability', 'triangular plates', 'plate mechanics']
+  }),
+  entry({
     id: 'selivanov-2003-subcritical-crack-growth-viscoelastic-anisotropic-bodies',
-    sortLetter: 'S',
     year: 2003,
     defenceDate: '2003-02-04',
-    author: {
-      en: 'Mykhailo F. Selivanov',
-      original: 'СЕЛІВАНОВ Михайло Федорович',
-      originalLanguage: 'uk'
-    },
-    title: {
-      en: 'Subcritical Crack Growth in Viscoelastic Anisotropic Bodies under Slowly Varying Loading',
-      original: 'Докритичний розвиток тріщин у в’язкопружних анізотропних тілах при повільній зміні навантаження',
-      originalLanguage: 'uk',
-      originalNoteEn: 'Original title [in Ukrainian]'
-    },
-    degree: {
-      level: 'candidate-of-sciences',
-      en: 'Candidate of Physical and Mathematical Sciences',
-      fieldEn: 'Physical and Mathematical Sciences'
-    },
-    specialty: {
-      code: '01.02.04',
-      en: 'Mechanics of Deformable Solids'
-    },
-    bibliography: {
-      en: 'Defended on 4 February 2003. Candidate dissertation, specialty 01.02.04. S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine. Kyiv, 2002. 115 pages.',
-      originalDetails: 'Захист 04.02.2003 р. Дис. к.ф.-м.н. 01.02.04 / Ін-т механіки ім. С.П.Тимошенка НАН України. – Київ, 2002. – 115 с.',
-      originalLanguage: 'uk',
-      pages: 115,
-      placeEn: 'Kyiv',
-      institutionEn: 'S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine'
-    },
+    authorEn: 'Mykhailo F. Selivanov',
+    authorOriginal: 'СЕЛІВАНОВ Михайло Федорович',
+    originalLanguage: 'uk',
+    titleEn: 'Subcritical Crack Growth in Viscoelastic Anisotropic Bodies under Slowly Varying Loading',
+    titleOriginal: 'Докритичний розвиток тріщин у в’язкопружних анізотропних тілах при повільній зміні навантаження',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 4 February 2003. Candidate dissertation, specialty 01.02.04. S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine. Kyiv, 2002. 115 pages.',
+    originalDetails: 'Захист 04.02.2003 р. Дис. к.ф.-м.н. 01.02.04 / Ін-т механіки ім. С.П.Тимошенка НАН України. – Київ, 2002. – 115 с.',
+    pages: 115,
+    placeEn: 'Kyiv',
+    institutionEn: 'S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine',
     tags: ['fracture mechanics', 'viscoelasticity', 'anisotropic bodies', 'crack growth']
-  },
-  {
+  }),
+  entry({
+    id: 'semenyuk-1973-stability-anisotropic-three-layer-cylindrical-shells',
+    year: 1973,
+    defenceDate: '1973-01-30',
+    authorEn: 'Nikolai P. Semenyuk',
+    authorOriginal: 'СЕМЕНЮК Николай Павлович',
+    originalLanguage: 'ru',
+    titleEn: 'Stability of Anisotropic Three-Layer Cylindrical Shells Accounting for Moment Effects of the Precritical State under Nonuniform External Pressure',
+    titleOriginal: 'Устойчивость анизотропных трехслойных цилиндрических оболочек с учетом моментности докритического состояния при неравномерном внешнем давлении',
+    degree: candidateTechnical,
+    bibliographyEn: 'Defended on 30 January 1973. Candidate dissertation. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1972. 192 pages.',
+    originalDetails: 'Защита 30.01.73. Дисс. к.т.н. / Ин-т механики АН УССР. – Киев, 1972. – 192 с.',
+    pages: 192,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['cylindrical shells', 'three-layer shells', 'stability']
+  }),
+  entry({
+    id: 'semenyuk-1986-stability-composite-shells-imperfections',
+    year: 1986,
+    defenceDate: '1986-06-03',
+    authorEn: 'Nikolai P. Semenyuk',
+    authorOriginal: 'СЕМЕНЮК Николай Павлович',
+    originalLanguage: 'ru',
+    titleEn: 'Stability of Shells Made of Composite Materials with Geometric and Structural Imperfections',
+    titleOriginal: 'Устойчивость оболочек из композиционнных материалов с геометрическими и структурными несовершенствами',
+    degree: doctorTechnical,
+    specialtyCode: '01.02.03',
+    bibliographyEn: 'Defended on 3 June 1986. Doctoral dissertation, specialty 01.02.03. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1985. 371 pages.',
+    originalDetails: 'Защита 03.06.86. Дисс. д.т.н. 01.02.03 / Ин-т механики АН УССР. – Киев, 1985. – 371 с.',
+    pages: 371,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['composite shells', 'imperfections', 'stability']
+  }),
+  entry({
+    id: 'semirog-orlik-1951-ball-bearing-steels-heat-treatment-temperature',
+    year: 1951,
+    defenceDate: '1951-07-03',
+    authorEn: 'V.N. Semirog-Orlik',
+    authorOriginal: 'СЕМИРОГ-ОРЛИК В.Н',
+    originalLanguage: 'ru',
+    titleEn: 'Mechanical Properties of Ball-Bearing Steels Depending on Heat-Treatment Regimes and Testing Temperature',
+    titleOriginal: 'Механические свойства шарикоподшипниковых сталей в зависимости от режимов термической обработки и температуры испытания',
+    degree: candidateTechnical,
+    bibliographyEn: 'Defended on 3 July 1951. Candidate dissertation. Institute of Structural Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1949. 260 pages.',
+    originalDetails: 'Защита 03.07.51. Дисс. к.т.н. / Ин-т строительной механики АН УССР. – Киев, 1949. – 260 с.',
+    pages: 260,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Structural Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['materials', 'steel', 'heat treatment']
+  }),
+  entry({
+    id: 'senchenkov-1975-thermomechanical-behaviour-viscoelastic-bodies',
+    year: 1975,
+    defenceDate: '1975-09-16',
+    authorEn: 'I.K. Senchenkov',
+    authorOriginal: 'СЕНЧЕНКОВ И.К',
+    originalLanguage: 'ru',
+    titleEn: 'Thermomechanical Behaviour of Some Viscoelastic Bodies of Finite Dimensions',
+    titleOriginal: 'Термомеханическое поведение некоторых вязкоупругих тел конечних размеров',
+    degree: candidatePhysical,
+    bibliographyEn: 'Defended on 16 September 1975. Candidate dissertation. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1975. 137 pages.',
+    originalDetails: 'Защита 16.09.75. Дисс. к.ф.-м.н. / Ин-т механики АН УССР. – Киев, 1975. – 137 с.',
+    pages: 137,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['thermomechanics', 'viscoelasticity', 'finite bodies']
+  }),
+  entry({
+    id: 'sivak-1984-natural-vibrations-buckling-thin-shells-revolution',
+    year: 1984,
+    defenceDate: '1984-05-08',
+    authorEn: 'Ernest F. Sivak',
+    authorOriginal: 'СИВАК Эрнест Федорович',
+    originalLanguage: 'ru',
+    titleEn: 'Natural Vibrations during Buckling of Thin Shells of Revolution',
+    titleOriginal: 'Собственные колебания при потере устойчивости тонких оболочек вращения',
+    degree: candidateTechnical,
+    specialtyCode: '01.02.03',
+    bibliographyEn: 'Defended on 8 May 1984. Candidate dissertation, specialty 01.02.03. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1984. 149 pages.',
+    originalDetails: 'Защита 08.05.84. Дисс. к.т.н. 01.02.03 / Ин-т механики АН УССР. – Киев, 1984. – 149 с.',
+    pages: 149,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['natural vibrations', 'buckling', 'thin shells']
+  }),
+  entry({
+    id: 'symchuk-2008-cylindrical-waves-hyperelastic-materials-internal-structure',
+    year: 2008,
+    defenceDate: '2008-02-26',
+    authorEn: 'Yaroslav V. Symchuk',
+    authorOriginal: 'СИМЧУК Ярослав Вікторович',
+    originalLanguage: 'uk',
+    titleEn: 'Features of Cylindrical Wave Propagation in Hyperelastic Materials with Internal Structure',
+    titleOriginal: 'Особливості поширення циліндричних хвиль в гіперпружних матеріалах з внутрішньою структурою',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 26 February 2008. Candidate dissertation, specialty 01.02.04. S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine. Kyiv, 2008. 171 pages.',
+    originalDetails: 'Захист 26.02.2008 р. Дис. к.ф.-м.н. 01.02.04 / Ін-т механіки ім. С.П.Тимошенка НАН України. – Київ, 2008. – 171 с.',
+    pages: 171,
+    placeEn: 'Kyiv',
+    institutionEn: 'S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine',
+    tags: ['cylindrical waves', 'hyperelastic materials', 'internal structure']
+  }),
+  entry({
     id: 'sinchylo-2005-plane-harmonic-waves-composite-materials',
-    sortLetter: 'S',
     year: 2005,
     defenceDate: '2005-02-22',
-    author: {
-      en: 'Serhii V. Sinchylo',
-      original: 'СІНЧИЛО Сергій Володимирович',
-      originalLanguage: 'uk'
-    },
-    title: {
-      en: 'Regularities of Propagation of Plane Harmonic Waves in Composite Materials',
-      original: 'Закономірності поширення плоских гармонічних хвиль в композитних матеріалах',
-      originalLanguage: 'uk',
-      originalNoteEn: 'Original title [in Ukrainian]'
-    },
-    degree: {
-      level: 'candidate-of-sciences',
-      en: 'Candidate of Physical and Mathematical Sciences',
-      fieldEn: 'Physical and Mathematical Sciences'
-    },
-    specialty: {
-      code: '01.02.04',
-      en: 'Mechanics of Deformable Solids'
-    },
-    bibliography: {
-      en: 'Defended on 22 February 2005. Candidate dissertation, specialty 01.02.04. S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine. Kyiv, 2005. 158 pages.',
-      originalDetails: 'Захист 22.02.2005 р. Дис. к.ф.-м.н. 01.02.04 / Ін-т механіки ім. С.П.Тимошенка НАН України. – Київ, 2005. – 158 с.',
-      originalLanguage: 'uk',
-      pages: 158,
-      placeEn: 'Kyiv',
-      institutionEn: 'S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine'
-    },
+    authorEn: 'Serhii V. Sinchylo',
+    authorOriginal: 'СІНЧИЛО Сергій Володимирович',
+    originalLanguage: 'uk',
+    titleEn: 'Regularities of Propagation of Plane Harmonic Waves in Composite Materials',
+    titleOriginal: 'Закономірності поширення плоских гармонічних хвиль в композитних матеріалах',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 22 February 2005. Candidate dissertation, specialty 01.02.04. S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine. Kyiv, 2005. 158 pages.',
+    originalDetails: 'Захист 22.02.2005 р. Дис. к.ф.-м.н. 01.02.04 / Ін-т механіки ім. С.П.Тимошенка НАН України. – Київ, 2005. – 158 с.',
+    pages: 158,
+    placeEn: 'Kyiv',
+    institutionEn: 'S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine',
     tags: ['wave propagation', 'harmonic waves', 'composite materials']
-  }
+  }),
+  entry({
+    id: 'sinyavskaya-1961-wear-resistance-piston-rings-galvanic-coatings',
+    year: 1961,
+    defenceDate: '1961-10-24',
+    authorEn: 'M.D. Sinyavskaya',
+    authorOriginal: 'СИНЯВСКАЯ М.Д',
+    originalLanguage: 'ru',
+    titleEn: 'Increasing Wear Resistance of Piston Rings of Internal Combustion Engines by Galvanic Coatings',
+    titleOriginal: 'Увеличение износостойкости поршневих колец двигателей внутреннего сгорания путем гальванических покрытий',
+    degree: candidateTechnical,
+    bibliographyEn: 'Defended on 24 October 1961. Candidate dissertation. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1961. 202 pages.',
+    originalDetails: 'Защита 24.10.61. Дисс. к.т.н. / Ин-т механики АН УССР. – Киев, 1961. – 202 с.',
+    pages: 202,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['wear resistance', 'piston rings', 'galvanic coatings']
+  }),
+  entry({
+    id: 'skosarenko-1981-stress-strain-conical-ribbed-shells-dynamic-loading',
+    year: 1981,
+    authorEn: 'Yurii V. Skosarenko',
+    authorOriginal: 'СКОСАРЕНКО Юрий Валентинович',
+    originalLanguage: 'ru',
+    titleEn: 'Stress-Strain State of Conical Ribbed Shells under Dynamic Loading',
+    titleOriginal: 'Исследование напряженно-деформированного состояния конических ребристих оболочек при динамическом нагружении',
+    degree: candidateTechnical,
+    specialtyCode: '01.02.03',
+    bibliographyEn: 'Defended in 1981. Candidate dissertation, specialty 01.02.03. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1981. 149 pages.',
+    originalDetails: 'Защита 1981 г. Дисс. к.т.н. 01.02.03 / Ин-т механики АН УССР. – Киев, 1981. – 149 с.',
+    pages: 149,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['conical shells', 'ribbed shells', 'dynamic loading']
+  }),
+  entry({
+    id: 'skripka-1980-stress-state-bodies-revolution-paraboloidal-surfaces',
+    year: 1980,
+    defenceDate: '1980-04-29',
+    authorEn: 'Vladimir I. Skripka',
+    authorOriginal: 'СКРИПКА Владимир Иванович',
+    originalLanguage: 'ru',
+    titleEn: 'Stress State of Bodies of Revolution Bounded by Paraboloidal Surfaces',
+    titleOriginal: 'Напряженное состояние тел. Вращения ограниченнных параболоидальными поверхностями',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 29 April 1980. Candidate dissertation, specialty 01.02.04. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1980. 149 pages.',
+    originalDetails: 'Защита 29.04.80. Дисс. к.ф.-м.н. 01.02.04 / Ин-т механики АН УССР. – Киев, 1980. – 149 с.',
+    pages: 149,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['bodies of revolution', 'paraboloidal surfaces', 'stress state']
+  }),
+  entry({
+    id: 'skrypnik-2002-linear-invariant-relations-rigid-body-fixed-point',
+    year: 2002,
+    defenceDate: '2002-01-29',
+    authorEn: 'Svetlana V. Skrypnik',
+    authorOriginal: 'СКРЫПНИК Светлана Валентиновна',
+    originalLanguage: 'ru',
+    titleEn: 'Two Linear Invariant Relations in Problems of Dynamics of a Rigid Body with a Fixed Point',
+    titleOriginal: 'Два линейных инвариантных соотношения в задачах динамики твердого тела, имеющего неподвижную точку',
+    degree: candidatePhysical,
+    bibliographyEn: 'Defended on 29 January 2002. Candidate dissertation. Institute of Applied Mathematics and Mechanics of the NAS of Ukraine. Donetsk, 2001. 152 pages.',
+    originalDetails: 'Защита 29.01.2002 г. Дисс. к.ф.-м.н. / Ин-т прикладной математики и механики НАН Украины. – Донецк, 2001. – 152 с.',
+    pages: 152,
+    placeEn: 'Donetsk',
+    institutionEn: 'Institute of Applied Mathematics and Mechanics of the NAS of Ukraine',
+    tags: ['rigid body dynamics', 'invariant relations', 'fixed point']
+  }),
+  entry({
+    id: 'slynko-2009-stability-motion-mechanical-systems-hybrid-models',
+    year: 2009,
+    defenceDate: '2009-05-26',
+    authorEn: 'Vitaliy I. Slynko',
+    authorOriginal: 'СЛЫНЬКО Виталий Иванович',
+    originalLanguage: 'ru',
+    titleEn: 'Stability of Motion of Mechanical Systems: Hybrid Models',
+    titleOriginal: 'Устойчивость движения механических систем: Гибридные модели',
+    degree: doctorPhysical,
+    specialtyCode: '01.02.01',
+    bibliographyEn: 'Defended on 26 May 2009. Doctoral dissertation, specialty 01.02.01. S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine. Kyiv, 2009. 336 pages.',
+    originalDetails: 'Защита 26.05.2009 г. Дисс. д.ф.-м.н. 01.02.01 / Ин-т механики им. С.П.Тимошенко НАН Украины. – Киев, 2009. – 336 с.',
+    pages: 336,
+    placeEn: 'Kyiv',
+    institutionEn: 'S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine',
+    tags: ['stability of motion', 'mechanical systems', 'hybrid models']
+  }),
+  entry({
+    id: 'sokolova-2011-free-vibrations-cylindrical-shells-variable-thickness-spline',
+    year: 2011,
+    defenceDate: '2011-09-27',
+    authorEn: 'Lyudmila V. Sokolova',
+    authorOriginal: 'СОКОЛОВА Людмила Витальевна',
+    originalLanguage: 'ru',
+    titleEn: 'Free Vibrations of Circular Cylindrical Shells of Variable Thickness in a Refined Formulation Based on Spline Approximation',
+    titleOriginal: 'Решение задач о свободных колебаниях круговых цилиндрических оболочек переменной толщины в уточненной постановке на основе сплайн-аппроксимации',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 27 September 2011. Candidate dissertation, specialty 01.02.04. S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine. Kyiv, 2011. 138 pages.',
+    originalDetails: 'Защита 27.09.2011 г. Дисс. к.ф.-м.н. 01.02.04 / Ин-т механики им. С.П.Тимошенко НАН Украины. – Киев, 2011. – 138 с.',
+    pages: 138,
+    placeEn: 'Kyiv',
+    institutionEn: 'S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine',
+    tags: ['cylindrical shells', 'free vibrations', 'spline approximation']
+  }),
+  entry({
+    id: 'soltanov-1977-temperature-fields-thermoelastic-stresses-two-phase-solids',
+    year: 1977,
+    defenceDate: '1977-11-14',
+    authorEn: 'N.S. Soltanov',
+    authorOriginal: 'СОЛТАНОВ Н.С',
+    originalLanguage: 'ru',
+    titleEn: 'Temperature Fields and Thermoelastic Stresses in Two-Phase Solids',
+    titleOriginal: 'Температурные поля и термоупругие напряжения в двухфазных твердых телах',
+    degree: candidatePhysical,
+    bibliographyEn: 'Defended on 14 November 1977. Candidate dissertation. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1977. 133 pages.',
+    originalDetails: 'Защита 14.11.77. Дисс. к.ф.-м.н. / Ин-т механики АН УССР. – Киев, 1977. – 133 с.',
+    pages: 133,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['temperature fields', 'thermoelastic stresses', 'two-phase solids']
+  }),
+  entry({
+    id: 'stavraki-1949-spatial-rectangular-frames-thin-walled-rods',
+    year: 1949,
+    defenceDate: '1949-01-18',
+    authorEn: 'L.N. Stavraki',
+    authorOriginal: 'СТАВРАКИ Л.Н',
+    originalLanguage: 'ru',
+    titleEn: 'Calculation of Spatial Rectangular Frames Made of Thin-Walled Rods for Strength and Overall Stability',
+    titleOriginal: 'Расчет пространственных прямоугольных рам из тонкостенных стержней на прочность и общую устойчивость',
+    degree: candidateTechnical,
+    bibliographyEn: 'Defended on 18 January 1949. Candidate dissertation. Institute of Structural Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1949. 226 pages.',
+    originalDetails: 'Защита 18.01.49. Дисс. к.т.н. / Ин-т строительной механики АН УССР. – Киев, 1949. – 226 с.',
+    pages: 226,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Structural Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['thin-walled rods', 'spatial frames', 'stability']
+  }),
+  entry({
+    id: 'starikov-1985-axisymmetric-stress-state-elastic-medium-inhomogeneities',
+    year: 1985,
+    defenceDate: '1985-12-31',
+    authorEn: 'Vladimir A. Starikov',
+    authorOriginal: 'СТАРИКОВ Владимир Анатольевич',
+    originalLanguage: 'ru',
+    titleEn: 'Axisymmetric Stress State of an Elastic Medium near Inhomogeneities of Complex Shape under Dynamic Steady-State Loading',
+    titleOriginal: 'Осесимметричное напряженное состяние упругой среды около неоднородностей сложной формы при динамических стационарных нагружениях',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 31 December 1985. Candidate dissertation, specialty 01.02.04. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1985. 146 pages.',
+    originalDetails: 'Защита 31.12.85. Дисс. к.ф.-м.н. 01.02.04 / Ин-т механики АН УССР. – Киев, 1985. – 146 с.',
+    pages: 146,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['elastic medium', 'inhomogeneities', 'dynamic loading']
+  }),
+  entry({
+    id: 'staroverova-1949-stresses-hoisting-ropes',
+    year: 1949,
+    defenceDate: '1949-03-07',
+    authorEn: 'V.A. Staroverova',
+    authorOriginal: 'СТАРОВЕРОВА В.А',
+    originalLanguage: 'ru',
+    titleEn: 'On Stresses in Hoisting Ropes',
+    titleOriginal: 'О напряжениях в подъемных канатах',
+    degree: candidateTechnical,
+    bibliographyEn: 'Defended on 7 March 1949. Candidate dissertation. Institute of Mining Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1948. 111 pages.',
+    originalDetails: 'Защита 07.03.49. Дисс. к.т.н. / Ин-т горной механики АН УССР. – Киев, 1948. – 111 с.',
+    pages: 111,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mining Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['hoisting ropes', 'stress analysis', 'mining mechanics']
+  }),
+  entry({
+    id: 'steblyanko-1996-nonstationary-thermoelastoplasticity-composite-bodies',
+    year: 1996,
+    defenceDate: '1996-03-26',
+    authorEn: 'Pavel A. Steblyanko',
+    authorOriginal: 'СТЕБЛЯНКО Павел Алексеевич',
+    originalLanguage: 'ru',
+    titleEn: 'Spatial Nonstationary Problems of Thermoelastoplasticity Theory for Composite Bodies',
+    titleOriginal: 'Пространственные нестационарные задачи теории термоупругопластичности для составных тел',
+    degree: doctorPhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 26 March 1996. Doctoral dissertation, specialty 01.02.04. Institute of Mechanics of the NAS of Ukraine. Dniprodzerzhynsk, 1996. 273 pages.',
+    originalDetails: 'Защита 26.03.96. Дисс. д.ф.-м.н. 01.02.04 / Ин-т механики НАН Украины. – Днепродзержинск, 1996. – 273 с.',
+    pages: 273,
+    placeEn: 'Dniprodzerzhynsk',
+    institutionEn: 'Institute of Mechanics of the NAS of Ukraine',
+    tags: ['thermoelastoplasticity', 'nonstationary problems', 'composite bodies']
+  }),
+  entry({
+    id: 'stepanenko-1988-statics-orthotropic-shells-plates-variable-stiffness',
+    year: 1988,
+    defenceDate: '1988-12-17',
+    authorEn: 'Nikolai G. Stepanenko',
+    authorOriginal: 'СТЕПАНЕНКО Николай Григорьевич',
+    originalLanguage: 'ru',
+    titleEn: 'Static Problems for Orthotropic Shells of Revolution and Rectangular Plates of Variable Stiffness Based on a Refined Model',
+    titleOriginal: 'Решение задач статики ортотропных оболочек вращения и прямоугольных пластин переменной жест кости на основе одного варианта утонченной модели',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 17 December 1988. Candidate dissertation, specialty 01.02.04. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1988. 135 pages.',
+    originalDetails: 'Защита 17.12.88. Дисс. к.ф.-м.н. 01.02.04 / Ин-т механики АН УССР. – Киев, 1988. – 135 с.',
+    pages: 135,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['orthotropic shells', 'rectangular plates', 'variable stiffness']
+  }),
+  entry({
+    id: 'stepanyuk-1965-coupled-vibrations-three-layer-shells-flows',
+    year: 1965,
+    defenceDate: '1965-06-15',
+    authorEn: 'V.V. Stepanyuk',
+    authorOriginal: 'СТЕПАНЮК В.В',
+    originalLanguage: 'ru',
+    titleEn: 'Coupled Vibrations of Three-Layer Shells of Revolution and Fluid and Gas Flows Passing through Them',
+    titleOriginal: 'Совместные коглебания трехслойных оболочек вращения и протеккающих в них потоков жидкости и газа',
+    degree: candidatePhysical,
+    bibliographyEn: 'Defended on 15 June 1965. Candidate dissertation. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1965. 158 pages.',
+    originalDetails: 'Защита 15.06.65. Дисс. к.ф.-м.н. / Ин-т механики АН УССР. – Киев, 1965. – 158 с.',
+    pages: 158,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['vibrations', 'three-layer shells', 'fluid and gas flows']
+  }),
+  entry({
+    id: 'storozhev-1979-three-dimensional-stress-state-plates-oscillatory-loading',
+    year: 1979,
+    defenceDate: '1979-11-20',
+    authorEn: 'V.I. Storozhev',
+    authorOriginal: 'СТОРОЖЕВ В.И',
+    originalLanguage: 'ru',
+    titleEn: 'Three-Dimensional Stress State of Plates under Dynamic Oscillatory Loading',
+    titleOriginal: 'Трехмерное напряженное состяние плит при динамических осциллирующих нагружениях',
+    degree: candidatePhysical,
+    bibliographyEn: 'Defended on 20 November 1979. Candidate dissertation. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1979. 168 pages.',
+    originalDetails: 'Защита 20.11.79. Дисс. к.ф.-м.н. / Ин-т механики АН УССР. – Киев, 1979. – 168 с.',
+    pages: 168,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['three-dimensional stress state', 'plates', 'oscillatory loading']
+  }),
+  entry({
+    id: 'storozhuk-1986-elastoplastic-cylindrical-shells-reinforced-circular-hole',
+    year: 1986,
+    defenceDate: '1986-10-28',
+    authorEn: 'Yevgeniy A. Storozhuk',
+    authorOriginal: 'СТОРОЖУК Евгений Анатольевич',
+    originalLanguage: 'ru',
+    titleEn: 'Elastoplastic State of Cylindrical Shells with a Reinforced Circular Hole',
+    titleOriginal: 'Упруго-пластическое состяние цилиндрических оболочек с подкрепленным круговым отверстием',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 28 October 1986. Candidate dissertation, specialty 01.02.04. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1982. 135 pages.',
+    originalDetails: 'Защита 28.10.86. Дисс. к.ф.-м.н. 01.02.04 / Ин-т механики АН УССР. – Киев, 1982. – 135 с.',
+    pages: 135,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['cylindrical shells', 'elastoplasticity', 'reinforced holes']
+  }),
+  entry({
+    id: 'storozhuk-2008-nonlinear-thin-shells-curvilinear-holes',
+    year: 2008,
+    defenceDate: '2008-02-26',
+    authorEn: 'Yevhenii A. Storozhuk',
+    authorOriginal: 'СТОРОЖУК Євген Анатолійович',
+    originalLanguage: 'uk',
+    titleEn: 'Two-Dimensional Physically and Geometrically Nonlinear Problems of Thin Shell Theory with Curvilinear Holes',
+    titleOriginal: 'Двомірні фізично і геометрично нелінійні задачі теорії тонких оболонок з криволінійними отворами',
+    degree: doctorPhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 26 February 2008. Doctoral dissertation, specialty 01.02.04. S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine. Kyiv, 2008. 291 pages.',
+    originalDetails: 'Захист 26.02.2008 р. Дис. д.ф.-м.н. 01.02.04 / Ін-т механіки ім. С.П.Тимошенка НАН України. – Київ, 2008. – 291 с.',
+    pages: 291,
+    placeEn: 'Kyiv',
+    institutionEn: 'S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine',
+    tags: ['thin shells', 'nonlinear mechanics', 'curvilinear holes']
+  }),
+  entry({
+    id: 'strelchenko-1982-stability-orthotropic-shells-variable-geometry',
+    year: 1982,
+    authorEn: 'Alexandra S. Strelchenko',
+    authorOriginal: 'СТРЕЛЬЧЕНКО Александра Саввична',
+    originalLanguage: 'ru',
+    titleEn: 'Numerical Solution of Stability Problems for Elastic Orthotropic Shells of Revolution with Variable Geometric Parameters under Axisymmetric Loads',
+    titleOriginal: 'Численное решение задач устойчивости упругих ортотропных оболочек вращения с переменными геометрическими параметрами при осесимметричных нагрузках',
+    degree: candidateTechnical,
+    specialtyCode: '01.02.03',
+    bibliographyEn: 'Defended in 1982. Candidate dissertation, specialty 01.02.03. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1982. 128 pages.',
+    originalDetails: 'Защита 1982 г. Дисс. к.т.н. 01.02.03 / Ин-т механики АН УССР. – Киев, 1982. – 128 с.',
+    pages: 128,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['orthotropic shells', 'stability', 'axisymmetric loads']
+  }),
+  entry({
+    id: 'stryhina-2008-transversely-isotropic-electroelastic-plates-shells-circular-holes',
+    year: 2008,
+    defenceDate: '2008-10-28',
+    authorEn: 'Oksana A. Stryhina',
+    authorOriginal: 'СТРИГІНА Оксана Анатоліївна',
+    originalLanguage: 'uk',
+    titleEn: 'Stress State of Moderately Thick Transversely Isotropic Elastic and Electroelastic Plates and Spherical Shells with Circular Holes',
+    titleOriginal: 'Напружений стан нетонких трансверсально-ізотропних пружних і електропружних пластин та сферичних оболонок з круговими отворами',
+    degree: candidatePhysical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 28 October 2008. Candidate dissertation, specialty 01.02.04. S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine. Kyiv, 2008. 166 pages.',
+    originalDetails: 'Захист 28.10.2008 р. Дис. к.ф.-м.н. 01.02.04 / Ін-т механіки ім. С.П.Тимошенка НАН України. – Київ, 2008. – 166 с.',
+    pages: 166,
+    placeEn: 'Kyiv',
+    institutionEn: 'S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine',
+    tags: ['transversely isotropic materials', 'electroelasticity', 'circular holes']
+  }),
+  entry({
+    id: 'stryuk-1982-elastoplastic-short-cylinders-nonisothermal-loading',
+    year: 1982,
+    authorEn: 'V.K. Stryuk',
+    authorOriginal: 'СТРЮК В.К',
+    originalLanguage: 'ru',
+    titleEn: 'Elastoplastic Stress State of Short Cylinders under Non-Isothermal Loading',
+    titleOriginal: 'Упруго-пластическое напряженное состояние коротких цилиндров при неизотермическом нагружении',
+    degree: candidateTechnical,
+    bibliographyEn: 'Defended in 1982. Candidate dissertation. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1973. 137 pages.',
+    originalDetails: 'Защита 1982 г. Дисс. к.т.н. / Ин-т механики АН УССР. – Киев, 1973. – 137 с.',
+    pages: 137,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['elastoplasticity', 'short cylinders', 'non-isothermal loading']
+  }),
+  entry({
+    id: 'studzinsky-1949-metal-coatings-cast-iron-friction-surfaces',
+    year: 1949,
+    defenceDate: '1949-10-04',
+    authorEn: 'N.M. Studzinsky',
+    authorOriginal: 'СТУДЗИНСКИЙ Н.М',
+    originalLanguage: 'ru',
+    titleEn: 'Metal Coatings of Cast-Iron Friction Surfaces',
+    titleOriginal: 'Металлические покрытия поверхностей трения чугуна',
+    degree: candidateTechnical,
+    bibliographyEn: 'Defended on 4 October 1949. Candidate dissertation. Institute of Structural Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1949. 127 pages.',
+    originalDetails: 'Защита 04.10.49. Дисс. к.т.н. / Ин-т строительной механики АН УССР. – Киев, 1949. – 127 с.',
+    pages: 127,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Structural Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['metal coatings', 'cast iron', 'friction surfaces']
+  }),
+  entry({
+    id: 'sushchenko-1989-shock-waves-bodies-revolution',
+    year: 1989,
+    defenceDate: '1989-10-31',
+    authorEn: 'Yevgeniy A. Sushchenko',
+    authorOriginal: 'СУЩЕНКО Евгений Алексеевич',
+    originalLanguage: 'ru',
+    titleEn: 'Problems of Complex Interaction of Shock Waves with Bodies of Revolution',
+    titleOriginal: 'Задачи сложного взаимодействия ударных волн с телами вращения',
+    degree: candidateTechnical,
+    specialtyCode: '01.02.04',
+    bibliographyEn: 'Defended on 31 October 1989. Candidate dissertation, specialty 01.02.04. Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR. Kyiv, 1989. 111 pages.',
+    originalDetails: 'Защита 31.10.89. Дисс. к.т.н. 01.02.04 / Ин-т механики АН УССР. – Киев, 1989. – 111 с.',
+    pages: 111,
+    placeEn: 'Kyiv',
+    institutionEn: 'Institute of Mechanics of the Academy of Sciences of the Ukrainian SSR',
+    tags: ['shock waves', 'bodies of revolution', 'wave interaction']
+  })
 ];

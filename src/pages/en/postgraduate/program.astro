@@ -1,0 +1,77 @@
+---
+import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../../data/site-en';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) return path;
+  const cleanPath = path.replace(/^\/inmech-site(?=\/)/, '');
+  return `${base}${cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`}`;
+}
+
+const programYears = [
+  ['2025', 'F1 Applied Mathematics', '/documents/postgraduate/program/onp/educational-program-2025.pdf', '/documents/postgraduate/program/curricula/curriculum-2025.pdf'],
+  ['2024', '113 Applied Mathematics', '/documents/postgraduate/program/onp/educational-program-2024.pdf', '/documents/postgraduate/program/curricula/curriculum-2024.pdf'],
+  ['2023', '113 Applied Mathematics', '/documents/postgraduate/program/onp/educational-program-2023.pdf', '/documents/postgraduate/program/curricula/curriculum-2023.pdf'],
+  ['2022', '113 Applied Mathematics', '/documents/postgraduate/program/onp/educational-program-2022.pdf', '/documents/postgraduate/program/curricula/curriculum-2022.pdf']
+];
+
+const courses = [
+  ['OC1', 'Philosophy of Science and Culture', '6', 'S. V. Vilchynska; I. I. Litus'],
+  ['OC2', 'Foreign Language for Professional Purposes for PhD Training to C1 Level', '8', 'L. M. Rubashova'],
+  ['OC3', 'Methodology, Organisation and Technology of Scientific Research in Mechanics', '6', 'Ya. O. Zhuk; N. V. Vasylieva'],
+  ['OC4', 'Advanced Course in Theoretical Mechanics', '4', 'I. L. Ivanov'],
+  ['OC5', 'Mechanics of Deformable Solids', '4', 'M. F. Selivanov'],
+  ['OC6', 'Numerical Methods for Solving Problems of Applied Mathematics', '4', 'I. V. Yanchevskyi'],
+  ['OC7', 'Pedagogy and Methods of Teaching Applied Mathematics', '2', 'M. Yu. Borysenko'],
+  ['OC8', 'Teaching Practice', '2', 'M. Yu. Borysenko'],
+  ['EC1', 'Nonlinear Theory of Shells with Openings', '4', 'Ye. A. Storozhuk; V. A. Maksymyuk'],
+  ['EC2', 'Analytical and Numerical Study of Stability and Fracture of Coated and Reinforced Composite Materials Using High-Performance Computing', '4', 'V. A. Dekret; O. L. Kipnis'],
+  ['EC3', 'Wave Propagation with Account of Structural Material Levels and Basic Deformation Properties', '4', 'V. M. Yurchuk'],
+  ['EC4', 'Fracture Mechanics of Viscoelastic Materials', '4', 'Yu. O. Chornoivan'],
+  ['EC5', 'Mathematical Models of Thermomechanics of Continua', '4', 'Ya. O. Zhuk'],
+  ['EC6', 'Dynamics of Structurally Heterogeneous Shells', '4', 'A. S. Kolyadiuk'],
+  ['EC7', 'Numerical Analysis of the Mechanical Behaviour of Shell Systems', '4', 'M. Yu. Borysenko'],
+  ['EC8', 'Stability and Motion Control of Complex Systems', '4', 'I. L. Ivanov'],
+  ['EC9', 'Methods for Determining Functions and Rheological Parameters in Nonlinear Viscoelasticity', '4', 'B. P. Maslov'],
+  ['EC10', 'Modern Numerical Methods for Applied Problems of Deformable Solid Mechanics', '4', 'I. V. Yanchevskyi']
+];
+
+const reviews = [
+  ['2026', 4],
+  ['2025', 2],
+  ['2024', 2],
+  ['2023', 4],
+  ['2022', 2]
+];
+
+const surveys = [
+  ['Survey of first-year postgraduate students, 2026', '/documents/postgraduate/program/surveys/2026/survey-1-kurs-02-2026.pdf'],
+  ['Survey results, 2025', '/documents/postgraduate/program/surveys/2025/survey-09-2025.pdf'],
+  ['OC3 survey, April 2026', '/documents/postgraduate/program/surveys/2026/survey-ok3-04-2026.pdf'],
+  ['OC4 survey, April 2026', '/documents/postgraduate/program/surveys/2026/survey-ok4-04-2026.pdf'],
+  ['OC5 survey, April 2026', '/documents/postgraduate/program/surveys/2026/survey-ok5-04-2026.pdf'],
+  ['OC6 survey, April 2026', '/documents/postgraduate/program/surveys/2026/survey-ok6-04-2026.pdf']
+];
+---
+
+<BaseLayoutEn
+  title={`Educational and scientific programme | ${siteEn.shortName}`}
+  description="Educational and scientific postgraduate programme: programme documents, curricula, courses, syllabi, stakeholder reviews and survey results."
+  activePage="education"
+>
+  <main class="postgraduate-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href={withBase('/en/postgraduate/')}>Postgraduate studies</a><span>›</span><span>Programme</span></nav>
+    <section class="page-hero"><p class="eyebrow">Educational and scientific programme</p><h1>Programme, curricula and courses</h1><p class="lead">This page provides programme documents, curricula, course components, syllabi links, stakeholder reviews and survey results for the postgraduate educational and scientific programme.</p><p><a href={withBase('/postgraduate/program/')}>Ukrainian version</a></p></section>
+
+    <section class="section-block"><div class="section-heading compact-header"><div><p class="eyebrow">Programme documents</p><h2>Educational programmes and curricula</h2></div><p>Official PDF files are provided in Ukrainian.</p></div><div class="document-grid">{programYears.map(([year, specialty, programHref, curriculumHref]) => (<article class="document-card"><span>{year}</span><h3>{specialty}</h3><a href={withBase(programHref)} target="_blank" rel="noopener noreferrer">Educational programme</a><a href={withBase(curriculumHref)} target="_blank" rel="noopener noreferrer">Curriculum</a></article>))}</div></section>
+
+    <section class="section-block"><div class="section-heading compact-header"><div><p class="eyebrow">Course components</p><h2>Courses and credits</h2></div></div><div class="table-panel"><div class="table-scroll"><table><thead><tr><th>Code</th><th>Course</th><th>Credits</th><th>Teachers</th></tr></thead><tbody>{courses.map(([code, course, credits, teachers]) => (<tr><td>{code}</td><td>{course}</td><td>{credits}</td><td>{teachers}</td></tr>))}</tbody></table></div></div></section>
+
+    <section class="section-block"><div class="section-heading compact-header"><div><p class="eyebrow">Quality assurance</p><h2>Reviews and surveys</h2></div></div><div class="review-grid">{reviews.map(([year, count]) => (<article class="info-card"><span>{year}</span><h3>{count} stakeholder review{count === 1 ? '' : 's'}</h3><p>Reviews are available in the Ukrainian source section.</p></article>))}</div><div class="document-grid survey-grid">{surveys.map(([title, href]) => (<a class="document-card" href={withBase(href)} target="_blank" rel="noopener noreferrer"><span>Survey</span><strong>{title}</strong></a>))}</div></section>
+  </main>
+</BaseLayoutEn>
+
+<style>
+  .postgraduate-page{max-width:1180px;margin:0 auto;padding:46px 20px 72px}.breadcrumbs{display:flex;gap:10px;align-items:center;margin-bottom:22px;color:var(--muted);font-weight:750}.page-hero,.document-card,.table-panel,.info-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow)}.page-hero{padding:clamp(28px,5vw,52px)}.page-hero h1{margin:0 0 18px;font-size:clamp(2.2rem,4.8vw,4.3rem);line-height:1.04;letter-spacing:-.04em}.lead{max-width:860px;color:var(--muted);font-size:1.08rem;line-height:1.7}.section-block{margin-top:34px}.document-grid,.review-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.document-card,.info-card{display:flex;min-height:170px;flex-direction:column;padding:24px;color:var(--text);text-decoration:none}.document-card span,.info-card span{width:fit-content;margin-bottom:12px;padding:6px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent-dark);font-size:.78rem;font-weight:850}.document-card a{margin-top:8px;font-weight:800}.table-panel{padding:0;overflow:hidden}.table-scroll{overflow-x:auto}table{width:100%;border-collapse:collapse}th,td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:var(--surface-soft);font-weight:850}.survey-grid{margin-top:18px}@media(max-width:860px){.document-grid,.review-grid{grid-template-columns:1fr}}
+</style>

@@ -26,15 +26,6 @@ function withBase(path: string) {
 
 export function getStaticPaths() {
   const genericPages: Record<string, PageData> = {
-    doctoral: {
-      title: 'Doctoral studies',
-      description: 'Doctoral studies at the Institute.',
-      activePage: 'education',
-      eyebrow: 'Education and research training',
-      heading: 'Doctoral studies',
-      lead: 'Doctoral studies support advanced research leading to the preparation of doctoral dissertations and the development of independent scientific directions.',
-      links: [{ title: 'Ukrainian version', href: '/doctoral/' }]
-    },
     dissertations: {
       title: 'Dissertation defences',
       description: 'Information about dissertation defences at the Institute.',

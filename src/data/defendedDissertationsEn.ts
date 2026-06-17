@@ -16,6 +16,7 @@ import { defendedDissertationsEnM } from './defendedDissertationsEnM';
 import { defendedDissertationsEnM2 } from './defendedDissertationsEnM2';
 import { defendedDissertationsEnN } from './defendedDissertationsEnN';
 import { defendedDissertationsEnO } from './defendedDissertationsEnO';
+import { defendedDissertationsEnP } from './defendedDissertationsEnP';
 import { defendedDissertationsEnS } from './defendedDissertationsEnS';
 import { defendedDissertationsEnV } from './defendedDissertationsEnV';
 import { defendedDissertationsEnZ } from './defendedDissertationsEnZ';
@@ -164,6 +165,7 @@ export const defendedDissertationsEn: DefendedDissertationEntryEn[] = [
   ...defendedDissertationsEnM2,
   ...defendedDissertationsEnN,
   ...defendedDissertationsEnO,
+  ...defendedDissertationsEnP,
   ...defendedDissertationsEnS,
   ...defendedDissertationsEnV,
   ...defendedDissertationsEnZ,

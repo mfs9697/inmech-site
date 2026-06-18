@@ -114,29 +114,22 @@ const englishAlternativeUrl = absoluteUrl(englishAlternativePath);
         const label = block.querySelector(':scope > span');
         const publicationList = block.querySelector('.publication-list');
 
-        if (!label || !publicationList || block.querySelector('.publication-toggle')) {
+        if (!label || !publicationList || block.querySelector('.publication-details')) {
           return;
         }
 
         const count = publicationList.querySelectorAll('li').length;
-        const toggle = document.createElement('button');
-        toggle.type = 'button';
-        toggle.className = 'publication-toggle';
-        toggle.setAttribute('aria-expanded', 'false');
-        toggle.textContent = `Публікації (${count})`;
+        const details = document.createElement('details');
+        details.className = 'publication-details';
 
-        publicationList.hidden = true;
-        label.replaceWith(toggle);
+        const summary = document.createElement('summary');
+        summary.textContent = `Публікації (${count})`;
 
-        toggle.addEventListener('click', () => {
-          const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
-          toggle.setAttribute('aria-expanded', String(!isExpanded));
-          publicationList.hidden = isExpanded;
-        });
+        details.append(summary, publicationList);
+        block.replaceWith(details);
       });
     </script>
     <style is:global>
-      .publication-toggle,
       .publication-details summary,
       .materials-details summary {
         display: inline-flex;
@@ -154,14 +147,6 @@ const englishAlternativeUrl = absoluteUrl(englishAlternativePath);
         font-size: 0.78rem;
         font-weight: 850;
         line-height: 1.2;
-      }
-
-      .publication-toggle::after {
-        content: '▾';
-      }
-
-      .publication-toggle[aria-expanded='true']::after {
-        content: '▴';
       }
     </style>
   </body>

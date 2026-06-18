@@ -33,8 +33,10 @@ const englishPaths = new Set([
   '/en/services/',
   '/en/education/',
   '/en/postgraduate/',
+  '/en/postgraduate/students/',
   '/en/doctoral/',
   '/en/dissertations/',
+  '/en/defended-dissertations/',
   '/en/license-and-regulations/',
   '/en/trust-box/',
   '/en/nmr/',
@@ -107,6 +109,54 @@ const englishAlternativeUrl = absoluteUrl(englishAlternativePath);
           menuToggle.setAttribute('aria-expanded', String(isOpen));
         });
       }
+
+      document.querySelectorAll('.student-info-block').forEach((block) => {
+        const label = block.querySelector(':scope > span');
+        const publicationList = block.querySelector('.publication-list');
+
+        if (!label || !publicationList || block.querySelector('.publication-toggle')) {
+          return;
+        }
+
+        const count = publicationList.querySelectorAll('li').length;
+        const toggle = document.createElement('button');
+        toggle.type = 'button';
+        toggle.className = 'publication-toggle';
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.textContent = `Публікації (${count})`;
+
+        publicationList.hidden = true;
+        label.replaceWith(toggle);
+
+        toggle.addEventListener('click', () => {
+          const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+          toggle.setAttribute('aria-expanded', String(!isExpanded));
+          publicationList.hidden = isExpanded;
+        });
+      });
     </script>
+    <style>
+      .publication-toggle {
+        width: fit-content;
+        margin-bottom: 10px;
+        padding: 6px 10px;
+        border: 0;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent-dark);
+        cursor: pointer;
+        font: inherit;
+        font-size: 0.78rem;
+        font-weight: 850;
+      }
+
+      .publication-toggle::after {
+        content: ' ▾';
+      }
+
+      .publication-toggle[aria-expanded='true']::after {
+        content: ' ▴';
+      }
+    </style>
   </body>
 </html>

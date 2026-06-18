@@ -1,0 +1,287 @@
+---
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../data/site-en';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+
+const principles = [
+  {
+    title: 'Perceivable',
+    text: 'Website information is provided in text form, with logical headings, a clear page structure and text alternatives for important images.'
+  },
+  {
+    title: 'Operable',
+    text: 'Navigation elements, links and buttons should be clear and usable on different devices, including keyboard access where applicable.'
+  },
+  {
+    title: 'Understandable',
+    text: 'Website materials are structured so that users can quickly find the required section, document or contact information.'
+  },
+  {
+    title: 'Robust',
+    text: 'Pages are built using standard web technologies, which supports compatibility with modern browsers and assistive technologies.'
+  }
+];
+
+const measures = [
+  'semantic HTML page structure;',
+  'logical heading hierarchy;',
+  'responsive design for desktops, tablets and mobile devices;',
+  'text alternatives for important images;',
+  'clear and meaningful link text;',
+  'sufficient contrast for main text and navigation elements;',
+  'browser-based page scaling;',
+  'structured lists, tables and cards for large information sections.'
+];
+---
+
+<BaseLayoutEn
+  title={`Accessibility policy | ${siteEn.shortName}`}
+  description="Accessibility policy of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine website."
+  activePage="home"
+>
+  <main class="accessibility-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumbs">
+      <a href={withBase('/en/')}>Home</a>
+      <span>›</span>
+      <span>Accessibility policy</span>
+    </nav>
+
+    <section class="accessibility-hero">
+      <p class="eyebrow">Website accessibility</p>
+      <h1>Accessibility policy</h1>
+      <p class="lead">
+        The S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine aims to provide convenient access
+        to website materials for all users, regardless of technical means, viewing conditions or individual needs.
+      </p>
+    </section>
+
+    <section class="section-block two-column">
+      <article class="info-panel">
+        <p class="eyebrow">General statement</p>
+        <h2>Our approach</h2>
+        <p>
+          The website is developed with attention to the basic principles of web accessibility:
+          clear page structure, consistent navigation, readable text, responsiveness for different screens,
+          and compatibility with modern browsers and assistive technologies.
+        </p>
+        <p>
+          The website is developed as a static web resource using standard web technologies, which helps
+          keep pages fast, predictable and structurally consistent.
+        </p>
+      </article>
+
+      <article class="info-panel accent-panel">
+        <p class="eyebrow">Guideline</p>
+        <h2>WCAG principles</h2>
+        <p>
+          The website work takes into account the main WCAG principles: content should be perceivable,
+          operable, understandable and robust. These principles are used as practical guidance for improving accessibility.
+        </p>
+      </article>
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Principles</p>
+          <h2>What is considered during website development</h2>
+        </div>
+      </div>
+
+      <div class="principles-grid">
+        {principles.map((principle) => (
+          <article class="principle-card">
+            <h3>{principle.title}</h3>
+            <p>{principle.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section-block two-column">
+      <article class="info-panel">
+        <p class="eyebrow">Practical measures</p>
+        <h2>What has already been considered</h2>
+        <ul class="check-list">
+          {measures.map((measure) => <li>{measure}</li>)}
+        </ul>
+      </article>
+
+      <article class="info-panel">
+        <p class="eyebrow">Limitations</p>
+        <h2>Archival materials and external documents</h2>
+        <p>
+          Some PDF documents, archival materials or external resources may have different levels of accessibility,
+          especially if they were created earlier or hosted on third-party websites.
+        </p>
+        <p>
+          When the website is updated, such materials are structured, checked and supplemented with clear link titles whenever possible.
+        </p>
+      </article>
+    </section>
+
+    <section class="section-block feedback-panel">
+      <div>
+        <p class="eyebrow">Feedback</p>
+        <h2>Report an accessibility problem</h2>
+        <p>
+          If you encounter an accessibility issue, a broken link, difficulty viewing a document or another technical barrier
+          while using the website, please report it to the official e-mail address of the Institute.
+        </p>
+      </div>
+      <a class="mail-card" href={`mailto:${siteEn.email}`}>
+        <span>E-mail</span>
+        <strong>{siteEn.email}</strong>
+      </a>
+    </section>
+  </main>
+</BaseLayoutEn>
+
+<style>
+  .accessibility-page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 46px 20px 72px;
+  }
+
+  .breadcrumbs {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 22px;
+    color: var(--muted);
+    font-weight: 750;
+  }
+
+  .accessibility-hero,
+  .info-panel,
+  .principle-card,
+  .feedback-panel,
+  .mail-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .accessibility-hero {
+    padding: clamp(28px, 5vw, 52px);
+  }
+
+  .accessibility-hero h1 {
+    margin: 0 0 18px;
+    font-size: clamp(2.3rem, 5vw, 4.4rem);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+  }
+
+  .lead {
+    max-width: 900px;
+    color: var(--muted);
+    font-size: 1.08rem;
+    line-height: 1.7;
+  }
+
+  .section-block {
+    margin-top: 34px;
+  }
+
+  .two-column {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .info-panel,
+  .principle-card,
+  .feedback-panel {
+    padding: 24px;
+  }
+
+  .info-panel h2,
+  .principle-card h3,
+  .feedback-panel h2 {
+    margin-top: 0;
+  }
+
+  .info-panel p,
+  .principle-card p,
+  .feedback-panel p,
+  .check-list {
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .accent-panel {
+    background: linear-gradient(145deg, var(--accent-dark), var(--accent));
+    color: #fff;
+  }
+
+  .accent-panel .eyebrow,
+  .accent-panel p {
+    color: rgba(255, 255, 255, 0.86);
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .check-list {
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  .check-list li {
+    margin-bottom: 9px;
+  }
+
+  .feedback-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .mail-card {
+    display: flex;
+    min-height: 140px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 22px;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .mail-card:hover {
+    text-decoration: none;
+  }
+
+  .mail-card span {
+    margin-bottom: 8px;
+    color: var(--accent-dark);
+    font-weight: 850;
+  }
+
+  .mail-card strong {
+    overflow-wrap: anywhere;
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 1080px) {
+    .principles-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 860px) {
+    .two-column,
+    .principles-grid,
+    .feedback-panel {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

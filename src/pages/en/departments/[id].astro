@@ -85,6 +85,16 @@ function englishPeopleUrl(url: string) {
                     {section.items.map((item) => <li>{item}</li>)}
                   </ul>
                 )}
+                {section.figures.length > 0 && (
+                  <div class="figure-grid">
+                    {section.figures.map((figure) => (
+                      <figure class="content-figure">
+                        <img src={withBase(figure.src)} alt={figure.alt} />
+                        <figcaption>{figure.caption}</figcaption>
+                      </figure>
+                    ))}
+                  </div>
+                )}
               </section>
             ))}
           </>
@@ -138,3 +148,10 @@ function englishPeopleUrl(url: string) {
     </div>
   </section>
 </BaseLayoutEn>
+
+<style>
+  .figure-grid {
+    display: grid;
+    gap: 18px;
+  }
+</style>

@@ -1,0 +1,54 @@
+name: Deploy Astro site to inmech.kyiv.ua
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      INMECH_HOST: ${{ secrets.INMECH_HOST }}
+      INMECH_USER: ${{ secrets.INMECH_USER }}
+      INMECH_PATH: ${{ secrets.INMECH_PATH }}
+      INMECH_PORT: ${{ secrets.INMECH_PORT }}
+      INMECH_SSH_PRIVATE_KEY: ${{ secrets.INMECH_SSH_PRIVATE_KEY }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Astro site
+        run: npm run build
+
+      - name: Prepare SSH key
+        run: |
+          : "${INMECH_HOST:?Missing secret INMECH_HOST}"
+          : "${INMECH_USER:?Missing secret INMECH_USER}"
+          : "${INMECH_PATH:?Missing secret INMECH_PATH}"
+          : "${INMECH_SSH_PRIVATE_KEY:?Missing secret INMECH_SSH_PRIVATE_KEY}"
+
+          PORT="${INMECH_PORT:-22}"
+
+          mkdir -p ~/.ssh
+          echo "$INMECH_SSH_PRIVATE_KEY" > ~/.ssh/inmech_deploy_key
+          chmod 600 ~/.ssh/inmech_deploy_key
+          ssh-keyscan -p "$PORT" "$INMECH_HOST" >> ~/.ssh/known_hosts
+
+      - name: Deploy dist to server
+        run: |
+          PORT="${INMECH_PORT:-22}"
+
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/inmech_deploy_key -p $PORT" \
+            ./dist/ \
+            "$INMECH_USER@$INMECH_HOST:$INMECH_PATH/"

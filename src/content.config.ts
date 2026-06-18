@@ -34,7 +34,14 @@ const departments = defineCollection({
       z.object({
         title: z.string(),
         paragraphs: z.array(z.string()).default([]),
-        items: z.array(z.string()).default([])
+        items: z.array(z.string()).default([]),
+        figures: z.array(
+          z.object({
+            src: z.string(),
+            alt: z.string(),
+            caption: z.string()
+          })
+        ).default([])
       })
     ).default([]),
     order: z.number(),

@@ -114,18 +114,17 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
               <h3 id="tag-filter-heading">Browse by research topic</h3>
             </div>
             <p>
-              Choose a topic tag to narrow the catalogue. The filter works on the current English entries and does not change the source data.
+              Use the compact selector to narrow the catalogue by one topic tag. The filter works on the current English entries and does not change the source data.
             </p>
           </div>
-          <div class="tag-filter-list" role="list" aria-label="Dissertation topic filters">
-            <button class="tag-filter-button is-active" type="button" data-filter-tag="__all__" aria-pressed="true">
-              All topics
-            </button>
-            {allTags.map((tag) => (
-              <button class="tag-filter-button" type="button" data-filter-tag={tag} aria-pressed="false">
-                {tag}
-              </button>
-            ))}
+          <div class="tag-filter-controls">
+            <label for="tag-filter-select">Research topic</label>
+            <select id="tag-filter-select" class="tag-filter-select" data-filter-select>
+              <option value="__all__">All research topics</option>
+              {allTags.map((tag) => (
+                <option value={tag}>{tag}</option>
+              ))}
+            </select>
           </div>
           <p class="catalog-filter-status" data-filter-status>{totalEntries} entries shown</p>
         </div>
@@ -204,7 +203,7 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
 </BaseLayoutEn>
 
 <script is:inline>
-  const tagFilterButtons = Array.from(document.querySelectorAll('[data-filter-tag]'));
+  const tagFilterSelect = document.querySelector('[data-filter-select]');
   const entryCards = Array.from(document.querySelectorAll('[data-entry-card]'));
   const letterGroups = Array.from(document.querySelectorAll('[data-letter-group]'));
   const filterStatus = document.querySelector('[data-filter-status]');
@@ -216,12 +215,6 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
   }
 
   function applyTagFilter(selectedTag) {
-    tagFilterButtons.forEach((button) => {
-      const isSelected = button.dataset.filterTag === selectedTag;
-      button.classList.toggle('is-active', isSelected);
-      button.setAttribute('aria-pressed', String(isSelected));
-    });
-
     let visibleTotal = 0;
 
     entryCards.forEach((card) => {
@@ -247,8 +240,8 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
     }
   }
 
-  tagFilterButtons.forEach((button) => {
-    button.addEventListener('click', () => applyTagFilter(button.dataset.filterTag || allTagValue));
+  tagFilterSelect?.addEventListener('change', (event) => {
+    applyTagFilter(event.target.value || allTagValue);
   });
 </script>
 
@@ -395,36 +388,34 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
     letter-spacing: -0.02em;
   }
 
-  .tag-filter-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+  .tag-filter-controls {
+    display: grid;
+    grid-template-columns: minmax(160px, 0.28fr) minmax(0, 1fr);
+    gap: 12px;
+    align-items: center;
   }
 
-  .tag-filter-button {
+  .tag-filter-controls label {
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 850;
+  }
+
+  .tag-filter-select {
+    width: 100%;
+    min-height: 44px;
     border: 1px solid var(--line);
-    border-radius: 999px;
+    border-radius: 14px;
     background: var(--surface-soft);
     color: var(--text);
-    cursor: pointer;
     font: inherit;
-    font-size: 0.9rem;
-    font-weight: 800;
-    padding: 8px 12px;
-    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    font-weight: 750;
+    padding: 9px 12px;
   }
 
-  .tag-filter-button:hover,
-  .tag-filter-button:focus-visible {
+  .tag-filter-select:focus-visible {
     border-color: var(--accent);
-    color: var(--accent);
-    transform: translateY(-1px);
-  }
-
-  .tag-filter-button.is-active {
-    border-color: var(--accent);
-    background: var(--accent);
-    color: #fff;
+    outline: 3px solid var(--accent-soft);
   }
 
   .catalog-filter-status {
@@ -566,7 +557,8 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
 
     .catalog-policy-panel,
     .compact-header,
-    .tag-filter-header {
+    .tag-filter-header,
+    .tag-filter-controls {
       grid-template-columns: 1fr;
     }
   }

@@ -135,8 +135,13 @@ const englishAlternativeUrl = absoluteUrl(englishAlternativePath);
         });
       });
     </script>
-    <style>
-      .publication-toggle {
+    <style is:global>
+      .publication-toggle,
+      .publication-details summary,
+      .materials-details summary {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
         width: fit-content;
         margin-bottom: 10px;
         padding: 6px 10px;
@@ -148,14 +153,15 @@ const englishAlternativeUrl = absoluteUrl(englishAlternativePath);
         font: inherit;
         font-size: 0.78rem;
         font-weight: 850;
+        line-height: 1.2;
       }
 
       .publication-toggle::after {
-        content: ' ▾';
+        content: '▾';
       }
 
       .publication-toggle[aria-expanded='true']::after {
-        content: ' ▴';
+        content: '▴';
       }
     </style>
   </body>

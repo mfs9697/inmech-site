@@ -10,34 +10,198 @@ function withBase(path: string) {
 }
 const photoBase = '/people/';
 
-const studentGroups = [
+type LinkItem = [string, string];
+
+type Student = {
+  name: string;
+  nameUk: string;
+  photo: string;
+  topic: string;
+  supervisor: string;
+  publications: LinkItem[];
+  materials: number;
+};
+
+const studentGroups: { year: string; badge: string; students: Student[] }[] = [
   {
     year: 'Admission 2025',
     badge: '1st year',
     students: [
-      { name: 'Roman Hrysevych', nameUk: 'Грисевич Роман Юрійович', photo: `${photoBase}hrysevych.png`, topic: 'Theoretical and experimental modelling of deformation of hand prosthesis elements under static, quasi-static and dynamic loading', supervisor: 'Volodymyr A. Maksymyuk, Doctor of Physical and Mathematical Sciences', publications: 0, materials: 1 },
-      { name: 'Yurii Nazarchuk', nameUk: 'Назарчук Юрій Олександрович', photo: `${photoBase}nazarchuk.png`, topic: 'Fracture of viscoelastic piecewise-inhomogeneous materials with cohesive interfaces: application to asphalt concrete', supervisor: 'Mykhailo F. Selivanov, Doctor of Physical and Mathematical Sciences, Corresponding Member of the NAS of Ukraine', publications: 1, materials: 1 },
-      { name: 'Oleksandr Proshchenko', nameUk: 'Прощенко Олександр Анатолійович', photo: `${photoBase}proshchenko.png`, topic: 'Plane fracture problems for materials compressed along parallel cracks with centres shifted in the compression direction', supervisor: 'Volodymyr M. Nazarenko, Academician of the NAS of Ukraine', publications: 2, materials: 1 },
-      { name: 'Oleksii Syniavskyi', nameUk: 'Синявський Олексій Ігорович', photo: `${photoBase}syniavskyi.png`, topic: 'Compression of thin-film systems along the interface between a film and a substrate of finite thickness', supervisor: 'Volodymyr M. Nazarenko, Academician of the NAS of Ukraine', publications: 2, materials: 1 }
+      {
+        name: 'Roman Hrysevych',
+        nameUk: 'Грисевич Роман Юрійович',
+        photo: `${photoBase}hrysevych.png`,
+        topic: 'Theoretical and experimental modelling of deformation of hand prosthesis elements under static, quasi-static and dynamic loading',
+        supervisor: 'Volodymyr A. Maksymiuk, Doctor of Physical and Mathematical Sciences',
+        publications: [],
+        materials: 1
+      },
+      {
+        name: 'Yurii Nazarchuk',
+        nameUk: 'Назарчук Юрій Олександрович',
+        photo: `${photoBase}nazarchuk.png`,
+        topic: 'Fracture of viscoelastic piecewise-inhomogeneous materials with cohesive interfaces: application to asphalt concrete',
+        supervisor: 'Mykhailo F. Selivanov, Doctor of Physical and Mathematical Sciences, Corresponding Member of the NAS of Ukraine',
+        publications: [
+          ['Yu. Nazarchuk, M. Selivanov. Time-dependent propagation of a coin-shaped crack in viscoelastic solid within cohesive-zone framework. In: Book of Abstracts of the 7th International Conference “Fracture Mechanics of Materials and Structural Integrity”, Lviv, Ukraine, March 3–5, 2026, p. 71.', 'https://www.ipm.lviv.ua/fmsi2026/FMSI2026_Book%20of%20Abstracts.pdf']
+        ],
+        materials: 1
+      },
+      {
+        name: 'Oleksandr Proshchenko',
+        nameUk: 'Прощенко Олександр Анатолійович',
+        photo: `${photoBase}proshchenko.png`,
+        topic: 'Plane fracture problems for materials compressed along parallel cracks with centres shifted in the compression direction',
+        supervisor: 'Volodymyr M. Nazarenko, Academician of the NAS of Ukraine',
+        publications: [
+          ['Nazarenko V. M., Dekret V. A., Bystrov V. M., Proshchenko O. A. Local loss of stability in fiberglass under compression along a near-surface crack. In: Proceedings of the International Scientific Conference “Mathematical Problems of Technical Mechanics – 2025”, Dnipro, November 13–14, 2025, pp. 15–16.', ''],
+          ['Bystrov V. M., Dekret V. A., Zelenskyi V. S., Proshchenko O. A. Local loss of stability under compression of a fibre-metal laminate with near-surface delamination. In: Proceedings of the International Scientific Conference “Mathematical Problems of Technical Mechanics – 2025”, Dnipro, November 13–14, 2025, pp. 45–46.', '']
+        ],
+        materials: 1
+      },
+      {
+        name: 'Oleksii Syniavskyi',
+        nameUk: 'Синявський Олексій Ігорович',
+        photo: `${photoBase}syniavskyi.png`,
+        topic: 'Compression of thin-film systems along the interface between a film and a substrate of finite thickness',
+        supervisor: 'Volodymyr M. Nazarenko, Academician of the NAS of Ukraine',
+        publications: [
+          ['Syniavskyi O. Critical wrinkling parameters of a thin film on a finite substrate. International Conference of Students and Young Scientists in Theoretical and Experimental Physics “EUREKA-2026”. Abstracts, H16, 2026.', ''],
+          ['Kipnis O., Syniavskyi O. Assessment of applicability of the semi-infinite substrate model for determining critical wrinkling parameters of a neo-Hookean bilayer. International Scientific Conference “Actual Problems of Mechanics and Mechanical Engineering – 2026”, pp. 172–173.', 'https://ipp.kiev.ua/conference_2026/abstracts_apmme_2026.pdf']
+        ],
+        materials: 1
+      }
     ]
   },
   {
     year: 'Admission 2024',
     badge: '2nd year',
     students: [
-      { name: 'Roman Serafymovych', nameUk: 'Серафимович Роман Вікторович', photo: `${photoBase}serafymovych.png`, topic: 'Physically nonlinear problems for a three-layer cylindrical shell with openings', supervisor: 'Yevhen A. Storozhuk, Doctor of Physical and Mathematical Sciences, Professor, Corresponding Member of the NAS of Ukraine', publications: 5, materials: 3 },
-      { name: 'Vasyl Usov', nameUk: 'Усов Василь Олександрович', photo: `${photoBase}usov.png`, topic: 'Numerical modelling of thermomechanical processes in layer-by-layer printing of bodies of revolution made of viscoplastic material', supervisor: 'Ihor K. Senchenkov, Doctor of Physical and Mathematical Sciences', publications: 2, materials: 2 },
-      { name: 'Yevhen Fil', nameUk: 'Філь Євген Вадимович', photo: `${photoBase}fil.png`, topic: 'Numerical analysis of the stress-strain state of shallow orthotropic shells with non-rectangular planform', supervisor: 'Oleksandr Ya. Grygorenko, Doctor of Physical and Mathematical Sciences, Professor, Academician of the NAS of Ukraine', publications: 3, materials: 1 }
+      {
+        name: 'Roman Serafymovych',
+        nameUk: 'Серафимович Роман Вікторович',
+        photo: `${photoBase}serafymovych.png`,
+        topic: 'Physically nonlinear problems for a three-layer cylindrical shell with openings',
+        supervisor: 'Yevhen A. Storozhuk, Doctor of Physical and Mathematical Sciences, Professor, Corresponding Member of the NAS of Ukraine',
+        publications: [
+          ['Storozhuk Ye. A., Serafymovych R. V. On modelling stress concentration around circular holes in three-layer cylindrical rocket elements. Proceedings of the 1st International Scientific and Technical Conference “Modern Problems of Mechanics in Special-Purpose Structures”, Dnipro, March 26–28, 2025, pp. 339–342.', 'https://science.nmu.org.ua/ua/conferences/Forum_Mechanic/Zbirnyk_19_05-01.pdf'],
+          ['Storozhuk Ye. A., Serafymovych R. V. Beyond-elastic deformation of a three-layer cylindrical shell with a circular hole under axial forces. Abstracts of the XI International Scientific and Practical Conference “Actual Problems of Engineering Mechanics”, Odesa, May 21–23, 2025, pp. 182–184.', 'https://repositsc.nuczu.edu.ua/bitstream/123456789/25314/1/%D0%A2%D0%B5%D0%B7%D0%B8%D1%81%D0%B8%202025.pdf'],
+          ['Serafymovych R., Storozhuk Ye. On a methodology for studying stress concentration in an elastoplastic three-layer cylindrical shell with a circular hole. Young Scientists Conference “Pidstryhach Readings – 2025”, Lviv, May 27–29, 2025, pp. 41–42.', 'http://www.iapmm.lviv.ua/chyt2025/abstracts/SerafymovychStorozhuk.pdf'],
+          ['Storozhuk Ye. A., Serafymovych R. V., Chernyshenko I. S. Beyond-elastic calculation of stress concentration in a three-layer cylindrical shell with a circular hole. Proceedings of the VIII International Scientific Conference “Modern Problems of Mechanics”, Kyiv, August 28–29, 2025, p. 62.', 'https://drive.google.com/file/d/11GQT6qrWUtEIijYfhTil0HB-cNTdgyVC/view?usp=sharing'],
+          ['Storozhuk Ye. A., Serafymovych R. V., Chernyshenko I. S. On calculating stress concentration around a circular hole in a three-layer cylindrical shell with allowance for plastic and transverse deformations. Proceedings of the IX International Scientific and Technical Conference “Computer Modelling and Optimization of Complex Systems CMOCS–2025”, Dnipro, November 5–7, 2025, p. 101.', 'https://udhtu.edu.ua/wp-content/uploads/2025/11/zbirnyk-kmoss-2025_compressed.pdf']
+        ],
+        materials: 3
+      },
+      {
+        name: 'Vasyl Usov',
+        nameUk: 'Усов Василь Олександрович',
+        photo: `${photoBase}usov.png`,
+        topic: 'Numerical modelling of thermomechanical processes in layer-by-layer printing of bodies of revolution made of viscoplastic material',
+        supervisor: 'Ihor K. Senchenkov, Doctor of Physical and Mathematical Sciences',
+        publications: [
+          ['Senchenkov I. K., Yurzhenko M. V., Chervinko O. P., Usov V. O. Calculation of residual stress-strain state during build-up of cylindrical bodies from viscoplastic materials. Welding and Related Technologies for the Recovery of Ukraine, Kyiv: Paton Publishing House, 2025, p. 100.', 'https://patonpublishinghouse.com/ukr/proceedings/WRT2025/26'],
+          ['Senchenkov I., Chervinko O., Usov V. Model of thermomechanical processes during block build-up of viscoplastic bodies. Abstracts of the International Scientific Conference “Actual Problems of Mechanics and Mechanical Engineering – 2026”, Kyiv, May 26–28, 2026, pp. 248–249.', 'https://ipp.kiev.ua/conference_2026/abstracts_apmme_2026.pdf']
+        ],
+        materials: 2
+      },
+      {
+        name: 'Yevhen Fil',
+        nameUk: 'Філь Євген Вадимович',
+        photo: `${photoBase}fil.png`,
+        topic: 'Numerical analysis of the stress-strain state of shallow orthotropic shells with non-rectangular planform',
+        supervisor: 'Oleksandr Ya. Grygorenko, Doctor of Physical and Mathematical Sciences, Professor, Academician of the NAS of Ukraine',
+        publications: [
+          ['Fil Ye. V. Construction of a computational scheme for numerical analysis of an orthotropic shallow shell with non-rectangular planform based on a discrete-continuum approach. Young Scientists Conference “Pidstryhach Readings – 2025”, 2025.', 'http://www.iapmm.lviv.ua/chyt2025/abstracts/Fil.pdf'],
+          ['Grygorenko O. Ya., Fil Ye. V. Discrete-continuum approach to calculating the stress-strain state of orthotropic shells with non-rectangular planform. International Scientific and Technical Conference “Innovative Engineering and Construction for Post-War Recovery: Mechanics, Machines, Transport”, 2025, pp. 35–38.', 'https://drive.google.com/file/d/1fSL1t_La3SjAvsuQ9CrkjR9QCIroAEIa/view'],
+          ['Grygorenko O. Ya., Fil Ye. V. Analysis of the influence of curvature on the stress-strain state of orthotropic shells with non-rectangular planform. XXVI International Scientific Conference “Mathematical Problems of Technical Mechanics – 2026”, 2026, pp. 18–19.', 'https://www.dnu.dp.ua/docs/ndc/materiali%20conf/2026/9_2%20%D1%87%D0%B0%D1%81%D1%82%D0%B8%D0%BD%D0%B0%20%D0%9C%D0%9F%D0%A2%D0%9C%202026.pdf']
+        ],
+        materials: 1
+      }
     ]
   },
   {
     year: 'Admission 2023',
     badge: '3rd year',
     students: [
-      { name: 'Yurii Horskyi', nameUk: 'Горський Юрій Вікторович', photo: `${photoBase}horskyi.png`, topic: 'Generation of cross-shaped surface waves in water in a cylindrical container with vibrating walls under acoustic radiation', supervisor: 'Yaroslav O. Zhuk, Doctor of Physical and Mathematical Sciences, Corresponding Member of the NAS of Ukraine, Professor', publications: 4, materials: 0 },
-      { name: 'Petro Kobzar', nameUk: 'Кобзар Петро Юрійович', photo: `${photoBase}kobzar.png`, topic: 'Modelling stress distribution in a piezoelectric body near rigid flat inclusions and circular or elliptical cracks', supervisor: 'Vitalii S. Kyryliuk, Doctor of Physical and Mathematical Sciences', publications: 4, materials: 0 },
-      { name: 'Oleksii Lesyk', nameUk: 'Лесик Олексій Іванович', photo: `${photoBase}lesyk.png`, topic: 'Plane fracture mechanics problems for materials with interacting cracks under forces directed along the cracks', supervisor: 'Viacheslav L. Bogdanov, Academician of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences', publications: 4, materials: 0 },
-      { name: 'Anton Olkhovskyi', nameUk: 'Ольховський Антон Стефанович', photo: `${photoBase}olkhovskyi.png`, topic: 'Mathematical modelling of the influence of local damage and operational loads on vibration stresses in last-stage blades of an NPP steam turbine', supervisor: 'Ihor K. Senchenkov, Doctor of Physical and Mathematical Sciences', publications: 10, materials: 0 }
+      {
+        name: 'Yurii Horskyi',
+        nameUk: 'Горський Юрій Вікторович',
+        photo: `${photoBase}horskyi.png`,
+        topic: 'Generation of cross-shaped surface waves in water in a cylindrical container with vibrating walls under acoustic radiation',
+        supervisor: 'Yaroslav O. Zhuk, Doctor of Physical and Mathematical Sciences, Corresponding Member of the NAS of Ukraine, Professor',
+        publications: [
+          ['Horskyi Yu. V., Krasnopolska T. S. Construction of mathematical models for the excitation of cross-shaped surface waves in water in glasses during acoustic radiation by the glasses. Bulletin of Taras Shevchenko National University of Kyiv, 2024, pp. 66–69.', 'https://doi.org/10.17721/1812-5409.2024/1.12'],
+          ['Horskyi Yu. V., Krasnopolska T. S., Zhuk Ya. O. Cross-shaped waves on the fluid surface in a partially filled cylindrical container. International Applied Mechanics, 2025, vol. 61, no. 6, pp. 40–55.', ''],
+          ['Horskyi Yu. V., Krasnopolska T. S., van Heijst G. J. F., Filimonov V. Yu. Construction of mathematical models for exciting cross-shaped surface waves in water in “singing glasses” during acoustic radiation by glasses. VII International Scientific Conference “Modern Problems of Mechanics”, Kyiv, August 28–29, 2023, p. 3.', ''],
+          ['Horskyi Yu. V. Experimental study of the generation of cross-shaped surface waves in water in a cylindrical container. International Scientific Conference “Mathematical Problems of Technical Mechanics”, April 2026, p. 59.', '']
+        ],
+        materials: 0
+      },
+      {
+        name: 'Petro Kobzar',
+        nameUk: 'Кобзар Петро Юрійович',
+        photo: `${photoBase}kobzar.png`,
+        topic: 'Modelling stress distribution in a piezoelectric body near rigid flat inclusions and circular or elliptical cracks',
+        supervisor: 'Vitalii S. Kyryliuk, Doctor of Physical and Mathematical Sciences',
+        publications: [
+          ['Kirilyuk V. S., Levchuk O. I., Kobzar P. Yu., Witer M. B. Mathematical Modeling of Displacement of Rigid Elliptic Disc in Piezoelectric Space. International Applied Mechanics, 2024, vol. 60, no. 6, pp. 37–44.', 'https://doi.org/10.1007/s10778-024-01294-6'],
+          ['Golub V. P., Plashchynska A. V., Kobzar P. Yu. Numerical Modeling of Fatigue Crack Propagation Kinetics in Thin Finite-Size Isotropic Plates. International Applied Mechanics, 2024, vol. 60, no. 6, pp. 67–76.', 'https://doi.org/10.1007/s10778-025-01321-0'],
+          ['Golub V. P., Kobzar P. Yu. Method for numerical identification of graphical experimental data. International Scientific Conference “Mechanics: Present and Prospects”, 2024, Proceedings, p. 257.', ''],
+          ['Kobzar P. Yu., Kobzar A. Yu. Software for a method of converting graphical experimental data into tabular data. International Scientific Conference “Mathematical Problems of Technical Mechanics – 2024”, pp. 77–79.', '']
+        ],
+        materials: 0
+      },
+      {
+        name: 'Oleksii Lesyk',
+        nameUk: 'Лесик Олексій Іванович',
+        photo: `${photoBase}lesyk.png`,
+        topic: 'Plane fracture mechanics problems for materials with interacting cracks under forces directed along the cracks',
+        supervisor: 'Viacheslav L. Bogdanov, Academician of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
+        publications: [
+          ['Bogdanov V., Lesyk O. Stress-strain state of a prestressed half-plane with a near-surface mode-I crack. Dopovidi of the National Academy of Sciences of Ukraine, 2025, no. 2, pp. 24–41.', 'https://doi.org/10.15407/dopovidi2025.02.024'],
+          ['Bogdanov V. L., Lesyk O. I. Plane fracture mechanics problem for a half-space with a near-surface mode-I crack under forces directed along the crack. International Applied Mechanics, 2025, vol. 61, no. 4, pp. 3–25.', ''],
+          ['Lesyk O. I. Investigation of stress intensity factors in a prestressed half-plane with a near-surface mode-I crack for a material with a quadratic potential. Proceedings of the IX International Scientific and Technical Conference “Computer Modelling and Optimization of Complex Systems CMOCS–2025”, Dnipro, November 5–7, 2025, pp. 64–66.', ''],
+          ['Bogdanov V. L., Lesyk O. I. Stress intensity factors in a prestressed half-plane with a near-surface mode-I crack. International Scientific Conference “Mechanics: Present and Prospects – 2024”, pp. 285–288.', '']
+        ],
+        materials: 0
+      },
+      {
+        name: 'Anton Olkhovskyi',
+        nameUk: 'Ольховський Антон Стефанович',
+        photo: `${photoBase}olkhovskyi.png`,
+        topic: 'Mathematical modelling of the influence of local damage and operational loads on vibration stresses in last-stage blades of an NPP steam turbine',
+        supervisor: 'Ihor K. Senchenkov, Doctor of Physical and Mathematical Sciences',
+        publications: [
+          ['Shulzhenko M. G., Olkhovskyi A. S., Derkach O. L. Vibrational Stresses in the Last-Stage Blades of a Powerful Steam Turbine Under Kinematic Excitation of Oscillations. Part 1. Investigation of Cyclic-Symmetric Systems. Strength of Materials, 2024, vol. 56, no. 1, pp. 11–19.', 'https://doi.org/10.1007/s11223-024-00622-y'],
+          ['Shulzhenko M. G., Olkhovskyi A. S., Derkach O. L. Vibrational Stresses in the Last-Stage Blades of a Powerful Steam Turbine Under Kinematic Excitation of Oscillations. Part 2. Investigation of System with Cyclic Symmetry Violations. Strength of Materials, 2024, vol. 56, no. 2, pp. 234–245.', 'https://doi.org/10.1007/s11223-024-00643-7'],
+          ['Shulzhenko M. G., Olkhovskyi A. S., Derkach O. L. The influence of kinematic excitation on the vibrational stress of the mistuned bladed disk of the last stage of a high-power steam turbine. Procedia Structural Integrity, 2024, vol. 59, pp. 337–343.', 'https://doi.org/10.1016/j.prostr.2024.04.048'],
+          ['Olkhovskyi A. S., Derkach O. L. Vibration-stressed state of last-stage blades of a powerful steam turbine under cyclic symmetry violation. Part 1. Static stress state and free vibrations with allowance for centrifugal forces. Strength of Materials, 2026, no. 1, pp. 14–29.', ''],
+          ['Olkhovskyi A. S., Derkach O. L. Vibration-stressed state of last-stage blades of a powerful steam turbine under cyclic symmetry violation. Part 2. Dynamic stress state and residual life assessment. Strength of Materials, 2026, no. 2, pp. 20–32.', ''],
+          ['Shulzhenko M. G., Olkhovskyi A. S., Derkach O. L. Analysis of the influence of blade-row frequency mistuning on the vibration stress of turbomachine rotors. XXVIII International Congress of Engine Builders: Abstracts. Kharkiv: National Aerospace University “KhAI”, 2023, pp. 33–34.', ''],
+          ['Shulzhenko M. G., Olkhovskyi A. S., Derkach O. L. The effect of kinematic excitation on the blades vibration stress state of the last stage high-power steam turbine with blade mistuning. 2023 IEEE 4th KhPI Week on Advanced Technology (KhPIWeek), 2023, pp. 622–625.', ''],
+          ['Luhovyi P. Z., Olkhovskyi A. S. Influence of erosion-corrosion damage of blades on their service time. Abstracts of the International Scientific Conference “Actual Problems of Mechanics – 2023”, Institute of Mechanics, p. 81.', ''],
+          ['Shulzhenko M. G., Olkhovskyi A. S., Derkach O. L. Features of the stress-strain state of a disk-blade system with vibration frequency mistuning. International Scientific Conference “Actual Problems of Mechanics – 2023”, Institute of Mechanics, pp. 336–337.', ''],
+          ['Derkach O., Ratynskyi A., Olkhovskyi A. Analysis of the effect of blade mistuning on the vibrational stress state of an aircraft GTE compressor disk. XVIII Vibration Engineering & Technology of Machinery Conference VETOMAC 2024, Institute of Fluid-Flow Machinery, Gdansk, Poland, September 16–18, 2024.', ''],
+          ['Olkhovskyi A. S., Derkach O. L., Senchenkov I. K. Numerical study of the influence of local damage to steam-turbine blades caused by erosion wear on their stress-strain state. International Scientific Conference “Actual Problems of Mechanics and Mechanical Engineering – 2026”, Kyiv, 2026.', '']
+        ],
+        materials: 0
+      },
+      {
+        name: 'Danylo Selivanov',
+        nameUk: 'Данило Селіванов',
+        photo: `${photoBase}selivanovd.png`,
+        topic: 'Application of the cohesive-zone model to delayed fracture problems for bodies with mixed-mode cracks',
+        supervisor: 'Viacheslav L. Bogdanov, Academician of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
+        publications: [
+          ['Bogdanov V. L., Selivanov D. M. Study of the impact of crack resistance parameters on the critical load of a specimen with a mode I crack under three-point bending in the framework of the cohesive zone model. Dopovidi Natsionalnoi akademii nauk Ukrainy, 2024, no. 5, pp. 53–61 [in Ukrainian].', 'https://doi.org/10.15407/dopovidi2024.05.053'],
+          ['Selivanov D. M. Numerical simulation of crack kinking with cohesive zone extensions. In: Book of Abstracts of the 4th International Workshop on Plasticity, Damage and Fracture of Engineering Materials, IWPDF 2025, Istanbul, Türkiye, September 24–26, 2025, p. 62.', 'https://iwpdf.metu.edu.tr/IWPDF2025_BoA.pdf'],
+          ['Bogdanov V., Selivanov D. Numerical simulation of crack kinking with cohesive-zone extensions. Procedia Structural Integrity, submitted.', ''],
+          ['Bogdanov V., Selivanov D. Potential-based cohesive modeling of mixed-mode crack kinking. International Journal of Fracture, in press.', ''],
+          ['Bogdanov V., Selivanov D. Incremental crack propagation under mixed-mode loading within a potential-based cohesive zone framework. In: Book of Abstracts of the 7th International Conference “Fracture Mechanics of Materials and Structural Integrity”, Lviv, Ukraine, March 3–5, 2026, p. 33.', 'https://www.ipm.lviv.ua/fmsi2026/FMSI2026_Book%20of%20Abstracts.pdf'],
+          ['Bogdanov V. L., Selivanov D. M. Determination of the crack-propagation trajectory in a perforated plate within the cohesive zone model. In: Abstracts of the International Scientific Conference “Actual Problems of Mechanics and Mechanical Engineering – 2026”, Kyiv, Ukraine, May 26–28, 2026, pp. 261–262 [in Ukrainian].', 'https://ipp.kiev.ua/conference_2026/abstracts_apmme_2026.pdf']
+        ],
+        materials: 0
+      }
     ]
   }
 ];
@@ -49,18 +213,18 @@ function initials(name: string) {
 
 <BaseLayoutEn
   title={`Postgraduate students | ${siteEn.shortName}`}
-  description="Postgraduate students of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine: years of admission, dissertation topics, research supervisors and available materials."
+  description="Postgraduate students of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine: years of admission, dissertation topics, research supervisors and publication lists."
   activePage="education"
 >
   <main class="postgraduate-page">
     <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href={withBase('/en/postgraduate/')}>Postgraduate studies</a><span>›</span><span>Students</span></nav>
-    <section class="page-hero"><p class="eyebrow">Postgraduate students</p><h1>PhD candidates by year of admission</h1><p class="lead">This page presents postgraduate students, dissertation topics, research supervisors and the number of available publications or learning materials listed in the Ukrainian source section.</p><p><a href={withBase('/postgraduate/students/')}>Ukrainian version with detailed publication links</a></p></section>
+    <section class="page-hero"><p class="eyebrow">Postgraduate students</p><h1>PhD candidates by year of admission</h1><p class="lead">This page presents postgraduate students, dissertation topics, research supervisors and expandable publication lists.</p><p><a href={withBase('/postgraduate/students/')}>Ukrainian version</a></p></section>
     {studentGroups.map((group) => (
-      <section class="section-block"><div class="section-heading compact-header"><div><p class="eyebrow">{group.badge}</p><h2>{group.year}</h2></div></div><div class="student-grid">{group.students.map((student) => (<article class="student-card"><div class="student-photo-frame">{student.photo && (<img src={withBase(student.photo)} alt={`Photo: ${student.name}`} loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';" />)}<div class="avatar avatar-fallback" aria-hidden="true">{initials(student.name)}</div></div><div><h3>{student.name}</h3><p class="uk-name">{student.nameUk}</p><p class="label">Dissertation topic</p><p>{student.topic}</p><p class="label">Research supervisor</p><p>{student.supervisor}</p><div class="meta-row"><span>{student.publications} publication{student.publications === 1 ? '' : 's'}</span><span>{student.materials} material{student.materials === 1 ? '' : 's'}</span></div></div></article>))}</div></section>
+      <section class="section-block"><div class="section-heading compact-header"><div><p class="eyebrow">{group.badge}</p><h2>{group.year}</h2></div></div><div class="student-grid">{group.students.map((student) => (<article class="student-card"><div class="student-photo-frame">{student.photo && (<img src={withBase(student.photo)} alt={`Photo: ${student.name}`} loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';" />)}<div class="avatar avatar-fallback" aria-hidden="true">{initials(student.name)}</div></div><div><h3>{student.name}</h3><p class="uk-name">{student.nameUk}</p><p class="label">Dissertation topic</p><p>{student.topic}</p><p class="label">Research supervisor</p><p>{student.supervisor}</p><details class="publication-details"><summary>Publications ({student.publications.length})</summary>{student.publications.length > 0 ? (<ol class="publication-list">{student.publications.map(([label, href]) => (<li>{href ? <a href={href} target="_blank" rel="noopener noreferrer">{label}</a> : <span>{label}</span>}</li>))}</ol>) : (<p class="no-materials">Publications may be added after the list is clarified.</p>)}</details><div class="meta-row"><span>{student.materials} material{student.materials === 1 ? '' : 's'}</span></div></div></article>))}</div></section>
     ))}
   </main>
 </BaseLayoutEn>
 
 <style>
-  .postgraduate-page{max-width:1180px;margin:0 auto;padding:46px 20px 72px}.breadcrumbs{display:flex;gap:10px;align-items:center;margin-bottom:22px;color:var(--muted);font-weight:750}.page-hero,.student-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow)}.page-hero{padding:clamp(28px,5vw,52px)}.page-hero h1{margin:0 0 18px;font-size:clamp(2.2rem,4.8vw,4.3rem);line-height:1.04;letter-spacing:-.04em}.lead{max-width:920px;color:var(--muted);font-size:1.08rem;line-height:1.7}.section-block{margin-top:34px}.student-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.student-card{display:grid;grid-template-columns:100px 1fr;gap:18px;padding:22px}.student-photo-frame,.student-photo-frame img,.avatar{width:100px;height:120px;border-radius:22px}.student-photo-frame{border:1px solid var(--line);overflow:hidden;background:var(--surface-soft)}.student-photo-frame img{display:block;object-fit:cover}.avatar{display:grid;place-items:center;color:var(--accent-dark);font-weight:850}.avatar-fallback{display:none}.student-card p{color:var(--muted);line-height:1.55}.uk-name{font-size:.92rem}.label{margin:12px 0 4px!important;color:var(--text)!important;font-weight:850}.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.meta-row span{padding:6px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent-dark);font-size:.8rem;font-weight:800}@media(max-width:860px){.student-grid{grid-template-columns:1fr}.student-card{grid-template-columns:1fr}}
+  .postgraduate-page{max-width:1180px;margin:0 auto;padding:46px 20px 72px}.breadcrumbs{display:flex;gap:10px;align-items:center;margin-bottom:22px;color:var(--muted);font-weight:750}.page-hero,.student-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow)}.page-hero{padding:clamp(28px,5vw,52px)}.page-hero h1{margin:0 0 18px;font-size:clamp(2.2rem,4.8vw,4.3rem);line-height:1.04;letter-spacing:-.04em}.lead{max-width:920px;color:var(--muted);font-size:1.08rem;line-height:1.7}.section-block{margin-top:34px}.student-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.student-card{display:grid;grid-template-columns:100px 1fr;gap:18px;padding:22px}.student-photo-frame,.student-photo-frame img,.avatar{width:100px;height:120px;border-radius:22px}.student-photo-frame{border:1px solid var(--line);overflow:hidden;background:var(--surface-soft)}.student-photo-frame img{display:block;object-fit:cover}.avatar{display:grid;place-items:center;color:var(--accent-dark);font-weight:850}.avatar-fallback{display:none}.student-card p{color:var(--muted);line-height:1.55}.uk-name{font-size:.92rem}.label{margin:12px 0 4px!important;color:var(--text)!important;font-weight:850}.publication-details{margin-top:14px}.publication-details summary{width:fit-content;margin-bottom:10px;padding:6px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent-dark);cursor:pointer;font-size:.8rem;font-weight:850}.publication-list{margin:0;padding-left:22px;color:var(--muted)}.publication-list li{margin-bottom:9px;line-height:1.55}.publication-list span{color:var(--muted)}.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.meta-row span{padding:6px 10px;border-radius:999px;background:var(--surface-soft);color:var(--muted);font-size:.8rem;font-weight:800}.no-materials{margin:0;color:var(--muted)}@media(max-width:860px){.student-grid{grid-template-columns:1fr}.student-card{grid-template-columns:1fr}}
 </style>

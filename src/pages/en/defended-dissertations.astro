@@ -102,7 +102,7 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
         </div>
         <p>
           The entries below are rendered from the new English data model. Original Cyrillic names and titles are stored for auditability,
-          but the English page displays only Latin-script names, translated titles and source-language notes.
+          but the English page displays only Latin-script names, translated titles, compact metadata blocks and topic tags.
         </p>
       </div>
 
@@ -178,13 +178,13 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
                           <dd>{entry.bibliography.pages}</dd>
                         </div>
                       )}
+                      {sourceLanguage && (
+                        <div>
+                          <dt>Language</dt>
+                          <dd>{sourceLanguage}</dd>
+                        </div>
+                      )}
                     </dl>
-
-                    {entry.bibliography?.en && <p class="entry-bibliography">{entry.bibliography.en}</p>}
-
-                    {sourceLanguage && (
-                      <p class="source-note">Source bibliographic record: [{sourceLanguage}].</p>
-                    )}
 
                     {entry.tags && entry.tags.length > 0 && (
                       <div class="tag-list" aria-label="Topic tags">
@@ -339,9 +339,7 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
   .catalog-policy-panel p,
   .section-heading p,
   .tag-filter-header p,
-  .catalog-filter-status,
-  .entry-bibliography,
-  .source-note {
+  .catalog-filter-status {
     margin: 0;
     color: var(--muted);
   }
@@ -521,16 +519,6 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
     margin: 0;
     color: var(--text);
     font-weight: 750;
-  }
-
-  .entry-bibliography {
-    line-height: 1.55;
-  }
-
-  .source-note {
-    margin-top: 10px;
-    font-size: 0.92rem;
-    font-weight: 650;
   }
 
   .tag-list {

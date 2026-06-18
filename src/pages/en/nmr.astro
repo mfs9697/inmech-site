@@ -1,0 +1,370 @@
+---
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../data/site-en';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+const councilTerms = [
+  {
+    period: '2021–2023',
+    members: [
+      { name: 'Yu.V. Skosarenko', role: 'chair' },
+      { name: 'V.P. Holub', role: 'deputy chair' },
+      { name: 'V.H. Karnaukhov' },
+      { name: 'P.Z. Luhovyi' },
+      { name: 'O.Ya. Hryhorenko' },
+      { name: 'O.O. Khotenko', role: 'secretary' }
+    ]
+  },
+  {
+    period: '2022–2025',
+    members: [
+      { name: 'V.A. Maksymiuk', role: 'chair' },
+      { name: 'V.P. Holub', role: 'deputy chair' },
+      { name: 'P.Z. Luhovyi' },
+      { name: 'O.Ya. Hryhorenko' },
+      { name: 'O.Kh. Ostos', role: 'secretary' }
+    ]
+  },
+  {
+    period: '2025–2026',
+    members: [
+      { name: 'V.A. Maksymiuk', role: 'chair' },
+      { name: 'O.Ya. Hryhorenko', role: 'deputy chair' },
+      { name: 'V.S. Kyryliuk' },
+      { name: 'O.L. Kipnis' },
+      { name: 'O.Kh. Ostos', role: 'secretary' }
+    ]
+  }
+];
+
+const activityCards = [
+  {
+    title: 'Methodological support of the educational and research programme',
+    icon: '📚',
+    text: 'Coordination of educational components, syllabi, working programmes, curricula and methodological materials.'
+  },
+  {
+    title: 'Quality of the educational process',
+    icon: '✓',
+    text: 'Participation in monitoring teaching quality, analysing survey results and taking stakeholder proposals into account.'
+  },
+  {
+    title: 'Teacher rating procedures',
+    icon: '★',
+    text: 'Support for procedures used to rate the Institute’s research and teaching staff.'
+  },
+  {
+    title: 'Selection of teaching staff',
+    icon: '◎',
+    text: 'Methodological support for procedures related to selecting researchers for teaching activities.'
+  }
+];
+
+const documentGroups = [
+  {
+    title: 'Teacher rating procedures',
+    description: 'Rules for rating and the rating results of research and teaching staff.',
+    documents: [
+      {
+        title: 'Procedure for rating research and teaching staff of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine',
+        href: '/documents/postgraduate/nmr/teacher-rating-rules.pdf',
+        type: 'PDF'
+      },
+      {
+        title: 'Teacher rating 2024–2025',
+        href: '/documents/postgraduate/nmr/teacher-rating-2024-2025.pdf',
+        type: 'PDF'
+      }
+    ]
+  },
+  {
+    title: 'Selection of teaching staff',
+    description: 'A document regulating the selection of researchers for teaching activities.',
+    documents: [
+      {
+        title: 'Procedure for selecting researchers of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine for teaching staff',
+        href: '/documents/postgraduate/nmr/teacher-selection-procedure.pdf',
+        type: 'PDF'
+      }
+    ]
+  }
+];
+
+const relatedLinks = [
+  ['Postgraduate studies', '/en/postgraduate/'],
+  ['Doctoral studies', '/en/doctoral/'],
+  ['Licenses and regulations', '/en/license-and-regulations/'],
+  ['Education and research training', '/en/education/'],
+  ['Ukrainian version', '/nmr/']
+];
+---
+
+<BaseLayoutEn
+  title={`Scientific and Methodological Council | ${siteEn.shortName}`}
+  description="Scientific and Methodological Council of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine: methodological support for education and research training, teacher rating procedures, selection of teaching staff and related documents."
+  activePage="education"
+>
+  <section class="page-hero nmr-hero">
+    <div class="container">
+      <div class="panel nmr-hero-panel">
+        <p class="eyebrow">Education and research training</p>
+        <h1>Scientific and Methodological Council</h1>
+        <p class="lead">
+          The Scientific and Methodological Council of the S.P. Timoshenko Institute of Mechanics
+          of the NAS of Ukraine coordinates methodological support for education and research training,
+          issues related to the quality of the educational process, teacher rating procedures, selection
+          of researchers for teaching activities, and preparation of documents connected with the
+          implementation of the educational and research programme.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#composition">Council composition</a>
+          <a class="button secondary" href="#documents">Council documents</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="composition">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Council composition</p>
+          <h2 class="section-title">Composition of the Scientific and Methodological Council</h2>
+          <p class="section-text">
+            The composition of the Council is presented directly on this page, without a separate Word document.
+          </p>
+        </div>
+      </div>
+
+      <div class="nmr-composition-grid">
+        {councilTerms.map((term) => (
+          <article class="card nmr-composition-card">
+            <h3>{term.period}</h3>
+            <ol>
+              {term.members.map((member) => (
+                <li>
+                  <span>{member.name}</span>
+                  {member.role && <em> — {member.role}</em>}
+                </li>
+              ))}
+            </ol>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="activities">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Areas of responsibility</p>
+          <h2 class="section-title">Main areas of activity</h2>
+          <p class="section-text">
+            The Council supports methodological consistency in education and research training and promotes
+            transparent procedures related to the quality of education and teaching staff.
+          </p>
+        </div>
+      </div>
+
+      <div class="cards-grid nmr-activity-grid">
+        {activityCards.map((card) => (
+          <article class="card nmr-activity-card">
+            <span aria-hidden="true">{card.icon}</span>
+            <h3>{card.title}</h3>
+            <p>{card.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="documents">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Documents</p>
+          <h2 class="section-title">Council documents</h2>
+          <p class="section-text">
+            The main materials are grouped by purpose: teacher rating procedures and selection of researchers for teaching activities.
+          </p>
+        </div>
+      </div>
+
+      <div class="nmr-document-group-grid">
+        {documentGroups.map((group) => (
+          <article class="card nmr-document-group-card">
+            <h3>{group.title}</h3>
+            <p>{group.description}</p>
+            <div class="nmr-document-list">
+              {group.documents.map((document) => (
+                <a href={withBase(document.href)} target="_blank" rel="noopener noreferrer">
+                  <span>{document.type}</span>
+                  <strong>{document.title}</strong>
+                </a>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="related-panel nmr-related-panel">
+        <div>
+          <p class="eyebrow">Related sections</p>
+          <h2>Education and research training</h2>
+        </div>
+        <div class="related-link-grid">
+          {relatedLinks.map(([title, href]) => (
+            <a href={withBase(href)}>{title} →</a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayoutEn>
+
+<style>
+  .nmr-hero .panel {
+    max-width: 980px;
+  }
+
+  .nmr-composition-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .nmr-composition-card {
+    min-height: 0;
+  }
+
+  .nmr-composition-card h3 {
+    margin: 0 0 12px;
+    color: var(--accent-dark);
+    font-size: 1.25rem;
+  }
+
+  .nmr-composition-card ol {
+    margin: 0;
+    padding-left: 1.35rem;
+  }
+
+  .nmr-composition-card li {
+    margin: 8px 0;
+    color: var(--text);
+  }
+
+  .nmr-composition-card em {
+    color: var(--muted);
+    font-style: normal;
+  }
+
+  .nmr-activity-card span {
+    display: inline-grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    margin-bottom: 12px;
+    border-radius: 14px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-weight: 900;
+  }
+
+  .nmr-document-group-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .nmr-document-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .nmr-document-list a {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 10px;
+    align-items: start;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface-soft);
+  }
+
+  .nmr-document-list span {
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 800;
+  }
+
+  .nmr-document-list strong {
+    font-weight: 750;
+  }
+
+  .nmr-related-panel,
+  .related-panel {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    align-items: center;
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .related-panel h2 {
+    margin: 0;
+  }
+
+  .related-link-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+
+  .related-link-grid a {
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: #fff;
+    font-weight: 750;
+  }
+
+  @media (max-width: 940px) {
+    .nmr-composition-grid,
+    .nmr-document-group-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .related-panel {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .related-link-grid {
+      justify-content: flex-start;
+    }
+  }
+</style>

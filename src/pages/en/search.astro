@@ -1,0 +1,321 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../data/site-en';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+
+const staticPages = [
+  ['Home', '/en/', 'Home page of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine.'],
+  ['News', '/en/news/', 'News and announcements of the Institute.'],
+  ['Research departments', '/en/departments/', 'Structure of the Institute research departments.'],
+  ['Library', '/en/library/', 'Monographs, textbooks, historical materials and catalogues.'],
+  ['Postgraduate studies', '/en/postgraduate/', 'Admission, educational and research programme, accreditation, students and supervisors.'],
+  ['Dissertation defenses', '/en/dissertations/', 'Materials of current and previous dissertation defenses.'],
+  ['Catalogue of defended dissertations', '/en/defended-dissertations/', 'Alphabetical catalogue of dissertations defended at the Institute.'],
+  ['Scientific Council', '/en/scientific-council/', 'Scientific Council of the Institute of Mechanics.'],
+  ['Scientific and Methodological Council', '/en/nmr/', 'Methodological support of educational and research activities.'],
+  ['Doctoral studies', '/en/doctoral/', 'Information on doctoral studies at the Institute.'],
+  ['Sitemap', '/en/sitemap/', 'Structured list of the main pages of the website.'],
+  ['Accessibility policy', '/en/accessibility/', 'Website accessibility policy.'],
+  ['Site administration', '/en/site-administration/', 'Website administration and maintenance information.'],
+  ['Trust box', '/en/trust-box/', 'Confidential communication channel for postgraduate students and stakeholders.']
+];
+
+const news = (await getCollection('news')).map((entry) => ({
+  title: entry.data.title,
+  url: `/en/news/`,
+  type: 'News',
+  description: entry.data.description,
+  keywords: [
+    entry.data.category,
+    ...entry.data.tags,
+    String(entry.data.year),
+    entry.body
+  ].filter(Boolean).join(' ')
+}));
+
+const departments = (await getCollection('departments')).map((entry) => ({
+  title: entry.data.titleEn ?? entry.data.title,
+  url: `/en/departments/${entry.id}/`,
+  type: 'Research departments',
+  description: entry.data.summaryEn ?? entry.data.summary,
+  keywords: [
+    entry.data.shortTitleEn,
+    entry.data.shortTitle,
+    entry.data.groupEn,
+    entry.data.group,
+    entry.data.headEn,
+    entry.data.head,
+    ...entry.data.staff.map((item) => item.nameEn ?? item.name),
+    entry.body
+  ].filter(Boolean).join(' ')
+}));
+
+const people = (await getCollection('people')).map((entry) => ({
+  title: entry.data.nameEn ?? entry.data.name,
+  url: `/en/people/${entry.id}/`,
+  type: 'People',
+  description: [
+    entry.data.positionEn ?? entry.data.position,
+    entry.data.departmentEn ?? entry.data.department,
+    entry.data.degreeEn ?? entry.data.degree
+  ].filter(Boolean).join(' · '),
+  keywords: [
+    entry.data.name,
+    entry.data.academicTitleEn,
+    entry.data.academicTitle,
+    entry.data.email,
+    ...entry.data.researchAreasEn,
+    ...entry.data.researchAreas,
+    entry.body
+  ].filter(Boolean).join(' ')
+}));
+
+const searchItems = [
+  ...staticPages.map(([title, url, description]) => ({ title, url, type: 'Pages', description, keywords: '' })),
+  ...news,
+  ...departments,
+  ...people
+].map((item) => ({
+  ...item,
+  url: withBase(item.url),
+  haystack: `${item.title} ${item.type} ${item.description} ${item.keywords}`.toLocaleLowerCase('en-US')
+}));
+---
+
+<BaseLayoutEn
+  title={`Search | ${siteEn.shortName}`}
+  description="Search page of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine website."
+  activePage="home"
+>
+  <main class="search-page">
+    <section class="search-hero">
+      <p class="eyebrow">Navigation</p>
+      <h1>Search the website</h1>
+      <p class="lead">
+        Enter a surname, section title, research topic or keyword to find pages, news,
+        research departments and staff profiles.
+      </p>
+    </section>
+
+    <section class="search-panel" aria-label="Website search">
+      <label for="site-search">Search query</label>
+      <div class="search-row">
+        <input id="site-search" type="search" placeholder="For example: postgraduate, SCADAS, fracture, Selivanov" autocomplete="off" />
+        <button type="button" data-clear-search>Clear</button>
+      </div>
+      <p class="search-help">The search runs in your browser across the main indexed pages and materials of the English section.</p>
+    </section>
+
+    <section class="search-results-section" aria-live="polite">
+      <div class="results-heading">
+        <h2>Results</h2>
+        <span data-results-count>Start typing a query</span>
+      </div>
+      <div class="search-results" data-search-results></div>
+    </section>
+  </main>
+</BaseLayoutEn>
+
+<script define:vars={{ searchItems }}>
+  const input = document.querySelector('#site-search');
+  const clearButton = document.querySelector('[data-clear-search]');
+  const results = document.querySelector('[data-search-results]');
+  const count = document.querySelector('[data-results-count]');
+
+  function escapeHtml(value) {
+    return value
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+  }
+
+  function renderResults(query) {
+    const normalizedQuery = query.trim().toLocaleLowerCase('en-US');
+
+    if (!normalizedQuery) {
+      results.innerHTML = '';
+      count.textContent = 'Start typing a query';
+      return;
+    }
+
+    const words = normalizedQuery.split(/\s+/).filter(Boolean);
+    const found = searchItems
+      .map((item) => {
+        const score = words.reduce((sum, word) => sum + (item.haystack.includes(word) ? 1 : 0), 0);
+        return { ...item, score };
+      })
+      .filter((item) => item.score > 0)
+      .sort((a, b) => b.score - a.score || a.title.localeCompare(b.title, 'en'))
+      .slice(0, 50);
+
+    count.textContent = found.length === 1 ? '1 result' : `${found.length} results`;
+
+    if (found.length === 0) {
+      results.innerHTML = '<p class="empty-results">No results found for this query.</p>';
+      return;
+    }
+
+    results.innerHTML = found.map((item) => `
+      <article class="result-card">
+        <span>${escapeHtml(item.type)}</span>
+        <h3><a href="${item.url}">${escapeHtml(item.title)}</a></h3>
+        ${item.description ? `<p>${escapeHtml(item.description)}</p>` : ''}
+      </article>
+    `).join('');
+  }
+
+  input?.addEventListener('input', () => renderResults(input.value));
+  clearButton?.addEventListener('click', () => {
+    input.value = '';
+    input.focus();
+    renderResults('');
+  });
+</script>
+
+<style>
+  .search-page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 46px 20px 72px;
+  }
+
+  .search-hero,
+  .search-panel,
+  .result-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .search-hero {
+    padding: clamp(28px, 5vw, 52px);
+  }
+
+  .search-hero h1 {
+    margin: 0 0 18px;
+    font-size: clamp(2.3rem, 5vw, 4.4rem);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+  }
+
+  .lead {
+    max-width: 900px;
+    color: var(--muted);
+    font-size: 1.08rem;
+    line-height: 1.7;
+  }
+
+  .search-panel {
+    margin-top: 28px;
+    padding: 24px;
+  }
+
+  .search-panel label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 850;
+  }
+
+  .search-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+  }
+
+  .search-row input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    font: inherit;
+  }
+
+  .search-row button {
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--accent-dark);
+    color: #fff;
+    font: inherit;
+    font-weight: 850;
+    cursor: pointer;
+  }
+
+  .search-help {
+    margin: 12px 0 0;
+    color: var(--muted);
+  }
+
+  .search-results-section {
+    margin-top: 30px;
+  }
+
+  .results-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .results-heading h2 {
+    margin: 0;
+  }
+
+  .results-heading span {
+    color: var(--muted);
+    font-weight: 850;
+  }
+
+  .search-results {
+    display: grid;
+    gap: 12px;
+  }
+
+  .result-card {
+    padding: 18px 20px;
+  }
+
+  .result-card span {
+    display: inline-flex;
+    width: fit-content;
+    margin-bottom: 8px;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-size: 0.78rem;
+    font-weight: 850;
+  }
+
+  .result-card h3 {
+    margin: 0 0 8px;
+    font-size: 1.16rem;
+  }
+
+  .result-card p,
+  .empty-results {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  @media (max-width: 680px) {
+    .search-row,
+    .results-heading {
+      display: block;
+    }
+
+    .search-row button,
+    .results-heading span {
+      display: block;
+      margin-top: 10px;
+    }
+  }
+</style>

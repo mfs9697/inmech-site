@@ -25,6 +25,7 @@ const englishSlugs = new Set([
   'postgraduate',
   'doctoral',
   'dissertations',
+  'defended-dissertations',
   'license-and-regulations',
   'trust-box',
   'nmr',
@@ -218,25 +219,8 @@ const ukrainianPath = getUkrainianPath(Astro.url.pathname);
   }
 
   .nav-row {
-    min-height: 54px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
-    position: relative;
-  }
-
-  .primary-nav .submenu {
-    z-index: 1100;
-  }
-
-  @media (max-width: 940px) {
-    .nav-row {
-      justify-content: flex-start;
-      padding: 8px 0;
-    }
-
-    .primary-nav {
-      z-index: 1100;
-    }
   }
 </style>

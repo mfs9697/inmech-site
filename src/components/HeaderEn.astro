@@ -23,6 +23,7 @@ const englishSlugs = new Set([
   'services',
   'education',
   'postgraduate',
+  'postgraduate/students',
   'doctoral',
   'dissertations',
   'defended-dissertations',
@@ -130,97 +131,13 @@ const ukrainianPath = getUkrainianPath(Astro.url.pathname);
     <nav class="primary-nav" id="primary-nav" aria-label="Main menu">
       <ul>
         <li><a class={isActive('home')} href={withBase('/en/')}>Home</a></li>
-
-        <li>
-          <span class={`nav-label ${isActive('about')}`}>About the Institute ▾</span>
-          <ul class="submenu">
-            <li><a class={isActive('about')} href={withBase('/en/history/')}>History and mission</a></li>
-            <li><a class={isActive('about')} href={withBase('/en/regulations/')}>Statute</a></li>
-            <li><a class={isActive('about')} href={withBase('/en/strategy/')}>Development strategy</a></li>
-            <li><a class={isActive('about')} href={withBase('/en/scientific-cooperation/')}>Scientific cooperation</a></li>
-            <li><a class={isActive('about')} href={withBase('/en/tender/')}>Procurement and tenders</a></li>
-          </ul>
-        </li>
-
-        <li>
-          <span class={`nav-label ${isActive('departments')}`}>Structure ▾</span>
-          <ul class="submenu">
-            <li><a class={isActive('departments')} href={withBase('/en/management/')}>Management</a></li>
-            <li><a class={isActive('departments')} href={withBase('/en/departments/')}>Research departments</a></li>
-            <li><a class={isActive('departments')} href={withBase('/en/scientific-council/')}>Scientific Council</a></li>
-            <li><a class={isActive('departments')} href={withBase('/en/specialized-councils/')}>Specialized Academic Councils</a></li>
-            <li><a class={isActive('departments')} href={withBase('/en/young-scientists/')}>Council of Young Scientists</a></li>
-            <li><a class={isActive('departments')} href={withBase('/en/services/')}>Institute services</a></li>
-          </ul>
-        </li>
-
-        <li>
-          <span class={`nav-label ${isActive('education')}`}>Education and research training ▾</span>
-          <ul class="submenu">
-            <li><a class={isActive('education')} href={withBase('/en/education/')}>Section overview</a></li>
-            <li><a class={isActive('education')} href={withBase('/en/postgraduate/')}>Postgraduate studies</a></li>
-            <li><a class={isActive('education')} href={withBase('/en/doctoral/')}>Doctoral studies</a></li>
-            <li><a class={isActive('education')} href={withBase('/en/dissertations/')}>Dissertation defences</a></li>
-            <li><a class={isActive('education')} href={withBase('/en/license-and-regulations/')}>Licences and regulations</a></li>
-            <li><a class={isActive('education')} href={withBase('/en/trust-box/')}>Trust box</a></li>
-            <li><a class={isActive('education')} href={withBase('/en/nmr/')}>Scientific and Methodological Council</a></li>
-          </ul>
-        </li>
-
+        <li><a class={isActive('about')} href={withBase('/en/history/')}>About</a></li>
+        <li><a class={isActive('departments')} href={withBase('/en/departments/')}>Departments</a></li>
+        <li><a class={isActive('education')} href={withBase('/en/education/')}>Education</a></li>
         <li><a class={isActive('news')} href={withBase('/en/news/')}>News</a></li>
         <li><a href={withBase('/en/#contacts')}>Contacts</a></li>
-        <li><a class="search-nav-link" href={withBase('/en/search/')} aria-label="Search the website">Search</a></li>
+        <li><a class="search-nav-link" href={withBase('/en/search/')} aria-label="Search the site">Search</a></li>
       </ul>
     </nav>
   </div>
 </div>
-
-<style>
-  .site-header {
-    position: relative;
-    z-index: 20;
-    background: #0f1f34;
-    border-bottom: 0;
-    color: #fff;
-    backdrop-filter: none;
-  }
-
-  .topbar {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
-    color: rgba(255, 255, 255, 0.84);
-  }
-
-  .lang-switch a,
-  .lang-switch .active {
-    color: #ffffff;
-  }
-
-  .header-main.brand-main {
-    justify-content: flex-start;
-    align-items: center;
-  }
-
-  .site-header .brand-title {
-    color: #ffffff;
-  }
-
-  .site-header .brand-subtitle {
-    color: rgba(255, 255, 255, 0.86);
-  }
-
-  .nav-shell {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.96);
-    border-bottom: 1px solid var(--line);
-    box-shadow: 0 12px 28px rgba(15, 31, 52, 0.08);
-    backdrop-filter: blur(12px);
-  }
-
-  .nav-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-</style>

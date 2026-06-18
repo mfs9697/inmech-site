@@ -7,6 +7,7 @@ shortTitleEn: "Shared-Use Centre “Dynamic Process Analyser”"
 group: "Механіка композитних та неоднорідних середовищ"
 groupEn: "Mechanics of Composite and Heterogeneous Media"
 head: "д.ф.-м.н. Максимюк В.А."
+headEn: "V.A. Maksymiuk, Doctor of Physical and Mathematical Sciences"
 summary: "Центр колективного користування портативною апаратурою LMS SCADAS Mobile для вимірювання, реєстрації та аналізу вібраційних, акустичних і тензометричних сигналів. Структурний підрозділ відділу 1."
 summaryEn: "A shared-use centre based on LMS SCADAS Mobile portable equipment for the measurement, recording and analysis of vibration, acoustic and strain-gauge signals. A structural unit of Department 1."
 sectionsEn:
@@ -78,6 +79,7 @@ order: 1.5
 contactEmail: "desc@inmech.kyiv.ua"
 staff:
   - name: "Максимюк Володимир Ананійович"
+    nameEn: "Volodymyr A. Maksymiuk"
 ---
 
 <div class="info-panel">

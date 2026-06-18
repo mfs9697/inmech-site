@@ -1,0 +1,516 @@
+---
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../data/site-en';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+const licenseDocs = [
+  {
+    title: 'Order on licensing educational activity No. 139 of 21 February 2018',
+    href: '/inmech-site/documents/postgraduate/license/license-order-2018.pdf',
+    type: 'PDF'
+  },
+  {
+    title: 'Extract from the Unified State Electronic Database on Education regarding the right to conduct educational activity in higher education',
+    href: '/inmech-site/documents/postgraduate/license/edebo-extract.pdf',
+    type: 'PDF'
+  }
+];
+
+const regulationGroups = [
+  {
+    title: 'Organisation of the educational process',
+    description: 'Core documents regulating study organisation, the educational process and pedagogical practice.',
+    documents: [
+      ['Regulations on the organisation of the educational process', '/inmech-site/documents/postgraduate/regulations/educational-process/educational-process-regulation.pdf'],
+      ['Regulations on pedagogical practice', '/inmech-site/documents/postgraduate/regulations/educational-process/pedagogical-practice-regulation.pdf'],
+      ['Regulations on distance learning', '/inmech-site/documents/postgraduate/regulations/educational-process/distance-learning-regulation.pdf'],
+      ['Regulations on the organisation of inclusive education for persons with special educational needs', '/inmech-site/documents/postgraduate/regulations/educational-process/inclusive-education-regulation.pdf']
+    ]
+  },
+  {
+    title: 'Admission, elective courses and academic mobility',
+    description: 'Documents for admission procedures, selection of educational components and implementation of the right to academic mobility.',
+    documents: [
+      ['Regulations on the Admissions Committee', '/inmech-site/documents/postgraduate/regulations/admission/admissions-committee-regulation.pdf'],
+      ['Regulations on the Appeals Committee', '/inmech-site/documents/postgraduate/regulations/admission/appeal-committee-regulation.pdf'],
+      ['Regulations on the free choice of elective disciplines by higher education applicants at the third educational and scientific level', '/inmech-site/documents/postgraduate/regulations/admission/elective-courses-regulation.pdf'],
+      ['Regulations on the procedure for exercising the right to academic mobility by higher education applicants', '/inmech-site/documents/postgraduate/regulations/admission/academic-mobility-regulation.pdf'],
+      ['Regulations on recognition of learning outcomes acquired through non-formal and informal education', '/inmech-site/documents/postgraduate/regulations/admission/informal-learning-recognition-regulation.pdf']
+    ]
+  },
+  {
+    title: 'Quality of education and academic integrity',
+    description: 'Regulations supporting transparency of the educational process, academic integrity and conflict prevention.',
+    documents: [
+      ['Regulations on academic integrity and ethics of academic relations', '/inmech-site/documents/postgraduate/regulations/quality-and-integrity/academic-integrity-regulation.pdf'],
+      ['Regulations on prevention and settlement of conflict situations in scientific and educational activity', '/inmech-site/documents/postgraduate/regulations/quality-and-integrity/conflict-prevention-regulation.pdf'],
+      ['Regulations on the guarantor of an educational and scientific programme', '/inmech-site/documents/postgraduate/regulations/quality-and-integrity/program-guarantor-regulation.pdf'],
+      ['Regulations on the project group of an educational programme, the working group of educational activity and the specialty support group', '/inmech-site/documents/postgraduate/regulations/quality-and-integrity/project-group-regulation.pdf']
+    ]
+  },
+  {
+    title: 'Staff and methodological procedures',
+    description: 'Documents concerning competitive procedures, selection of teaching staff and the activity of the Scientific and Methodological Council.',
+    documents: [
+      ['Regulations on the procedure for competition to fill vacant research positions at the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine', '/inmech-site/documents/postgraduate/regulations/staff-and-methodology/staff-competition-regulation-2021.pdf'],
+      ['Regulations on the Scientific and Methodological Council', '/inmech-site/documents/postgraduate/regulations/staff-and-methodology/nmr-regulation.pdf']
+    ]
+  }
+];
+
+const usefulLinks = [
+  ['Code of Ethics of a Scientist', 'https://zakon.rada.gov.ua/rada/show/v0002550-09'],
+  ['Law of Ukraine “On Higher Education”', 'https://zakon.rada.gov.ua/laws/show/1556-18'],
+  ['Procedure for training applicants for the degrees of Doctor of Philosophy and Doctor of Sciences', 'https://zakon.rada.gov.ua/laws/show/261-2016-%D0%BF'],
+  ['Law of Ukraine “On Scientific and Scientific-Technical Activity”', 'https://zakon.rada.gov.ua/laws/show/848-19#Text'],
+  ['Law of Ukraine “On Principles of Preventing and Combating Discrimination in Ukraine”', 'https://zakon.rada.gov.ua/laws/show/5207-17#Text'],
+  ['Law of Ukraine “On Prevention of Corruption”', 'https://zakon.rada.gov.ua/laws/show/1700-18#Text'],
+  ['Requirements for dissertation formatting', 'https://zakon.rada.gov.ua/laws/show/z0155-17#Text'],
+  ['Publication of dissertation results for obtaining scientific degrees', 'https://zakon.rada.gov.ua/laws/show/z1086-19'],
+  ['Form of the decision of a one-time specialized academic council on awarding the Doctor of Philosophy degree', 'https://zakon.rada.gov.ua/laws/show/1556-18#Text'],
+  ['Law of Ukraine “On Academic Integrity”', 'https://zakon.rada.gov.ua/laws/show/4742-20#Text'],
+  ['Regulations on accreditation of educational programmes', 'https://naqa.gov.ua/wp-content/uploads/2024/08/%D0%9D%D0%B0%D0%BA%D0%B0%D0%B7_686_%D0%B2%D1%96%D0%B4_15052024_%D0%B4%D0%BE%D0%BE%D0%BF%D1%80%D0%B0%D1%86%D1%8C%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9_1.pdf'],
+  ['Procedure for awarding the Doctor of Philosophy degree', 'https://zakon.rada.gov.ua/laws/show/44-2022-%D0%BF#Text']
+];
+
+const relatedLinks = [
+  ['Postgraduate studies', '/en/postgraduate/'],
+  ['Doctoral studies', '/en/doctoral/'],
+  ['Dissertation defences', '/en/dissertations/'],
+  ['Scientific and Methodological Council', '/en/nmr/']
+];
+---
+
+<BaseLayoutEn
+  title={`Licences and regulations | ${siteEn.shortName}`}
+  description="Licences and regulations of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine: licensing documents, internal regulations, academic integrity and useful regulatory links."
+  activePage="education"
+>
+  <section class="license-hero">
+    <div class="container license-hero-grid">
+      <div class="license-hero-panel">
+        <p class="eyebrow">Education and research training</p>
+        <h1>Licences and regulations</h1>
+        <p class="lead">
+          This section contains licensing documents, regulations governing the Institute’s educational
+          and research-training activity, and useful regulatory links related to higher education,
+          academic integrity and the training of applicants for scientific degrees.
+        </p>
+        <div class="license-hero-actions">
+          <a class="button primary" href="#license-docs">Licensing documents</a>
+          <a class="button secondary" href="#regulations">Regulations</a>
+        </div>
+      </div>
+
+      <aside class="license-status-card">
+        <span>10</span>
+        <h2>licensed capacity</h2>
+        <p>The licensed capacity of educational activity is 10 persons.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section license-summary-section">
+    <div class="container license-summary-grid">
+      <article class="license-summary-card">
+        <span>Licence</span>
+        <p>documents confirming the right to conduct educational activity</p>
+      </article>
+      <article class="license-summary-card">
+        <span>Regulations</span>
+        <p>internal rules of the educational and research-training process</p>
+      </article>
+      <article class="license-summary-card">
+        <span>Laws</span>
+        <p>useful regulatory acts and external links</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="license-docs">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Licensing</p>
+          <h2>Licensing documents</h2>
+        </div>
+        <p>
+          Main documents confirming the Institute’s right to conduct educational activity
+          in the field of higher education.
+        </p>
+      </div>
+
+      <div class="license-doc-grid">
+        {licenseDocs.map((document) => (
+          <a class="license-doc-card" href={document.href} target="_blank" rel="noopener noreferrer">
+            <span>{document.type}</span>
+            <strong>{document.title}</strong>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="regulations">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Institute regulatory framework</p>
+          <h2>Regulations</h2>
+        </div>
+        <p>
+          The documents are grouped by topic to make it easier to find the required regulation:
+          educational process, admission, mobility, integrity, staff and methodological procedures.
+        </p>
+      </div>
+
+      <div class="regulation-group-grid">
+        {regulationGroups.map((group) => (
+          <article class="regulation-group-card">
+            <h3>{group.title}</h3>
+            <p>{group.description}</p>
+            <div class="regulation-link-list">
+              {group.documents.map(([title, href]) => (
+                <a href={href} target="_blank" rel="noopener noreferrer">{title}</a>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="useful-links">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Useful links</p>
+          <h2>External regulatory resources</h2>
+        </div>
+        <p>
+          Links to laws, resolutions and regulatory documents concerning higher education,
+          research training, academic integrity, accreditation and dissertation defence.
+        </p>
+      </div>
+
+      <div class="useful-link-grid">
+        {usefulLinks.map(([title, href]) => (
+          <a href={href} target="_blank" rel="noopener noreferrer">{title}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="related-panel">
+        <div>
+          <p class="eyebrow">Related sections</p>
+          <h2>Education and research training</h2>
+        </div>
+        <div class="related-link-grid">
+          {relatedLinks.map(([title, href]) => (
+            <a href={withBase(href)}>{title} →</a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayoutEn>
+
+<style>
+  .license-hero {
+    padding: 52px 0 18px;
+  }
+
+  .license-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .license-hero-panel,
+  .license-status-card,
+  .license-summary-card,
+  .license-doc-card,
+  .regulation-group-card,
+  .related-panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .license-hero-panel {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(28px, 5vw, 54px);
+  }
+
+  .license-hero-panel::after {
+    content: '';
+    position: absolute;
+    right: -90px;
+    top: -110px;
+    width: 280px;
+    height: 280px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(29, 79, 145, 0.17), rgba(29, 79, 145, 0));
+  }
+
+  .license-hero-panel h1,
+  .license-hero-panel .lead,
+  .license-hero-panel .eyebrow,
+  .license-hero-actions {
+    position: relative;
+    z-index: 1;
+  }
+
+  .license-hero-panel h1 {
+    margin: 0 0 18px;
+    font-size: clamp(2.2rem, 4.6vw, 4.3rem);
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+  }
+
+  .license-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .license-status-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(24px, 4vw, 40px);
+    background: linear-gradient(145deg, var(--accent-dark), var(--accent));
+    color: #fff;
+  }
+
+  .license-status-card span {
+    display: grid;
+    place-items: center;
+    width: 96px;
+    height: 96px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.14);
+    font-size: 2.4rem;
+    font-weight: 950;
+  }
+
+  .license-status-card h2 {
+    margin: 0 0 12px;
+    font-size: 1.65rem;
+  }
+
+  .license-status-card p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.84);
+  }
+
+  .license-summary-section {
+    padding-top: 16px;
+  }
+
+  .license-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .license-summary-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: clamp(20px, 3vw, 30px);
+  }
+
+  .license-summary-card span {
+    display: grid;
+    place-items: center;
+    min-width: 110px;
+    height: 70px;
+    border-radius: 22px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-weight: 950;
+  }
+
+  .license-summary-card p {
+    margin: 0;
+    color: var(--muted);
+    font-weight: 750;
+  }
+
+  .section-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 28px;
+    align-items: flex-end;
+    margin-bottom: 22px;
+  }
+
+  .section-heading h2 {
+    margin: 0;
+    font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .section-heading p:last-child {
+    max-width: 560px;
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .license-doc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .license-doc-card {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 16px;
+    align-items: center;
+    padding: clamp(20px, 3vw, 30px);
+    color: var(--text);
+  }
+
+  .license-doc-card:hover {
+    transform: translateY(-4px);
+    text-decoration: none;
+    border-color: rgba(29, 79, 145, 0.28);
+  }
+
+  .license-doc-card span {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 18px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-size: 0.82rem;
+    font-weight: 950;
+  }
+
+  .regulation-group-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .regulation-group-card {
+    padding: clamp(22px, 3vw, 34px);
+  }
+
+  .regulation-group-card h3 {
+    margin: 0 0 10px;
+    font-size: 1.32rem;
+  }
+
+  .regulation-group-card p {
+    margin: 0 0 18px;
+    color: var(--muted);
+  }
+
+  .regulation-link-list,
+  .useful-link-grid,
+  .related-link-grid {
+    display: grid;
+    gap: 10px;
+  }
+
+  .regulation-link-list a,
+  .useful-link-grid a,
+  .related-link-grid a {
+    display: block;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface-soft);
+    color: var(--accent-dark);
+    font-weight: 780;
+  }
+
+  .regulation-link-list a:hover,
+  .useful-link-grid a:hover,
+  .related-link-grid a:hover {
+    text-decoration: none;
+    background: var(--accent-soft);
+  }
+
+  .useful-link-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .related-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 24px;
+    align-items: center;
+    padding: clamp(22px, 3vw, 34px);
+  }
+
+  .related-panel h2 {
+    margin: 0;
+    font-size: clamp(1.45rem, 2.4vw, 2.2rem);
+  }
+
+  .related-link-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  @media (max-width: 1020px) {
+    .related-link-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 900px) {
+    .license-hero-grid,
+    .license-summary-grid,
+    .license-doc-grid,
+    .regulation-group-grid,
+    .useful-link-grid,
+    .related-panel {
+      grid-template-columns: 1fr;
+    }
+
+    .section-heading {
+      display: block;
+    }
+
+    .section-heading p:last-child {
+      margin-top: 10px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .license-doc-card,
+    .license-summary-card {
+      grid-template-columns: 1fr;
+      display: grid;
+    }
+
+    .related-link-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

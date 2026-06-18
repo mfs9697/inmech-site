@@ -118,7 +118,7 @@ export type DissertationBibliographicSourceEn = {
 export type DefendedDissertationEntryEn = {
   /** Stable id for URLs, search, and future filtering. */
   id: string;
-  /** Latin alphabet grouping key used by the English catalogue. */
+  /** Legacy/manual grouping key; the public English catalogue derives grouping from the surname when possible. */
   sortLetter: string;
   year: number;
   defenceDate?: string;
@@ -158,6 +158,36 @@ export const defendedDissertationLanguageLabels: Record<OriginalLanguage, string
   uk: 'in Ukrainian',
   ru: 'in Russian'
 };
+
+const surnameSuffixes = new Set(['oghly', 'ogly', 'oglu', 'oğlu', 'qizi', 'kizi', 'kyzy']);
+
+function cleanNameToken(token: string): string {
+  return token.replace(/^[^A-Za-z]+|[^A-Za-z]+$/g, '');
+}
+
+function getAuthorSurnameSortKey(entry: Pick<DefendedDissertationEntryEn, 'author'>): string {
+  const nameParts = entry.author.en.trim().split(/\s+/).filter(Boolean).map(cleanNameToken).filter(Boolean);
+
+  if (nameParts.length === 0) {
+    return '';
+  }
+
+  const lastToken = nameParts[nameParts.length - 1];
+  const previousToken = nameParts[nameParts.length - 2];
+
+  if (previousToken && surnameSuffixes.has(lastToken.toLocaleLowerCase('en'))) {
+    return previousToken;
+  }
+
+  return lastToken;
+}
+
+export function getDefendedDissertationSurnameLetterEn(entry: DefendedDissertationEntryEn): string {
+  const surname = getAuthorSurnameSortKey(entry);
+  const surnameLetter = surname.match(/[A-Za-z]/)?.[0];
+
+  return (surnameLetter ?? entry.sortLetter ?? entry.author.en.charAt(0)).toUpperCase();
+}
 
 /**
  * English catalogue entries are added gradually during migration.
@@ -212,7 +242,7 @@ export function groupDefendedDissertationsEn(
   const grouped = new Map<string, DefendedDissertationEntryEn[]>();
 
   entries.forEach((entry) => {
-    const letter = entry.sortLetter.toUpperCase();
+    const letter = getDefendedDissertationSurnameLetterEn(entry);
     const items = grouped.get(letter) ?? [];
     items.push(entry);
     grouped.set(letter, items);
@@ -222,6 +252,20 @@ export function groupDefendedDissertationsEn(
     .sort(([a], [b]) => a.localeCompare(b, 'en'))
     .map(([letter, items]) => ({
       letter,
-      items: [...items].sort((a, b) => a.author.en.localeCompare(b.author.en, 'en'))
+      items: [...items].sort((a, b) => {
+        const surnameComparison = getAuthorSurnameSortKey(a).localeCompare(getAuthorSurnameSortKey(b), 'en');
+
+        if (surnameComparison !== 0) {
+          return surnameComparison;
+        }
+
+        const authorComparison = a.author.en.localeCompare(b.author.en, 'en');
+
+        if (authorComparison !== 0) {
+          return authorComparison;
+        }
+
+        return a.year - b.year;
+      })
     }));
 }

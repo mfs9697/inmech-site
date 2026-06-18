@@ -26,15 +26,6 @@ function withBase(path: string) {
 
 export function getStaticPaths() {
   const genericPages: Record<string, PageData> = {
-    'license-and-regulations': {
-      title: 'Licences and regulations',
-      description: 'Licences and regulations related to educational activity.',
-      activePage: 'education',
-      eyebrow: 'Education and research training',
-      heading: 'Licences and regulations',
-      lead: 'Official documents regulating educational and research training activity are maintained in Ukrainian.',
-      links: [{ title: 'Ukrainian version', href: '/license-and-regulations/' }]
-    },
     'trust-box': {
       title: 'Trust box',
       description: 'Trust box page of the Institute.',

@@ -63,7 +63,13 @@ const catalog = [
   { letter: 'Я', items: defendedDissertationsYa }
 ];
 
-const totalItems = catalog.reduce((sum, group) => sum + group.items.length, 0);
+const allCatalogItems = catalog.flatMap((group) => group.items);
+const totalItems = allCatalogItems.length;
+const candidateDegreePattern = /к\.ф\.-?м\.н\.|к\.т\.н\./i;
+const doctoralDegreePattern = /д\.ф\.-?м\.н\.|д\.т\.н\./i;
+const candidateCount = allCatalogItems.filter((item) => candidateDegreePattern.test(item.details)).length;
+const doctoralCount = allCatalogItems.filter((item) => doctoralDegreePattern.test(item.details)).length;
+const otherCount = Math.max(totalItems - candidateCount - doctoralCount, 0);
 const totalArchiveItems = defenseMaterialsArchiveGroups.reduce((sum, [, items]) => sum + items.length, 0);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
@@ -80,6 +86,29 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
         Каталог містить {totalItems} бібліографічних записів, згрупованих за першою літерою
         прізвища здобувача. Для швидкого переходу скористайтеся алфавітною навігацією.
       </p>
+    </div>
+
+    <div class="catalog-summary-grid" aria-label="Стислий підсумок каталогу захищених дисертацій">
+      <article class="catalog-stat-card">
+        <span>{totalItems}</span>
+        <strong>бібліографічних записів</strong>
+        <p>У повному каталозі зібрано історичні записи про захищені дисертації.</p>
+      </article>
+      <article class="catalog-stat-card">
+        <span>{candidateCount}</span>
+        <strong>кандидатських дисертацій</strong>
+        <p>Записи, у яких у бібліографічних даних зазначено ступінь кандидата наук.</p>
+      </article>
+      <article class="catalog-stat-card">
+        <span>{doctoralCount}</span>
+        <strong>докторських дисертацій</strong>
+        <p>Записи, у яких у бібліографічних даних зазначено ступінь доктора наук.</p>
+      </article>
+      <article class="catalog-stat-card">
+        <span>{otherCount}</span>
+        <strong>інших записів</strong>
+        <p>Матеріали або записи, для яких ступінь не визначено автоматично.</p>
+      </article>
     </div>
 
     <nav class="diss-alpha-nav" aria-label="Алфавітна навігація каталогу захищених дисертацій">
@@ -158,6 +187,43 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
 </section>
 
 <style>
+  .catalog-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+
+  .catalog-stat-card {
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .catalog-stat-card span {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--accent);
+    font-size: clamp(1.45rem, 3vw, 2.1rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+  }
+
+  .catalog-stat-card strong {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text);
+    font-size: 1.02rem;
+  }
+
+  .catalog-stat-card p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+
   .diss-alpha-nav {
     display: flex;
     flex-wrap: wrap;
@@ -299,6 +365,12 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
     text-decoration: none;
   }
 
+  @media (max-width: 1100px) {
+    .catalog-summary-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
   @media (max-width: 900px) {
     .diss-card-grid,
     .archive-material-grid {
@@ -312,6 +384,12 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
     .diss-letter-header span {
       display: block;
       margin-top: 10px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .catalog-summary-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>

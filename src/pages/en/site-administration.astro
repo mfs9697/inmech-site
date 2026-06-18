@@ -1,0 +1,218 @@
+---
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../data/site-en';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+
+const technologies = [
+  {
+    title: 'Astro',
+    text: 'The website is built as a static web project based on Astro. This approach provides fast page loading, a clear file structure and straightforward deployment to the server without a separate server-side application.'
+  },
+  {
+    title: 'HTML, CSS and TypeScript',
+    text: 'The pages are built using the Astro component structure, standard HTML markup, cascading style sheets and supporting TypeScript code.'
+  },
+  {
+    title: 'Static architecture',
+    text: 'The website does not require a database or a separate server application. Text materials, images, documents and pages are stored within the project structure.'
+  },
+  {
+    title: 'Hosting on the Institute server',
+    text: 'The public version of the website is intended to be hosted on the server of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine, with updates made by deploying the generated static files.'
+  }
+];
+
+const developers = [
+  {
+    name: 'Mykhailo Selivanov',
+    role: 'website structure, scientific and informational content, editing of materials, and coordination of section updates'
+  },
+  {
+    name: 'Mykhailo Dovzhyk',
+    role: 'technical support, web development, local development environment, and preparation of materials for deployment on the Institute server'
+  }
+];
+---
+
+<BaseLayoutEn
+  title={`Site administration | ${siteEn.shortName}`}
+  description="Website administration information for the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine: web technologies, support structure and contributors."
+  activePage="home"
+>
+  <main class="site-admin-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumbs">
+      <a href={withBase('/en/')}>Home</a>
+      <span>›</span>
+      <span>Site administration</span>
+    </nav>
+
+    <section class="admin-hero">
+      <p class="eyebrow">Service information</p>
+      <h1>Site administration</h1>
+      <p class="lead">
+        The official website of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine
+        has been developed as a modern static resource for presenting the Institute’s structure,
+        research activities, educational and research programmes, news, documents and reference materials.
+      </p>
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Technologies</p>
+          <h2>Technology used</h2>
+        </div>
+      </div>
+
+      <div class="technology-grid">
+        {technologies.map((item) => (
+          <article class="info-card">
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section-block two-column">
+      <article class="info-panel">
+        <p class="eyebrow">Website support</p>
+        <h2>Organisation principle</h2>
+        <p>
+          Preparation and updating of materials are organised through a local development environment,
+          page preview and verification, followed by deployment of the generated static version to the Institute server.
+        </p>
+        <p>
+          This approach is convenient for the gradual migration of materials from the previous version of the website,
+          the creation of separate pages for large sections and the maintenance of an orderly content structure.
+        </p>
+      </article>
+
+      <article class="info-panel">
+        <p class="eyebrow">Contributors</p>
+        <h2>Contributors</h2>
+        <div class="developer-list">
+          {developers.map((developer) => (
+            <div class="developer-card">
+              <strong>{developer.name}</strong>
+              <p>{developer.role}</p>
+            </div>
+          ))}
+        </div>
+      </article>
+    </section>
+  </main>
+</BaseLayoutEn>
+
+<style>
+  .site-admin-page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 46px 20px 72px;
+  }
+
+  .breadcrumbs {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 22px;
+    color: var(--muted);
+    font-weight: 750;
+  }
+
+  .admin-hero,
+  .info-card,
+  .info-panel {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .admin-hero {
+    padding: clamp(28px, 5vw, 52px);
+  }
+
+  .admin-hero h1 {
+    margin: 0 0 18px;
+    font-size: clamp(2.3rem, 5vw, 4.4rem);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+  }
+
+  .lead {
+    max-width: 900px;
+    color: var(--muted);
+    font-size: 1.08rem;
+    line-height: 1.7;
+  }
+
+  .section-block {
+    margin-top: 34px;
+  }
+
+  .technology-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .info-card,
+  .info-panel {
+    padding: 24px;
+  }
+
+  .info-card h3,
+  .info-panel h2 {
+    margin-top: 0;
+  }
+
+  .info-card p,
+  .info-panel p {
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .two-column {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .developer-list {
+    display: grid;
+    gap: 14px;
+  }
+
+  .developer-card {
+    padding: 16px;
+    border-radius: 18px;
+    background: var(--surface-soft);
+  }
+
+  .developer-card strong {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text);
+    font-size: 1.05rem;
+  }
+
+  .developer-card p {
+    margin: 0;
+  }
+
+  @media (max-width: 1080px) {
+    .technology-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 860px) {
+    .technology-grid,
+    .two-column {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -6,46 +6,38 @@ positionEn: "Researcher"
 department: "Відділ будівельної механіки тонкостінних конструкцій"
 departmentEn: "Department of Structural Mechanics of Thin-Walled Structures"
 departmentUrl: "/departments/05-thin-walled-structures/"
-degree: "Кандидат фізико-математичних наук"
+degree: "кандидат фізико-математичних наук"
 degreeEn: "Candidate of Physical and Mathematical Sciences"
 email: "ipodil19@gmail.com"
+phone: "(066) 673-05-22"
 photo: "/people/podilchuk.png"
 featured: false
-order: 3
-
-profiles: []
-
+order: 6
+profiles:
+  - label: "Scopus"
+    url: "https://www.scopus.com/authid/detail.uri?authorId=6603660011"
+    kind: "scopus"
+    value: "h-index: 4"
 researchAreas:
-  - "В’язкопружність і пластичність."
-  - "Динамічні задачі теорії оболонок і пластин."
-  - "Поширення хвиль в ортотропних циліндричних оболонках."
-  - "Моделювання ефекту Баушингера в ортотропних матеріалах."
+  - "Механіка деформівного тіла. Коливання тонкостінних конструкцій."
 researchAreasEn:
-  - "Viscoelasticity and plasticity."
-  - "Dynamic problems of shell and plate theory."
-  - "Wave propagation in orthotropic cylindrical shells."
-  - "Modelling of the Bauschinger effect in orthotropic materials."
-
-professionalActivity: "Наукова діяльність пов’язана з динамікою оболонок і пластин, в’язкопружністю, пластичністю та моделюванням механічної поведінки ортотропних матеріалів."
-professionalActivityEn: "Scientific activity is related to the dynamics of shells and plates, viscoelasticity, plasticity, and modelling of the mechanical behaviour of orthotropic materials."
-
+  - "Mechanics of deformable bodies. Vibrations of thin-walled structures."
+professionalActivity: "Математичні моделі в’язкопружності, пластичність, втома матеріалу, коливання стрижнів, пластин та оболонок."
+professionalActivityEn: "Mathematical models of viscoelasticity, plasticity, material fatigue, vibrations of rods, plates and shells."
 publications:
-  - title: "Основні публікації"
-    titleEn: "Selected publications"
+  - title: "Статті"
+    titleEn: "Articles"
     type: "ordered"
     items:
-      - >-
-        Луговий П.З., Подільчук І.Ю., Головко К.Г. Про вплив пружної основи на поширення гармонічних хвиль в ортотропній циліндричній оболонці // Математичні методи та фізико-механічні поля. 2007. Т. 50, № 1. С. 98–106.
-      - >-
-        Луговой П.З., Подильчук И.Ю., Сивак В.Ф. Экспериментальное исследование поведения цилиндрической оболочки с учетом влажности окружающей ее среды при импульсном нагружении // Прикладная механика. 2010. Т. 46, № 4. С. 58–62.
-      - >-
-        Подільчук І.Ю. Про максимальну похибку при апроксимації нераціональних функцій від резольвентних інтегральних операторів ланцюговими дробами // Математичні методи та фізико-механічні поля. 2012. Т. 55, № 1. С. 19–28.
-      - >-
-        Бастун В.Н., Подильчук И.Ю. Моделирование эффекта Баушингера в ортотропных материалах с изотропно-кинематическим упрочнением в условиях изотермического и неизотермического нагружения // Доповіді НАН України. 2016. № 7. С. 39–48.
-      - >-
-        Bastun V., Podil'chuk I. Bauschinger effect prediction in structural metallic materials. LAP Lambert Academic Publishing, 2019. 140 p.
-      - >-
-        Подільчук І.Ю. Розрахунок вільних поздовжніх коливань стрижня методом сплайн-колокацій // Прикладні проблеми математики і механіки. 2021. Т. 19.
+      - "Vladimir Bastun, Inna Podil'chuk. Bauschinger effect prediction in structural metallic materials. LAP LAMBERT Academic Publishing, 2021. 140 p."
+      - "I. Yu. Podil'chuk. Calculation of free longitudinal vibrations of a beam by spline collocation method // Prykladni Problemy Mekhaniky i Matematyky. 2021. Issue 19. P. 25–29."
+  - title: "Тези"
+    titleEn: "Conference abstracts"
+    type: "ordered"
+    items:
+      - "Подільчук І.Ю. Дослідження міри ефекта Баушингера для легованих сталей при розтязі-стиску // Актуальні проблеми механіки – 2023. С. 82–83."
+      - "Подільчук І.Ю. Ефект Баушінгера у ортотропних матеріалах з ізотропно-кінематичним зміцненням // Актуальні проблеми механіки – 2024. С. 189–192."
+      - "A. Koliadiuk, I. Podilchuk. Analysis of Natural Vibrations of Shells with Crack // Fracture Mechanics of Materials and Structural Integrity. 2026. P. 68."
 ---
 
-**Освіта:** Київський університет імені Т.Г. Шевченка, спеціальність «механіка, прикладна математика».
+**Контактна інформація:** тел. (066) 673-05-22.

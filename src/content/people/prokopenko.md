@@ -6,44 +6,39 @@ positionEn: "Researcher"
 department: "Відділ будівельної механіки тонкостінних конструкцій"
 departmentEn: "Department of Structural Mechanics of Thin-Walled Structures"
 departmentUrl: "/departments/05-thin-walled-structures/"
-degree: "Кандидат технічних наук"
+degree: "кандидат технічних наук"
 degreeEn: "Candidate of Technical Sciences"
 email: "NJAProkopenko@nas.gov.ua"
+phone: "(066) 894-43-25"
 photo: "/people/prokopenko.png"
 featured: false
-order: 2
-
-profiles: []
-
+order: 5
+profiles:
+  - label: "Scopus"
+    url: "https://www.scopus.com/authid/detail.uri?authorId=7003958997"
+    kind: "scopus"
+    value: "h-index: 8"
+  - label: "Google Scholar"
+    url: "https://scholar.google.com.ua/citations?hl=uk&user=CMqAXN0AAAAJ"
+    kind: "scholar"
 researchAreas:
-  - "Статика та динаміка оболонок і пластин, підсилених сіткою ребер."
-  - "Коливання підкріплених оболонок і пластин."
-  - "Динаміка оболонкових систем на пружній основі."
+  - "механіка деформівного твердого тіла"
 researchAreasEn:
-  - "Statics and dynamics of shells and plates reinforced by a grid of ribs."
-  - "Vibrations of reinforced shells and plates."
-  - "Dynamics of shell systems on elastic foundations."
-
-professionalActivity: "Наукова діяльність пов’язана з дослідженням статичної та динамічної поведінки пластин і оболонок, зокрема підкріплених ребрами та взаємодіючих із пружною основою."
-professionalActivityEn: "Scientific activity is related to the study of static and dynamic behaviour of plates and shells, including rib-reinforced elements and structures interacting with elastic foundations."
-
+  - "Solid Mechanics."
+professionalActivity: "Статика та динаміка оболонок і пластин, підсилених сіткою ребер."
+professionalActivityEn: "Statics and dynamics of shells and plates reinforced with a mesh of ribs."
 publications:
-  - title: "Основні публікації"
-    titleEn: "Selected publications"
+  - title: "Статті"
+    titleEn: "Articles"
     type: "ordered"
     items:
-      - >-
-        Заруцкий В.А., Прокопенко Н.Я. Исследование влияния дискретного размещения ребер на устойчивость прямоугольных пластин, усиленных ортогональной сеткой ребер // Прикладная механика. 2000. Т. 36, № 8. С. 122–127.
-      - >-
-        Амиро И.Я., Прокопенко Н.Я. Исследование нелинейных колебаний цилиндрических оболочек с учетом диссипации энергии // Прикладная механика. 1999. Т. 35, № 2. С. 30–35.
-      - >-
-        Луговой П.З., Прокопенко Н.Я. О дисперсионных кривых для гармонических волн, распространяющихся вдоль продольно подкрепленных цилиндрических оболочек на упругом основании // Збірник наукових праць Дніпродзержинського державного технічного університету. Технічні науки. 2014. Вип. 1. С. 140–143.
-      - >-
-        Луговой П.З., Прокопенко Н.Я., Орленко С.П. Управление трещинообразованием в горных породах при использовании невзрывчатых разрушающих смесей // Прикладная механика. 2018. Т. 54, № 6. С. 63–72.
-      - >-
-        Амиро И.Я., Прокопенко Н.Я. О взаимном влиянии форм колебаний на амплитудно-частотные зависимости ребристой цилиндрической оболочки // Прикладная механика. 1998. Т. 34, № 11. С. 52–59.
-      - >-
-        Амиро И.Я., Прокопенко Н.Я. Переходный процесс колебаний цилиндрической оболочки как системы со многими степенями свободы // Прикладная механика. 1999. Т. 35, № 3. С. 57–63.
+      - "Lugovyi, P.Z., Prokopenko, N.Y., Orlenko, S.P. Effect of the Number of Ribs on a Transient in a Cylindrical Shell under a Disturbing Load // International Applied Mechanics. 2021. Vol. 57. P. 290–296. https://doi.org/10.1007/s10778-021-01080-8"
+      - "Luhovyi, P.Z., Kravets, V.H., Prokopenko, N.Y. et al. Explosion of the Primer at the End of a Borehole Charge // International Applied Mechanics. 2021. Vol. 57. P. 34–42. https://doi.org/10.1007/s10778-021-01062-w"
+      - "Lugovoi, P.Z., Prokopenko, N.Y., Orlenko, S.P. Control of Crack Formation in Rock in Using Nonexplosive Braking Compositions // International Applied Mechanics. 2018. Vol. 54. P. 666–674. https://doi.org/10.1007/s10778-018-0921-z"
+      - "Zarutskii, V.A., Prokopenko, N.Y. Influence of Discrete Longitudinal Ribs on Harmonic Waves in Cylindrical Shells // International Applied Mechanics. 2003. Vol. 39. P. 457–463. https://doi.org/10.1023/A:1024983219491"
+      - "Zarutskii, V.A., Prokopenko, N.Y. Vibrations and Stability of Shallow Ribbed Shells with a Rectangular Planform // International Applied Mechanics. 2002. Vol. 38. P. 710–715. https://doi.org/10.1023/A:1020480828623"
 ---
 
-**Освіта:** Київський університет імені Т.Г. Шевченка, спеціальність «механіка, прикладна математика».
+**Контактна інформація:** тел. (066) 894-43-25.
+
+**Підвищення кваліфікації:** «Великий курс про штучний інтелект в освіті» від ГО «Прогресильні» за підтримки МОН України й Міністерства цифрової трансформації України, 2025 р.

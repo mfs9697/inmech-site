@@ -9,6 +9,7 @@ departmentUrl: "/departments/05-thin-walled-structures/"
 degree: "доктор філософії за спеціальністю «113 Прикладна математика»"
 degreeEn: "PhD"
 email: "orlenko_sergey@ukr.net"
+photo: "/people/orlenko.png"
 featured: false
 order: 4
 profiles:

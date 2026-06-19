@@ -8,7 +8,7 @@ category: "Наукова співпраця"
 categoryEn: "Scientific cooperation"
 tags: ["співпраця", "НАН України"]
 tagsEn: ["cooperation", "NAS of Ukraine"]
-image: "/images/news/2026/shimanovsky-visit.svg"
+image: "/images/news/2026/shimanovsky-visit.jpg"
 imageAlt: "Делегація Інституту механіки ім. С.П. Тимошенка НАН України в Українському інституті сталевих конструкцій ім. В.М. Шимановського"
 imageAltEn: "Delegation of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine at the V.M. Shimanovsky Ukrainian Institute of Steel Construction"
 year: 2026

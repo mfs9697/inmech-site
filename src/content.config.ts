@@ -6,10 +6,14 @@ const news = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/news' }),
   schema: z.object({
     title: z.string(),
+    titleEn: z.string().optional(),
     description: z.string(),
+    descriptionEn: z.string().optional(),
     date: z.coerce.date(),
     category: z.string(),
+    categoryEn: z.string().optional(),
     tags: z.array(z.string()).default([]),
+    tagsEn: z.array(z.string()).optional(),
     year: z.number(),
     featured: z.boolean().default(false),
     externalUrl: z.string().optional()

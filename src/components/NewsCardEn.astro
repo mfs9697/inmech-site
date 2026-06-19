@@ -1,0 +1,123 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'news'>;
+  level?: 'h2' | 'h3';
+}
+
+const { entry, level = 'h2' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+const date = entry.data.date.toLocaleDateString('en-GB', {
+  day: '2-digit',
+  month: 'long',
+  year: 'numeric'
+});
+const TitleTag = level;
+const title = entry.data.titleEn ?? entry.data.title;
+const description = entry.data.descriptionEn ?? entry.data.description;
+const tags = entry.data.tagsEn ?? entry.data.tags;
+const href = entry.data.externalUrl ?? withBase(`/en/news/${entry.id}/`);
+const isExternal = Boolean(entry.data.externalUrl);
+const image = entry.data.image ? withBase(entry.data.image) : undefined;
+const imageAlt = entry.data.imageAltEn ?? entry.data.imageAlt ?? '';
+---
+
+<article class:list={["news-card", { "news-card-with-image": Boolean(image) }]}>
+  {image ? (
+    <a
+      class="news-card-image"
+      href={href}
+      target={isExternal ? '_blank' : undefined}
+      rel={isExternal ? 'noopener noreferrer' : undefined}
+      aria-label={title}
+    >
+      <img src={image} alt={imageAlt} loading="lazy" decoding="async" />
+    </a>
+  ) : (
+    <time class="news-date" datetime={entry.data.date.toISOString()}>{date}</time>
+  )}
+
+  <div class="news-card-body">
+    {image && <time class="news-date" datetime={entry.data.date.toISOString()}>{date}</time>}
+
+    <TitleTag>
+      {isExternal ? (
+        <a href={entry.data.externalUrl} target="_blank" rel="noopener noreferrer">{title}</a>
+      ) : (
+        <a href={href}>{title}</a>
+      )}
+    </TitleTag>
+    <p>{description}</p>
+    {tags.length > 0 && (
+      <div class="tags">
+        {tags.map((tag) => (
+          <a class="tag" href={withBase(`/en/news/tags/${encodeURIComponent(tag)}/`)}>{tag}</a>
+        ))}
+      </div>
+    )}
+  </div>
+</article>
+
+<style>
+  .news-card-with-image {
+    grid-template-columns: minmax(190px, 0.36fr) minmax(0, 1fr);
+    gap: 0;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .news-card-image {
+    display: block;
+    min-height: 210px;
+    overflow: hidden;
+  }
+
+  .news-card-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 210px;
+    object-fit: cover;
+    transition: transform 0.25s ease;
+  }
+
+  .news-card-image:hover img {
+    transform: scale(1.025);
+  }
+
+  .news-card-body {
+    min-width: 0;
+  }
+
+  .news-card-with-image .news-card-body {
+    padding: 20px;
+  }
+
+  .news-card-with-image .news-date {
+    margin-bottom: 12px;
+  }
+
+  .news-card h2 a,
+  .news-card h3 a {
+    color: var(--text);
+  }
+
+  .news-card h2 a:hover,
+  .news-card h3 a:hover {
+    color: var(--accent);
+  }
+
+  @media (max-width: 720px) {
+    .news-card-with-image {
+      grid-template-columns: 1fr;
+    }
+
+    .news-card-image img {
+      aspect-ratio: 16 / 9;
+      height: auto;
+      min-height: 0;
+    }
+  }
+</style>

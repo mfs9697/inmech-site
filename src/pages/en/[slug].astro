@@ -26,15 +26,6 @@ function withBase(path: string) {
 
 export function getStaticPaths() {
   const genericPages: Record<string, PageData> = {
-    news: {
-      title: 'News',
-      description: 'News and announcements of the Institute.',
-      activePage: 'news',
-      eyebrow: 'News',
-      heading: 'News and announcements',
-      lead: 'The English news archive is being prepared. Current institutional announcements are available in the Ukrainian version of the website.',
-      links: [{ title: 'Open Ukrainian news archive', href: '/news/' }]
-    },
     library: {
       title: 'Library',
       description: 'Library resources and publications of the Institute.',

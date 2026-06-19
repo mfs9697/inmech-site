@@ -1,0 +1,170 @@
+---
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../data/site-en';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+
+const sections = [
+  {
+    title: 'Home',
+    links: [
+      ['Home page', '/en/'],
+      ['News', '/en/news/'],
+      ['Contacts', '/en/#contacts']
+    ]
+  },
+  {
+    title: 'About the Institute',
+    links: [
+      ['History and mission', '/en/history/'],
+      ['Statute', '/en/regulations/'],
+      ['Development strategy', '/en/strategy/'],
+      ['Scientific cooperation', '/en/scientific-cooperation/'],
+      ['Procurement and tenders', '/en/tender/']
+    ]
+  },
+  {
+    title: 'Structure',
+    links: [
+      ['Management', '/en/management/'],
+      ['Research departments', '/en/departments/'],
+      ['Scientific Council', '/en/scientific-council/'],
+      ['Specialized Academic Councils', '/en/specialized-councils/'],
+      ['Council of Young Scientists', '/en/young-scientists/'],
+      ['Institute services', '/en/services/']
+    ]
+  },
+  {
+    title: 'Education and research training',
+    links: [
+      ['Section overview', '/en/education/'],
+      ['Postgraduate studies', '/en/postgraduate/'],
+      ['Doctoral studies', '/en/doctoral/'],
+      ['Dissertation defences', '/en/dissertations/'],
+      ['Licences and regulations', '/en/license-and-regulations/'],
+      ['Trust box', '/en/trust-box/'],
+      ['Scientific and Methodological Council', '/en/nmr/']
+    ]
+  },
+  {
+    title: 'Postgraduate studies',
+    links: [
+      ['Postgraduate studies', '/en/postgraduate/'],
+      ['Admission to postgraduate studies', '/en/postgraduate/admission/'],
+      ['Educational and scientific programme', '/en/postgraduate/program/'],
+      ['Accreditation', '/en/postgraduate/accreditation/'],
+      ['Postgraduate class schedule', '/en/postgraduate/schedule/'],
+      ['Postgraduate students', '/en/postgraduate/students/'],
+      ['Teachers and research supervisors', '/en/postgraduate/supervisors/'],
+      ['Alignment of postgraduate topics with supervisors’ research activities', '/en/postgraduate/research-topics/']
+    ]
+  },
+  {
+    title: 'Service pages',
+    links: [
+      ['Sitemap', '/en/sitemap/'],
+      ['Search', '/en/search/'],
+      ['Accessibility policy', '/en/accessibility/'],
+      ['Site administration', '/en/site-administration/'],
+      ['Ukrainian sitemap', '/sitemap/']
+    ]
+  }
+];
+---
+
+<BaseLayoutEn
+  title={`Sitemap | ${siteEn.shortName}`}
+  description="Sitemap of the English section of the website of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine."
+  activePage="home"
+>
+  <main class="sitemap-page">
+    <section class="sitemap-hero">
+      <p class="eyebrow">Navigation</p>
+      <h1>Sitemap</h1>
+      <p class="lead">
+        This page brings together the main sections of the English version of the website of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine.
+      </p>
+    </section>
+
+    <section class="sitemap-grid" aria-label="Sitemap sections">
+      {sections.map((section) => (
+        <article class="sitemap-card">
+          <h2>{section.title}</h2>
+          <ul>
+            {section.links.map(([label, href]) => (
+              <li><a href={withBase(href)}>{label}</a></li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </section>
+  </main>
+</BaseLayoutEn>
+
+<style>
+  .sitemap-page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 52px 20px 72px;
+  }
+
+  .sitemap-hero,
+  .sitemap-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .sitemap-hero {
+    padding: clamp(28px, 5vw, 52px);
+  }
+
+  .sitemap-hero h1 {
+    margin: 0 0 18px;
+    font-size: clamp(2.3rem, 5vw, 4.4rem);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+  }
+
+  .lead {
+    max-width: 820px;
+    color: var(--muted);
+    font-size: 1.08rem;
+    line-height: 1.7;
+  }
+
+  .sitemap-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 30px;
+  }
+
+  .sitemap-card {
+    padding: 26px;
+  }
+
+  .sitemap-card h2 {
+    margin: 0 0 16px;
+    font-size: 1.35rem;
+  }
+
+  .sitemap-card ul {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  .sitemap-card a {
+    font-weight: 750;
+  }
+
+  @media (max-width: 860px) {
+    .sitemap-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

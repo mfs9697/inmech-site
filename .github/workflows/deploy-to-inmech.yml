@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      DEPLOY_TARGET: inmech
       INMECH_HOST: ${{ secrets.INMECH_HOST }}
       INMECH_USER: ${{ secrets.INMECH_USER }}
       INMECH_PATH: ${{ secrets.INMECH_PATH }}

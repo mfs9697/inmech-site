@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import HomeNewsBlock from '../../components/HomeNewsBlock.astro';
 import DepartmentCard from '../../components/DepartmentCard.astro';
 import { siteEn } from '../../data/site-en';
 
@@ -13,6 +14,10 @@ function withBase(path: string) {
 
   return `${base}${path.startsWith('/') ? path : `/${path}`}`;
 }
+
+const news = (await getCollection('news'))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 4);
 
 const departments = (await getCollection('departments'))
   .sort((a, b) => a.data.order - b.data.order);
@@ -79,6 +84,26 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
           </li>
         </ul>
       </aside>
+    </div>
+  </section>
+
+  <section class="section" id="news">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Latest announcements</p>
+          <h2 class="section-title">Institute news</h2>
+          <p class="section-text">
+            Current information about scientific events, seminars, publications, announcements and Institute activities.
+          </p>
+        </div>
+        <div class="lang-switch news-block-switch" aria-label="News block language switch">
+          <a href={withBase('/#news')}>Українська</a>
+          <a class="active" href={withBase('/en/#news')} aria-current="page">English</a>
+        </div>
+      </div>
+
+      <HomeNewsBlock entries={news} archiveHref="/en/news/" lang="en" />
     </div>
   </section>
 
@@ -156,22 +181,6 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
             </div>
           </section>
         ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <p class="eyebrow">Latest announcements</p>
-          <h2 class="section-title">News and announcements</h2>
-          <p class="section-text">
-            The English news archive is being prepared. Current institutional announcements are available
-            in the Ukrainian version of the website.
-          </p>
-        </div>
-        <a class="button secondary" href={withBase('/news/')}>Ukrainian news archive</a>
       </div>
     </div>
   </section>

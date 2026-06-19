@@ -7,6 +7,7 @@ department: "Відділ будівельної механіки тонкост
 departmentEn: "Department of Structural Mechanics of Thin-Walled Structures"
 departmentUrl: "/departments/05-thin-walled-structures/"
 email: "terri_v@ukr.net"
+photo: "/people/tkachenko_r.jpeg"
 featured: false
 order: 7
 profiles:

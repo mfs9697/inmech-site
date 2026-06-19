@@ -25,7 +25,7 @@ sectionsEn:
       - "Dynamic problems of shell and plate theory."
       - "Viscoelasticity, plasticity and mechanical behaviour of orthotropic materials."
       - "Wave propagation in orthotropic cylindrical shells."
-      - "Effects of explosive and impulse loads on various media."
+      - "Effects of impulse loads on various media."
 order: 5
 contactEmail: "duk86@outlook.com"
 staff:
@@ -64,6 +64,8 @@ staff:
     position: "молодший науковий співробітник"
     positionEn: "Junior Researcher"
     url: "/people/tkachenko-roksolana/"
+  - name: "Мейш Юлія Анатоліївна"
+    nameEn: "Yuliia A. Meish"
 ---
 
 Відділ будівельної механіки тонкостінних конструкцій виконує дослідження, пов’язані з напружено-деформованим станом, коливаннями, стійкістю та динамікою тонкостінних конструкцій, пластин і оболонок, зокрема конструктивно неоднорідних оболонкових систем.
@@ -77,4 +79,4 @@ staff:
 - динамічні задачі теорії оболонок і пластин;
 - в’язкопружність, пластичність і механічна поведінка ортотропних матеріалів;
 - поширення хвиль в ортотропних циліндричних оболонках;
-- дія вибухових та імпульсних навантажень на різноманітні середовища.
+- дія імпульсних навантажень на різноманітні середовища.

@@ -87,6 +87,26 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
     </div>
   </section>
 
+  <section class="section" id="news">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Останні повідомлення</p>
+          <h2 class="section-title">Новини Інституту</h2>
+          <p class="section-text">
+            Актуальна інформація про наукові події, семінари, публікації, оголошення та діяльність Інституту.
+          </p>
+        </div>
+        <div class="lang-switch news-block-switch" aria-label="Перемикання мови блоку новин">
+          <a class="active" href={withBase('/#news')} aria-current="page">Українська</a>
+          <a href={withBase('/en/#news')}>English</a>
+        </div>
+      </div>
+
+      <HomeNewsBlock entries={news} archiveHref="/news/" lang="uk" />
+    </div>
+  </section>
+
   <section class="section" id="about">
     <div class="container">
       <div class="section-header">
@@ -162,22 +182,6 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
           </section>
         ))}
       </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <p class="eyebrow">Останні повідомлення</p>
-          <h2 class="section-title">Новини Інституту</h2>
-          <p class="section-text">
-            Актуальна інформація про наукові події, семінари, публікації, оголошення та діяльність Інституту.
-          </p>
-        </div>
-      </div>
-
-      <HomeNewsBlock entries={news} archiveHref="/news/" />
     </div>
   </section>
 </BaseLayout>

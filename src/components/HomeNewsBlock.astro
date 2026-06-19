@@ -17,6 +17,8 @@ const archiveUrl = archiveHref ?? (lang === 'en' ? '/en/news/' : '/news/');
 const [featured, ...compactEntries] = entries;
 const featuredTags = featured ? getEntryTags(featured).slice(0, 3) : [];
 const layoutClass = compactEntries.length > 0 ? 'home-news-layout' : 'home-news-layout home-news-layout-single';
+const featuredImage = featured ? getEntryImage(featured) : undefined;
+const featuredImageAlt = featured ? getEntryImageAlt(featured) : '';
 
 const text = {
   uk: {
@@ -73,6 +75,14 @@ function getEntryTags(entry: NewsEntry) {
   return getVisibleNewsTags(entry);
 }
 
+function getEntryImage(entry: NewsEntry) {
+  return entry.data.image ? withBase(entry.data.image) : undefined;
+}
+
+function getEntryImageAlt(entry: NewsEntry) {
+  return lang === 'en' ? entry.data.imageAltEn ?? entry.data.imageAlt ?? '' : entry.data.imageAlt ?? '';
+}
+
 function formatDate(date: Date, variant: 'short' | 'long' = 'short') {
   return date.toLocaleDateString(lang === 'en' ? 'en-GB' : 'uk-UA', {
     day: '2-digit',
@@ -85,66 +95,98 @@ function formatDate(date: Date, variant: 'short' | 'long' = 'short') {
 {featured ? (
   <div class="home-news-block" data-lang={lang}>
     <div class={layoutClass}>
-      <article class="home-news-featured" aria-labelledby="home-featured-news-title">
-        <div class="home-news-meta">
-          <span class="home-news-category">{getEntryCategory(featured)}</span>
-          <time datetime={featured.data.date.toISOString()}>{formatDate(featured.data.date, 'long')}</time>
-        </div>
-
-        <h3 id="home-featured-news-title">
+      <article class:list={["home-news-featured", { "has-image": Boolean(featuredImage) }]} aria-labelledby="home-featured-news-title">
+        {featuredImage && (
           <a
+            class="home-news-featured-image"
+            href={getNewsHref(featured)}
+            target={isExternal(featured) ? '_blank' : undefined}
+            rel={isExternal(featured) ? 'noopener noreferrer' : undefined}
+            aria-label={getEntryTitle(featured)}
+          >
+            <img src={featuredImage} alt={featuredImageAlt} loading="eager" decoding="async" />
+          </a>
+        )}
+
+        <div class="home-news-featured-content">
+          <div class="home-news-meta">
+            <span class="home-news-category">{getEntryCategory(featured)}</span>
+            <time datetime={featured.data.date.toISOString()}>{formatDate(featured.data.date, 'long')}</time>
+          </div>
+
+          <h3 id="home-featured-news-title">
+            <a
+              href={getNewsHref(featured)}
+              target={isExternal(featured) ? '_blank' : undefined}
+              rel={isExternal(featured) ? 'noopener noreferrer' : undefined}
+            >
+              {getEntryTitle(featured)}
+            </a>
+          </h3>
+
+          <p>{getEntryDescription(featured)}</p>
+
+          {featuredTags.length > 0 && (
+            <div class="home-news-tags" aria-label={text.tagsLabel}>
+              {featuredTags.map((tag) => (
+                lang === 'uk' ? (
+                  <a class="home-news-tag" href={withBase(`/news/tags/${encodeURIComponent(tag)}/`)}>{tag}</a>
+                ) : (
+                  <span class="home-news-tag">{tag}</span>
+                )
+              ))}
+            </div>
+          )}
+
+          <a
+            class="home-news-read-more"
             href={getNewsHref(featured)}
             target={isExternal(featured) ? '_blank' : undefined}
             rel={isExternal(featured) ? 'noopener noreferrer' : undefined}
           >
-            {getEntryTitle(featured)}
+            {text.readMore}
           </a>
-        </h3>
-
-        <p>{getEntryDescription(featured)}</p>
-
-        {featuredTags.length > 0 && (
-          <div class="home-news-tags" aria-label={text.tagsLabel}>
-            {featuredTags.map((tag) => (
-              lang === 'uk' ? (
-                <a class="home-news-tag" href={withBase(`/news/tags/${encodeURIComponent(tag)}/`)}>{tag}</a>
-              ) : (
-                <span class="home-news-tag">{tag}</span>
-              )
-            ))}
-          </div>
-        )}
-
-        <a
-          class="home-news-read-more"
-          href={getNewsHref(featured)}
-          target={isExternal(featured) ? '_blank' : undefined}
-          rel={isExternal(featured) ? 'noopener noreferrer' : undefined}
-        >
-          {text.readMore}
-        </a>
+        </div>
       </article>
 
       {compactEntries.length > 0 && (
         <div class="home-news-compact-list" aria-label={text.compactLabel}>
-          {compactEntries.map((entry) => (
-            <article class="home-news-compact">
-              <div class="home-news-compact-meta">
-                <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date)}</time>
-                <span>{getEntryCategory(entry)}</span>
-              </div>
-              <h3>
-                <a
-                  href={getNewsHref(entry)}
-                  target={isExternal(entry) ? '_blank' : undefined}
-                  rel={isExternal(entry) ? 'noopener noreferrer' : undefined}
-                >
-                  {getEntryTitle(entry)}
-                </a>
-              </h3>
-              <p>{getEntryDescription(entry)}</p>
-            </article>
-          ))}
+          {compactEntries.map((entry) => {
+            const compactImage = getEntryImage(entry);
+            const compactImageAlt = getEntryImageAlt(entry);
+
+            return (
+              <article class:list={["home-news-compact", { "has-image": Boolean(compactImage) }]}>
+                {compactImage && (
+                  <a
+                    class="home-news-compact-image"
+                    href={getNewsHref(entry)}
+                    target={isExternal(entry) ? '_blank' : undefined}
+                    rel={isExternal(entry) ? 'noopener noreferrer' : undefined}
+                    aria-label={getEntryTitle(entry)}
+                  >
+                    <img src={compactImage} alt={compactImageAlt} loading="lazy" decoding="async" />
+                  </a>
+                )}
+                <div class="home-news-compact-content">
+                  <div class="home-news-compact-meta">
+                    <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date)}</time>
+                    <span>{getEntryCategory(entry)}</span>
+                  </div>
+                  <h3>
+                    <a
+                      href={getNewsHref(entry)}
+                      target={isExternal(entry) ? '_blank' : undefined}
+                      rel={isExternal(entry) ? 'noopener noreferrer' : undefined}
+                    >
+                      {getEntryTitle(entry)}
+                    </a>
+                  </h3>
+                  <p>{getEntryDescription(entry)}</p>
+                </div>
+              </article>
+            );
+          })}
         </div>
       )}
     </div>
@@ -189,7 +231,6 @@ function formatDate(date: Date, variant: 'short' | 'long' = 'short') {
   .home-news-featured {
     position: relative;
     overflow: hidden;
-    padding: clamp(24px, 3vw, 34px);
     min-height: 316px;
     display: flex;
     flex-direction: column;
@@ -205,6 +246,40 @@ function formatDate(date: Date, variant: 'short' | 'long' = 'short') {
     border-radius: 50%;
     background: radial-gradient(circle, rgba(29, 79, 145, 0.14), rgba(29, 79, 145, 0));
     pointer-events: none;
+  }
+
+  .home-news-featured.has-image::after {
+    top: auto;
+    bottom: -115px;
+  }
+
+  .home-news-featured-image {
+    display: block;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .home-news-featured-image img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 7.2;
+    object-fit: cover;
+    transition: transform 0.25s ease;
+  }
+
+  .home-news-featured-image:hover img {
+    transform: scale(1.025);
+  }
+
+  .home-news-featured-content {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(24px, 3vw, 34px);
   }
 
   .home-news-meta,
@@ -299,10 +374,36 @@ function formatDate(date: Date, variant: 'short' | 'long' = 'short') {
     transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
   }
 
+  .home-news-compact.has-image {
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr);
+    gap: 14px;
+    padding: 12px;
+  }
+
   .home-news-compact:hover {
     transform: translateY(-2px);
     border-color: rgba(29, 79, 145, 0.28);
     box-shadow: 0 14px 32px rgba(20, 33, 61, 0.08);
+  }
+
+  .home-news-compact-image {
+    display: block;
+    overflow: hidden;
+    border-radius: 14px;
+    min-height: 96px;
+  }
+
+  .home-news-compact-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 96px;
+    object-fit: cover;
+  }
+
+  .home-news-compact-content {
+    min-width: 0;
   }
 
   .home-news-compact-meta span {
@@ -354,6 +455,19 @@ function formatDate(date: Date, variant: 'short' | 'long' = 'short') {
   }
 
   @media (max-width: 680px) {
+    .home-news-featured-image img {
+      aspect-ratio: 16 / 9;
+    }
+
+    .home-news-compact.has-image {
+      grid-template-columns: 1fr;
+    }
+
+    .home-news-compact-image img {
+      aspect-ratio: 16 / 9;
+      height: auto;
+    }
+
     .home-news-footer {
       justify-content: flex-start;
     }

@@ -16,7 +16,12 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const person = entry.data;
 const { Content } = await render(entry);
-const hasProfileContent = Boolean(entry.body?.trim());
+const profileBody = entry.body ?? '';
+const hideLegacyContactLine = /^\s*\*\*Контактна інформація:\*\*/.test(profileBody);
+const visibleProfileBody = hideLegacyContactLine
+  ? profileBody.replace(/^\s*\*\*Контактна інформація:\*\*[^\n]*(\n+)?/, '').trim()
+  : profileBody.trim();
+const hasProfileContent = Boolean(visibleProfileBody);
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -133,7 +138,7 @@ const pageDescription = person.position
           )}
 
           {hasProfileContent && (
-            <section class="profile-panel profile-content">
+            <section class:list={["profile-panel", "profile-content", hideLegacyContactLine && "hide-first-paragraph"]}>
               <Content />
             </section>
           )}
@@ -165,3 +170,9 @@ const pageDescription = person.position
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .hide-first-paragraph > :first-child {
+    display: none;
+  }
+</style>

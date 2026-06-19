@@ -1,9 +1,13 @@
 ---
 title: "Представника України обрано до комітету IUTAM"
+titleEn: "Representative of Ukraine elected to an IUTAM committee"
 description: "Доктора технічних наук Максима Борисенка обрано до одного з комітетів Міжнародного союзу теоретичної та прикладної механіки IUTAM."
+descriptionEn: "Doctor of Technical Sciences Maksym Borysenko has been elected to one of the committees of the International Union of Theoretical and Applied Mechanics, IUTAM."
 date: 2026-03-19
 category: "Міжнародна співпраця"
+categoryEn: "International cooperation"
 tags: ["IUTAM", "НКУТПМ", "міжнародна діяльність"]
+tagsEn: ["IUTAM", "National Committee", "international activity"]
 year: 2026
 featured: true
 ---

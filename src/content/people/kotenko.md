@@ -12,7 +12,8 @@ academicTitle: "доцент"
 academicTitleEn: "Associate Professor"
 email: "box9691@ukr.net"
 phone: "+380955852076"
-office: "кабінет № 408, корпус 3"
+photo: "/people/kotenko.jpg"
+
 featured: false
 order: 3
 profiles:

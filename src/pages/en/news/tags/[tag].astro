@@ -11,22 +11,27 @@ const allCurrentNews = (await getCollection('news'))
   .filter((entry) => entry.data.year === currentYear || entry.data.date.getFullYear() === currentYear)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-function collectTags(entries: typeof allCurrentNews) {
-  const tagSet = new Set<string>();
-  entries.forEach((entry) => {
-    const entryTags = entry.data.tagsEn ?? entry.data.tags;
-    entryTags.forEach((tag) => tagSet.add(tag));
-  });
-  return [...tagSet].sort((a, b) => a.localeCompare(b, 'en'));
-}
-
-const tags = collectTags(allCurrentNews);
+const tagSet = new Set<string>();
+allCurrentNews.forEach((entry) => {
+  const entryTags = entry.data.tagsEn ?? entry.data.tags;
+  entryTags.forEach((tag) => tagSet.add(tag));
+});
+const tags = [...tagSet].sort((a, b) => a.localeCompare(b, 'en'));
 
 export async function getStaticPaths() {
   const buildYear = new Date().getFullYear();
   const entries = (await getCollection('news'))
     .filter((entry) => entry.data.year === buildYear || entry.data.date.getFullYear() === buildYear);
-  return collectTags(entries).map((tag) => ({ params: { tag } }));
+
+  const pathTagSet = new Set<string>();
+  entries.forEach((entry) => {
+    const entryTags = entry.data.tagsEn ?? entry.data.tags;
+    entryTags.forEach((tag) => pathTagSet.add(tag));
+  });
+
+  return [...pathTagSet]
+    .sort((a, b) => a.localeCompare(b, 'en'))
+    .map((tag) => ({ params: { tag } }));
 }
 
 const { tag } = Astro.params;

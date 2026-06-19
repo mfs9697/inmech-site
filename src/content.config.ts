@@ -14,6 +14,9 @@ const news = defineCollection({
     categoryEn: z.string().optional(),
     tags: z.array(z.string()).default([]),
     tagsEn: z.array(z.string()).optional(),
+    image: z.string().optional(),
+    imageAlt: z.string().optional(),
+    imageAltEn: z.string().optional(),
     year: z.number(),
     featured: z.boolean().default(false),
     externalUrl: z.string().optional()

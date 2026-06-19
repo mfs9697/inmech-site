@@ -25,17 +25,7 @@ function withBase(path: string) {
 }
 
 export function getStaticPaths() {
-  const genericPages: Record<string, PageData> = {
-    library: {
-      title: 'Library',
-      description: 'Library resources and publications of the Institute.',
-      activePage: 'about',
-      eyebrow: 'Publications',
-      heading: 'Library',
-      lead: 'The library section contains information on monographs, textbooks, scientific publications and archival materials of the Institute.',
-      links: [{ title: 'Ukrainian library page', href: '/library/' }]
-    }
-  };
+  const genericPages: Record<string, PageData> = {};
 
   return Object.entries(genericPages).map(([slug, page]) => ({ params: { slug }, props: { page } }));
 }

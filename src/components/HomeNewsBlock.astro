@@ -3,17 +3,39 @@ import type { CollectionEntry } from 'astro:content';
 import { getVisibleNewsTags } from '../utils/newsTags';
 
 type NewsEntry = CollectionEntry<'news'>;
+type Lang = 'uk' | 'en';
 
 interface Props {
   entries: NewsEntry[];
   archiveHref?: string;
+  lang?: Lang;
 }
 
-const { entries, archiveHref = '/news/' } = Astro.props;
+const { entries, archiveHref, lang = 'uk' } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const archiveUrl = archiveHref ?? (lang === 'en' ? '/en/news/' : '/news/');
 const [featured, ...compactEntries] = entries;
-const featuredTags = featured ? getVisibleNewsTags(featured).slice(0, 3) : [];
+const featuredTags = featured ? getEntryTags(featured).slice(0, 3) : [];
 const layoutClass = compactEntries.length > 0 ? 'home-news-layout' : 'home-news-layout home-news-layout-single';
+
+const text = {
+  uk: {
+    readMore: 'Читати далі →',
+    allNews: 'Усі новини →',
+    tagsLabel: 'Теги новини',
+    compactLabel: 'Інші останні повідомлення',
+    emptyTitle: 'Новини поки що не додано',
+    emptyText: 'Після додавання першого повідомлення воно з’явиться на головній сторінці.'
+  },
+  en: {
+    readMore: 'Read more →',
+    allNews: 'All news →',
+    tagsLabel: 'News tags',
+    compactLabel: 'Other recent announcements',
+    emptyTitle: 'No news has been added yet',
+    emptyText: 'The first announcement will appear on the homepage after it is added.'
+  }
+}[lang];
 
 function withBase(path: string) {
   if (path.startsWith('http') || path.startsWith('#')) {
@@ -31,8 +53,28 @@ function isExternal(entry: NewsEntry) {
   return Boolean(entry.data.externalUrl);
 }
 
+function getEntryTitle(entry: NewsEntry) {
+  return lang === 'en' ? entry.data.titleEn ?? entry.data.title : entry.data.title;
+}
+
+function getEntryDescription(entry: NewsEntry) {
+  return lang === 'en' ? entry.data.descriptionEn ?? entry.data.description : entry.data.description;
+}
+
+function getEntryCategory(entry: NewsEntry) {
+  return lang === 'en' ? entry.data.categoryEn ?? entry.data.category : entry.data.category;
+}
+
+function getEntryTags(entry: NewsEntry) {
+  if (lang === 'en') {
+    return entry.data.tagsEn ?? [];
+  }
+
+  return getVisibleNewsTags(entry);
+}
+
 function formatDate(date: Date, variant: 'short' | 'long' = 'short') {
-  return date.toLocaleDateString('uk-UA', {
+  return date.toLocaleDateString(lang === 'en' ? 'en-GB' : 'uk-UA', {
     day: '2-digit',
     month: variant === 'long' ? 'long' : '2-digit',
     year: 'numeric'
@@ -41,11 +83,11 @@ function formatDate(date: Date, variant: 'short' | 'long' = 'short') {
 ---
 
 {featured ? (
-  <div class="home-news-block">
+  <div class="home-news-block" data-lang={lang}>
     <div class={layoutClass}>
       <article class="home-news-featured" aria-labelledby="home-featured-news-title">
         <div class="home-news-meta">
-          <span class="home-news-category">{featured.data.category}</span>
+          <span class="home-news-category">{getEntryCategory(featured)}</span>
           <time datetime={featured.data.date.toISOString()}>{formatDate(featured.data.date, 'long')}</time>
         </div>
 
@@ -55,16 +97,20 @@ function formatDate(date: Date, variant: 'short' | 'long' = 'short') {
             target={isExternal(featured) ? '_blank' : undefined}
             rel={isExternal(featured) ? 'noopener noreferrer' : undefined}
           >
-            {featured.data.title}
+            {getEntryTitle(featured)}
           </a>
         </h3>
 
-        <p>{featured.data.description}</p>
+        <p>{getEntryDescription(featured)}</p>
 
         {featuredTags.length > 0 && (
-          <div class="home-news-tags" aria-label="Теги новини">
+          <div class="home-news-tags" aria-label={text.tagsLabel}>
             {featuredTags.map((tag) => (
-              <a class="home-news-tag" href={withBase(`/news/tags/${encodeURIComponent(tag)}/`)}>{tag}</a>
+              lang === 'uk' ? (
+                <a class="home-news-tag" href={withBase(`/news/tags/${encodeURIComponent(tag)}/`)}>{tag}</a>
+              ) : (
+                <span class="home-news-tag">{tag}</span>
+              )
             ))}
           </div>
         )}
@@ -75,17 +121,17 @@ function formatDate(date: Date, variant: 'short' | 'long' = 'short') {
           target={isExternal(featured) ? '_blank' : undefined}
           rel={isExternal(featured) ? 'noopener noreferrer' : undefined}
         >
-          Читати далі →
+          {text.readMore}
         </a>
       </article>
 
       {compactEntries.length > 0 && (
-        <div class="home-news-compact-list" aria-label="Інші останні повідомлення">
+        <div class="home-news-compact-list" aria-label={text.compactLabel}>
           {compactEntries.map((entry) => (
             <article class="home-news-compact">
               <div class="home-news-compact-meta">
                 <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date)}</time>
-                <span>{entry.data.category}</span>
+                <span>{getEntryCategory(entry)}</span>
               </div>
               <h3>
                 <a
@@ -93,10 +139,10 @@ function formatDate(date: Date, variant: 'short' | 'long' = 'short') {
                   target={isExternal(entry) ? '_blank' : undefined}
                   rel={isExternal(entry) ? 'noopener noreferrer' : undefined}
                 >
-                  {entry.data.title}
+                  {getEntryTitle(entry)}
                 </a>
               </h3>
-              <p>{entry.data.description}</p>
+              <p>{getEntryDescription(entry)}</p>
             </article>
           ))}
         </div>
@@ -104,13 +150,13 @@ function formatDate(date: Date, variant: 'short' | 'long' = 'short') {
     </div>
 
     <div class="home-news-footer">
-      <a class="button secondary" href={withBase(archiveHref)}>Усі новини →</a>
+      <a class="button secondary" href={withBase(archiveUrl)}>{text.allNews}</a>
     </div>
   </div>
 ) : (
   <div class="home-news-empty">
-    <h3>Новини поки що не додано</h3>
-    <p>Після додавання першого повідомлення воно з’явиться на головній сторінці.</p>
+    <h3>{text.emptyTitle}</h3>
+    <p>{text.emptyText}</p>
   </div>
 )}
 

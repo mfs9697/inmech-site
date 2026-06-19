@@ -20,16 +20,35 @@ const visibleTags = getVisibleNewsTags(entry);
 const hasLocalBody = !entry.data.externalUrl && Boolean(entry.body?.trim());
 const renderedEntry = hasLocalBody ? await render(entry) : null;
 const Content = renderedEntry?.Content;
+const href = entry.data.externalUrl ?? withBase(`/news/${entry.id}/`);
+const isExternal = Boolean(entry.data.externalUrl);
+const image = entry.data.image ? withBase(entry.data.image) : undefined;
+const imageAlt = entry.data.imageAlt ?? '';
 ---
 
-<article class="news-card">
-  <time class="news-date" datetime={entry.data.date.toISOString()}>{date}</time>
-  <div>
+<article class:list={["news-card", { "news-card-with-image": Boolean(image) }]}>
+  {image ? (
+    <a
+      class="news-card-image"
+      href={href}
+      target={isExternal ? '_blank' : undefined}
+      rel={isExternal ? 'noopener noreferrer' : undefined}
+      aria-label={entry.data.title}
+    >
+      <img src={image} alt={imageAlt} loading="lazy" decoding="async" />
+    </a>
+  ) : (
+    <time class="news-date" datetime={entry.data.date.toISOString()}>{date}</time>
+  )}
+
+  <div class="news-card-body">
+    {image && <time class="news-date" datetime={entry.data.date.toISOString()}>{date}</time>}
+
     <TitleTag>
       {entry.data.externalUrl ? (
         <a href={entry.data.externalUrl} target="_blank" rel="noopener noreferrer">{entry.data.title}</a>
       ) : (
-        entry.data.title
+        <a href={href}>{entry.data.title}</a>
       )}
     </TitleTag>
     <p>{entry.data.description}</p>
@@ -51,6 +70,54 @@ const Content = renderedEntry?.Content;
 </article>
 
 <style>
+  .news-card-with-image {
+    grid-template-columns: minmax(190px, 0.36fr) minmax(0, 1fr);
+    gap: 0;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .news-card-image {
+    display: block;
+    min-height: 210px;
+    overflow: hidden;
+  }
+
+  .news-card-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 210px;
+    object-fit: cover;
+    transition: transform 0.25s ease;
+  }
+
+  .news-card-image:hover img {
+    transform: scale(1.025);
+  }
+
+  .news-card-body {
+    min-width: 0;
+  }
+
+  .news-card-with-image .news-card-body {
+    padding: 20px;
+  }
+
+  .news-card-with-image .news-date {
+    margin-bottom: 12px;
+  }
+
+  .news-card h2 a,
+  .news-card h3 a {
+    color: var(--text);
+  }
+
+  .news-card h2 a:hover,
+  .news-card h3 a:hover {
+    color: var(--accent);
+  }
+
   .news-inline-body {
     margin-top: 14px;
     border-top: 1px solid var(--line);
@@ -71,5 +138,17 @@ const Content = renderedEntry?.Content;
 
   .news-card-content :global(p) {
     margin: 0 0 1rem;
+  }
+
+  @media (max-width: 720px) {
+    .news-card-with-image {
+      grid-template-columns: 1fr;
+    }
+
+    .news-card-image img {
+      aspect-ratio: 16 / 9;
+      height: auto;
+      min-height: 0;
+    }
   }
 </style>

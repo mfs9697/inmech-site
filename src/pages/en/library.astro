@@ -1,0 +1,259 @@
+---
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../data/site-en';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+const librarySections = [
+  {
+    title: 'Monographs by Institute researchers',
+    text: 'A catalogue of modern scientific monographs by researchers of the Institute, covering current areas of mechanics and applied mathematics.',
+    href: '/library/monographs/',
+    label: 'View monographs',
+    note: 'source catalogue in Ukrainian'
+  },
+  {
+    title: 'Fundamental multivolume editions',
+    text: 'Collective multivolume works of the Institute’s scientific schools in shell mechanics, composites, fracture and related areas.',
+    href: '/library/multivolume-editions/',
+    label: 'View series',
+    note: 'source catalogue in Ukrainian'
+  },
+  {
+    title: 'Textbooks and teaching aids',
+    text: 'Educational publications, lecture notes and teaching materials prepared by Institute researchers and related scientific schools.',
+    href: '/library/textbooks/',
+    label: 'View publications',
+    note: 'source catalogue in Ukrainian'
+  },
+  {
+    title: 'Historical publications about the Institute',
+    text: 'Anniversary and historical publications on the development of the Institute, its structure, scientific schools and documentary heritage.',
+    href: '/library/history-publications/',
+    label: 'View publications',
+    note: 'source catalogue in Ukrainian'
+  },
+  {
+    title: 'Scientific monographs and reference editions',
+    text: 'A catalogue of individual monographs, reference books, dictionaries and fundamental editions from the Institute’s bibliographic archive.',
+    href: '/library/scientific-books/',
+    label: 'Open catalogue',
+    note: 'source catalogue in Ukrainian'
+  },
+  {
+    title: 'Catalogue of dissertations defended at the Institute',
+    text: 'An alphabetical catalogue of dissertations defended at the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine.',
+    href: '/en/defended-dissertations/',
+    label: 'Open catalogue'
+  },
+  {
+    title: 'Dissertation defences',
+    text: 'Materials related to dissertation defences: dissertations, abstracts, reviews, videos and accompanying documents.',
+    href: '/en/dissertations/',
+    label: 'View defences'
+  },
+  {
+    title: 'Journal “Applied Mechanics”',
+    text: 'Information resource of the Institute’s periodical scientific journal.',
+    href: 'https://applied-mechanics.inmech.kyiv.ua/',
+    label: 'Open journal website',
+    external: true
+  }
+];
+---
+
+<BaseLayoutEn
+  title={`Library | ${siteEn.shortName}`}
+  description="Library and archival resources of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine."
+  activePage="home"
+>
+  <section class="library-hero">
+    <div class="container library-hero-panel">
+      <p class="eyebrow">Publications and scientific heritage</p>
+      <h1>Library</h1>
+      <p class="lead">
+        This section brings together bibliographic, archival and reference materials of the Institute of Mechanics:
+        monographs by Institute researchers, fundamental multivolume editions, teaching materials,
+        historical publications about the Institute, catalogues of books and defended dissertations,
+        dissertation defence materials and related publication resources.
+      </p>
+      <div class="hero-actions">
+        <a class="button secondary" href={withBase('/library/')}>Ukrainian version</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Resources</p>
+          <h2>Main library materials</h2>
+        </div>
+        <p>
+          Materials are grouped into thematic catalogues for quick access to monographs,
+          multivolume editions, educational materials, historical publications, dissertation
+          resources and the journal “Applied Mechanics”.
+        </p>
+      </div>
+
+      <div class="library-grid">
+        {librarySections.map((section) => (
+          <article class="library-card">
+            <h3>{section.title}</h3>
+            <p>{section.text}</p>
+            {section.note && <p class="section-note">{section.note}</p>}
+            <a
+              class="card-link"
+              href={withBase(section.href)}
+              target={section.external ? '_blank' : undefined}
+              rel={section.external ? 'noopener noreferrer' : undefined}
+            >
+              {section.label} →
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayoutEn>
+
+<style>
+  .library-hero {
+    padding: 52px 0 18px;
+  }
+
+  .library-hero-panel,
+  .library-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .library-hero-panel {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(28px, 5vw, 54px);
+  }
+
+  .library-hero-panel::after {
+    content: '';
+    position: absolute;
+    right: -90px;
+    top: -110px;
+    width: 280px;
+    height: 280px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(184, 135, 47, 0.17), rgba(184, 135, 47, 0));
+  }
+
+  .library-hero-panel h1,
+  .library-hero-panel .lead,
+  .library-hero-panel .eyebrow,
+  .library-hero-panel .hero-actions {
+    position: relative;
+    z-index: 1;
+  }
+
+  .library-hero-panel h1 {
+    margin: 0 0 18px;
+    font-size: clamp(2.2rem, 4.6vw, 4.3rem);
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+  }
+
+  .section-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 28px;
+    align-items: flex-end;
+    margin-bottom: 22px;
+  }
+
+  .section-heading h2 {
+    margin: 0;
+    font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .section-heading p:last-child {
+    max-width: 560px;
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .library-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .library-card {
+    padding: 22px;
+    min-height: 238px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .library-card h3 {
+    margin: 0 0 12px;
+  }
+
+  .library-card p {
+    margin: 0 0 18px;
+    color: var(--muted);
+  }
+
+  .library-card .card-link {
+    margin-top: auto;
+    font-weight: 850;
+  }
+
+  .section-note {
+    display: inline-flex;
+    width: fit-content;
+    margin-top: auto !important;
+    margin-bottom: 14px !important;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-dark) !important;
+    font-size: 0.78rem;
+    font-weight: 850;
+  }
+
+  @media (max-width: 1200px) {
+    .library-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 1100px) {
+    .library-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 900px) {
+    .section-heading,
+    .library-grid {
+      display: block;
+    }
+
+    .section-heading p:last-child,
+    .library-card + .library-card {
+      margin-top: 14px;
+    }
+  }
+</style>

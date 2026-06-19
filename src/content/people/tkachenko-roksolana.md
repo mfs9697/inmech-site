@@ -13,7 +13,6 @@ profiles:
   - label: "Scopus"
     url: "https://www.scopus.com/authid/detail.uri?authorId=56291226200"
     kind: "scopus"
-    value: "h-index: 1"
   - label: "Google Scholar"
     url: "https://scholar.google.com/citations?view_op=list_works&hl=uk&user=_dHiOQoAAAAJ"
     kind: "scholar"

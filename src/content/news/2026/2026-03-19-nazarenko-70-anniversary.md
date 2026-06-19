@@ -1,9 +1,13 @@
 ---
 title: "Вітаємо академіка Володимира Михайловича Назаренка з 70-річним ювілеєм"
+titleEn: "Congratulations to Academician Volodymyr M. Nazarenko on his 70th anniversary"
 description: "Колектив Інституту вітає академіка НАН України Володимира Михайловича Назаренка з 70-річним ювілеєм і бажає міцного здоров’я, мирного неба та родинного тепла."
+descriptionEn: "The staff of the Institute congratulates Academician of the NAS of Ukraine Volodymyr M. Nazarenko on his 70th anniversary and wishes him good health, peaceful skies and family warmth."
 date: 2026-03-19
 category: "Вітання"
+categoryEn: "Congratulations"
 tags: ["ювілей", "Назаренко", "академік НАН України"]
+tagsEn: ["anniversary", "Nazarenko", "Academician of the NAS of Ukraine"]
 year: 2026
 featured: true
 ---

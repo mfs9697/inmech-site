@@ -198,3 +198,104 @@ const cooperationAreas = [
     </div>
   </section>
 </BaseLayoutEn>
+
+<style>
+  .split-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.9fr);
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .content-card {
+    padding: clamp(26px, 3vw, 40px);
+  }
+
+  .content-card h2 {
+    margin-top: 0;
+    margin-bottom: 14px;
+  }
+
+  .content-card p {
+    color: var(--muted);
+    line-height: 1.72;
+  }
+
+  .content-card p:last-child,
+  .check-list:last-child {
+    margin-bottom: 0;
+  }
+
+  .accent-card {
+    background: linear-gradient(145deg, #ffffff 0%, var(--surface-soft) 100%);
+  }
+
+  .check-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+  }
+
+  .check-list li {
+    position: relative;
+    padding-left: 30px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .check-list li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 0.65em;
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    background: var(--accent);
+    box-shadow: 0 0 0 5px var(--accent-soft);
+  }
+
+  .agreement-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .agreement-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: clamp(20px, 2.5vw, 30px);
+  }
+
+  .agreement-card h2 {
+    margin: 8px 0 10px;
+    font-size: 1.12rem;
+  }
+
+  .agreement-card p {
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .agreement-meta {
+    display: inline-flex;
+    width: fit-content;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-size: 0.84rem;
+    font-weight: 850;
+  }
+
+  @media (max-width: 860px) {
+    .split-layout,
+    .agreement-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

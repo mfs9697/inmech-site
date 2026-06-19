@@ -12,6 +12,7 @@ academicTitle: "старший науковий співробітник"
 academicTitleEn: "Senior Researcher"
 email: "duk86@outlook.com"
 phone: "(099) 07-77-154"
+photo: "/people/koliadiuk.png"
 featured: false
 order: 1
 profiles:

@@ -23,6 +23,8 @@ const date = entry.data.date.toLocaleDateString('uk-UA', {
   year: 'numeric'
 });
 const visibleTags = getVisibleNewsTags(entry);
+const image = entry.data.image ? withBase(entry.data.image) : undefined;
+const imageAlt = entry.data.imageAlt ?? '';
 ---
 
 <BaseLayout
@@ -49,6 +51,12 @@ const visibleTags = getVisibleNewsTags(entry);
   <section class="section">
     <div class="container news-detail-container">
       <article class="panel news-detail-panel">
+        {image && (
+          <figure class="news-detail-image">
+            <img src={image} alt={imageAlt} loading="eager" decoding="async" />
+          </figure>
+        )}
+
         <div class="content-body news-content">
           <Content />
         </div>
@@ -74,6 +82,21 @@ const visibleTags = getVisibleNewsTags(entry);
     padding: clamp(24px, 4vw, 42px);
   }
 
+  .news-detail-image {
+    margin: 0 0 clamp(22px, 3vw, 34px);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: calc(var(--radius) - 6px);
+    background: var(--surface-soft);
+  }
+
+  .news-detail-image img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 8;
+    object-fit: cover;
+  }
+
   .news-content {
     color: var(--text);
     font-size: 1.06rem;
@@ -87,5 +110,11 @@ const visibleTags = getVisibleNewsTags(entry);
   .back-link {
     margin: 28px 0 0;
     font-weight: 750;
+  }
+
+  @media (max-width: 640px) {
+    .news-detail-image img {
+      aspect-ratio: 16 / 10;
+    }
   }
 </style>

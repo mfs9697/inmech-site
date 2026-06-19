@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import NewsCard from '../components/NewsCard.astro';
+import HomeNewsBlock from '../components/HomeNewsBlock.astro';
 import DepartmentCard from '../components/DepartmentCard.astro';
 import { quickLinks, site } from '../data/site';
 
@@ -17,7 +17,7 @@ function withBase(path: string) {
 
 const news = (await getCollection('news'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 3);
+  .slice(0, 4);
 
 const departments = (await getCollection('departments'))
   .sort((a, b) => a.data.order - b.data.order);
@@ -170,18 +170,14 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
       <div class="section-header">
         <div>
           <p class="eyebrow">Останні повідомлення</p>
-          <h2 class="section-title">Новини та оголошення</h2>
+          <h2 class="section-title">Новини Інституту</h2>
           <p class="section-text">
-            На головній сторінці показано кілька найновіших повідомлень; повний архів доступний
-            на окремій сторінці новин.
+            Актуальна інформація про наукові події, семінари, публікації, оголошення та діяльність Інституту.
           </p>
         </div>
-        <a class="button secondary" href={withBase('/news/')}>Усі новини</a>
       </div>
 
-      <div class="news-list">
-        {news.map((entry) => <NewsCard entry={entry} level="h3" />)}
-      </div>
+      <HomeNewsBlock entries={news} archiveHref="/news/" />
     </div>
   </section>
 </BaseLayout>

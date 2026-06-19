@@ -1,0 +1,105 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayoutEn from '../../../../layouts/BaseLayoutEn.astro';
+import NewsCardEn from '../../../../components/NewsCardEn.astro';
+import { siteEn } from '../../../../data/site-en';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+const currentYear = new Date().getFullYear();
+const allCurrentNews = (await getCollection('news'))
+  .filter((entry) => entry.data.year === currentYear || entry.data.date.getFullYear() === currentYear)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const tagSet = new Set<string>();
+allCurrentNews.forEach((entry) => {
+  const tags = entry.data.tagsEn ?? entry.data.tags;
+  tags.forEach((tag) => tagSet.add(tag));
+});
+const tags = [...tagSet].sort((a, b) => a.localeCompare(b, 'en'));
+
+export function getStaticPaths() {
+  return tags.map((tag) => ({ params: { tag } }));
+}
+
+const { tag } = Astro.params;
+const decodedTag = decodeURIComponent(tag ?? '');
+const news = allCurrentNews.filter((entry) => (entry.data.tagsEn ?? entry.data.tags).includes(decodedTag));
+---
+
+<BaseLayoutEn
+  title={`${decodedTag} | News ${currentYear} | ${siteEn.shortName}`}
+  description={`News tagged “${decodedTag}” from the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine.`}
+  activePage="news"
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">News tag</p>
+        <h1>{decodedTag}</h1>
+        <p class="lead">News and announcements for {currentYear} tagged “{decodedTag}”.</p>
+        <nav class="tag-nav" aria-label="Filter news by tags">
+          <a class="tag-filter" href={withBase('/en/news/')}>All news</a>
+          {tags.map((item) => (
+            <a class:list={["tag-filter", { active: item === decodedTag }]} href={withBase(`/en/news/tags/${encodeURIComponent(item)}/`)}>{item}</a>
+          ))}
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {news.length > 0 ? (
+        <div class="news-list">
+          {news.map((entry) => <NewsCardEn entry={entry} />)}
+        </div>
+      ) : (
+        <div class="empty-news-panel">
+          <h2>No news has been found for this tag</h2>
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayoutEn>
+
+<style>
+  .tag-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 22px;
+  }
+
+  .tag-filter {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--text);
+    font-weight: 750;
+    text-decoration: none;
+  }
+
+  .tag-filter:hover,
+  .tag-filter.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .empty-news-panel {
+    padding: 28px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .empty-news-panel h2 {
+    margin-top: 0;
+  }
+</style>

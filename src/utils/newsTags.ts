@@ -5,6 +5,7 @@ export const allowedNewsTags = [
   'конкурс',
   'ювілей',
   'вчена рада',
+  'співпраця',
   'освітньо-наукова діяльність'
 ] as const;
 
@@ -36,6 +37,10 @@ export function getVisibleNewsTags(entry: CollectionEntry<'news'>): string[] {
 
   if (includesAny(source, ['вчена рада', 'вченої ради', 'вченою радою'])) {
     visibleTags.push('вчена рада');
+  }
+
+  if (includesAny(source, ['співпрац', 'візит', 'делегац', 'міжнародна співпраця'])) {
+    visibleTags.push('співпраця');
   }
 
   if (

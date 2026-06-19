@@ -1,0 +1,307 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getVisibleNewsTags } from '../utils/newsTags';
+
+type NewsEntry = CollectionEntry<'news'>;
+
+interface Props {
+  entries: NewsEntry[];
+  archiveHref?: string;
+}
+
+const { entries, archiveHref = '/news/' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const [featured, ...compactEntries] = entries;
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+function getNewsHref(entry: NewsEntry) {
+  return entry.data.externalUrl ?? withBase(`/news/${entry.id}/`);
+}
+
+function isExternal(entry: NewsEntry) {
+  return Boolean(entry.data.externalUrl);
+}
+
+function formatDate(date: Date, variant: 'short' | 'long' = 'short') {
+  return date.toLocaleDateString('uk-UA', {
+    day: '2-digit',
+    month: variant === 'long' ? 'long' : '2-digit',
+    year: 'numeric'
+  });
+}
+---
+
+{featured ? (
+  <div class="home-news-block">
+    <div class="home-news-layout">
+      <article class="home-news-featured" aria-labelledby="home-featured-news-title">
+        <div class="home-news-meta">
+          <span class="home-news-category">{featured.data.category}</span>
+          <time datetime={featured.data.date.toISOString()}>{formatDate(featured.data.date, 'long')}</time>
+        </div>
+
+        <h3 id="home-featured-news-title">
+          <a
+            href={getNewsHref(featured)}
+            target={isExternal(featured) ? '_blank' : undefined}
+            rel={isExternal(featured) ? 'noopener noreferrer' : undefined}
+          >
+            {featured.data.title}
+          </a>
+        </h3>
+
+        <p>{featured.data.description}</p>
+
+        {getVisibleNewsTags(featured).length > 0 && (
+          <div class="home-news-tags" aria-label="Теги новини">
+            {getVisibleNewsTags(featured).slice(0, 3).map((tag) => (
+              <a class="home-news-tag" href={withBase(`/news/tags/${encodeURIComponent(tag)}/`)}>{tag}</a>
+            ))}
+          </div>
+        )}
+
+        <a
+          class="home-news-read-more"
+          href={getNewsHref(featured)}
+          target={isExternal(featured) ? '_blank' : undefined}
+          rel={isExternal(featured) ? 'noopener noreferrer' : undefined}
+        >
+          Читати далі →
+        </a>
+      </article>
+
+      <div class="home-news-compact-list" aria-label="Інші останні повідомлення">
+        {compactEntries.map((entry) => (
+          <article class="home-news-compact">
+            <div class="home-news-compact-meta">
+              <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date)}</time>
+              <span>{entry.data.category}</span>
+            </div>
+            <h3>
+              <a
+                href={getNewsHref(entry)}
+                target={isExternal(entry) ? '_blank' : undefined}
+                rel={isExternal(entry) ? 'noopener noreferrer' : undefined}
+              >
+                {entry.data.title}
+              </a>
+            </h3>
+            <p>{entry.data.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <div class="home-news-footer">
+      <a class="button secondary" href={withBase(archiveHref)}>Усі новини →</a>
+    </div>
+  </div>
+) : (
+  <div class="home-news-empty">
+    <h3>Новини поки що не додано</h3>
+    <p>Після додавання першого повідомлення воно з’явиться на головній сторінці.</p>
+  </div>
+)}
+
+<style>
+  .home-news-block {
+    display: grid;
+    gap: 16px;
+  }
+
+  .home-news-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .home-news-featured,
+  .home-news-compact,
+  .home-news-empty {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .home-news-featured {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(24px, 3vw, 34px);
+    min-height: 316px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home-news-featured::after {
+    content: "";
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    right: -90px;
+    top: -90px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(29, 79, 145, 0.14), rgba(29, 79, 145, 0));
+    pointer-events: none;
+  }
+
+  .home-news-meta,
+  .home-news-compact-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+    color: var(--muted);
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
+
+  .home-news-category {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: rgba(184, 135, 47, 0.12);
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-size: 0.76rem;
+    font-weight: 850;
+  }
+
+  .home-news-featured h3 {
+    margin: 18px 0 12px;
+    max-width: 760px;
+    font-size: clamp(1.45rem, 2.8vw, 2.1rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .home-news-featured h3 a,
+  .home-news-compact h3 a {
+    color: var(--text);
+  }
+
+  .home-news-featured h3 a:hover,
+  .home-news-compact h3 a:hover {
+    color: var(--accent);
+  }
+
+  .home-news-featured p {
+    margin: 0;
+    max-width: 720px;
+    color: var(--muted);
+    font-size: 1.03rem;
+  }
+
+  .home-news-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .home-news-tag {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 4px 9px;
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+
+  .home-news-tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .home-news-read-more {
+    width: fit-content;
+    margin-top: auto;
+    padding-top: 24px;
+    font-weight: 850;
+  }
+
+  .home-news-compact-list {
+    display: grid;
+    gap: 12px;
+  }
+
+  .home-news-compact {
+    padding: 18px;
+    box-shadow: none;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+
+  .home-news-compact:hover {
+    transform: translateY(-2px);
+    border-color: rgba(29, 79, 145, 0.28);
+    box-shadow: 0 14px 32px rgba(20, 33, 61, 0.08);
+  }
+
+  .home-news-compact-meta span {
+    color: var(--gold);
+  }
+
+  .home-news-compact h3 {
+    margin: 9px 0 7px;
+    font-size: 1.06rem;
+    line-height: 1.28;
+  }
+
+  .home-news-compact p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .home-news-footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .home-news-empty {
+    padding: 24px;
+  }
+
+  .home-news-empty h3 {
+    margin: 0 0 8px;
+  }
+
+  .home-news-empty p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  @media (max-width: 940px) {
+    .home-news-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .home-news-featured {
+      min-height: 0;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .home-news-footer {
+      justify-content: flex-start;
+    }
+  }
+</style>

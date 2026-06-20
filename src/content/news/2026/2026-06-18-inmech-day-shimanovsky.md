@@ -39,3 +39,32 @@ featured: true
 - Юрій Іванович Лелюх, кандидат фізико-математичних наук, заступник завідувача відділу термопружності.
 
 За матеріалами Українського інституту сталевих конструкцій ім. В.М. Шимановського.
+
+<!-- en:start -->
+
+On 17 June 2026, a delegation of the S.P. Timoshenko Institute of Mechanics of the National Academy of Sciences of Ukraine visited the V.M. Shimanovsky Ukrainian Institute of Steel Construction.
+
+The visit was led by the newly elected Director of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine, Academician of the NAS of Ukraine, Professor Volodymyr M. Nazarenko.
+
+During the meeting, representatives of the Institute of Mechanics became acquainted with the staff of the Ukrainian Institute of Steel Construction, the history of its establishment and development, major facilities designed by the institute, and its work related to the reconstruction of destroyed and damaged buildings and structures.
+
+Special attention was paid to plans for restoring the damaged New Safe Confinement of the Chornobyl Nuclear Power Plant.
+
+The delegation was accompanied by Oleksandr Shymanovskyi, Director General of the V.M. Shimanovsky Ukrainian Institute of Steel Construction, Corresponding Member of the NAS of Ukraine, Doctor of Technical Sciences, Professor; Vadym Hordieiev, Deputy Director General for Research, Doctor of Technical Sciences, Professor; and Yanina Lymar, Head of the Research and Technical Activities Group.
+
+## Delegation of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine
+
+- Volodymyr M. Nazarenko, Academician of the NAS of Ukraine, Director of the Institute;
+- Mykhailo F. Selivanov, Corresponding Member of the NAS of Ukraine, Deputy Director;
+- Yevhen A. Storozhuk, Corresponding Member of the NAS of Ukraine, Deputy Director;
+- Yurii V. Skosarenko, Doctor of Technical Sciences, Scientific Secretary;
+- Yaroslav O. Zhuk, Corresponding Member of the NAS of Ukraine, Head of the Department of Thermoplasticity;
+- Volodymyr A. Maksymiuk, Doctor of Physical and Mathematical Sciences, Head of the Shared-Use Centre;
+- Ihor V. Yanchevskyi, Doctor of Physical and Mathematical Sciences, Leading Researcher of the Department of Theory of Vibrations;
+- Andrii S. Koliadiuk, Candidate of Technical Sciences, Head of the Department of Structural Mechanics of Thin-Walled Structures;
+- Andrii V. Moltasov, Candidate of Technical Sciences, Senior Researcher of the Department of Structural Mechanics of Thin-Walled Structures;
+- Yurii I. Leliukh, Candidate of Physical and Mathematical Sciences, Deputy Head of the Department of Thermoelasticity.
+
+Based on materials from the V.M. Shimanovsky Ukrainian Institute of Steel Construction.
+
+<!-- en:end -->

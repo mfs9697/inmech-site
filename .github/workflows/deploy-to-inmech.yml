@@ -2,6 +2,16 @@ name: Deploy Astro site to inmech.kyiv.ua
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'astro.config.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/deploy-to-inmech.yml'
 
 jobs:
   build-and-deploy:

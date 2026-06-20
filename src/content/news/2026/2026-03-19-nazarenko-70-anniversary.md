@@ -25,3 +25,21 @@ featured: true
 Нехай будь-які «початкові напруження» трапляються виключно в наукових моделях, життєві негаразди ніколи не призводять до «руйнування» Вашого чудового настрою, а формула Вашого особистого щастя завжди має стійкий і беззаперечно позитивний розв’язок!
 
 Ваш колектив.
+
+<!-- en:start -->
+
+Dear colleagues,
+
+Today we celebrate the 70th anniversary of an outstanding Ukrainian scientist in mechanics, Academician of the NAS of Ukraine, Academician-Secretary of the Department of Mechanics and Mechanical Engineering, our respected leader and Head of the Department of Computational Mechanics and Technology, Volodymyr M. Nazarenko.
+
+Since 1978, his life has been firmly and inseparably connected with our Institute. Over these decades, he has followed an extraordinary professional path, becoming a laureate of the State Prize of Ukraine in Science and Technology, the M. Ostrogradsky Prize, and the O. Dynnyk Prize of the NAS of Ukraine.
+
+He is an internationally recognized specialist in solid mechanics and a true driving force of progress, who successfully integrated our computational resources with the supercomputer of the V.M. Glushkov Institute of Cybernetics of the NAS of Ukraine.
+
+We sincerely admire your ability to combine brilliant research work with effective organizational activity. We wish you good health, peaceful skies, and family warmth.
+
+May any “initial stresses” occur only in scientific models, may life’s difficulties never lead to the “fracture” of your wonderful mood, and may the formula of your personal happiness always have a stable and unquestionably positive solution.
+
+Your colleagues.
+
+<!-- en:end -->

@@ -28,6 +28,16 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Check news-only contributor changes
+        run: node .github/scripts/check-news-only-changes.mjs
+        env:
+          NEWS_ONLY_ACTORS: ${{ vars.NEWS_ONLY_ACTORS }}
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_EVENT_BEFORE: ${{ github.event.before }}
+          GITHUB_SHA: ${{ github.sha }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v5

@@ -24,7 +24,7 @@ const date = entry.data.date.toLocaleDateString('en-GB', {
 const title = entry.data.titleEn ?? entry.data.title;
 const description = entry.data.descriptionEn ?? entry.data.description;
 const category = entry.data.categoryEn ?? entry.data.category;
-const tags = entry.data.tagsEn ?? entry.data.tags;
+const tags = entry.data.tagsEn ?? [];
 const image = entry.data.image ? withBase(entry.data.image) : undefined;
 const imageAlt = entry.data.imageAltEn ?? entry.data.imageAlt ?? '';
 const hasEnglishBody = Boolean(entry.data.titleEn || entry.data.descriptionEn);
@@ -107,13 +107,12 @@ const hasEnglishBody = Boolean(entry.data.titleEn || entry.data.descriptionEn);
   }
 
   .translation-note {
-    margin: 0 0 20px;
     padding: 14px 16px;
-    border-radius: 16px;
-    background: var(--accent-soft);
-    color: var(--accent-dark);
-    font-weight: 750;
-    line-height: 1.55;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface-soft);
+    color: var(--muted);
+    font-weight: 650;
   }
 
   .news-content {

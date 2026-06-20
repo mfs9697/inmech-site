@@ -1,44 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
 import BaseLayoutEn from '../../../../layouts/BaseLayoutEn.astro';
 import NewsCardEn from '../../../../components/NewsCardEn.astro';
 import { siteEn } from '../../../../data/site-en';
+import { allowedNewsTagsEn, getVisibleNewsTagsEn } from '../../../../utils/newsTags';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
 const currentYear = new Date().getFullYear();
-const maxVisibleTags = 10;
-
-type NewsEntry = CollectionEntry<'news'>;
-const getEnglishTags = (entry: NewsEntry) => entry.data.tagsEn ?? [];
-
-function getEnglishTagCounts(entries: NewsEntry[]) {
-  const tagCounts = new Map<string, number>();
-
-  entries.forEach((entry) => {
-    getEnglishTags(entry).forEach((tag) => tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1));
-  });
-
-  return tagCounts;
-}
-
-function getTopEnglishTags(entries: NewsEntry[], limit: number) {
-  return [...getEnglishTagCounts(entries).entries()]
-    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'en'))
-    .slice(0, limit)
-    .map(([tag]) => tag);
-}
-
-function getVisibleTags(entries: NewsEntry[], activeTag: string, limit: number) {
-  const topTags = getTopEnglishTags(entries, limit);
-
-  if (!activeTag || topTags.includes(activeTag) || topTags.length < limit) {
-    return topTags;
-  }
-
-  return [...topTags.slice(0, limit - 1), activeTag];
-}
 
 const allCurrentNews = (await getCollection('news'))
   .filter((entry) => entry.data.year === currentYear || entry.data.date.getFullYear() === currentYear)
@@ -49,21 +18,18 @@ export async function getStaticPaths() {
   const entries = (await getCollection('news'))
     .filter((entry) => entry.data.year === buildYear || entry.data.date.getFullYear() === buildYear);
 
-  const tags = new Set<string>();
+  const tags = allowedNewsTagsEn.filter((tag) => entries.some((entry) => getVisibleNewsTagsEn(entry).includes(tag)));
 
-  entries.forEach((entry) => {
-    (entry.data.tagsEn ?? []).forEach((tag) => tags.add(tag));
-  });
-
-  return [...tags]
-    .sort((a, b) => a.localeCompare(b, 'en'))
-    .map((tag) => ({ params: { tag } }));
+  return tags.map((tag) => ({
+    params: { tag },
+    props: { tag }
+  }));
 }
 
-const { tag } = Astro.params;
+const { tag } = Astro.props;
 const decodedTag = decodeURIComponent(tag ?? '');
-const tags = getVisibleTags(allCurrentNews, decodedTag, maxVisibleTags);
-const news = allCurrentNews.filter((entry) => getEnglishTags(entry).includes(decodedTag));
+const tags = allowedNewsTagsEn.filter((item) => allCurrentNews.some((entry) => getVisibleNewsTagsEn(entry).includes(item)));
+const news = allCurrentNews.filter((entry) => getVisibleNewsTagsEn(entry).includes(decodedTag));
 ---
 
 <BaseLayoutEn

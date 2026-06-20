@@ -29,3 +29,26 @@ featured: true
 Окрему увагу приділено подальшому формуванню Виконавчого бюро Комітету з питань ранньої кар’єри.
 
 Обрання представника України до складу Комітету є важливим кроком для посилення участі української наукової спільноти в діяльності IUTAM та розширення можливостей міжнародної співпраці.
+
+<!-- en:start -->
+
+On 17 March 2026, the General Members Meeting of the International Union of Theoretical and Applied Mechanics (IUTAM) was held in a hybrid format, with 68 representatives of national committees from around the world taking part.
+
+Yaroslav Zhuk, Corresponding Member of the NAS of Ukraine and Deputy Chair of the National Committee of Ukraine for Theoretical and Applied Mechanics, which is a member of IUTAM, participated in the meeting online.
+
+A key event of the meeting for the Ukrainian scientific community was the election of a representative of Ukraine to the Early Career Committee. Doctor of Technical Sciences Maksym Borysenko was elected as a member of this committee.
+
+In total, 38 members were elected to the committee from among 28 nominated candidates, as well as additionally proposed participants, taking into account the principles of gender equality, diversity, and geographical representation. The committee plays an important role in shaping IUTAM policy aimed at supporting young researchers and developing international scientific cooperation.
+
+The meeting also addressed a number of organizational and strategic issues related to IUTAM activities, including:
+
+approval of the agenda and the minutes of the previous meeting;
+reappointment of the Assistant Treasurer until 2028;
+discussion of calls for the organization of symposia and summer schools in 2026;
+support for initiatives aimed at developing diversity programmes;
+adoption of a decision to prohibit proxy voting at meetings of the Congress Committee.
+Special attention was also paid to the further formation of the Executive Board of the Early Career Committee.
+
+The election of a representative of Ukraine to the committee is an important step toward strengthening the participation of the Ukrainian scientific community in IUTAM activities and expanding opportunities for international cooperation.
+
+<!-- en:end -->

@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
 import { siteEn } from '../../../data/site-en';
+import { getVisibleNewsTagsEn } from '../../../utils/newsTags';
 
 export async function getStaticPaths() {
   const news = (await getCollection('news')).filter((entry) => !entry.data.externalUrl);
@@ -24,7 +25,7 @@ const date = entry.data.date.toLocaleDateString('en-GB', {
 const title = entry.data.titleEn ?? entry.data.title;
 const description = entry.data.descriptionEn ?? entry.data.description;
 const category = entry.data.categoryEn ?? entry.data.category;
-const tags = entry.data.tagsEn ?? [];
+const tags = getVisibleNewsTagsEn(entry);
 const image = entry.data.image ? withBase(entry.data.image) : undefined;
 const imageAlt = entry.data.imageAltEn ?? entry.data.imageAlt ?? '';
 const hasEnglishBody = Boolean(entry.data.titleEn || entry.data.descriptionEn);

@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { site } from '../../data/site';
 import { getVisibleNewsTags } from '../../utils/newsTags';
+import { getUkrainianNewsBody, hasNewsLanguageBlocks, renderNewsMarkdown } from '../../utils/newsBody';
 
 export async function getStaticPaths() {
   const news = (await getCollection('news')).filter((entry) => !entry.data.externalUrl);
@@ -25,6 +26,9 @@ const date = entry.data.date.toLocaleDateString('uk-UA', {
 const visibleTags = getVisibleNewsTags(entry);
 const image = entry.data.image ? withBase(entry.data.image) : undefined;
 const imageAlt = entry.data.imageAlt ?? '';
+const rawBody = entry.body ?? '';
+const hasLanguageBlocks = hasNewsLanguageBlocks(rawBody);
+const ukrainianBodyHtml = hasLanguageBlocks ? renderNewsMarkdown(getUkrainianNewsBody(rawBody), base) : '';
 ---
 
 <BaseLayout
@@ -57,9 +61,13 @@ const imageAlt = entry.data.imageAlt ?? '';
           </figure>
         )}
 
-        <div class="content-body news-content">
-          <Content />
-        </div>
+        {hasLanguageBlocks ? (
+          <div class="content-body news-content" set:html={ukrainianBodyHtml} />
+        ) : (
+          <div class="content-body news-content">
+            <Content />
+          </div>
+        )}
 
         <p class="back-link">
           <a href={withBase('/news/')}>← До всіх новин</a>

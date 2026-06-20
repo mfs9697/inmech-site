@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import BaseLayoutEn from '../../../../layouts/BaseLayoutEn.astro';
 import NewsCardEn from '../../../../components/NewsCardEn.astro';
 import { siteEn } from '../../../../data/site-en';
@@ -7,36 +8,56 @@ import { siteEn } from '../../../../data/site-en';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
 const currentYear = new Date().getFullYear();
+const maxVisibleTags = 10;
+
+type NewsEntry = CollectionEntry<'news'>;
+const getEnglishTags = (entry: NewsEntry) => entry.data.tagsEn ?? [];
+
+function getEnglishTagCounts(entries: NewsEntry[]) {
+  const tagCounts = new Map<string, number>();
+
+  entries.forEach((entry) => {
+    getEnglishTags(entry).forEach((tag) => tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1));
+  });
+
+  return tagCounts;
+}
+
+function getTopEnglishTags(entries: NewsEntry[], limit: number) {
+  return [...getEnglishTagCounts(entries).entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'en'))
+    .slice(0, limit)
+    .map(([tag]) => tag);
+}
+
+function getVisibleTags(entries: NewsEntry[], activeTag: string, limit: number) {
+  const topTags = getTopEnglishTags(entries, limit);
+
+  if (!activeTag || topTags.includes(activeTag) || topTags.length < limit) {
+    return topTags;
+  }
+
+  return [...topTags.slice(0, limit - 1), activeTag];
+}
+
 const allCurrentNews = (await getCollection('news'))
   .filter((entry) => entry.data.year === currentYear || entry.data.date.getFullYear() === currentYear)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-
-const tagSet = new Set<string>();
-allCurrentNews.forEach((entry) => {
-  const entryTags = entry.data.tagsEn ?? entry.data.tags;
-  entryTags.forEach((tag) => tagSet.add(tag));
-});
-const tags = [...tagSet].sort((a, b) => a.localeCompare(b, 'en'));
 
 export async function getStaticPaths() {
   const buildYear = new Date().getFullYear();
   const entries = (await getCollection('news'))
     .filter((entry) => entry.data.year === buildYear || entry.data.date.getFullYear() === buildYear);
 
-  const pathTagSet = new Set<string>();
-  entries.forEach((entry) => {
-    const entryTags = entry.data.tagsEn ?? entry.data.tags;
-    entryTags.forEach((tag) => pathTagSet.add(tag));
-  });
-
-  return [...pathTagSet]
+  return [...getEnglishTagCounts(entries).keys()]
     .sort((a, b) => a.localeCompare(b, 'en'))
     .map((tag) => ({ params: { tag } }));
 }
 
 const { tag } = Astro.params;
 const decodedTag = decodeURIComponent(tag ?? '');
-const news = allCurrentNews.filter((entry) => (entry.data.tagsEn ?? entry.data.tags).includes(decodedTag));
+const tags = getVisibleTags(allCurrentNews, decodedTag, maxVisibleTags);
+const news = allCurrentNews.filter((entry) => getEnglishTags(entry).includes(decodedTag));
 ---
 
 <BaseLayoutEn

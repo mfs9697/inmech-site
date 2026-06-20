@@ -77,7 +77,8 @@ const canonicalUrl = absoluteUrl(currentPath);
 const englishAlternativePath = currentPath === '/' ? '/en/' : `/en${currentPath}`;
 const isDepartmentDetailPage = /^\/departments\/[^/]+\/$/.test(currentPath);
 const isPersonDetailPage = /^\/people\/[^/]+\/$/.test(currentPath);
-const hasEnglishAlternative = englishPaths.has(englishAlternativePath) || isDepartmentDetailPage || isPersonDetailPage;
+const isNewsDetailPage = /^\/news\/(?!tags\/).+\/$/.test(currentPath) && currentPath !== '/news/';
+const hasEnglishAlternative = englishPaths.has(englishAlternativePath) || isDepartmentDetailPage || isPersonDetailPage || isNewsDetailPage;
 const ukrainianAlternativeUrl = absoluteUrl(currentPath);
 const englishAlternativeUrl = absoluteUrl(englishAlternativePath);
 ---

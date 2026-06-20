@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
 import NewsCardEn from '../../../components/NewsCardEn.astro';
 import { siteEn } from '../../../data/site-en';
@@ -9,19 +10,27 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
 const currentYear = new Date().getFullYear();
 const maxVisibleTags = 10;
 
+type NewsEntry = CollectionEntry<'news'>;
+const getEnglishTags = (entry: NewsEntry) => entry.data.tagsEn ?? [];
+
+function getTopEnglishTags(entries: NewsEntry[], limit: number) {
+  const tagCounts = new Map<string, number>();
+
+  entries.forEach((entry) => {
+    getEnglishTags(entry).forEach((tag) => tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1));
+  });
+
+  return [...tagCounts.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'en'))
+    .slice(0, limit)
+    .map(([tag]) => tag);
+}
+
 const news = (await getCollection('news'))
   .filter((entry) => entry.data.year === currentYear || entry.data.date.getFullYear() === currentYear)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-const tagCounts = new Map<string, number>();
-news.forEach((entry) => {
-  const tags = entry.data.tagsEn ?? entry.data.tags;
-  tags.forEach((tag) => tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1));
-});
-const tags = [...tagCounts.entries()]
-  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'en'))
-  .slice(0, maxVisibleTags)
-  .map(([tag]) => tag);
+const tags = getTopEnglishTags(news, maxVisibleTags);
 ---
 
 <BaseLayoutEn

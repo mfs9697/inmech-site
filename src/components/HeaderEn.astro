@@ -84,6 +84,14 @@ function getUkrainianPath(pathname: string) {
     return path.replace(/^\/en/, '');
   }
 
+  if (/^\/en\/news\/tags\/[^/]+\/$/.test(path)) {
+    return '/news/';
+  }
+
+  if (/^\/en\/news\/(?!tags\/).+\/$/.test(path)) {
+    return path.replace(/^\/en/, '');
+  }
+
   if (!path.startsWith('/en/')) {
     return '/';
   }

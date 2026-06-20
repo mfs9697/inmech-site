@@ -1,8 +1,9 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
 import { siteEn } from '../../../data/site-en';
 import { getVisibleNewsTagsEn } from '../../../utils/newsTags';
+import { getEnglishNewsBody, renderNewsMarkdown } from '../../../utils/newsBody';
 
 export async function getStaticPaths() {
   const news = (await getCollection('news')).filter((entry) => !entry.data.externalUrl);
@@ -14,7 +15,6 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await render(entry);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
 const date = entry.data.date.toLocaleDateString('en-GB', {
@@ -28,7 +28,10 @@ const category = entry.data.categoryEn ?? entry.data.category;
 const tags = getVisibleNewsTagsEn(entry);
 const image = entry.data.image ? withBase(entry.data.image) : undefined;
 const imageAlt = entry.data.imageAltEn ?? entry.data.imageAlt ?? '';
-const hasEnglishBody = Boolean(entry.data.titleEn || entry.data.descriptionEn);
+const englishBody = getEnglishNewsBody(entry.body ?? '');
+const hasEnglishBody = englishBody.length > 0;
+const englishBodyHtml = hasEnglishBody ? renderNewsMarkdown(englishBody, base) : '';
+const ukrainianNewsUrl = withBase(`/news/${entry.id}/`);
 ---
 
 <BaseLayoutEn
@@ -61,15 +64,13 @@ const hasEnglishBody = Boolean(entry.data.titleEn || entry.data.descriptionEn);
           </figure>
         )}
 
-        {!hasEnglishBody && (
+        {hasEnglishBody ? (
+          <div class="content-body news-content" set:html={englishBodyHtml} />
+        ) : (
           <p class="translation-note">
-            The English version of this news item is being prepared. The original Ukrainian text is provided below.
+            The English text of this news item is being prepared. Please use the <a href={ukrainianNewsUrl}>Ukrainian version</a> for the full text.
           </p>
         )}
-
-        <div class="content-body news-content">
-          <Content />
-        </div>
 
         <p class="back-link">
           <a href={withBase('/en/news/')}>← Back to all news</a>
@@ -114,6 +115,10 @@ const hasEnglishBody = Boolean(entry.data.titleEn || entry.data.descriptionEn);
     background: var(--surface-soft);
     color: var(--muted);
     font-weight: 650;
+  }
+
+  .translation-note a {
+    font-weight: 800;
   }
 
   .news-content {

@@ -85,6 +85,14 @@ function getEnglishPath(pathname: string) {
     return `/en${path}`;
   }
 
+  if (/^\/news\/tags\/[^/]+\/$/.test(path)) {
+    return '/en/news/';
+  }
+
+  if (/^\/news\/(?!tags\/).+\/$/.test(path)) {
+    return `/en${path}`;
+  }
+
   const slug = path.replace(/^\//, '').replace(/\/$/, '');
 
   if (englishSlugs.has(slug)) {

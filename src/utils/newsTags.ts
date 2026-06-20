@@ -6,23 +6,36 @@ export const allowedNewsTags = [
   'ювілей',
   'вчена рада',
   'співпраця',
-  'освітньо-наукова діяльність'
+  'освітньо-наукова діяльність',
+  'конференції',
+  'семінари',
+  'публікації',
+  'оголошення'
 ] as const;
 
 export type NewsTag = (typeof allowedNewsTags)[number];
 
 export const newsTagTranslations: Record<NewsTag, string> = {
   'аспірантура': 'Postgraduate studies',
-  'конкурс': 'Competition',
-  'ювілей': 'Anniversary',
+  'конкурс': 'Competitions and vacancies',
+  'ювілей': 'Anniversaries',
   'вчена рада': 'Academic Council',
   'співпраця': 'Cooperation',
-  'освітньо-наукова діяльність': 'Education and research training'
+  'освітньо-наукова діяльність': 'Education and research training',
+  'конференції': 'Conferences',
+  'семінари': 'Seminars',
+  'публікації': 'Publications',
+  'оголошення': 'Announcements'
 };
 
 export const allowedNewsTagsEn = allowedNewsTags.map((tag) => newsTagTranslations[tag]);
 
 const includesAny = (source: string, patterns: string[]) => patterns.some((pattern) => source.includes(pattern));
+const addTag = (tags: NewsTag[], tag: NewsTag) => {
+  if (!tags.includes(tag)) {
+    tags.push(tag);
+  }
+};
 
 export function getVisibleNewsTags(entry: CollectionEntry<'news'>): NewsTag[] {
   const source = [
@@ -42,49 +55,43 @@ export function getVisibleNewsTags(entry: CollectionEntry<'news'>): NewsTag[] {
   const visibleTags: NewsTag[] = [];
 
   if (includesAny(source, ['аспірант', 'аспірантур', 'postgraduate'])) {
-    visibleTags.push('аспірантура');
+    addTag(visibleTags, 'аспірантура');
   }
 
   if (includesAny(source, ['конкурс', 'ваканс', 'заміщення вакантних посад', 'competition', 'vacancy', 'vacancies'])) {
-    visibleTags.push('конкурс');
+    addTag(visibleTags, 'конкурс');
   }
 
-  if (includesAny(source, ['ювілей', '70-річ', '70 річ', '70-рiч', 'anniversary', '70th'])) {
-    visibleTags.push('ювілей');
+  if (includesAny(source, ['ювілей', 'річниц', 'anniversary', 'jubilee'])) {
+    addTag(visibleTags, 'ювілей');
   }
 
   if (includesAny(source, ['вчена рада', 'вченої ради', 'вченою радою', 'academic council', 'scientific council'])) {
-    visibleTags.push('вчена рада');
+    addTag(visibleTags, 'вчена рада');
   }
 
-  if (includesAny(source, ['співпрац', 'візит', 'делегац', 'міжнародна співпраця', 'cooperation', 'visit', 'delegation'])) {
-    visibleTags.push('співпраця');
+  if (includesAny(source, ['співпрац', 'візит', 'делегац', 'міжнародна співпраця', 'cooperation', 'collaboration', 'visit', 'delegation'])) {
+    addTag(visibleTags, 'співпраця');
   }
 
-  if (
-    includesAny(source, [
-      'освіт',
-      'науков',
-      'акредитац',
-      'онп',
-      'iutam',
-      'журнал',
-      'прикладна механіка',
-      'видання',
-      'нан україни',
-      'міжнародна співпраця',
-      'бібліотека',
-      'education',
-      'research',
-      'accreditation',
-      'journal',
-      'applied mechanics',
-      'publication',
-      'nas of ukraine',
-      'library'
-    ])
-  ) {
-    visibleTags.push('освітньо-наукова діяльність');
+  if (includesAny(source, ['освітньо-науков', 'освітня діяльність', 'навчан', 'акредитац', 'онп', 'education and research', 'educational', 'training', 'accreditation'])) {
+    addTag(visibleTags, 'освітньо-наукова діяльність');
+  }
+
+  if (includesAny(source, ['конференц', 'симпозі', 'форум', 'секц', 'apmme', 'iutam', 'conference', 'symposium', 'forum', 'section'])) {
+    addTag(visibleTags, 'конференції');
+  }
+
+  if (includesAny(source, ['семінар', 'вебінар', 'доповідь на семінарі', 'seminar', 'webinar'])) {
+    addTag(visibleTags, 'семінари');
+  }
+
+  if (includesAny(source, ['публікац', 'видання', 'журнал', 'статт', 'монограф', 'прикладна механіка', 'publication', 'journal', 'paper', 'article', 'book', 'monograph', 'applied mechanics'])) {
+    addTag(visibleTags, 'публікації');
+  }
+
+  if (includesAny(source, ['оголош', 'повідомлен', 'анонс', 'announcement', 'notice', 'call for'])) {
+    addTag(visibleTags, 'оголошення');
   }
 
   return allowedNewsTags.filter((tag) => visibleTags.includes(tag));

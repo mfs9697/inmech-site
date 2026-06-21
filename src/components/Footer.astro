@@ -17,7 +17,13 @@ function withBase(path: string) {
     <section>
       <h2>{site.name}</h2>
       <p>{site.address}</p>
-      <p>Тел.: <a href={`tel:${site.phone.replaceAll(' ', '')}`}>{site.phone}</a><br />E-mail: <a href={`mailto:${site.email}`}>{site.email}</a></p>
+      <p>
+        Тел.: <a href={`tel:${site.phone.replaceAll(' ', '')}`}>{site.phone}</a><br />
+        E-mail: <a href={`mailto:${site.email}`}>{site.email}</a><br />
+        <a href="https://www.youtube.com/@inmech_kyiv_ua" target="_blank" rel="noopener noreferrer">YouTube-канал Інституту</a>
+        <span aria-hidden="true"> | </span>
+        <a href="https://invite.viber.com/?g2=AQBNONNjGqgHwFOkCt5Z%2BPyfJJTULYnct3gaqHqN0N9MgFqF0z%2FaDCjCVrLGhcMK" target="_blank" rel="noopener noreferrer">Viber-чат Інституту</a>
+      </p>
     </section>
     <section>
       <h3>Розділи</h3>
@@ -39,9 +45,5 @@ function withBase(path: string) {
   </div>
   <div class="container copyright">
     © {new Date().getFullYear()} Інститут механіки ім. С.П. Тимошенка НАН України.
-    <span aria-hidden="true"> | </span>
-    <a href="https://www.youtube.com/@inmech_kyiv_ua" target="_blank" rel="noopener noreferrer">YouTube-канал Інституту</a>
-    <span aria-hidden="true"> | </span>
-    <a href="https://invite.viber.com/?g2=AQBNONNjGqgHwFOkCt5Z%2BPyfJJTULYnct3gaqHqN0N9MgFqF0z%2FaDCjCVrLGhcMK" target="_blank" rel="noopener noreferrer">Viber-чат Інституту</a>
   </div>
 </footer>

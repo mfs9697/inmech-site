@@ -276,6 +276,8 @@ function formatDate(date: Date, variant: 'short' | 'long' = 'short') {
     display: grid;
     gap: 14px;
     flex: 1;
+    align-content: start;
+    align-items: start;
   }
 
   .home-news-meta,
@@ -329,10 +331,16 @@ function formatDate(date: Date, variant: 'short' | 'long' = 'short') {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+    align-items: center;
+    align-self: start;
   }
 
   .home-news-tag {
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    min-height: 0;
     padding: 5px 9px;
     border: 1px solid var(--line);
     border-radius: 999px;
@@ -340,10 +348,13 @@ function formatDate(date: Date, variant: 'short' | 'long' = 'short') {
     background: var(--surface-soft);
     font-size: 0.88rem;
     font-weight: 750;
+    line-height: 1.15;
+    white-space: nowrap;
     text-decoration: none;
   }
 
   .home-news-read-more {
+    align-self: start;
     font-weight: 800;
     color: var(--accent);
   }

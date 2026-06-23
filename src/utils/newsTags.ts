@@ -2,11 +2,12 @@ import type { CollectionEntry } from 'astro:content';
 
 export const allowedNewsTags = [
   'аспірантура',
+  'акредитація',
+  'освіта',
   'конкурс',
   'ювілей',
   'вчена рада',
   'співпраця',
-  'освітньо-наукова діяльність',
   'конференції',
   'семінари',
   'публікації',
@@ -17,11 +18,12 @@ export type NewsTag = (typeof allowedNewsTags)[number];
 
 export const newsTagTranslations: Record<NewsTag, string> = {
   'аспірантура': 'Postgraduate studies',
+  'акредитація': 'Accreditation',
+  'освіта': 'Education',
   'конкурс': 'Competitions and vacancies',
   'ювілей': 'Anniversaries',
   'вчена рада': 'Academic Council',
   'співпраця': 'Cooperation',
-  'освітньо-наукова діяльність': 'Education and research training',
   'конференції': 'Conferences',
   'семінари': 'Seminars',
   'публікації': 'Publications',
@@ -54,8 +56,16 @@ export function getVisibleNewsTags(entry: CollectionEntry<'news'>): NewsTag[] {
 
   const visibleTags: NewsTag[] = [];
 
-  if (includesAny(source, ['аспірант', 'аспірантур', 'postgraduate'])) {
+  if (includesAny(source, ['аспірант', 'аспірантур', 'postgraduate', 'phd'])) {
     addTag(visibleTags, 'аспірантура');
+  }
+
+  if (includesAny(source, ['акредитац', 'accreditation'])) {
+    addTag(visibleTags, 'акредитація');
+  }
+
+  if (includesAny(source, ['освітньо-науков', 'освітня діяльність', 'освіта', 'навчан', 'онп', 'education and research', 'educational', 'education', 'training'])) {
+    addTag(visibleTags, 'освіта');
   }
 
   if (includesAny(source, ['конкурс', 'ваканс', 'заміщення вакантних посад', 'competition', 'vacancy', 'vacancies'])) {
@@ -72,10 +82,6 @@ export function getVisibleNewsTags(entry: CollectionEntry<'news'>): NewsTag[] {
 
   if (includesAny(source, ['співпрац', 'візит', 'делегац', 'міжнародна співпраця', 'cooperation', 'collaboration', 'visit', 'delegation'])) {
     addTag(visibleTags, 'співпраця');
-  }
-
-  if (includesAny(source, ['освітньо-науков', 'освітня діяльність', 'навчан', 'акредитац', 'онп', 'education and research', 'educational', 'training', 'accreditation'])) {
-    addTag(visibleTags, 'освітньо-наукова діяльність');
   }
 
   if (includesAny(source, ['конференц', 'симпозі', 'форум', 'секц', 'apmme', 'iutam', 'conference', 'symposium', 'forum', 'section'])) {

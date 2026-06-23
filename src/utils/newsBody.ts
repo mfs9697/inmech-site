@@ -1,4 +1,5 @@
 const englishBlockPattern = /<!--\s*en:start\s*-->([\s\S]*?)<!--\s*en:end\s*-->/i;
+const englishBlockRemovePattern = /<!--\s*en:start\s*-->[\s\S]*?<!--\s*en:end\s*-->/gi;
 const ukrainianBlockPattern = /<!--\s*uk:start\s*-->([\s\S]*?)<!--\s*uk:end\s*-->/i;
 
 function escapeHtml(value: string) {
@@ -66,7 +67,7 @@ export function getUkrainianNewsBody(body = '') {
     return explicitUkrainianBody;
   }
 
-  return body.replace(englishBlockPattern, '').trim();
+  return body.replace(englishBlockRemovePattern, '').trim();
 }
 
 export function hasNewsLanguageBlocks(body = '') {

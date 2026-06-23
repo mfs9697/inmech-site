@@ -12,27 +12,26 @@ year: 2026
 featured: true
 ---
 
-23 червня 2026 року на засіданні entity["organization","Національне агентство із забезпечення якості вищої освіти","НАЗЯВО"] шляхом голосування було ухвалено рішення про акредитацію освітньо-наукової програми Інституту механіки ім. С. П. Тимошенка НАН України з підготовки докторів філософії за спеціальністю «Прикладна математика».
+23 червня 2026 року на засіданні НАЗЯВО шляхом голосування було затверджено акредитацію ОНП Інституту механіки з підготовки докторів філософії зі спеціальності "Прикладна математика".
 
-Це рішення є важливим підтвердженням належного рівня організації освітнього процесу, наукової підготовки здобувачів та відповідності програми сучасним вимогам забезпечення якості вищої освіти.
+Залишилось пройти ще 3 етапи:
+1) підписання рішення НА;
+2) архівація акредитаційної справи;
+3) видача сертифікату про акредитацію.
 
-Акредитаційна процедура перебуває на завершальному етапі та включає такі кроки:
-- підписання рішення Національного агентства;
-- архівація акредитаційної справи;
-- видача сертифіката про акредитацію.
-
-Адміністрація Інституту дякує всім співробітникам, які були залучені до підготовки та проходження акредитаційної процедури, а також робочій групі освітньої програми.
-
-Вітаємо колектив Інституту з успішним проходженням акредитації та бажаємо подальших успіхів у розвитку освітньої та наукової діяльності.
+З повагою,
+Адміністрація.
 
 <!-- en:start -->
 
-On 23 June 2026, the National Agency for Higher Education Quality Assurance approved the accreditation of the PhD program in Applied Mathematics at the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine.
+On 23 June 2026 at a meeting of the National Agency for Higher Education Quality Assurance (NAQA), the accreditation of the PhD educational program in Applied Mathematics at the Institute of Mechanics of the NAS of Ukraine was approved.
 
-This decision confirms the high quality of the educational process and research training within the program.
+The procedure is now entering its final stages:
+1) signing of the NAQA decision;
+2) archiving of the accreditation file;
+3) issuance of the accreditation certificate.
 
-The accreditation procedure is being finalized and includes several remaining formal steps: signing of the decision, archiving of the accreditation file, and issuance of the accreditation certificate.
-
-The Institute administration thanks all staff involved in preparing the self-evaluation materials and supporting the accreditation process.
+Sincerely,
+Administration.
 
 <!-- en:end -->

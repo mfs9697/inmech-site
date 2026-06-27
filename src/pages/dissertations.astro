@@ -9,7 +9,8 @@ function withBase(path: string) {
     return path;
   }
 
-  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+  const cleanPath = path.replace(/^\/inmech-site(?=\/)/, '');
+  return `${base}${cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`}`;
 }
 
 const featuredDefenses = [
@@ -247,7 +248,7 @@ const featuredDefenses = [
             {defense.links.length > 0 && (
               <div class="defense-links">
                 {defense.links.map(([label, href]) => (
-                  <a href={href} target="_blank" rel="noopener noreferrer">{label}</a>
+                  <a href={withBase(href)} target="_blank" rel="noopener noreferrer">{label}</a>
                 ))}
               </div>
             )}
@@ -257,7 +258,7 @@ const featuredDefenses = [
               {defense.opponents.length > 0 ? (
                 <div class="opponents-grid">
                   {defense.opponents.map(([name, degree, href]) => (
-                    <a class="opponent-card" href={href} target="_blank" rel="noopener noreferrer">
+                    <a class="opponent-card" href={withBase(href)} target="_blank" rel="noopener noreferrer">
                       <strong>{name}</strong>
                       <span>{degree}</span>
                       <em>Переглянути відгук →</em>

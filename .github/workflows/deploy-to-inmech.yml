@@ -23,7 +23,7 @@ jobs:
       INMECH_USER: ${{ secrets.INMECH_USER }}
       INMECH_PATH: ${{ secrets.INMECH_PATH }}
       INMECH_PORT: ${{ secrets.INMECH_PORT }}
-      INMECH_SSH_PRIVATE_KEY: ${{ secrets.INMECH_SSH_PRIVATE_KEY }}
+      DEPLOY_KEY: ${{ secrets.INMECH_SSH_PRIVATE_KEY }}
 
     steps:
       - name: Checkout repository
@@ -51,17 +51,22 @@ jobs:
       - name: Build Astro site
         run: npm run build
 
+      - name: Check sitemap output
+        run: |
+          test -f dist/sitemap-index.xml
+          test -f dist/sitemap-0.xml
+
       - name: Prepare SSH key
         run: |
           : "${INMECH_HOST:?Missing secret INMECH_HOST}"
           : "${INMECH_USER:?Missing secret INMECH_USER}"
           : "${INMECH_PATH:?Missing secret INMECH_PATH}"
-          : "${INMECH_SSH_PRIVATE_KEY:?Missing secret INMECH_SSH_PRIVATE_KEY}"
+          : "${DEPLOY_KEY:?Missing deploy key}"
 
           PORT="${INMECH_PORT:-22}"
 
           mkdir -p ~/.ssh
-          echo "$INMECH_SSH_PRIVATE_KEY" > ~/.ssh/inmech_deploy_key
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/inmech_deploy_key
           chmod 600 ~/.ssh/inmech_deploy_key
           ssh-keyscan -p "$PORT" "$INMECH_HOST" >> ~/.ssh/known_hosts
 

@@ -93,6 +93,7 @@ const englishAlternativeUrl = absoluteUrl(englishAlternativePath);
     <link rel="canonical" href={canonicalUrl} />
     {hasEnglishAlternative && <link rel="alternate" hreflang="uk" href={ukrainianAlternativeUrl} />}
     {hasEnglishAlternative && <link rel="alternate" hreflang="en" href={englishAlternativeUrl} />}
+    <link rel="sitemap" href={`${siteBaseUrl}/sitemap-index.xml`} />
     <link rel="icon" href={faviconPath} type="image/png" />
     <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}></script>
     <script is:inline define:vars={{ googleAnalyticsId }}>

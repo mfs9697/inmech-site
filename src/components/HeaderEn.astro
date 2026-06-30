@@ -9,40 +9,6 @@ const { activePage = 'home' } = Astro.props;
 const isActive = (page: Props['activePage']) => activePage === page ? 'active' : '';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-const englishSlugs = new Set([
-  'history',
-  'regulations',
-  'strategy',
-  'scientific-cooperation',
-  'tender',
-  'management',
-  'departments',
-  'scientific-council',
-  'specialized-councils',
-  'young-scientists',
-  'services',
-  'education',
-  'postgraduate',
-  'postgraduate/students',
-  'postgraduate/research-topics',
-  'doctoral',
-  'dissertations',
-  'defended-dissertations',
-  'license-and-regulations',
-  'trust-box',
-  'nmr',
-  'news',
-  'library',
-  'search',
-  'sitemap',
-  'accessibility',
-  'site-administration'
-]);
-
-const enToUkFallbacks: Record<string, string> = {
-  '/en/': '/'
-};
-
 function withBase(path: string) {
   if (path.startsWith('http') || path.startsWith('#')) {
     return path;
@@ -64,8 +30,6 @@ function normalizePath(pathname: string) {
     path = `/${path}`;
   }
 
-  path = path.replace(/\/index\.html$/, '/');
-
   if (!path.endsWith('/')) {
     path = `${path}/`;
   }
@@ -76,30 +40,16 @@ function normalizePath(pathname: string) {
 function getUkrainianPath(pathname: string) {
   const path = normalizePath(pathname);
 
-  if (enToUkFallbacks[path]) {
-    return enToUkFallbacks[path];
-  }
-
-  if (/^\/en\/departments\/[^/]+\/$/.test(path) || /^\/en\/people\/[^/]+\/$/.test(path)) {
-    return path.replace(/^\/en/, '');
-  }
-
-  if (/^\/en\/news\/tags\/[^/]+\/$/.test(path)) {
-    return '/news/';
-  }
-
-  if (/^\/en\/news\/(?!tags\/).+\/$/.test(path)) {
-    return path.replace(/^\/en/, '');
-  }
-
-  if (!path.startsWith('/en/')) {
+  if (path === '/en/') {
     return '/';
   }
 
-  const slug = path.replace(/^\/en\//, '').replace(/\/$/, '');
+  if (path === '/en/founder/') {
+    return '/founder/';
+  }
 
-  if (englishSlugs.has(slug)) {
-    return `/${slug}/`;
+  if (path.startsWith('/en/')) {
+    return path.replace('/en', '');
   }
 
   return '/';
@@ -140,18 +90,17 @@ const ukrainianPath = getUkrainianPath(Astro.url.pathname);
     <nav class="primary-nav" id="primary-nav" aria-label="Main menu">
       <ul>
         <li><a class={isActive('home')} href={withBase('/en/')}>Home</a></li>
-
         <li>
           <span class={`nav-label ${isActive('about')}`}>About the Institute ▾</span>
           <ul class="submenu">
             <li><a class={isActive('about')} href={withBase('/en/history/')}>History and mission</a></li>
+            <li><a class={isActive('about')} href={withBase('/en/founder/')}>Founder of the Institute</a></li>
             <li><a class={isActive('about')} href={withBase('/en/regulations/')}>Statute</a></li>
             <li><a class={isActive('about')} href={withBase('/en/strategy/')}>Development strategy</a></li>
             <li><a class={isActive('about')} href={withBase('/en/scientific-cooperation/')}>Scientific cooperation</a></li>
             <li><a class={isActive('about')} href={withBase('/en/tender/')}>Procurement and tenders</a></li>
           </ul>
         </li>
-
         <li>
           <span class={`nav-label ${isActive('departments')}`}>Structure ▾</span>
           <ul class="submenu">
@@ -163,7 +112,6 @@ const ukrainianPath = getUkrainianPath(Astro.url.pathname);
             <li><a class={isActive('departments')} href={withBase('/en/services/')}>Institute services</a></li>
           </ul>
         </li>
-
         <li>
           <span class={`nav-label ${isActive('education')}`}>Education and research training ▾</span>
           <ul class="submenu">
@@ -176,7 +124,6 @@ const ukrainianPath = getUkrainianPath(Astro.url.pathname);
             <li><a class={isActive('education')} href={withBase('/en/nmr/')}>Scientific and Methodological Council</a></li>
           </ul>
         </li>
-
         <li><a href={withBase('/en/library/')}>Library</a></li>
         <li><a class={isActive('news')} href={withBase('/en/news/')}>News</a></li>
         <li><a href={withBase('/en/#contacts')}>Contacts</a></li>

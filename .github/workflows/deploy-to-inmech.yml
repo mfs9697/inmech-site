@@ -13,6 +13,10 @@ on:
       - 'package-lock.json'
       - '.github/workflows/deploy-to-inmech.yml'
 
+concurrency:
+  group: inmech-deploy-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -74,7 +78,7 @@ jobs:
         run: |
           PORT="${INMECH_PORT:-22}"
 
-          rsync -az --delete \
+          rsync -az --delete-delay --delay-updates \
             -e "ssh -i ~/.ssh/inmech_deploy_key -p $PORT" \
             ./dist/ \
             "$INMECH_USER@$INMECH_HOST:$INMECH_PATH/"

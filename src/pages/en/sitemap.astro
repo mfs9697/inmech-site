@@ -1,76 +1,11 @@
 ---
 import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
 import { siteEn } from '../../data/site-en';
+import { groupRoutesBySection } from '../../data/routes';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
-
-const sections = [
-  {
-    title: 'Home',
-    links: [
-      ['Home page', '/en/'],
-      ['News', '/en/news/'],
-      ['Contacts', '/en/#contacts']
-    ]
-  },
-  {
-    title: 'About the Institute',
-    links: [
-      ['History and mission', '/en/history/'],
-      ['Statute', '/en/regulations/'],
-      ['Development strategy', '/en/strategy/'],
-      ['Scientific cooperation', '/en/scientific-cooperation/'],
-      ['Procurement and tenders', '/en/tender/']
-    ]
-  },
-  {
-    title: 'Structure',
-    links: [
-      ['Management', '/en/management/'],
-      ['Research departments', '/en/departments/'],
-      ['Scientific Council', '/en/scientific-council/'],
-      ['Specialized Academic Councils', '/en/specialized-councils/'],
-      ['Council of Young Scientists', '/en/young-scientists/'],
-      ['Institute services', '/en/services/']
-    ]
-  },
-  {
-    title: 'Education and research training',
-    links: [
-      ['Section overview', '/en/education/'],
-      ['Postgraduate studies', '/en/postgraduate/'],
-      ['Doctoral studies', '/en/doctoral/'],
-      ['Dissertation defences', '/en/dissertations/'],
-      ['Licences and regulations', '/en/license-and-regulations/'],
-      ['Trust box', '/en/trust-box/'],
-      ['Scientific and Methodological Council', '/en/nmr/']
-    ]
-  },
-  {
-    title: 'Postgraduate studies',
-    links: [
-      ['Postgraduate studies', '/en/postgraduate/'],
-      ['Admission to postgraduate studies', '/en/postgraduate/admission/'],
-      ['Educational and scientific programme', '/en/postgraduate/program/'],
-      ['Accreditation', '/en/postgraduate/accreditation/'],
-      ['Postgraduate class schedule', '/en/postgraduate/schedule/'],
-      ['Postgraduate students', '/en/postgraduate/students/'],
-      ['Teachers and research supervisors', '/en/postgraduate/supervisors/'],
-      ['Alignment of postgraduate topics with supervisors’ research activities', '/en/postgraduate/research-topics/']
-    ]
-  },
-  {
-    title: 'Service pages',
-    links: [
-      ['Sitemap', '/en/sitemap/'],
-      ['Search', '/en/search/'],
-      ['Accessibility policy', '/en/accessibility/'],
-      ['Site administration', '/en/site-administration/'],
-      ['Ukrainian sitemap', '/sitemap/']
-    ]
-  }
-];
+const sections = groupRoutesBySection('en');
 ---
 
 <BaseLayoutEn

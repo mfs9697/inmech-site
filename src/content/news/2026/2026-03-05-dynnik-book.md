@@ -9,5 +9,5 @@ categoryEn: "Library"
 tags: ["Динник", "історія механіки", "видання"]
 tagsEn: ["Dynnyk", "history of mechanics", "publication"]
 year: 2026
-externalUrl: "/inmech-site/documents/library/history-publications/dynnik.pdf"
+externalUrl: "/documents/library/history-publications/dynnik.pdf"
 ---

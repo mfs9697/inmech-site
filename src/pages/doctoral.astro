@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
 
+const docHref = (href: string) => href.startsWith('/documents/') ? withBase(href) : href;
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 function withBase(path: string) {
@@ -16,7 +18,7 @@ const documents = [
   {
     title: 'Правила прийому до докторантури',
     description: 'Основний документ для вступників до докторантури Інституту.',
-    href: '/inmech-site/documents/doctoral/admission/doctoral-admission-rules.docx',
+    href: '/documents/doctoral/admission/doctoral-admission-rules.docx',
     type: 'DOCX'
   }
 ];
@@ -128,7 +130,7 @@ const relatedLinks = [
 
       <div class="doctoral-document-grid">
         {documents.map((document) => (
-          <a class="doctoral-document-card" href={document.href} target="_blank" rel="noopener noreferrer">
+          <a class="doctoral-document-card" href={docHref(document.href)} target="_blank" rel="noopener noreferrer">
             <span>{document.type}</span>
             <div>
               <h3>{document.title}</h3>

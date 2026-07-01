@@ -2,6 +2,8 @@
 import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
 import { siteEn } from '../../data/site-en';
 
+const docHref = (href: string) => href.startsWith('/documents/') ? withBase(href) : href;
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 function withBase(path: string) {
@@ -15,12 +17,12 @@ function withBase(path: string) {
 const licenseDocs = [
   {
     title: 'Order on licensing educational activity No. 139 of 21 February 2018',
-    href: '/inmech-site/documents/postgraduate/license/license-order-2018.pdf',
+    href: '/documents/postgraduate/license/license-order-2018.pdf',
     type: 'PDF'
   },
   {
     title: 'Extract from the Unified State Electronic Database on Education regarding the right to conduct educational activity in higher education',
-    href: '/inmech-site/documents/postgraduate/license/edebo-extract.pdf',
+    href: '/documents/postgraduate/license/edebo-extract.pdf',
     type: 'PDF'
   }
 ];
@@ -30,39 +32,39 @@ const regulationGroups = [
     title: 'Organisation of the educational process',
     description: 'Core documents regulating study organisation, the educational process and pedagogical practice.',
     documents: [
-      ['Regulations on the organisation of the educational process', '/inmech-site/documents/postgraduate/regulations/educational-process/educational-process-regulation.pdf'],
-      ['Regulations on pedagogical practice', '/inmech-site/documents/postgraduate/regulations/educational-process/pedagogical-practice-regulation.pdf'],
-      ['Regulations on distance learning', '/inmech-site/documents/postgraduate/regulations/educational-process/distance-learning-regulation.pdf'],
-      ['Regulations on the organisation of inclusive education for persons with special educational needs', '/inmech-site/documents/postgraduate/regulations/educational-process/inclusive-education-regulation.pdf']
+      ['Regulations on the organisation of the educational process', '/documents/postgraduate/regulations/educational-process/educational-process-regulation.pdf'],
+      ['Regulations on pedagogical practice', '/documents/postgraduate/regulations/educational-process/pedagogical-practice-regulation.pdf'],
+      ['Regulations on distance learning', '/documents/postgraduate/regulations/educational-process/distance-learning-regulation.pdf'],
+      ['Regulations on the organisation of inclusive education for persons with special educational needs', '/documents/postgraduate/regulations/educational-process/inclusive-education-regulation.pdf']
     ]
   },
   {
     title: 'Admission, elective courses and academic mobility',
     description: 'Documents for admission procedures, selection of educational components and implementation of the right to academic mobility.',
     documents: [
-      ['Regulations on the Admissions Committee', '/inmech-site/documents/postgraduate/regulations/admission/admissions-committee-regulation.pdf'],
-      ['Regulations on the Appeals Committee', '/inmech-site/documents/postgraduate/regulations/admission/appeal-committee-regulation.pdf'],
-      ['Regulations on the free choice of elective disciplines by higher education applicants at the third educational and scientific level', '/inmech-site/documents/postgraduate/regulations/admission/elective-courses-regulation.pdf'],
-      ['Regulations on the procedure for exercising the right to academic mobility by higher education applicants', '/inmech-site/documents/postgraduate/regulations/admission/academic-mobility-regulation.pdf'],
-      ['Regulations on recognition of learning outcomes acquired through non-formal and informal education', '/inmech-site/documents/postgraduate/regulations/admission/informal-learning-recognition-regulation.pdf']
+      ['Regulations on the Admissions Committee', '/documents/postgraduate/regulations/admission/admissions-committee-regulation.pdf'],
+      ['Regulations on the Appeals Committee', '/documents/postgraduate/regulations/admission/appeal-committee-regulation.pdf'],
+      ['Regulations on the free choice of elective disciplines by higher education applicants at the third educational and scientific level', '/documents/postgraduate/regulations/admission/elective-courses-regulation.pdf'],
+      ['Regulations on the procedure for exercising the right to academic mobility by higher education applicants', '/documents/postgraduate/regulations/admission/academic-mobility-regulation.pdf'],
+      ['Regulations on recognition of learning outcomes acquired through non-formal and informal education', '/documents/postgraduate/regulations/admission/informal-learning-recognition-regulation.pdf']
     ]
   },
   {
     title: 'Quality of education and academic integrity',
     description: 'Regulations supporting transparency of the educational process, academic integrity and conflict prevention.',
     documents: [
-      ['Regulations on academic integrity and ethics of academic relations', '/inmech-site/documents/postgraduate/regulations/quality-and-integrity/academic-integrity-regulation.pdf'],
-      ['Regulations on prevention and settlement of conflict situations in scientific and educational activity', '/inmech-site/documents/postgraduate/regulations/quality-and-integrity/conflict-prevention-regulation.pdf'],
-      ['Regulations on the guarantor of an educational and scientific programme', '/inmech-site/documents/postgraduate/regulations/quality-and-integrity/program-guarantor-regulation.pdf'],
-      ['Regulations on the project group of an educational programme, the working group of educational activity and the specialty support group', '/inmech-site/documents/postgraduate/regulations/quality-and-integrity/project-group-regulation.pdf']
+      ['Regulations on academic integrity and ethics of academic relations', '/documents/postgraduate/regulations/quality-and-integrity/academic-integrity-regulation.pdf'],
+      ['Regulations on prevention and settlement of conflict situations in scientific and educational activity', '/documents/postgraduate/regulations/quality-and-integrity/conflict-prevention-regulation.pdf'],
+      ['Regulations on the guarantor of an educational and scientific programme', '/documents/postgraduate/regulations/quality-and-integrity/program-guarantor-regulation.pdf'],
+      ['Regulations on the project group of an educational programme, the working group of educational activity and the specialty support group', '/documents/postgraduate/regulations/quality-and-integrity/project-group-regulation.pdf']
     ]
   },
   {
     title: 'Staff and methodological procedures',
     description: 'Documents concerning competitive procedures, selection of teaching staff and the activity of the Scientific and Methodological Council.',
     documents: [
-      ['Regulations on the procedure for competition to fill vacant research positions at the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine', '/inmech-site/documents/postgraduate/regulations/staff-and-methodology/staff-competition-regulation-2021.pdf'],
-      ['Regulations on the Scientific and Methodological Council', '/inmech-site/documents/postgraduate/regulations/staff-and-methodology/nmr-regulation.pdf']
+      ['Regulations on the procedure for competition to fill vacant research positions at the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine', '/documents/postgraduate/regulations/staff-and-methodology/staff-competition-regulation-2021.pdf'],
+      ['Regulations on the Scientific and Methodological Council', '/documents/postgraduate/regulations/staff-and-methodology/nmr-regulation.pdf']
     ]
   }
 ];
@@ -151,7 +153,7 @@ const relatedLinks = [
 
       <div class="license-doc-grid">
         {licenseDocs.map((document) => (
-          <a class="license-doc-card" href={document.href} target="_blank" rel="noopener noreferrer">
+          <a class="license-doc-card" href={docHref(document.href)} target="_blank" rel="noopener noreferrer">
             <span>{document.type}</span>
             <strong>{document.title}</strong>
           </a>

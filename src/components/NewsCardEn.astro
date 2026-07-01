@@ -45,7 +45,7 @@ const imageAlt = entry.data.imageAltEn ?? entry.data.imageAlt ?? '';
 
     <TitleTag>
       {isExternal ? (
-        <a href={entry.data.externalUrl} target="_blank" rel="noopener noreferrer">{title}</a>
+        <a href={href} target="_blank" rel="noopener noreferrer">{title}</a>
       ) : (
         <a href={href}>{title}</a>
       )}

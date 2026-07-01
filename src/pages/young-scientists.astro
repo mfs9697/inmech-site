@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
 
+const docHref = (href: string) => href.startsWith('/documents/') ? withBase(href) : href;
+
 const chair = {
   name: 'Остос Олександр Хосейович',
   role: 'Голова Ради молодих вчених',
@@ -100,15 +102,15 @@ const directions = [
 const documents = [
   {
     title: 'Положення про Раду молодих вчених НАН України',
-    href: '/inmech-site/documents/young-scientists/regulations/nasu-young-scientists-council-regulation.pdf'
+    href: '/documents/young-scientists/regulations/nasu-young-scientists-council-regulation.pdf'
   },
   {
     title: 'Положення про Раду молодих вчених Інституту механіки ім. С. П. Тимошенка НАН України',
-    href: '/inmech-site/documents/young-scientists/regulations/institute-young-scientists-council-regulation.pdf'
+    href: '/documents/young-scientists/regulations/institute-young-scientists-council-regulation.pdf'
   },
   {
     title: 'Закон України «Про наукову і науково-технічну діяльність»',
-    href: '/inmech-site/documents/young-scientists/regulations/scientific-and-technical-activity-law.pdf'
+    href: '/documents/young-scientists/regulations/scientific-and-technical-activity-law.pdf'
   }
 ];
 
@@ -241,7 +243,7 @@ function initials(name: string) {
         <ul class="document-list">
           {documents.map((document) => (
             <li>
-              <a href={document.href} target="_blank" rel="noopener noreferrer">
+              <a href={docHref(document.href)} target="_blank" rel="noopener noreferrer">
                 {document.title}
               </a>
             </li>

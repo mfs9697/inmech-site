@@ -1,5 +1,6 @@
 ---
 import { siteEn } from '../data/site-en';
+import { getUkrainianPath, normalizeSitePath } from '../data/routes';
 
 interface Props {
   activePage?: 'home' | 'news' | 'departments' | 'about' | 'education';
@@ -17,46 +18,8 @@ function withBase(path: string) {
   return `${base}${path.startsWith('/') ? path : `/${path}`}`;
 }
 
-function normalizePath(pathname: string) {
-  let path = pathname;
-
-  if (base && path === base) {
-    path = '/';
-  } else if (base && path.startsWith(`${base}/`)) {
-    path = path.slice(base.length);
-  }
-
-  if (!path.startsWith('/')) {
-    path = `/${path}`;
-  }
-
-  if (!path.endsWith('/')) {
-    path = `${path}/`;
-  }
-
-  return path;
-}
-
-function getUkrainianPath(pathname: string) {
-  const path = normalizePath(pathname);
-
-  if (path === '/en/') {
-    return '/';
-  }
-
-  if (path === '/en/founder/') {
-    return '/founder/';
-  }
-
-  if (path.startsWith('/en/')) {
-    return path.replace('/en', '');
-  }
-
-  return '/';
-}
-
-const currentPath = normalizePath(Astro.url.pathname);
-const ukrainianPath = getUkrainianPath(Astro.url.pathname);
+const currentPath = normalizeSitePath(Astro.url.pathname, base);
+const ukrainianPath = getUkrainianPath(Astro.url.pathname, base);
 ---
 
 <header class="site-header">

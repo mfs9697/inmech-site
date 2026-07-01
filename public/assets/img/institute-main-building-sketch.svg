@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640" role="img" aria-labelledby="title desc">
+  <title id="title">Sketch of the main building of the S.P. Timoshenko Institute of Mechanics</title>
+  <desc id="desc">A monochrome sketch-style illustration of the Institute main building with trees and a street in the foreground.</desc>
+  <defs>
+    <filter id="paper" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.045"/>
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" mode="multiply"/>
+    </filter>
+    <linearGradient id="wash" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f8f5ee"/>
+      <stop offset="1" stop-color="#ebe7dd"/>
+    </linearGradient>
+    <style>
+      .ink{stroke:#2f2f2f;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round;fill:none;opacity:.86}.thin{stroke:#444;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round;fill:none;opacity:.78}.wash{fill:#d8d4cc;opacity:.48}.dark{fill:#555;opacity:.42}.pale{fill:#ece8df;opacity:.82}.tree{stroke:#252525;stroke-width:2.25;stroke-linecap:round;fill:none;opacity:.82}.branch{stroke:#2b2b2b;stroke-width:1.1;stroke-linecap:round;fill:none;opacity:.68}
+    </style>
+  </defs>
+  <rect width="960" height="640" fill="#fbfaf6" filter="url(#paper)"/>
+  <path class="wash" d="M62 436c67-54 140-67 198-31 48 30 74 19 119-12 67-46 129-31 178 4 42 30 87 28 134 6 75-35 151-14 205 37v75H62z"/>
+  <path class="pale" d="M265 82 625 164v354L265 458z"/>
+  <path class="pale" d="M625 164 741 124v346l-116 48z"/>
+  <path class="ink" d="M265 82 625 164v354L265 458zM625 164 741 124v346l-116 48zM265 82 382 44l359 80"/>
+  <path class="thin" d="M382 44v365M304 91v373M344 101v369M423 113v370M463 122v373M504 132v370M545 142v369M586 154v358M668 150v346M706 137v342"/>
+  <g opacity=".9">
+    <path class="thin" d="M279 133 612 207M279 176 612 246M279 219 612 285M279 262 612 324M279 305 612 363M279 348 612 402M279 391 612 441"/>
+    <path class="thin" d="M642 205 725 176M642 244 725 217M642 283 725 258M642 322 725 299M642 361 725 340M642 400 725 381M642 439 725 422"/>
+  </g>
+  <g>
+    <path class="dark" d="M291 136l32 7v18l-32-6zM342 147l31 7v18l-31-6zM394 158l31 7v18l-31-6zM446 169l31 7v18l-31-6zM498 181l31 7v18l-31-6zM550 192l31 7v18l-31-6z"/>
+    <path class="dark" d="M291 180l32 7v18l-32-6zM342 190l31 7v18l-31-6zM394 201l31 7v18l-31-6zM446 212l31 7v18l-31-6zM498 223l31 7v18l-31-6zM550 234l31 7v18l-31-6z"/>
+    <path class="dark" d="M291 224l32 7v18l-32-6zM342 234l31 7v18l-31-6zM394 245l31 7v18l-31-6zM446 256l31 7v18l-31-6zM498 267l31 7v18l-31-6zM550 278l31 7v18l-31-6z"/>
+    <path class="dark" d="M291 268l32 7v18l-32-6zM342 278l31 7v18l-31-6zM394 289l31 7v18l-31-6zM446 300l31 7v18l-31-6zM498 311l31 7v18l-31-6zM550 322l31 7v18l-31-6z"/>
+    <path class="dark" d="M291 312l32 7v18l-32-6zM342 322l31 7v18l-31-6zM394 333l31 7v18l-31-6zM446 344l31 7v18l-31-6zM498 355l31 7v18l-31-6zM550 366l31 7v18l-31-6z"/>
+    <path class="dark" d="M291 356l32 7v18l-32-6zM342 366l31 7v18l-31-6zM394 377l31 7v18l-31-6zM446 388l31 7v18l-31-6zM498 399l31 7v18l-31-6zM550 410l31 7v18l-31-6z"/>
+    <path class="dark" d="M648 204l26-9v18l-26 9zM688 190l26-9v18l-26 9zM648 247l26-9v18l-26 9zM688 233l26-9v18l-26 9zM648 290l26-9v18l-26 9zM688 276l26-9v18l-26 9zM648 333l26-9v18l-26 9zM688 319l26-9v18l-26 9zM648 376l26-9v18l-26 9zM688 362l26-9v18l-26 9z"/>
+  </g>
+  <path class="ink" d="M286 463h92v-75h-92zM310 463v-57h42v57M214 454h68v-55h-68zM200 399h82"/>
+  <path class="thin" d="M210 477c94-9 168-8 245 3 76 10 153 14 281-4M70 528c159-20 289-20 425-7 116 11 247 9 393-19M37 574c244-32 504-32 887-8"/>
+  <g>
+    <path class="tree" d="M159 514c-4-77 4-139 17-192"/><path class="branch" d="M170 375l-54-62M170 390l61-56M168 428l-78-17M171 443l58 32"/>
+    <path class="tree" d="M250 520c-8-82-5-158 7-232"/><path class="branch" d="M254 347l-70-80M255 361l61-70M253 416l-71-20M258 431l65 47"/>
+    <path class="tree" d="M453 530c-5-94 1-166 19-249"/><path class="branch" d="M466 340l-75-76M467 367l74-86M464 427l-92-37M469 452l72 63"/>
+    <path class="tree" d="M545 535c-7-98 0-172 17-250"/><path class="branch" d="M556 347l-70-80M560 377l76-72M555 432l-90-42M562 457l76 53"/>
+    <path class="tree" d="M745 522c-4-83 3-142 20-196"/><path class="branch" d="M759 382l-51-58M761 395l63-55M758 434l-68-13M763 452l51 40"/>
+  </g>
+  <path class="ink" d="M818 485V269"/><path class="thin" d="M818 296c13-20 28-33 46-41M817 311c17-12 34-22 54-28"/><ellipse class="thin" cx="873" cy="252" rx="20" ry="8" transform="rotate(-25 873 252)"/><ellipse class="thin" cx="891" cy="281" rx="20" ry="8" transform="rotate(-20 891 281)"/>
+  <path class="wash" d="M39 560c171-25 335-30 493-13 129 14 253 4 390-24v72H39z"/>
+  <path class="thin" d="M39 560c171-25 335-30 493-13 129 14 253 4 390-24"/>
+</svg>

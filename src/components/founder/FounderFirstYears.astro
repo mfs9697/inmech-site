@@ -1,3 +1,7 @@
+---
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}/${path.replace(/^\/+/, '')}`;
+---
 <section class="founder-content-section">
   <p class="eyebrow">Перші роки Інституту</p>
   <h2>Наукова й організаційна діяльність С.П. Тимошенка в Академії</h2>
@@ -35,7 +39,7 @@
   </p>
 
   <figure class="founder-figure founder-figure-portrait">
-    <img src="/assets/img/06_tymoshenko_brothers.png" alt="С.П. Тимошенко з братами Сергієм і Володимиром" loading="lazy" onerror="this.closest('figure').style.display='none'" />
+    <img src={withBase('/assets/img/06_tymoshenko_brothers.png')} alt="С.П. Тимошенко з братами Сергієм і Володимиром" loading="lazy" onerror="this.closest('figure').style.display='none'" />
     <figcaption>
       С.П. Тимошенко (в центрі) з братами Сергієм (ліворуч) і Володимиром (праворуч).
     </figcaption>

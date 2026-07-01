@@ -1,9 +1,13 @@
+---
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}/${path.replace(/^\/+/, '')}`;
+---
 <section class="founder-content-section">
   <p class="eyebrow">Початок наукового шляху</p>
   <h2>Становлення С.П. Тимошенка як ученого-механіка та педагога</h2>
 
   <figure class="founder-figure founder-figure-portrait">
-    <img src="/assets/img/01_tymoshenko_portrait.jpeg" alt="Степан Прокопович Тимошенко" loading="lazy" onerror="this.closest('figure').style.display='none'" />
+    <img src={withBase('/assets/img/01_tymoshenko_portrait.jpeg')} alt="Степан Прокопович Тимошенко" loading="lazy" onerror="this.closest('figure').style.display='none'" />
     <figcaption>Степан Прокопович Тимошенко.</figcaption>
   </figure>
 
@@ -54,7 +58,7 @@
   </p>
 
   <figure class="founder-figure founder-figure-document">
-    <img src="/assets/img/11_additional_image.jpg" alt="Лист С.П. Тимошенка директору Київського політехнічного інституту" loading="lazy" onerror="this.closest('figure').style.display='none'" />
+    <img src={withBase('/assets/img/11_additional_image.jpg')} alt="Лист С.П. Тимошенка директору Київського політехнічного інституту" loading="lazy" onerror="this.closest('figure').style.display='none'" />
     <figcaption>
       Лист С.П. Тимошенка директору Київського політехнічного інституту В.Ф. Тимофеєву
       зі згодою на зайняття посади екстраординарного професора по кафедрі опору матеріалів
@@ -76,7 +80,7 @@
   </p>
 
   <figure class="founder-figure founder-figure-wide">
-    <img src="/assets/img/02_kpi_department_1908.png" alt="Колектив кафедри опору матеріалів Київського політехнічного інституту, 1908 рік" loading="lazy" onerror="this.closest('figure').style.display='none'" />
+    <img src={withBase('/assets/img/02_kpi_department_1908.png')} alt="Колектив кафедри опору матеріалів Київського політехнічного інституту, 1908 рік" loading="lazy" onerror="this.closest('figure').style.display='none'" />
     <figcaption>
       Колектив кафедри опору матеріалів Київського політехнічного інституту. Зліва направо,
       перший ряд: викладачі Е.К. Гарф, С.П. Тимошенко, М.О. Воропаєв; другий ряд:

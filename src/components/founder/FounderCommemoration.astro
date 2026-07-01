@@ -1,3 +1,7 @@
+---
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}/${path.replace(/^\/+/, '')}`;
+---
 <section class="founder-content-section">
   <p class="eyebrow">Вшанування пам’яті</p>
   <h2>Вшанування пам’яті видатного ученого в Україні та світі</h2>
@@ -14,14 +18,14 @@
   </p>
 
   <figure class="founder-figure founder-figure-wide">
-    <img src="/assets/img/09_institute_meeting_1958.png" alt="Зустріч С.П. Тимошенка з науковим колективом Інституту будівельної механіки, 1958 рік" loading="lazy" onerror="this.closest('figure').style.display='none'" />
+    <img src={withBase('/assets/img/09_institute_meeting_1958.png')} alt="Зустріч С.П. Тимошенка з науковим колективом Інституту будівельної механіки, 1958 рік" loading="lazy" onerror="this.closest('figure').style.display='none'" />
     <figcaption>
       Зустріч С.П. Тимошенка з науковим колективом Інституту будівельної механіки. 1958 р.
     </figcaption>
   </figure>
 
   <figure class="founder-figure founder-figure-portrait">
-    <img src="/assets/img/10_romny_trip_1967.png" alt="С.П. Тимошенко та Г.С. Писаренко на відпочинку під час поїздки в Ромни, 1967 рік" loading="lazy" onerror="this.closest('figure').style.display='none'" />
+    <img src={withBase('/assets/img/10_romny_trip_1967.png')} alt="С.П. Тимошенко та Г.С. Писаренко на відпочинку під час поїздки в Ромни, 1967 рік" loading="lazy" onerror="this.closest('figure').style.display='none'" />
     <figcaption>
       С.П. Тимошенко (справа) та Г.С. Писаренко на відпочинку під час поїздки в м. Ромни. 1967 р.
     </figcaption>

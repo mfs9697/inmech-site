@@ -1,3 +1,7 @@
+---
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}/${path.replace(/^\/+/, '')}`;
+---
 <section class="founder-content-section">
   <p class="eyebrow">Світова наукова школа</p>
   <h2>Життя і творчість С.П. Тимошенка в еміграції</h2>
@@ -17,7 +21,7 @@
   </p>
 
   <figure class="founder-figure founder-figure-portrait">
-    <img src="/assets/img/07_michigan_university_1936.png" alt="С.П. Тимошенко серед викладачів і студентів Мічиганського університету, 1936 рік" loading="lazy" onerror="this.closest('figure').style.display='none'" />
+    <img src={withBase('/assets/img/07_michigan_university_1936.png')} alt="С.П. Тимошенко серед викладачів і студентів Мічиганського університету, 1936 рік" loading="lazy" onerror="this.closest('figure').style.display='none'" />
     <figcaption>С.П. Тимошенко серед викладачів і студентів Мічиганського університету. 1936 р.</figcaption>
   </figure>
 
@@ -31,7 +35,7 @@
   </p>
 
   <figure class="founder-figure founder-figure-wide">
-    <img src="/assets/img/08_stanford_laboratory_1939.png" alt="С.П. Тимошенко в лабораторії інженерної механіки Стенфордського університету, 1939 рік" loading="lazy" onerror="this.closest('figure').style.display='none'" />
+    <img src={withBase('/assets/img/08_stanford_laboratory_1939.png')} alt="С.П. Тимошенко в лабораторії інженерної механіки Стенфордського університету, 1939 рік" loading="lazy" onerror="this.closest('figure').style.display='none'" />
     <figcaption>С.П. Тимошенко в лабораторії інженерної механіки Стенфордського університету. 1939 р.</figcaption>
   </figure>
 

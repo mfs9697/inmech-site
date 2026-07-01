@@ -121,16 +121,28 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
         </div>
       </div>
 
-      <div class="cards-grid">
-        <article class="card">
-          <h3>Засновник Інституту</h3>
+      <div class="home-about-feature">
+        <div class="home-about-copy">
+          <p class="eyebrow">Засновник і спадкоємність</p>
+          <h3>Інститут, що виріс з ідеї поєднання науки і техніки</h3>
           <p>
             С.П. Тимошенко — видатний учений-механік, один із фундаторів Української академії наук,
-            засновник і перший директор Інституту механіки.
+            засновник і перший директор Інституту механіки. Його ідея зближення фундаментальної науки
+            та інженерної практики залишається важливою частиною місії Інституту.
           </p>
-          <a class="card-link" href={withBase('/founder/')}>Дізнатися більше →</a>
-        </article>
+          <div class="home-about-actions">
+            <a class="button primary" href={withBase('/founder/')}>Засновник Інституту</a>
+            <a class="button secondary" href={withBase('/history/')}>Історія та місія</a>
+          </div>
+        </div>
 
+        <figure class="home-about-figure">
+          <img src={withBase('/assets/img/institute-main-building-sketch.svg')} alt="Ескіз головної будівлі Інституту механіки ім. С.П. Тимошенка НАН України" loading="lazy" />
+          <figcaption>Головна будівля Інституту механіки ім. С.П. Тимошенка НАН України.</figcaption>
+        </figure>
+      </div>
+
+      <div class="cards-grid">
         <article class="card">
           <h3>Наукові дослідження</h3>
           <p>

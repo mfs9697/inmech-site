@@ -2,7 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
 
-const strategyPdf = '/inmech-site/documents/institute/strategy/development-strategy-2021-2025.pdf';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+const strategyPdf = '/documents/institute/strategy/development-strategy-2021-2025.pdf';
 
 const values = [
   'високий професіоналізм',
@@ -61,22 +63,22 @@ const strategicTasks = [
 ---
 
 <BaseLayout
-  title={`Стратегія розвитку | ${site.name}`}
-  description="Стратегія розвитку та перспективні напрями наукової діяльності Інституту механіки ім. С.П. Тимошенка НАН України."
+  title={`Стратегія розвитку 2021–2025 | ${site.name}`}
+  description="Стратегія розвитку Інституту механіки ім. С.П. Тимошенка НАН України на 2021–2025 роки та перспективні напрями наукової діяльності."
   activePage="about"
 >
   <section class="page-hero">
     <div class="container">
       <div class="panel strategy-hero-panel">
         <p class="eyebrow">Про інститут</p>
-        <h1>Стратегія розвитку</h1>
+        <h1>Стратегія розвитку на 2021–2025 роки</h1>
         <p class="lead">
-          Стратегія розвитку Інституту механіки ім. С. П. Тимошенка НАН України на 2021–2025 роки
-          визначає місію, візію, цінності, перспективні напрями наукової діяльності та основні
-          завдання установи.
+          На цій сторінці подано чинний архівний документ — Стратегію розвитку Інституту механіки
+          ім. С. П. Тимошенка НАН України на 2021–2025 роки. Матеріали нової стратегії буде додано
+          після їх затвердження.
         </p>
         <div class="hero-actions">
-          <a class="button primary" href={strategyPdf} target="_blank" rel="noopener">
+          <a class="button primary" href={withBase(strategyPdf)} target="_blank" rel="noopener">
             Відкрити повний документ PDF
           </a>
         </div>
@@ -185,7 +187,7 @@ const strategicTasks = [
           опис заходів з розвитку аспірантури, міжнародної співпраці, журналу «Прикладна механіка»,
           конференційної діяльності, грантового фінансування та матеріально-технічної бази.
         </p>
-        <a class="button secondary" href={strategyPdf} target="_blank" rel="noopener">
+        <a class="button secondary" href={withBase(strategyPdf)} target="_blank" rel="noopener">
           Завантажити або відкрити PDF
         </a>
       </article>

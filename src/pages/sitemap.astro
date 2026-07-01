@@ -1,74 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
+import { groupRoutesBySection } from '../data/routes';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
-
-const sections = [
-  {
-    title: 'Головна',
-    links: [
-      ['Головна сторінка', '/'],
-      ['Новини', '/news/'],
-      ['Контакти', '/#contacts']
-    ]
-  },
-  {
-    title: 'Про інститут',
-    links: [
-      ['Історія та місія', '/history/'],
-      ['Статут', '/regulations/'],
-      ['Стратегія розвитку', '/strategy/'],
-      ['Наукова співпраця', '/scientific-cooperation/'],
-      ['Закупівлі та тендери', '/tender/']
-    ]
-  },
-  {
-    title: 'Структура',
-    links: [
-      ['Дирекція', '/management/'],
-      ['Наукові відділи', '/departments/'],
-      ['Вчена рада', '/scientific-council/'],
-      ['Спеціалізовані ради', '/specialized-councils/'],
-      ['Рада молодих вчених', '/young-scientists/'],
-      ['Служби інституту', '/services/']
-    ]
-  },
-  {
-    title: 'Освітньо-наукова діяльність',
-    links: [
-      ['Огляд розділу', '/education/'],
-      ['Аспірантура', '/postgraduate/'],
-      ['Докторантура', '/doctoral/'],
-      ['Захист дисертацій', '/dissertations/'],
-      ['Ліцензії та Положення', '/license-and-regulations/'],
-      ['Скринька довіри', '/trust-box/'],
-      ['Науково-методична рада', '/nmr/']
-    ]
-  },
-  {
-    title: 'Аспірантура',
-    links: [
-      ['Аспірантура', '/postgraduate/'],
-      ['Вступникам до аспірантури', '/postgraduate/admission/'],
-      ['Освітньо-наукова програма', '/postgraduate/program/'],
-      ['Акредитація', '/postgraduate/accreditation/'],
-      ['Розклад занять аспірантів', '/postgraduate/schedule/'],
-      ['Аспіранти', '/postgraduate/students/'],
-      ['Викладачі і наукові керівники', '/postgraduate/supervisors/'],
-      ['Відповідність тем аспірантів науковій діяльності керівників', '/postgraduate/research-topics/']
-    ]
-  },
-  {
-    title: 'Службові сторінки',
-    links: [
-      ['Карта сайту', '/sitemap/'],
-      ['Політика доступності', '/accessibility/'],
-      ['Адміністрація сайту', '/site-administration/']
-    ]
-  }
-];
+const sections = groupRoutesBySection('uk');
 ---
 
 <BaseLayout

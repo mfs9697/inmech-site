@@ -2,26 +2,29 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+
 const documents = [
   {
     year: '2023',
     title: 'Статут Інституту механіки 2023 р.',
     description: 'Чинна редакція Статуту Інституту механіки ім. С. П. Тимошенка НАН України.',
-    href: '/inmech-site/documents/institute/statute/statute-2023.pdf',
+    href: '/documents/institute/statute/statute-2023.pdf',
     current: true
   },
   {
     year: '2016',
     title: 'Статут Інституту механіки 2016 р.',
     description: 'Попередня редакція Статуту Інституту.',
-    href: '/inmech-site/documents/institute/statute/statute-2016.pdf',
+    href: '/documents/institute/statute/statute-2016.pdf',
     current: false
   },
   {
     year: '2003',
     title: 'Статут Інституту механіки 2003 р.',
     description: 'Архівна редакція Статуту Інституту.',
-    href: '/inmech-site/documents/institute/statute/statute-2003.pdf',
+    href: '/documents/institute/statute/statute-2003.pdf',
     current: false
   }
 ];
@@ -66,7 +69,7 @@ const documents = [
               {doc.current && <p class="statute-badge">Чинна редакція</p>}
               <h2>{doc.title}</h2>
               <p>{doc.description}</p>
-              <a class="button secondary" href={doc.href} target="_blank" rel="noopener">
+              <a class="button secondary" href={withBase(doc.href)} target="_blank" rel="noopener">
                 Відкрити PDF
               </a>
             </div>

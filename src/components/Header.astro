@@ -1,5 +1,6 @@
 ---
 import { site } from '../data/site';
+import { getEnglishPath, normalizeSitePath } from '../data/routes';
 
 interface Props {
   activePage?: 'home' | 'news' | 'departments' | 'about' | 'education';
@@ -9,43 +10,6 @@ const { activePage = 'home' } = Astro.props;
 const isActive = (page: Props['activePage']) => activePage === page ? 'active' : '';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-const englishSlugs = new Set([
-  'history',
-  'founder',
-  'regulations',
-  'strategy',
-  'scientific-cooperation',
-  'tender',
-  'management',
-  'departments',
-  'scientific-council',
-  'specialized-councils',
-  'young-scientists',
-  'services',
-  'education',
-  'postgraduate',
-  'postgraduate/students',
-  'postgraduate/research-topics',
-  'doctoral',
-  'dissertations',
-  'defended-dissertations',
-  'license-and-regulations',
-  'trust-box',
-  'nmr',
-  'news',
-  'library',
-  'search',
-  'sitemap',
-  'accessibility',
-  'site-administration'
-]);
-
-const ukToEnFallbacks: Record<string, string> = {
-  '/': '/en/',
-  '/founder/': '/en/founder/',
-  '/defended-dissertations/': '/en/defended-dissertations/'
-};
-
 function withBase(path: string) {
   if (path.startsWith('http') || path.startsWith('#')) {
     return path;
@@ -54,58 +18,8 @@ function withBase(path: string) {
   return `${base}${path.startsWith('/') ? path : `/${path}`}`;
 }
 
-function normalizePath(pathname: string) {
-  let path = pathname;
-
-  if (base && path === base) {
-    path = '/';
-  } else if (base && path.startsWith(`${base}/`)) {
-    path = path.slice(base.length);
-  }
-
-  if (!path.startsWith('/')) {
-    path = `/${path}`;
-  }
-
-  path = path.replace(/\/index\.html$/, '/');
-
-  if (!path.endsWith('/')) {
-    path = `${path}/`;
-  }
-
-  return path;
-}
-
-function getEnglishPath(pathname: string) {
-  const path = normalizePath(pathname);
-
-  if (ukToEnFallbacks[path]) {
-    return ukToEnFallbacks[path];
-  }
-
-  if (/^\/departments\/[^/]+\/$/.test(path) || /^\/people\/[^/]+\/$/.test(path)) {
-    return `/en${path}`;
-  }
-
-  if (/^\/news\/tags\/[^/]+\/$/.test(path)) {
-    return '/en/news/';
-  }
-
-  if (/^\/news\/(?!tags\/).+\/$/.test(path)) {
-    return `/en${path}`;
-  }
-
-  const slug = path.replace(/^\//, '').replace(/\/$/, '');
-
-  if (englishSlugs.has(slug)) {
-    return `/en/${slug}/`;
-  }
-
-  return '/en/';
-}
-
-const currentPath = normalizePath(Astro.url.pathname);
-const englishPath = getEnglishPath(Astro.url.pathname);
+const currentPath = normalizeSitePath(Astro.url.pathname, base);
+const englishPath = getEnglishPath(Astro.url.pathname, base);
 ---
 
 <header class="site-header">

@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { getEnglishPath, hasEnglishAlternative, normalizeSitePath } from '../data/routes';
 import '../styles/global.css';
 import '../styles/overrides.css';
 import '../styles/specialized-councils.css';
@@ -19,66 +20,15 @@ const faviconPath = `${base}/favicon.png`;
 const googleAnalyticsId = 'G-P7K4PTK2TY';
 
 const siteBaseUrl = new URL(`${base || ''}/`, Astro.site).href.replace(/\/$/, '');
-const englishPaths = new Set([
-  '/en/',
-  '/en/history/',
-  '/en/regulations/',
-  '/en/strategy/',
-  '/en/scientific-cooperation/',
-  '/en/tender/',
-  '/en/management/',
-  '/en/departments/',
-  '/en/scientific-council/',
-  '/en/specialized-councils/',
-  '/en/young-scientists/',
-  '/en/services/',
-  '/en/education/',
-  '/en/postgraduate/',
-  '/en/postgraduate/students/',
-  '/en/postgraduate/research-topics/',
-  '/en/doctoral/',
-  '/en/dissertations/',
-  '/en/defended-dissertations/',
-  '/en/license-and-regulations/',
-  '/en/trust-box/',
-  '/en/nmr/',
-  '/en/news/',
-  '/en/library/',
-  '/en/search/',
-  '/en/sitemap/',
-  '/en/accessibility/',
-  '/en/site-administration/'
-]);
-
-function stripBaseFromPath(pathname: string) {
-  if (!base) {
-    return pathname;
-  }
-
-  if (pathname === base) {
-    return '/';
-  }
-
-  return pathname.startsWith(`${base}/`) ? pathname.slice(base.length) : pathname;
-}
-
-function normalizePath(pathname: string) {
-  const withoutIndex = (pathname || '/').replace(/\/index\.html$/, '/');
-  const withLeadingSlash = withoutIndex.startsWith('/') ? withoutIndex : `/${withoutIndex}`;
-  return withLeadingSlash.endsWith('/') ? withLeadingSlash : `${withLeadingSlash}/`;
-}
 
 function absoluteUrl(pathname: string) {
   return `${siteBaseUrl}${pathname}`;
 }
 
-const currentPath = normalizePath(stripBaseFromPath(Astro.url.pathname));
+const currentPath = normalizeSitePath(Astro.url.pathname, base);
 const canonicalUrl = absoluteUrl(currentPath);
-const englishAlternativePath = currentPath === '/' ? '/en/' : `/en${currentPath}`;
-const isDepartmentDetailPage = /^\/departments\/[^/]+\/$/.test(currentPath);
-const isPersonDetailPage = /^\/people\/[^/]+\/$/.test(currentPath);
-const isNewsDetailPage = /^\/news\/(?!tags\/).+\/$/.test(currentPath) && currentPath !== '/news/';
-const hasEnglishAlternative = englishPaths.has(englishAlternativePath) || isDepartmentDetailPage || isPersonDetailPage || isNewsDetailPage;
+const englishAlternativePath = getEnglishPath(Astro.url.pathname, base);
+const hasAlternative = hasEnglishAlternative(Astro.url.pathname, base);
 const ukrainianAlternativeUrl = absoluteUrl(currentPath);
 const englishAlternativeUrl = absoluteUrl(englishAlternativePath);
 ---
@@ -91,8 +41,8 @@ const englishAlternativeUrl = absoluteUrl(englishAlternativePath);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
-    {hasEnglishAlternative && <link rel="alternate" hreflang="uk" href={ukrainianAlternativeUrl} />}
-    {hasEnglishAlternative && <link rel="alternate" hreflang="en" href={englishAlternativeUrl} />}
+    {hasAlternative && <link rel="alternate" hreflang="uk" href={ukrainianAlternativeUrl} />}
+    {hasAlternative && <link rel="alternate" hreflang="en" href={englishAlternativeUrl} />}
     <link rel="sitemap" href={`${siteBaseUrl}/sitemap-index.xml`} />
     <link rel="icon" href={faviconPath} type="image/png" />
     <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}></script>

@@ -30,6 +30,8 @@ import { defendedDissertationsYu } from '../data/defendedDissertationsYu';
 import { defendedDissertationsYa } from '../data/defendedDissertationsYa';
 import { defenseMaterialsArchiveGroups } from '../data/defenseMaterialsArchive';
 
+const docHref = (href: string) => href.startsWith('/documents/') ? withBase(href) : href;
+
 const defendedDissertationsS = [...defendedDissertationsS1, ...defendedDissertationsS2];
 
 const catalog = [
@@ -174,7 +176,7 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
                 <h4>{item.name}</h4>
                 <div class="archive-material-links">
                   {item.links.map(([label, href]) => (
-                    <a href={href} target="_blank" rel="noopener noreferrer">{label}</a>
+                    <a href={docHref(href)} target="_blank" rel="noopener noreferrer">{label}</a>
                   ))}
                 </div>
               </article>

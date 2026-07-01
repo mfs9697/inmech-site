@@ -1,6 +1,8 @@
 ---
 import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
 import { siteEn } from '../../data/site-en';
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}/${path.replace(/^\/+/, '')}`;
 ---
 
 <BaseLayoutEn
@@ -30,7 +32,7 @@ import { siteEn } from '../../data/site-en';
           <h2>The formation of S.P. Timoshenko as a scientist in mechanics and educator</h2>
 
           <figure class="founder-figure founder-figure-portrait">
-            <img src="/assets/img/01_tymoshenko_portrait.jpeg" alt="Stepan Prokopovych Timoshenko" loading="lazy" onerror="this.closest('figure').style.display='none'" />
+            <img src={withBase('/assets/img/01_tymoshenko_portrait.jpeg')} alt="Stepan Prokopovych Timoshenko" loading="lazy" onerror="this.closest('figure').style.display='none'" />
             <figcaption>Stepan Prokopovych Timoshenko.</figcaption>
           </figure>
 
@@ -79,7 +81,7 @@ import { siteEn } from '../../data/site-en';
           </p>
 
           <figure class="founder-figure founder-figure-document">
-            <img src="/assets/img/11_additional_image.jpg" alt="Letter from S.P. Timoshenko to the Director of the Kyiv Polytechnic Institute" loading="lazy" onerror="this.closest('figure').style.display='none'" />
+            <img src={withBase('/assets/img/11_additional_image.jpg')} alt="Letter from S.P. Timoshenko to the Director of the Kyiv Polytechnic Institute" loading="lazy" onerror="this.closest('figure').style.display='none'" />
             <figcaption>
               Letter from S.P. Timoshenko to V.F. Tymofieiev, Director of the Kyiv Polytechnic Institute,
               accepting the position of extraordinary professor at the Department of Strength of Materials
@@ -101,7 +103,7 @@ import { siteEn } from '../../data/site-en';
           </p>
 
           <figure class="founder-figure founder-figure-wide">
-            <img src="/assets/img/02_kpi_department_1908.png" alt="Staff of the Department of Strength of Materials of the Kyiv Polytechnic Institute, 1908" loading="lazy" onerror="this.closest('figure').style.display='none'" />
+            <img src={withBase('/assets/img/02_kpi_department_1908.png')} alt="Staff of the Department of Strength of Materials of the Kyiv Polytechnic Institute, 1908" loading="lazy" onerror="this.closest('figure').style.display='none'" />
             <figcaption>
               Staff of the Department of Strength of Materials of the Kyiv Polytechnic Institute. From left
               to right, first row: lecturers E.K. Garf, S.P. Timoshenko, M.O. Voropaiev; second row:
@@ -153,7 +155,7 @@ import { siteEn } from '../../data/site-en';
           </p>
 
           <figure class="founder-figure founder-figure-wide">
-            <img src="/assets/img/03_vasylenko_vernadsky.png" alt="Mykola Prokopovych Vasylenko and Volodymyr Ivanovych Vernadsky" loading="lazy" onerror="this.closest('figure').style.display='none'" />
+            <img src={withBase('/assets/img/03_vasylenko_vernadsky.png')} alt="Mykola Prokopovych Vasylenko and Volodymyr Ivanovych Vernadsky" loading="lazy" onerror="this.closest('figure').style.display='none'" />
             <figcaption>
               Mykola Prokopovych Vasylenko, Minister of Public Education and Arts of the Ukrainian State
               and a renowned legal scholar; Volodymyr Ivanovych Vernadsky, member of the Russian Academy
@@ -228,7 +230,7 @@ import { siteEn } from '../../data/site-en';
           </p>
 
           <figure class="founder-figure founder-figure-document">
-            <img src="/assets/img/04_hetman_order_1918.png" alt="Order of Hetman Pavlo Skoropadskyi of 14 November 1918" loading="lazy" onerror="this.closest('figure').style.display='none'" />
+            <img src={withBase('/assets/img/04_hetman_order_1918.png')} alt="Order of Hetman Pavlo Skoropadskyi of 14 November 1918" loading="lazy" onerror="this.closest('figure').style.display='none'" />
             <figcaption>
               Order of Hetman of All Ukraine P. Skoropadskyi of 14 November 1918 appointing
               the first academicians of the Ukrainian Academy of Sciences.
@@ -236,7 +238,7 @@ import { siteEn } from '../../data/site-en';
           </figure>
 
           <figure class="founder-figure founder-figure-document">
-            <img src="/assets/img/05_letter_uas_president_secretary_1918.jpeg" alt="Letter from Academicians O.I. Levytskyi and S.P. Timoshenko to Minister of Public Education V.P. Naumenko" loading="lazy" onerror="this.closest('figure').style.display='none'" />
+            <img src={withBase('/assets/img/05_letter_uas_president_secretary_1918.jpeg')} alt="Letter from Academicians O.I. Levytskyi and S.P. Timoshenko to Minister of Public Education V.P. Naumenko" loading="lazy" onerror="this.closest('figure').style.display='none'" />
             <figcaption>
               Letter from Academicians O.I. Levytskyi and S.P. Timoshenko to Minister of Public Education
               V.P. Naumenko concerning the election of the President-Chairman and Permanent Secretary
@@ -313,7 +315,7 @@ import { siteEn } from '../../data/site-en';
           </p>
 
           <figure class="founder-figure founder-figure-portrait">
-            <img src="/assets/img/06_tymoshenko_brothers.png" alt="S.P. Timoshenko with his brothers Serhii and Volodymyr" loading="lazy" onerror="this.closest('figure').style.display='none'" />
+            <img src={withBase('/assets/img/06_tymoshenko_brothers.png')} alt="S.P. Timoshenko with his brothers Serhii and Volodymyr" loading="lazy" onerror="this.closest('figure').style.display='none'" />
             <figcaption>
               S.P. Timoshenko (centre) with his brothers Serhii (left) and Volodymyr (right).
             </figcaption>
@@ -357,7 +359,7 @@ import { siteEn } from '../../data/site-en';
           </p>
 
           <figure class="founder-figure founder-figure-portrait">
-            <img src="/assets/img/07_michigan_university_1936.png" alt="S.P. Timoshenko among faculty and students of the University of Michigan, 1936" loading="lazy" onerror="this.closest('figure').style.display='none'" />
+            <img src={withBase('/assets/img/07_michigan_university_1936.png')} alt="S.P. Timoshenko among faculty and students of the University of Michigan, 1936" loading="lazy" onerror="this.closest('figure').style.display='none'" />
             <figcaption>S.P. Timoshenko among faculty and students of the University of Michigan. 1936.</figcaption>
           </figure>
 
@@ -371,7 +373,7 @@ import { siteEn } from '../../data/site-en';
           </p>
 
           <figure class="founder-figure founder-figure-wide">
-            <img src="/assets/img/08_stanford_laboratory_1939.png" alt="S.P. Timoshenko in the Engineering Mechanics Laboratory at Stanford University, 1939" loading="lazy" onerror="this.closest('figure').style.display='none'" />
+            <img src={withBase('/assets/img/08_stanford_laboratory_1939.png')} alt="S.P. Timoshenko in the Engineering Mechanics Laboratory at Stanford University, 1939" loading="lazy" onerror="this.closest('figure').style.display='none'" />
             <figcaption>S.P. Timoshenko in the Engineering Mechanics Laboratory at Stanford University. 1939.</figcaption>
           </figure>
 
@@ -440,14 +442,14 @@ import { siteEn } from '../../data/site-en';
           </p>
 
           <figure class="founder-figure founder-figure-wide">
-            <img src="/assets/img/09_institute_meeting_1958.png" alt="Meeting of S.P. Timoshenko with the research staff of the Institute of Structural Mechanics, 1958" loading="lazy" onerror="this.closest('figure').style.display='none'" />
+            <img src={withBase('/assets/img/09_institute_meeting_1958.png')} alt="Meeting of S.P. Timoshenko with the research staff of the Institute of Structural Mechanics, 1958" loading="lazy" onerror="this.closest('figure').style.display='none'" />
             <figcaption>
               Meeting of S.P. Timoshenko with the research staff of the Institute of Structural Mechanics. 1958.
             </figcaption>
           </figure>
 
           <figure class="founder-figure founder-figure-portrait">
-            <img src="/assets/img/10_romny_trip_1967.png" alt="S.P. Timoshenko and H.S. Pisarenko during a trip to Romny, 1967" loading="lazy" onerror="this.closest('figure').style.display='none'" />
+            <img src={withBase('/assets/img/10_romny_trip_1967.png')} alt="S.P. Timoshenko and H.S. Pisarenko during a trip to Romny, 1967" loading="lazy" onerror="this.closest('figure').style.display='none'" />
             <figcaption>
               S.P. Timoshenko (right) and H.S. Pisarenko resting during a trip to Romny. 1967.
             </figcaption>

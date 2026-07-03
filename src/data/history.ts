@@ -25,50 +25,61 @@ export const historyDirectors = [
   {
     name: 'С.П. Тимошенко',
     period: '1918–1920',
+    photo: '/assets/img/01_tymoshenko_portrait.jpeg',
     note: 'Засновник і перший директор Інституту.',
     featured: true
   },
   {
     name: 'Д.О. Граве',
-    period: '1921'
+    period: '1921',
+    photoKey: 'grave'
   },
   {
     name: 'К.К. Симінський',
-    period: '1921–1932'
+    period: '1921–1932',
+    photoKey: 'syminskiy'
   },
   {
     name: 'С.В. Серенсен',
-    period: '1932–1940'
+    period: '1932–1940',
+    photoKey: 'serensen'
   },
   {
     name: 'М.В. Корноухов',
-    period: '1940–1944'
+    period: '1940–1944',
+    photoKey: 'kornoukhov'
   },
   {
     name: 'Ф.П. Бєлянкін',
-    period: '1944–1958'
+    period: '1944–1958',
+    photoKey: 'beliankin'
   },
   {
     name: 'Г.М. Савін',
-    period: '1958–1959'
+    period: '1958–1959',
+    photoKey: 'savin'
   },
   {
     name: 'А.Д. Коваленко',
-    period: '1959–1965'
+    period: '1959–1965',
+    photoKey: 'kovalenko'
   },
   {
     name: 'В.О. Кононенко',
-    period: '1965–1975'
+    period: '1965–1975',
+    photoKey: 'kononenko'
   },
   {
     name: 'О.М. Гузь',
     period: '1976–2022',
+    photo: '/people/guz.png',
     note: 'Очолював Інститут упродовж 46 років.',
     featured: true
   },
   {
     name: 'В.М. Назаренко',
     period: 'з 2022 року',
+    photo: '/people/nazarenko.png',
     note: 'Директор Інституту на сучасному етапі його розвитку.',
     current: true
   }

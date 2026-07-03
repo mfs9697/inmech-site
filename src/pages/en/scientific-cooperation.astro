@@ -9,8 +9,7 @@ function withBase(path: string) {
     return path;
   }
 
-  const cleanPath = path.replace(/^\/inmech-site/, '');
-  return `${base}${cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`}`;
+  return `${base}/${path.replace(/^\/+/, '')}`;
 }
 
 const agreements = [

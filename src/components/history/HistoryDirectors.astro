@@ -1,36 +1,8 @@
 ---
 import { historyDirectors } from '../../data/history';
-import gravePhoto from '../../data/director-images/grave.b64?raw';
-import syminskiyPhoto from '../../data/director-images/syminskiy.b64?raw';
-import serensenPhoto from '../../data/director-images/serensen.b64?raw';
-import kornoukhovPhoto from '../../data/director-images/kornoukhov.b64?raw';
-import beliankinPhoto from '../../data/director-images/beliankin.b64?raw';
-import savinPhoto from '../../data/director-images/savin.b64?raw';
-import kovalenkoPhoto from '../../data/director-images/kovalenko.b64?raw';
-import kononenkoPhoto from '../../data/director-images/kononenko.b64?raw';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
-const asJpegDataUri = (content: string) => `data:image/jpeg;base64,${content.replace(/\s+/g, '')}`;
-
-const portraitData: Record<string, string> = {
-  grave: asJpegDataUri(gravePhoto),
-  syminskiy: asJpegDataUri(syminskiyPhoto),
-  serensen: asJpegDataUri(serensenPhoto),
-  kornoukhov: asJpegDataUri(kornoukhovPhoto),
-  beliankin: asJpegDataUri(beliankinPhoto),
-  savin: asJpegDataUri(savinPhoto),
-  kovalenko: asJpegDataUri(kovalenkoPhoto),
-  kononenko: asJpegDataUri(kononenkoPhoto)
-};
-
-const resolvePhoto = (director: (typeof historyDirectors)[number]) => {
-  const photoKey = 'photoKey' in director ? director.photoKey : undefined;
-  if (photoKey) return portraitData[photoKey];
-
-  const photo = 'photo' in director ? director.photo : undefined;
-  return photo ? withBase(photo) : '';
-};
 ---
 
 <section class="section history-content-section history-directors-section">
@@ -59,11 +31,11 @@ const resolvePhoto = (director: (typeof historyDirectors)[number]) => {
         >
           <div class="director-photo-frame">
             <img
-              src={resolvePhoto(director)}
+              src={withBase(director.photo)}
               alt={`Портрет ${director.name}`}
               loading="lazy"
-              width="240"
-              height="320"
+              width="120"
+              height="160"
             />
           </div>
 
@@ -122,10 +94,12 @@ const resolvePhoto = (director: (typeof historyDirectors)[number]) => {
   }
 
   .director-photo-frame {
-    width: 100%;
+    width: 120px;
     aspect-ratio: 3 / 4;
+    margin: 22px auto 0;
     overflow: hidden;
-    border-bottom: 1px solid var(--line);
+    border: 1px solid var(--line);
+    border-radius: 12px;
     background: var(--surface-soft);
   }
 
@@ -142,7 +116,7 @@ const resolvePhoto = (director: (typeof historyDirectors)[number]) => {
     display: flex;
     flex: 1;
     flex-direction: column;
-    padding: 22px 24px 24px;
+    padding: 20px 24px 24px;
     position: relative;
     z-index: 1;
   }
@@ -210,10 +184,6 @@ const resolvePhoto = (director: (typeof historyDirectors)[number]) => {
   @media (max-width: 620px) {
     .history-director-grid {
       grid-template-columns: 1fr;
-    }
-
-    .director-photo-frame {
-      aspect-ratio: 4 / 5;
     }
   }
 </style>

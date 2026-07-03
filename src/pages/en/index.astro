@@ -46,7 +46,7 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
 >
   <section class="hero">
     <div class="container hero-grid">
-      <div class="hero-card hero-card-visual">
+      <div class="hero-card hero-card-visual" data-block-tone="neutral">
         <div class="hero-text">
           <p class="eyebrow">National Academy of Sciences of Ukraine</p>
           <h1>S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine</h1>
@@ -66,7 +66,7 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
         </figure>
       </div>
 
-      <aside class="aside-card" aria-labelledby="institute-sites-title">
+      <aside class="aside-card" data-block-tone="emphasis" aria-labelledby="institute-sites-title">
         <h2 id="institute-sites-title">Institute websites</h2>
         <p>
           Separate information resources of the Institute for specialised projects, events and institutional announcements.
@@ -121,7 +121,7 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
         </div>
       </div>
 
-      <div class="home-about-feature">
+      <div class="home-about-feature" data-block-tone="heritage">
         <div class="home-about-copy">
           <p class="eyebrow">Founder and continuity</p>
           <h3>An institute shaped by the idea of bringing science and engineering together</h3>
@@ -143,7 +143,7 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
       </div>
 
       <div class="cards-grid">
-        <article class="card">
+        <article class="card" data-block-tone="neutral">
           <h3>Research</h3>
           <p>
             Fundamental and applied problems of continuum mechanics, material science, strength,
@@ -152,7 +152,7 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
           <a class="card-link" href={withBase('/en/departments/')}>View research areas →</a>
         </article>
 
-        <article class="card">
+        <article class="card" data-block-tone="neutral">
           <h3>Education and research training</h3>
           <p>
             Postgraduate and doctoral studies, specialised academic councils, scientific seminars and
@@ -161,7 +161,7 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
           <a class="card-link" href={withBase('/en/education/')}>Postgraduate and doctoral studies →</a>
         </article>
 
-        <article class="card">
+        <article class="card" data-block-tone="neutral">
           <h3>Publications and cooperation</h3>
           <p>
             Scientific journals, international cooperation, conferences, library resources and the dissemination
@@ -192,7 +192,7 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
 
       <div class="home-department-groups">
         {groupedDepartments.map(({ group, entries, departmentCount, id }) => (
-          <section class="home-department-group" aria-labelledby={id}>
+          <section class="home-department-group" data-block-tone="information" aria-labelledby={id}>
             <div class="home-department-group-header">
               <h3 id={id}>{group}</h3>
               <span>{departmentCount} {departmentCount === 1 ? 'department' : 'departments'}</span>

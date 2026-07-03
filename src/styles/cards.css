@@ -1,0 +1,197 @@
+/*
+ * Global card system
+ *
+ * `site-card` defines shared structure. Semantic colour remains separate and is
+ * selected with `data-block-tone` from block-colors.css.
+ */
+
+:root {
+  --card-padding: clamp(20px, 3vw, 30px);
+  --card-radius: var(--radius);
+  --card-border: var(--line);
+  --card-background: var(--surface);
+  --card-shadow: var(--shadow);
+  --card-grid-gap: 18px;
+  --card-grid-columns: 3;
+  --card-hover-border: rgba(29, 79, 145, 0.30);
+  --card-hover-shadow: 0 18px 38px rgba(15, 23, 42, 0.12);
+  --card-decoration: linear-gradient(90deg, var(--accent), var(--gold));
+  --card-corner-decoration: var(--accent-soft);
+}
+
+.site-card {
+  position: relative;
+  padding: var(--card-padding);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  background: var(--card-background);
+  color: var(--text);
+  box-shadow: var(--card-shadow);
+}
+
+.site-card-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--card-grid-columns), minmax(0, 1fr));
+  gap: var(--card-grid-gap);
+}
+
+.site-card--interactive {
+  color: var(--text);
+  text-decoration: none;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.site-card--interactive:hover,
+.site-card--interactive:focus-visible {
+  transform: translateY(-6px);
+  border-color: var(--card-hover-border);
+  box-shadow: var(--card-hover-shadow);
+  text-decoration: none;
+}
+
+.site-card--navigation {
+  display: flex;
+  min-height: 310px;
+  flex-direction: column;
+  overflow: hidden;
+  padding: clamp(22px, 3vw, 34px);
+}
+
+.site-card--navigation::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 6px;
+  background: var(--card-decoration);
+  opacity: 0.88;
+}
+
+.site-card--navigation::after {
+  content: '';
+  position: absolute;
+  right: -52px;
+  bottom: -52px;
+  width: 145px;
+  height: 145px;
+  border-radius: 999px;
+  background: var(--card-corner-decoration);
+  opacity: 0.62;
+  transition: transform 0.22s ease;
+}
+
+.site-card--navigation:hover::after,
+.site-card--navigation:focus-visible::after {
+  transform: scale(1.16);
+}
+
+.site-card--featured {
+  grid-column: span 2;
+}
+
+.site-card--stat {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.site-card--note {
+  padding: clamp(24px, 4vw, 42px);
+}
+
+.site-card__icon,
+.site-card__metric,
+.site-card__label,
+.site-card__title,
+.site-card__text,
+.site-card__action {
+  position: relative;
+  z-index: 1;
+}
+
+.site-card__icon {
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  margin-bottom: 18px;
+  border-radius: 22px;
+  background: var(--surface-soft);
+  font-size: 2rem;
+}
+
+.site-card__metric {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  min-width: 76px;
+  height: 76px;
+  border-radius: 22px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  font-size: 1.45rem;
+  font-weight: 950;
+}
+
+.site-card__label {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 12px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  font-size: 0.84rem;
+  font-weight: 850;
+}
+
+.site-card__title {
+  margin: 0 0 12px;
+  color: var(--text);
+  font-size: clamp(1.32rem, 2vw, 1.85rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+}
+
+.site-card__text {
+  margin: 0;
+  color: var(--muted);
+}
+
+.site-card--stat .site-card__text {
+  font-weight: 750;
+}
+
+.site-card__action {
+  margin-top: auto;
+  padding-top: 22px;
+  color: var(--accent-dark);
+  font-weight: 900;
+}
+
+.site-card--note .site-card__title {
+  font-size: clamp(1.45rem, 2.4vw, 2.2rem);
+}
+
+.site-card--note .site-card__text:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 1020px) {
+  .site-card-grid {
+    --card-grid-columns: 2;
+  }
+}
+
+@media (max-width: 680px) {
+  .site-card-grid {
+    --card-grid-columns: 1;
+  }
+
+  .site-card--featured {
+    grid-column: auto;
+  }
+
+  .site-card--stat {
+    align-items: flex-start;
+  }
+}

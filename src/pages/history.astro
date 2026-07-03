@@ -10,6 +10,7 @@ import HistoryModernInstitute from '../components/history/HistoryModernInstitute
 import HistoryEducation from '../components/history/HistoryEducation.astro';
 import HistoryPublications from '../components/history/HistoryPublications.astro';
 import HistoryCooperation from '../components/history/HistoryCooperation.astro';
+import HistorySources from '../components/history/HistorySources.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
@@ -47,16 +48,7 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
     <HistoryEducation />
     <HistoryPublications />
     <HistoryCooperation />
-
-    <section class="section history-source-section">
-      <div class="container history-page-container">
-        <p class="history-source">
-          Текст сторінки підготовлено за матеріалами статті академіка В.Л. Богданова
-          «Інститут механіки ім. С.П. Тимошенка: історія і сучасність» з урахуванням
-          актуальної інформації офіційного сайту Інституту.
-        </p>
-      </div>
-    </section>
+    <HistorySources />
   </div>
 </BaseLayout>
 
@@ -86,20 +78,6 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
 
   .history-content-section + .history-content-section {
     border-top: 1px solid var(--line);
-  }
-
-  .history-source-section {
-    padding-top: 0;
-  }
-
-  .history-source {
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 24px 0 0;
-    border-top: 1px solid var(--line);
-    color: var(--muted);
-    font-size: 0.92rem;
-    line-height: 1.55;
   }
 
   @media (max-width: 760px) {

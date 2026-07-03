@@ -1,35 +1,175 @@
 ---
+import { historyModernStats, historyResearchDirections } from '../../data/history';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
 ---
 
-<section class="section history-content-section">
-  <div class="container history-grid">
-    <article class="panel">
-      <p class="eyebrow">Освітня роль</p>
-      <h2>Підготовка наукових кадрів</h2>
-      <p>
-        Інститут здійснює підготовку здобувачів третього рівня вищої освіти та докторантів.
-        Наукова підготовка поєднується з участю молодих учених у дослідницьких проєктах,
-        семінарах, конференціях і роботі наукових підрозділів.
-      </p>
-      <p>
-        У спеціалізованих радах Інституту впродовж багатьох років захищено значну кількість
-        кандидатських і докторських дисертацій, що підтверджує роль установи як важливого центру
-        підготовки кадрів у галузі механіки.
-      </p>
+<section class="section history-content-section history-modern-section">
+  <div class="container">
+    <div class="section-header history-modern-header">
+      <div>
+        <p class="eyebrow">Сучасний Інститут</p>
+        <h2 class="section-title">Наукова структура і кадровий потенціал</h2>
+        <p class="section-text">
+          Сьогодні Інститут поєднує фундаментальні дослідження, чисельне моделювання,
+          експериментальні методи та інженерні застосування в основних напрямах сучасної механіки.
+        </p>
+      </div>
+    </div>
+
+    <div class="history-stat-grid" aria-label="Основні показники сучасного Інституту">
+      {historyModernStats.map((item) => (
+        <article class="history-stat-card panel">
+          <strong>{item.value}</strong>
+          <span>{item.label}</span>
+        </article>
+      ))}
+    </div>
+
+    <div class="history-grid history-modern-grid">
+      <article class="panel history-modern-card">
+        <p class="eyebrow">Структура</p>
+        <h3>Одинадцять наукових відділів</h3>
+        <p>
+          Наукові підрозділи Інституту охоплюють механіку композитних і неоднорідних середовищ,
+          механіку оболонкових систем, зв’язаних полів, руйнування, повзучості, коливань,
+          термопружності, термопластичності, динаміки та стійкості механічних систем.
+        </p>
+        <a class="button secondary" href={withBase('/departments/')}>Перейти до наукових відділів</a>
+      </article>
+
+      <article class="panel history-modern-card">
+        <p class="eyebrow">Наукова спільнота</p>
+        <h3>92 унікальні наукові працівники</h3>
+        <p>
+          У кадровій статистиці кожного співробітника враховано один раз. Ю.В. Скосаренко
+          і М.Ф. Селіванов, які працюють у наукових відділах за внутрішнім сумісництвом,
+          не дублюються в загальній чисельності.
+        </p>
+        <p>
+          За даними персональних сторінок співробітників, в Інституті працюють 33 доктори наук,
+          а також 34 кандидати наук і доктори філософії.
+        </p>
+        <a class="button secondary" href={withBase('/management/')}>Перейти до адміністрації</a>
+      </article>
+    </div>
+
+    <article class="panel history-directions-card">
+      <p class="eyebrow">Основні напрями</p>
+      <h3>Від фундаментальної теорії до практичних застосувань</h3>
+      <ul class="history-directions-list">
+        {historyResearchDirections.map((direction) => <li>{direction}</li>)}
+      </ul>
     </article>
 
-    <article class="panel">
-      <p class="eyebrow">Сучасний Інститут</p>
-      <h2>Наукова спільнота і спадкоємність</h2>
-      <p>
-        В Інституті працюють академіки, члени-кореспонденти НАН України, доктори й кандидати наук,
-        а також висококваліфікований інженерно-технічний персонал. Досягнення науковців відзначені
-        державними преміями та преміями НАН України імені видатних учених.
-      </p>
-      <p>
-        Інститут також видає міжнародний науковий журнал
-        <a href="https://applied-mechanics.inmech.kyiv.ua/">«Прикладна механіка»</a>, заснований у 1955 році.
-      </p>
-    </article>
+    <p class="history-stat-note">
+      Чисельність наукових працівників подано за унікальними особами; розподіл за науковими
+      ступенями визначено за актуальними персональними сторінками сайту Інституту.
+    </p>
   </div>
 </section>
+
+<style>
+  .history-modern-header {
+    max-width: 900px;
+    margin-bottom: 28px;
+  }
+
+  .history-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .history-stat-card {
+    min-height: 150px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .history-stat-card strong {
+    color: var(--accent-dark);
+    font-size: clamp(2.2rem, 5vw, 3.3rem);
+    line-height: 1;
+  }
+
+  .history-stat-card span {
+    margin-top: 10px;
+    color: var(--heading);
+    font-size: 0.94rem;
+    font-weight: 800;
+    line-height: 1.35;
+  }
+
+  .history-modern-grid {
+    margin-bottom: 28px;
+  }
+
+  .history-modern-card,
+  .history-directions-card {
+    padding: clamp(22px, 3.5vw, 36px);
+  }
+
+  .history-modern-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .history-modern-card h3,
+  .history-directions-card h3 {
+    margin-top: 0;
+    font-size: clamp(1.25rem, 2vw, 1.55rem);
+  }
+
+  .history-modern-card .button {
+    margin-top: auto;
+  }
+
+  .history-directions-card {
+    max-width: 980px;
+    margin-inline: auto;
+  }
+
+  .history-directions-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 30px;
+    margin: 18px 0 0;
+    padding-left: 1.2rem;
+  }
+
+  .history-directions-list li {
+    line-height: 1.5;
+  }
+
+  .history-stat-note {
+    max-width: 980px;
+    margin: 16px auto 0;
+    color: var(--muted);
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px) {
+    .history-stat-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 620px) {
+    .history-stat-grid,
+    .history-directions-list {
+      grid-template-columns: 1fr;
+    }
+
+    .history-stat-card {
+      min-height: 125px;
+    }
+  }
+</style>

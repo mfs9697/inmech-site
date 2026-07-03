@@ -85,6 +85,25 @@ export const historyDirectors = [
   }
 ];
 
+export const historyModernStats = [
+  {
+    value: '11',
+    label: 'наукових відділів'
+  },
+  {
+    value: '92',
+    label: 'наукові працівники'
+  },
+  {
+    value: '33',
+    label: 'доктори наук'
+  },
+  {
+    value: '34',
+    label: 'кандидати наук і доктори філософії'
+  }
+];
+
 export const historyResearchDirections = [
   'механіка композитних і неоднорідних середовищ;',
   'механіка оболонкових систем;',

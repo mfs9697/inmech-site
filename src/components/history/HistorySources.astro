@@ -12,6 +12,16 @@ const officialSources = [
   { title: 'Наукова бібліотека', href: '/library/' }
 ];
 
+const bibliographicSources = [
+  'Институт механики (1919–1989) / отв. ред. А.Н. Гузь; сост. А.Н. Гузь, Ю.Н. Немиш, Б.П. Гуменюк. Київ: Наукова думка, 1989. 144 с.',
+  'Институт механики им. С.П. Тимошенко / отв. ред. А.Н. Гузь; сост. Ю.Н. Немиш. Київ: А.С.К., 1998. 248 с.',
+  'Институт механики им. С.П. Тимошенко НАН Украины (1918–2008): 90 лет Института (История. Структура. Информационные аспекты) / под общ. ред. А.Н. Гузя; сост. И.С. Чернышенко, Я.Я. Рущицкий. Київ: Літера ЛТД, 2008. 320 с.',
+  'Гузь А.Н. К 100-летию Института механики им. С.П. Тимошенко Национальной академии наук Украины. Київ: Літера ЛТД, 2018. 160 с.',
+  'Guz A.N., Rushchitsky J.J. For the 100th Anniversary of the S.P. Timoshenko Institute of Mechanics of the NASU: Books (Monographs and Textbooks) Published by the Institute. International Applied Mechanics. 2018. Vol. 54, No. 2. P. 121–142.',
+  'Guz A.N., Altenbach H., Bogdanov V.L., Nazarenko V.M. Preface. In: Advances in Mechanics. Advanced Structured Materials, vol. 191. Cham: Springer, 2023. P. v–xv.',
+  'Altenbach H., Bogdanov V., Bulat A., Guz A., Nazarenko V. A Brief Review of the Development of Mechanics in the National Academy of Sciences of Ukraine. In: Advances in Mechanics. Advanced Structured Materials, vol. 191. Cham: Springer, 2023. P. 1–19.'
+];
+
 const externalSources = [
   {
     title: 'Advances in Mechanics: Current Research Results of the NAS of Ukraine',
@@ -75,13 +85,23 @@ const externalSources = [
       </article>
     </div>
 
+    <article class="panel history-bibliography-card history-original-bibliography">
+      <div>
+        <p class="eyebrow">Бібліографія статті</p>
+        <h3>Публікації, на яких ґрунтується матеріал</h3>
+      </div>
+      <ol class="history-bibliography-list">
+        {bibliographicSources.map((source) => <li>{source}</li>)}
+      </ol>
+    </article>
+
     <article class="panel history-bibliography-card">
       <div>
-        <p class="eyebrow">Бібліографічні та зовнішні ресурси</p>
-        <h3>Видання й офіційні вебресурси</h3>
+        <p class="eyebrow">Зовнішні ресурси</p>
+        <h3>Видання й офіційні вебсайти</h3>
       </div>
 
-      <ol class="history-bibliography-list">
+      <ol class="history-bibliography-list history-web-list">
         {externalSources.map((source) => (
           <li>
             <a href={source.href} target="_blank" rel="noopener noreferrer">{source.title}</a>
@@ -95,8 +115,8 @@ const externalSources = [
       <strong>Редакційна примітка.</strong>
       <span>
         Персональний склад, кількісні показники та відомості про чинні структурні підрозділи
-        наведено за станом на липень 2026 року. У разі оновлення відповідних сторінок сайту
-        ці дані також потребуватимуть актуалізації.
+        наведено за станом на липень 2026 року. Історичні чисельні показники з рукопису,
+        які втратили актуальність, замінено даними чинних сторінок сайту.
       </span>
     </div>
   </div>
@@ -156,6 +176,7 @@ const externalSources = [
     grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1.3fr);
     gap: clamp(24px, 4vw, 48px);
     align-items: start;
+    margin-bottom: 24px;
   }
 
   .history-bibliography-list {
@@ -168,6 +189,9 @@ const externalSources = [
   .history-bibliography-list li {
     padding-bottom: 12px;
     border-bottom: 1px solid var(--line);
+    color: var(--text);
+    font-size: 0.9rem;
+    line-height: 1.55;
   }
 
   .history-bibliography-list li:last-child {
@@ -175,14 +199,14 @@ const externalSources = [
     border-bottom: 0;
   }
 
-  .history-bibliography-list a {
+  .history-web-list a {
     display: block;
     color: var(--heading);
     font-weight: 800;
     line-height: 1.4;
   }
 
-  .history-bibliography-list span {
+  .history-web-list span {
     display: block;
     margin-top: 4px;
     color: var(--muted);
@@ -193,8 +217,8 @@ const externalSources = [
   .history-editorial-note {
     display: flex;
     gap: 10px;
-    max-width: 980px;
-    margin: 20px auto 0;
+    max-width: none;
+    margin: 20px 0 0;
     padding-top: 18px;
     border-top: 1px solid var(--line);
     color: var(--muted);

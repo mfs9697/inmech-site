@@ -20,7 +20,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const departmentUrl = isEnglish ? `${base}/en/departments/${entry.id}/` : `${base}/departments/${entry.id}/`;
 ---
 
-<article class="department-card">
+<article class="department-card site-card" data-block-tone="neutral">
   <div class="department-number" aria-hidden="true">{number}</div>
   <div>
     <h3>

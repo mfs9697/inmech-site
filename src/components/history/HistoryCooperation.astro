@@ -1,0 +1,281 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+
+const internationalPartners = [
+  { institution: 'University of Bologna', country: 'Італія' },
+  { institution: 'University of Aberdeen', country: 'Велика Британія' },
+  { institution: 'Heriot-Watt University', country: 'Велика Британія' },
+  { institution: 'Otto von Guericke University Magdeburg', country: 'Німеччина' },
+  { institution: 'Technische Universität Berlin', country: 'Німеччина' },
+  { institution: 'Sofia University “St. Kliment Ohridski”', country: 'Болгарія' },
+  { institution: 'Harbin Institute of Technology', country: 'Китай' },
+  { institution: 'Institute of Fundamental Technological Research, Polish Academy of Sciences', country: 'Польща' }
+];
+---
+
+<section class="section history-content-section history-cooperation-section">
+  <div class="container">
+    <div class="section-header history-cooperation-header">
+      <div>
+        <p class="eyebrow">Міжнародні зв’язки</p>
+        <h2 class="section-title">Наукова співпраця та представництво України</h2>
+        <p class="section-text">
+          Інститут розвиває спільні дослідження, готує колективні монографії та статті,
+          підтримує прямі зв’язки з університетами й науковими центрами різних країн,
+          а також бере участь у міжнародній координації досліджень з механіки.
+        </p>
+      </div>
+    </div>
+
+    <div class="history-cooperation-grid">
+      <article class="panel history-partners-card">
+        <p class="eyebrow">Спільні дослідження</p>
+        <h3>Партнерські наукові центри</h3>
+        <p>
+          У співпраці із закордонними колегами виконуються дослідження та публікуються
+          монографії й статті з актуальних проблем механіки матеріалів, конструкцій,
+          руйнування, стійкості та динаміки.
+        </p>
+
+        <div class="history-partner-list">
+          {internationalPartners.map((partner) => (
+            <div class="history-partner-item">
+              <strong>{partner.institution}</strong>
+              <span>{partner.country}</span>
+            </div>
+          ))}
+        </div>
+
+        <a class="button secondary" href={withBase('/scientific-cooperation/')}>
+          Договори та угоди про співпрацю
+        </a>
+      </article>
+
+      <article class="panel history-iutam-card">
+        <div class="history-iutam-mark" aria-hidden="true">
+          <span>з 1992 року</span>
+          <strong>IUTAM</strong>
+          <small>Ukraine</small>
+        </div>
+
+        <div>
+          <p class="eyebrow">Міжнародна координація</p>
+          <h3>Національний комітет України з теоретичної і прикладної механіки</h3>
+          <p>
+            З 1992 року Інститут виконує функції базової організації Національного комітету
+            України з теоретичної і прикладної механіки. Комітет представляє Україну в
+            Міжнародному союзі з теоретичної і прикладної механіки
+            (<em>International Union of Theoretical and Applied Mechanics</em>, IUTAM).
+          </p>
+
+          <div class="history-committee-leadership">
+            <div>
+              <span>1992–2023</span>
+              <strong>О.М. Гузь</strong>
+              <p>Голова Національного комітету протягом перших трьох десятиліть його діяльності.</p>
+            </div>
+            <div>
+              <span>з 2023 року</span>
+              <strong>В.Л. Богданов</strong>
+              <p>Голова Національного комітету на сучасному етапі.</p>
+            </div>
+          </div>
+
+          <a
+            class="button primary"
+            href="https://natcommmech.inmech.kyiv.ua/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Сайт Національного комітету
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <article class="panel history-cooperation-summary">
+      <p class="eyebrow">Міжнародна інтеграція</p>
+      <h3>Спільнота, видання, конференції</h3>
+      <p>
+        Міжнародні контакти Інституту реалізуються через спільні дослідницькі проєкти,
+        академічні угоди, участь у конференціях і роботі міжнародних організацій,
+        підготовку колективних видань та діяльність журналу
+        <em>International Applied Mechanics</em>.
+      </p>
+    </article>
+  </div>
+</section>
+
+<style>
+  .history-cooperation-header {
+    max-width: 920px;
+    margin-bottom: 28px;
+  }
+
+  .history-cooperation-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+
+  .history-partners-card,
+  .history-iutam-card,
+  .history-cooperation-summary {
+    padding: clamp(24px, 4vw, 40px);
+  }
+
+  .history-partners-card,
+  .history-iutam-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .history-partners-card h3,
+  .history-iutam-card h3,
+  .history-cooperation-summary h3 {
+    margin-top: 0;
+    font-size: clamp(1.3rem, 2.2vw, 1.65rem);
+  }
+
+  .history-partners-card > p,
+  .history-iutam-card > div > p,
+  .history-cooperation-summary p {
+    color: var(--muted);
+    line-height: 1.58;
+  }
+
+  .history-partner-list {
+    display: grid;
+    gap: 10px;
+    margin: 22px 0 26px;
+  }
+
+  .history-partner-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+  }
+
+  .history-partner-item strong {
+    color: var(--heading);
+    font-size: 0.9rem;
+    line-height: 1.35;
+  }
+
+  .history-partner-item span {
+    flex: 0 0 auto;
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 750;
+  }
+
+  .history-partners-card .button {
+    margin-top: auto;
+    align-self: flex-start;
+  }
+
+  .history-iutam-card {
+    gap: 24px;
+  }
+
+  .history-iutam-mark {
+    display: grid;
+    min-height: 180px;
+    place-items: center;
+    align-content: center;
+    gap: 4px;
+    border-radius: 24px;
+    background: linear-gradient(145deg, var(--accent-dark), var(--accent));
+    color: #fff;
+    text-align: center;
+  }
+
+  .history-iutam-mark span,
+  .history-iutam-mark small {
+    color: rgba(255, 255, 255, 0.84);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+  }
+
+  .history-iutam-mark strong {
+    font-size: clamp(3rem, 7vw, 5rem);
+    line-height: 1;
+  }
+
+  .history-committee-leadership {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin: 22px 0 24px;
+  }
+
+  .history-committee-leadership > div {
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface-soft);
+  }
+
+  .history-committee-leadership span {
+    display: block;
+    color: var(--accent-dark);
+    font-size: 0.78rem;
+    font-weight: 850;
+  }
+
+  .history-committee-leadership strong {
+    display: block;
+    margin-top: 5px;
+    color: var(--heading);
+    font-size: 1.05rem;
+  }
+
+  .history-committee-leadership p {
+    margin: 7px 0 0;
+    color: var(--muted);
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
+  .history-cooperation-summary {
+    max-width: 980px;
+    margin-inline: auto;
+  }
+
+  .history-cooperation-summary p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 900px) {
+    .history-cooperation-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .history-iutam-card {
+      display: grid;
+      grid-template-columns: 230px minmax(0, 1fr);
+      align-items: start;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .history-iutam-card,
+    .history-committee-leadership {
+      grid-template-columns: 1fr;
+    }
+
+    .history-iutam-mark {
+      min-height: 150px;
+    }
+
+    .history-partner-item {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
+</style>

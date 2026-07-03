@@ -22,7 +22,7 @@ const courses = [
   ['ОК7', 'Педагогіка і методика викладання прикладної математики', '2', 'д.т.н. Борисенко М. Ю.', [['2025', '/documents/postgraduate/program/syllabi/2025/ok7-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/ok7-syl-2024.pdf']]],
   ['ОК8', 'Педагогічна практика', '2', 'д.т.н. Борисенко М. Ю.', [['2025', '/documents/postgraduate/program/syllabi/2025/ok8-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/ok8-syl-2024.pdf']]],
   ['ВК1', 'Нелінійна теорія оболонок з отворами', '4', 'д.ф.-м.н., член-кор. НАН України Сторожук Є. А.; д.ф.-м.н. Максимюк В. А.', [['2025', '/documents/postgraduate/program/syllabi/2025/vk1-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/vk1-syl-2024.pdf']]],
-  ['ВК2', 'Аналітично-чисельне дослідження стійкості та руйнування матеріалів з тонким покриттям та армованих композитних матеріалів із застосуванням високопродуктивних обчислень', '4', 'д.ф.-м.н. Декрет В. А.; к.ф.-м.н. Кіпніс О. Л.', [['2025', '/documents/postgraduate/program/syllabi/2025/vk2-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/vk2-syl-2024.pdf']]],
+  ['ВК2', 'Аналітично-чисельне дослідження стійкості та руйнування матеріалів з тонким покриттям та армованих композитних матеріалів із застосуванням високопродуктивних обчислень', '4', 'д.ф.-м.н. Декрет В. А.; д.ф.-м.н. Кіпніс О. Л.', [['2025', '/documents/postgraduate/program/syllabi/2025/vk2-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/vk2-syl-2024.pdf']]],
   ['ВК3', 'Поширення хвиль з врахуванням структурних рівнів матеріалів та базових властивостей деформування матеріалів', '4', 'д.ф.-м.н. Юрчук В. М.', [['2025', '/documents/postgraduate/program/syllabi/2025/vk3-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/vk3-syl-2024.pdf']]],
   ['ВК4', 'Механіка руйнування в’язкопружних матеріалів', '4', 'к.ф.-м.н. Чорноіван Ю. О.', [['2025', '/documents/postgraduate/program/syllabi/2025/vk4-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/vk4-syl-2024.pdf']]],
   ['ВК5', 'Математичні моделі термомеханіки суцільних середовищ', '4', 'д.ф.-м.н., член-кор. НАН України Жук Я. О.', [['2025', '/documents/postgraduate/program/syllabi/2025/vk5-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/vk5-syl-2024.pdf']]],
@@ -58,110 +58,33 @@ const surveys = [
 >
   <main class="postgraduate-page">
     <nav class="breadcrumbs" aria-label="Breadcrumbs">
-      <a href={withBase('/postgraduate/')}>Аспірантура</a>
-      <span>›</span>
-      <span>Освітньо-наукова програма</span>
+      <a href={withBase('/postgraduate/')}>Аспірантура</a><span>›</span><span>Освітньо-наукова програма</span>
     </nav>
-
     <section class="page-hero">
-      <p class="eyebrow">Освітньо-наукова програма</p>
-      <h1>ОНП, навчальні плани та дисципліни</h1>
-      <p class="lead">
-        Документи освітньо-наукової програми, навчальні плани, силабуси дисциплін,
-        відгуки стейкхолдерів і результати опитувань подано окремо від сторінки вступу,
-        щоб зробити розділ аспірантури простішим для навігації.
-      </p>
+      <p class="eyebrow">Освітньо-наукова програма</p><h1>ОНП, навчальні плани та дисципліни</h1>
+      <p class="lead">Документи освітньо-наукової програми, навчальні плани, силабуси дисциплін, відгуки стейкхолдерів і результати опитувань подано окремо від сторінки вступу, щоб зробити розділ аспірантури простішим для навігації.</p>
     </section>
 
     <section class="section-block">
-      <div class="section-heading compact-header">
-        <div>
-          <p class="eyebrow">Документи ОНП</p>
-          <h2>Освітньо-наукові програми та навчальні плани</h2>
-        </div>
-      </div>
+      <div class="section-heading compact-header"><div><p class="eyebrow">Документи ОНП</p><h2>Освітньо-наукові програми та навчальні плани</h2></div></div>
       <div class="year-grid">
         {programYears.map(([year, specialty, program, plan]) => (
-          <article class="year-card">
-            <span>{year}</span>
-            <h3>{specialty}</h3>
-            <div class="pill-links">
-              <a href={program} target="_blank" rel="noopener noreferrer">ОНП</a>
-              <a href={plan} target="_blank" rel="noopener noreferrer">Навчальний план</a>
-            </div>
-          </article>
+          <article class="year-card"><span>{year}</span><h3>{specialty}</h3><div class="pill-links"><a href={program} target="_blank" rel="noopener noreferrer">ОНП</a><a href={plan} target="_blank" rel="noopener noreferrer">Навчальний план</a></div></article>
         ))}
       </div>
     </section>
 
     <section class="section-block">
-      <div class="section-heading compact-header">
-        <div>
-          <p class="eyebrow">Навчальний план</p>
-          <h2>Дисципліни ОНП</h2>
-        </div>
-      </div>
-      <div class="table-panel">
-        <div class="table-scroll">
-          <table>
-            <thead>
-              <tr>
-                <th>Код</th>
-                <th>Назва дисципліни</th>
-                <th>Кредити</th>
-                <th>Викладач</th>
-                <th>Документація</th>
-              </tr>
-            </thead>
-            <tbody>
-              {courses.map(([code, title, credits, teachers, docs]) => (
-                <tr>
-                  <td>{code}</td>
-                  <td>{title}</td>
-                  <td>{credits}</td>
-                  <td>{teachers}</td>
-                  <td>
-                    <div class="mini-links">
-                      {docs.map(([label, href]) => (
-                        <a href={href} target="_blank" rel="noopener noreferrer">{label}</a>
-                      ))}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <div class="section-heading compact-header"><div><p class="eyebrow">Навчальний план</p><h2>Дисципліни ОНП</h2></div></div>
+      <div class="table-panel"><div class="table-scroll"><table>
+        <thead><tr><th>Код</th><th>Назва дисципліни</th><th>Кредити</th><th>Викладач</th><th>Документація</th></tr></thead>
+        <tbody>{courses.map(([code, title, credits, teachers, docs]) => (<tr><td>{code}</td><td>{title}</td><td>{credits}</td><td>{teachers}</td><td><div class="mini-links">{docs.map(([label, href]) => (<a href={href} target="_blank" rel="noopener noreferrer">{label}</a>))}</div></td></tr>))}</tbody>
+      </table></div></div>
     </section>
 
     <section class="section-block two-column">
-      <article class="info-panel">
-        <p class="eyebrow">Відгуки</p>
-        <h2>Відгуки на освітньо-наукову програму</h2>
-        <div class="review-list">
-          {reviews.map(([year, links]) => (
-            <div class="review-row">
-              <strong>{year}</strong>
-              <div class="pill-links small">
-                {links.map(([label, href]) => (
-                  <a href={href} target="_blank" rel="noopener noreferrer">{label}</a>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </article>
-
-      <article class="info-panel">
-        <p class="eyebrow">Якість освітнього процесу</p>
-        <h2>Результати опитувань</h2>
-        <div class="survey-list">
-          {surveys.map(([label, href]) => (
-            <a href={href} target="_blank" rel="noopener noreferrer">{label}</a>
-          ))}
-        </div>
-      </article>
+      <article class="info-panel"><p class="eyebrow">Відгуки</p><h2>Відгуки на освітньо-наукову програму</h2><div class="review-list">{reviews.map(([year, links]) => (<div class="review-row"><strong>{year}</strong><div class="pill-links small">{links.map(([label, href]) => (<a href={href} target="_blank" rel="noopener noreferrer">{label}</a>))}</div></div>))}</div></article>
+      <article class="info-panel"><p class="eyebrow">Якість освітнього процесу</p><h2>Результати опитувань</h2><div class="survey-list">{surveys.map(([label, href]) => (<a href={href} target="_blank" rel="noopener noreferrer">{label}</a>))}</div></article>
     </section>
   </main>
 </BaseLayout>

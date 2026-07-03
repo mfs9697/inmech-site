@@ -1,0 +1,227 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+
+const officialSources = [
+  { title: 'Наукові відділи', href: '/departments/' },
+  { title: 'Адміністрація Інституту', href: '/management/' },
+  { title: 'Аспірантура', href: '/postgraduate/' },
+  { title: 'Докторантура', href: '/doctoral/' },
+  { title: 'Дисертації та захисти', href: '/dissertations/' },
+  { title: 'Наукова співпраця', href: '/scientific-cooperation/' },
+  { title: 'Наукова бібліотека', href: '/library/' }
+];
+
+const externalSources = [
+  {
+    title: 'Advances in Mechanics: Current Research Results of the NAS of Ukraine',
+    detail: 'Springer, Advanced Structured Materials, vol. 191, 2023',
+    href: 'https://link.springer.com/book/10.1007/978-3-031-37313-8'
+  },
+  {
+    title: 'Selected Problems of Solid Mechanics and Solving Methods',
+    detail: 'Springer, Advanced Structured Materials, vol. 204, 2024',
+    href: 'https://link.springer.com/book/10.1007/978-3-031-54063-9'
+  },
+  {
+    title: 'Журнал «Прикладна механіка» / International Applied Mechanics',
+    detail: 'Офіційний сайт журналу',
+    href: 'https://pm.inmech.kyiv.ua/'
+  },
+  {
+    title: 'Національний комітет України з теоретичної і прикладної механіки',
+    detail: 'Офіційний сайт Комітету',
+    href: 'https://natcommmech.inmech.kyiv.ua/'
+  }
+];
+---
+
+<section class="section history-content-section history-sources-section">
+  <div class="container">
+    <div class="section-header history-sources-header">
+      <div>
+        <p class="eyebrow">Джерела</p>
+        <h2 class="section-title">Матеріали та бібліографія</h2>
+        <p class="section-text">
+          Історичну частину сторінки підготовлено за авторським матеріалом академіка
+          В.Л. Богданова, а відомості про сучасну структуру, кадри, підготовку науковців,
+          видання та співпрацю уточнено за актуальними сторінками офіційного сайту Інституту.
+        </p>
+      </div>
+    </div>
+
+    <div class="history-sources-grid">
+      <article class="panel history-source-card history-primary-source">
+        <p class="eyebrow">Основне джерело</p>
+        <h3>Авторський матеріал В.Л. Богданова</h3>
+        <p class="history-source-citation">
+          Богданов В.Л. <em>Інститут механіки ім. С.П. Тимошенка: історія і сучасність</em>.
+          Рукопис статті, підготовлений для офіційного сайту Інституту.
+        </p>
+        <p>
+          Матеріал є основою викладу історії заснування Інституту, формування наукових шкіл,
+          розвитку досліджень, видавничої діяльності та міжнародних зв’язків.
+        </p>
+      </article>
+
+      <article class="panel history-source-card">
+        <p class="eyebrow">Офіційний сайт</p>
+        <h3>Актуальні інституційні дані</h3>
+        <ul class="history-official-source-list">
+          {officialSources.map((source) => (
+            <li><a href={withBase(source.href)}>{source.title}</a></li>
+          ))}
+        </ul>
+      </article>
+    </div>
+
+    <article class="panel history-bibliography-card">
+      <div>
+        <p class="eyebrow">Бібліографічні та зовнішні ресурси</p>
+        <h3>Видання й офіційні вебресурси</h3>
+      </div>
+
+      <ol class="history-bibliography-list">
+        {externalSources.map((source) => (
+          <li>
+            <a href={source.href} target="_blank" rel="noopener noreferrer">{source.title}</a>
+            <span>{source.detail}</span>
+          </li>
+        ))}
+      </ol>
+    </article>
+
+    <div class="history-editorial-note">
+      <strong>Редакційна примітка.</strong>
+      <span>
+        Персональний склад, кількісні показники та відомості про чинні структурні підрозділи
+        наведено за станом на липень 2026 року. У разі оновлення відповідних сторінок сайту
+        ці дані також потребуватимуть актуалізації.
+      </span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .history-sources-header {
+    max-width: 920px;
+    margin-bottom: 28px;
+  }
+
+  .history-sources-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+
+  .history-source-card,
+  .history-bibliography-card {
+    padding: clamp(24px, 4vw, 40px);
+  }
+
+  .history-source-card h3,
+  .history-bibliography-card h3 {
+    margin-top: 0;
+    font-size: clamp(1.3rem, 2.2vw, 1.65rem);
+  }
+
+  .history-source-card p {
+    color: var(--muted);
+    line-height: 1.58;
+  }
+
+  .history-source-citation {
+    padding: 16px 18px;
+    border-left: 4px solid var(--accent);
+    border-radius: 0 12px 12px 0;
+    background: var(--surface-soft);
+    color: var(--heading) !important;
+  }
+
+  .history-official-source-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 22px;
+    margin: 18px 0 0;
+    padding-left: 1.2rem;
+  }
+
+  .history-official-source-list a {
+    font-weight: 750;
+  }
+
+  .history-bibliography-card {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1.3fr);
+    gap: clamp(24px, 4vw, 48px);
+    align-items: start;
+  }
+
+  .history-bibliography-list {
+    display: grid;
+    gap: 14px;
+    margin: 0;
+    padding-left: 1.3rem;
+  }
+
+  .history-bibliography-list li {
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .history-bibliography-list li:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .history-bibliography-list a {
+    display: block;
+    color: var(--heading);
+    font-weight: 800;
+    line-height: 1.4;
+  }
+
+  .history-bibliography-list span {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 0.86rem;
+    line-height: 1.45;
+  }
+
+  .history-editorial-note {
+    display: flex;
+    gap: 10px;
+    max-width: 980px;
+    margin: 20px auto 0;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+
+  .history-editorial-note strong {
+    flex: 0 0 auto;
+    color: var(--heading);
+  }
+
+  @media (max-width: 820px) {
+    .history-sources-grid,
+    .history-bibliography-card {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .history-official-source-list {
+      grid-template-columns: 1fr;
+    }
+
+    .history-editorial-note {
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
+</style>

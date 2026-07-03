@@ -1,0 +1,22 @@
+---
+import { historyDirectors } from '../../data/history';
+---
+
+<section class="section history-content-section">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">Керівники установи</p>
+        <h2 class="section-title">Директори Інституту</h2>
+        <p class="section-text">
+          Історія Інституту пов’язана з іменами видатних учених, які формували його наукові школи
+          та напрями розвитку.
+        </p>
+      </div>
+    </div>
+
+    <div class="director-grid">
+      {historyDirectors.map((director) => <div class="director-card">{director}</div>)}
+    </div>
+  </div>
+</section>

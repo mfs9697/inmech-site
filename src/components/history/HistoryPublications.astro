@@ -16,7 +16,7 @@ const springerBooks = [
     illustrations: '191 чорно-біла та 80 кольорових ілюстрацій',
     doi: '10.1007/978-3-031-37313-8',
     href: 'https://link.springer.com/book/10.1007/978-3-031-37313-8',
-    cover: 'https://link.springer.com/book/10.1007/978-3-031-37313-8/cover'
+    cover: '/assets/img/history/books/978-3-031-37313-8.webp'
   },
   {
     year: '2024',
@@ -32,7 +32,7 @@ const springerBooks = [
     illustrations: '124 чорно-білі та 79 кольорових ілюстрацій',
     doi: '10.1007/978-3-031-54063-9',
     href: 'https://link.springer.com/book/10.1007/978-3-031-54063-9',
-    cover: 'https://link.springer.com/book/10.1007/978-3-031-54063-9/cover'
+    cover: '/assets/img/history/books/978-3-031-54063-9.webp'
   }
 ];
 ---
@@ -94,7 +94,7 @@ const springerBooks = [
           <a class="history-book-cover-link" href={book.href} target="_blank" rel="noopener noreferrer">
             <img
               class="history-book-cover"
-              src={book.cover}
+              src={withBase(book.cover)}
               alt={`Обкладинка книги ${book.title}`}
               loading="lazy"
               width="180"

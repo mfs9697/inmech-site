@@ -4,6 +4,7 @@ import { site } from '../data/site';
 import HistoryOrigins from '../components/history/HistoryOrigins.astro';
 import HistoryMilestones from '../components/history/HistoryMilestones.astro';
 import HistoryScientificSchools from '../components/history/HistoryScientificSchools.astro';
+import HistoryWartime from '../components/history/HistoryWartime.astro';
 import HistoryDirectors from '../components/history/HistoryDirectors.astro';
 import HistoryModernInstitute from '../components/history/HistoryModernInstitute.astro';
 
@@ -37,6 +38,7 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
     <HistoryOrigins />
     <HistoryMilestones />
     <HistoryScientificSchools />
+    <HistoryWartime />
     <HistoryDirectors />
     <HistoryModernInstitute />
 

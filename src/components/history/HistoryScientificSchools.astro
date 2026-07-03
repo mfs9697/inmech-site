@@ -1,30 +1,123 @@
 ---
-import { historyResearchDirections } from '../../data/history';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
 ---
 
-<section class="section history-content-section">
-  <div class="container history-grid">
-    <article class="panel">
-      <p class="eyebrow">Наукові напрями</p>
-      <h2>Сфера досліджень</h2>
-      <p>
-        Дослідження Інституту охоплюють ключові напрями теоретичної та прикладної механіки.
-        Вони поєднують математичне моделювання, аналітичні підходи, обчислювальні методи,
-        експериментальні дослідження та інженерні застосування.
-      </p>
-      <ul class="history-list">
-        {historyResearchDirections.map((direction) => <li>{direction}</li>)}
-      </ul>
-    </article>
+<section class="section history-content-section history-schools-section">
+  <div class="container">
+    <div class="section-header history-schools-header">
+      <div>
+        <p class="eyebrow">Наукові школи</p>
+        <h2 class="section-title">Київська школа нелінійної механіки</h2>
+        <p class="section-text">
+          Одним із найвизначніших досягнень перших десятиліть діяльності Інституту стало
+          створення М.М. Криловим і М.М. Боголюбовим нового наукового напряму —
+          асимптотичної теорії нелінійних коливань. Їхні праці заклали основи визнаної у світі
+          київської школи нелінійної механіки.
+        </p>
+      </div>
+    </div>
 
-    <article class="panel">
-      <p class="eyebrow">Практичне значення</p>
-      <h2>Застосування результатів</h2>
-      <p>
-        Результати досліджень Інституту використовувалися в ракетно-космічній, авіаційній,
-        кораблебудівній та інших галузях промисловості. Вони спрямовані на оцінювання міцності,
-        надійності й довговічності матеріалів та типових конструкцій різного призначення.
-      </p>
-    </article>
+    <div class="scientist-grid" aria-label="Засновники київської школи нелінійної механіки">
+      <figure class="scientist-card panel">
+        <img src={withBase('/assets/img/history/krylov.jpg')} alt="Микола Митрофанович Крилов" loading="lazy" width="220" height="294" />
+        <figcaption>
+          <strong>М.М. Крилов</strong>
+          <span>Один із засновників асимптотичної теорії нелінійних коливань.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="scientist-card panel">
+        <img src={withBase('/assets/img/history/bogolyubov.jpg')} alt="Микола Миколайович Боголюбов" loading="lazy" width="220" height="293" />
+        <figcaption>
+          <strong>М.М. Боголюбов</strong>
+          <span>Один із засновників київської школи нелінійної механіки.</span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="history-grid history-schools-grid">
+      <article class="panel">
+        <p class="eyebrow">Перші десятиліття</p>
+        <h3>Фундаментальні дослідження для інженерної практики</h3>
+        <p>
+          Поряд із працями С.П. Тимошенка з опору матеріалів і теорії пружності в Інституті
+          досліджували втому мостової та котельної сталі, розробляли нові норми міцності
+          конструкційних матеріалів, визначали фізико-механічні властивості гірських порід,
+          удосконалювали методи оцінювання деревини та розрахунку міцності елементів мостів.
+        </p>
+      </article>
+
+      <article class="panel">
+        <p class="eyebrow">Видатні вчені</p>
+        <h3>Наукова спадкоємність</h3>
+        <p>
+          У різний час в Інституті працювали відомі члени Академії, серед яких М.М. Боголюбов,
+          Я.М. Григоренко, М.М. Давиденков, О.М. Динник, Г.В. Карпенко, М.О. Кільчевський,
+          М.М. Крилов, Ю.О. Митропольський, Є.О. Патон, Г.С. Писаренко, Г.Й. Сухомел,
+          К.К. Хрєнов, Ю.М. Шевченко та інші видатні науковці.
+        </p>
+      </article>
+    </div>
   </div>
 </section>
+
+<style>
+  .history-schools-header {
+    max-width: 880px;
+    margin-bottom: 28px;
+  }
+
+  .scientist-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 280px));
+    justify-content: center;
+    gap: clamp(20px, 4vw, 40px);
+    margin: 0 auto 32px;
+  }
+
+  .scientist-card {
+    margin: 0;
+    padding: 18px;
+    text-align: center;
+  }
+
+  .scientist-card img {
+    display: block;
+    width: 100%;
+    max-width: 220px;
+    aspect-ratio: 220 / 294;
+    margin: 0 auto;
+    object-fit: cover;
+    border-radius: 12px;
+    filter: grayscale(1);
+  }
+
+  .scientist-card figcaption {
+    display: grid;
+    gap: 6px;
+    margin-top: 14px;
+  }
+
+  .scientist-card strong {
+    color: var(--heading);
+    font-size: 1.08rem;
+  }
+
+  .scientist-card span {
+    color: var(--muted);
+    font-size: 0.94rem;
+    line-height: 1.45;
+  }
+
+  .history-schools-grid h3 {
+    margin-top: 0;
+    font-size: clamp(1.25rem, 2vw, 1.55rem);
+  }
+
+  @media (max-width: 640px) {
+    .scientist-grid {
+      grid-template-columns: minmax(0, 280px);
+    }
+  }
+</style>

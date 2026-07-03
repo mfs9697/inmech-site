@@ -1,0 +1,111 @@
+<section class="section history-content-section history-achievements-section">
+  <div class="container">
+    <div class="section-header history-achievements-header panel">
+      <div>
+        <p class="eyebrow">Наукові здобутки</p>
+        <h2 class="section-title">Від фундаментальних теорій до інженерних застосувань</h2>
+        <p class="section-text">
+          У другій половині XX століття та в роки незалежності України в Інституті було
+          сформовано низку пріоритетних напрямів, результати яких дістали міжнародне визнання
+          й практичне застосування у високотехнологічних галузях.
+        </p>
+      </div>
+    </div>
+
+    <div class="history-achievements-grid">
+      <article class="panel history-achievement-card">
+        <p class="eyebrow">Друга половина XX століття</p>
+        <h3>Пріоритетні теорії та методи</h3>
+        <p>
+          Розроблено методи розрахунку елементів ракетної техніки з урахуванням концентрації
+          напружень, чисельні методи дослідження оболонок обертання складної форми та теорію
+          термопластичності за неізотермічного деформування.
+        </p>
+        <p>
+          Створено тривимірну теорію стійкості деформівних тіл, теорію хвиль у тілах із
+          початковими напруженнями та ультразвуковий метод визначення двовісних і тривісних
+          напружень. Розвинуто нестаціонарну гідропружність оболонок, дифракцію пружних хвиль,
+          прогнозування властивостей композитів і метод матричнозначних функцій Ляпунова.
+        </p>
+      </article>
+
+      <article class="panel history-achievement-card">
+        <p class="eyebrow">Роки незалежності України</p>
+        <h3>Міжнародно визнані результати</h3>
+        <p>
+          Світове визнання здобули дослідження з механіки композитів і нанокомпозитів,
+          некласичних проблем руйнування, механіки зв’язаних полів, динаміки та стійкості
+          складних нелінійних систем.
+        </p>
+        <p>
+          Розвинуто теорії анізотропних шаруватих оболонок, термов’язкопластичності,
+          ударної взаємодії тіл із рідиною та пружним середовищем, деформування і
+          пошкоджуваності матеріалів, а також нові методи розв’язування контактних,
+          термопластичних і нелінійних оболонкових задач.
+        </p>
+      </article>
+
+      <article class="panel history-achievement-card history-application-card">
+        <p class="eyebrow">Інженерна практика</p>
+        <h3>Міцність, надійність і довговічність конструкцій</h3>
+        <p>
+          Теоретичні й експериментальні результати Інституту застосовувалися в
+          ракетно-космічній, авіаційній, суднобудівній та інших галузях промисловості.
+          Розробки використовували провідні науково-дослідні, проєктно-конструкторські
+          організації та підприємства України й інших країн для оцінювання міцності,
+          надійності та довговічності матеріалів і типових конструкцій.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .history-achievements-header {
+    width: 100%;
+    max-width: none;
+    margin-bottom: 24px;
+    padding: clamp(24px, 4vw, 40px);
+  }
+
+  .history-achievements-header p:last-child {
+    margin-bottom: 0;
+  }
+
+  .history-achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .history-achievement-card {
+    padding: clamp(24px, 4vw, 38px);
+  }
+
+  .history-achievement-card h3 {
+    margin-top: 0;
+    font-size: clamp(1.25rem, 2vw, 1.55rem);
+  }
+
+  .history-achievement-card p {
+    line-height: 1.58;
+  }
+
+  .history-achievement-card p:last-child {
+    margin-bottom: 0;
+  }
+
+  .history-application-card {
+    grid-column: 1 / -1;
+  }
+
+  @media (max-width: 760px) {
+    .history-achievements-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .history-application-card {
+      grid-column: auto;
+    }
+  }
+</style>

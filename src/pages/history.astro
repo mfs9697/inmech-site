@@ -8,6 +8,7 @@ import HistoryWartime from '../components/history/HistoryWartime.astro';
 import HistoryDirectors from '../components/history/HistoryDirectors.astro';
 import HistoryModernInstitute from '../components/history/HistoryModernInstitute.astro';
 import HistoryEducation from '../components/history/HistoryEducation.astro';
+import HistoryPublications from '../components/history/HistoryPublications.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
@@ -43,6 +44,7 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
     <HistoryDirectors />
     <HistoryModernInstitute />
     <HistoryEducation />
+    <HistoryPublications />
 
     <section class="section history-source-section">
       <div class="container history-page-container">

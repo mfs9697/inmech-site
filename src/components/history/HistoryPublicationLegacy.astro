@@ -1,0 +1,98 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+
+const multivolumeEditions = [
+  '«Методи розрахунку оболонок» — 5 томів',
+  '«Механіка композитних матеріалів та елементів конструкцій» — 3 томи',
+  '«Просторові задачі теорії пружності та пластичності» — 6 томів',
+  '«Механіка зв’язаних полів в елементах конструкцій» — 5 томів',
+  '«Некласичні проблеми механіки руйнування» — 4 томи, 5 книг',
+  '«Механіка композитів» — 12 томів',
+  '«Успіхи механіки» — 6 томів, 7 книг',
+  '«Сучасні проблеми механіки» — 3 томи'
+];
+---
+
+<section class="section history-content-section history-publication-legacy-section">
+  <div class="container">
+    <div class="history-publication-legacy-grid">
+      <article class="panel history-multivolume-card">
+        <p class="eyebrow">Узагальнювальні видання</p>
+        <h2>Вісім багатотомних серій</h2>
+        <ul>
+          {multivolumeEditions.map((edition) => <li>{edition}</li>)}
+        </ul>
+        <a class="button secondary" href={withBase('/library/multivolume-editions/')}>Переглянути багатотомні видання</a>
+      </article>
+
+      <article class="panel history-journal-legacy-card">
+        <p class="eyebrow">Історія журналу</p>
+        <h2>Від Soviet Applied Mechanics до International Applied Mechanics</h2>
+        <p>
+          З 1965 року журнал «Прикладна механіка» перекладався у США під назвою
+          <em>Soviet Applied Mechanics</em>: спочатку видавництвом The Faraday Press,
+          а з 1968 року — Plenum Publishing Corporation. Із 1992 року англомовне видання
+          виходить як <em>International Applied Mechanics</em>: спочатку у Kluwer Academic
+          Publishers, а з 2004 року — у Springer.
+        </p>
+        <p>
+          Лише у 2000–2009 роках журнал опублікував близько 170 узагальнювальних оглядових
+          статей, авторами яких були відомі вчені з 26 країн світу.
+        </p>
+        <a class="button primary" href="https://pm.inmech.kyiv.ua/" target="_blank" rel="noopener noreferrer">
+          Сайт журналу
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .history-publication-legacy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .history-multivolume-card,
+  .history-journal-legacy-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: clamp(24px, 4vw, 40px);
+  }
+
+  .history-multivolume-card h2,
+  .history-journal-legacy-card h2 {
+    margin-top: 0;
+    font-size: clamp(1.3rem, 2.2vw, 1.65rem);
+  }
+
+  .history-multivolume-card ul {
+    display: grid;
+    gap: 8px;
+    margin: 8px 0 24px;
+    padding-left: 1.2rem;
+  }
+
+  .history-multivolume-card li,
+  .history-journal-legacy-card p {
+    line-height: 1.52;
+  }
+
+  .history-journal-legacy-card p {
+    color: var(--muted);
+  }
+
+  .history-multivolume-card .button,
+  .history-journal-legacy-card .button {
+    margin-top: auto;
+  }
+
+  @media (max-width: 760px) {
+    .history-publication-legacy-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

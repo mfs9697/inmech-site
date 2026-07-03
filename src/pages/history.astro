@@ -1,216 +1,104 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
+import HistoryOrigins from '../components/history/HistoryOrigins.astro';
+import HistoryMilestones from '../components/history/HistoryMilestones.astro';
+import HistoryScientificSchools from '../components/history/HistoryScientificSchools.astro';
+import HistoryDirectors from '../components/history/HistoryDirectors.astro';
+import HistoryModernInstitute from '../components/history/HistoryModernInstitute.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-
-function withBase(path: string) {
-  if (path.startsWith('http') || path.startsWith('#')) {
-    return path;
-  }
-
-  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
-}
-
-const milestones = [
-  {
-    year: '1918',
-    title: 'Заснування Інституту',
-    text: '30 листопада 1918 року установу створено як Інститут технічної механіки у складі Української академії наук. Першим директором став Степан Прокопович Тимошенко.'
-  },
-  {
-    year: '1929',
-    title: 'Реорганізація установи',
-    text: 'Інститут технічної механіки було розділено на Інститут будівельної механіки та Кабінет транспортної механіки.'
-  },
-  {
-    year: '1941–1944',
-    title: 'Робота в евакуації',
-    text: 'У роки Другої світової війни Інститут продовжував діяльність в евакуації, зберігаючи наукову школу та кадровий потенціал.'
-  },
-  {
-    year: '1959',
-    title: 'Нова назва',
-    text: 'Установа отримала назву Інститут механіки АН УРСР, що відображало розширення її наукового профілю.'
-  },
-  {
-    year: '1993',
-    title: 'Ім’я С. П. Тимошенка',
-    text: 'Інституту присвоєно ім’я його засновника — видатного вченого-механіка Степана Прокоповича Тимошенка.'
-  }
-];
-
-const directors = [
-  'С. П. Тимошенко (1918–1920)',
-  'Д. О. Граве (1921)',
-  'К. К. Симінський (1921–1932)',
-  'С. В. Серенсен (1932–1940)',
-  'М. В. Корноухов (1940–1944)',
-  'Ф. П. Бєлянкін (1944–1958)',
-  'Г. М. Савін (1958–1959)',
-  'А. Д. Коваленко (1959–1965)',
-  'В. О. Кононенко (1965–1975)',
-  'О. М. Гузь (1976–2022)',
-  'В. М. Назаренко (з 2022 року)'
-];
-
-const researchDirections = [
-  'механіка композитних і неоднорідних середовищ;',
-  'механіка оболонкових систем;',
-  'механіка зв’язаних полів у матеріалах і елементах конструкцій;',
-  'механіка руйнування і втома;',
-  'динаміка і стійкість механічних систем.'
-];
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
 ---
 
 <BaseLayout
-  title={`Історія та місія | ${site.name}`}
-  description="Історія, місія та основні напрями діяльності Інституту механіки ім. С.П. Тимошенка НАН України."
+  title={`Історія і сучасність | ${site.name}`}
+  description="Історія, наукові школи та сучасна діяльність Інституту механіки ім. С.П. Тимошенка НАН України."
   activePage="about"
 >
   <section class="page-hero history-hero">
-    <div class="container">
+    <div class="container history-page-container">
       <div class="panel history-hero-panel">
         <p class="eyebrow">Про інститут</p>
-        <h1>Історія та місія</h1>
+        <h1>Інститут механіки ім. С.П. Тимошенка: історія і сучасність</h1>
         <p class="lead">
-          Інститут механіки ім. С. П. Тимошенка НАН України — одна з найстаріших академічних
-          наукових установ технічного профілю в Україні, що поєднує фундаментальні дослідження
-          з інженерними застосуваннями у галузі механіки матеріалів, конструкцій і складних систем.
+          Від першої установи технічного профілю Української академії наук до сучасного
+          наукового центру фундаментальної та прикладної механіки.
+        </p>
+        <p class="history-language-note">
+          <a href={withBase('/en/history/')}>English version</a>
         </p>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container history-grid">
-      <article class="panel history-main-card">
-        <p class="eyebrow">Історична тяглість</p>
-        <h2>Від Інституту технічної механіки до сучасного наукового центру</h2>
-        <p>
-          Інститут був заснований 30 листопада 1918 року як Інститут технічної механіки у складі
-          Української академії наук. Від початку своєї діяльності він формував наукову школу,
-          орієнтовану на розв’язання фундаментальних задач механіки та потреб інженерної практики.
-        </p>
-        <p>
-          У різні періоди розвитку Інститут змінював організаційну структуру і назву, але зберігав
-          головне призначення — розвиток теоретичних, експериментальних і чисельних методів
-          дослідження міцності, деформування, стійкості, динаміки та руйнування матеріалів і конструкцій.
-        </p>
-      </article>
+  <main class="history-page-content">
+    <HistoryOrigins />
+    <HistoryMilestones />
+    <HistoryScientificSchools />
+    <HistoryDirectors />
+    <HistoryModernInstitute />
 
-      <aside class="panel mission-card">
-        <p class="eyebrow">Місія</p>
-        <h2>Наука для міцності, надійності та довговічності</h2>
-        <p>
-          Місія Інституту полягає у розвитку сучасної механіки як фундаментальної основи для
-          створення, аналізу та безпечної експлуатації матеріалів, конструкцій і технічних систем.
+    <section class="section history-source-section">
+      <div class="container history-page-container">
+        <p class="history-source">
+          Текст сторінки підготовлено за матеріалами статті академіка В.Л. Богданова
+          «Інститут механіки ім. С.П. Тимошенка: історія і сучасність» з урахуванням
+          актуальної інформації офіційного сайту Інституту.
         </p>
-        <a class="button secondary" href={withBase('/departments/')}>Перейти до наукових відділів</a>
-      </aside>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <p class="eyebrow">Етапи розвитку</p>
-          <h2 class="section-title">Ключові події в історії Інституту</h2>
-        </div>
       </div>
-
-      <div class="timeline">
-        {milestones.map((item) => (
-          <article class="timeline-item">
-            <div class="timeline-year">{item.year}</div>
-            <div class="timeline-content">
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container history-grid">
-      <article class="panel">
-        <p class="eyebrow">Наукові напрями</p>
-        <h2>Сфера досліджень</h2>
-        <p>
-          Дослідження Інституту охоплюють ключові напрями теоретичної та прикладної механіки.
-          Вони поєднують математичне моделювання, аналітичні підходи, обчислювальні методи,
-          експериментальні дослідження та інженерні застосування.
-        </p>
-        <ul class="history-list">
-          {researchDirections.map((direction) => <li>{direction}</li>)}
-        </ul>
-      </article>
-
-      <article class="panel">
-        <p class="eyebrow">Практичне значення</p>
-        <h2>Застосування результатів</h2>
-        <p>
-          Результати досліджень Інституту використовувалися в ракетно-космічній, авіаційній,
-          кораблебудівній та інших галузях промисловості. Вони спрямовані на оцінювання міцності,
-          надійності й довговічності матеріалів та типових конструкцій різного призначення.
-        </p>
-      </article>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <p class="eyebrow">Керівники установи</p>
-          <h2 class="section-title">Директори Інституту</h2>
-          <p class="section-text">
-            Історія Інституту пов’язана з іменами видатних учених, які формували його наукові школи
-            та напрями розвитку.
-          </p>
-        </div>
-      </div>
-
-      <div class="director-grid">
-        {directors.map((director) => <div class="director-card">{director}</div>)}
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container history-grid">
-      <article class="panel">
-        <p class="eyebrow">Освітня роль</p>
-        <h2>Підготовка наукових кадрів</h2>
-        <p>
-          Інститут здійснює підготовку здобувачів третього рівня вищої освіти та докторантів.
-          Наукова підготовка поєднується з участю молодих учених у дослідницьких проєктах,
-          семінарах, конференціях і роботі наукових підрозділів.
-        </p>
-        <p>
-          У спеціалізованих радах Інституту впродовж багатьох років захищено значну кількість
-          кандидатських і докторських дисертацій, що підтверджує роль установи як важливого центру
-          підготовки кадрів у галузі механіки.
-        </p>
-      </article>
-
-      <article class="panel">
-        <p class="eyebrow">Сучасний Інститут</p>
-        <h2>Наукова спільнота і спадкоємність</h2>
-        <p>
-          В Інституті працюють академіки, члени-кореспонденти НАН України, доктори й кандидати наук,
-          а також висококваліфікований інженерно-технічний персонал. Досягнення науковців відзначені
-          державними преміями та преміями НАН України імені видатних учених.
-        </p>
-        <p>
-          Інститут також видає міжнародний науковий журнал
-          <a href="https://pm.inmech.kyiv.ua/" target="_blank" rel="noopener">«Прикладна механіка»</a>,
-          заснований у 1955 році.
-        </p>
-      </article>
-    </div>
-  </section>
+    </section>
+  </main>
 </BaseLayout>
+
+<style is:global>
+  .history-page-container {
+    width: min(100% - 32px, 1080px);
+    margin-inline: auto;
+  }
+
+  .history-hero-panel {
+    width: 100%;
+    max-width: 980px;
+    margin-inline: auto;
+    padding: clamp(28px, 4vw, 50px);
+  }
+
+  .history-language-note {
+    margin-top: 1rem;
+    font-size: 0.96rem;
+    line-height: 1.45;
+  }
+
+  .history-language-note a {
+    font-weight: 800;
+  }
+
+  .history-content-section + .history-content-section {
+    border-top: 1px solid var(--line);
+  }
+
+  .history-source-section {
+    padding-top: 0;
+  }
+
+  .history-source {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 24px 0 0;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 760px) {
+    .history-page-container {
+      width: min(100% - 24px, 1080px);
+    }
+
+    .history-hero-panel {
+      padding: 24px;
+    }
+  }
+</style>

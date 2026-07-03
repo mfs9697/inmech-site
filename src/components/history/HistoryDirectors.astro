@@ -7,7 +7,7 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
 
 <section class="section history-content-section history-directors-section">
   <div class="container">
-    <div class="section-header history-directors-header">
+    <div class="section-header history-directors-header panel">
       <div>
         <p class="eyebrow">Керівники установи</p>
         <h2 class="section-title">Директори Інституту</h2>
@@ -20,35 +20,29 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
     </div>
 
     <div class="director-grid history-director-grid">
-      {historyDirectors.map((director, index) => (
-        <article
+      {historyDirectors.map((director) => (
+        <figure
           class:list={[
-            'director-card',
+            'panel',
             'history-director-card',
             director.featured && 'is-featured',
             director.current && 'is-current'
           ]}
         >
-          <div class="director-photo-frame">
-            <img
-              src={withBase(director.photo)}
-              alt={`Портрет ${director.name}`}
-              loading="lazy"
-              width="120"
-              height="160"
-            />
-          </div>
-
-          <div class="director-card-body">
-            <div class="director-card-topline">
-              <span class="director-index">{String(index + 1).padStart(2, '0')}</span>
-              <span class="director-period">{director.period}</span>
-            </div>
-            <h3>{director.name}</h3>
-            {director.note && <p>{director.note}</p>}
-            {director.current && <span class="director-status">Нині очолює Інститут</span>}
-          </div>
-        </article>
+          <img
+            src={withBase(director.photo)}
+            alt={`Портрет ${director.name}`}
+            loading="lazy"
+            width="120"
+            height="160"
+          />
+          <figcaption>
+            <strong>{director.name}</strong>
+            <span class="director-period">{director.period}</span>
+            {director.note && <small>{director.note}</small>}
+            {director.current && <small class="director-status">Нині очолює Інститут</small>}
+          </figcaption>
+        </figure>
       ))}
     </div>
   </div>
@@ -56,13 +50,19 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
 
 <style>
   .history-directors-header {
-    max-width: 900px;
+    width: 100%;
+    max-width: none;
     margin-bottom: 28px;
+    padding: clamp(24px, 4vw, 40px);
+  }
+
+  .history-directors-header p:last-child {
+    margin-bottom: 0;
   }
 
   .history-director-grid {
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 14px;
+    gap: 16px;
   }
 
   .history-director-card {
@@ -70,20 +70,10 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
     min-width: 0;
     min-height: 0;
     flex-direction: column;
-    padding: 0;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .history-director-card::after {
-    content: '';
-    position: absolute;
-    inset: auto -30px -34px auto;
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background: rgba(29, 79, 145, 0.06);
-    pointer-events: none;
+    align-items: center;
+    margin: 0;
+    padding: 18px;
+    text-align: center;
   }
 
   .history-director-card.is-featured {
@@ -95,88 +85,44 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
     box-shadow: 0 10px 22px rgba(15, 31, 52, 0.09);
   }
 
-  .director-photo-frame {
-    width: 120px;
-    aspect-ratio: 3 / 4;
-    margin: 16px auto 0;
-    overflow: hidden;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    background: var(--surface-soft);
-  }
-
-  .director-photo-frame img {
+  .history-director-card img {
     display: block;
-    width: 100%;
-    height: 100%;
+    width: 120px;
+    height: 160px;
     object-fit: cover;
     object-position: center 22%;
+    border-radius: 12px;
     filter: grayscale(1);
   }
 
-  .director-card-body {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    padding: 14px 14px 16px;
-    position: relative;
-    z-index: 1;
-    text-align: center;
+  .history-director-card figcaption {
+    display: grid;
+    justify-items: center;
+    gap: 6px;
+    width: 100%;
+    margin-top: 14px;
   }
 
-  .director-card-topline {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 10px;
-  }
-
-  .director-index {
-    color: var(--muted);
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.06em;
+  .history-director-card figcaption > strong {
+    color: var(--heading);
+    font-size: 1.02rem;
+    line-height: 1.25;
   }
 
   .director-period {
-    display: inline-flex;
-    width: fit-content;
-    padding: 4px 8px;
-    border-radius: 999px;
-    background: var(--accent-soft);
     color: var(--accent-dark);
-    font-size: 0.74rem;
+    font-size: 0.78rem;
     font-weight: 850;
-    white-space: nowrap;
   }
 
-  .history-director-card.is-featured .director-period {
-    background: rgba(184, 135, 47, 0.14);
-    color: var(--gold);
-  }
-
-  .history-director-card h3 {
-    margin: 0;
-    color: var(--heading);
-    font-size: clamp(1rem, 1.45vw, 1.16rem);
-    line-height: 1.2;
-  }
-
-  .history-director-card p {
-    margin: 8px 0 0;
+  .history-director-card small {
     color: var(--muted);
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     line-height: 1.4;
   }
 
   .director-status {
-    display: inline-flex;
-    justify-content: center;
-    margin-top: auto;
-    padding-top: 10px;
-    color: var(--accent-dark);
-    font-size: 0.76rem;
+    color: var(--accent-dark) !important;
     font-weight: 850;
   }
 

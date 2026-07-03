@@ -1,0 +1,26 @@
+---
+import { historyMilestones } from '../../data/history';
+---
+
+<section class="section history-content-section">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">Етапи розвитку</p>
+        <h2 class="section-title">Ключові події в історії Інституту</h2>
+      </div>
+    </div>
+
+    <div class="timeline">
+      {historyMilestones.map((item) => (
+        <article class="timeline-item">
+          <div class="timeline-year">{item.year}</div>
+          <div class="timeline-content">
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

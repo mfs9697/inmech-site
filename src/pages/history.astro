@@ -13,7 +13,7 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
 
 <BaseLayout
   title={`Історія і сучасність | ${site.name}`}
-  description="Історія, наукові школи та сучасна діяльність Інституту механіки ім. С.П. Тимошенка НАН України."
+  description="Заснування, зміни назви, наукові школи та сучасна діяльність Інституту механіки ім. С.П. Тимошенка НАН України."
   activePage="about"
 >
   <section class="page-hero history-hero">
@@ -22,8 +22,9 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
         <p class="eyebrow">Про інститут</p>
         <h1>Інститут механіки ім. С.П. Тимошенка: історія і сучасність</h1>
         <p class="lead">
-          Від першої установи технічного профілю Української академії наук до сучасного
-          наукового центру фундаментальної та прикладної механіки.
+          Заснований 30 листопада 1918 року як перша установа технічного профілю
+          Української академії наук, Інститут упродовж понад століття розвиває
+          фундаментальні й прикладні дослідження в галузі механіки.
         </p>
         <p class="history-language-note">
           <a href={withBase('/en/history/')}>English version</a>
@@ -70,7 +71,8 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
     line-height: 1.45;
   }
 
-  .history-language-note a {
+  .history-language-note a,
+  .history-inline-link {
     font-weight: 800;
   }
 

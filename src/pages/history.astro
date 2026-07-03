@@ -58,7 +58,7 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
 
 <style is:global>
   .history-page-container {
-    width: min(100% - 32px, 1080px);
+    width: min(100% - 32px, var(--max));
     margin-inline: auto;
   }
 
@@ -86,7 +86,7 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
 
   @media (max-width: 760px) {
     .history-page-container {
-      width: min(100% - 24px, 1080px);
+      width: min(100% - 24px, var(--max));
     }
 
     .history-hero-panel {

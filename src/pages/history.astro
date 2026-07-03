@@ -5,6 +5,7 @@ import HistoryOrigins from '../components/history/HistoryOrigins.astro';
 import HistoryMilestones from '../components/history/HistoryMilestones.astro';
 import HistoryScientificSchools from '../components/history/HistoryScientificSchools.astro';
 import HistoryWartime from '../components/history/HistoryWartime.astro';
+import HistoryAchievements from '../components/history/HistoryAchievements.astro';
 import HistoryDirectors from '../components/history/HistoryDirectors.astro';
 import HistoryModernInstitute from '../components/history/HistoryModernInstitute.astro';
 import HistoryEducation from '../components/history/HistoryEducation.astro';
@@ -43,6 +44,7 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
     <HistoryMilestones />
     <HistoryScientificSchools />
     <HistoryWartime />
+    <HistoryAchievements />
     <HistoryDirectors />
     <HistoryModernInstitute />
     <HistoryEducation />
@@ -60,7 +62,7 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
 
   .history-hero-panel {
     width: 100%;
-    max-width: 980px;
+    max-width: none;
     margin-inline: auto;
     padding: clamp(28px, 4vw, 50px);
   }

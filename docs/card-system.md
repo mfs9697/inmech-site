@@ -6,10 +6,10 @@ The site uses one global structural card system in `src/styles/cards.css` and a 
 
 Card structure and card meaning are independent:
 
-- classes beginning with `site-card` define layout, spacing, interaction and decorative elements;
+- classes beginning with `site-card` define layout, spacing and interaction;
 - `data-block-tone` defines semantic colour: `neutral`, `information`, `heritage` or `emphasis`.
 
-A card must not receive a different colour merely because of its position, odd/even order or department number.
+A card must not receive a different colour merely because of its position, odd/even order or department number. Global cards do not use decorative colour strips at their upper or lower edges; colour is provided only by the semantic tone.
 
 ## Base card
 
@@ -34,7 +34,7 @@ The grid uses three columns on large screens, two on medium screens and one on s
 ## Structural modifiers
 
 - `site-card--interactive` — hover and keyboard-focus movement for clickable cards;
-- `site-card--navigation` — tall navigation card with a blue–gold top band and lower-right circular decoration;
+- `site-card--navigation` — tall navigation card without decorative colour strips;
 - `site-card--featured` — spans two grid columns without assigning a colour;
 - `site-card--stat` — compact horizontal statistic card;
 - `site-card--note` — spacious explanatory or concluding card.

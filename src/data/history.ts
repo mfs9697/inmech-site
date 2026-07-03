@@ -32,42 +32,42 @@ export const historyDirectors = [
   {
     name: 'Д.О. Граве',
     period: '1921',
-    photoKey: 'grave'
+    photo: '/assets/img/history/directors/grave.jpg'
   },
   {
     name: 'К.К. Симінський',
     period: '1921–1932',
-    photoKey: 'syminskiy'
+    photo: '/assets/img/history/directors/syminskiy.jpg'
   },
   {
     name: 'С.В. Серенсен',
     period: '1932–1940',
-    photoKey: 'serensen'
+    photo: '/assets/img/history/directors/serensen.jpg'
   },
   {
     name: 'М.В. Корноухов',
     period: '1940–1944',
-    photoKey: 'kornoukhov'
+    photo: '/assets/img/history/directors/kornoukhov.jpg'
   },
   {
     name: 'Ф.П. Бєлянкін',
     period: '1944–1958',
-    photoKey: 'beliankin'
+    photo: '/assets/img/history/directors/beliankin.jpg'
   },
   {
     name: 'Г.М. Савін',
     period: '1958–1959',
-    photoKey: 'savin'
+    photo: '/assets/img/history/directors/savin.jpg'
   },
   {
     name: 'А.Д. Коваленко',
     period: '1959–1965',
-    photoKey: 'kovalenko'
+    photo: '/assets/img/history/directors/kovalenko.jpg'
   },
   {
     name: 'В.О. Кононенко',
     period: '1965–1975',
-    photoKey: 'kononenko'
+    photo: '/assets/img/history/directors/kononenko.jpg'
   },
   {
     name: 'О.М. Гузь',

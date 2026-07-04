@@ -33,6 +33,7 @@ const englishAlternativePath = getEnglishPath(Astro.url.pathname, base);
 const hasAlternative = hasEnglishAlternative(Astro.url.pathname, base);
 const ukrainianAlternativeUrl = absoluteUrl(currentPath);
 const englishAlternativeUrl = absoluteUrl(englishAlternativePath);
+const pageProvidesMainLandmark = currentPath.startsWith('/postgraduate/');
 ---
 
 <!doctype html>
@@ -58,9 +59,15 @@ const englishAlternativeUrl = absoluteUrl(englishAlternativePath);
   <body>
     <a class="skip-link" href="#main">Перейти до змісту</a>
     <Header activePage={activePage} />
-    <main id="main">
-      <slot />
-    </main>
+    {pageProvidesMainLandmark ? (
+      <div id="main" tabindex="-1">
+        <slot />
+      </div>
+    ) : (
+      <main id="main">
+        <slot />
+      </main>
+    )}
     <Footer />
     <script>
       import '../scripts/navigation';

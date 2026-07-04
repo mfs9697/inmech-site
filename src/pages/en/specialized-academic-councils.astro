@@ -14,9 +14,11 @@ const targetUrl = `${base}${targetPath}`;
     <link rel="canonical" href={targetUrl} />
   </head>
   <body>
-    <p>
-      Redirecting to <a href={targetUrl}>Specialized Academic Councils</a>.
-    </p>
+    <main>
+      <p>
+        Redirecting to <a href={targetUrl}>Specialized Academic Councils</a>.
+      </p>
+    </main>
     <script is:inline>
       window.location.replace(document.querySelector('a')?.href || '/en/specialized-councils/');
     </script>

@@ -96,8 +96,6 @@ const councilMembers = [
 ];
 
 const leadershipCount = councilMembers.filter((member) => member.councilRole).length;
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const ukrainianUrl = `${base}/scientific-council/`;
 ---
 
 <BaseLayoutEn
@@ -115,9 +113,6 @@ const ukrainianUrl = `${base}/scientific-council/`;
           is a collegial body that considers key issues of scientific, scientific-organisational,
           educational and research-training activity of the Institute.
         </p>
-        <div class="hero-actions">
-          <a class="button ghost" href={ukrainianUrl}>Ukrainian version</a>
-        </div>
       </div>
     </div>
   </section>
@@ -143,11 +138,6 @@ const ukrainianUrl = `${base}/scientific-council/`;
         <div>
           <p class="eyebrow">Council composition</p>
           <h2 class="section-title">Members of the Scientific Council</h2>
-          <p class="section-text">
-            The Council brings together leading researchers of the Institute, representatives of its
-            administration, the scientific secretary, and representatives of the Institute's professional
-            and young-scientist communities.
-          </p>
         </div>
       </div>
 

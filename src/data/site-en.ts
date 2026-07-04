@@ -4,7 +4,7 @@ export const siteEn = {
   shortName: 'Institute of Mechanics',
   subtitle: 'National Academy of Sciences of Ukraine',
   heroSubtitle: 'Fundamental and applied research in mechanics',
-  officialLabel: 'Official website of the Institute',
+  officialLabel: 'Official website',
   description:
     'Fundamental and applied research in solid mechanics, dynamics, stability, thermoelasticity, creep, fracture mechanics and mechanics of composite materials.',
   address: '3 Nesterova St., Kyiv, 03057, Ukraine',

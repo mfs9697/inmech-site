@@ -101,8 +101,8 @@ const isPathPrefixActive = (path: string) => currentPath.startsWith(normalizeSit
     </nav>
 
     <div class="lang-switch nav-lang-switch" aria-label="Вибір мови">
-      <a class="active" href={withBase(currentPath)} aria-current="page">Українська</a>
-      <a href={withBase(englishPath)}>English</a>
+      <span class="active" aria-current="page">Українська</span>
+      <a href={withBase(englishPath)} data-language-switch>English</a>
     </div>
   </div>
 </div>
@@ -163,7 +163,10 @@ const isPathPrefixActive = (path: string) => currentPath.startsWith(normalizeSit
     border-left: 1px solid var(--line);
   }
 
-  .nav-lang-switch a {
+  .nav-lang-switch a,
+  .nav-lang-switch span {
+    display: inline-flex;
+    align-items: center;
     padding: 6px 8px;
     border-radius: 10px;
     color: var(--text);
@@ -180,6 +183,7 @@ const isPathPrefixActive = (path: string) => currentPath.startsWith(normalizeSit
   .nav-lang-switch .active {
     background: var(--accent);
     color: #ffffff;
+    cursor: default;
   }
 
   .primary-nav .submenu {
@@ -206,7 +210,8 @@ const isPathPrefixActive = (path: string) => currentPath.startsWith(normalizeSit
       padding-left: 8px;
     }
 
-    .nav-lang-switch a {
+    .nav-lang-switch a,
+    .nav-lang-switch span {
       padding: 6px 7px;
       font-size: 0.84rem;
     }

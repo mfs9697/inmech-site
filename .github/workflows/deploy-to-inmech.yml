@@ -53,6 +53,13 @@ jobs:
           test -f dist/sitemap-index.xml
           test -f dist/sitemap-0.xml
 
+      - name: Upload generated site
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-generated-site
+          path: dist
+          retention-days: 1
+
       - name: Check page landmarks
         run: node scripts/check-main-landmarks.mjs
 

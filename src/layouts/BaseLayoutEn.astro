@@ -8,6 +8,7 @@ import '../styles/history-directors-en.css';
 import '../styles/specialized-councils.css';
 import '../styles/home-hero.css';
 import '../styles/navigation.css';
+import '../styles/dropdown-navigation.css';
 import '../styles/block-colors.css';
 
 interface Props {
@@ -63,15 +64,7 @@ const englishAlternativeUrl = absoluteUrl(currentPath);
     </main>
     <FooterEn />
     <script>
-      const menuToggle = document.querySelector('.menu-toggle');
-      const nav = document.querySelector('.primary-nav');
-
-      if (menuToggle && nav) {
-        menuToggle.addEventListener('click', () => {
-          const isOpen = nav.classList.toggle('open');
-          menuToggle.setAttribute('aria-expanded', String(isOpen));
-        });
-      }
+      import '../scripts/navigation';
     </script>
     <style is:global>
       .publication-details summary,

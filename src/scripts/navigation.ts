@@ -2,8 +2,9 @@ const menuToggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
 const nav = document.querySelector<HTMLElement>('.primary-nav');
 
 if (nav) {
+  const primaryNav = nav;
   const submenuButtons = Array.from(
-    nav.querySelectorAll<HTMLButtonElement>('.nav-label[aria-controls]')
+    primaryNav.querySelectorAll<HTMLButtonElement>('.nav-label[aria-controls]')
   );
   const desktopMedia = window.matchMedia('(min-width: 941px)');
 
@@ -35,7 +36,7 @@ if (nav) {
   }
 
   function setMenuState(open: boolean) {
-    nav.classList.toggle('open', open);
+    primaryNav.classList.toggle('open', open);
     menuToggle?.setAttribute('aria-expanded', String(open));
 
     if (!desktopMedia.matches) {
@@ -91,7 +92,7 @@ if (nav) {
   });
 
   menuToggle?.addEventListener('click', () => {
-    setMenuState(!nav.classList.contains('open'));
+    setMenuState(!primaryNav.classList.contains('open'));
   });
 
   document.addEventListener('click', (event) => {
@@ -101,7 +102,7 @@ if (nav) {
       return;
     }
 
-    if (!nav.contains(target) && !menuToggle?.contains(target)) {
+    if (!primaryNav.contains(target) && !menuToggle?.contains(target)) {
       closeSubmenus();
 
       if (!desktopMedia.matches) {
@@ -125,14 +126,14 @@ if (nav) {
       return;
     }
 
-    if (nav.classList.contains('open')) {
+    if (primaryNav.classList.contains('open')) {
       setMenuState(false);
       menuToggle?.focus();
     }
   });
 
   desktopMedia.addEventListener('change', () => {
-    nav.classList.remove('open');
+    primaryNav.classList.remove('open');
     menuToggle?.setAttribute('aria-expanded', 'false');
     closeSubmenus();
   });

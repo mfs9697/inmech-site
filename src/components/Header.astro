@@ -55,8 +55,11 @@ const englishPath = getEnglishPath(Astro.url.pathname, base);
         <li><a class={isActive('home')} href={withBase('/')}>Головна</a></li>
 
         <li>
-          <span class={`nav-label ${isActive('about')}`}>Про інститут ▾</span>
-          <ul class="submenu">
+          <button class={`nav-label ${isActive('about')}`} type="button" aria-expanded="false" aria-controls="submenu-about">
+            <span>Про інститут</span>
+            <span class="submenu-indicator" aria-hidden="true">▾</span>
+          </button>
+          <ul class="submenu" id="submenu-about">
             <li><a class={isActive('about')} href={withBase('/history/')}>Історія і сучасність</a></li>
             <li><a class={isActive('about')} href={withBase('/founder/')}>Засновник інституту</a></li>
             <li><a class={isActive('about')} href={withBase('/regulations/')}>Статут</a></li>
@@ -67,8 +70,11 @@ const englishPath = getEnglishPath(Astro.url.pathname, base);
         </li>
 
         <li>
-          <span class={`nav-label ${isActive('departments')}`}>Структура ▾</span>
-          <ul class="submenu">
+          <button class={`nav-label ${isActive('departments')}`} type="button" aria-expanded="false" aria-controls="submenu-structure">
+            <span>Структура</span>
+            <span class="submenu-indicator" aria-hidden="true">▾</span>
+          </button>
+          <ul class="submenu" id="submenu-structure">
             <li><a class={isActive('departments')} href={withBase('/management/')}>Дирекція</a></li>
             <li><a class={isActive('departments')} href={withBase('/departments/')}>Наукові відділи</a></li>
             <li><a class={isActive('departments')} href={withBase('/scientific-council/')}>Вчена рада</a></li>
@@ -79,8 +85,11 @@ const englishPath = getEnglishPath(Astro.url.pathname, base);
         </li>
 
         <li>
-          <span class={`nav-label ${isActive('education')}`}>Освітньо-наукова діяльність ▾</span>
-          <ul class="submenu">
+          <button class={`nav-label ${isActive('education')}`} type="button" aria-expanded="false" aria-controls="submenu-education">
+            <span>Освітньо-наукова діяльність</span>
+            <span class="submenu-indicator" aria-hidden="true">▾</span>
+          </button>
+          <ul class="submenu" id="submenu-education">
             <li><a class={isActive('education')} href={withBase('/education/')}>Огляд розділу</a></li>
             <li><a class={isActive('education')} href={withBase('/postgraduate/')}>Аспірантура</a></li>
             <li><a class={isActive('education')} href={withBase('/doctoral/')}>Докторантура</a></li>

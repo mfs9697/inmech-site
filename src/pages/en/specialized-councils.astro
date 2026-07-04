@@ -251,7 +251,6 @@ const councils: Array<{
 ];
 
 const totalMembers = councils.reduce((sum, council) => sum + council.people.length, 0);
-const leadershipMembers = councils.reduce((sum, council) => sum + council.people.filter((person) => person.councilRole).length, 0);
 ---
 
 <BaseLayoutEn
@@ -269,9 +268,6 @@ const leadershipMembers = councils.reduce((sum, council) => sum + council.people
           academic councils for awarding the scientific degree of Doctor of Sciences in
           mechanics-related specialties.
         </p>
-        <div class="hero-actions">
-          <a class="button secondary" href="/specialized-councils/">Ukrainian version</a>
-        </div>
       </div>
     </div>
   </section>
@@ -287,28 +283,7 @@ const leadershipMembers = councils.reduce((sum, council) => sum + council.people
           <span>{totalMembers}</span>
           <p>council members</p>
         </article>
-        <article class="specialized-summary-card">
-          <span>{leadershipMembers}</span>
-          <p>leadership positions</p>
-        </article>
       </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <article class="card prose-card">
-        <h2>Council profile</h2>
-        <p>
-          The councils consider doctoral dissertations in the fields of physical and mathematical
-          sciences and technical sciences. Their activity covers theoretical mechanics and the
-          mechanics of deformable solids, reflecting the Institute’s core scientific profile.
-        </p>
-        <p>
-          The information below is an English presentation of the current council composition.
-          Official records, orders and defence materials are maintained in Ukrainian.
-        </p>
-      </article>
     </div>
   </section>
 

@@ -159,12 +159,6 @@ a:hover { color: var(--accent-dark); text-decoration: underline; }
   transform: translateY(-6px);
   transition: 0.18s ease;
 }
-.primary-nav li:hover .submenu,
-.primary-nav li:focus-within .submenu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
 .primary-nav .submenu a {
   display: block;
   padding: 9px 10px;

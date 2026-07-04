@@ -19,12 +19,6 @@
   transform: rotate(180deg);
 }
 
-.primary-nav li:focus-within:not(.submenu-open):not(:hover) > .submenu {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-6px);
-}
-
 .primary-nav li.submenu-open > .submenu {
   opacity: 1;
   visibility: visible;

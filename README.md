@@ -32,7 +32,10 @@ inmech-site/
     layouts/
     pages/
     styles/
+  scripts/
+    check-main-landmarks.mjs
   .github/
+    CODEOWNERS
     scripts/
     workflows/
       deploy-to-inmech.yml
@@ -80,23 +83,24 @@ npm.cmd run build
 
 ## Збереження змін
 
-Для невеликих перевірених змін:
+Гілка `main` захищена. Прямі зміни та команда `git push origin main` не використовуються. Кожне оновлення сайту, документації або конфігурації виконується в окремій гілці та надсилається через Pull Request.
 
 ```powershell
-git status
-git add .
-git commit -m "Update site content"
-git push origin main
-```
-
-Для суттєвих змін безпечніше створити окрему гілку та Pull Request:
-
-```powershell
+git checkout main
+git pull
 git checkout -b descriptive-branch-name
+git status
 git add .
 git commit -m "Describe the change"
 git push -u origin descriptive-branch-name
 ```
+
+Після завантаження гілки потрібно відкрити Pull Request до `main`. Для злиття обов’язкові дві умови:
+
+1. перевірка `validate` має завершитися успішно;
+2. Code Owner `@mfs9697` має переглянути та схвалити зміни.
+
+Лише власник сайту зливає схвалений Pull Request у `main`. Інші редактори, зокрема секретар, готують зміни та відкривають Pull Request, але не публікують їх самостійно.
 
 ## Розгортання
 
@@ -106,26 +110,26 @@ git push -u origin descriptive-branch-name
 .github/workflows/deploy-to-inmech.yml
 ```
 
-Workflow запускається автоматично після потрапляння змін у `main`, якщо змінено файли сайту або конфігурацію збірки. Його також можна запустити вручну:
+Workflow має назву **Validate and deploy Astro site** і працює у двох режимах.
+
+Для кожного Pull Request job `validate`:
+
+1. встановлює залежності командою `npm ci`;
+2. збирає Astro-сайт;
+3. перевіряє наявність файлів sitemap;
+4. перевіряє, що кожна згенерована HTML-сторінка містить рівно один елемент `<main>`.
+
+Після злиття змін у `main` job `build-and-deploy` повторює перевірки та копіює вміст `dist/` на сервер через захищене SSH-з’єднання. Workflow також можна запустити вручну:
 
 ```text
-GitHub → Actions → Deploy Astro site to inmech.kyiv.ua → Run workflow
+GitHub → Actions → Validate and deploy Astro site → Run workflow
 ```
-
-Workflow:
-
-1. отримує останню версію репозиторію;
-2. перевіряє дозволені зміни для користувачів з обмеженим доступом;
-3. встановлює залежності;
-4. збирає Astro-сайт;
-5. перевіряє sitemap;
-6. копіює вміст `dist/` на сервер через захищене SSH-з’єднання.
 
 `astro.config.mjs` використовує робочу адресу `https://new.inmech.kyiv.ua` і base path `/`. За потреби адресу можна перевизначити змінною середовища `INMECH_SITE_URL`.
 
 Дані доступу до сервера зберігаються лише в GitHub Actions secrets. Їх не можна публікувати в репозиторії, надсилати у відкритому вигляді або передавати редакторам контенту.
 
-Зміни лише в `README.md` не запускають розгортання, оскільки не впливають на зібраний сайт.
+Pull Request зі змінами лише в `README.md` також проходить перевірку `validate`, але після злиття не запускає розгортання, оскільки документація не впливає на зібраний сайт.
 
 ## Правило кольорів для блоків
 
@@ -177,8 +181,12 @@ emphasis
 4. ChatGPT створює Markdown-файл у `src/content/news/YYYY/`.
 5. ChatGPT заповнює українські та англійські поля frontmatter.
 6. Зображення завантажуються в `public/images/news/YYYY/`.
-7. Зміни перевіряються у Pull Request або локально.
-8. Після злиття в `main` сайт оновлюється автоматично.
+7. ChatGPT створює окрему гілку та відкриває Pull Request до `main`.
+8. GitHub автоматично запускає перевірку `validate`.
+9. `@mfs9697` переглядає зміни як Code Owner і схвалює або повертає їх на доопрацювання.
+10. Після схвалення власник сайту зливає Pull Request у `main`, і сайт оновлюється автоматично.
+
+Секретар не виконує прямий запис у `main`, не зливає Pull Request і не редагує файли на сервері.
 
 Приклад запиту:
 
@@ -191,6 +199,7 @@ emphasis
 Файл новини створи в src/content/news/2026/.
 Рисунки будуть завантажені в public/images/news/2026/.
 Не змінюй інші файли без потреби.
+Створи окрему гілку та Pull Request. Не зливай Pull Request і не змінюй `main` без схвалення Code Owner.
 
 Назва:
 ...
@@ -330,9 +339,10 @@ externalUrl: "https://example.com/news-page"
 3. Заповнити frontmatter.
 4. Перевірити локально командою `npm.cmd run dev`.
 5. Перевірити збірку командою `npm.cmd run build`.
-6. Зберегти зміни в GitHub безпосередньо або через Pull Request.
-7. Після потрапляння змін у `main` workflow оновить `new.inmech.kyiv.ua`.
-8. Після успішного деплою перевірити сторінку та за потреби використати `Ctrl + F5`.
+6. Зберегти зміни в окремій гілці та відкрити Pull Request до `main`.
+7. Дочекатися успішної перевірки `validate` та схвалення Code Owner `@mfs9697`.
+8. Після злиття власником сайту workflow оновить `new.inmech.kyiv.ua`.
+9. Після успішного деплою перевірити сторінку та за потреби використати `Ctrl + F5`.
 
 ## Відділи
 
@@ -366,4 +376,5 @@ staff:
 
 ## Головне правило
 
-Редагуємо сайт у GitHub або локальній копії репозиторію. Сервер `new.inmech.kyiv.ua` використовується лише для публікації готової зібраної версії сайту.
+Редагуємо сайт у GitHub або локальній копії репозиторію, завжди через окрему гілку та Pull Request. Сервер `new.inmech.kyiv.ua` використовується лише для публікації готової зібраної версії сайту.
+

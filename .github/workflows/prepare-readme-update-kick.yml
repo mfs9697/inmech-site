@@ -1,0 +1,26 @@
+name: Kick README update workflow
+
+on:
+  push:
+    branches:
+      - document-protected-workflow
+    paths:
+      - '.github/workflows/prepare-readme-update-trigger.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  touch-trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: document-protected-workflow
+      - run: |
+          printf '\n# triggered\n' >> .github/workflows/prepare-readme-update-trigger.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/workflows/prepare-readme-update-trigger.yml
+          git commit -m "Trigger README update workflow"
+          git push origin HEAD:document-protected-workflow

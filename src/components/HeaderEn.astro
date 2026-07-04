@@ -151,8 +151,14 @@ const isPathPrefixActive = (path: string) => currentPath.startsWith(normalizeSit
   }
 
   .nav-row {
+    min-height: 54px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+    position: relative;
+  }
+
+  .primary-nav .submenu {
+    z-index: 1100;
   }
 </style>

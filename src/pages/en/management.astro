@@ -5,7 +5,6 @@ import { siteEn } from '../../data/site-en';
 const administration = [
   {
     name: 'Volodymyr M. Nazarenko',
-    originalName: 'Назаренко Володимир Михайлович',
     role: 'Acting Director of the Institute',
     degree: 'Academician of the NAS of Ukraine',
     email: 'vm_nazarenko@inmech.kyiv.ua',
@@ -14,7 +13,6 @@ const administration = [
   },
   {
     name: 'Oleksandr M. Huz',
-    originalName: 'Гузь Олександр Миколайович',
     role: 'Adviser to the Directorate',
     degree: 'Academician of the NAS of Ukraine; Member of the European Academy of Sciences; Fellow of the New York Academy of Sciences; Fellow of the World Innovation Foundation',
     email: 'guz@inmech.kyiv.ua',
@@ -23,7 +21,6 @@ const administration = [
   },
   {
     name: 'Yevhen A. Storozhuk',
-    originalName: 'Сторожук Євген Анатолійович',
     role: 'Deputy Director for Scientific and Organizational Work',
     degree: 'Doctor of Physical and Mathematical Sciences; Corresponding Member of the NAS of Ukraine',
     email: 'stevan@ukr.net',
@@ -32,7 +29,6 @@ const administration = [
   },
   {
     name: 'Mykhailo F. Selivanov',
-    originalName: 'Селіванов Михайло Федорович',
     role: 'Deputy Director for Scientific Work',
     degree: 'Doctor of Physical and Mathematical Sciences; Corresponding Member of the NAS of Ukraine',
     email: 'mfs@ukr.net',
@@ -41,7 +37,6 @@ const administration = [
   },
   {
     name: 'Volodymyr A. Korenev',
-    originalName: 'Корєнєв Володимир Антонович',
     role: 'Deputy Director for General Affairs',
     degree: '',
     email: 'kvant2244@gmail.com',
@@ -50,7 +45,6 @@ const administration = [
   },
   {
     name: 'Yurii V. Skosarenko',
-    originalName: 'Скосаренко Юрій Валентинович',
     role: 'Scientific Secretary of the Institute',
     degree: 'Leading Researcher; Doctor of Technical Sciences',
     email: 'yuskos@ukr.net',
@@ -94,25 +88,12 @@ function initials(name: string) {
           The Directorate of the S.P. Timoshenko Institute of Mechanics of the National Academy of Sciences of Ukraine
           coordinates the Institute’s scientific, educational, organizational, administrative and general institutional activity.
         </p>
-        <div class="hero-actions">
-          <a class="button button-secondary" href={withBase('/management/')}>Ukrainian version</a>
-        </div>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <div class="section-header">
-        <div>
-          <p class="eyebrow">Administration</p>
-          <h2 class="section-title">Directorate and scientific administration</h2>
-          <p class="section-text">
-            This page provides contact information and areas of responsibility for the Institute’s management team.
-          </p>
-        </div>
-      </div>
-
       <div class="management-grid">
         {administration.map((person) => (
           <article class="management-card">
@@ -134,7 +115,6 @@ function initials(name: string) {
             <div class="management-body">
               <p class="management-accent">{person.accent}</p>
               <h2>{person.name}</h2>
-              <p class="management-original-name">{person.originalName}</p>
               <p class="management-role">{person.role}</p>
               {person.degree && <p class="management-degree">{person.degree}</p>}
               {person.email && (

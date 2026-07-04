@@ -6,7 +6,7 @@ if (nav) {
   const submenuButtons = Array.from(
     primaryNav.querySelectorAll<HTMLButtonElement>('.nav-label[aria-controls]')
   );
-  const desktopMedia = window.matchMedia('(min-width: 941px)');
+  const desktopMedia = window.matchMedia('(min-width: 1121px)');
 
   function submenuFor(button: HTMLButtonElement) {
     const submenuId = button.getAttribute('aria-controls');

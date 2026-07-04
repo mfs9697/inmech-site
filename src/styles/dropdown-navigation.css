@@ -25,7 +25,7 @@
   transform: translateY(0);
 }
 
-@media (max-width: 940px) {
+@media (max-width: 1120px) {
   .primary-nav button.nav-label {
     justify-content: space-between;
   }

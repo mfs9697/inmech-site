@@ -25,20 +25,11 @@ const isPathPrefixActive = (path: string) => currentPath.startsWith(normalizeSit
 ---
 
 <header class="site-header">
-  <div class="topbar">
-    <div class="container">
-      <span>{site.officialLabel}</span>
-      <div class="lang-switch" aria-label="Вибір мови">
-        <a class="active" href={withBase(currentPath)} aria-current="page">Українська</a>
-        <a href={withBase(englishPath)}>English</a>
-      </div>
-    </div>
-  </div>
-
   <div class="container header-main brand-main">
     <a class="brand" href={withBase('/')} aria-label="Головна сторінка">
       <img src={withBase('/assets/img/ImechLogo.svg?v=20260615-png-final')} alt="Логотип Інституту механіки" />
       <span class="brand-text">
+        <span class="brand-official">{site.officialLabel}</span>
         <strong class="brand-title">{site.name}</strong>
         <span class="brand-subtitle">{site.subtitle}</span>
       </span>
@@ -108,6 +99,11 @@ const isPathPrefixActive = (path: string) => currentPath.startsWith(normalizeSit
         <li><a class={`search-nav-link ${isPathActive('/search/')}`} href={withBase('/search/')} aria-label="Пошук по сайту">Пошук</a></li>
       </ul>
     </nav>
+
+    <div class="lang-switch nav-lang-switch" aria-label="Вибір мови">
+      <a class="active" href={withBase(currentPath)} aria-current="page">Українська</a>
+      <a href={withBase(englishPath)}>English</a>
+    </div>
   </div>
 </div>
 
@@ -121,16 +117,6 @@ const isPathPrefixActive = (path: string) => currentPath.startsWith(normalizeSit
     backdrop-filter: none;
   }
 
-  .topbar {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
-    color: rgba(255, 255, 255, 0.84);
-  }
-
-  .lang-switch a,
-  .lang-switch .active {
-    color: #ffffff;
-  }
-
   .header-main.brand-main {
     justify-content: flex-start;
     align-items: center;
@@ -138,6 +124,12 @@ const isPathPrefixActive = (path: string) => currentPath.startsWith(normalizeSit
 
   .site-header .brand-title {
     color: #ffffff;
+  }
+
+  .site-header .brand-official {
+    color: rgba(255, 255, 255, 0.76);
+    font-size: 0.82rem;
+    font-weight: 750;
   }
 
   .site-header .brand-subtitle {
@@ -157,12 +149,66 @@ const isPathPrefixActive = (path: string) => currentPath.startsWith(normalizeSit
   .nav-row {
     min-height: 54px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
+    gap: 12px;
     position: relative;
+  }
+
+  .nav-lang-switch {
+    flex: 0 0 auto;
+    gap: 4px;
+    margin-left: 8px;
+    padding-left: 10px;
+    border-left: 1px solid var(--line);
+  }
+
+  .nav-lang-switch a {
+    padding: 6px 8px;
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 750;
+    white-space: nowrap;
+  }
+
+  .nav-lang-switch a:hover {
+    background: var(--accent-soft);
+    text-decoration: none;
+  }
+
+  .nav-lang-switch .active {
+    background: var(--accent);
+    color: #ffffff;
   }
 
   .primary-nav .submenu {
     z-index: 1100;
+  }
+
+  @media (max-width: 1120px) {
+    .primary-nav {
+      top: calc(100% + 8px);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .brand {
+      align-items: flex-start;
+    }
+
+    .nav-row {
+      gap: 8px;
+    }
+
+    .nav-lang-switch {
+      margin-left: auto;
+      padding-left: 8px;
+    }
+
+    .nav-lang-switch a {
+      padding: 6px 7px;
+      font-size: 0.84rem;
+    }
   }
 </style>

@@ -1,0 +1,21 @@
+name: Run README documentation update
+
+on:
+  push:
+    branches:
+      - document-protected-workflow
+    paths:
+      - '.github/workflows/prepare-readme-update.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: document-protected-workflow
+      - run: |
+          echo "This temporary helper is not intended to remain in the final diff."

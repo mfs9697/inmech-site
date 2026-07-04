@@ -14,14 +14,6 @@ on:
       - 'package-lock.json'
       - '.github/workflows/deploy-to-inmech.yml'
   pull_request:
-    paths:
-      - 'src/**'
-      - 'public/**'
-      - 'scripts/**'
-      - 'astro.config.mjs'
-      - 'package.json'
-      - 'package-lock.json'
-      - '.github/workflows/deploy-to-inmech.yml'
 
 concurrency:
   group: inmech-deploy-${{ github.ref }}

@@ -4,7 +4,6 @@ import { siteEn } from '../../data/site-en';
 
 const chair = {
   name: 'Oleksandr Kh. Ostos',
-  nameUk: 'Остос Олександр Хосейович',
   role: 'Chair of the Council of Young Scientists',
   degree: 'PhD in Applied Mathematics, specialty 113 “Applied Mathematics”',
   email: 'ostos.alexander1994@gmail.com',
@@ -12,19 +11,19 @@ const chair = {
 };
 
 const members = [
-  { name: 'Oleksandr L. Kipnis', nameUk: 'Кіпніс Олександр Леонідович', role: 'Senior Researcher', degree: 'Doctor of Physical and Mathematical Sciences', photo: '/people/kipnis.png' },
-  { name: 'Serhii P. Orlenko', nameUk: 'Орленко Сергій Петрович', role: 'Senior Researcher', degree: 'PhD in Applied Mathematics, specialty 113 “Applied Mathematics”', photo: '/people/orlenko.png' },
-  { name: 'Vasyl M. Yurchuk', nameUk: 'Юрчук Василь Миколайович', role: 'Deputy Head of Department', degree: 'Doctor of Physical and Mathematical Sciences', photo: '/people/yurchuk.png' },
-  { name: 'Yurii O. Nazarchuk', nameUk: 'Назарчук Юрій Олександрович', role: 'Postgraduate Student', degree: '', photo: '/people/nazarchuk.png' },
-  { name: 'Oleksandr Kh. Ostos', nameUk: 'Остос Олександр Хосейович', role: 'Senior Researcher', degree: 'PhD in Applied Mathematics, specialty 113 “Applied Mathematics”', photo: '/people/ostos.png', accent: 'Chair of the Council' },
-  { name: 'Vitalii O. Husak', nameUk: 'Гусак Віталій Олександрович', role: 'Senior Researcher', degree: 'PhD in Applied Mathematics, specialty 113 “Applied Mathematics”' },
-  { name: 'Maksym Yu. Borysenko', nameUk: 'Борисенко Максим Юрійович', role: 'Senior Researcher', degree: 'Doctor of Technical Sciences', photo: '/people/borysenko.png' },
-  { name: 'Anna V. Lysenko', nameUk: 'Лисенко Анна Володимирівна', role: 'Junior Researcher', degree: '' },
-  { name: 'Danylo M. Selivanov', nameUk: 'Селіванов Данило Михайлович', role: 'Postgraduate Student', degree: '', photo: '/people/selivanovd.png' },
-  { name: 'Oleksii I. Lesyk', nameUk: 'Лесик Олексій Іванович', role: 'Postgraduate Student', degree: '', photo: '/people/lesyk.png' },
-  { name: 'Petro Yu. Kobzar', nameUk: 'Кобзарь Петро Юрійович', role: 'Postgraduate Student', degree: '', photo: '/people/kobzar.png' },
-  { name: 'Anton S. Olkhovskyi', nameUk: 'Ольховський Антон Стефанович', role: 'Postgraduate Student', degree: '', photo: '/people/olkhovskyi.png' },
-  { name: 'Oleksandr A. Proshchenko', nameUk: 'Прощенко Олександр Анатолійович', role: 'Postgraduate Student', degree: '', photo: '/people/proshchenko.png' }
+  { name: 'Oleksandr L. Kipnis', role: 'Senior Researcher', degree: 'Doctor of Physical and Mathematical Sciences', photo: '/people/kipnis.png' },
+  { name: 'Serhii P. Orlenko', role: 'Senior Researcher', degree: 'PhD in Applied Mathematics, specialty 113 “Applied Mathematics”', photo: '/people/orlenko.png' },
+  { name: 'Vasyl M. Yurchuk', role: 'Deputy Head of Department', degree: 'Doctor of Physical and Mathematical Sciences', photo: '/people/yurchuk.png' },
+  { name: 'Yurii O. Nazarchuk', role: 'Postgraduate Student', degree: '', photo: '/people/nazarchuk.png' },
+  { name: 'Oleksandr Kh. Ostos', role: 'Senior Researcher', degree: 'PhD in Applied Mathematics, specialty 113 “Applied Mathematics”', photo: '/people/ostos.png', accent: 'Chair of the Council' },
+  { name: 'Vitalii O. Husak', role: 'Senior Researcher', degree: 'PhD in Applied Mathematics, specialty 113 “Applied Mathematics”' },
+  { name: 'Maksym Yu. Borysenko', role: 'Senior Researcher', degree: 'Doctor of Technical Sciences', photo: '/people/borysenko.png' },
+  { name: 'Anna V. Lysenko', role: 'Junior Researcher', degree: '' },
+  { name: 'Danylo M. Selivanov', role: 'Postgraduate Student', degree: '', photo: '/people/selivanovd.png' },
+  { name: 'Oleksii I. Lesyk', role: 'Postgraduate Student', degree: '', photo: '/people/lesyk.png' },
+  { name: 'Petro Yu. Kobzar', role: 'Postgraduate Student', degree: '', photo: '/people/kobzar.png' },
+  { name: 'Anton S. Olkhovskyi', role: 'Postgraduate Student', degree: '', photo: '/people/olkhovskyi.png' },
+  { name: 'Oleksandr A. Proshchenko', role: 'Postgraduate Student', degree: '', photo: '/people/proshchenko.png' }
 ];
 
 const directions = [
@@ -60,11 +59,10 @@ function initials(name: string) {
       <div class="young-hero-card">
         <p class="eyebrow">Institute structure</p><h1>Council of Young Scientists</h1>
         <p class="lead">The Council of Young Scientists of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine supports the professional development of early-career researchers, postgraduate students and PhD holders, and promotes their participation in the scientific, educational and organisational life of the Institute.</p>
-        <div class="hero-actions"><a class="button-link" href={withBase('/young-scientists/')}>Ukrainian version</a></div>
       </div>
       <aside class="young-chair-card" aria-labelledby="young-chair-title">
         <div class="young-chair-photo-frame"><img src={withBase(chair.photo)} alt={`Photo: ${chair.name}`} class="young-chair-photo" loading="lazy" /></div>
-        <div><p class="management-accent">Chair of the Council</p><h2 id="young-chair-title">{chair.name}</h2><p class="young-original-name">{chair.nameUk}</p><p class="young-chair-degree">{chair.degree}</p><p class="young-chair-email"><span>E-mail:</span><a href={`mailto:${chair.email}`}>{chair.email}</a></p></div>
+        <div><p class="management-accent">Chair of the Council</p><h2 id="young-chair-title">{chair.name}</h2><p class="young-chair-degree">{chair.degree}</p><p class="young-chair-email"><span>E-mail:</span><a href={`mailto:${chair.email}`}>{chair.email}</a></p></div>
       </aside>
     </div>
   </section>
@@ -85,7 +83,7 @@ function initials(name: string) {
                 {person.photo && (<img src={withBase(person.photo)} alt={`Photo: ${person.name}`} class="management-photo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';" />)}
                 <div class={`management-avatar ${person.photo ? 'avatar-fallback' : ''}`} aria-hidden="true">{initials(person.name)}</div>
               </div>
-              <div class="management-body">{person.accent && <p class="management-accent">{person.accent}</p>}<h2>{person.name}</h2><p class="young-original-name">{person.nameUk}</p><p class="management-role">{person.role}</p>{person.degree && <p class="management-degree">{person.degree}</p>}</div>
+              <div class="management-body">{person.accent && <p class="management-accent">{person.accent}</p>}<h2>{person.name}</h2><p class="management-role">{person.role}</p>{person.degree && <p class="management-degree">{person.degree}</p>}</div>
             </article>
           ))}
         </div>
@@ -99,5 +97,5 @@ function initials(name: string) {
 </BaseLayoutEn>
 
 <style>
-  .young-hero{padding:52px 0 26px}.young-hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(340px,.75fr);gap:24px;align-items:stretch}.young-hero-card,.young-chair-card,.young-panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.young-hero-card{padding:clamp(28px,4vw,46px)}.young-hero-card h1{margin:0 0 18px;font-size:clamp(2.05rem,4vw,3.5rem);line-height:1.05;letter-spacing:-.035em}.hero-actions{margin-top:22px}.young-chair-card{display:grid;grid-template-columns:118px minmax(0,1fr);gap:22px;align-items:start;padding:clamp(22px,3vw,30px)}.young-chair-card>div:last-child{min-width:0}.young-chair-photo-frame,.young-chair-photo{width:118px;height:140px;border-radius:24px}.young-chair-photo-frame{border:1px solid var(--line);overflow:hidden;background:var(--surface-soft)}.young-chair-photo{display:block;object-fit:cover}.young-chair-card h2{margin:0 0 6px;font-size:1.28rem;line-height:1.25}.young-original-name{margin:0 0 8px;color:var(--muted);font-size:.92rem;font-weight:650}.young-chair-degree{margin:0 0 14px;color:var(--muted);font-weight:700}.young-chair-email{display:flex;flex-wrap:wrap;gap:4px 6px;align-items:baseline;margin:0}.young-chair-email span{flex:0 0 auto;margin-right:0;font-weight:850;white-space:nowrap}.young-chair-email a{min-width:0;max-width:100%;overflow-wrap:anywhere;word-break:break-word}.young-section{padding:22px 0 64px}.young-layout{display:grid;gap:22px}.young-panel{padding:clamp(22px,3vw,32px)}.young-panel h2{margin:0 0 14px;font-size:clamp(1.35rem,2vw,1.8rem);letter-spacing:-.02em}.young-panel p{margin:0;color:var(--muted)}.direction-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:22px}.direction-card{min-height:100%;padding:16px 18px;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;background:var(--surface-soft);color:var(--text);font-weight:600}.section-heading-row{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:18px}.section-note{margin-top:4px!important}.young-member-card{min-height:100%}.young-chair-member{border-color:rgba(184,135,47,.45)}.document-note{margin-bottom:16px!important}.document-list{list-style:none;padding:0;margin:0;display:grid;gap:12px}.document-list a{display:block;padding:15px 18px;border:1px solid var(--line);border-radius:14px;background:var(--surface-soft);font-weight:750}.document-list a:hover{text-decoration:none;background:var(--accent-soft)}@media(max-width:900px){.young-hero-grid,.direction-grid{grid-template-columns:1fr}}@media(max-width:560px){.young-chair-card{grid-template-columns:1fr}}
+  .young-hero{padding:52px 0 26px}.young-hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(340px,.75fr);gap:24px;align-items:stretch}.young-hero-card,.young-chair-card,.young-panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.young-hero-card{padding:clamp(28px,4vw,46px)}.young-hero-card h1{margin:0 0 18px;font-size:clamp(2.05rem,4vw,3.5rem);line-height:1.05;letter-spacing:-.035em}.young-chair-card{display:grid;grid-template-columns:118px minmax(0,1fr);gap:22px;align-items:start;padding:clamp(22px,3vw,30px)}.young-chair-card>div:last-child{min-width:0}.young-chair-photo-frame,.young-chair-photo{width:118px;height:140px;border-radius:24px}.young-chair-photo-frame{border:1px solid var(--line);overflow:hidden;background:var(--surface-soft)}.young-chair-photo{display:block;object-fit:cover}.young-chair-card h2{margin:0 0 10px;font-size:1.28rem;line-height:1.25}.young-chair-degree{margin:0 0 14px;color:var(--muted);font-weight:700}.young-chair-email{display:flex;flex-wrap:wrap;gap:4px 6px;align-items:baseline;margin:0}.young-chair-email span{flex:0 0 auto;margin-right:0;font-weight:850;white-space:nowrap}.young-chair-email a{min-width:0;max-width:100%;overflow-wrap:anywhere;word-break:break-word}.young-section{padding:22px 0 64px}.young-layout{display:grid;gap:22px}.young-panel{padding:clamp(22px,3vw,32px)}.young-panel h2{margin:0 0 14px;font-size:clamp(1.35rem,2vw,1.8rem);letter-spacing:-.02em}.young-panel p{margin:0;color:var(--muted)}.direction-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:22px}.direction-card{min-height:100%;padding:16px 18px;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;background:var(--surface-soft);color:var(--text);font-weight:600}.section-heading-row{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:18px}.section-note{margin-top:4px!important}.young-member-card{min-height:100%}.young-chair-member{border-color:rgba(184,135,47,.45)}.document-note{margin-bottom:16px!important}.document-list{list-style:none;padding:0;margin:0;display:grid;gap:12px}.document-list a{display:block;padding:15px 18px;border:1px solid var(--line);border-radius:14px;background:var(--surface-soft);font-weight:750}.document-list a:hover{text-decoration:none;background:var(--accent-soft)}@media(max-width:900px){.young-hero-grid,.direction-grid{grid-template-columns:1fr}}@media(max-width:560px){.young-chair-card{grid-template-columns:1fr}}
 </style>

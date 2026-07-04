@@ -1,5 +1,34 @@
 const menuToggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
 const nav = document.querySelector<HTMLElement>('.primary-nav');
+const languageScrollKey = 'inmech-language-switch-scroll';
+
+try {
+  const savedLanguageScroll = window.sessionStorage.getItem(languageScrollKey);
+
+  if (savedLanguageScroll) {
+    window.sessionStorage.removeItem(languageScrollKey);
+
+    const scrollY = Number(savedLanguageScroll);
+
+    if (Number.isFinite(scrollY) && scrollY > 0) {
+      window.requestAnimationFrame(() => {
+        window.scrollTo(0, scrollY);
+      });
+    }
+  }
+} catch {
+  // Browsers can block sessionStorage; the language links still work normally.
+}
+
+document.querySelectorAll<HTMLAnchorElement>('.nav-lang-switch a[data-language-switch]').forEach((link) => {
+  link.addEventListener('click', () => {
+    try {
+      window.sessionStorage.setItem(languageScrollKey, String(window.scrollY));
+    } catch {
+      // Ignore storage errors and let the browser navigate normally.
+    }
+  });
+});
 
 if (nav) {
   const primaryNav = nav;

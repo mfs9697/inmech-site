@@ -25,87 +25,72 @@ function initials(name: string) {
 const serviceGroups = [
   {
     title: 'Planning and Economic Department',
-    titleUk: 'Планово-економічний відділ',
     icon: '📊',
     description: 'Planning and economic support for the Institute’s activity.',
     staff: [
       {
         name: 'Liudmyla M. Makarova',
-        nameUk: 'Макарова Людмила Миколаївна',
         position: 'Head of Department'
       },
       {
         name: 'Tetiana V. Khromtsova',
-        nameUk: 'Хромцова Тетяна Валентинівна',
         position: 'Leading Economist'
       },
       {
         name: 'Kateryna P. Sapsai',
-        nameUk: 'Сапсай Катерина Петрівна',
         position: 'Leading Economist'
       }
     ]
   },
   {
     title: 'Human Resources Department',
-    titleUk: 'Відділ кадрів',
     icon: '👥',
     description: 'Personnel records, support of HR procedures and work with employees.',
     staff: [
       {
         name: 'Nataliia M. Derevinska',
-        nameUk: 'Деревінська Наталія Миколаївна',
         position: 'Head of Human Resources Department'
       },
       {
         name: 'Maryna I. Demchuk',
-        nameUk: 'Демчук Марина Іванівна',
         position: 'Senior Inspector'
       }
     ]
   },
   {
     title: 'Accounting and Reporting Department',
-    titleUk: 'Відділ бухгалтерського обліку та звітності',
     icon: '🧾',
     description: 'Accounting, financial reporting and support of financial and administrative procedures.',
     staff: [
       {
         name: 'Nadiia M. Bek',
-        nameUk: 'Бек Надія Миколаївна',
         position: 'Chief Accountant'
       },
       {
         name: 'Olena V. Hrybova',
-        nameUk: 'Грибова Олена Венидіктівна',
         position: 'Deputy Chief Accountant'
       },
       {
         name: 'Svitlana Yu. Ostapchuk',
-        nameUk: 'Остапчук Світлана Юріївна',
         position: 'Leading Accountant'
       },
       {
         name: 'Tetiana A. Ovsinska',
-        nameUk: 'Овсінська Тетяна Анатоліївна',
         position: 'Leading Accountant'
       }
     ]
   },
   {
     title: 'Office Administration',
-    titleUk: 'Канцелярія',
     icon: '📁',
     description: 'Official document flow, office administration and archive support.',
     staff: [
       {
         name: 'Tetiana S. Sydorova',
-        nameUk: 'Сидорова Тетяна Сергіївна',
         position: 'Head of Office Administration'
       },
       {
         name: 'Liudmyla V. Bondarchuk',
-        nameUk: 'Бондарчук Людмила В’ячеславівна',
         position: 'First-category Engineer, Archive'
       }
     ]
@@ -138,7 +123,6 @@ const relatedLinks = [
         </p>
         <div class="services-hero-actions">
           <a class="button primary" href="#services-list">Service structure</a>
-          <a class="button" href={withBase('/services/')}>Ukrainian version</a>
         </div>
       </div>
 
@@ -190,7 +174,6 @@ const relatedLinks = [
               <span>{group.icon}</span>
               <div>
                 <h3>{group.title}</h3>
-                <p class="service-original-title">{group.titleUk}</p>
                 <p>{group.description}</p>
               </div>
             </div>
@@ -201,7 +184,6 @@ const relatedLinks = [
                   <div class="staff-avatar" aria-hidden="true">{initials(person.name)}</div>
                   <div>
                     <h4>{person.name}</h4>
-                    <p class="staff-original-name">{person.nameUk}</p>
                     <p>{person.position}</p>
                   </div>
                 </article>
@@ -410,17 +392,9 @@ const relatedLinks = [
   }
 
   .service-group-header h3 {
-    margin: 0 0 4px;
+    margin: 0 0 8px;
     font-size: clamp(1.32rem, 2vw, 1.8rem);
     line-height: 1.15;
-  }
-
-  .service-original-title,
-  .staff-original-name {
-    margin: 0 0 8px !important;
-    color: var(--muted);
-    font-size: 0.92rem;
-    font-weight: 650;
   }
 
   .service-group-header p:last-child {

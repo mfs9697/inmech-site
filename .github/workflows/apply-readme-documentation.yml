@@ -1,0 +1,177 @@
+name: Apply README documentation
+
+on:
+  push:
+    branches:
+      - document-protected-workflow
+    paths:
+      - 'scripts/apply-readme-documentation.trigger'
+
+permissions:
+  contents: write
+
+jobs:
+  apply-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v5
+        with:
+          ref: document-protected-workflow
+
+      - name: Update README
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('README.md')
+          text = path.read_text(encoding='utf-8')
+
+          def replace_once(old: str, new: str) -> None:
+              global text
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'Expected one README occurrence, found {count}: {old[:80]!r}')
+              text = text.replace(old, new, 1)
+
+          replace_once(
+          """  .github/
+            scripts/
+            workflows/
+              deploy-to-inmech.yml
+          """,
+          """  scripts/
+            check-main-landmarks.mjs
+          .github/
+            CODEOWNERS
+            scripts/
+            workflows/
+              deploy-to-inmech.yml
+          """
+          )
+
+          replace_once(
+          """## Збереження змін
+
+          Для невеликих перевірених змін:
+
+          ```powershell
+          git status
+          git add .
+          git commit -m \"Update site content\"
+          git push origin main
+          ```
+
+          Для суттєвих змін безпечніше створити окрему гілку та Pull Request:
+
+          ```powershell
+          git checkout -b descriptive-branch-name
+          git add .
+          git commit -m \"Describe the change\"
+          git push -u origin descriptive-branch-name
+          ```
+          """,
+          """## Збереження змін
+
+          Гілка `main` захищена. Прямі зміни та команда `git push origin main` не використовуються. Кожне оновлення сайту, документації або конфігурації виконується в окремій гілці та надсилається через Pull Request.
+
+          ```powershell
+          git checkout main
+          git pull
+          git checkout -b descriptive-branch-name
+          git status
+          git add .
+          git commit -m \"Describe the change\"
+          git push -u origin descriptive-branch-name
+          ```
+
+          Після завантаження гілки потрібно відкрити Pull Request до `main`. Для злиття обов’язкові дві умови:
+
+          1. перевірка `validate` має завершитися успішно;
+          2. Code Owner `@mfs9697` має переглянути та схвалити зміни.
+
+          Лише власник сайту зливає схвалений Pull Request у `main`. Інші редактори, зокрема секретар, готують зміни та відкривають Pull Request, але не публікують їх самостійно.
+          """
+          )
+
+          replace_once(
+          "GitHub → Actions → Deploy Astro site to inmech.kyiv.ua → Run workflow",
+          "GitHub → Actions → Validate and deploy Astro site → Run workflow"
+          )
+
+          replace_once(
+          """Workflow:
+
+          1. отримує останню версію репозиторію;
+          2. перевіряє дозволені зміни для користувачів з обмеженим доступом;
+          3. встановлює залежності;
+          4. збирає Astro-сайт;
+          5. перевіряє sitemap;
+          6. копіює вміст `dist/` на сервер через захищене SSH-з’єднання.
+          """,
+          """Workflow має два режими.
+
+          Для кожного Pull Request job `validate`:
+
+          1. встановлює залежності командою `npm ci`;
+          2. збирає Astro-сайт;
+          3. перевіряє наявність файлів sitemap;
+          4. перевіряє, що кожна згенерована HTML-сторінка містить рівно один елемент `<main>`.
+
+          Після злиття змін у `main` job `build-and-deploy` повторює перевірки та копіює вміст `dist/` на сервер через захищене SSH-з’єднання.
+          """
+          )
+
+          replace_once(
+          "Зміни лише в `README.md` не запускають розгортання, оскільки не впливають на зібраний сайт.",
+          "Pull Request зі змінами лише в `README.md` також проходить перевірку `validate`, але після злиття не запускає розгортання, оскільки документація не впливає на зібраний сайт."
+          )
+
+          replace_once(
+          """7. Зміни перевіряються у Pull Request або локально.
+          8. Після злиття в `main` сайт оновлюється автоматично.
+          """,
+          """7. ChatGPT створює окрему гілку та відкриває Pull Request до `main`.
+          8. GitHub автоматично запускає перевірку `validate`.
+          9. `@mfs9697` переглядає зміни як Code Owner і схвалює або повертає їх на доопрацювання.
+          10. Після схвалення власник сайту зливає Pull Request у `main`, і сайт оновлюється автоматично.
+
+          Секретар не виконує прямий запис у `main`, не зливає Pull Request і не редагує файли на сервері.
+          """
+          )
+
+          replace_once(
+          """Не змінюй інші файли без потреби.
+
+          Назва:
+          """,
+          """Не змінюй інші файли без потреби.
+          Створи окрему гілку та Pull Request. Не зливай Pull Request і не змінюй `main` без схвалення Code Owner.
+
+          Назва:
+          """
+          )
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Remove temporary helpers
+        run: |
+          rm -f \
+            .github/workflows/prepare-readme-update.yml \
+            .github/workflows/prepare-readme-update-trigger.yml \
+            .github/workflows/prepare-readme-update-kick.yml \
+            .github/workflows/prepare-readme-update-run.yml \
+            .github/workflows/apply-readme-documentation.yml \
+            scripts/README_WORKFLOW_UPDATE_INSTRUCTIONS.txt \
+            scripts/apply-readme-documentation.trigger
+
+      - name: Verify and commit README-only diff
+        run: |
+          git diff --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Document protected contribution workflow"
+          git push origin HEAD:document-protected-workflow

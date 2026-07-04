@@ -4,7 +4,13 @@ import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
 import { siteEn } from '../../data/site-en';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+function withBase(path: string) {
+  if (/^(https?:)?\/\//.test(path) || path.startsWith('mailto:') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
 
 const staticPages = [
   ['Home', '/en/', 'Home page of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine.'],
@@ -25,7 +31,7 @@ const staticPages = [
 
 const news = (await getCollection('news')).map((entry) => ({
   title: entry.data.title,
-  url: `/en/news/`,
+  url: entry.data.externalUrl ?? `/en/news/${entry.id}/`,
   type: 'News',
   description: entry.data.description,
   keywords: [

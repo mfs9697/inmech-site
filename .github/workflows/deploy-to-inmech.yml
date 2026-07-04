@@ -1,4 +1,4 @@
-name: Deploy Astro site to inmech.kyiv.ua
+name: Validate and deploy Astro site
 
 on:
   workflow_dispatch:
@@ -8,6 +8,16 @@ on:
     paths:
       - 'src/**'
       - 'public/**'
+      - 'scripts/**'
+      - 'astro.config.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/deploy-to-inmech.yml'
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'scripts/**'
       - 'astro.config.mjs'
       - 'package.json'
       - 'package-lock.json'
@@ -18,7 +28,36 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  validate:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Build Astro site
+        run: npm run build
+
+      - name: Check sitemap output
+        run: |
+          test -f dist/sitemap-index.xml
+          test -f dist/sitemap-0.xml
+
+      - name: Check page landmarks
+        run: node scripts/check-main-landmarks.mjs
+
   build-and-deploy:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
 
     env:
@@ -59,6 +98,9 @@ jobs:
         run: |
           test -f dist/sitemap-index.xml
           test -f dist/sitemap-0.xml
+
+      - name: Check page landmarks
+        run: node scripts/check-main-landmarks.mjs
 
       - name: Prepare SSH key
         run: |

@@ -17,7 +17,6 @@ const featuredDefenses = [
     status: 'Defense announcement',
     year: '2026',
     name: 'Yurii P. Glukhov',
-    nameUk: 'Глухов Юрій Петрович',
     title: 'Dynamic problems for a layered foundation with initial stresses under a moving surface load',
     date: '9 July 2026, 11:00',
     place: 'Kyiv, 3 Nesterova St., room 311',
@@ -39,7 +38,6 @@ const featuredDefenses = [
     status: 'Defense announcement',
     year: '2026',
     name: 'Andrii V. Moltasov',
-    nameUk: 'Молтасов Андрій Валерійович',
     title: 'Construction of effective engineering stress estimates in concentration zones of thin-sheet butt welded joints',
     date: '7 July 2026, 11:00',
     place: 'Kyiv, 3 Nesterova St., room 311',
@@ -62,7 +60,6 @@ const featuredDefenses = [
     status: '2026 archive',
     year: '2026',
     name: 'Oleksandr L. Kipnis',
-    nameUk: 'Кіпніс Олександр Леонідович',
     title: 'Stability of coated materials under compression along the interface for different interfacial contact conditions',
     date: '14 May 2026, 10:00',
     place: 'Kyiv, 3 Nesterova St., room 311',
@@ -87,7 +84,6 @@ const featuredDefenses = [
     status: '2025 archive',
     year: '2025',
     name: 'Maksym Yu. Borysenko',
-    nameUk: 'Борисенко Максим Юрійович',
     title: 'Numerical and experimental analysis of free vibrations of polygonal plates and cylindrical shells with structural inhomogeneity',
     date: '16 October 2025, 11:00',
     place: 'Kyiv, 3 Nesterova St., room 311',
@@ -112,7 +108,6 @@ const featuredDefenses = [
     status: '2025 archive',
     year: '2025',
     name: 'Liudmyla O. Hryhorieva',
-    nameUk: 'Григор’єва Людмила Олександрівна',
     title: 'Numerical modeling of dynamic processes in piezoelectric bodies accounting for dissipative properties and material inhomogeneity',
     date: '30 September 2025, 11:00',
     place: 'Kyiv, 3 Nesterova St., room 311',
@@ -137,7 +132,6 @@ const featuredDefenses = [
     status: '2025 archive',
     year: '2025',
     name: 'Vasyl M. Yurchuk',
-    nameUk: 'Юрчук Василь Миколайович',
     title: 'Scenarios of propagation of waves with different initial profiles in nonlinearly elastic materials',
     date: '2 September 2025, 14:00',
     place: 'Kyiv, 3 Nesterova St., room 311',
@@ -177,7 +171,6 @@ const featuredDefenses = [
         <div class="defense-hero-actions">
           <a class="button primary" href="#announcements">Current and previous year</a>
           <a class="button secondary" href={withBase('/en/defended-dissertations/')}>Catalogue of defended dissertations</a>
-          <a class="button secondary" href={withBase('/dissertations/')}>Ukrainian version</a>
         </div>
       </div>
 
@@ -227,7 +220,6 @@ const featuredDefenses = [
               <div>
                 <span class="defense-status">{defense.status}</span>
                 <h3>{defense.name}</h3>
-                <p class="original-name">{defense.nameUk}</p>
               </div>
               <span class="defense-year">{defense.year}</span>
             </div>
@@ -494,12 +486,6 @@ const featuredDefenses = [
     margin: 12px 0 4px;
     font-size: clamp(1.35rem, 2vw, 1.9rem);
     line-height: 1.15;
-  }
-
-  .original-name {
-    margin: 0;
-    color: var(--muted);
-    font-weight: 650;
   }
 
   .defense-title {

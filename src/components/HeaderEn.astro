@@ -20,8 +20,19 @@ function withBase(path: string) {
 const currentPath = normalizeSitePath(Astro.url.pathname, base);
 const ukrainianPath = getUkrainianPath(Astro.url.pathname, base);
 const isSectionActive = (page: Props['activePage']) => activePage === page ? 'active' : '';
-const isPathActive = (path: string) => currentPath === normalizeSitePath(path) ? 'active' : '';
-const isPathPrefixActive = (path: string) => currentPath.startsWith(normalizeSitePath(path)) ? 'active' : '';
+const isCurrentPath = (path: string) => currentPath === normalizeSitePath(path);
+const isCurrentPathPrefix = (path: string) => currentPath.startsWith(normalizeSitePath(path));
+const isPathActive = (path: string) => isCurrentPath(path) ? 'active' : '';
+const isPathPrefixActive = (path: string) => isCurrentPathPrefix(path) ? 'active' : '';
+const ariaCurrentPage = (path: string) => isCurrentPath(path) ? 'page' : undefined;
+const ariaCurrentPrefix = (path: string) => isCurrentPath(path) ? 'page' : isCurrentPathPrefix(path) ? 'location' : undefined;
+const ariaCurrentNews = () => {
+  if (activePage !== 'news') {
+    return undefined;
+  }
+
+  return isCurrentPath('/en/news/') ? 'page' : 'location';
+};
 ---
 
 <header class="site-header">
@@ -45,19 +56,19 @@ const isPathPrefixActive = (path: string) => currentPath.startsWith(normalizeSit
 
     <nav class="primary-nav" id="primary-nav" aria-label="Main menu">
       <ul>
-        <li><a class={isPathActive('/en/')} href={withBase('/en/')}>Home</a></li>
+        <li><a class={isPathActive('/en/')} href={withBase('/en/')} aria-current={ariaCurrentPage('/en/')}>Home</a></li>
         <li>
           <button class={`nav-label ${isSectionActive('about')}`} type="button" aria-expanded="false" aria-controls="submenu-about">
             <span>About the Institute</span>
             <span class="submenu-indicator" aria-hidden="true">▾</span>
           </button>
           <ul class="submenu" id="submenu-about">
-            <li><a class={isPathActive('/en/history/')} href={withBase('/en/history/')}>History and present</a></li>
-            <li><a class={isPathActive('/en/founder/')} href={withBase('/en/founder/')}>Founder of the Institute</a></li>
-            <li><a class={isPathActive('/en/regulations/')} href={withBase('/en/regulations/')}>Statute</a></li>
-            <li><a class={isPathActive('/en/strategy/')} href={withBase('/en/strategy/')}>Development strategy</a></li>
-            <li><a class={isPathActive('/en/scientific-cooperation/')} href={withBase('/en/scientific-cooperation/')}>Scientific cooperation</a></li>
-            <li><a class={isPathActive('/en/tender/')} href={withBase('/en/tender/')}>Procurement and tenders</a></li>
+            <li><a class={isPathActive('/en/history/')} href={withBase('/en/history/')} aria-current={ariaCurrentPage('/en/history/')}>History and present</a></li>
+            <li><a class={isPathActive('/en/founder/')} href={withBase('/en/founder/')} aria-current={ariaCurrentPage('/en/founder/')}>Founder of the Institute</a></li>
+            <li><a class={isPathActive('/en/regulations/')} href={withBase('/en/regulations/')} aria-current={ariaCurrentPage('/en/regulations/')}>Statute</a></li>
+            <li><a class={isPathActive('/en/strategy/')} href={withBase('/en/strategy/')} aria-current={ariaCurrentPage('/en/strategy/')}>Development strategy</a></li>
+            <li><a class={isPathActive('/en/scientific-cooperation/')} href={withBase('/en/scientific-cooperation/')} aria-current={ariaCurrentPage('/en/scientific-cooperation/')}>Scientific cooperation</a></li>
+            <li><a class={isPathActive('/en/tender/')} href={withBase('/en/tender/')} aria-current={ariaCurrentPage('/en/tender/')}>Procurement and tenders</a></li>
           </ul>
         </li>
         <li>
@@ -66,12 +77,12 @@ const isPathPrefixActive = (path: string) => currentPath.startsWith(normalizeSit
             <span class="submenu-indicator" aria-hidden="true">▾</span>
           </button>
           <ul class="submenu" id="submenu-structure">
-            <li><a class={isPathActive('/en/management/')} href={withBase('/en/management/')}>Management</a></li>
-            <li><a class={isPathActive('/en/departments/')} href={withBase('/en/departments/')}>Research departments</a></li>
-            <li><a class={isPathActive('/en/scientific-council/')} href={withBase('/en/scientific-council/')}>Scientific Council</a></li>
-            <li><a class={isPathActive('/en/specialized-councils/')} href={withBase('/en/specialized-councils/')}>Specialized Academic Councils</a></li>
-            <li><a class={isPathActive('/en/young-scientists/')} href={withBase('/en/young-scientists/')}>Council of Young Scientists</a></li>
-            <li><a class={isPathActive('/en/services/')} href={withBase('/en/services/')}>Institute services</a></li>
+            <li><a class={isPathActive('/en/management/')} href={withBase('/en/management/')} aria-current={ariaCurrentPage('/en/management/')}>Management</a></li>
+            <li><a class={isPathActive('/en/departments/')} href={withBase('/en/departments/')} aria-current={ariaCurrentPage('/en/departments/')}>Research departments</a></li>
+            <li><a class={isPathActive('/en/scientific-council/')} href={withBase('/en/scientific-council/')} aria-current={ariaCurrentPage('/en/scientific-council/')}>Scientific Council</a></li>
+            <li><a class={isPathActive('/en/specialized-councils/')} href={withBase('/en/specialized-councils/')} aria-current={ariaCurrentPage('/en/specialized-councils/')}>Specialized Academic Councils</a></li>
+            <li><a class={isPathActive('/en/young-scientists/')} href={withBase('/en/young-scientists/')} aria-current={ariaCurrentPage('/en/young-scientists/')}>Council of Young Scientists</a></li>
+            <li><a class={isPathActive('/en/services/')} href={withBase('/en/services/')} aria-current={ariaCurrentPage('/en/services/')}>Institute services</a></li>
           </ul>
         </li>
         <li>
@@ -80,19 +91,19 @@ const isPathPrefixActive = (path: string) => currentPath.startsWith(normalizeSit
             <span class="submenu-indicator" aria-hidden="true">▾</span>
           </button>
           <ul class="submenu" id="submenu-education">
-            <li><a class={isPathActive('/en/education/')} href={withBase('/en/education/')}>Section overview</a></li>
-            <li><a class={isPathActive('/en/postgraduate/')} href={withBase('/en/postgraduate/')}>Postgraduate studies</a></li>
-            <li><a class={isPathActive('/en/doctoral/')} href={withBase('/en/doctoral/')}>Doctoral studies</a></li>
-            <li><a class={isPathActive('/en/dissertations/')} href={withBase('/en/dissertations/')}>Dissertation defences</a></li>
-            <li><a class={isPathActive('/en/license-and-regulations/')} href={withBase('/en/license-and-regulations/')}>Licences and regulations</a></li>
-            <li><a class={isPathActive('/en/trust-box/')} href={withBase('/en/trust-box/')}>Trust box</a></li>
-            <li><a class={isPathActive('/en/nmr/')} href={withBase('/en/nmr/')}>Scientific and Methodological Council</a></li>
+            <li><a class={isPathActive('/en/education/')} href={withBase('/en/education/')} aria-current={ariaCurrentPage('/en/education/')}>Section overview</a></li>
+            <li><a class={isPathActive('/en/postgraduate/')} href={withBase('/en/postgraduate/')} aria-current={ariaCurrentPage('/en/postgraduate/')}>Postgraduate studies</a></li>
+            <li><a class={isPathActive('/en/doctoral/')} href={withBase('/en/doctoral/')} aria-current={ariaCurrentPage('/en/doctoral/')}>Doctoral studies</a></li>
+            <li><a class={isPathActive('/en/dissertations/')} href={withBase('/en/dissertations/')} aria-current={ariaCurrentPage('/en/dissertations/')}>Dissertation defences</a></li>
+            <li><a class={isPathActive('/en/license-and-regulations/')} href={withBase('/en/license-and-regulations/')} aria-current={ariaCurrentPage('/en/license-and-regulations/')}>Licences and regulations</a></li>
+            <li><a class={isPathActive('/en/trust-box/')} href={withBase('/en/trust-box/')} aria-current={ariaCurrentPage('/en/trust-box/')}>Trust box</a></li>
+            <li><a class={isPathActive('/en/nmr/')} href={withBase('/en/nmr/')} aria-current={ariaCurrentPage('/en/nmr/')}>Scientific and Methodological Council</a></li>
           </ul>
         </li>
-        <li><a class={isPathPrefixActive('/en/library/')} href={withBase('/en/library/')}>Library</a></li>
-        <li><a class={isSectionActive('news')} href={withBase('/en/news/')}>News</a></li>
+        <li><a class={isPathPrefixActive('/en/library/')} href={withBase('/en/library/')} aria-current={ariaCurrentPrefix('/en/library/')}>Library</a></li>
+        <li><a class={isSectionActive('news')} href={withBase('/en/news/')} aria-current={ariaCurrentNews()}>News</a></li>
         <li><a href={withBase('/en/#contacts')}>Contacts</a></li>
-        <li><a class={`search-nav-link ${isPathActive('/en/search/')}`} href={withBase('/en/search/')} aria-label="Search the website">Search</a></li>
+        <li><a class={`search-nav-link ${isPathActive('/en/search/')}`} href={withBase('/en/search/')} aria-label="Search the website" aria-current={ariaCurrentPage('/en/search/')}>Search</a></li>
       </ul>
     </nav>
 

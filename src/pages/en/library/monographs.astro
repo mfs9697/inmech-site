@@ -1,0 +1,318 @@
+---
+import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../../data/site-en';
+import { monographs, monographCategories, monographYears } from '../../../data/monographs';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+---
+
+<BaseLayoutEn
+  title={`Monographs by Institute researchers | ${siteEn.shortName}`}
+  description="Monographs by researchers of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine."
+  activePage="home"
+>
+  <section class="monographs-hero">
+    <div class="container monographs-hero-panel">
+      <div>
+        <p class="eyebrow">Library</p>
+        <h1>Monographs by Institute researchers</h1>
+        <p class="lead">
+          A catalogue of scientific monographs published by researchers of the S.P. Timoshenko
+          Institute of Mechanics of the NAS of Ukraine. Bibliographic records are shown in their
+          source language, while the page navigation and controls are provided in English.
+        </p>
+      </div>
+      <div class="monographs-stats" aria-label="Monograph catalogue statistics">
+        <strong>{monographs.length}</strong>
+        <span>records</span>
+        <small>{monographYears.at(-1)}-{monographYears[0]}</small>
+      </div>
+    </div>
+  </section>
+
+  <section class="section monographs-section">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Catalogue</p>
+          <h2>Publications by year</h2>
+        </div>
+        <p>
+          Records retain author names, titles, publishers and thematic labels from the source
+          bibliography. DOI or electronic resource links are shown where available.
+        </p>
+      </div>
+
+      <div class="monograph-toolbar">
+        <a href={withBase('/en/library/')}>Back to Library</a>
+        <span>{monographCategories.length} thematic areas</span>
+      </div>
+
+      <div class="year-groups">
+        {monographYears.map((year) => {
+          const items = monographs.filter((item) => item.year === year);
+          return (
+            <section class="year-group" id={`year-${year}`}>
+              <div class="year-header">
+                <h3>{year}</h3>
+                <span>{items.length} record{items.length === 1 ? '' : 's'}</span>
+              </div>
+
+              <div class="monograph-grid">
+                {items.map((item) => (
+                  <article class="monograph-card">
+                    <div class="monograph-card-topline">
+                      <span>{item.category}</span>
+                      <strong>{item.year}</strong>
+                    </div>
+                    <h4>{item.title}</h4>
+                    <p class="authors">{item.authors}</p>
+                    <p class="details">
+                      {item.publisher}{item.pages ? `, ${item.pages}` : ''}{item.isbn ? `; ISBN ${item.isbn}` : ''}.
+                    </p>
+                    {item.url && (
+                      <a class="card-link" href={item.url} target="_blank" rel="noopener noreferrer">Electronic resource</a>
+                    )}
+                  </article>
+                ))}
+              </div>
+            </section>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+</BaseLayoutEn>
+
+<style>
+  .monographs-hero {
+    padding: 52px 0 18px;
+  }
+
+  .monographs-hero-panel,
+  .monograph-card,
+  .year-group {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .monographs-hero-panel {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 28px;
+    align-items: center;
+    padding: clamp(28px, 5vw, 54px);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .monographs-hero-panel::after {
+    content: '';
+    position: absolute;
+    right: -90px;
+    top: -110px;
+    width: 300px;
+    height: 300px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(29, 79, 145, 0.14), rgba(29, 79, 145, 0));
+  }
+
+  .monographs-hero-panel > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .monographs-hero-panel h1 {
+    margin: 0 0 18px;
+    max-width: 900px;
+    font-size: clamp(2rem, 4.2vw, 4.1rem);
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+  }
+
+  .monographs-stats {
+    display: grid;
+    place-items: center;
+    min-width: 158px;
+    min-height: 158px;
+    border-radius: 28px;
+    background: linear-gradient(135deg, rgba(29, 79, 145, 0.10), rgba(184, 135, 47, 0.16));
+    border: 1px solid var(--line);
+    text-align: center;
+  }
+
+  .monographs-stats strong {
+    display: block;
+    color: var(--accent-dark);
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .monographs-stats span,
+  .monographs-stats small {
+    color: var(--muted);
+    font-weight: 850;
+  }
+
+  .section-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 28px;
+    align-items: flex-end;
+    margin-bottom: 20px;
+  }
+
+  .section-heading h2 {
+    margin: 0;
+    font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .section-heading p:last-child {
+    max-width: 590px;
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .monograph-toolbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--surface-soft);
+  }
+
+  .monograph-toolbar a {
+    color: var(--accent-dark);
+    font-weight: 900;
+  }
+
+  .monograph-toolbar span {
+    color: var(--muted);
+    font-weight: 850;
+  }
+
+  .year-groups {
+    display: grid;
+    gap: 18px;
+  }
+
+  .year-group {
+    padding: clamp(18px, 3vw, 28px);
+  }
+
+  .year-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .year-header h3 {
+    margin: 0;
+    color: var(--accent-dark);
+    font-size: 1.45rem;
+  }
+
+  .year-header span {
+    color: var(--muted);
+    font-weight: 850;
+  }
+
+  .monograph-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .monograph-card {
+    display: flex;
+    flex-direction: column;
+    padding: 18px;
+    box-shadow: none;
+    background: var(--surface-soft);
+  }
+
+  .monograph-card-topline {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .monograph-card-topline span {
+    display: inline-flex;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--accent-dark);
+    font-size: 0.82rem;
+    font-weight: 900;
+  }
+
+  .monograph-card-topline strong {
+    color: var(--muted);
+  }
+
+  .monograph-card h4 {
+    margin: 0 0 10px;
+    color: var(--accent-dark);
+    font-size: 1.08rem;
+    line-height: 1.28;
+  }
+
+  .authors {
+    margin: 0 0 10px;
+    color: var(--text);
+    font-weight: 850;
+  }
+
+  .details {
+    margin: 0 0 14px;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+
+  .monograph-card .card-link {
+    margin-top: auto;
+  }
+
+  @media (max-width: 900px) {
+    .monographs-hero-panel,
+    .section-heading,
+    .monograph-toolbar,
+    .year-header {
+      display: block;
+    }
+
+    .monographs-stats,
+    .section-heading p:last-child,
+    .monograph-toolbar span,
+    .year-header span {
+      margin-top: 14px;
+    }
+
+    .monograph-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

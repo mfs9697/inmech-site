@@ -45,6 +45,11 @@ export const siteRoutes: SiteRoute[] = [
   { uk: '/postgraduate/research-topics/', en: '/en/postgraduate/research-topics/', titleUk: 'Відповідність тем аспірантів науковій діяльності керівників', titleEn: 'Alignment of postgraduate topics with supervisors’ research activities', sectionUk: 'Аспірантура', sectionEn: 'Postgraduate studies' },
 
   { uk: '/library/', en: '/en/library/', titleUk: 'Бібліотека', titleEn: 'Library', sectionUk: 'Бібліотека', sectionEn: 'Library' },
+  { uk: '/library/monographs/', en: '/en/library/monographs/', titleUk: 'Монографії співробітників Інституту', titleEn: 'Monographs by Institute researchers', sectionUk: 'Бібліотека', sectionEn: 'Library' },
+  { uk: '/library/multivolume-editions/', en: '/en/library/multivolume-editions/', titleUk: 'Фундаментальні багатотомні видання', titleEn: 'Fundamental multivolume editions', sectionUk: 'Бібліотека', sectionEn: 'Library' },
+  { uk: '/library/textbooks/', en: '/en/library/textbooks/', titleUk: 'Підручники та навчальні посібники', titleEn: 'Textbooks and teaching aids', sectionUk: 'Бібліотека', sectionEn: 'Library' },
+  { uk: '/library/history-publications/', en: '/en/library/history-publications/', titleUk: 'Історичні видання про Інститут', titleEn: 'Historical publications about the Institute', sectionUk: 'Бібліотека', sectionEn: 'Library' },
+  { uk: '/library/scientific-books/', en: '/en/library/scientific-books/', titleUk: 'Наукові монографії та довідкові видання', titleEn: 'Scientific monographs and reference editions', sectionUk: 'Бібліотека', sectionEn: 'Library' },
 
   { uk: '/sitemap/', en: '/en/sitemap/', titleUk: 'Карта сайту', titleEn: 'Sitemap', sectionUk: 'Службові сторінки', sectionEn: 'Service pages' },
   { uk: '/search/', en: '/en/search/', titleUk: 'Пошук', titleEn: 'Search', sectionUk: 'Службові сторінки', sectionEn: 'Service pages' },

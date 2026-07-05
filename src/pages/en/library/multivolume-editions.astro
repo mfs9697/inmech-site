@@ -1,0 +1,266 @@
+---
+import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../../data/site-en';
+import { multivolumeEditions, totalMultivolumeVolumes } from '../../../data/multivolumeEditions';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+---
+
+<BaseLayoutEn
+  title={`Fundamental multivolume editions | ${siteEn.shortName}`}
+  description="Fundamental multivolume editions of the scientific schools of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine."
+  activePage="home"
+>
+  <section class="multivolume-hero">
+    <div class="container multivolume-hero-panel">
+      <div>
+        <p class="eyebrow">Library</p>
+        <h1>Fundamental multivolume editions</h1>
+        <p class="lead">
+          Collective multivolume works of the Institute's scientific schools in shell mechanics,
+          composites, three-dimensional elasticity problems, fracture mechanics, coupled fields
+          and related areas. Bibliographic descriptions are retained in their source language.
+        </p>
+      </div>
+      <div class="multivolume-stats" aria-label="Multivolume edition statistics">
+        <strong>{multivolumeEditions.length}</strong>
+        <span>series</span>
+        <small>{totalMultivolumeVolumes} volumes</small>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Series</p>
+          <h2>Scientific schools in multivolume works</h2>
+        </div>
+        <p>
+          These cards summarize source bibliography records for major series. The catalogue can be
+          expanded later with complete bibliographic lists for individual volumes.
+        </p>
+      </div>
+
+      <div class="multivolume-toolbar">
+        <a href={withBase('/en/library/')}>Back to Library</a>
+        <span>Source bibliography retained for verification</span>
+      </div>
+
+      <div class="series-grid">
+        {multivolumeEditions.map((series) => (
+          <article class="series-card">
+            <div class="series-topline">
+              <span>{series.theme}</span>
+              <strong>{series.volumes}</strong>
+            </div>
+            <h3>{series.title}</h3>
+            <p class="series-editor">{series.editor}</p>
+            <p class="series-years">{series.years}</p>
+            <p class="series-description">{series.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayoutEn>
+
+<style>
+  .multivolume-hero {
+    padding: 52px 0 18px;
+  }
+
+  .multivolume-hero-panel,
+  .series-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .multivolume-hero-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 28px;
+    align-items: center;
+    padding: clamp(28px, 5vw, 54px);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .multivolume-hero-panel::after {
+    content: '';
+    position: absolute;
+    right: -90px;
+    top: -110px;
+    width: 300px;
+    height: 300px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(184, 135, 47, 0.18), rgba(184, 135, 47, 0));
+  }
+
+  .multivolume-hero-panel > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .multivolume-hero-panel h1 {
+    margin: 0 0 18px;
+    max-width: 900px;
+    font-size: clamp(2rem, 4.2vw, 4.1rem);
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+  }
+
+  .multivolume-stats {
+    display: grid;
+    place-items: center;
+    min-width: 158px;
+    min-height: 158px;
+    border-radius: 28px;
+    background: linear-gradient(135deg, rgba(184, 135, 47, 0.16), rgba(29, 79, 145, 0.10));
+    border: 1px solid var(--line);
+    text-align: center;
+  }
+
+  .multivolume-stats strong {
+    display: block;
+    color: var(--accent-dark);
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .multivolume-stats span,
+  .multivolume-stats small {
+    color: var(--muted);
+    font-weight: 850;
+  }
+
+  .section-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 28px;
+    align-items: flex-end;
+    margin-bottom: 20px;
+  }
+
+  .section-heading h2 {
+    margin: 0;
+    font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .section-heading p:last-child {
+    max-width: 590px;
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .multivolume-toolbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--surface-soft);
+  }
+
+  .multivolume-toolbar a {
+    color: var(--accent-dark);
+    font-weight: 900;
+  }
+
+  .multivolume-toolbar span {
+    color: var(--muted);
+    font-weight: 850;
+  }
+
+  .series-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .series-card {
+    padding: clamp(20px, 3vw, 30px);
+    background: var(--surface-soft);
+  }
+
+  .series-topline {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+
+  .series-topline span {
+    display: inline-flex;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--accent-dark);
+    font-size: 0.82rem;
+    font-weight: 900;
+  }
+
+  .series-topline strong {
+    color: var(--gold);
+  }
+
+  .series-card h3 {
+    margin: 0 0 10px;
+    color: var(--accent-dark);
+    font-size: 1.32rem;
+    line-height: 1.22;
+  }
+
+  .series-editor {
+    margin: 0 0 6px;
+    color: var(--text);
+    font-weight: 850;
+  }
+
+  .series-years {
+    margin: 0 0 14px;
+    color: var(--gold);
+    font-weight: 900;
+  }
+
+  .series-description {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.48;
+  }
+
+  @media (max-width: 900px) {
+    .multivolume-hero-panel,
+    .section-heading,
+    .multivolume-toolbar {
+      display: block;
+    }
+
+    .multivolume-stats,
+    .section-heading p:last-child,
+    .multivolume-toolbar span {
+      margin-top: 14px;
+    }
+
+    .series-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

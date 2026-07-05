@@ -13,9 +13,6 @@ import HistoryPublications from '../components/history/HistoryPublications.astro
 import HistoryPublicationLegacy from '../components/history/HistoryPublicationLegacy.astro';
 import HistoryCooperation from '../components/history/HistoryCooperation.astro';
 import HistorySources from '../components/history/HistorySources.astro';
-
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
 ---
 
 <BaseLayout
@@ -32,9 +29,6 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
           Заснований 30 листопада 1918 року як перша установа технічного профілю
           Української академії наук, Інститут упродовж понад століття розвиває
           фундаментальні й прикладні дослідження в галузі механіки.
-        </p>
-        <p class="history-language-note">
-          <a href={withBase('/en/history/')}>English version</a>
         </p>
       </div>
     </div>
@@ -69,13 +63,6 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
     padding: clamp(28px, 4vw, 50px);
   }
 
-  .history-language-note {
-    margin-top: 1rem;
-    font-size: 0.96rem;
-    line-height: 1.45;
-  }
-
-  .history-language-note a,
   .history-inline-link {
     font-weight: 800;
   }

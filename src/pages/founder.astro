@@ -7,9 +7,6 @@ import FounderFirstYears from '../components/founder/FounderFirstYears.astro';
 import FounderEmigration from '../components/founder/FounderEmigration.astro';
 import FounderCommemoration from '../components/founder/FounderCommemoration.astro';
 import FounderBibliography from '../components/founder/FounderBibliography.astro';
-
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
 ---
 
 <BaseLayout
@@ -26,9 +23,6 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
           Степан Прокопович Тимошенко — видатний учений-механік зі світовим ім’ям,
           один із фундаторів Української академії наук, засновник і перший директор
           Інституту механіки НАН України, який сьогодні носить його ім’я.
-        </p>
-        <p class="founder-language-note">
-          <a href={withBase('/en/founder/')}>English version</a>
         </p>
       </div>
     </div>
@@ -64,16 +58,6 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
     max-width: 980px;
     margin-inline: auto;
     padding: clamp(28px, 4vw, 50px);
-  }
-
-  .founder-language-note {
-    margin-top: 1rem;
-    font-size: 0.96rem;
-    line-height: 1.45;
-  }
-
-  .founder-language-note a {
-    font-weight: 800;
   }
 
   .founder-container {

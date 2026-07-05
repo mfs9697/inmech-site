@@ -20,8 +20,19 @@ function withBase(path: string) {
 const currentPath = normalizeSitePath(Astro.url.pathname, base);
 const englishPath = getEnglishPath(Astro.url.pathname, base);
 const isSectionActive = (page: Props['activePage']) => activePage === page ? 'active' : '';
-const isPathActive = (path: string) => currentPath === normalizeSitePath(path) ? 'active' : '';
-const isPathPrefixActive = (path: string) => currentPath.startsWith(normalizeSitePath(path)) ? 'active' : '';
+const isCurrentPath = (path: string) => currentPath === normalizeSitePath(path);
+const isCurrentPathPrefix = (path: string) => currentPath.startsWith(normalizeSitePath(path));
+const isPathActive = (path: string) => isCurrentPath(path) ? 'active' : '';
+const isPathPrefixActive = (path: string) => isCurrentPathPrefix(path) ? 'active' : '';
+const ariaCurrentPage = (path: string) => isCurrentPath(path) ? 'page' : undefined;
+const ariaCurrentPrefix = (path: string) => isCurrentPath(path) ? 'page' : isCurrentPathPrefix(path) ? 'location' : undefined;
+const ariaCurrentNews = () => {
+  if (activePage !== 'news') {
+    return undefined;
+  }
+
+  return isCurrentPath('/news/') ? 'page' : 'location';
+};
 ---
 
 <header class="site-header">
@@ -45,7 +56,7 @@ const isPathPrefixActive = (path: string) => currentPath.startsWith(normalizeSit
 
     <nav class="primary-nav" id="primary-nav" aria-label="Головне меню">
       <ul>
-        <li><a class={isPathActive('/')} href={withBase('/')}>Головна</a></li>
+        <li><a class={isPathActive('/')} href={withBase('/')} aria-current={ariaCurrentPage('/')}>Головна</a></li>
 
         <li>
           <button class={`nav-label ${isSectionActive('about')}`} type="button" aria-expanded="false" aria-controls="submenu-about">
@@ -53,12 +64,12 @@ const isPathPrefixActive = (path: string) => currentPath.startsWith(normalizeSit
             <span class="submenu-indicator" aria-hidden="true">▾</span>
           </button>
           <ul class="submenu" id="submenu-about">
-            <li><a class={isPathActive('/history/')} href={withBase('/history/')}>Історія і сучасність</a></li>
-            <li><a class={isPathActive('/founder/')} href={withBase('/founder/')}>Засновник інституту</a></li>
-            <li><a class={isPathActive('/regulations/')} href={withBase('/regulations/')}>Статут</a></li>
-            <li><a class={isPathActive('/strategy/')} href={withBase('/strategy/')}>Стратегія розвитку</a></li>
-            <li><a class={isPathActive('/scientific-cooperation/')} href={withBase('/scientific-cooperation/')}>Наукова співпраця</a></li>
-            <li><a class={isPathActive('/tender/')} href={withBase('/tender/')}>Закупівлі та тендери</a></li>
+            <li><a class={isPathActive('/history/')} href={withBase('/history/')} aria-current={ariaCurrentPage('/history/')}>Історія і сучасність</a></li>
+            <li><a class={isPathActive('/founder/')} href={withBase('/founder/')} aria-current={ariaCurrentPage('/founder/')}>Засновник інституту</a></li>
+            <li><a class={isPathActive('/regulations/')} href={withBase('/regulations/')} aria-current={ariaCurrentPage('/regulations/')}>Статут</a></li>
+            <li><a class={isPathActive('/strategy/')} href={withBase('/strategy/')} aria-current={ariaCurrentPage('/strategy/')}>Стратегія розвитку</a></li>
+            <li><a class={isPathActive('/scientific-cooperation/')} href={withBase('/scientific-cooperation/')} aria-current={ariaCurrentPage('/scientific-cooperation/')}>Наукова співпраця</a></li>
+            <li><a class={isPathActive('/tender/')} href={withBase('/tender/')} aria-current={ariaCurrentPage('/tender/')}>Закупівлі та тендери</a></li>
           </ul>
         </li>
 
@@ -68,12 +79,12 @@ const isPathPrefixActive = (path: string) => currentPath.startsWith(normalizeSit
             <span class="submenu-indicator" aria-hidden="true">▾</span>
           </button>
           <ul class="submenu" id="submenu-structure">
-            <li><a class={isPathActive('/management/')} href={withBase('/management/')}>Дирекція</a></li>
-            <li><a class={isPathActive('/departments/')} href={withBase('/departments/')}>Наукові відділи</a></li>
-            <li><a class={isPathActive('/scientific-council/')} href={withBase('/scientific-council/')}>Вчена рада</a></li>
-            <li><a class={isPathActive('/specialized-councils/')} href={withBase('/specialized-councils/')}>Спеціалізовані ради</a></li>
-            <li><a class={isPathActive('/young-scientists/')} href={withBase('/young-scientists/')}>Рада молодих вчених</a></li>
-            <li><a class={isPathActive('/services/')} href={withBase('/services/')}>Служби інституту</a></li>
+            <li><a class={isPathActive('/management/')} href={withBase('/management/')} aria-current={ariaCurrentPage('/management/')}>Дирекція</a></li>
+            <li><a class={isPathActive('/departments/')} href={withBase('/departments/')} aria-current={ariaCurrentPage('/departments/')}>Наукові відділи</a></li>
+            <li><a class={isPathActive('/scientific-council/')} href={withBase('/scientific-council/')} aria-current={ariaCurrentPage('/scientific-council/')}>Вчена рада</a></li>
+            <li><a class={isPathActive('/specialized-councils/')} href={withBase('/specialized-councils/')} aria-current={ariaCurrentPage('/specialized-councils/')}>Спеціалізовані ради</a></li>
+            <li><a class={isPathActive('/young-scientists/')} href={withBase('/young-scientists/')} aria-current={ariaCurrentPage('/young-scientists/')}>Рада молодих вчених</a></li>
+            <li><a class={isPathActive('/services/')} href={withBase('/services/')} aria-current={ariaCurrentPage('/services/')}>Служби інституту</a></li>
           </ul>
         </li>
 
@@ -83,20 +94,20 @@ const isPathPrefixActive = (path: string) => currentPath.startsWith(normalizeSit
             <span class="submenu-indicator" aria-hidden="true">▾</span>
           </button>
           <ul class="submenu" id="submenu-education">
-            <li><a class={isPathActive('/education/')} href={withBase('/education/')}>Огляд розділу</a></li>
-            <li><a class={isPathActive('/postgraduate/')} href={withBase('/postgraduate/')}>Аспірантура</a></li>
-            <li><a class={isPathActive('/doctoral/')} href={withBase('/doctoral/')}>Докторантура</a></li>
-            <li><a class={isPathActive('/dissertations/')} href={withBase('/dissertations/')}>Захист дисертацій</a></li>
-            <li><a class={isPathActive('/license-and-regulations/')} href={withBase('/license-and-regulations/')}>Ліцензії та Положення</a></li>
-            <li><a class={isPathActive('/trust-box/')} href={withBase('/trust-box/')}>Скринька довіри</a></li>
-            <li><a class={isPathActive('/nmr/')} href={withBase('/nmr/')}>Науково-методична рада</a></li>
+            <li><a class={isPathActive('/education/')} href={withBase('/education/')} aria-current={ariaCurrentPage('/education/')}>Огляд розділу</a></li>
+            <li><a class={isPathActive('/postgraduate/')} href={withBase('/postgraduate/')} aria-current={ariaCurrentPage('/postgraduate/')}>Аспірантура</a></li>
+            <li><a class={isPathActive('/doctoral/')} href={withBase('/doctoral/')} aria-current={ariaCurrentPage('/doctoral/')}>Докторантура</a></li>
+            <li><a class={isPathActive('/dissertations/')} href={withBase('/dissertations/')} aria-current={ariaCurrentPage('/dissertations/')}>Захист дисертацій</a></li>
+            <li><a class={isPathActive('/license-and-regulations/')} href={withBase('/license-and-regulations/')} aria-current={ariaCurrentPage('/license-and-regulations/')}>Ліцензії та Положення</a></li>
+            <li><a class={isPathActive('/trust-box/')} href={withBase('/trust-box/')} aria-current={ariaCurrentPage('/trust-box/')}>Скринька довіри</a></li>
+            <li><a class={isPathActive('/nmr/')} href={withBase('/nmr/')} aria-current={ariaCurrentPage('/nmr/')}>Науково-методична рада</a></li>
           </ul>
         </li>
 
-        <li><a class={isPathPrefixActive('/library/')} href={withBase('/library/')}>Бібліотека</a></li>
-        <li><a class={isSectionActive('news')} href={withBase('/news/')}>Новини</a></li>
+        <li><a class={isPathPrefixActive('/library/')} href={withBase('/library/')} aria-current={ariaCurrentPrefix('/library/')}>Бібліотека</a></li>
+        <li><a class={isSectionActive('news')} href={withBase('/news/')} aria-current={ariaCurrentNews()}>Новини</a></li>
         <li><a href={withBase('/#contacts')}>Контакти</a></li>
-        <li><a class={`search-nav-link ${isPathActive('/search/')}`} href={withBase('/search/')} aria-label="Пошук по сайту">Пошук</a></li>
+        <li><a class={`search-nav-link ${isPathActive('/search/')}`} href={withBase('/search/')} aria-label="Пошук по сайту" aria-current={ariaCurrentPage('/search/')}>Пошук</a></li>
       </ul>
     </nav>
 

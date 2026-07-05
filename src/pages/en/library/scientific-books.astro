@@ -1,0 +1,575 @@
+---
+import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../../data/site-en';
+import {
+  bibliographyAll,
+  bibliographyLibraryOfCongressCount,
+  bibliographyUsedTags,
+  bibliographyYears
+} from '../../../data/bibliographyAll';
+
+const combinedBibliography = bibliographyAll;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+function normalizeAuthorKey(authors: string) {
+  return authors
+    .replace(/^За заг\. ред\.\s*/i, '')
+    .replace(/^За ред\.\s*/i, '')
+    .replace(/^Под общ\. ред\.\s*/i, '')
+    .trim();
+}
+
+function getInitial(authors: string) {
+  const normalized = normalizeAuthorKey(authors);
+  const first = normalized.charAt(0).toUpperCase();
+  return first || '#';
+}
+
+const bibliographyTypeLabels = {
+  monograph: 'Monograph',
+  textbook: 'Teaching publication',
+  handbook: 'Handbook',
+  dictionary: 'Dictionary',
+  'edited-volume': 'Edited volume',
+  chapter: 'Chapter',
+  'series-volume': 'Series volume'
+} as const;
+
+const bibliographyTagLabelsEn = {
+  'shells-plates': 'Shells and plates',
+  composites: 'Composites',
+  'fracture-mechanics': 'Fracture mechanics',
+  'dynamics-waves': 'Dynamics, vibrations and waves',
+  'thermoelasticity-creep': 'Thermoelasticity and creep',
+  'stability-control': 'Stability and control',
+  'contact-mechanics': 'Contact mechanics',
+  'solid-mechanics': 'Solid mechanics',
+  'materials-mechanics': 'Mechanics of materials',
+  'theoretical-mechanics': 'Theoretical mechanics',
+  'experimental-mechanics': 'Experimental mechanics',
+  'numerical-methods': 'Numerical and mathematical methods',
+  'signal-processing': 'Signal processing',
+  'fluid-gas-mechanics': 'Fluid and gas mechanics',
+  acoustics: 'Acoustics',
+  'initial-stresses': 'Initial stresses',
+  piezoelectricity: 'Piezoelectric materials',
+  'interdisciplinary-modeling': 'Interdisciplinary modelling',
+  'reference-edition': 'Reference edition',
+  'history-of-science': 'History of science',
+  'institute-history': 'Institute history',
+  textbook: 'Textbook / teaching aid',
+  monograph: 'Monograph',
+  'edited-volume': 'Edited volume',
+  chapter: 'Chapter',
+  multivolume: 'Multivolume edition'
+} as const;
+
+function tagLabel(tag: keyof typeof bibliographyTagLabelsEn) {
+  return bibliographyTagLabelsEn[tag] ?? tag;
+}
+
+const sortedBibliography = [...combinedBibliography].sort((a, b) =>
+  normalizeAuthorKey(a.authors).localeCompare(normalizeAuthorKey(b.authors), 'uk') ||
+  a.title.localeCompare(b.title, 'uk')
+);
+
+const alphabetGroups = [...sortedBibliography.reduce((acc, entry) => {
+  const initial = getInitial(entry.authors);
+  if (!acc.has(initial)) acc.set(initial, []);
+  acc.get(initial)?.push(entry);
+  return acc;
+}, new Map<string, typeof combinedBibliography>())].map(([letter, items]) => ({ letter, items }));
+
+const hasEntries = combinedBibliography.length > 0;
+---
+
+<BaseLayoutEn
+  title={`Scientific monographs and reference editions | ${siteEn.shortName}`}
+  description="Catalogue of scientific monographs, reference editions, dictionaries and fundamental publications from the bibliographic archive of the S.P. Timoshenko Institute of Mechanics."
+  activePage="home"
+>
+  <section class="books-hero">
+    <div class="container books-hero-panel">
+      <div>
+        <p class="eyebrow">Library</p>
+        <h1>Scientific monographs and reference editions</h1>
+        <p class="lead">
+          A unified bibliographic catalogue of individual scientific monographs, reference books,
+          dictionaries and fundamental editions. Records are stored once and grouped here by author,
+          publication type and research tags.
+        </p>
+      </div>
+      <div class="books-stats" aria-label="Scientific books catalogue statistics">
+        <strong>{combinedBibliography.length}</strong>
+        <span>records</span>
+        <small>{hasEntries ? `${bibliographyYears.at(-1)}-${bibliographyYears[0]}` : 'in preparation'}</small>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Catalogue</p>
+          <h2>Alphabetical index</h2>
+        </div>
+        <p>
+          Records are grouped by the first letter of the author or editor. Use topic tags to narrow
+          the catalogue, or return to all records.
+        </p>
+      </div>
+
+      <div class="books-toolbar">
+        <a href={withBase('/en/library/')}>Back to Library</a>
+        <span data-filter-summary>
+          All records · {bibliographyUsedTags.length} tags · {bibliographyLibraryOfCongressCount} in the Library of Congress
+        </span>
+      </div>
+
+      <nav class="alpha-nav" aria-label="Alphabetical navigation for the bibliographic catalogue">
+        {alphabetGroups.map((group) => (
+          <a href={`#books-${group.letter}`}>{group.letter}</a>
+        ))}
+      </nav>
+
+      <div class="tag-cloud" aria-label="Filter by topic tags">
+        <button class="tag-filter is-active" type="button" data-tag-filter="all">All records</button>
+        {bibliographyUsedTags.map((tag) => (
+          <button class="tag-filter" type="button" data-tag-filter={tag}>{tagLabel(tag)}</button>
+        ))}
+      </div>
+
+      <p class="no-results is-filter-hidden" data-no-results>
+        No records match the selected tag.
+      </p>
+
+      <div class="alphabet-groups">
+        {alphabetGroups.map((group) => (
+          <section class="alphabet-group" id={`books-${group.letter}`} data-alphabet-group>
+            <div class="alphabet-header">
+              <h3>{group.letter}</h3>
+              <span data-group-count>{group.items.length} record{group.items.length === 1 ? '' : 's'}</span>
+            </div>
+
+            <div class="book-grid">
+              {group.items.map((item) => (
+                <article class="book-card" data-book-card data-tags={JSON.stringify(item.tags)}>
+                  <div class="book-card-topline">
+                    <span>{bibliographyTypeLabels[item.type]}</span>
+                    {item.year && <strong>{item.year}</strong>}
+                  </div>
+                  <h4>{item.title}</h4>
+                  <p class="authors">{item.authors}</p>
+                  <p class="details">
+                    {item.publisher}{item.pages ? `, ${item.pages}` : ''}{item.isbn ? `; ISBN ${item.isbn}` : ''}{item.doi ? `; DOI ${item.doi}` : ''}.
+                  </p>
+                  {item.note && <p class="note">{item.note}</p>}
+                  <div class="entry-tags">
+                    {item.tags.map((tag) => (
+                      <button class="tag-filter entry-tag" type="button" data-tag-filter={tag}>{tagLabel(tag)}</button>
+                    ))}
+                  </div>
+                  {item.inLibraryOfCongress && <p class="loc-badge">Library of Congress</p>}
+                  {item.url && (
+                    <a class="card-link" href={item.url} target="_blank" rel="noopener noreferrer">Electronic resource</a>
+                  )}
+                </article>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayoutEn>
+
+<script>
+  const filterButtons = Array.from(document.querySelectorAll('[data-tag-filter]'));
+  const cards = Array.from(document.querySelectorAll('[data-book-card]'));
+  const groups = Array.from(document.querySelectorAll('[data-alphabet-group]'));
+  const summary = document.querySelector('[data-filter-summary]');
+  const noResults = document.querySelector('[data-no-results]');
+  const allCount = cards.length;
+
+  function formatCount(count) {
+    if (count === 1) return '1 record';
+    return `${count} records`;
+  }
+
+  function readTags(card) {
+    try {
+      return JSON.parse(card.dataset.tags || '[]');
+    } catch {
+      return [];
+    }
+  }
+
+  function setActiveButtons(activeTag) {
+    filterButtons.forEach((button) => {
+      button.classList.toggle('is-active', button.dataset.tagFilter === activeTag);
+    });
+  }
+
+  function applyFilter(activeTag) {
+    let visibleTotal = 0;
+
+    cards.forEach((card) => {
+      const tags = readTags(card);
+      const visible = activeTag === 'all' || tags.includes(activeTag);
+      card.classList.toggle('is-filter-hidden', !visible);
+      if (visible) visibleTotal += 1;
+    });
+
+    groups.forEach((group) => {
+      const visibleCards = Array.from(group.querySelectorAll('[data-book-card]')).filter(
+        (card) => !card.classList.contains('is-filter-hidden')
+      );
+      const count = visibleCards.length;
+      group.classList.toggle('is-filter-hidden', count === 0);
+      const countElement = group.querySelector('[data-group-count]');
+      if (countElement) countElement.textContent = formatCount(count);
+    });
+
+    const activeButton = filterButtons.find((button) => button.dataset.tagFilter === activeTag);
+    const activeLabel = activeButton?.textContent?.trim() || 'All records';
+
+    if (summary) {
+      summary.textContent = activeTag === 'all'
+        ? `All records · ${allCount} records`
+        : `${activeLabel} · ${visibleTotal} of ${allCount} records`;
+    }
+
+    if (noResults) {
+      noResults.classList.toggle('is-filter-hidden', visibleTotal !== 0);
+    }
+
+    setActiveButtons(activeTag);
+  }
+
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const tag = button.dataset.tagFilter || 'all';
+      applyFilter(tag);
+      if (tag === 'all') {
+        history.replaceState(null, '', window.location.pathname);
+      } else {
+        history.replaceState(null, '', `#tag-${tag}`);
+      }
+    });
+  });
+
+  const hashTag = window.location.hash.startsWith('#tag-')
+    ? window.location.hash.replace('#tag-', '')
+    : 'all';
+
+  applyFilter(filterButtons.some((button) => button.dataset.tagFilter === hashTag) ? hashTag : 'all');
+</script>
+
+<style>
+  .is-filter-hidden {
+    display: none !important;
+  }
+
+  .books-hero {
+    padding: 52px 0 18px;
+  }
+
+  .books-hero-panel,
+  .book-card,
+  .alphabet-group {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .books-hero-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 28px;
+    align-items: center;
+    padding: clamp(28px, 5vw, 54px);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .books-hero-panel::after {
+    content: '';
+    position: absolute;
+    right: -90px;
+    top: -110px;
+    width: 300px;
+    height: 300px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(29, 79, 145, 0.14), rgba(29, 79, 145, 0));
+  }
+
+  .books-hero-panel > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .books-hero-panel h1 {
+    margin: 0 0 18px;
+    max-width: 900px;
+    font-size: clamp(2rem, 4.2vw, 4.1rem);
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+  }
+
+  .books-stats {
+    display: grid;
+    place-items: center;
+    min-width: 158px;
+    min-height: 158px;
+    border-radius: 28px;
+    background: linear-gradient(135deg, rgba(29, 79, 145, 0.10), rgba(184, 135, 47, 0.16));
+    border: 1px solid var(--line);
+    text-align: center;
+  }
+
+  .books-stats strong {
+    display: block;
+    color: var(--accent-dark);
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .books-stats span,
+  .books-stats small {
+    color: var(--muted);
+    font-weight: 850;
+  }
+
+  .section-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 28px;
+    align-items: flex-end;
+    margin-bottom: 20px;
+  }
+
+  .section-heading h2 {
+    margin: 0;
+    font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .section-heading p:last-child {
+    max-width: 590px;
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .books-toolbar,
+  .alpha-nav,
+  .tag-cloud,
+  .no-results {
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--surface-soft);
+  }
+
+  .books-toolbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 14px;
+    padding: 14px 16px;
+  }
+
+  .books-toolbar a {
+    color: var(--accent-dark);
+    font-weight: 900;
+  }
+
+  .books-toolbar span {
+    color: var(--muted);
+    font-weight: 850;
+  }
+
+  .alpha-nav,
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+    padding: 12px;
+  }
+
+  .alpha-nav a,
+  .tag-filter,
+  .book-card-topline span,
+  .loc-badge {
+    display: inline-flex;
+    width: fit-content;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 900;
+  }
+
+  .alpha-nav a {
+    min-width: 38px;
+    justify-content: center;
+    padding: 8px 10px;
+    background: var(--surface);
+    color: var(--accent-dark);
+  }
+
+  .alpha-nav a:hover {
+    background: var(--accent-soft);
+    text-decoration: none;
+  }
+
+  .tag-filter,
+  .book-card-topline span {
+    padding: 6px 10px;
+    border: 0;
+    background: var(--surface);
+    color: var(--accent-dark);
+    cursor: pointer;
+    font-family: inherit;
+    line-height: 1.2;
+  }
+
+  .tag-filter:hover,
+  .tag-filter.is-active {
+    background: var(--accent-soft);
+  }
+
+  .tag-filter.is-active {
+    outline: 2px solid rgba(29, 79, 145, 0.18);
+  }
+
+  .alphabet-groups {
+    display: grid;
+    gap: 18px;
+  }
+
+  .alphabet-group {
+    padding: clamp(18px, 3vw, 28px);
+  }
+
+  .alphabet-header,
+  .book-card-topline {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .alphabet-header {
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .alphabet-header h3 {
+    margin: 0;
+    color: var(--accent-dark);
+    font-size: 1.45rem;
+  }
+
+  .alphabet-header span,
+  .book-card-topline strong {
+    color: var(--muted);
+    font-weight: 850;
+  }
+
+  .book-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .book-card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: var(--surface-soft);
+  }
+
+  .book-card-topline {
+    margin-bottom: 12px;
+  }
+
+  .book-card h4 {
+    margin: 0 0 10px;
+    color: var(--accent-dark);
+    line-height: 1.25;
+  }
+
+  .authors {
+    margin: 0 0 10px;
+    color: var(--text);
+    font-weight: 850;
+  }
+
+  .details,
+  .note {
+    margin: 0 0 14px;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+
+  .entry-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin: 0 0 14px;
+  }
+
+  .entry-tag {
+    font-size: 0.78rem;
+  }
+
+  .loc-badge {
+    margin: 0 0 14px;
+    padding: 6px 10px;
+    background: rgba(184, 135, 47, 0.14);
+    color: var(--accent-dark);
+  }
+
+  .no-results {
+    margin: 0 0 18px;
+    padding: 16px 18px;
+    color: var(--muted);
+    font-weight: 850;
+  }
+
+  .book-card .card-link {
+    margin-top: auto;
+  }
+
+  @media (max-width: 900px) {
+    .books-hero-panel,
+    .section-heading,
+    .books-toolbar,
+    .alphabet-header {
+      display: block;
+    }
+
+    .books-stats,
+    .section-heading p:last-child,
+    .books-toolbar span,
+    .alphabet-header span {
+      margin-top: 14px;
+    }
+
+    .book-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

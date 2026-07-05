@@ -1,0 +1,282 @@
+---
+import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../../data/site-en';
+import {
+  historyPublications,
+  historyPublicationYears,
+  historyPublicationLibraryOfCongressCount
+} from '../../../data/historyPublications';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+---
+
+<BaseLayoutEn
+  title={`Historical publications about the Institute | ${siteEn.shortName}`}
+  description="Historical and anniversary publications about the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine."
+  activePage="home"
+>
+  <section class="history-hero">
+    <div class="container history-hero-panel">
+      <div>
+        <p class="eyebrow">Library</p>
+        <h1>Historical publications about the Institute</h1>
+        <p class="lead">
+          Publications dedicated to the history, structure, scientific schools and development of
+          the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine. Source bibliographic
+          text is retained for accuracy.
+        </p>
+      </div>
+      <div class="history-stats" aria-label="Historical publication statistics">
+        <strong>{historyPublications.length}</strong>
+        <span>records</span>
+        <small>{historyPublicationYears.at(-1)}-{historyPublicationYears[0]}</small>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Catalogue</p>
+          <h2>Publications on the Institute's history</h2>
+        </div>
+        <p>
+          This subsection gathers historical and anniversary publications specifically about the
+          Institute. The Library of Congress badge follows the source bibliography.
+        </p>
+      </div>
+
+      <div class="history-toolbar">
+        <a href={withBase('/en/library/')}>Back to Library</a>
+        <span>{historyPublicationLibraryOfCongressCount} in the Library of Congress</span>
+      </div>
+
+      <div class="history-grid">
+        {historyPublications
+          .slice()
+          .sort((a, b) => b.year - a.year)
+          .map((item) => (
+            <article class="history-card">
+              <div class="history-card-topline">
+                <span>{item.period}</span>
+                <strong>{item.year}</strong>
+              </div>
+              <h3>{item.title}</h3>
+              <p class="editors">{item.editors}</p>
+              <p class="details">{item.publisher}, {item.pages}.</p>
+              <p class="description">{item.description}</p>
+              {item.inLibraryOfCongress && (
+                <p class="loc-badge">Library of Congress</p>
+              )}
+            </article>
+          ))}
+      </div>
+    </div>
+  </section>
+</BaseLayoutEn>
+
+<style>
+  .history-hero {
+    padding: 52px 0 18px;
+  }
+
+  .history-hero-panel,
+  .history-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .history-hero-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 28px;
+    align-items: center;
+    padding: clamp(28px, 5vw, 54px);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .history-hero-panel::after {
+    content: '';
+    position: absolute;
+    right: -90px;
+    top: -110px;
+    width: 300px;
+    height: 300px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(184, 135, 47, 0.17), rgba(184, 135, 47, 0));
+  }
+
+  .history-hero-panel > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .history-hero-panel h1 {
+    margin: 0 0 18px;
+    max-width: 900px;
+    font-size: clamp(2rem, 4.2vw, 4.1rem);
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+  }
+
+  .history-stats {
+    display: grid;
+    place-items: center;
+    min-width: 158px;
+    min-height: 158px;
+    border-radius: 28px;
+    background: linear-gradient(135deg, rgba(29, 79, 145, 0.10), rgba(184, 135, 47, 0.16));
+    border: 1px solid var(--line);
+    text-align: center;
+  }
+
+  .history-stats strong {
+    display: block;
+    color: var(--accent-dark);
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .history-stats span,
+  .history-stats small {
+    color: var(--muted);
+    font-weight: 850;
+  }
+
+  .section-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 28px;
+    align-items: flex-end;
+    margin-bottom: 20px;
+  }
+
+  .section-heading h2 {
+    margin: 0;
+    font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .section-heading p:last-child {
+    max-width: 590px;
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .history-toolbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--surface-soft);
+  }
+
+  .history-toolbar a {
+    color: var(--accent-dark);
+    font-weight: 900;
+  }
+
+  .history-toolbar span {
+    color: var(--muted);
+    font-weight: 850;
+  }
+
+  .history-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .history-card {
+    padding: 20px;
+    background: var(--surface-soft);
+  }
+
+  .history-card-topline {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .history-card-topline span {
+    display: inline-flex;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--accent-dark);
+    font-size: 0.82rem;
+    font-weight: 900;
+  }
+
+  .history-card-topline strong {
+    color: var(--gold);
+  }
+
+  .history-card h3 {
+    margin: 0 0 10px;
+    color: var(--accent-dark);
+    line-height: 1.25;
+  }
+
+  .editors {
+    margin: 0 0 10px;
+    color: var(--text);
+    font-weight: 850;
+  }
+
+  .details,
+  .description {
+    margin: 0 0 12px;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+
+  .loc-badge {
+    display: inline-flex;
+    width: fit-content;
+    margin: 0;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(184, 135, 47, 0.14);
+    color: var(--accent-dark);
+    font-size: 0.82rem;
+    font-weight: 900;
+  }
+
+  @media (max-width: 900px) {
+    .history-hero-panel,
+    .section-heading,
+    .history-toolbar {
+      display: block;
+    }
+
+    .history-stats,
+    .section-heading p:last-child,
+    .history-toolbar span {
+      margin-top: 14px;
+    }
+
+    .history-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

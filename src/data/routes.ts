@@ -1,3 +1,5 @@
+import { allowedNewsTags, allowedNewsTagsEn, newsTagTranslations } from '../utils/newsTags';
+
 export interface SiteRoute {
   uk: string;
   en: string;
@@ -78,6 +80,46 @@ export function normalizeSitePath(pathname: string, base = '') {
   return hash ? `${normalizedPath}#${hash}` : normalizedPath;
 }
 
+function decodePathSegment(segment: string) {
+  try {
+    return decodeURIComponent(segment);
+  } catch {
+    return segment;
+  }
+}
+
+function getNewsTag(path: string, prefix: '/news/tags/' | '/en/news/tags/') {
+  if (!path.startsWith(prefix)) {
+    return undefined;
+  }
+
+  const tag = path.slice(prefix.length, -1);
+  return tag ? decodePathSegment(tag) : undefined;
+}
+
+function getEnglishNewsTagPath(path: string) {
+  const ukrainianTag = getNewsTag(path, '/news/tags/');
+
+  if (!ukrainianTag || !allowedNewsTags.includes(ukrainianTag as (typeof allowedNewsTags)[number])) {
+    return undefined;
+  }
+
+  return `/en/news/tags/${encodeURIComponent(newsTagTranslations[ukrainianTag as (typeof allowedNewsTags)[number]])}/`;
+}
+
+function getUkrainianNewsTagPath(path: string) {
+  const englishTag = getNewsTag(path, '/en/news/tags/');
+
+  if (!englishTag) {
+    return undefined;
+  }
+
+  const tagIndex = allowedNewsTagsEn.indexOf(englishTag);
+  const ukrainianTag = allowedNewsTags[tagIndex];
+
+  return ukrainianTag ? `/news/tags/${encodeURIComponent(ukrainianTag)}/` : undefined;
+}
+
 export function getEnglishPath(pathname: string, base = '') {
   const path = normalizeSitePath(pathname, base);
   const route = siteRoutes.find((item) => item.uk === path);
@@ -88,6 +130,12 @@ export function getEnglishPath(pathname: string, base = '') {
 
   if (/^\/departments\/[^/]+\/$/.test(path) || /^\/people\/[^/]+\/$/.test(path)) {
     return `/en${path}`;
+  }
+
+  const englishNewsTagPath = getEnglishNewsTagPath(path);
+
+  if (englishNewsTagPath) {
+    return englishNewsTagPath;
   }
 
   if (/^\/news\/tags\/[^/]+\/$/.test(path)) {
@@ -113,6 +161,12 @@ export function getUkrainianPath(pathname: string, base = '') {
     return path.replace(/^\/en/, '');
   }
 
+  const ukrainianNewsTagPath = getUkrainianNewsTagPath(path);
+
+  if (ukrainianNewsTagPath) {
+    return ukrainianNewsTagPath;
+  }
+
   if (/^\/en\/news\/tags\/[^/]+\/$/.test(path)) {
     return '/news/';
   }
@@ -130,6 +184,7 @@ export function hasEnglishAlternative(pathname: string, base = '') {
     ukrainianStaticPaths.has(path) ||
     /^\/departments\/[^/]+\/$/.test(path) ||
     /^\/people\/[^/]+\/$/.test(path) ||
+    Boolean(getEnglishNewsTagPath(path)) ||
     (/^\/news\/(?!tags\/).+\/$/.test(path) && path !== '/news/')
   );
 }
@@ -140,6 +195,7 @@ export function hasUkrainianAlternative(pathname: string, base = '') {
     englishStaticPaths.has(path) ||
     /^\/en\/departments\/[^/]+\/$/.test(path) ||
     /^\/en\/people\/[^/]+\/$/.test(path) ||
+    Boolean(getUkrainianNewsTagPath(path)) ||
     (/^\/en\/news\/(?!tags\/).+\/$/.test(path) && path !== '/en/news/')
   );
 }

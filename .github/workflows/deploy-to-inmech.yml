@@ -48,6 +48,11 @@ jobs:
       - name: Check page landmarks
         run: node scripts/check-main-landmarks.mjs
 
+      - name: Check generated internal links
+        run: |
+          node scripts/check-internal-links.mjs --self-test
+          node scripts/check-internal-links.mjs
+
   build-and-deploy:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
@@ -93,6 +98,11 @@ jobs:
 
       - name: Check page landmarks
         run: node scripts/check-main-landmarks.mjs
+
+      - name: Check generated internal links
+        run: |
+          node scripts/check-internal-links.mjs --self-test
+          node scripts/check-internal-links.mjs
 
       - name: Prepare SSH key
         run: |

@@ -15,6 +15,7 @@ Astro-сайт Інституту механіки ім. С.П. Тимошенк
 
 ```text
 inmech-site/
+  .nvmrc
   astro.config.mjs
   package.json
   public/
@@ -33,6 +34,7 @@ inmech-site/
     pages/
     styles/
   scripts/
+    check-internal-links.mjs
     check-main-landmarks.mjs
   .github/
     CODEOWNERS
@@ -51,6 +53,10 @@ inmech-site/
 - `public/` — зображення, документи та інші статичні файли.
 
 ## Локальна робота
+
+Для Astro 7 потрібен Node.js `>=22.12.0`; рекомендована локальна версія
+записана в `.nvmrc` і відповідає версії Node.js, яку використовує GitHub
+Actions.
 
 Оновити локальну копію:
 
@@ -118,6 +124,8 @@ Workflow має назву **Validate and deploy Astro site** і працює у
 2. збирає Astro-сайт;
 3. перевіряє наявність файлів sitemap;
 4. перевіряє, що кожна згенерована HTML-сторінка містить рівно один елемент `<main>`.
+5. перевіряє, що згенеровані внутрішні посилання на сторінки сайту ведуть до
+   файлів у `dist/`.
 
 Після злиття змін у `main` job `build-and-deploy` повторює перевірки та копіює вміст `dist/` на сервер через захищене SSH-з’єднання. Workflow також можна запустити вручну:
 

@@ -9,7 +9,6 @@ departmentUrl: "/departments/03-computational-mechanics-engineering/"
 degree: "Кандидат фізико-математичних наук"
 degreeEn: "Candidate of Physical and Mathematical Sciences"
 email: "zhukova_n@ukr.net"
-photo: "/people/zhukova.png"
 featured: false
 order: 6
 

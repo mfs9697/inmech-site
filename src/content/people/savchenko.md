@@ -9,7 +9,6 @@ departmentUrl: "/departments/06-thermoplasticity/"
 degree: "Доктор технічних наук"
 degreeEn: "Doctor of Technical Sciences"
 email: "plast@inmech.kyiv.ua"
-photo: "/people/savchenko.png"
 featured: false
 order: 3
 

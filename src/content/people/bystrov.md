@@ -6,7 +6,6 @@ positionEn: "Senior Researcher"
 department: "Відділ обчислювальної механіки та техніки"
 departmentEn: "Department of Computational Mechanics and Engineering"
 departmentUrl: "/departments/03-computational-mechanics-engineering/"
-photo: "/people/bystrov.png"
 email: "tiger-cat@ukr.net"
 featured: false
 order: 3

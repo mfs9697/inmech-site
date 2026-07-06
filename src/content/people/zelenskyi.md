@@ -9,7 +9,6 @@ departmentUrl: "/departments/03-computational-mechanics-engineering/"
 degree: "Кандидат фізико-математичних наук"
 degreeEn: "Candidate of Physical and Mathematical Sciences"
 email: "numer@inmech.kyiv.ua"
-photo: "/people/zelenskyi.png"
 featured: false
 order: 5
 

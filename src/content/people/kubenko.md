@@ -12,7 +12,7 @@ academicTitle: "Професор, академік НАН України, ака
 academicTitleEn: "Professor, Academician of the NAS of Ukraine, Member of the European Academy of Sciences and Arts"
 email: "vdk@inmech.kyiv.ua"
 featured: false
-photo: "public/people/kubenko.png"
+photo: "/people/kubenko.jpg"
 order: 1
 
 profiles:

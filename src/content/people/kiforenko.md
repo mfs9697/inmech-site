@@ -12,7 +12,7 @@ academicTitle: "Професор"
 academicTitleEn: "Professor"
 email: "bkifor@ukr.net"
 featured: false
-photo: "public/people/kiforenko.png"
+photo: "/people/kiforenko.jpg"
 order: 2
 
 profiles: []

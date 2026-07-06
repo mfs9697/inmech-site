@@ -53,7 +53,7 @@ const departments = defineCollection({
     ).default([]),
     order: z.number(),
 
-    contactEmail: z.string().email().optional(),
+    contactEmail: z.email().optional(),
 
     staff: z.array(
       z.object({
@@ -81,7 +81,7 @@ const people = defineCollection({
     degreeEn: z.string().optional(),
     academicTitle: z.string().optional(),
     academicTitleEn: z.string().optional(),
-    email: z.string().email().optional(),
+    email: z.email().optional(),
     phone: z.string().optional(),
     office: z.string().optional(),
     photo: z.string().optional(),

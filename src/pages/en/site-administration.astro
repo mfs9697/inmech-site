@@ -5,40 +5,62 @@ import { siteEn } from '../../data/site-en';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
 
-const technologies = [
+const reportTopics = [
   {
-    title: 'Astro',
-    text: 'The website is built as a static web project based on Astro. This approach provides fast page loading, a clear file structure and straightforward deployment to the server without a separate server-side application.'
+    title: 'Incorrect or outdated information',
+    text: 'Let the editors know if a page contains an inaccurate title, department name, position, date, contact detail or other outdated information.'
   },
   {
-    title: 'HTML, CSS and TypeScript',
-    text: 'The pages are built using the Astro component structure, standard HTML markup, cascading style sheets and supporting TypeScript code.'
+    title: 'Broken link or document',
+    text: 'Report links that do not open, missing documents, wrong files or materials that should be replaced with a newer version.'
   },
   {
-    title: 'Static architecture',
-    text: 'The website does not require a database or a separate server application. Text materials, images, documents and pages are stored within the project structure.'
+    title: 'Mismatch between language versions',
+    text: 'Tell us if the Ukrainian and English pages differ in title, structure, content, links or visible navigation.'
   },
   {
-    title: 'Hosting on the Institute server',
-    text: 'The public version of the website is intended to be hosted on the server of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine, with updates made by deploying the generated static files.'
+    title: 'Accessibility issue',
+    text: 'Report navigation difficulties, unclear text, missing image descriptions or any other issue that makes the website harder to use.'
   }
 ];
 
-const developers = [
+const requestChecklist = [
+  'the address of the page where the issue appears;',
+  'a short description of what should be corrected or updated;',
+  'the proposed correct text, link or document;',
+  'the language version involved, if the issue affects only Ukrainian or English;',
+  'a contact for clarification when the update needs approval.'
+];
+
+const updateSteps = [
+  'Editors review the request and identify which pages need to be updated.',
+  'Changes are prepared in a local copy of the website or in GitHub, without direct editing of published server files.',
+  'For bilingual materials, Ukrainian and English versions are checked against each other.',
+  'Before publication, the website passes an automated build and validation checks.',
+  'After approval, the generated static version is published through GitHub Actions.'
+];
+
+const supportRoles = [
   {
-    name: 'Mykhailo Selivanov',
-    role: 'website structure, scientific and informational content, editing of materials, and coordination of section updates'
+    title: 'Content and structure',
+    text: 'Preparation of text, coordination of departmental materials, updates to reference information and consistency between language versions.'
   },
   {
-    name: 'Mykhailo Dovzhyk',
-    role: 'technical support, web development, local development environment, and preparation of materials for deployment on the Institute server'
+    title: 'Technical support',
+    text: 'Maintenance of the website code, local development environment, automated checks, build process and publication of the static version.'
   }
+];
+
+const technicalNotes = [
+  'The website is a static Astro project: pages are generated in advance and load quickly in the browser.',
+  'The website source files are maintained in GitHub; GitHub is the source of truth for changes and validation.',
+  'Published files on the server are not edited manually: each deployment replaces them with a generated version from the repository.'
 ];
 ---
 
 <BaseLayoutEn
   title={`Site administration | ${siteEn.shortName}`}
-  description="Website administration information for the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine: web technologies, support structure and contributors."
+  description="How to report an issue on the Institute website, suggest a content update and understand how website changes are reviewed and published."
   activePage="home"
 >
   <div class="site-admin-page">
@@ -49,25 +71,28 @@ const developers = [
     </nav>
 
     <section class="admin-hero">
-      <p class="eyebrow">Service information</p>
+      <p class="eyebrow">Website support</p>
       <h1>Site administration</h1>
       <p class="lead">
-        The official website of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine
-        has been developed as a modern static resource for presenting the Institute’s structure,
-        research activities, educational and research programmes, news, documents and reference materials.
+        This page explains who maintains the official Institute website, how visitors can
+        report an error or suggest a content update, and how changes are checked before publication.
       </p>
+      <div class="hero-actions">
+        <a class="button primary" href={`mailto:${siteEn.email}`}>Contact the Institute</a>
+        <a class="button secondary" href={withBase('/en/accessibility/')}>Accessibility policy</a>
+      </div>
     </section>
 
     <section class="section-block">
       <div class="section-heading compact-header">
         <div>
-          <p class="eyebrow">Technologies</p>
-          <h2>Technology used</h2>
+          <p class="eyebrow">Requests</p>
+          <h2>When to contact site administration</h2>
         </div>
       </div>
 
-      <div class="technology-grid">
-        {technologies.map((item) => (
+      <div class="support-grid">
+        {reportTopics.map((item) => (
           <article class="info-card">
             <h3>{item.title}</h3>
             <p>{item.text}</p>
@@ -78,29 +103,46 @@ const developers = [
 
     <section class="section-block two-column">
       <article class="info-panel">
-        <p class="eyebrow">Website support</p>
-        <h2>Organisation principle</h2>
+        <p class="eyebrow">What to include</p>
+        <h2>How to prepare a request</h2>
         <p>
-          Preparation and updating of materials are organised through a local development environment,
-          page preview and verification, followed by deployment of the generated static version to the Institute server.
+          To help editors verify and process a request quickly, please include a few
+          practical details in your message.
         </p>
-        <p>
-          This approach is convenient for the gradual migration of materials from the previous version of the website,
-          the creation of separate pages for large sections and the maintenance of an orderly content structure.
-        </p>
+        <ul class="check-list">
+          {requestChecklist.map((item) => <li>{item}</li>)}
+        </ul>
       </article>
 
       <article class="info-panel">
-        <p class="eyebrow">Contributors</p>
-        <h2>Contributors</h2>
-        <div class="developer-list">
-          {developers.map((developer) => (
-            <div class="developer-card">
-              <strong>{developer.name}</strong>
-              <p>{developer.role}</p>
+        <p class="eyebrow">Workflow</p>
+        <h2>How the website is updated</h2>
+        <ol class="step-list">
+          {updateSteps.map((item) => <li>{item}</li>)}
+        </ol>
+      </article>
+    </section>
+
+    <section class="section-block two-column">
+      <article class="info-panel">
+        <p class="eyebrow">Responsibility</p>
+        <h2>Who maintains the website</h2>
+        <div class="role-list">
+          {supportRoles.map((role) => (
+            <div class="role-card">
+              <strong>{role.title}</strong>
+              <p>{role.text}</p>
             </div>
           ))}
         </div>
+      </article>
+
+      <article class="info-panel">
+        <p class="eyebrow">Technical basis</p>
+        <h2>How the site is published</h2>
+        <ul class="plain-list">
+          {technicalNotes.map((note) => <li>{note}</li>)}
+        </ul>
       </article>
     </section>
   </div>
@@ -149,11 +191,18 @@ const developers = [
     line-height: 1.7;
   }
 
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
   .section-block {
     margin-top: 34px;
   }
 
-  .technology-grid {
+  .support-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 18px;
@@ -170,7 +219,8 @@ const developers = [
   }
 
   .info-card p,
-  .info-panel p {
+  .info-panel p,
+  .info-panel li {
     color: var(--muted);
     line-height: 1.65;
   }
@@ -181,36 +231,49 @@ const developers = [
     gap: 18px;
   }
 
-  .developer-list {
+  .check-list,
+  .plain-list,
+  .step-list {
+    margin: 18px 0 0;
+    padding-left: 1.25rem;
+  }
+
+  .check-list li + li,
+  .plain-list li + li,
+  .step-list li + li {
+    margin-top: 10px;
+  }
+
+  .role-list {
     display: grid;
     gap: 14px;
   }
 
-  .developer-card {
+  .role-card {
     padding: 16px;
     border-radius: 18px;
     background: var(--surface-soft);
   }
 
-  .developer-card strong {
+  .role-card strong {
     display: block;
     margin-bottom: 8px;
     color: var(--text);
     font-size: 1.05rem;
   }
 
-  .developer-card p {
+  .role-card p {
     margin: 0;
   }
 
   @media (max-width: 1080px) {
-    .technology-grid {
+    .support-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
   @media (max-width: 860px) {
-    .technology-grid,
+    .support-grid,
     .two-column {
       grid-template-columns: 1fr;
     }

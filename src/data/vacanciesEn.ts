@@ -114,7 +114,7 @@ const competitions: Omit<VacancyCompetition, 'documents'>[] = [
     ]
   },
   {
-    id: '2025-05-29-competition-13',
+    id: '2025-08-07-competition-13',
     date: '2025-08-07',
     year: 2025,
     title: 'Competition to Fill a Vacant Research Position',
@@ -132,7 +132,7 @@ const competitions: Omit<VacancyCompetition, 'documents'>[] = [
     ]
   },
   {
-    id: '2025-05-01-competition-12',
+    id: '2025-05-13-competition-12',
     date: '2025-05-13',
     year: 2025,
     title: 'Competition to Fill Vacant Research Positions',
@@ -154,7 +154,7 @@ const competitions: Omit<VacancyCompetition, 'documents'>[] = [
     ]
   },
   {
-    id: '2025-03-01-competition-11',
+    id: '2025-03-20-competition-11',
     date: '2025-03-20',
     year: 2025,
     title: 'Competition to Fill a Vacant Research Position',
@@ -226,7 +226,7 @@ const competitions: Omit<VacancyCompetition, 'documents'>[] = [
     requirements: doctorResearchRequirements
   },
   {
-    id: '2024-08-02-competition-07',
+    id: '2024-08-06-competition-07',
     date: '2024-08-06',
     year: 2024,
     title: 'Participation in the Postdoctoral Research Programme',
@@ -238,7 +238,7 @@ const competitions: Omit<VacancyCompetition, 'documents'>[] = [
     requirements: postdocRequirements
   },
   {
-    id: '2024-07-15-competition-06',
+    id: '2024-07-11-competition-06',
     date: '2024-07-11',
     year: 2024,
     title: 'Competition to Fill Vacant Positions',
@@ -262,7 +262,7 @@ const competitions: Omit<VacancyCompetition, 'documents'>[] = [
     ]
   },
   {
-    id: '2024-06-06-competition-05',
+    id: '2024-05-10-competition-05',
     date: '2024-05-10',
     year: 2024,
     title: 'Participation in the Postdoctoral Research Programme',

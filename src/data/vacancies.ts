@@ -143,7 +143,7 @@ const competitions = [
     ]
   },
   {
-    id: '2025-05-29-competition-13',
+    id: '2025-08-07-competition-13',
     date: '2025-08-07',
     year: 2025,
     title: 'Заміщення вакантної посади наукового працівника',
@@ -161,7 +161,7 @@ const competitions = [
     ]
   },
   {
-    id: '2025-05-01-competition-12',
+    id: '2025-05-13-competition-12',
     date: '2025-05-13',
     year: 2025,
     title: 'Заміщення вакантних посад наукових працівників',
@@ -183,7 +183,7 @@ const competitions = [
     ]
   },
   {
-    id: '2025-03-01-competition-11',
+    id: '2025-03-20-competition-11',
     date: '2025-03-20',
     year: 2025,
     title: 'Заміщення вакантної посади наукового працівника',
@@ -255,7 +255,7 @@ const competitions = [
     requirements: doctorResearchRequirements
   },
   {
-    id: '2024-08-02-competition-07',
+    id: '2024-08-06-competition-07',
     date: '2024-08-06',
     year: 2024,
     title: 'Участь у програмі постдокторальних досліджень',
@@ -267,7 +267,7 @@ const competitions = [
     requirements: postdocRequirements
   },
   {
-    id: '2024-07-15-competition-06',
+    id: '2024-07-11-competition-06',
     date: '2024-07-11',
     year: 2024,
     title: 'Заміщення вакантних посад',
@@ -291,7 +291,7 @@ const competitions = [
     ]
   },
   {
-    id: '2024-06-06-competition-05',
+    id: '2024-05-10-competition-05',
     date: '2024-05-10',
     year: 2024,
     title: 'Участь у програмі постдокторальних досліджень',

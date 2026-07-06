@@ -9,7 +9,6 @@ departmentUrl: "/departments/06-thermoplasticity/"
 degree: "Доктор фізико-математичних наук"
 degreeEn: "Doctor of Physical and Mathematical Sciences"
 email: "plast@inmech.kyiv.ua"
-photo: "/people/babeshko.png"
 featured: false
 order: 4
 

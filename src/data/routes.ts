@@ -21,6 +21,7 @@ export const siteRoutes: SiteRoute[] = [
   { uk: '/strategy/', en: '/en/strategy/', titleUk: 'Стратегія розвитку', titleEn: 'Development strategy', sectionUk: 'Про інститут', sectionEn: 'About the Institute' },
   { uk: '/scientific-cooperation/', en: '/en/scientific-cooperation/', titleUk: 'Наукова співпраця', titleEn: 'Scientific cooperation', sectionUk: 'Про інститут', sectionEn: 'About the Institute' },
   { uk: '/tender/', en: '/en/tender/', titleUk: 'Закупівлі та тендери', titleEn: 'Procurement and tenders', sectionUk: 'Про інститут', sectionEn: 'About the Institute' },
+  { uk: '/vacancies/', en: '/en/vacancies/', titleUk: 'Вакансії', titleEn: 'Vacancies', sectionUk: 'Про інститут', sectionEn: 'About the Institute' },
 
   { uk: '/management/', en: '/en/management/', titleUk: 'Дирекція', titleEn: 'Management', sectionUk: 'Структура', sectionEn: 'Structure' },
   { uk: '/departments/', en: '/en/departments/', titleUk: 'Наукові відділи', titleEn: 'Research departments', sectionUk: 'Структура', sectionEn: 'Structure' },

@@ -1,0 +1,518 @@
+---
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import { vacancyArchiveEn, type VacancyDocumentType } from '../../data/vacanciesEn';
+
+const instituteName = 'S. P. Timoshenko Institute of Mechanics of the National Academy of Sciences of Ukraine';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+const documentTypeLabels: Record<VacancyDocumentType, string> = {
+  'competition-order': 'Competition order',
+  'participant-order': 'Participants',
+  'result-order': 'Results'
+};
+
+const formatDate = new Intl.DateTimeFormat('en-GB', {
+  day: '2-digit',
+  month: 'long',
+  year: 'numeric'
+});
+
+const years = [...new Set(vacancyArchiveEn.map((entry) => entry.year))].sort((a, b) => b - a);
+const groupedArchive = years.map((year) => ({
+  year,
+  entries: vacancyArchiveEn.filter((entry) => entry.year === year)
+}));
+const documentCount = vacancyArchiveEn.reduce((total, entry) => total + entry.documents.length, 0);
+const latestEntry = vacancyArchiveEn[0];
+
+function extensionLabel(href: string) {
+  return href.split('.').pop()?.toUpperCase() ?? 'File';
+}
+
+const submissionDocuments = [
+  'a written application addressed to the Director for participation in the competition;',
+  'a copy of an identity document;',
+  'a completed personal record card (questionnaire) in the established form;',
+  'a curriculum vitae;',
+  'a copy of the employment record book, if available;',
+  'copies of documents on higher education, advanced training, and military registration document for servicemembers or persons liable for military service;',
+  'a list of the candidate\'s scientific publications in domestic and foreign, including international, peer-reviewed professional journals;',
+  'written consent to personal data processing.'
+];
+
+const publicationRequirements = [
+  'scientific journals included in the List of Scientific Professional Publications of Ukraine;',
+  'scientific publications of other countries;',
+  'foreign or international publications indexed in international scientometric databases.'
+];
+
+const additionalScientificInfo = [
+  'patents for inventions that have passed qualification examination;',
+  'monographs or chapters in collective monographs;',
+  'links to online scientific profiles.'
+];
+---
+
+<BaseLayoutEn
+  title={`Vacancies | ${instituteName}`}
+  description={`Announcements and orders for competitions to fill vacant positions at the ${instituteName}.`}
+  activePage="about"
+>
+  <section class="page-hero vacancies-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">Vacancies</p>
+        <h1>Competitions for Vacant Positions</h1>
+        <p class="lead">
+          Announcements and orders for competitions to fill vacant positions at the {instituteName}.
+        </p>
+
+        <dl class="vacancy-stats" aria-label="Vacancy archive summary">
+          <div>
+            <dt>Period</dt>
+            <dd>2024-2026</dd>
+          </div>
+          <div>
+            <dt>Competitions</dt>
+            <dd>{vacancyArchiveEn.length}</dd>
+          </div>
+          <div>
+            <dt>Documents</dt>
+            <dd>{documentCount}</dd>
+          </div>
+          <div>
+            <dt>Latest update</dt>
+            <dd>{formatDate.format(new Date(`${latestEntry.date}T00:00:00`))}</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section vacancy-intro">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Document Archive</p>
+          <h2 class="section-title">Announcements and Orders</h2>
+          <p class="section-text">
+            Each competition card includes the vacant positions, document submission period, requirements for participants, and three PDF documents:
+            the order announcing the competition, the order approving the participants, and the order approving the results.
+          </p>
+        </div>
+      </div>
+
+      <div class="submission-panel">
+        <p class="eyebrow">Documents for Participation</p>
+        <h3>Required Documents for Participation in the Competition</h3>
+        <ol>
+          {submissionDocuments.map((item) => <li>{item}</li>)}
+        </ol>
+
+        <p>
+          The list of scientific publications should include links to information resources and websites where the publications are available,
+          or electronic copies of the candidate's scientific works. The list includes, in particular, publications in:
+        </p>
+        <ul>
+          {publicationRequirements.map((item) => <li>{item}</li>)}
+        </ul>
+
+        <p>
+          Candidates may provide additional information reflecting the results of their scientific activity:
+        </p>
+        <ul>
+          {additionalScientificInfo.map((item) => <li>{item}</li>)}
+        </ul>
+
+        <p>
+          Candidates employed by the {instituteName} submit only an application for participation in the competition. If documents are submitted
+          by email, they must be sent as scanned PDF files, with each document provided as a separate file.
+        </p>
+        <p>
+          If documents are sent by post, the submission date is the date indicated by the postmark. Documents submitted or sent after the expiry
+          of the submission period are not considered and are not returned to the candidate.
+        </p>
+        <p>
+          The competition period is 30 calendar days from the date this announcement is published on the official website of the {instituteName}.
+          Applications and documents are accepted at: 3 P. Nesterova St., Kyiv, 03057, Ukraine, and by email at
+          <a href="mailto:inst_mech@inmech.kyiv.ua">inst_mech@inmech.kyiv.ua</a>.
+        </p>
+        <p>
+          The Institute does not provide housing to persons hired after competitive selection. The authorized person for clarifications regarding
+          the competition procedure is Mykhailo F. Selivanov, Deputy Director for Research of the {instituteName}.
+        </p>
+      </div>
+
+      <nav class="year-nav vacancy-years" aria-label="Navigation by year">
+        {years.map((year) => (
+          <a href={`#vacancies-${year}`}>{year}</a>
+        ))}
+      </nav>
+    </div>
+  </section>
+
+  {groupedArchive.map((group) => (
+    <section class="section vacancy-year-section" id={`vacancies-${group.year}`}>
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">{group.year}</p>
+            <h2 class="section-title">Competitions in {group.year}</h2>
+          </div>
+          <span class="vacancy-count">{group.entries.length} records</span>
+        </div>
+
+        <div class="vacancy-list">
+          {group.entries.map((entry) => (
+            <article class="vacancy-card">
+              <div class="vacancy-date">
+                <time datetime={entry.date}>{formatDate.format(new Date(`${entry.date}T00:00:00`))}</time>
+              </div>
+
+              <div class="vacancy-content">
+                <div class="vacancy-heading">
+                  <div>
+                    <h3>{entry.title}</h3>
+                  </div>
+                </div>
+
+                <div class="card-announcement">
+                  <div class="card-field positions-field">
+                    <p class="card-label">Vacant Positions</p>
+                    <ul class="position-list">
+                      {entry.positions.map((position) => (
+                        <li>
+                          <span>{position.title}</span>
+                          {position.departments && position.departments.length > 0 && (
+                            <span class="position-departments">
+                              {position.departments.map((department, index) => (
+                                <>
+                                  {index > 0 && ', '}
+                                  <a href={withBase(department.href)}>{department.title}</a>
+                                </>
+                              ))}
+                            </span>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div class="card-field deadline-field">
+                    <p class="card-label">Document Submission Period</p>
+                    <p class="card-note">{entry.deadline}</p>
+                  </div>
+                  <div class="card-field requirements-field">
+                    <p class="card-label">Requirements for Competition Participants</p>
+                    <ul class="requirement-list">
+                      {entry.requirements.map((requirement) => <li>{requirement}</li>)}
+                    </ul>
+                  </div>
+                </div>
+
+                <ul class="document-list">
+                  {entry.documents.map((document) => (
+                    <li>
+                      <span class={`document-kind ${document.type}`}>{documentTypeLabels[document.type]}</span>
+                      <a href={withBase(document.href)} target="_blank" rel="noopener">
+                        {document.title}
+                      </a>
+                      <span class="document-meta">{extensionLabel(document.href)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <style>
+    .vacancies-hero .panel {
+      display: grid;
+      gap: 22px;
+    }
+
+    .vacancy-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 4px 0 0;
+    }
+
+    .vacancy-stats div {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface-soft);
+      padding: 14px 16px;
+      min-width: 0;
+    }
+
+    .vacancy-stats dt {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 750;
+    }
+
+    .vacancy-stats dd {
+      margin: 0;
+      color: var(--accent-dark);
+      font-size: 1.14rem;
+      font-weight: 850;
+    }
+
+    .vacancy-intro {
+      padding-bottom: 12px;
+    }
+
+    .vacancy-years {
+      margin-bottom: 0;
+      margin-top: 20px;
+    }
+
+    .submission-panel {
+      margin-top: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 12px 32px rgba(20, 33, 61, 0.08);
+      padding: 22px;
+    }
+
+    .submission-panel h3 {
+      margin: 0 0 8px;
+      font-size: 1.18rem;
+    }
+
+    .submission-panel p {
+      margin: 14px 0 0;
+      color: var(--muted);
+    }
+
+    .submission-panel ol,
+    .submission-panel ul {
+      margin: 12px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .submission-panel li + li {
+      margin-top: 6px;
+    }
+
+    .vacancy-year-section {
+      padding-top: 22px;
+    }
+
+    .vacancy-count {
+      flex: 0 0 auto;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--muted);
+      padding: 7px 12px;
+      font-weight: 750;
+      font-size: 0.9rem;
+    }
+
+    .vacancy-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .vacancy-card {
+      display: grid;
+      grid-template-columns: 170px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 12px 32px rgba(20, 33, 61, 0.08);
+      padding: 18px;
+    }
+
+    .vacancy-date {
+      color: var(--accent-dark);
+      font-weight: 850;
+      line-height: 1.3;
+    }
+
+    .vacancy-heading h3 {
+      margin: 0 0 6px;
+      font-size: 1.18rem;
+      line-height: 1.25;
+    }
+
+    .vacancy-heading p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .card-announcement {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 0.42fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .card-field {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfcff;
+      padding: 12px 14px;
+      min-width: 0;
+    }
+
+    .requirements-field {
+      grid-column: 1 / -1;
+      background: #ffffff;
+    }
+
+    .card-label {
+      margin: 0 0 8px;
+      color: var(--accent-dark);
+      font-size: 0.82rem;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .position-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .position-list li + li {
+      margin-top: 5px;
+    }
+
+    .position-list li {
+      display: grid;
+      gap: 5px;
+    }
+
+    .position-departments {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.4;
+    }
+
+    .position-departments a {
+      font-weight: 780;
+      overflow-wrap: anywhere;
+    }
+
+    .requirement-list {
+      columns: 2;
+      column-gap: 28px;
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .requirement-list li {
+      break-inside: avoid;
+    }
+
+    .requirement-list li + li {
+      margin-top: 5px;
+    }
+
+    .card-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .document-list {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      margin: 16px 0 0;
+      padding: 0;
+    }
+
+    .document-list li {
+      display: grid;
+      grid-template-columns: 150px minmax(180px, 1fr) 70px;
+      gap: 10px;
+      align-items: center;
+      border-top: 1px solid var(--line);
+      padding-top: 8px;
+      min-width: 0;
+    }
+
+    .document-kind,
+    .document-meta {
+      width: fit-content;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 0.78rem;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .document-kind {
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+    }
+
+    .document-kind.result-order {
+      color: #0d4f3c;
+      background: #dff7ed;
+    }
+
+    .document-meta {
+      color: var(--muted);
+      background: #eef1f5;
+    }
+
+    .document-list a {
+      font-weight: 780;
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 940px) {
+      .vacancy-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .vacancy-card,
+      .card-announcement,
+      .document-list li {
+        grid-template-columns: 1fr;
+      }
+
+      .requirements-field {
+        grid-column: auto;
+      }
+
+      .requirement-list {
+        columns: 1;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .vacancy-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .vacancy-card {
+        padding: 14px;
+      }
+    }
+  </style>
+</BaseLayoutEn>

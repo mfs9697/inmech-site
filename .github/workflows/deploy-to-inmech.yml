@@ -48,6 +48,9 @@ jobs:
       - name: Check page landmarks
         run: node scripts/check-main-landmarks.mjs
 
+      - name: Check generated links
+        run: node scripts/check-dist-links.mjs
+
   build-and-deploy:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
@@ -93,6 +96,9 @@ jobs:
 
       - name: Check page landmarks
         run: node scripts/check-main-landmarks.mjs
+
+      - name: Check generated links
+        run: node scripts/check-dist-links.mjs
 
       - name: Prepare SSH key
         run: |

@@ -34,9 +34,11 @@ inmech-site/
     pages/
     styles/
   scripts/
+    audit-generated-assets.mjs
     check-internal-links.mjs
     check-main-landmarks.mjs
     check-sitemap-output.mjs
+    check-vacancy-archive.mjs
   .github/
     CODEOWNERS
     scripts/
@@ -92,7 +94,82 @@ npm.cmd run validate
 
 Готова статична версія створюється в папці `dist/`.
 
+The `validate` command runs the Astro build, sitemap check, generated
+`<main>` landmark check, generated internal-link check, and vacancy archive
+consistency check. The vacancy check keeps Ukrainian and English vacancy
+records aligned and verifies that each vacancy folder contains:
+
+```text
+order-competition.pdf
+order-participants.pdf
+order-results.pdf
+```
+
+Generated asset and download references can be audited manually after a build:
+
+```powershell
+npm.cmd run audit:assets
+```
+
+This asset audit is intentionally non-blocking. It reports missing generated
+asset/download references, references that incorrectly begin with `/public/`,
+duplicate files under `public/`, and unusually large public assets.
+
 У Windows зручно використовувати `npm.cmd`, оскільки PowerShell іноді блокує команду `npm` через Execution Policy.
+
+## Vacancy archive
+
+Vacancy records are maintained in both `src/data/vacancies.ts` and
+`src/data/vacanciesEn.ts`. The IDs, dates, years, record order, and number of
+positions must stay synchronized between the two files. The ID must start with
+the source/display date, for example:
+
+```text
+2026-03-17-competition-17
+```
+
+The PDF archive for that record must be stored in:
+
+```text
+public/vacancies/2026-03-17-competition-17/
+```
+
+Each vacancy folder must contain the three standard archival PDFs named:
+
+```text
+order-competition.pdf
+order-participants.pdf
+order-results.pdf
+```
+
+Do not add personal names to vacancy card headings when the official
+announcement is for a position. Use the position title and department link
+shown in the source order/announcement. Deadlines should remain expressed on
+the page as the official "30 calendar days from publication" wording unless a
+source announcement states a special fixed deadline.
+
+## Public asset policy
+
+Use short Latin filenames without spaces for new public files. In site content,
+refer to files without the `public` prefix:
+
+```text
+public/images/news/2026/example.jpg
+```
+
+becomes:
+
+```markdown
+![Image description](/images/news/2026/example.jpg)
+```
+
+PDFs and archival documents should not be visually altered. If size reduction is
+needed, optimize only when the rendered pages remain equivalent and the
+archival meaning is unchanged. Avoid adding duplicate PDFs or images; when a
+replacement is intentional, remove the obsolete asset in the same PR.
+
+Large binary additions should be justified in the PR description. Do not
+rewrite repository history or introduce Git LFS without explicit approval.
 
 ## Збереження змін
 

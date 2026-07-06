@@ -1,0 +1,518 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+import { vacancyArchive, type VacancyDocumentType } from '../data/vacancies';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+const documentTypeLabels: Record<VacancyDocumentType, string> = {
+  'competition-order': 'Наказ про конкурс',
+  'participant-order': 'Учасники',
+  'result-order': 'Результати'
+};
+
+const formatDate = new Intl.DateTimeFormat('uk-UA', {
+  day: '2-digit',
+  month: 'long',
+  year: 'numeric'
+});
+
+const years = [...new Set(vacancyArchive.map((entry) => entry.year))].sort((a, b) => b - a);
+const groupedArchive = years.map((year) => ({
+  year,
+  entries: vacancyArchive.filter((entry) => entry.year === year)
+}));
+const documentCount = vacancyArchive.reduce((total, entry) => total + entry.documents.length, 0);
+const latestEntry = vacancyArchive[0];
+
+function extensionLabel(href: string) {
+  return href.split('.').pop()?.toUpperCase() ?? 'Файл';
+}
+
+const submissionDocuments = [
+  'письмова заява на ім’я директора про участь у конкурсі;',
+  'копія документа, що посвідчує особу;',
+  'заповнена особова картка (анкета) встановленого зразка;',
+  'автобіографія;',
+  'копія трудової книжки (за наявності);',
+  'копії документів про вищу освіту, підвищення кваліфікації, військового квитка (для військовослужбовців або військовозобов’язаних);',
+  'перелік наукових праць кандидата у вітчизняних та іноземних (міжнародних) рецензованих фахових виданнях;',
+  'письмова згода на обробку персональних даних.'
+];
+
+const publicationRequirements = [
+  'у наукових виданнях, включених до Переліку наукових фахових видань України;',
+  'у наукових виданнях інших держав;',
+  'в іноземних (міжнародних) виданнях, проіндексованих у міжнародних наукометричних базах.'
+];
+
+const additionalScientificInfo = [
+  'патенти на винахід, що пройшли кваліфікаційну експертизу;',
+  'монографії або розділи у колективних монографіях;',
+  'посилання на наукові онлайн-профілі.'
+];
+---
+
+<BaseLayout
+  title={`Вакансії | ${site.name}`}
+  description="Оголошення про конкурси на заміщення вакантних посад наукових працівників Інституту механіки та відповідні накази."
+  activePage="about"
+>
+  <section class="page-hero vacancies-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">Вакансії</p>
+        <h1>Конкурси на заміщення вакантних посад</h1>
+        <p class="lead">
+          Оголошення про вакантні посади та накази щодо конкурсів на посади наукових працівників Інституту механіки ім. С. П. Тимошенка НАН України.
+        </p>
+
+        <dl class="vacancy-stats" aria-label="Зведення архіву вакансій">
+          <div>
+            <dt>Період</dt>
+            <dd>2024-2026</dd>
+          </div>
+          <div>
+            <dt>Конкурси</dt>
+            <dd>{vacancyArchive.length}</dd>
+          </div>
+          <div>
+            <dt>Документи</dt>
+            <dd>{documentCount}</dd>
+          </div>
+          <div>
+            <dt>Останнє оновлення</dt>
+            <dd>{formatDate.format(new Date(`${latestEntry.date}T00:00:00`))}</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section vacancy-intro">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Архів документів</p>
+          <h2 class="section-title">Оголошення та накази</h2>
+          <p class="section-text">
+            Для кожного конкурсу подано три PDF-документи: наказ про конкурс, наказ про затвердження учасників і наказ про затвердження результатів.
+            Строк подання документів і вимоги до учасників наведено безпосередньо в картці відповідного конкурсу.
+          </p>
+        </div>
+      </div>
+
+      <div class="submission-panel">
+        <p class="eyebrow">Документи для участі</p>
+        <h3>Перелік необхідних документів для участі у конкурсі</h3>
+        <ol>
+          {submissionDocuments.map((item) => <li>{item}</li>)}
+        </ol>
+
+        <p>
+          Перелік наукових праць подається з посиланнями на інформаційні ресурси та веб-сайти, на яких вони розміщені, або з електронними копіями
+          наукових праць. У переліку зазначаються праці, зокрема опубліковані:
+        </p>
+        <ul>
+          {publicationRequirements.map((item) => <li>{item}</li>)}
+        </ul>
+
+        <p>
+          Кандидати можуть надавати додаткову інформацію, що відображає результати їхньої наукової діяльності:
+        </p>
+        <ul>
+          {additionalScientificInfo.map((item) => <li>{item}</li>)}
+        </ul>
+
+        <p>
+          Кандидати, які працюють в Інституті механіки ім. С. П. Тимошенка НАН України, подають лише заяву про участь у конкурсі.
+          У разі подання документів електронною поштою документи надсилаються у сканованому вигляді у форматі PDF, кожний документ окремим файлом.
+        </p>
+        <p>
+          У разі надсилання документів поштою датою подання вважається дата, зазначена на поштовому штемпелі. Документи, подані або надіслані після
+          закінчення строку їх подання, залишаються без розгляду та кандидатові не повертаються.
+        </p>
+        <p>
+          Заяви та документи приймаються за адресою: вул. П. Нестерова, м. Київ, 03057, а також на електронну пошту
+          <a href="mailto:inst_mech@inmech.kyiv.ua">inst_mech@inmech.kyiv.ua</a>. При прийомі на роботу осіб, які пройшли конкурсний відбір,
+          Інститут житлом не забезпечує.
+        </p>
+        <p>
+          Уповноважена особа для надання роз’яснень щодо проведення конкурсу: Селіванов Михайло Федорович, заступник директора з наукової роботи
+          Інституту механіки ім. С. П. Тимошенка НАН України.
+        </p>
+      </div>
+
+      <nav class="year-nav vacancy-years" aria-label="Навігація за роками">
+        {years.map((year) => (
+          <a href={`#vacancies-${year}`}>{year}</a>
+        ))}
+      </nav>
+    </div>
+  </section>
+
+  {groupedArchive.map((group) => (
+    <section class="section vacancy-year-section" id={`vacancies-${group.year}`}>
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">{group.year}</p>
+            <h2 class="section-title">Конкурси {group.year} року</h2>
+          </div>
+          <span class="vacancy-count">{group.entries.length} записів</span>
+        </div>
+
+        <div class="vacancy-list">
+          {group.entries.map((entry) => (
+            <article class="vacancy-card">
+              <div class="vacancy-date">
+                <time datetime={entry.date}>{formatDate.format(new Date(`${entry.date}T00:00:00`))}</time>
+              </div>
+
+              <div class="vacancy-content">
+                <div class="vacancy-heading">
+                  <div>
+                    <h3>{entry.title}</h3>
+                  </div>
+                </div>
+
+                <div class="card-announcement">
+                  <div class="card-field positions-field">
+                    <p class="card-label">Вакантні посади</p>
+                    <ul class="position-list">
+                      {entry.positions.map((position) => (
+                        <li>
+                          <span>{position.title}</span>
+                          {position.departments && position.departments.length > 0 && (
+                            <span class="position-departments">
+                              {position.departments.map((department, index) => (
+                                <>
+                                  {index > 0 && ', '}
+                                  <a href={withBase(department.href)}>{department.title}</a>
+                                </>
+                              ))}
+                            </span>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div class="card-field deadline-field">
+                    <p class="card-label">Строк подання документів</p>
+                    <p class="card-note">{entry.deadline}</p>
+                  </div>
+                  <div class="card-field requirements-field">
+                    <p class="card-label">Вимоги до учасників конкурсу</p>
+                    <ul class="requirement-list">
+                      {entry.requirements.map((requirement) => <li>{requirement}</li>)}
+                    </ul>
+                  </div>
+                </div>
+
+                <ul class="document-list">
+                  {entry.documents.map((document) => (
+                    <li>
+                      <span class={`document-kind ${document.type}`}>{documentTypeLabels[document.type]}</span>
+                      <a href={withBase(document.href)} target="_blank" rel="noopener">
+                        {document.title}
+                      </a>
+                      <span class="document-meta">{extensionLabel(document.href)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <style>
+    .vacancies-hero .panel {
+      display: grid;
+      gap: 22px;
+    }
+
+    .vacancy-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 4px 0 0;
+    }
+
+    .vacancy-stats div {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface-soft);
+      padding: 14px 16px;
+      min-width: 0;
+    }
+
+    .vacancy-stats dt {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 750;
+    }
+
+    .vacancy-stats dd {
+      margin: 0;
+      color: var(--accent-dark);
+      font-size: 1.14rem;
+      font-weight: 850;
+    }
+
+    .vacancy-intro {
+      padding-bottom: 12px;
+    }
+
+    .vacancy-years {
+      margin-bottom: 0;
+      margin-top: 20px;
+    }
+
+    .submission-panel {
+      margin-top: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 12px 32px rgba(20, 33, 61, 0.08);
+      padding: 22px;
+    }
+
+    .submission-panel h3 {
+      margin: 0 0 8px;
+      font-size: 1.18rem;
+    }
+
+    .submission-panel p {
+      margin: 14px 0 0;
+      color: var(--muted);
+    }
+
+    .submission-panel ol,
+    .submission-panel ul {
+      margin: 12px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .submission-panel li + li {
+      margin-top: 6px;
+    }
+
+    .vacancy-year-section {
+      padding-top: 22px;
+    }
+
+    .vacancy-count {
+      flex: 0 0 auto;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--muted);
+      padding: 7px 12px;
+      font-weight: 750;
+      font-size: 0.9rem;
+    }
+
+    .vacancy-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .vacancy-card {
+      display: grid;
+      grid-template-columns: 170px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 12px 32px rgba(20, 33, 61, 0.08);
+      padding: 18px;
+    }
+
+    .vacancy-date {
+      color: var(--accent-dark);
+      font-weight: 850;
+      line-height: 1.3;
+    }
+
+    .vacancy-heading h3 {
+      margin: 0 0 6px;
+      font-size: 1.18rem;
+      line-height: 1.25;
+    }
+
+    .vacancy-heading p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .card-announcement {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 0.42fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .card-field {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfcff;
+      padding: 12px 14px;
+      min-width: 0;
+    }
+
+    .requirements-field {
+      grid-column: 1 / -1;
+      background: #ffffff;
+    }
+
+    .card-label {
+      margin: 0 0 8px;
+      color: var(--accent-dark);
+      font-size: 0.82rem;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .position-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .position-list li + li {
+      margin-top: 5px;
+    }
+
+    .position-list li {
+      display: grid;
+      gap: 5px;
+    }
+
+    .position-departments {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.4;
+    }
+
+    .position-departments a {
+      font-weight: 780;
+      overflow-wrap: anywhere;
+    }
+
+    .requirement-list {
+      columns: 2;
+      column-gap: 28px;
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .requirement-list li {
+      break-inside: avoid;
+    }
+
+    .requirement-list li + li {
+      margin-top: 5px;
+    }
+
+    .card-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .document-list {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      margin: 16px 0 0;
+      padding: 0;
+    }
+
+    .document-list li {
+      display: grid;
+      grid-template-columns: 150px minmax(180px, 1fr) 70px;
+      gap: 10px;
+      align-items: center;
+      border-top: 1px solid var(--line);
+      padding-top: 8px;
+      min-width: 0;
+    }
+
+    .document-kind,
+    .document-meta {
+      width: fit-content;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 0.78rem;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .document-kind {
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+    }
+
+    .document-kind.result-order {
+      color: #0d4f3c;
+      background: #dff7ed;
+    }
+
+    .document-meta {
+      color: var(--muted);
+      background: #eef1f5;
+    }
+
+    .document-list a {
+      font-weight: 780;
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 940px) {
+      .vacancy-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .vacancy-card,
+      .card-announcement,
+      .document-list li {
+        grid-template-columns: 1fr;
+      }
+
+      .requirements-field {
+        grid-column: auto;
+      }
+
+      .requirement-list {
+        columns: 1;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .vacancy-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .vacancy-card {
+        padding: 14px;
+      }
+    }
+  </style>
+</BaseLayout>

@@ -39,8 +39,10 @@ deployment state.
 
 - Before finishing, run the same validation used by
   `.github/workflows/deploy-to-inmech.yml`:
-  `npm ci`, `npm run build`, verify `dist/sitemap-index.xml` and
-  `dist/sitemap-0.xml` exist, and run
-  `node scripts/check-main-landmarks.mjs`.
+  `npm ci` and `npm run validate`. The validation command builds the site,
+  verifies sitemap output, checks generated page landmarks, and checks
+  generated internal links.
+- For changes that will be committed or merged, also run
+  `npm audit --audit-level=low` and `git diff --check`.
 - Report changed files, validation results, and anything that still needs manual
   review.

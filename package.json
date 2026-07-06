@@ -10,6 +10,10 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
+    "check:sitemap": "node scripts/check-sitemap-output.mjs",
+    "check:landmarks": "node scripts/check-main-landmarks.mjs",
+    "check:links": "node scripts/check-internal-links.mjs --self-test && node scripts/check-internal-links.mjs",
+    "validate": "npm run build && npm run check:sitemap && npm run check:landmarks && npm run check:links",
     "preview": "astro preview",
     "astro": "astro"
   },

@@ -37,21 +37,8 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
-      - name: Build Astro site
-        run: npm run build
-
-      - name: Check sitemap output
-        run: |
-          test -f dist/sitemap-index.xml
-          test -f dist/sitemap-0.xml
-
-      - name: Check page landmarks
-        run: node scripts/check-main-landmarks.mjs
-
-      - name: Check generated internal links
-        run: |
-          node scripts/check-internal-links.mjs --self-test
-          node scripts/check-internal-links.mjs
+      - name: Validate generated site
+        run: npm run validate
 
   build-and-deploy:
     if: github.event_name != 'pull_request'
@@ -88,21 +75,8 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
-      - name: Build Astro site
-        run: npm run build
-
-      - name: Check sitemap output
-        run: |
-          test -f dist/sitemap-index.xml
-          test -f dist/sitemap-0.xml
-
-      - name: Check page landmarks
-        run: node scripts/check-main-landmarks.mjs
-
-      - name: Check generated internal links
-        run: |
-          node scripts/check-internal-links.mjs --self-test
-          node scripts/check-internal-links.mjs
+      - name: Validate generated site
+        run: npm run validate
 
       - name: Prepare SSH key
         run: |

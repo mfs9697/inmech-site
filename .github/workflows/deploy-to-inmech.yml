@@ -51,6 +51,7 @@ jobs:
       INMECH_PATH: ${{ secrets.INMECH_PATH }}
       INMECH_PORT: ${{ secrets.INMECH_PORT }}
       DEPLOY_KEY: ${{ secrets.INMECH_SSH_PRIVATE_KEY }}
+      INMECH_SITE_URL: ${{ vars.INMECH_SITE_URL || 'https://new.inmech.kyiv.ua' }}
 
     steps:
       - name: Checkout repository
@@ -78,6 +79,9 @@ jobs:
       - name: Validate generated site
         run: npm run validate
 
+      - name: Write deployment marker
+        run: printf '%s' "$GITHUB_SHA" > dist/deploy-version.txt
+
       - name: Prepare SSH key
         run: |
           : "${INMECH_HOST:?Missing secret INMECH_HOST}"
@@ -100,3 +104,63 @@ jobs:
             -e "ssh -i ~/.ssh/inmech_deploy_key -p $PORT" \
             ./dist/ \
             "$INMECH_USER@$INMECH_HOST:$INMECH_PATH/"
+
+      - name: Verify public deployment
+        run: |
+          PUBLIC_SITE_URL="${INMECH_SITE_URL:-https://new.inmech.kyiv.ua}"
+          PUBLIC_SITE_URL="${PUBLIC_SITE_URL%/}"
+          MARKER_URL="$PUBLIC_SITE_URL/deploy-version.txt"
+          MARKER_BODY="$(mktemp)"
+          LAST_STATUS="not requested"
+          LAST_MARKER=""
+
+          for attempt in $(seq 1 10); do
+            LAST_STATUS="$(
+              curl -sS -L --max-time 20 \
+                -H "Cache-Control: no-cache" \
+                -H "Pragma: no-cache" \
+                -o "$MARKER_BODY" \
+                -w "%{http_code}" \
+                "$MARKER_URL" || true
+            )"
+
+            if [ "$LAST_STATUS" = "200" ]; then
+              LAST_MARKER="$(cat "$MARKER_BODY")"
+              if [ "$LAST_MARKER" = "$GITHUB_SHA" ]; then
+                echo "Deployment marker verified at $MARKER_URL."
+                break
+              fi
+            fi
+
+            echo "Deployment marker is not current yet at $MARKER_URL (attempt $attempt/10, HTTP $LAST_STATUS)."
+            sleep 6
+          done
+
+          if [ "$LAST_STATUS" != "200" ]; then
+            echo "::error::Deployment marker did not become available at $MARKER_URL after 10 attempts. Last HTTP status: $LAST_STATUS."
+            exit 1
+          fi
+
+          if [ "$LAST_MARKER" != "$GITHUB_SHA" ]; then
+            echo "::error::Deployment marker mismatch at $MARKER_URL. Expected $GITHUB_SHA but received ${LAST_MARKER:-<empty>}."
+            exit 1
+          fi
+
+          for path in "/" "/en/" "/vacancies/" "/en/vacancies/" "/sitemap-index.xml"; do
+            STATUS="$(
+              curl -sS -L --max-time 20 \
+                -o /dev/null \
+                -w "%{http_code}" \
+                "$PUBLIC_SITE_URL$path" || true
+            )"
+
+            case "$STATUS" in
+              2*|3*)
+                echo "Smoke check passed for $path (HTTP $STATUS)."
+                ;;
+              *)
+                echo "::error::Smoke check failed for $path with HTTP status $STATUS."
+                exit 1
+                ;;
+            esac
+          done

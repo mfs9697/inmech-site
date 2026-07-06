@@ -36,6 +36,7 @@ inmech-site/
   scripts/
     check-internal-links.mjs
     check-main-landmarks.mjs
+    check-sitemap-output.mjs
   .github/
     CODEOWNERS
     scripts/
@@ -83,6 +84,12 @@ npm.cmd run dev
 npm.cmd run build
 ```
 
+Виконати повну перевірку, таку саму як у GitHub Actions:
+
+```powershell
+npm.cmd run validate
+```
+
 Готова статична версія створюється в папці `dist/`.
 
 У Windows зручно використовувати `npm.cmd`, оскільки PowerShell іноді блокує команду `npm` через Execution Policy.
@@ -121,13 +128,13 @@ Workflow має назву **Validate and deploy Astro site** і працює у
 Для кожного Pull Request job `validate`:
 
 1. встановлює залежності командою `npm ci`;
-2. збирає Astro-сайт;
+2. запускає `npm run validate`, що збирає Astro-сайт;
 3. перевіряє наявність файлів sitemap;
-4. перевіряє, що кожна згенерована HTML-сторінка містить рівно один елемент `<main>`.
+4. перевіряє, що кожна згенерована HTML-сторінка містить рівно один елемент `<main>`;
 5. перевіряє, що згенеровані внутрішні посилання на сторінки сайту ведуть до
    файлів у `dist/`.
 
-Після злиття змін у `main` job `build-and-deploy` повторює перевірки та копіює вміст `dist/` на сервер через захищене SSH-з’єднання. Workflow також можна запустити вручну:
+Після злиття змін у `main` job `build-and-deploy` повторює ту саму команду `npm run validate` та копіює вміст `dist/` на сервер через захищене SSH-з’єднання. Workflow також можна запустити вручну:
 
 ```text
 GitHub → Actions → Validate and deploy Astro site → Run workflow

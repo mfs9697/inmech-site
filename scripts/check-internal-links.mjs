@@ -4,7 +4,7 @@ import os from 'node:os';
 import path from 'node:path';
 
 const defaultSiteUrl = 'https://new.inmech.kyiv.ua';
-const ignoredSchemes = /^(?:https?:|mailto:|tel:|javascript:|data:|blob:|sms:|viber:|tg:|skype:)/i;
+const ignoredSchemes = /^(?:mailto:|tel:|javascript:|data:|blob:|sms:|viber:|tg:|skype:)/i;
 const staticAssetExtensions = new Set([
   '.avif',
   '.css',
@@ -77,7 +77,6 @@ function isIgnoredHref(href) {
   return (
     value === '' ||
     value.startsWith('#') ||
-    value.startsWith('//') ||
     ignoredSchemes.test(value) ||
     isTemplatedHref(value)
   );
@@ -202,11 +201,15 @@ async function writeFixture(root, relativePath, html) {
 
 async function runSelfTest() {
   const siteUrl = normalizeSiteUrl(process.env.INMECH_SITE_URL);
+  const sameSiteOrigin = siteUrl.origin;
+  const sameSiteHost = siteUrl.host;
   const temporaryDirectory = await mkdtemp(path.join(os.tmpdir(), 'inmech-link-check-'));
 
   try {
     await writeFixture(temporaryDirectory, 'index.html', `<!doctype html><html><body>
       <a href="/about/">root relative</a>
+      <a href="${sameSiteOrigin}/about/">same-site absolute</a>
+      <a href="//${sameSiteHost}/about/">same-site protocol-relative</a>
       <a href="docs/page.html?view=full#top">query hash</a>
       <a href="/encoded/%D1%82%D0%B5%D1%81%D1%82/">encoded</a>
       <a href="https://example.com/">external</a>
@@ -222,14 +225,24 @@ async function runSelfTest() {
     if (passing.failures.length > 0) {
       throw new Error(`Expected passing fixture, got failures:\n${passing.failures.join('\n')}`);
     }
+    if (passing.counts.external === 0) {
+      throw new Error('Expected absolute external URL to be counted as external.');
+    }
 
-    await writeFixture(temporaryDirectory, 'broken/index.html', '<!doctype html><html><body><a href="/missing/">missing</a><a href="/..%2fescaped/">escape</a></body></html>');
+    await writeFixture(temporaryDirectory, 'broken/index.html', `<!doctype html><html><body>
+      <a href="/missing/">missing</a>
+      <a href="${sameSiteOrigin}/missing-absolute/">missing absolute</a>
+      <a href="//${sameSiteHost}/missing-protocol-relative/">missing protocol-relative</a>
+      <a href="/..%2fescaped/">escape</a>
+    </body></html>`);
     const failing = await checkInternalLinks(temporaryDirectory, siteUrl);
     const hasMissing = failing.failures.some((failure) => failure.includes('/missing/'));
+    const hasMissingAbsolute = failing.failures.some((failure) => failure.includes('/missing-absolute/'));
+    const hasMissingProtocolRelative = failing.failures.some((failure) => failure.includes('/missing-protocol-relative/'));
     const hasEscape = failing.failures.some((failure) => failure.includes('escapes output directory'));
 
-    if (!hasMissing || !hasEscape) {
-      throw new Error(`Expected missing and escape failures, got:\n${failing.failures.join('\n')}`);
+    if (!hasMissing || !hasMissingAbsolute || !hasMissingProtocolRelative || !hasEscape) {
+      throw new Error(`Expected missing, same-site absolute, protocol-relative, and escape failures, got:\n${failing.failures.join('\n')}`);
     }
 
     console.log('Internal link checker self-test passed.');

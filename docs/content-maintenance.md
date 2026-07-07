@@ -20,6 +20,20 @@ git checkout -b content/short-description
 
 5. Перед Pull Request виконайте перевірки з розділу "Перевірка перед Pull Request".
 
+## Джерела правил для карток
+
+Картка на сайті має два типи джерел: технічне джерело, яке визначає структуру й відображення, і офіційне джерело, яке підтверджує фактичний зміст. Якщо ці джерела суперечать одне одному, спочатку уточніть офіційний документ, а вже потім змінюйте сайт.
+
+| Тип картки або сторінки | Де редагується | Що регулює зміст |
+| --- | --- | --- |
+| Новини | `src/content/news/`, `src/content.config.ts`, `src/components/NewsCard*.astro` | Офіційний текст новини, наказ, повідомлення або зовнішнє першоджерело |
+| Конкурси на вакантні посади | `src/data/vacancies.ts`, `src/data/vacanciesEn.ts`, `scripts/check-vacancy-archive.mjs` | `order-competition.pdf`, офіційне "Оголошення про конкурс", накази про учасників і результати |
+| Поточні й недавні захисти дисертацій | `src/pages/dissertations.astro`, `src/pages/en/dissertations.astro` | Офіційні матеріали захисту в `public/documents/dissertations/` |
+| Архів матеріалів захистів | `src/data/defenseMaterialsArchive.ts`, `src/components/DefendedDissertationCatalog.astro` | Архівні автореферати, дисертації, відгуки, відео та інші офіційні матеріали |
+| Сторінки співробітників | `src/content/people/`, `src/content.config.ts`, `src/pages/people/[id].astro`, `src/pages/en/people/[id].astro` | Затверджена біографічна довідка, службова інформація, наукові профілі й погоджена фотографія |
+| Відділи | `src/content/departments/`, `src/components/DepartmentCard.astro`, `src/pages/departments/[id].astro`, `src/pages/en/departments/[id].astro` | Затверджений опис відділу, список співробітників, контактні дані й англійські локалізовані поля |
+| Картки головної сторінки | `src/pages/index.astro`, `src/pages/en/index.astro`, відповідні компоненти й дані | Поточна навігаційна структура сайту та офіційні матеріали розділів, на які ведуть картки |
+
 ## Новини
 
 Новини зберігаються у Markdown-файлах:

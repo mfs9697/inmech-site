@@ -29,6 +29,22 @@ export interface VacancyCompetition {
   documents: VacancyDocument[];
 }
 
+export interface ActiveVacancyAnnouncement {
+  id: string;
+  date: string;
+  year: number;
+  title: string;
+  summary: string;
+  positions: VacancyPosition[];
+  deadline: string;
+  requirements: string[];
+  note: string;
+  document?: {
+    title: string;
+    href: string;
+  };
+}
+
 function documentsFor(id: string): VacancyDocument[] {
   return [
     {
@@ -65,6 +81,45 @@ const postdocRequirements = [
   'кандидат не працює за основним місцем роботи в Інституті механіки ім. С. П. Тимошенка НАН України;',
   'на момент завершення конкурсного відбору кандидатові ще не виповнилося 36 років;',
   'від дати захисту дисертації минуло не більше 7 років.'
+];
+
+export const activeVacancyAnnouncements: ActiveVacancyAnnouncement[] = [
+  {
+    id: '2026-07-16-active-announcement',
+    date: '2026-07-16',
+    year: 2026,
+    title: 'Оголошення про конкурс на заміщення вакантних посад наукових працівників',
+    summary: 'Активне оголошення про конкурс на керівну та наукові посади у відділах Інституту.',
+    positions: [
+      {
+        title: 'старший науковий співробітник',
+        departments: [{ title: 'Відділ механіки тонкостінних конструкцій', href: '/departments/05-thin-walled-structures/' }]
+      },
+      {
+        title: 'провідний науковий співробітник (0,5 ставки)',
+        departments: [{ title: 'Відділ механіки тонкостінних конструкцій', href: '/departments/05-thin-walled-structures/' }]
+      },
+      {
+        title: 'провідний науковий співробітник',
+        departments: [{ title: 'Відділ обчислювальної механіки та техніки', href: '/departments/03-computational-mechanics-engineering/' }]
+      },
+      {
+        title: 'провідний науковий співробітник',
+        departments: [{ title: 'Відділ реології', href: '/departments/02-rheology/' }]
+      },
+      {
+        title: 'завідувач відділу',
+        departments: [{ title: 'Відділ механіки повзучості', href: '/departments/08-creep/' }]
+      }
+    ],
+    deadline: '30 календарних днів з моменту оприлюднення оголошення (16.07.2026).',
+    requirements: [
+      'для посади старшого наукового співробітника - вища освіта з напряму «механіка» («механіка деформівного твердого тіла» або «теоретична механіка») та науковий ступінь доктора філософії або кандидата наук;',
+      'для посад провідного наукового співробітника та завідувача відділу - вища освіта з напряму «механіка» («механіка деформівного твердого тіла» або «теоретична механіка») та науковий ступінь доктора наук;',
+      'результати наукової діяльності, кількість і якість яких відповідають рівню зазначених наукових ступенів.'
+    ],
+    note: 'Офіційний файл оголошення буде додано після підписання 16 липня 2026 року.'
+  }
 ];
 
 const competitions = [

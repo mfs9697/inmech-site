@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
-import { vacancyArchive, type VacancyDocumentType } from '../data/vacancies';
+import { activeVacancyAnnouncements, vacancyArchive, type VacancyDocumentType } from '../data/vacancies';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -96,6 +96,81 @@ const additionalScientificInfo = [
       </div>
     </div>
   </section>
+
+  {activeVacancyAnnouncements.length > 0 && (
+    <section class="section active-announcements">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Активні оголошення</p>
+            <h2 class="section-title">Поточні конкурси</h2>
+            <p class="section-text">
+              Ці оголошення оприлюднюються до формування архівної картки конкурсу. Архівний запис із трьома стандартними PDF-документами буде додано після появи відповідних наказів.
+            </p>
+          </div>
+        </div>
+
+        <div class="vacancy-list">
+          {activeVacancyAnnouncements.map((entry) => (
+            <article class="vacancy-card active-vacancy-card">
+              <div class="vacancy-date">
+                <time datetime={entry.date}>{formatDate.format(new Date(`${entry.date}T00:00:00`))}</time>
+              </div>
+
+              <div class="vacancy-content">
+                <div class="vacancy-heading">
+                  <div>
+                    <h3>{entry.title}</h3>
+                    <p>{entry.summary}</p>
+                  </div>
+                </div>
+
+                <div class="card-announcement">
+                  <div class="card-field positions-field">
+                    <p class="card-label">Вакантні посади</p>
+                    <ul class="position-list">
+                      {entry.positions.map((position) => (
+                        <li>
+                          <span>{position.title}</span>
+                          {position.departments && position.departments.length > 0 && (
+                            <span class="position-departments">
+                              {position.departments.map((department, index) => (
+                                <>
+                                  {index > 0 && ', '}
+                                  <a href={withBase(department.href)}>{department.title}</a>
+                                </>
+                              ))}
+                            </span>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div class="card-field deadline-field">
+                    <p class="card-label">Строк подання документів</p>
+                    <p class="card-note">{entry.deadline}</p>
+                  </div>
+                  <div class="card-field requirements-field">
+                    <p class="card-label">Вимоги до учасників конкурсу</p>
+                    <ul class="requirement-list">
+                      {entry.requirements.map((requirement) => <li>{requirement}</li>)}
+                    </ul>
+                  </div>
+                </div>
+
+                <p class="active-announcement-note">{entry.note}</p>
+                {entry.document && (
+                  <p class="active-announcement-document">
+                    <a href={withBase(entry.document.href)} target="_blank" rel="noopener">{entry.document.title}</a>
+                  </p>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 
   <section class="section vacancy-intro">
     <div class="container">
@@ -273,6 +348,31 @@ const additionalScientificInfo = [
 
     .vacancy-intro {
       padding-bottom: 12px;
+    }
+
+    .active-announcements {
+      padding-bottom: 18px;
+    }
+
+    .active-vacancy-card {
+      border-color: rgba(184, 135, 47, 0.46);
+      background: linear-gradient(180deg, #fffdf7 0%, var(--surface) 100%);
+    }
+
+    .active-announcement-note,
+    .active-announcement-document {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .active-announcement-note {
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+    }
+
+    .active-announcement-document a {
+      font-weight: 780;
     }
 
     .vacancy-years {

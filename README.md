@@ -225,6 +225,8 @@ GitHub → Actions → Validate and deploy Astro site → Run workflow
 
 `astro.config.mjs` використовує робочу адресу `https://new.inmech.kyiv.ua` і base path `/`. За потреби адресу можна перевизначити змінною середовища `INMECH_SITE_URL`.
 
+Google Analytics вмикається лише тоді, коли під час збірки задано публічну змінну середовища `PUBLIC_GOOGLE_ANALYTICS_ID`, наприклад у GitHub Actions repository variables. Це не секрет: значення потрапляє у згенерований HTML. Якщо змінна порожня або не задана, скрипти Google Analytics не додаються до сторінок.
+
 Дані доступу до сервера зберігаються лише в GitHub Actions secrets. Їх не можна публікувати в репозиторії, надсилати у відкритому вигляді або передавати редакторам контенту.
 
 Pull Request зі змінами лише в `README.md` також проходить перевірку `validate`, але після злиття не запускає розгортання, оскільки документація не впливає на зібраний сайт.

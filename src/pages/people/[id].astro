@@ -121,7 +121,7 @@ const pageDescription = person.position
         <div class="profile-main">
           {person.researchAreas.length > 0 && (
             <section class="profile-panel">
-              <div class="section-kicker">Research profile</div>
+              <div class="section-kicker">Науковий профіль</div>
               <h2>Напрями наукової діяльності</h2>
               <ul class="research-list-wow">
                 {person.researchAreas.map((area) => <li>{area}</li>)}
@@ -131,7 +131,7 @@ const pageDescription = person.position
 
           {person.professionalActivity && (
             <section class="profile-panel">
-              <div class="section-kicker">Academic activity</div>
+              <div class="section-kicker">Наукова діяльність</div>
               <h2>Професійна діяльність</h2>
               <p>{person.professionalActivity}</p>
             </section>
@@ -145,7 +145,7 @@ const pageDescription = person.position
 
           {person.publications.length > 0 && (
             <section class="profile-panel">
-              <div class="section-kicker">Selected publications</div>
+              <div class="section-kicker">Вибрані публікації</div>
               <h2>Публікації</h2>
               <div class="publication-groups">
                 {person.publications.map((group) => (

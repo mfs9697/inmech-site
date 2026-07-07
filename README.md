@@ -117,6 +117,10 @@ duplicate files under `public/`, and unusually large public assets.
 
 У Windows зручно використовувати `npm.cmd`, оскільки PowerShell іноді блокує команду `npm` через Execution Policy.
 
+## Content maintenance
+
+A practical editor guide is available in [docs/content-maintenance.md](docs/content-maintenance.md). It covers news, vacancy competitions, dissertation materials, staff profiles, departments, and pre-PR validation.
+
 ## Vacancy archive
 
 Vacancy records are maintained in both `src/data/vacancies.ts` and

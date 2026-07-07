@@ -1,4 +1,4 @@
-import type { VacancyCompetition, VacancyDocument, VacancyDocumentType } from './vacancies';
+import type { ActiveVacancyAnnouncement, VacancyCompetition, VacancyDocument, VacancyDocumentType } from './vacancies';
 
 function documentsFor(id: string): VacancyDocument[] {
   return [
@@ -36,6 +36,45 @@ const postdocRequirements = [
   'the candidate is not employed at the S. P. Timoshenko Institute of Mechanics of the NAS of Ukraine as their principal place of work;',
   'the candidate has not reached the age of 36 by the completion date of the competitive selection;',
   'no more than seven years have passed since the dissertation defence.'
+];
+
+export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [
+  {
+    id: '2026-07-16-active-announcement',
+    date: '2026-07-16',
+    year: 2026,
+    title: 'Announcement of a Competition to Fill Vacant Research Positions',
+    summary: 'Active announcement of a competition for management and research positions in the Institute departments.',
+    positions: [
+      {
+        title: 'senior research scientist',
+        departments: [{ title: 'Department of Structural Mechanics of Thin-Walled Structures', href: '/en/departments/05-thin-walled-structures/' }]
+      },
+      {
+        title: 'leading research scientist (0.5 FTE)',
+        departments: [{ title: 'Department of Structural Mechanics of Thin-Walled Structures', href: '/en/departments/05-thin-walled-structures/' }]
+      },
+      {
+        title: 'leading research scientist',
+        departments: [{ title: 'Department of Computational Mechanics and Engineering', href: '/en/departments/03-computational-mechanics-engineering/' }]
+      },
+      {
+        title: 'leading research scientist',
+        departments: [{ title: 'Department of Rheology', href: '/en/departments/02-rheology/' }]
+      },
+      {
+        title: 'head of department',
+        departments: [{ title: 'Department of Creep Mechanics', href: '/en/departments/08-creep/' }]
+      }
+    ],
+    deadline: '30 calendar days from the publication of the announcement (16.07.2026).',
+    requirements: [
+      'for the senior research scientist position: higher education in mechanics, including mechanics of deformable solids or theoretical mechanics, and a PhD or Candidate of Sciences degree;',
+      'for leading research scientist and head of department positions: higher education in mechanics, including mechanics of deformable solids or theoretical mechanics, and a Doctor of Sciences degree;',
+      'research results whose quantity and quality correspond to the stated academic degrees.'
+    ],
+    note: 'The official announcement file will be added after signing on 16 July 2026.'
+  }
 ];
 
 const competitions: Omit<VacancyCompetition, 'documents'>[] = [

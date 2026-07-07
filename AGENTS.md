@@ -41,8 +41,18 @@ deployment state.
   `.github/workflows/deploy-to-inmech.yml`:
   `npm ci` and `npm run validate`. The validation command builds the site,
   verifies sitemap output, checks generated page landmarks, and checks
-  generated internal links.
+  generated internal links and vacancy archive consistency.
 - For changes that will be committed or merged, also run
   `npm audit --audit-level=low` and `git diff --check`.
 - Report changed files, validation results, and anything that still needs manual
   review.
+
+## Deployment Verification
+
+- Pushes to `main` deploy the generated `dist/` directory through GitHub
+  Actions. The deployment workflow writes `dist/deploy-version.txt` with the
+  current commit SHA before upload, then verifies that the public site returns
+  the same SHA after `rsync`.
+- The workflow also performs simple public HTTP smoke checks for the Ukrainian
+  and English home pages, the Ukrainian and English vacancies pages, and the
+  sitemap index.

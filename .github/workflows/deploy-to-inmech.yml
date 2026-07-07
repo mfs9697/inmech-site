@@ -19,6 +19,9 @@ concurrency:
   group: inmech-deploy-${{ github.ref }}
   cancel-in-progress: false
 
+env:
+  PUBLIC_GOOGLE_ANALYTICS_ID: ${{ vars.PUBLIC_GOOGLE_ANALYTICS_ID }}
+
 jobs:
   validate:
     if: github.event_name == 'pull_request'

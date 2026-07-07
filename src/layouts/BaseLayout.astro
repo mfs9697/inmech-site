@@ -19,7 +19,7 @@ interface Props {
 const { title, description, activePage = 'home' } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const faviconPath = `${base}/favicon.png`;
-const googleAnalyticsId = 'G-P7K4PTK2TY';
+const googleAnalyticsId = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID?.trim();
 
 const siteBaseUrl = new URL(`${base || ''}/`, Astro.site).href.replace(/\/$/, '');
 
@@ -48,13 +48,17 @@ const pageProvidesMainLandmark = currentPath.startsWith('/postgraduate/');
     {hasAlternative && <link rel="alternate" hreflang="en" href={englishAlternativeUrl} />}
     <link rel="sitemap" href={`${siteBaseUrl}/sitemap-index.xml`} />
     <link rel="icon" href={faviconPath} type="image/png" />
-    <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}></script>
-    <script is:inline define:vars={{ googleAnalyticsId }}>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', googleAnalyticsId);
-    </script>
+    {googleAnalyticsId ? (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}></script>
+        <script is:inline define:vars={{ googleAnalyticsId }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', googleAnalyticsId);
+        </script>
+      </>
+    ) : null}
   </head>
   <body>
     <a class="skip-link" href="#main">Перейти до змісту</a>

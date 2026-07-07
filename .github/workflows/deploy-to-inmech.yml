@@ -147,11 +147,15 @@ jobs:
           fi
 
           for path in "/" "/en/" "/vacancies/" "/en/vacancies/" "/sitemap-index.xml"; do
+            SMOKE_BODY="$(mktemp)"
+            SMOKE_URL="$PUBLIC_SITE_URL$path?deploy-check=$GITHUB_SHA"
             STATUS="$(
               curl -sS -L --max-time 20 \
-                -o /dev/null \
+                -H "Cache-Control: no-cache" \
+                -H "Pragma: no-cache" \
+                -o "$SMOKE_BODY" \
                 -w "%{http_code}" \
-                "$PUBLIC_SITE_URL$path" || true
+                "$SMOKE_URL" || true
             )"
 
             case "$STATUS" in
@@ -160,7 +164,27 @@ jobs:
                 ;;
               *)
                 echo "::error::Smoke check failed for $path with HTTP status $STATUS."
+                rm -f "$SMOKE_BODY"
                 exit 1
                 ;;
             esac
+
+            case "$path" in
+              "/")
+                if ! grep -q '<html lang="uk"' "$SMOKE_BODY" || ! grep -q 'href="/vacancies/"' "$SMOKE_BODY"; then
+                  echo "::error::Smoke check for / did not find expected generated Ukrainian home page content."
+                  rm -f "$SMOKE_BODY"
+                  exit 1
+                fi
+                ;;
+              "/en/")
+                if ! grep -q '<html lang="en"' "$SMOKE_BODY" || ! grep -q 'href="/en/vacancies/"' "$SMOKE_BODY"; then
+                  echo "::error::Smoke check for /en/ did not find expected generated English home page content."
+                  rm -f "$SMOKE_BODY"
+                  exit 1
+                fi
+                ;;
+            esac
+
+            rm -f "$SMOKE_BODY"
           done

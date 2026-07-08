@@ -9,5 +9,5 @@ categoryEn: "Election of the Director"
 tags: ["наказ", "директор", "2026"]
 tagsEn: ["order", "director", "2026"]
 year: 2026
-externalUrl: "/documents/news/2026/orders/director-election-order-2026-04-16.pdf"
+externalUrl: "/documents/institute/orders/director-election-order-2026-04-16.pdf"
 ---

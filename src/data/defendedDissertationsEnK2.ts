@@ -369,5 +369,19 @@ export const defendedDissertationsEnK2: DefendedDissertationEntryEn[] = [
     placeEn: 'Kyiv',
     institutionEn: instituteMechanicsAsUkrSsr,
     tags: ['elastoplastic deformation', 'thin-walled structures', 'complex resistance']
+  }),
+  entry({
+    id: 'kolenchuk-ki-1948-moisture-changes-strength-structural-elements',
+    year: 1948,
+    defenceDate: '1948-11-20',
+    authorEn: 'K.I. Kolenchuk',
+    sourceLanguage: 'ru',
+    titleEn: 'Influence of Moisture Changes on the Strength of Structural Elements',
+    degree: doctorTechnical,
+    bibliographyEn: 'Defended on 20 November 1948. Doctoral dissertation in Technical Sciences. Kyiv, 1948.',
+    pages: 278,
+    placeEn: 'Kyiv',
+    institutionEn: instituteConstructionMechanicsUkrSsr,
+    tags: ['moisture effects', 'structural elements', 'strength']
   })
 ];

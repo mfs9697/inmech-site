@@ -147,11 +147,11 @@ function proposePath(oldUrl) {
   const filename = path.basename(pathname);
   const clean = cleanFilename(filename);
 
-  if (pathname === '/doc/Order12.pdf') return 'public/documents/news/2026/orders/order-12-vacancy-competition.pdf';
-  if (pathname === '/doc/Order24.pdf') return 'public/documents/news/2026/orders/order-24-competition-results.pdf';
-  if (pathname === '/doc/Order29.pdf') return 'public/documents/news/2026/orders/order-29-competition-results.pdf';
-  if (pathname === '/doc/Order44.pdf') return 'public/documents/news/2026/orders/order-44-vacancy-competition.pdf';
-  if (pathname === '/doc/Document_2026-04-16_114124.pdf') return 'public/documents/news/2026/orders/director-election-order-2026-04-16.pdf';
+  if (pathname === '/doc/Order12.pdf') return 'public/vacancies/2026-02-05-competition-16/order-competition.pdf';
+  if (pathname === '/doc/Order24.pdf') return 'public/vacancies/2026-02-05-competition-16/order-participants.pdf';
+  if (pathname === '/doc/Order29.pdf') return 'public/vacancies/2026-02-05-competition-16/order-results.pdf';
+  if (pathname === '/doc/Order44.pdf') return 'public/documents/institute/orders/order-44-vacancy-competition.pdf';
+  if (pathname === '/doc/Document_2026-04-16_114124.pdf') return 'public/documents/institute/orders/director-election-order-2026-04-16.pdf';
   if (pathname === '/doc/Dynnik.pdf') return 'public/documents/library/history-publications/dynnik.pdf';
 
   if (pathname.startsWith('/doc/doc/stat_')) {

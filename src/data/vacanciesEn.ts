@@ -110,6 +110,7 @@ const competitions: Omit<VacancyCompetition, 'documents'>[] = [
       },
       {
         title: 'two senior research scientist positions (0.5 FTE)',
+        count: 2,
         departments: [{ title: 'Department of Structural Mechanics of Thin-Walled Structures', href: '/en/departments/05-thin-walled-structures/' }]
       },
       {

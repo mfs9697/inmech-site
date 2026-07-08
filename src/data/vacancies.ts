@@ -14,6 +14,7 @@ export interface VacancyDepartment {
 export interface VacancyPosition {
   title: string;
   departments?: VacancyDepartment[];
+  count?: number;
 }
 
 export interface VacancyCompetition {
@@ -39,10 +40,10 @@ export interface ActiveVacancyAnnouncement {
   deadline: string;
   requirements: string[];
   note: string;
-  document?: {
+  documents?: {
     title: string;
     href: string;
-  };
+  }[];
 }
 
 function documentsFor(id: string): VacancyDocument[] {
@@ -155,6 +156,7 @@ const competitions = [
       },
       {
         title: 'дві посади старшого наукового співробітника (0,5 ставки)',
+        count: 2,
         departments: [{ title: 'Відділ будівельної механіки тонкостінних конструкцій', href: '/departments/05-thin-walled-structures/' }]
       },
       {

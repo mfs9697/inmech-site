@@ -31,7 +31,16 @@ const groupedArchive = years.map((year) => ({
   entries: vacancyArchive.filter((entry) => entry.year === year)
 }));
 const documentCount = vacancyArchive.reduce((total, entry) => total + entry.documents.length, 0);
-const latestEntry = vacancyArchive[0];
+const activeVacancyCount = activeVacancyAnnouncements.reduce(
+  (total, entry) => total + entry.positions.reduce((sum, position) => sum + (position.count ?? 1), 0),
+  0
+);
+const archivedVacancyCount = vacancyArchive.reduce(
+  (total, entry) => total + entry.positions.reduce((sum, position) => sum + (position.count ?? 1), 0),
+  0
+);
+const competitionCardCount = vacancyArchive.length + activeVacancyAnnouncements.length;
+const latestEntry = [...activeVacancyAnnouncements, ...vacancyArchive].sort((a, b) => b.date.localeCompare(a.date))[0];
 
 function extensionLabel(href: string) {
   return href.split('.').pop()?.toUpperCase() ?? 'Файл';
@@ -75,14 +84,22 @@ const additionalScientificInfo = [
           Оголошення про вакантні посади та накази щодо конкурсів на посади наукових працівників Інституту механіки ім. С. П. Тимошенка НАН України.
         </p>
 
-        <dl class="vacancy-stats" aria-label="Зведення архіву вакансій">
+        <dl class="vacancy-stats" aria-label="Зведення конкурсів на вакантні посади">
           <div>
             <dt>Період</dt>
             <dd>2024-2026</dd>
           </div>
           <div>
-            <dt>Конкурси</dt>
-            <dd>{vacancyArchive.length}</dd>
+            <dt>Картки конкурсів</dt>
+            <dd>{competitionCardCount}</dd>
+          </div>
+          <div>
+            <dt>Вакансії в архіві</dt>
+            <dd>{archivedVacancyCount}</dd>
+          </div>
+          <div>
+            <dt>Активні вакансії</dt>
+            <dd>{activeVacancyCount}</dd>
           </div>
           <div>
             <dt>Документи</dt>
@@ -159,10 +176,14 @@ const additionalScientificInfo = [
                 </div>
 
                 <p class="active-announcement-note">{entry.note}</p>
-                {entry.document && (
-                  <p class="active-announcement-document">
-                    <a href={withBase(entry.document.href)} target="_blank" rel="noopener">{entry.document.title}</a>
-                  </p>
+                {entry.documents && entry.documents.length > 0 && (
+                  <ul class="active-announcement-documents">
+                    {entry.documents.map((document) => (
+                      <li>
+                        <a href={withBase(document.href)} target="_blank" rel="noopener">{document.title}</a>
+                      </li>
+                    ))}
+                  </ul>
                 )}
               </div>
             </article>
@@ -319,7 +340,7 @@ const additionalScientificInfo = [
 
     .vacancy-stats {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 12px;
       margin: 4px 0 0;
     }
@@ -360,7 +381,7 @@ const additionalScientificInfo = [
     }
 
     .active-announcement-note,
-    .active-announcement-document {
+    .active-announcement-documents {
       margin: 14px 0 0;
       color: var(--muted);
       font-size: 0.94rem;
@@ -371,7 +392,11 @@ const additionalScientificInfo = [
       padding-top: 12px;
     }
 
-    .active-announcement-document a {
+    .active-announcement-documents {
+      padding-left: 20px;
+    }
+
+    .active-announcement-documents a {
       font-weight: 780;
     }
 

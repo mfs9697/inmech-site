@@ -1,13 +1,13 @@
 .hero-card-visual {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, 320px);
-  gap: clamp(22px, 4vw, 38px);
-  align-items: center;
+  grid-template-columns: 1fr;
+  gap: clamp(24px, 4vw, 34px);
+  align-items: start;
 }
 
 .hero-card-visual::after {
-  right: 160px;
-  top: -130px;
+  right: -90px;
+  top: -110px;
 }
 
 .hero-card-visual .hero-text {
@@ -16,40 +16,45 @@
 }
 
 .hero-card.hero-card-visual h1 {
-  font-size: clamp(1.45rem, 2.25vw, 2.25rem) !important;
-  line-height: 1.12;
+  font-size: clamp(1.85rem, 3.2vw, 3.15rem) !important;
+  line-height: 1.06;
   letter-spacing: -0.02em;
-  max-width: 620px;
+  max-width: 860px;
 }
 
 .hero-card.hero-card-visual .lead {
   font-size: clamp(1rem, 1.25vw, 1.12rem);
-  max-width: 620px;
+  max-width: 840px;
 }
 
 .hero-image-card {
   position: relative;
   z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(240px, 390px) minmax(0, 1fr);
+  gap: clamp(16px, 3vw, 26px);
+  align-items: center;
   margin: 0;
-  padding: 12px;
-  border-radius: 26px;
+  padding: clamp(14px, 2.4vw, 20px);
+  border-radius: 14px;
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(220, 236, 255, 0.62));
-  border: 1px solid rgba(29, 79, 145, 0.16);
-  box-shadow: 0 24px 54px rgba(20, 33, 61, 0.16);
+    linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(238, 244, 251, 0.72));
+  border: 1px solid rgba(29, 79, 145, 0.12);
+  box-shadow: none;
 }
 
 .hero-image-card img {
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 20px;
+  aspect-ratio: 954 / 755;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #fff;
 }
 
 .hero-image-actions {
-  margin-top: 16px;
-  justify-content: center;
+  margin-top: 0;
+  justify-content: flex-start;
 }
 
 .hero-image-actions .button {
@@ -172,7 +177,8 @@
   }
 
   .hero-image-card {
-    max-width: 360px;
+    grid-template-columns: 1fr;
+    max-width: 520px;
   }
 
   .home-about-figure {

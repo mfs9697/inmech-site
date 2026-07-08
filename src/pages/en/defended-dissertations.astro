@@ -7,6 +7,7 @@ import {
   defendedDissertationLanguageLabels,
   groupDefendedDissertationsEn
 } from '../../data/defendedDissertationsEn';
+import { defenseMaterialsArchiveGroups } from '../../data/defenseMaterialsArchive';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -34,6 +35,25 @@ const earliestYear = Math.min(...years);
 const latestYear = Math.max(...years);
 const doctorCount = defendedDissertationsEn.filter((entry) => entry.degree.level === 'doctor-of-sciences').length;
 const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.level === 'candidate-of-sciences').length;
+const totalArchiveItems = defenseMaterialsArchiveGroups.reduce((sum, [, items]) => sum + items.length, 0);
+
+const archiveLabelMap: Record<string, string> = {
+  Автореферат: 'Abstract',
+  Дисертація: 'Dissertation',
+  Висновок: 'Conclusion',
+  'Облікова картка': 'Record card',
+  Відео: 'Video'
+};
+
+function archiveLabel(label: string, href: string) {
+  const englishLabel = archiveLabelMap[label] ?? label;
+
+  if (href.startsWith('http')) {
+    return englishLabel;
+  }
+
+  return `${englishLabel} · source language`;
+}
 ---
 
 <BaseLayoutEn
@@ -199,6 +219,44 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
       </div>
     </div>
   </section>
+
+  <section class="archive-section" id="defense-materials-archive">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Archive</p>
+          <h2>Previous defence materials</h2>
+        </div>
+        <p>
+          The archive is grouped by year. It contains {totalArchiveItems} records with links to available source-language defence materials.
+        </p>
+      </div>
+
+      <div class="archive-material-groups">
+        {defenseMaterialsArchiveGroups.map(([year, items]) => (
+          <section class="archive-material-group">
+            <div class="archive-letter-heading">
+              <h3>{year}</h3>
+              <span>{items.length} {items.length === 1 ? 'record' : 'records'}</span>
+            </div>
+
+            <div class="archive-material-grid">
+              {items.map((item) => (
+                <article class="archive-material-card">
+                  <h4>{item.name}</h4>
+                  <div class="archive-material-links">
+                    {item.links.map(([label, href]) => (
+                      <a href={withBase(href)} target="_blank" rel="noopener noreferrer">{archiveLabel(label, href)}</a>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  </section>
 </BaseLayoutEn>
 
 <script is:inline>
@@ -301,11 +359,13 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
 
   .catalog-summary-section,
   .catalog-policy-section,
-  .catalog-section {
+  .catalog-section,
+  .archive-section {
     padding: 22px 0;
   }
 
-  .catalog-section {
+  .catalog-section,
+  .archive-section {
     padding-bottom: 72px;
   }
 
@@ -425,11 +485,26 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
     gap: 32px;
   }
 
+  .archive-material-groups {
+    display: grid;
+    gap: 18px;
+  }
+
   .letter-heading {
     display: flex;
     align-items: baseline;
     gap: 14px;
     margin-bottom: 16px;
+  }
+
+  .archive-letter-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
   }
 
   .letter-heading span {
@@ -451,16 +526,74 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
     letter-spacing: 0.08em;
   }
 
-  .catalog-entry-grid {
+  .archive-letter-heading h3 {
+    margin: 0;
+    color: var(--accent-dark);
+    font-size: 1.42rem;
+  }
+
+  .archive-letter-heading span {
+    color: var(--muted);
+    font-weight: 850;
+  }
+
+  .catalog-entry-grid,
+  .archive-material-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
     align-items: start;
   }
 
-  .catalog-entry-card {
+  .catalog-entry-card,
+  .archive-material-group,
+  .archive-material-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .archive-material-group {
+    padding: clamp(18px, 3vw, 28px);
+  }
+
+  .catalog-entry-card,
+  .archive-material-card {
     height: 100%;
     padding: clamp(18px, 2.4vw, 24px);
+  }
+
+  .archive-material-card {
+    box-shadow: none;
+    background: var(--surface-soft);
+  }
+
+  .archive-material-card h4 {
+    margin: 0 0 12px;
+    color: var(--accent-dark);
+    font-size: 1.05rem;
+    line-height: 1.25;
+  }
+
+  .archive-material-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .archive-material-links a {
+    display: inline-flex;
+    padding: 7px 11px;
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--accent-dark);
+    font-weight: 850;
+  }
+
+  .archive-material-links a:hover {
+    background: var(--accent-soft);
+    text-decoration: none;
   }
 
   .entry-header {
@@ -540,7 +673,8 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
   }
 
   @media (max-width: 1100px) {
-    .catalog-entry-grid {
+    .catalog-entry-grid,
+    .archive-material-grid {
       grid-template-columns: 1fr;
     }
   }
@@ -565,6 +699,11 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
     }
 
     .entry-header {
+      flex-direction: column;
+    }
+
+    .archive-letter-heading {
+      align-items: flex-start;
       flex-direction: column;
     }
   }

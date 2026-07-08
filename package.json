@@ -14,8 +14,9 @@
     "check:landmarks": "node scripts/check-main-landmarks.mjs",
     "check:links": "node scripts/check-internal-links.mjs --self-test && node scripts/check-internal-links.mjs",
     "check:vacancies": "node scripts/check-vacancy-archive.mjs",
+    "check:defended-catalogs": "node scripts/check-defended-catalogs.mjs",
     "audit:assets": "node scripts/audit-generated-assets.mjs",
-    "validate": "npm run build && npm run check:sitemap && npm run check:landmarks && npm run check:links && npm run check:vacancies",
+    "validate": "npm run build && npm run check:sitemap && npm run check:landmarks && npm run check:links && npm run check:vacancies && npm run check:defended-catalogs",
     "preview": "astro preview",
     "astro": "astro"
   },

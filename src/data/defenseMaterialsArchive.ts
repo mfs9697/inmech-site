@@ -19,7 +19,6 @@ export const defenseMaterialsArchive = [
     year: '2021',
     name: 'Орленко Сергій Петрович',
     links: [
-      ['Автореферат', '/documents/dissertations/archive/2021/24ref.pdf'],
       ['Дисертація', '/documents/dissertations/archive/2021/24dis.pdf'],
       ['Відео', 'https://youtu.be/fIqUI6MljMs']
     ]
@@ -60,7 +59,6 @@ export const defenseMaterialsArchive = [
     year: '2019',
     name: 'Погребняк Анатолій Дмитрович',
     links: [
-      ['Автореферат', '/documents/dissertations/archive/2019/19ref.rar'],
       ['Дисертація', '/documents/dissertations/archive/2019/19dis.rar']
     ]
   },

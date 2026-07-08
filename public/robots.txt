@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://new.inmech.kyiv.ua/sitemap-index.xml

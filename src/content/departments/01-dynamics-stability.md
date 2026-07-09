@@ -44,7 +44,7 @@ staff:
   - name: "Богданов Вячеслав Леонідович"
     nameEn: "Viacheslav L. Bogdanov"
     positionEn: "Head of Department"
-    url: "/people/bohdanov/"
+    url: "/people/bogdanov/"
   - name: "Гузь Олександр Миколайович"
     nameEn: "Oleksandr M. Huz"
     positionEn: "Adviser to the Directorate"

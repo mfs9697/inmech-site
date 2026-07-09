@@ -39,6 +39,7 @@ import { defendedDissertationsEnYa } from './defendedDissertationsEnYa';
 import { defendedDissertationsEnYu } from './defendedDissertationsEnYu';
 import { defendedDissertationsEnZ } from './defendedDissertationsEnZ';
 import { defendedDissertationsEnZh } from './defendedDissertationsEnZh';
+import { defendedDissertationArchiveAdditionsEn } from './defendedDissertationArchiveAdditions';
 
 export type OriginalLanguage = 'uk' | 'ru';
 
@@ -195,6 +196,7 @@ export function getDefendedDissertationSurnameLetterEn(entry: DefendedDissertati
  * The existing Ukrainian/Russian catalogue data in src/data/defendedDissertations*.ts remains untouched.
  */
 export const defendedDissertationsEn: DefendedDissertationEntryEn[] = [
+  ...defendedDissertationArchiveAdditionsEn,
   ...defendedDissertationsEnA,
   ...defendedDissertationsEnB,
   ...defendedDissertationsEnCh,

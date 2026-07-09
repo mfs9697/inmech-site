@@ -1,6 +1,6 @@
 import * as esbuild from 'esbuild';
 
-const expectedTotal = 599;
+const expectedTotal = 615;
 
 async function bundleEvaluate(source) {
   const result = await esbuild.build({
@@ -51,8 +51,10 @@ const ukrainianEntry = `
   import { defendedDissertationsEe } from './src/data/defendedDissertationsEe';
   import { defendedDissertationsYu } from './src/data/defendedDissertationsYu';
   import { defendedDissertationsYa } from './src/data/defendedDissertationsYa';
+  import { defendedDissertationArchiveAdditionsUk } from './src/data/defendedDissertationArchiveAdditions';
 
   export const ukrainianCatalog = [
+    ...defendedDissertationArchiveAdditionsUk,
     ...defendedDissertationsA,
     ...defendedDissertationsB,
     ...defendedDissertationsV,

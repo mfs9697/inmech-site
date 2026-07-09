@@ -7,7 +7,11 @@ import {
   defendedDissertationLanguageLabels,
   groupDefendedDissertationsEn
 } from '../../data/defendedDissertationsEn';
-import { defenseMaterialsArchiveGroups } from '../../data/defenseMaterialsArchive';
+import {
+  defendedDissertationTopics,
+  defendedDissertationTopicLimit,
+  matchDefendedDissertationTopics
+} from '../../data/defendedDissertationTopics';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -26,34 +30,31 @@ function formatDate(date?: string) {
 }
 
 const groups = groupDefendedDissertationsEn(defendedDissertationsEn);
-const allTags = Array.from(new Set(defendedDissertationsEn.flatMap((entry) => entry.tags ?? []))).sort((a, b) =>
-  a.localeCompare(b, 'en', { sensitivity: 'base' })
-);
+const topicOptions = defendedDissertationTopics
+  .slice(0, defendedDissertationTopicLimit)
+  .sort((a, b) => a.en.localeCompare(b.en, 'en', { sensitivity: 'base' }));
+const catalogueRecords = defendedDissertationsEn.map((entry) => ({
+  entry,
+  topicIds: matchDefendedDissertationTopics(
+    [entry.title.en, entry.specialty?.en ?? '', ...(entry.tags ?? [])].join(' ')
+  )
+}));
+const recordsByYear = new Map<number, typeof catalogueRecords>();
+
+catalogueRecords.forEach((record) => {
+  const records = recordsByYear.get(record.entry.year) ?? [];
+  records.push(record);
+  recordsByYear.set(record.entry.year, records);
+});
+
+const yearGroups = Array.from(recordsByYear, ([year, records]) => ({ year, records })).sort((a, b) => b.year - a.year);
 const totalEntries = defendedDissertationsEn.length;
 const years = defendedDissertationsEn.map((entry) => entry.year);
 const earliestYear = Math.min(...years);
 const latestYear = Math.max(...years);
 const doctorCount = defendedDissertationsEn.filter((entry) => entry.degree.level === 'doctor-of-sciences').length;
 const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.level === 'candidate-of-sciences').length;
-const totalArchiveItems = defenseMaterialsArchiveGroups.reduce((sum, [, items]) => sum + items.length, 0);
 
-const archiveLabelMap: Record<string, string> = {
-  Автореферат: 'Abstract',
-  Дисертація: 'Dissertation',
-  Висновок: 'Conclusion',
-  'Облікова картка': 'Record card',
-  Відео: 'Video'
-};
-
-function archiveLabel(label: string, href: string) {
-  const englishLabel = archiveLabelMap[label] ?? label;
-
-  if (href.startsWith('http')) {
-    return englishLabel;
-  }
-
-  return `${englishLabel} · source language`;
-}
 ---
 
 <BaseLayoutEn
@@ -125,36 +126,39 @@ function archiveLabel(label: string, href: string) {
         </p>
       </div>
 
-      {allTags.length > 0 && (
-        <div class="tag-filter-panel" aria-labelledby="tag-filter-heading">
-          <div class="tag-filter-header">
-            <div>
-              <p class="eyebrow">Topic filter</p>
-              <h3 id="tag-filter-heading">Browse by research topic</h3>
-            </div>
-            <p>
-              Use the compact selector to narrow the catalogue by one topic tag. The filter works on the current English entries and does not change the source data.
-            </p>
+      <div class="catalog-controls-panel" aria-labelledby="catalog-controls-heading">
+        <div class="catalog-controls-heading">
+          <div>
+            <p class="eyebrow">Catalogue view</p>
+            <h3 id="catalog-controls-heading">Grouping and research topic</h3>
           </div>
-          <div class="tag-filter-controls">
-            <label for="tag-filter-select">Research topic</label>
-            <select id="tag-filter-select" class="tag-filter-select" data-filter-select>
-              <option value="__all__">All research topics</option>
-              {allTags.map((tag) => (
-                <option value={tag}>{tag}</option>
-              ))}
-            </select>
-          </div>
-          <p class="catalog-filter-status" data-filter-status>{totalEntries} entries shown</p>
+          <p>Choose a grouping mode and one of 40 curated research topics.</p>
         </div>
-      )}
+        <div class="catalog-controls">
+          <fieldset class="view-switch">
+            <legend>Group by</legend>
+            <div class="segmented-control">
+              <button type="button" class="is-active" data-view-button="surname" aria-pressed="true">Surname</button>
+              <button type="button" data-view-button="year" aria-pressed="false">Year</button>
+            </div>
+          </fieldset>
+          <label class="topic-filter" for="en-topic-filter">
+            Research topic
+            <select id="en-topic-filter" data-topic-filter>
+              <option value="__all__">All 40 topics</option>
+              {topicOptions.map((topic) => <option value={topic.id}>{topic.en}</option>)}
+            </select>
+          </label>
+        </div>
+        <p class="catalog-filter-status" data-filter-status>{totalEntries} entries · grouped by surname</p>
+      </div>
 
-      <div class="catalog-groups">
+      <div class="catalog-groups" data-catalog-view="surname">
         {groups.map((group) => (
-          <section class="catalog-letter-group" aria-labelledby={`letter-${group.letter}`} data-letter-group>
+          <section class="catalog-letter-group" aria-labelledby={`letter-${group.letter}`} data-catalog-group>
             <div class="letter-heading" id={`letter-${group.letter}`}>
               <span>{group.letter}</span>
-              <strong data-letter-count>{group.items.length} entries</strong>
+              <strong data-group-count>{group.items.length} entries</strong>
             </div>
 
             <div class="catalog-entry-grid">
@@ -163,9 +167,81 @@ function archiveLabel(label: string, href: string) {
                 const sourceLanguage = entry.bibliography?.originalLanguage
                   ? defendedDissertationLanguageLabels[entry.bibliography.originalLanguage]
                   : null;
+                const topicIds = matchDefendedDissertationTopics(
+                  [entry.title.en, entry.specialty?.en ?? '', ...(entry.tags ?? [])].join(' ')
+                );
 
                 return (
-                  <article class="catalog-entry-card" data-entry-card data-entry-tags={(entry.tags ?? []).join('|')}>
+                  <article class="catalog-entry-card" data-entry-card data-entry-topics={topicIds.join('|')}>
+                    <div class="entry-header">
+                      <div>
+                        <h3>{entry.author.en}</h3>
+                        <p class="entry-title">{entry.title.en}</p>
+                      </div>
+                      <span class="entry-year">{entry.year}</span>
+                    </div>
+
+                    <dl class="entry-meta-grid">
+                      {defenceDate && (
+                        <div>
+                          <dt>Defence date</dt>
+                          <dd>{defenceDate}</dd>
+                        </div>
+                      )}
+                      <div>
+                        <dt>Degree</dt>
+                        <dd>{entry.degree.en}</dd>
+                      </div>
+                      {entry.specialty && (
+                        <div>
+                          <dt>Specialty</dt>
+                          <dd>{entry.specialty.code ? `${entry.specialty.code} — ${entry.specialty.en}` : entry.specialty.en}</dd>
+                        </div>
+                      )}
+                      {entry.bibliography?.pages && (
+                        <div>
+                          <dt>Pages</dt>
+                          <dd>{entry.bibliography.pages}</dd>
+                        </div>
+                      )}
+                      {sourceLanguage && (
+                        <div>
+                          <dt>Language</dt>
+                          <dd>{sourceLanguage}</dd>
+                        </div>
+                      )}
+                    </dl>
+
+                    {entry.tags && entry.tags.length > 0 && (
+                      <div class="tag-list" aria-label="Topic tags">
+                        {entry.tags.map((tag) => <span>{tag}</span>)}
+                      </div>
+                    )}
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <div class="catalog-groups" data-catalog-view="year" hidden>
+        {yearGroups.map((group) => (
+          <section class="catalog-letter-group" aria-labelledby={`year-${group.year}`} data-catalog-group>
+            <div class="letter-heading year-heading" id={`year-${group.year}`}>
+              <span>{group.year}</span>
+              <strong data-group-count>{group.records.length} entries</strong>
+            </div>
+
+            <div class="catalog-entry-grid">
+              {group.records.map(({ entry, topicIds }) => {
+                const defenceDate = formatDate(entry.defenceDate);
+                const sourceLanguage = entry.bibliography?.originalLanguage
+                  ? defendedDissertationLanguageLabels[entry.bibliography.originalLanguage]
+                  : null;
+
+                return (
+                  <article class="catalog-entry-card" data-entry-card data-entry-topics={topicIds.join('|')}>
                     <div class="entry-header">
                       <div>
                         <h3>{entry.author.en}</h3>
@@ -220,86 +296,73 @@ function archiveLabel(label: string, href: string) {
     </div>
   </section>
 
-  <section class="archive-section" id="defense-materials-archive">
-    <div class="container">
-      <div class="section-heading compact-header">
-        <div>
-          <p class="eyebrow">Archive</p>
-          <h2>Previous defence materials</h2>
-        </div>
-        <p>
-          The archive is grouped by year. It contains {totalArchiveItems} records with links to available source-language defence materials.
-        </p>
-      </div>
-
-      <div class="archive-material-groups">
-        {defenseMaterialsArchiveGroups.map(([year, items]) => (
-          <section class="archive-material-group">
-            <div class="archive-letter-heading">
-              <h3>{year}</h3>
-              <span>{items.length} {items.length === 1 ? 'record' : 'records'}</span>
-            </div>
-
-            <div class="archive-material-grid">
-              {items.map((item) => (
-                <article class="archive-material-card">
-                  <h4>{item.name}</h4>
-                  <div class="archive-material-links">
-                    {item.links.map(([label, href]) => (
-                      <a href={withBase(href)} target="_blank" rel="noopener noreferrer">{archiveLabel(label, href)}</a>
-                    ))}
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
-        ))}
-      </div>
-    </div>
-  </section>
 </BaseLayoutEn>
 
 <script is:inline>
-  const tagFilterSelect = document.querySelector('[data-filter-select]');
-  const entryCards = Array.from(document.querySelectorAll('[data-entry-card]'));
-  const letterGroups = Array.from(document.querySelectorAll('[data-letter-group]'));
+  const viewButtons = Array.from(document.querySelectorAll('[data-view-button]'));
+  const catalogueViews = Array.from(document.querySelectorAll('[data-catalog-view]'));
+  const topicFilter = document.querySelector('[data-topic-filter]');
   const filterStatus = document.querySelector('[data-filter-status]');
-  const allTagValue = '__all__';
-  const totalCatalogueEntries = entryCards.length;
+  const allTopicsValue = '__all__';
+  let activeView = 'surname';
+  let selectedTopic = allTopicsValue;
 
   function entryLabel(count) {
     return `${count} ${count === 1 ? 'entry' : 'entries'}`;
   }
 
-  function applyTagFilter(selectedTag) {
+  function applyCatalogueState() {
     let visibleTotal = 0;
 
-    entryCards.forEach((card) => {
-      const tags = (card.dataset.entryTags || '').split('|').filter(Boolean);
-      const isVisible = selectedTag === allTagValue || tags.includes(selectedTag);
-      card.hidden = !isVisible;
-      if (isVisible) visibleTotal += 1;
+    catalogueViews.forEach((view) => {
+      const isActive = view.dataset.catalogView === activeView;
+      view.hidden = !isActive;
+      if (!isActive) return;
+
+      view.querySelectorAll('[data-entry-card]').forEach((card) => {
+        const topics = (card.dataset.entryTopics || '').split('|').filter(Boolean);
+        const isVisible = selectedTopic === allTopicsValue || topics.includes(selectedTopic);
+        card.hidden = !isVisible;
+        if (isVisible) visibleTotal += 1;
+      });
+
+      view.querySelectorAll('[data-catalog-group]').forEach((group) => {
+        const visibleCards = Array.from(group.querySelectorAll('[data-entry-card]')).filter((card) => !card.hidden).length;
+        const count = group.querySelector('[data-group-count]');
+        group.hidden = visibleCards === 0;
+        if (count) count.textContent = entryLabel(visibleCards);
+      });
     });
 
-    letterGroups.forEach((group) => {
-      const visibleCards = Array.from(group.querySelectorAll('[data-entry-card]')).filter((card) => !card.hidden).length;
-      const letterCount = group.querySelector('[data-letter-count]');
-
-      group.hidden = visibleCards === 0;
-      if (letterCount) letterCount.textContent = entryLabel(visibleCards);
+    viewButtons.forEach((button) => {
+      const isActive = button.dataset.viewButton === activeView;
+      button.classList.toggle('is-active', isActive);
+      button.setAttribute('aria-pressed', String(isActive));
     });
 
     if (filterStatus) {
+      const topicLabel = topicFilter?.selectedOptions?.[0]?.textContent;
+      const groupingLabel = activeView === 'year' ? 'grouped by year' : 'grouped by surname';
       filterStatus.textContent =
-        selectedTag === allTagValue
-          ? `${entryLabel(totalCatalogueEntries)} shown`
-          : `${entryLabel(visibleTotal)} shown for “${selectedTag}”`;
+        selectedTopic === allTopicsValue
+          ? `${entryLabel(visibleTotal)} · ${groupingLabel}`
+          : `${entryLabel(visibleTotal)} · ${topicLabel} · ${groupingLabel}`;
     }
   }
 
-  tagFilterSelect?.addEventListener('change', (event) => {
-    applyTagFilter(event.target.value || allTagValue);
+  viewButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      activeView = button.dataset.viewButton || 'surname';
+      applyCatalogueState();
+    });
   });
+
+  topicFilter?.addEventListener('change', (event) => {
+    selectedTopic = event.target.value || allTopicsValue;
+    applyCatalogueState();
+  });
+
+  applyCatalogueState();
 </script>
 
 <style>
@@ -310,7 +373,7 @@ function archiveLabel(label: string, href: string) {
   .catalog-hero-panel,
   .catalog-stat-card,
   .catalog-policy-panel,
-  .tag-filter-panel,
+  .catalog-controls-panel,
   .catalog-entry-card {
     background: var(--surface);
     border: 1px solid var(--line);
@@ -359,13 +422,11 @@ function archiveLabel(label: string, href: string) {
 
   .catalog-summary-section,
   .catalog-policy-section,
-  .catalog-section,
-  .archive-section {
+  .catalog-section {
     padding: 22px 0;
   }
 
-  .catalog-section,
-  .archive-section {
+  .catalog-section {
     padding-bottom: 72px;
   }
 
@@ -397,7 +458,7 @@ function archiveLabel(label: string, href: string) {
   .catalog-stat-card p,
   .catalog-policy-panel p,
   .section-heading p,
-  .tag-filter-header p,
+  .catalog-controls-heading p,
   .catalog-filter-status {
     margin: 0;
     color: var(--muted);
@@ -425,44 +486,87 @@ function archiveLabel(label: string, href: string) {
     margin-bottom: 26px;
   }
 
-  .tag-filter-panel {
+  .catalog-controls-panel {
     display: grid;
     gap: 18px;
     margin-bottom: 30px;
     padding: clamp(20px, 3vw, 28px);
   }
 
-  .tag-filter-header {
+  .catalog-controls-heading {
     display: grid;
     grid-template-columns: minmax(220px, 0.55fr) minmax(0, 1fr);
     gap: 18px;
     align-items: end;
   }
 
-  .tag-filter-header h3 {
+  .catalog-controls-heading h3 {
     margin: 0;
     font-size: clamp(1.1rem, 2vw, 1.45rem);
-    letter-spacing: -0.02em;
   }
 
-  .tag-filter-controls {
+  .catalog-controls {
     display: grid;
-    grid-template-columns: minmax(160px, 0.28fr) minmax(0, 1fr);
-    gap: 12px;
-    align-items: center;
+    grid-template-columns: minmax(260px, 0.65fr) minmax(240px, 1fr);
+    gap: 18px;
+    align-items: end;
   }
 
-  .tag-filter-controls label {
+  .view-switch {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .view-switch legend,
+  .topic-filter {
     color: var(--text);
     font-size: 0.9rem;
     font-weight: 850;
   }
 
-  .tag-filter-select {
-    width: 100%;
-    min-height: 44px;
+  .view-switch legend {
+    margin-bottom: 8px;
+  }
+
+  .segmented-control {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 4px;
     border: 1px solid var(--line);
-    border-radius: 14px;
+    border-radius: 12px;
+    background: var(--surface-soft);
+  }
+
+  .segmented-control button {
+    min-height: 40px;
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-weight: 850;
+    cursor: pointer;
+  }
+
+  .segmented-control button.is-active {
+    background: var(--surface);
+    color: var(--accent-dark);
+    box-shadow: 0 1px 4px rgba(15, 31, 50, 0.12);
+  }
+
+  .topic-filter {
+    display: grid;
+    gap: 8px;
+  }
+
+  .topic-filter select {
+    width: 100%;
+    min-height: 48px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
     background: var(--surface-soft);
     color: var(--text);
     font: inherit;
@@ -470,9 +574,10 @@ function archiveLabel(label: string, href: string) {
     padding: 9px 12px;
   }
 
-  .tag-filter-select:focus-visible {
-    border-color: var(--accent);
+  .segmented-control button:focus-visible,
+  .topic-filter select:focus-visible {
     outline: 3px solid var(--accent-soft);
+    outline-offset: 2px;
   }
 
   .catalog-filter-status {
@@ -485,9 +590,8 @@ function archiveLabel(label: string, href: string) {
     gap: 32px;
   }
 
-  .archive-material-groups {
-    display: grid;
-    gap: 18px;
+  .catalog-groups[hidden] {
+    display: none;
   }
 
   .letter-heading {
@@ -495,16 +599,6 @@ function archiveLabel(label: string, href: string) {
     align-items: baseline;
     gap: 14px;
     margin-bottom: 16px;
-  }
-
-  .archive-letter-heading {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    align-items: center;
-    margin-bottom: 14px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--line);
   }
 
   .letter-heading span {
@@ -519,6 +613,13 @@ function archiveLabel(label: string, href: string) {
     font-weight: 900;
   }
 
+  .letter-heading.year-heading span {
+    width: auto;
+    min-width: 76px;
+    padding: 0 12px;
+    border-radius: 12px;
+  }
+
   .letter-heading strong {
     color: var(--muted);
     font-size: 0.95rem;
@@ -526,74 +627,23 @@ function archiveLabel(label: string, href: string) {
     letter-spacing: 0.08em;
   }
 
-  .archive-letter-heading h3 {
-    margin: 0;
-    color: var(--accent-dark);
-    font-size: 1.42rem;
-  }
-
-  .archive-letter-heading span {
-    color: var(--muted);
-    font-weight: 850;
-  }
-
-  .catalog-entry-grid,
-  .archive-material-grid {
+  .catalog-entry-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
     align-items: start;
   }
 
-  .catalog-entry-card,
-  .archive-material-group,
-  .archive-material-card {
+  .catalog-entry-card {
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
   }
 
-  .archive-material-group {
-    padding: clamp(18px, 3vw, 28px);
-  }
-
-  .catalog-entry-card,
-  .archive-material-card {
+  .catalog-entry-card {
     height: 100%;
     padding: clamp(18px, 2.4vw, 24px);
-  }
-
-  .archive-material-card {
-    box-shadow: none;
-    background: var(--surface-soft);
-  }
-
-  .archive-material-card h4 {
-    margin: 0 0 12px;
-    color: var(--accent-dark);
-    font-size: 1.05rem;
-    line-height: 1.25;
-  }
-
-  .archive-material-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .archive-material-links a {
-    display: inline-flex;
-    padding: 7px 11px;
-    border-radius: 999px;
-    background: var(--surface);
-    color: var(--accent-dark);
-    font-weight: 850;
-  }
-
-  .archive-material-links a:hover {
-    background: var(--accent-soft);
-    text-decoration: none;
   }
 
   .entry-header {
@@ -673,8 +723,7 @@ function archiveLabel(label: string, href: string) {
   }
 
   @media (max-width: 1100px) {
-    .catalog-entry-grid,
-    .archive-material-grid {
+    .catalog-entry-grid {
       grid-template-columns: 1fr;
     }
   }
@@ -686,8 +735,8 @@ function archiveLabel(label: string, href: string) {
 
     .catalog-policy-panel,
     .compact-header,
-    .tag-filter-header,
-    .tag-filter-controls {
+    .catalog-controls-heading,
+    .catalog-controls {
       grid-template-columns: 1fr;
     }
   }
@@ -699,11 +748,6 @@ function archiveLabel(label: string, href: string) {
     }
 
     .entry-header {
-      flex-direction: column;
-    }
-
-    .archive-letter-heading {
-      align-items: flex-start;
       flex-direction: column;
     }
   }

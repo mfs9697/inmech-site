@@ -28,13 +28,16 @@ import { defendedDissertationsShch } from '../data/defendedDissertationsShch';
 import { defendedDissertationsEe } from '../data/defendedDissertationsEe';
 import { defendedDissertationsYu } from '../data/defendedDissertationsYu';
 import { defendedDissertationsYa } from '../data/defendedDissertationsYa';
-import { defenseMaterialsArchiveGroups } from '../data/defenseMaterialsArchive';
-
-const docHref = (href: string) => href.startsWith('/documents/') ? withBase(href) : href;
+import { defendedDissertationArchiveAdditionsUk } from '../data/defendedDissertationArchiveAdditions';
+import {
+  defendedDissertationTopics,
+  defendedDissertationTopicLimit,
+  matchDefendedDissertationTopics
+} from '../data/defendedDissertationTopics';
 
 const defendedDissertationsS = [...defendedDissertationsS1, ...defendedDissertationsS2];
 
-const catalog = [
+const baseCatalog = [
   { letter: 'А', items: defendedDissertationsA },
   { letter: 'Б', items: defendedDissertationsB },
   { letter: 'В', items: defendedDissertationsV },
@@ -65,6 +68,14 @@ const catalog = [
   { letter: 'Я', items: defendedDissertationsYa }
 ];
 
+const catalog = baseCatalog.map((group) => ({
+  ...group,
+  items: [
+    ...group.items,
+    ...defendedDissertationArchiveAdditionsUk.filter((item) => item.name.startsWith(group.letter))
+  ].sort((a, b) => a.name.localeCompare(b.name, 'uk', { sensitivity: 'base' }))
+}));
+
 const allCatalogItems = catalog.flatMap((group) => group.items);
 const totalItems = allCatalogItems.length;
 const candidateDegreePattern = /к\.ф\.-?м\.н\.|к\.т\.н\./i;
@@ -72,9 +83,81 @@ const doctoralDegreePattern = /д\.ф\.-?м\.н\.|д\.т\.н\./i;
 const candidateCount = allCatalogItems.filter((item) => candidateDegreePattern.test(item.details)).length;
 const doctoralCount = allCatalogItems.filter((item) => doctoralDegreePattern.test(item.details)).length;
 const otherCount = Math.max(totalItems - candidateCount - doctoralCount, 0);
-const totalArchiveItems = defenseMaterialsArchiveGroups.reduce((sum, [, items]) => sum + items.length, 0);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+
+function normalizeDefenceDate(value: string) {
+  const parts = value.split('.');
+  if (parts.length !== 3 || parts[2].length !== 2) return value;
+
+  const shortYear = Number(parts[2]);
+  const fullYear = shortYear < 30 ? 2000 + shortYear : 1900 + shortYear;
+  return `${parts[0]}.${parts[1]}.${fullYear}`;
+}
+
+function dissertationCardMeta(item: { title: string; details: string }) {
+  const source = `${item.title} ${item.details}`;
+  const isoDefenceMatch = source.match(/(?:дата\s+)?захисту?\s+(\d{4})-(\d{2})-(\d{2})/i);
+  const legacyDefenceMatch = source.match(/(?:Захист|Защита)\s+(\d{1,2}\.\d{1,2}\.\d{2,4}|\d{4})/i);
+  const defenceDate = isoDefenceMatch
+    ? `${isoDefenceMatch[3]}.${isoDefenceMatch[2]}.${isoDefenceMatch[1]}`
+    : legacyDefenceMatch
+      ? normalizeDefenceDate(legacyDefenceMatch[1])
+      : null;
+  const yearFromDefence = defenceDate?.match(/\b(19|20)\d{2}\b/)?.[0] ?? null;
+  const allYears = Array.from(source.matchAll(/\b(19|20)\d{2}\b/g), (match) => match[0]);
+  const year = yearFromDefence ?? allYears.at(-1) ?? null;
+
+  const degree =
+    /доктора\s+філософії/i.test(source)
+      ? 'доктор філософії'
+      : /д\.\s*ф\.-?\s*м\.н\./i.test(source)
+      ? 'доктор фізико-математичних наук'
+      : /д\.\s*т\.н\./i.test(source)
+        ? 'доктор технічних наук'
+        : /к\.\s*ф\.-?\s*м\.н\./i.test(source)
+          ? 'кандидат фізико-математичних наук'
+          : /к\.\s*т\.н\./i.test(source)
+            ? 'кандидат технічних наук'
+            : null;
+
+  const specialty =
+    source.match(/[кд]\.\s*(?:ф\.-?\s*м|т)\.н\.\s+(\d{2}\.\d{2}\.\d{2})/i)?.[1] ??
+    source.match(/спеціальн(?:ість|ості)\s+(\d{3})/i)?.[1] ??
+    null;
+  const pagesMatch = source.match(/[–—-]\s*(\d+)\s*([сл])\./i);
+  const pages = pagesMatch ? `${pagesMatch[1]} ${pagesMatch[2]}.` : null;
+
+  return { defenceDate, degree, specialty, pages, year };
+}
+
+const topicOptions = defendedDissertationTopics
+  .slice(0, defendedDissertationTopicLimit)
+  .sort((a, b) => a.uk.localeCompare(b.uk, 'uk', { sensitivity: 'base' }));
+const catalogRecords = catalog.flatMap((group) =>
+  group.items.map((item) => ({
+    item,
+    letter: group.letter,
+    meta: dissertationCardMeta(item),
+    topicIds: matchDefendedDissertationTopics(`${item.title} ${item.details}`)
+  }))
+);
+const recordsByYear = new Map<string, typeof catalogRecords>();
+
+catalogRecords.forEach((record) => {
+  const year = record.meta.year ?? 'Рік не визначено';
+  const records = recordsByYear.get(year) ?? [];
+  records.push(record);
+  recordsByYear.set(year, records);
+});
+
+const yearGroups = Array.from(recordsByYear, ([year, records]) => ({ year, records })).sort((a, b) => {
+  const aYear = Number(a.year);
+  const bYear = Number(b.year);
+  if (Number.isNaN(aYear)) return 1;
+  if (Number.isNaN(bYear)) return -1;
+  return bYear - aYear;
+});
 ---
 
 <section class="section" id="defended-catalog">
@@ -113,11 +196,37 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
       </article>
     </div>
 
-    <nav class="diss-alpha-nav" aria-label="Алфавітна навігація каталогу захищених дисертацій">
+    <div class="catalog-controls-panel" aria-labelledby="catalog-controls-heading">
+      <div class="catalog-controls-heading">
+        <div>
+          <p class="eyebrow">Перегляд каталогу</p>
+          <h3 id="catalog-controls-heading">Групування та тематика</h3>
+        </div>
+        <p>Оберіть спосіб групування та одну з 40 основних тем досліджень.</p>
+      </div>
+      <div class="catalog-controls">
+        <fieldset class="view-switch">
+          <legend>Групування</legend>
+          <div class="segmented-control">
+            <button type="button" class="is-active" data-view-button="surname" aria-pressed="true">За прізвищем</button>
+            <button type="button" data-view-button="year" aria-pressed="false">За роком</button>
+          </div>
+        </fieldset>
+        <label class="topic-filter" for="uk-topic-filter">
+          Тема дослідження
+          <select id="uk-topic-filter" data-topic-filter>
+            <option value="__all__">Усі 40 тем</option>
+            {topicOptions.map((topic) => <option value={topic.id}>{topic.uk}</option>)}
+          </select>
+        </label>
+      </div>
+      <p class="catalog-filter-status" data-filter-status>{totalItems} записів · за прізвищем</p>
+    </div>
+
+    <nav class="diss-alpha-nav" data-surname-navigation aria-label="Алфавітна навігація каталогу захищених дисертацій">
       {catalog.map((group) => (
         <a href={`#catalog-${group.letter}`}>{group.letter}</a>
       ))}
-      <a class="archive-anchor" href="#defense-materials-archive">Архів</a>
     </nav>
 
     <div class="diss-note">
@@ -126,59 +235,108 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
       в архіві нижче та на сторінці <a href={withBase('/dissertations/')}>«Захист дисертацій»</a>.
     </div>
 
-    <div class="diss-groups">
+    <div class="diss-groups" data-catalog-view="surname">
       {catalog.map((group) => (
-        <section class="diss-letter-group" id={`catalog-${group.letter}`}>
+        <section class="diss-letter-group" id={`catalog-${group.letter}`} data-catalog-group>
           <div class="diss-letter-header">
             <h3>{group.letter}</h3>
-            <span>{group.items.length} {group.items.length === 1 ? 'запис' : 'записів'}</span>
+            <span data-group-count>{group.items.length} записів</span>
           </div>
 
           <div class="diss-card-grid">
-            {group.items.map((item) => (
-              <article class="diss-card">
-                <h4>{item.name}</h4>
-                <p class="diss-title">{item.title}</p>
-                <p class="diss-details">{item.details}</p>
-              </article>
-            ))}
+            {group.items.map((item) => {
+              const meta = dissertationCardMeta(item);
+              const topicIds = matchDefendedDissertationTopics(`${item.title} ${item.details}`);
+
+              return (
+                <article class="catalog-entry-card" data-entry-card data-entry-topics={topicIds.join('|')}>
+                  <div class="entry-header">
+                    <div>
+                      <h4>{item.name}</h4>
+                      <p class="entry-title">{item.title}</p>
+                    </div>
+                    {meta.year && <span class="entry-year">{meta.year}</span>}
+                  </div>
+
+                  <dl class="entry-meta-grid">
+                    {meta.defenceDate && (
+                      <div>
+                        <dt>Дата захисту</dt>
+                        <dd>{meta.defenceDate}</dd>
+                      </div>
+                    )}
+                    {meta.degree && (
+                      <div>
+                        <dt>Ступінь</dt>
+                        <dd>{meta.degree}</dd>
+                      </div>
+                    )}
+                    {meta.specialty && (
+                      <div>
+                        <dt>Спеціальність</dt>
+                        <dd>{meta.specialty}</dd>
+                      </div>
+                    )}
+                    {meta.pages && (
+                      <div>
+                        <dt>Обсяг</dt>
+                        <dd>{meta.pages}</dd>
+                      </div>
+                    )}
+                  </dl>
+                </article>
+              );
+            })}
           </div>
         </section>
       ))}
     </div>
-  </div>
-</section>
 
-<section class="section" id="defense-materials-archive">
-  <div class="container">
-    <div class="section-heading compact-header">
-      <div>
-        <p class="eyebrow">Архів</p>
-        <h2>Матеріали попередніх захистів</h2>
-      </div>
-      <p>
-        Архів згруповано за роками. Усього подано {totalArchiveItems} записів із посиланнями
-        на доступні матеріали захистів.
-      </p>
-    </div>
-
-    <div class="archive-material-groups">
-      {defenseMaterialsArchiveGroups.map(([year, items]) => (
-        <section class="archive-material-group">
+    <div class="diss-groups" data-catalog-view="year" hidden>
+      {yearGroups.map((group) => (
+        <section class="diss-letter-group" data-catalog-group>
           <div class="diss-letter-header">
-            <h3>{year}</h3>
-            <span>{items.length} {items.length === 1 ? 'запис' : 'записів'}</span>
+            <h3>{group.year}</h3>
+            <span data-group-count>{group.records.length} записів</span>
           </div>
 
-          <div class="archive-material-grid">
-            {items.map((item) => (
-              <article class="archive-material-card">
-                <h4>{item.name}</h4>
-                <div class="archive-material-links">
-                  {item.links.map(([label, href]) => (
-                    <a href={docHref(href)} target="_blank" rel="noopener noreferrer">{label}</a>
-                  ))}
+          <div class="diss-card-grid">
+            {group.records.map(({ item, meta, topicIds }) => (
+              <article class="catalog-entry-card" data-entry-card data-entry-topics={topicIds.join('|')}>
+                <div class="entry-header">
+                  <div>
+                    <h4>{item.name}</h4>
+                    <p class="entry-title">{item.title}</p>
+                  </div>
+                  {meta.year && <span class="entry-year">{meta.year}</span>}
                 </div>
+
+                <dl class="entry-meta-grid">
+                  {meta.defenceDate && (
+                    <div>
+                      <dt>Дата захисту</dt>
+                      <dd>{meta.defenceDate}</dd>
+                    </div>
+                  )}
+                  {meta.degree && (
+                    <div>
+                      <dt>Ступінь</dt>
+                      <dd>{meta.degree}</dd>
+                    </div>
+                  )}
+                  {meta.specialty && (
+                    <div>
+                      <dt>Спеціальність</dt>
+                      <dd>{meta.specialty}</dd>
+                    </div>
+                  )}
+                  {meta.pages && (
+                    <div>
+                      <dt>Обсяг</dt>
+                      <dd>{meta.pages}</dd>
+                    </div>
+                  )}
+                </dl>
               </article>
             ))}
           </div>
@@ -187,6 +345,79 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
     </div>
   </div>
 </section>
+
+<script is:inline>
+  const viewButtons = Array.from(document.querySelectorAll('[data-view-button]'));
+  const catalogueViews = Array.from(document.querySelectorAll('[data-catalog-view]'));
+  const topicFilter = document.querySelector('[data-topic-filter]');
+  const filterStatus = document.querySelector('[data-filter-status]');
+  const surnameNavigation = document.querySelector('[data-surname-navigation]');
+  const allTopicsValue = '__all__';
+  let activeView = 'surname';
+  let selectedTopic = allTopicsValue;
+
+  function recordLabel(count) {
+    const mod100 = count % 100;
+    const mod10 = count % 10;
+    const noun = mod100 >= 11 && mod100 <= 14 ? 'записів' : mod10 === 1 ? 'запис' : mod10 >= 2 && mod10 <= 4 ? 'записи' : 'записів';
+    return `${count} ${noun}`;
+  }
+
+  function applyCatalogueState() {
+    let visibleTotal = 0;
+
+    catalogueViews.forEach((view) => {
+      const isActive = view.dataset.catalogView === activeView;
+      view.hidden = !isActive;
+      if (!isActive) return;
+
+      view.querySelectorAll('[data-entry-card]').forEach((card) => {
+        const topics = (card.dataset.entryTopics || '').split('|').filter(Boolean);
+        const isVisible = selectedTopic === allTopicsValue || topics.includes(selectedTopic);
+        card.hidden = !isVisible;
+        if (isVisible) visibleTotal += 1;
+      });
+
+      view.querySelectorAll('[data-catalog-group]').forEach((group) => {
+        const visibleCards = Array.from(group.querySelectorAll('[data-entry-card]')).filter((card) => !card.hidden).length;
+        const count = group.querySelector('[data-group-count]');
+        group.hidden = visibleCards === 0;
+        if (count) count.textContent = recordLabel(visibleCards);
+      });
+    });
+
+    viewButtons.forEach((button) => {
+      const isActive = button.dataset.viewButton === activeView;
+      button.classList.toggle('is-active', isActive);
+      button.setAttribute('aria-pressed', String(isActive));
+    });
+
+    if (surnameNavigation) surnameNavigation.hidden = activeView !== 'surname';
+
+    if (filterStatus) {
+      const topicLabel = topicFilter?.selectedOptions?.[0]?.textContent;
+      const groupingLabel = activeView === 'year' ? 'за роком' : 'за прізвищем';
+      filterStatus.textContent =
+        selectedTopic === allTopicsValue
+          ? `${recordLabel(visibleTotal)} · ${groupingLabel}`
+          : `${recordLabel(visibleTotal)} · ${topicLabel} · ${groupingLabel}`;
+    }
+  }
+
+  viewButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      activeView = button.dataset.viewButton || 'surname';
+      applyCatalogueState();
+    });
+  });
+
+  topicFilter?.addEventListener('change', (event) => {
+    selectedTopic = event.target.value || allTopicsValue;
+    applyCatalogueState();
+  });
+
+  applyCatalogueState();
+</script>
 
 <style>
   .catalog-summary-grid {
@@ -226,11 +457,129 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
     line-height: 1.45;
   }
 
+  .catalog-controls-panel {
+    display: grid;
+    gap: 18px;
+    margin: 24px 0 18px;
+    padding: clamp(20px, 3vw, 28px);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .catalog-controls-heading {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.55fr) minmax(0, 1fr);
+    gap: 18px;
+    align-items: end;
+  }
+
+  .catalog-controls-heading h3,
+  .catalog-controls-heading p,
+  .catalog-filter-status {
+    margin: 0;
+  }
+
+  .catalog-controls-heading h3 {
+    font-size: clamp(1.1rem, 2vw, 1.45rem);
+  }
+
+  .catalog-controls-heading > p,
+  .catalog-filter-status {
+    color: var(--muted);
+  }
+
+  .catalog-controls {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.65fr) minmax(240px, 1fr);
+    gap: 18px;
+    align-items: end;
+  }
+
+  .view-switch {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .view-switch legend,
+  .topic-filter {
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 850;
+  }
+
+  .view-switch legend {
+    margin-bottom: 8px;
+  }
+
+  .segmented-control {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 4px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--surface-soft);
+  }
+
+  .segmented-control button {
+    min-height: 40px;
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-weight: 850;
+    cursor: pointer;
+  }
+
+  .segmented-control button.is-active {
+    background: var(--surface);
+    color: var(--accent-dark);
+    box-shadow: 0 1px 4px rgba(15, 31, 50, 0.12);
+  }
+
+  .segmented-control button:focus-visible,
+  .topic-filter select:focus-visible {
+    outline: 3px solid var(--accent-soft);
+    outline-offset: 2px;
+  }
+
+  .topic-filter {
+    display: grid;
+    gap: 8px;
+  }
+
+  .topic-filter select {
+    width: 100%;
+    min-height: 48px;
+    padding: 9px 12px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--surface-soft);
+    color: var(--text);
+    font: inherit;
+    font-weight: 750;
+  }
+
+  .catalog-filter-status {
+    font-size: 0.92rem;
+    font-weight: 750;
+  }
+
   .diss-alpha-nav {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 16px;
+  }
+
+  .diss-alpha-nav[hidden],
+  .diss-groups[hidden] {
+    display: none;
   }
 
   .diss-alpha-nav a {
@@ -244,11 +593,6 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
     color: var(--accent-dark);
     font-weight: 950;
     box-shadow: var(--shadow);
-  }
-
-  .diss-alpha-nav a.archive-anchor {
-    width: auto;
-    padding: 0 14px;
   }
 
   .diss-alpha-nav a:hover {
@@ -270,24 +614,20 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
     font-weight: 850;
   }
 
-  .diss-groups,
-  .archive-material-groups {
+  .diss-groups {
     display: grid;
     gap: 18px;
   }
 
   .diss-letter-group,
-  .diss-card,
-  .archive-material-group,
-  .archive-material-card {
+  .catalog-entry-card {
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
   }
 
-  .diss-letter-group,
-  .archive-material-group {
+  .diss-letter-group {
     padding: clamp(18px, 3vw, 28px);
   }
 
@@ -312,59 +652,77 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
     font-weight: 850;
   }
 
-  .diss-card-grid,
-  .archive-material-grid {
+  .diss-card-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+    gap: 16px;
+    align-items: start;
   }
 
-  .diss-card,
-  .archive-material-card {
-    padding: 16px 18px;
-    box-shadow: none;
-    background: var(--surface-soft);
+  .catalog-entry-card {
+    height: 100%;
+    padding: clamp(18px, 2.4vw, 24px);
   }
 
-  .diss-card h4,
-  .archive-material-card h4 {
+  .entry-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    align-items: flex-start;
+    margin-bottom: 18px;
+  }
+
+  .entry-header h4 {
     margin: 0 0 10px;
     color: var(--accent-dark);
-    font-size: 1.05rem;
-    line-height: 1.25;
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    line-height: 1.2;
   }
 
-  .diss-title {
-    margin: 0 0 12px;
-    color: var(--text);
-    font-weight: 850;
-    line-height: 1.35;
-  }
-
-  .diss-details {
+  .entry-title {
     margin: 0;
-    color: var(--muted);
+    color: var(--text);
+    font-size: 1.04rem;
+    font-weight: 750;
     line-height: 1.45;
   }
 
-  .archive-material-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .archive-material-links a {
-    display: inline-flex;
-    padding: 7px 11px;
+  .entry-year {
+    flex: 0 0 auto;
+    padding: 7px 12px;
     border-radius: 999px;
-    background: var(--surface);
-    color: var(--accent-dark);
-    font-weight: 850;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 900;
   }
 
-  .archive-material-links a:hover {
-    background: var(--accent-soft);
-    text-decoration: none;
+  .entry-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 0 0 16px;
+  }
+
+  .entry-meta-grid div {
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface-soft);
+  }
+
+  .entry-meta-grid dt {
+    margin-bottom: 4px;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .entry-meta-grid dd {
+    margin: 0;
+    color: var(--text);
+    font-weight: 750;
   }
 
   @media (max-width: 1100px) {
@@ -374,8 +732,9 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
   }
 
   @media (max-width: 900px) {
-    .diss-card-grid,
-    .archive-material-grid {
+    .catalog-controls-heading,
+    .catalog-controls,
+    .diss-card-grid {
       grid-template-columns: 1fr;
     }
 
@@ -390,8 +749,13 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
   }
 
   @media (max-width: 640px) {
-    .catalog-summary-grid {
+    .catalog-summary-grid,
+    .entry-meta-grid {
       grid-template-columns: 1fr;
+    }
+
+    .entry-header {
+      flex-direction: column;
     }
   }
 </style>

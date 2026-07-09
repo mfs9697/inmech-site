@@ -134,6 +134,7 @@ function dissertationCardMeta(item: { title: string; details: string }) {
 const topicOptions = defendedDissertationTopics
   .slice(0, defendedDissertationTopicLimit)
   .sort((a, b) => a.uk.localeCompare(b.uk, 'uk', { sensitivity: 'base' }));
+const topicLabelById = new Map(defendedDissertationTopics.map((topic) => [topic.id, topic.uk]));
 const catalogRecords = catalog.flatMap((group) =>
   group.items.map((item) => ({
     item,
@@ -232,7 +233,7 @@ const yearGroups = Array.from(recordsByYear, ([year, records]) => ({ year, recor
     <div class="diss-note">
       <strong>Навігація.</strong> У цьому розділі подано бібліографічний каталог захищених дисертацій.
       Матеріали окремих захистів — дисертації, автореферати, відгуки та відеозаписи — розміщено
-      в архіві нижче та на сторінці <a href={withBase('/dissertations/')}>«Захист дисертацій»</a>.
+      на сторінці <a href={withBase('/dissertations/')}>«Захист дисертацій»</a>.
     </div>
 
     <div class="diss-groups" data-catalog-view="surname">
@@ -284,6 +285,12 @@ const yearGroups = Array.from(recordsByYear, ([year, records]) => ({ year, recor
                       </div>
                     )}
                   </dl>
+
+                  {topicIds.length > 0 && (
+                    <div class="tag-list" aria-label="Ключові слова">
+                      {topicIds.map((topicId) => <span>{topicLabelById.get(topicId)}</span>)}
+                    </div>
+                  )}
                 </article>
               );
             })}
@@ -337,6 +344,12 @@ const yearGroups = Array.from(recordsByYear, ([year, records]) => ({ year, recor
                     </div>
                   )}
                 </dl>
+
+                {topicIds.length > 0 && (
+                  <div class="tag-list" aria-label="Ключові слова">
+                    {topicIds.map((topicId) => <span>{topicLabelById.get(topicId)}</span>)}
+                  </div>
+                )}
               </article>
             ))}
           </div>
@@ -722,6 +735,22 @@ const yearGroups = Array.from(recordsByYear, ([year, records]) => ({ year, recor
   .entry-meta-grid dd {
     margin: 0;
     color: var(--text);
+    font-weight: 750;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .tag-list span {
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: var(--surface-soft);
+    color: var(--muted);
+    font-size: 0.85rem;
     font-weight: 750;
   }
 

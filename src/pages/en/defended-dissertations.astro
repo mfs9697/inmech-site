@@ -33,6 +33,7 @@ const groups = groupDefendedDissertationsEn(defendedDissertationsEn);
 const topicOptions = defendedDissertationTopics
   .slice(0, defendedDissertationTopicLimit)
   .sort((a, b) => a.en.localeCompare(b.en, 'en', { sensitivity: 'base' }));
+const topicLabelById = new Map(defendedDissertationTopics.map((topic) => [topic.id, topic.en]));
 const catalogueRecords = defendedDissertationsEn.map((entry) => ({
   entry,
   topicIds: matchDefendedDissertationTopics(
@@ -117,7 +118,7 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
     <div class="container">
       <div class="section-heading compact-header">
         <div>
-          <p class="eyebrow">Alphabetical catalogue</p>
+          <p class="eyebrow">Dissertation catalogue</p>
           <h2>Defended dissertations</h2>
         </div>
         <p>
@@ -152,6 +153,12 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
         </div>
         <p class="catalog-filter-status" data-filter-status>{totalEntries} entries · grouped by surname</p>
       </div>
+
+      <nav class="catalog-alpha-nav" data-surname-navigation aria-label="Jump to surname letter">
+        {groups.map((group) => (
+          <a href={`#letter-${group.letter}`}>{group.letter}</a>
+        ))}
+      </nav>
 
       <div class="catalog-groups" data-catalog-view="surname">
         {groups.map((group) => (
@@ -212,9 +219,9 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
                       )}
                     </dl>
 
-                    {entry.tags && entry.tags.length > 0 && (
+                    {topicIds.length > 0 && (
                       <div class="tag-list" aria-label="Topic tags">
-                        {entry.tags.map((tag) => <span>{tag}</span>)}
+                        {topicIds.map((topicId) => <span>{topicLabelById.get(topicId)}</span>)}
                       </div>
                     )}
                   </article>
@@ -281,9 +288,9 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
                       )}
                     </dl>
 
-                    {entry.tags && entry.tags.length > 0 && (
+                    {topicIds.length > 0 && (
                       <div class="tag-list" aria-label="Topic tags">
-                        {entry.tags.map((tag) => <span>{tag}</span>)}
+                        {topicIds.map((topicId) => <span>{topicLabelById.get(topicId)}</span>)}
                       </div>
                     )}
                   </article>
@@ -303,6 +310,7 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
   const catalogueViews = Array.from(document.querySelectorAll('[data-catalog-view]'));
   const topicFilter = document.querySelector('[data-topic-filter]');
   const filterStatus = document.querySelector('[data-filter-status]');
+  const surnameNavigation = document.querySelector('[data-surname-navigation]');
   const allTopicsValue = '__all__';
   let activeView = 'surname';
   let selectedTopic = allTopicsValue;
@@ -339,6 +347,8 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
       button.classList.toggle('is-active', isActive);
       button.setAttribute('aria-pressed', String(isActive));
     });
+
+    if (surnameNavigation) surnameNavigation.hidden = activeView !== 'surname';
 
     if (filterStatus) {
       const topicLabel = topicFilter?.selectedOptions?.[0]?.textContent;
@@ -583,6 +593,35 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
   .catalog-filter-status {
     font-size: 0.92rem;
     font-weight: 750;
+  }
+
+  .catalog-alpha-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .catalog-alpha-nav[hidden] {
+    display: none;
+  }
+
+  .catalog-alpha-nav a {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface);
+    color: var(--accent-dark);
+    font-weight: 950;
+    box-shadow: var(--shadow);
+  }
+
+  .catalog-alpha-nav a:hover {
+    background: var(--accent-soft);
+    text-decoration: none;
   }
 
   .catalog-groups {

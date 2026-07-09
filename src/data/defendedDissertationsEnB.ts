@@ -603,10 +603,10 @@ export const defendedDissertationsEnB: DefendedDissertationEntryEn[] = [
     institutionEn: instituteNasUkraine
   }),
   entry({
-    id: 'bohdanov-viacheslav-2008-unified-fracture-problems-initial-stresses-compression-cracks',
+    id: 'bogdanov-viacheslav-2008-unified-fracture-problems-initial-stresses-compression-cracks',
     year: 2008,
     defenceDate: '2009-03-17',
-    authorEn: 'Viacheslav L. Bohdanov',
+    authorEn: 'Viacheslav L. Bogdanov',
     sourceLanguage: 'uk',
     titleEn: 'Unified Analysis of Fracture Mechanics Problems for Materials with Initial Stresses and Fracture of Bodies under Compression along Cracks',
     degree: doctorPhysical,

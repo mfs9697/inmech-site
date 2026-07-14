@@ -52,7 +52,7 @@ export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [
       },
       {
         title: 'leading research scientist (0.5 FTE)',
-        departments: [{ title: 'Department of Structural Mechanics of Thin-Walled Structures', href: '/en/departments/05-thin-walled-structures/' }]
+        departments: [{ title: 'Department of Thermoelasticity', href: '/en/departments/07-thermoelasticity/' }]
       },
       {
         title: 'leading research scientist',
@@ -61,16 +61,12 @@ export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [
       {
         title: 'leading research scientist',
         departments: [{ title: 'Department of Rheology', href: '/en/departments/02-rheology/' }]
-      },
-      {
-        title: 'head of department',
-        departments: [{ title: 'Department of Creep Mechanics', href: '/en/departments/08-creep/' }]
       }
     ],
     deadline: '30 calendar days from the publication of the announcement (16.07.2026).',
     requirements: [
       'for the senior research scientist position: higher education in mechanics, including mechanics of deformable solids or theoretical mechanics, and a PhD or Candidate of Sciences degree;',
-      'for leading research scientist and head of department positions: higher education in mechanics, including mechanics of deformable solids or theoretical mechanics, and a Doctor of Sciences degree;',
+      'for leading research scientist positions: higher education in mechanics, including mechanics of deformable solids or theoretical mechanics, and a Doctor of Sciences degree;',
       'research results whose quantity and quality correspond to the stated academic degrees.'
     ],
     note: 'The official announcement file will be added after signing on 16 July 2026.'

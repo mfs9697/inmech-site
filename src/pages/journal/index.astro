@@ -1,0 +1,397 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../data/site';
+import '../../styles/journal.css';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+const submissionEmail = 'prikl@inmech.kyiv.ua';
+const submissionSubject = encodeURIComponent('Подання рукопису до журналу «Прикладна механіка»');
+---
+
+<BaseLayout
+  title={`Журнал «Прикладна механіка» | ${site.shortName}`}
+  description="Офіційна інформація про журнал «Прикладна механіка»: тематика, вимоги до авторів, подання рукописів, рецензування, архів і контакти редакції."
+  activePage="publications"
+>
+  <div class="journal-page">
+    <section class="journal-hero">
+      <div class="container journal-hero-panel">
+        <div class="journal-hero-copy" data-block-tone="neutral">
+          <p class="eyebrow">Наукові видання Інституту</p>
+          <h1>Міжнародний науковий журнал «Прикладна механіка»</h1>
+          <p class="lead">
+            Науковий журнал Національної академії наук України та Інституту механіки
+            ім. С.П. Тимошенка НАН України. Видається з 1955 року.
+          </p>
+        </div>
+
+        <aside class="journal-hero-action" data-block-tone="emphasis" aria-labelledby="journal-submit-title">
+          <p class="eyebrow">Подання рукопису</p>
+          <h2 id="journal-submit-title">Українські статті приймає редакція</h2>
+          <p>Рукопис надсилається українською мовою у форматі Microsoft Word.</p>
+          <div class="journal-actions">
+            <a class="button primary" href={`mailto:${submissionEmail}?subject=${submissionSubject}`}>Подати рукопис</a>
+            <a class="button secondary" href="#authors">Вимоги до авторів</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <nav class="journal-local-nav" aria-label="Навігація сторінкою журналу">
+      <div class="container">
+        <a href="#about">Про журнал</a>
+        <a href="#scope">Тематика</a>
+        <a href="#authors">Авторам</a>
+        <a href="#submission">Подання</a>
+        <a href="#review">Рецензування</a>
+        <a href="#policies">Політики</a>
+        <a href="#editorial-board">Редколегія</a>
+        <a href="#archive">Архів</a>
+        <a href="#contacts">Контакти</a>
+      </div>
+    </nav>
+
+    <section class="journal-section" id="about">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="heritage">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Про журнал</p>
+              <h2>Українське та англійське видання</h2>
+            </div>
+            <p>
+              «Прикладна механіка» публікує статті українською мовою. Англійські версії прийнятих
+              статей виходять у журналі <em>International Applied Mechanics</em>, який видає Springer Nature.
+            </p>
+          </div>
+
+          <div class="journal-facts">
+            <article class="journal-fact">
+              <span>Рік заснування</span>
+              <strong>1955</strong>
+            </article>
+            <article class="journal-fact">
+              <span>Періодичність</span>
+              <strong>6 номерів на рік</strong>
+            </article>
+            <article class="journal-fact">
+              <span>Українське видання</span>
+              <strong>ISSN 0032-8243</strong>
+            </article>
+            <article class="journal-fact">
+              <span>Англійське видання</span>
+              <strong>ISSN 1063-7095<br />eISSN 1573-8582</strong>
+            </article>
+          </div>
+
+          <div class="journal-grid" style="margin-top: 16px;">
+            <article class="journal-card">
+              <h3>Засновники</h3>
+              <p>Національна академія наук України та Інститут механіки ім. С.П. Тимошенка НАН України.</p>
+            </article>
+            <article class="journal-card">
+              <h3>Офіційний статус</h3>
+              <p>
+                Ідентифікатор медіа R30-03063. Журнал належить до фахових наукових видань України
+                у галузі фізико-математичних і технічних наук.
+              </p>
+            </article>
+          </div>
+
+          <div class="journal-note">
+            <p>
+              Переклад прийнятих українських статей здійснюється відповідно до чинного договору
+              Springer Nature з Ukrainian Authors Agency. Оригінальні англомовні рукописи подаються
+              безпосередньо через редакційну платформу Springer Nature.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="scope">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="information">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Aims and Scope</p>
+              <h2>Тематика журналу</h2>
+            </div>
+            <p>
+              Журнал публікує оригінальні дослідницькі та оглядові статті з теоретичної,
+              обчислювальної й експериментальної механіки.
+            </p>
+          </div>
+
+          <div class="journal-grid">
+            <article class="journal-card">
+              <h3>Матеріали та конструкції</h3>
+              <ul>
+                <li>механіка деформівних твердих тіл, матеріалів і конструкцій;</li>
+                <li>пружність, пластичність, в’язкопружність і повзучість;</li>
+                <li>механіка композитних, неоднорідних і функціонально-градієнтних матеріалів;</li>
+                <li>механіка пластин, оболонок і тонкостінних структур.</li>
+              </ul>
+            </article>
+            <article class="journal-card">
+              <h3>Руйнування, стійкість і динаміка</h3>
+              <ul>
+                <li>механіка руйнування і пошкодження;</li>
+                <li>тіла з початковими та залишковими напруженнями;</li>
+                <li>стійкість, коливання та нелінійна динаміка;</li>
+                <li>поширення хвиль у матеріалах і конструкціях.</li>
+              </ul>
+            </article>
+            <article class="journal-card">
+              <h3>Зв’язані задачі</h3>
+              <ul>
+                <li>термомеханічні, електромеханічні та інші зв’язані поля;</li>
+                <li>взаємодія твердих тіл і конструкцій із рідиною та газом;</li>
+                <li>контактні та багатофізичні задачі механіки.</li>
+              </ul>
+            </article>
+            <article class="journal-card">
+              <h3>Методи дослідження</h3>
+              <ul>
+                <li>аналітичні та асимптотичні методи;</li>
+                <li>обчислювальні методи механіки;</li>
+                <li>чисельне моделювання та експеримент;</li>
+                <li>дослідження сучасних інженерних конструкцій.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="authors">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="neutral">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Авторам</p>
+              <h2>Види статей і формати</h2>
+            </div>
+            <p>
+              «Прикладна механіка» приймає оригінальні дослідницькі та оглядові статті українською мовою.
+            </p>
+          </div>
+
+          <div class="journal-grid three">
+            <article class="journal-card">
+              <h3>Дослідницькі статті</h3>
+              <p>Нові наукові результати з достатнім описом методів, аналізом результатів і обґрунтованими висновками.</p>
+            </article>
+            <article class="journal-card">
+              <h3>Оглядові статті</h3>
+              <p>Критичний і систематизований аналіз сучасного стану напряму та перспектив подальших досліджень.</p>
+            </article>
+            <article class="journal-card">
+              <h3>Формат файлу</h3>
+              <p>Українські рукописи подаються у Microsoft Word. LaTeX для українського потоку поки не приймається.</p>
+            </article>
+          </div>
+
+          <div class="journal-note">
+            <p>
+              Оригінальні англомовні рукописи для <em>International Applied Mechanics</em> подаються через
+              Springer Nature у форматі Word або LaTeX.
+            </p>
+          </div>
+
+          <h3>Основний комплект рукопису</h3>
+          <ul>
+            <li>текст статті українською мовою у форматі Microsoft Word;</li>
+            <li>назва, відомості про авторів, анотація та ключові слова українською й англійською мовами;</li>
+            <li>рисунки належної якості, за потреби — окремими файлами;</li>
+            <li>формули, таблиці, одиниці SI та список літератури, оформлені за вимогами журналу;</li>
+            <li>DOI для джерел, де вони існують;</li>
+            <li>супровідні декларації та відомості про авторів.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="submission">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="emphasis">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Подання рукопису</p>
+              <h2>Надішліть матеріали до редакції</h2>
+            </div>
+            <p>
+              До впровадження електронної системи подання українські рукописи приймаються електронною поштою.
+            </p>
+          </div>
+
+          <ol>
+            <li>Підготуйте рукопис у Word відповідно до вимог журналу.</li>
+            <li>Додайте рисунки та супровідні документи.</li>
+            <li>У темі листа зазначте прізвище першого автора та скорочену назву статті.</li>
+            <li>Надішліть комплект на <a href={`mailto:${submissionEmail}`}>{submissionEmail}</a>.</li>
+            <li>Дочекайтеся підтвердження редакції про отримання матеріалів.</li>
+          </ol>
+
+          <div class="journal-actions">
+            <a class="button primary" href={`mailto:${submissionEmail}?subject=${submissionSubject}`}>Створити лист для подання</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="review">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="information">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Peer review</p>
+              <h2>Рецензування</h2>
+            </div>
+            <p>Журнал застосовує single-anonymous peer review.</p>
+          </div>
+
+          <div class="journal-grid">
+            <article class="journal-card">
+              <h3>Модель рецензування</h3>
+              <p>Рецензенти знають імена авторів, але імена рецензентів не розкриваються авторам.</p>
+            </article>
+            <article class="journal-card">
+              <h3>Кількість рецензентів</h3>
+              <p>Кожний придатний рукопис оцінює щонайменше один незалежний експерт; редактор може залучити додаткових рецензентів.</p>
+            </article>
+            <article class="journal-card">
+              <h3>Відповідальний редактор</h3>
+              <p>Організовує рецензування, аналізує висновки експертів, відповіді авторів і виправлену версію та подає рекомендацію.</p>
+            </article>
+            <article class="journal-card">
+              <h3>Остаточне рішення</h3>
+              <p>Формальне рішення про прийняття або відхилення рукопису ухвалює головний редактор.</p>
+            </article>
+          </div>
+
+          <div class="journal-note">
+            <p>Однакові наукові стандарти застосовуються до українських статей і оригінальних англомовних подань.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="policies">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="neutral">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Редакційні вимоги</p>
+              <h2>Декларації та публікаційна етика</h2>
+            </div>
+            <p>Кожна стаття повинна містити стандартний комплект декларацій.</p>
+          </div>
+
+          <div class="journal-grid">
+            <article class="journal-card">
+              <h3>Обов’язкові декларації</h3>
+              <ul>
+                <li>Author Contributions;</li>
+                <li>Funding;</li>
+                <li>Conflict of Interest / Competing Interests;</li>
+                <li>Data Availability.</li>
+              </ul>
+            </article>
+            <article class="journal-card">
+              <h3>Основні принципи</h3>
+              <ul>
+                <li>оригінальність рукопису та відсутність одночасного подання до іншого видання;</li>
+                <li>коректне авторство й зазначення внеску кожного автора;</li>
+                <li>декларування фінансування та конфліктів інтересів;</li>
+                <li>дотримання конфіденційності рецензування й етичних вимог до досліджень.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="editorial-board">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="neutral">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Редакційна колегія</p>
+              <h2>Керівництво журналу</h2>
+            </div>
+            <p>Повний актуалізований склад редакційної колегії буде оприлюднено після завершення звіряння персональних даних і редакційних ролей.</p>
+          </div>
+
+          <div class="journal-grid">
+            <article class="journal-card">
+              <h3>Головний редактор</h3>
+              <p>Володимир Михайлович Назаренко, академік НАН України.</p>
+            </article>
+            <article class="journal-card">
+              <h3>Редакційний офіс</h3>
+              <p>Інститут механіки ім. С.П. Тимошенка НАН України.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="archive">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="information">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Архів</p>
+              <h2>Випуски журналу</h2>
+            </div>
+            <p>Повний архів українського видання буде поступово перенесено до нового середовища.</p>
+          </div>
+
+          <div class="journal-grid">
+            <article class="journal-card">
+              <h3>Українське видання</h3>
+              <p>До завершення перенесення матеріали доступні на попередньому сайті журналу.</p>
+              <a class="card-link" href="https://pm.inmech.kyiv.ua/" target="_blank" rel="noopener">Відкрити попередній сайт →</a>
+            </article>
+            <article class="journal-card">
+              <h3>International Applied Mechanics</h3>
+              <p>Англомовні статті, випуски та інформація для авторів доступні на Springer Nature.</p>
+              <a class="card-link" href="https://link.springer.com/journal/10778" target="_blank" rel="noopener">Перейти до Springer Nature →</a>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="contacts">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="neutral">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Контакти</p>
+              <h2>Редакція журналу</h2>
+            </div>
+            <p>З питань подання українських рукописів і редакційного листування звертайтеся до редакційного офісу.</p>
+          </div>
+
+          <address class="journal-contact">
+            <strong>Редакція журналу «Прикладна механіка»</strong>
+            Інститут механіки ім. С.П. Тимошенка НАН України<br />
+            вул. Нестерова, 3, Київ, 03057, Україна<br />
+            E-mail: <a href={`mailto:${submissionEmail}`}>{submissionEmail}</a>
+          </address>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

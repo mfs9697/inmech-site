@@ -1,0 +1,380 @@
+---
+import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../../data/site-en';
+import '../../../styles/journal.css';
+
+const submissionEmail = 'prikl@inmech.kyiv.ua';
+const submissionSubject = encodeURIComponent('Manuscript submission to Prykladna Mekhanika');
+---
+
+<BaseLayoutEn
+  title={`Prykladna Mekhanika | ${siteEn.shortName}`}
+  description="Official information about Prykladna Mekhanika: aims and scope, author guidance, manuscript submission, peer review, archive and editorial contacts."
+  activePage="publications"
+>
+  <div class="journal-page">
+    <section class="journal-hero">
+      <div class="container journal-hero-panel">
+        <div class="journal-hero-copy" data-block-tone="neutral">
+          <p class="eyebrow">Scientific publications of the Institute</p>
+          <h1><em>Prykladna Mekhanika</em></h1>
+          <p class="lead">
+            An international scientific journal founded by the National Academy of Sciences of Ukraine
+            and the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine. Published since 1955.
+          </p>
+        </div>
+
+        <aside class="journal-hero-action" data-block-tone="emphasis" aria-labelledby="journal-submit-title">
+          <p class="eyebrow">Manuscript submission</p>
+          <h2 id="journal-submit-title">Ukrainian manuscripts</h2>
+          <p>Manuscripts in Ukrainian are submitted to the Editorial Office as Microsoft Word files.</p>
+          <div class="journal-actions">
+            <a class="button primary" href={`mailto:${submissionEmail}?subject=${submissionSubject}`}>Submit by email</a>
+            <a class="button secondary" href="#authors">Author guidance</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <nav class="journal-local-nav" aria-label="Journal page navigation">
+      <div class="container">
+        <a href="#about">About</a>
+        <a href="#scope">Aims and Scope</a>
+        <a href="#authors">For authors</a>
+        <a href="#submission">Submission</a>
+        <a href="#review">Peer review</a>
+        <a href="#policies">Policies</a>
+        <a href="#editorial-board">Editorial Board</a>
+        <a href="#archive">Archive</a>
+        <a href="#contacts">Contacts</a>
+      </div>
+    </nav>
+
+    <section class="journal-section" id="about">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="heritage">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">About the journal</p>
+              <h2>Ukrainian and English editions</h2>
+            </div>
+            <p>
+              <em>Prykladna Mekhanika</em> publishes papers in Ukrainian. English versions of accepted papers
+              appear in <em>International Applied Mechanics</em>, published by Springer Nature.
+            </p>
+          </div>
+
+          <div class="journal-facts">
+            <article class="journal-fact">
+              <span>Founded</span>
+              <strong>1955</strong>
+            </article>
+            <article class="journal-fact">
+              <span>Frequency</span>
+              <strong>6 issues per year</strong>
+            </article>
+            <article class="journal-fact">
+              <span>Ukrainian edition</span>
+              <strong>ISSN 0032-8243</strong>
+            </article>
+            <article class="journal-fact">
+              <span>English edition</span>
+              <strong>ISSN 1063-7095<br />eISSN 1573-8582</strong>
+            </article>
+          </div>
+
+          <div class="journal-grid" style="margin-top: 16px;">
+            <article class="journal-card">
+              <h3>Founders</h3>
+              <p>The National Academy of Sciences of Ukraine and the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine.</p>
+            </article>
+            <article class="journal-card">
+              <h3>Official status</h3>
+              <p>Media identifier R30-03063. The journal is a Ukrainian professional scientific publication in physical, mathematical and engineering sciences.</p>
+            </article>
+          </div>
+
+          <div class="journal-note">
+            <p>
+              Translation of accepted Ukrainian papers is arranged under the current agreement between
+              Springer Nature and the Ukrainian Authors Agency. Original English-language manuscripts are
+              submitted directly through the Springer Nature editorial platform.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="scope">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="information">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Aims and Scope</p>
+              <h2>Research areas</h2>
+            </div>
+            <p>
+              The journal publishes original research and review articles in theoretical, computational
+              and experimental mechanics.
+            </p>
+          </div>
+
+          <div class="journal-grid">
+            <article class="journal-card">
+              <h3>Materials and structures</h3>
+              <ul>
+                <li>mechanics of deformable solids, materials and structures;</li>
+                <li>elasticity, plasticity, viscoelasticity and creep;</li>
+                <li>composite, heterogeneous and functionally graded materials;</li>
+                <li>plates, shells and thin-walled structures.</li>
+              </ul>
+            </article>
+            <article class="journal-card">
+              <h3>Fracture, stability and dynamics</h3>
+              <ul>
+                <li>fracture and damage mechanics;</li>
+                <li>bodies with initial and residual stresses;</li>
+                <li>stability, vibrations and nonlinear dynamics;</li>
+                <li>wave propagation in materials and structures.</li>
+              </ul>
+            </article>
+            <article class="journal-card">
+              <h3>Coupled problems</h3>
+              <ul>
+                <li>thermomechanical, electromechanical and other coupled fields;</li>
+                <li>interaction of solids and structures with fluids and gases;</li>
+                <li>contact and multiphysics problems in mechanics.</li>
+              </ul>
+            </article>
+            <article class="journal-card">
+              <h3>Methods</h3>
+              <ul>
+                <li>analytical and asymptotic methods;</li>
+                <li>computational mechanics;</li>
+                <li>numerical modelling and experiment;</li>
+                <li>advanced engineering structures.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="authors">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="neutral">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">For authors</p>
+              <h2>Article types and formats</h2>
+            </div>
+            <p><em>Prykladna Mekhanika</em> accepts original research articles and review articles in Ukrainian.</p>
+          </div>
+
+          <div class="journal-grid three">
+            <article class="journal-card">
+              <h3>Research articles</h3>
+              <p>New scientific results supported by a clear description of methods, analysis and justified conclusions.</p>
+            </article>
+            <article class="journal-card">
+              <h3>Review articles</h3>
+              <p>Critical and systematic assessments of current developments and future research directions.</p>
+            </article>
+            <article class="journal-card">
+              <h3>File format</h3>
+              <p>Ukrainian manuscripts are submitted in Microsoft Word. LaTeX is not currently accepted for this submission route.</p>
+            </article>
+          </div>
+
+          <div class="journal-note">
+            <p>
+              Original English-language manuscripts for <em>International Applied Mechanics</em> are submitted
+              through Springer Nature and may be prepared in Word or LaTeX.
+            </p>
+          </div>
+
+          <h3>Core manuscript package</h3>
+          <ul>
+            <li>the manuscript in Ukrainian as a Microsoft Word file;</li>
+            <li>title, author details, affiliations, abstract and keywords in Ukrainian and English;</li>
+            <li>figures of suitable quality, supplied separately when required;</li>
+            <li>equations, tables, SI units and references formatted according to journal requirements;</li>
+            <li>DOIs for references where available;</li>
+            <li>author information and the required article-level declarations.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="submission">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="emphasis">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Submission</p>
+              <h2>Send the manuscript to the Editorial Office</h2>
+            </div>
+            <p>Until the online submission system is introduced, Ukrainian manuscripts are accepted by email.</p>
+          </div>
+
+          <ol>
+            <li>Prepare the manuscript in Word in accordance with the journal requirements.</li>
+            <li>Attach figures and supporting documents.</li>
+            <li>State the first author’s surname and a short article title in the email subject line.</li>
+            <li>Send the complete package to <a href={`mailto:${submissionEmail}`}>{submissionEmail}</a>.</li>
+            <li>Wait for confirmation from the Editorial Office.</li>
+          </ol>
+
+          <div class="journal-actions">
+            <a class="button primary" href={`mailto:${submissionEmail}?subject=${submissionSubject}`}>Create submission email</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="review">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="information">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Peer review</p>
+              <h2>Editorial assessment</h2>
+            </div>
+            <p>The journal uses single-anonymous peer review.</p>
+          </div>
+
+          <div class="journal-grid">
+            <article class="journal-card">
+              <h3>Review model</h3>
+              <p>Reviewers know the identities of the authors, while reviewer identities are not disclosed to the authors.</p>
+            </article>
+            <article class="journal-card">
+              <h3>Number of reviewers</h3>
+              <p>Each suitable manuscript is evaluated by at least one independent expert; additional reviewers may be invited by the editor.</p>
+            </article>
+            <article class="journal-card">
+              <h3>Handling Editor</h3>
+              <p>The Handling Editor manages peer review, assesses the reports, author responses and revision, and submits a recommendation.</p>
+            </article>
+            <article class="journal-card">
+              <h3>Final decision</h3>
+              <p>The formal decision to accept or reject a manuscript is made by the Editor-in-Chief acting as Lead Editor.</p>
+            </article>
+          </div>
+
+          <div class="journal-note">
+            <p>The same scientific standards apply to Ukrainian papers and original English-language submissions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="policies">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="neutral">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Editorial requirements</p>
+              <h2>Declarations and publication ethics</h2>
+            </div>
+            <p>Every article must include the standard article-level declarations.</p>
+          </div>
+
+          <div class="journal-grid">
+            <article class="journal-card">
+              <h3>Required declarations</h3>
+              <ul>
+                <li>Author Contributions;</li>
+                <li>Funding;</li>
+                <li>Conflict of Interest / Competing Interests;</li>
+                <li>Data Availability.</li>
+              </ul>
+            </article>
+            <article class="journal-card">
+              <h3>Core principles</h3>
+              <ul>
+                <li>originality and no simultaneous submission to another journal;</li>
+                <li>accurate authorship and contribution statements;</li>
+                <li>disclosure of funding and competing interests;</li>
+                <li>confidential peer review and compliance with research ethics.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="editorial-board">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="neutral">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Editorial Board</p>
+              <h2>Journal leadership</h2>
+            </div>
+            <p>The complete updated Editorial Board will be published after affiliations, names and editorial roles have been verified.</p>
+          </div>
+
+          <div class="journal-grid">
+            <article class="journal-card">
+              <h3>Editor-in-Chief</h3>
+              <p>Volodymyr M. Nazarenko, Academician of the National Academy of Sciences of Ukraine.</p>
+            </article>
+            <article class="journal-card">
+              <h3>Editorial Office</h3>
+              <p>S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="archive">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="information">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Archive</p>
+              <h2>Journal issues</h2>
+            </div>
+            <p>The complete Ukrainian archive will be transferred to the new environment in stages.</p>
+          </div>
+
+          <div class="journal-grid">
+            <article class="journal-card">
+              <h3>Ukrainian edition</h3>
+              <p>Until the transfer is complete, materials remain available on the previous journal website.</p>
+              <a class="card-link" href="https://pm.inmech.kyiv.ua/" target="_blank" rel="noopener">Open previous website →</a>
+            </article>
+            <article class="journal-card">
+              <h3>International Applied Mechanics</h3>
+              <p>English-language articles, issues and author information are available from Springer Nature.</p>
+              <a class="card-link" href="https://link.springer.com/journal/10778" target="_blank" rel="noopener">Open Springer Nature →</a>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="contacts">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="neutral">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Contacts</p>
+              <h2>Editorial Office</h2>
+            </div>
+            <p>For Ukrainian manuscript submissions and editorial correspondence, please contact the Editorial Office.</p>
+          </div>
+
+          <address class="journal-contact">
+            <strong>Editorial Office of <em>Prykladna Mekhanika</em></strong>
+            S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine<br />
+            3 Nesterova Street, Kyiv 03057, Ukraine<br />
+            Email: <a href={`mailto:${submissionEmail}`}>{submissionEmail}</a>
+          </address>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayoutEn>

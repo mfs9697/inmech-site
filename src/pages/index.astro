@@ -137,7 +137,7 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
         </div>
 
         <figure class="home-about-figure">
-          <img src={withBase('/assets/img/institute-main-building-sketch.svg')} alt="Ескіз головної будівлі Інституту механіки ім. С.П. Тимошенка НАН України" loading="lazy" />
+          <img src={withBase('/assets/img/institute-main-building-sketch.svg')} alt="Ескіз головної будівлі Інституту механіки ім. С.П. Тимошенка" loading="lazy" />
           <figcaption>Головна будівля Інституту механіки ім. С.П. Тимошенка НАН України.</figcaption>
         </figure>
       </div>
@@ -168,7 +168,7 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
             та поширення результатів досліджень у світовому науковому просторі.
           </p>
           <div class="card-links-stack">
-            <a class="card-link" href="https://applied-mechanics.inmech.kyiv.ua/" target="_blank" rel="noopener">Журнал «Прикладна механіка» →</a>
+            <a class="card-link" href={withBase('/journal/')}>Журнал «Прикладна механіка» →</a>
             <a class="card-link" href={withBase('/library/')}>Бібліотека →</a>
           </div>
         </article>

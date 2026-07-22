@@ -61,11 +61,10 @@ const librarySections = [
     label: 'View defences'
   },
   {
-    title: 'Journal “Applied Mechanics”',
-    text: 'Information resource of the Institute’s periodical scientific journal.',
-    href: 'https://applied-mechanics.inmech.kyiv.ua/',
-    label: 'Open journal website',
-    external: true
+    title: 'Prykladna Mekhanika',
+    text: 'Official journal information, manuscript submission guidance, peer-review policy, archive and Editorial Office contacts.',
+    href: '/en/journal/',
+    label: 'Open journal page'
   }
 ];
 ---
@@ -73,7 +72,7 @@ const librarySections = [
 <BaseLayoutEn
   title={`Library | ${siteEn.shortName}`}
   description="Library and archival resources of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine."
-  activePage="home"
+  activePage="publications"
 >
   <section class="library-hero">
     <div class="container library-hero-panel">
@@ -98,7 +97,7 @@ const librarySections = [
         <p>
           Materials are grouped into thematic catalogues for quick access to monographs,
           multivolume editions, educational materials, historical publications, dissertation
-          resources and the journal “Applied Mechanics”.
+          resources and the journal <em>Prykladna Mekhanika</em>.
         </p>
       </div>
 
@@ -108,14 +107,7 @@ const librarySections = [
             <h3>{section.title}</h3>
             <p>{section.text}</p>
             {section.note && <p class="section-note">{section.note}</p>}
-            <a
-              class="card-link"
-              href={withBase(section.href)}
-              target={section.external ? '_blank' : undefined}
-              rel={section.external ? 'noopener noreferrer' : undefined}
-            >
-              {section.label} →
-            </a>
+            <a class="card-link" href={withBase(section.href)}>{section.label} →</a>
           </article>
         ))}
       </div>

@@ -3,7 +3,7 @@ import { siteEn } from '../data/site-en';
 import { getUkrainianPath, normalizeSitePath } from '../data/routes';
 
 interface Props {
-  activePage?: 'home' | 'news' | 'departments' | 'about' | 'education';
+  activePage?: 'home' | 'news' | 'departments' | 'about' | 'education' | 'publications';
 }
 
 const { activePage = 'home' } = Astro.props;
@@ -26,6 +26,7 @@ const isPathActive = (path: string) => isCurrentPath(path) ? 'active' : '';
 const isPathPrefixActive = (path: string) => isCurrentPathPrefix(path) ? 'active' : '';
 const ariaCurrentPage = (path: string) => isCurrentPath(path) ? 'page' : undefined;
 const ariaCurrentPrefix = (path: string) => isCurrentPath(path) ? 'page' : isCurrentPathPrefix(path) ? 'location' : undefined;
+const publicationsClass = activePage === 'publications' || isCurrentPathPrefix('/en/library/') || isCurrentPathPrefix('/en/journal/') ? 'active' : '';
 const ariaCurrentNews = () => {
   if (activePage !== 'news') {
     return undefined;
@@ -101,7 +102,18 @@ const ariaCurrentNews = () => {
             <li><a class={isPathActive('/en/nmr/')} href={withBase('/en/nmr/')} aria-current={ariaCurrentPage('/en/nmr/')}>Scientific and Methodological Council</a></li>
           </ul>
         </li>
-        <li><a class={isPathPrefixActive('/en/library/')} href={withBase('/en/library/')} aria-current={ariaCurrentPrefix('/en/library/')}>Library</a></li>
+
+        <li>
+          <button class={`nav-label ${publicationsClass}`} type="button" aria-expanded="false" aria-controls="submenu-publications">
+            <span>Publications</span>
+            <span class="submenu-indicator" aria-hidden="true">▾</span>
+          </button>
+          <ul class="submenu" id="submenu-publications">
+            <li><a class={isPathPrefixActive('/en/library/')} href={withBase('/en/library/')} aria-current={ariaCurrentPrefix('/en/library/')}>Library</a></li>
+            <li><a class={isPathPrefixActive('/en/journal/')} href={withBase('/en/journal/')} aria-current={ariaCurrentPrefix('/en/journal/')}>Prykladna Mekhanika</a></li>
+          </ul>
+        </li>
+
         <li><a class={isSectionActive('news')} href={withBase('/en/news/')} aria-current={ariaCurrentNews()}>News</a></li>
         <li><a href={withBase('/en/#contacts')}>Contacts</a></li>
         <li><a class={`search-nav-link ${isPathActive('/en/search/')}`} href={withBase('/en/search/')} aria-label="Search the website" aria-current={ariaCurrentPage('/en/search/')}>Search</a></li>

@@ -47,14 +47,26 @@ function extensionLabel(href: string) {
 }
 
 const submissionDocuments = [
-  'письмова заява на ім’я директора про участь у конкурсі;',
-  'копія документа, що посвідчує особу;',
-  'заповнена особова картка (анкета) встановленого зразка;',
-  'автобіографія;',
-  'копія трудової книжки (за наявності);',
-  'копії документів про вищу освіту, підвищення кваліфікації, військового квитка (для військовослужбовців або військовозобов’язаних);',
-  'перелік наукових праць кандидата у вітчизняних та іноземних (міжнародних) рецензованих фахових виданнях;',
-  'письмова згода на обробку персональних даних.'
+  { text: 'письмова заява на ім’я директора про участь у конкурсі;' },
+  { text: 'копія документа, що посвідчує особу;' },
+  {
+    text: 'заповнена особова картка (анкета) встановленого зразка',
+    href: '/documents/vacancies/forms/researcher-questionnaire.docx',
+    linkLabel: 'завантажити анкету (DOCX)'
+  },
+  { text: 'автобіографія;' },
+  { text: 'копія трудової книжки (за наявності);' },
+  {
+    text: 'копії документів про вищу освіту, підвищення кваліфікації, військового квитка (для військовослужбовців або військовозобов’язаних);'
+  },
+  {
+    text: 'перелік наукових праць кандидата у вітчизняних та іноземних (міжнародних) рецензованих фахових виданнях;'
+  },
+  {
+    text: 'письмова згода на обробку персональних даних',
+    href: '/documents/vacancies/forms/personal-data-consent.docx',
+    linkLabel: 'завантажити форму згоди (DOCX)'
+  }
 ];
 
 const publicationRequirements = [
@@ -199,7 +211,17 @@ const additionalScientificInfo = [
         <p class="eyebrow">Документи для участі</p>
         <h3>Перелік необхідних документів для участі у конкурсі</h3>
         <ol>
-          {submissionDocuments.map((item) => <li>{item}</li>)}
+          {submissionDocuments.map((item) => (
+            <li>
+              {item.text}
+              {item.href && item.linkLabel && (
+                <>
+                  {' — '}
+                  <a class="submission-document-link" href={withBase(item.href)} download>{item.linkLabel}</a>.
+                </>
+              )}
+            </li>
+          ))}
         </ol>
 
         <p>
@@ -437,6 +459,10 @@ const additionalScientificInfo = [
 
     .submission-panel li + li {
       margin-top: 6px;
+    }
+
+    .submission-document-link {
+      font-weight: 780;
     }
 
     .vacancy-year-section {

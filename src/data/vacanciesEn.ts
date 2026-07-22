@@ -40,18 +40,22 @@ const postdocRequirements = [
 
 export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [
   {
-    id: '2026-07-16-active-announcement',
-    date: '2026-07-16',
+    id: '2026-07-20-active-announcement',
+    date: '2026-07-20',
     year: 2026,
     title: 'Announcement of a Competition to Fill Vacant Research Positions',
-    summary: 'Active announcement of a competition for management and research positions in the Institute departments.',
+    summary: 'Active announcement of a competition for research positions in the Institute departments.',
     positions: [
       {
         title: 'senior research scientist',
         departments: [{ title: 'Department of Structural Mechanics of Thin-Walled Structures', href: '/en/departments/05-thin-walled-structures/' }]
       },
       {
-        title: 'leading research scientist (0.5 FTE)',
+        title: 'senior research scientist',
+        departments: [{ title: 'Department of Fracture Mechanics of Materials', href: '/en/departments/09-fracture-mechanics/' }]
+      },
+      {
+        title: 'leading research scientist',
         departments: [{ title: 'Department of Thermoelasticity', href: '/en/departments/07-thermoelasticity/' }]
       },
       {
@@ -63,13 +67,19 @@ export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [
         departments: [{ title: 'Department of Rheology', href: '/en/departments/02-rheology/' }]
       }
     ],
-    deadline: '30 calendar days from the publication of the announcement (16.07.2026).',
+    deadline: '30 calendar days from the publication of the announcement.',
     requirements: [
-      'for the senior research scientist position: higher education in mechanics, including mechanics of deformable solids or theoretical mechanics, and a PhD or Candidate of Sciences degree;',
+      'for the senior research scientist positions: higher education in mechanics, including mechanics of deformable solids or theoretical mechanics, and a PhD or Candidate of Sciences degree;',
       'for leading research scientist positions: higher education in mechanics, including mechanics of deformable solids or theoretical mechanics, and a Doctor of Sciences degree;',
       'research results whose quantity and quality correspond to the stated academic degrees.'
     ],
-    note: 'The official announcement file will be added after signing on 16 July 2026.'
+    note: 'Order No. 84/к of 20 July 2026 has been added to the competition card.',
+    documents: [
+      {
+        title: 'Order No. 84/к of 20 July 2026 announcing the competition to fill vacant positions',
+        href: '/documents/vacancies/active/2026-07-20-competition/order-competition.pdf'
+      }
+    ]
   }
 ];
 

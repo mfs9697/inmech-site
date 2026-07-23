@@ -1,6 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { site } from '../../data/site';
+import {
+  journalAssociateEditors,
+  journalLeadership,
+  journalSeniorEditorialBoard
+} from '../../data/journal';
 import '../../styles/journal.css';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -327,20 +332,45 @@ const submissionSubject = encodeURIComponent('Подання рукопису д
           <div class="journal-section-heading">
             <div>
               <p class="eyebrow">Редакційна колегія</p>
-              <h2>Керівництво журналу</h2>
+              <h2>Редактори журналу</h2>
             </div>
-            <p>Повний актуалізований склад редакційної колегії буде оприлюднено після завершення звіряння персональних даних і редакційних ролей.</p>
+            <p>
+              Імена та англійські написання узгоджено з персональними профілями на сайті Інституту.
+              Члени редакційної колегії залучаються до опрацювання рукописів відповідно до своєї наукової спеціалізації.
+            </p>
           </div>
 
           <div class="journal-grid">
-            <article class="journal-card">
-              <h3>Головний редактор</h3>
-              <p>Володимир Михайлович Назаренко, академік НАН України.</p>
-            </article>
-            <article class="journal-card">
-              <h3>Редакційний офіс</h3>
-              <p>Інститут механіки ім. С.П. Тимошенка НАН України.</p>
-            </article>
+            {journalLeadership.map((member) => (
+              <article class="journal-card">
+                <h3>{member.roleUk}</h3>
+                <p>
+                  <a class="card-link" href={withBase(`/people/${member.profileSlug}/`)}>{member.nameUk}</a>
+                </p>
+                <p>{member.descriptionUk}</p>
+              </article>
+            ))}
+          </div>
+
+          <h3>Відповідальні редактори (Associate Editors)</h3>
+          <div class="journal-grid three">
+            {journalAssociateEditors.map((member) => (
+              <article class="journal-card">
+                <a class="card-link" href={withBase(`/people/${member.profileSlug}/`)}>{member.nameUk}</a>
+              </article>
+            ))}
+          </div>
+
+          <h3>Старші члени редакційної колегії</h3>
+          <div class="journal-grid">
+            {journalSeniorEditorialBoard.map((member) => (
+              <article class="journal-card">
+                <h3>
+                  <a class="card-link" href={withBase(`/people/${member.profileSlug}/`)}>{member.nameUk}</a>
+                </h3>
+                <p>{member.expertiseUk}</p>
+              </article>
+            ))}
           </div>
         </div>
       </div>

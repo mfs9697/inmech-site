@@ -13,7 +13,7 @@ summaryEn: "Three-dimensional stability theory, wave propagation and diffraction
 sectionsEn:
   - title: "History and leadership"
     paragraphs:
-      - "The Department of Dynamics and Stability of Continua was established in 1967. Its founder and head from 1967 to 2023 was Oleksandr M. Huz, Academician of the NAS of Ukraine, Doctor of Technical Sciences, Professor. Since 2023, the department has been headed by Viacheslav L. Bogdanov, Academician of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences."
+      - "The Department of Dynamics and Stability of Continua was established in 1967. Its founder and head from 1967 to 2023 was Oleksandr M. Guz, Academician of the NAS of Ukraine, Doctor of Technical Sciences, Professor. Since 2023, the department has been headed by Viacheslav L. Bogdanov, Academician of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences."
     items: []
   - title: "Main research areas"
     paragraphs: []
@@ -46,9 +46,9 @@ staff:
     positionEn: "Head of Department"
     url: "/people/bogdanov/"
   - name: "Гузь Олександр Миколайович"
-    nameEn: "Oleksandr M. Huz"
+    nameEn: "Oleksandr M. Guz"
     positionEn: "Adviser to the Directorate"
-    url: "/people/huz/"
+    url: "/people/guz/"
   - name: "Сторожук Євген Анатолійович"
     nameEn: "Yevhen A. Storozhuk"
     positionEn: "Deputy Head of Department"

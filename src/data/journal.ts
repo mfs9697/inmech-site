@@ -21,8 +21,8 @@ export const journalLeadership: JournalLeadershipMember[] = [
     roleUk: 'Почесний головний редактор',
     roleEn: 'Honorary Editor-in-Chief',
     nameUk: 'Гузь Олександр Миколайович',
-    nameEn: 'Oleksandr M. Huz',
-    profileSlug: 'huz',
+    nameEn: 'Oleksandr M. Guz',
+    profileSlug: 'guz',
     descriptionUk: 'Академік НАН України.',
     descriptionEn: 'Academician of the National Academy of Sciences of Ukraine.'
   },

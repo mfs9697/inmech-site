@@ -1,6 +1,6 @@
 ---
 name: "Гузь Олександр Миколайович"
-nameEn: "Oleksandr M. Huz"
+nameEn: "Oleksandr M. Guz"
 position: "Радник при дирекції"
 positionEn: "Adviser to the Directorate"
 department: "Відділ динаміки та стійкості суцільних середовищ"

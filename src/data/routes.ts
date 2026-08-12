@@ -54,6 +54,7 @@ export const siteRoutes: SiteRoute[] = [
   { uk: '/library/history-publications/', en: '/en/library/history-publications/', titleUk: 'Історичні видання про Інститут', titleEn: 'Historical publications about the Institute', sectionUk: 'Публікації', sectionEn: 'Publications' },
   { uk: '/library/scientific-books/', en: '/en/library/scientific-books/', titleUk: 'Наукові монографії та довідкові видання', titleEn: 'Scientific monographs and reference editions', sectionUk: 'Публікації', sectionEn: 'Publications' },
   { uk: '/journal/', en: '/en/journal/', titleUk: 'Журнал «Прикладна механіка»', titleEn: 'Prykladna Mekhanika', sectionUk: 'Публікації', sectionEn: 'Publications' },
+  { uk: '/journal/for-authors/', en: '/en/journal/for-authors/', titleUk: 'Підготовка рукопису', titleEn: 'Manuscript preparation', sectionUk: 'Публікації', sectionEn: 'Publications' },
 
   { uk: '/sitemap/', en: '/en/sitemap/', titleUk: 'Карта сайту', titleEn: 'Sitemap', sectionUk: 'Службові сторінки', sectionEn: 'Service pages' },
   { uk: '/search/', en: '/en/search/', titleUk: 'Пошук', titleEn: 'Search', sectionUk: 'Службові сторінки', sectionEn: 'Service pages' },

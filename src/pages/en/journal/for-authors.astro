@@ -1,0 +1,419 @@
+---
+import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
+import '../../../styles/journal.css';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+const submissionEmail = 'prikl@inmech.kyiv.ua';
+const submissionSubject = encodeURIComponent('Manuscript submission to Prykladna Mekhanika');
+---
+
+<BaseLayoutEn
+  title="Manuscript preparation | Prykladna Mekhanika"
+  description="Detailed requirements for preparing and submitting Ukrainian-language manuscripts to Prykladna Mekhanika."
+  activePage="publications"
+>
+  <div class="journal-page">
+    <section class="journal-hero journal-guidelines-hero">
+      <div class="container journal-hero-panel">
+        <div class="journal-hero-copy" data-block-tone="neutral">
+          <a class="card-link journal-breadcrumb" href={withBase('/en/journal/')}>← Back to the journal page</a>
+          <p class="eyebrow">For authors</p>
+          <h1>Manuscript preparation</h1>
+          <p class="lead">
+            Step-by-step guidance on the submission package, manuscript structure, equations,
+            artwork, references and materials required after acceptance.
+          </p>
+          <aside class="journal-intro-note" aria-label="Important submission route information">
+            <p>
+              These requirements apply to Ukrainian-language manuscripts submitted to the Editorial Office of{' '}
+              <em>Prykladna Mekhanika</em>. Original English-language manuscripts must be submitted to{' '}
+              <em>International Applied Mechanics</em> through the Springer Nature editorial platform in
+              accordance with the publisher’s requirements.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <nav class="journal-local-nav journal-guidelines-nav" aria-label="Manuscript requirement sections">
+      <div class="container">
+        <a href="#general">General conditions</a>
+        <a href="#initial-submission">Initial submission</a>
+        <a href="#structure">Structure</a>
+        <a href="#equations">Equations</a>
+        <a href="#figures">Figures</a>
+        <a href="#tables">Tables</a>
+        <a href="#units">Quantities and units</a>
+        <a href="#references">References</a>
+        <a href="#declarations">Declarations</a>
+        <a href="#after-acceptance">After acceptance</a>
+        <a href="#checklist">Checklist</a>
+      </div>
+    </nav>
+
+    <section class="journal-section" id="general">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="heritage">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Step 1</p>
+              <h2>General submission conditions</h2>
+            </div>
+            <p>Before preparing the files, make sure that the manuscript fits the journal’s scope and originality requirements.</p>
+          </div>
+          <ul>
+            <li>The journal accepts original research articles and review articles that have not been published previously and are not under consideration by another journal at the same time.</li>
+            <li>Authors are encouraged to consult the Editorial Office before preparing a review article.</li>
+            <li>The recommended manuscript length is up to 20 pages. Justified exceptions may be agreed with the Editorial Office.</li>
+            <li>These instructions govern the Ukrainian editorial route. Original English-language manuscripts are submitted through Springer Nature under the publisher’s requirements.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="initial-submission">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="information">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Step 2</p>
+              <h2>Initial submission package</h2>
+            </div>
+            <p>For initial peer review, send one complete and editable manuscript file.</p>
+          </div>
+          <div class="journal-grid">
+            <article class="journal-card">
+              <h3>File and contents</h3>
+              <ul>
+                <li><code>.docx</code> is recommended; <code>.doc</code> files are also accepted;</li>
+                <li>include the text, tables, editable equations and figures placed near their first citation;</li>
+                <li>LaTeX is not currently accepted for the Ukrainian editorial route.</li>
+              </ul>
+            </article>
+            <article class="journal-card">
+              <h3>Bilingual information</h3>
+              <ul>
+                <li>provide the title, author information and affiliations in Ukrainian and English;</li>
+                <li>provide an abstract of 150–250 words in each language;</li>
+                <li>provide 4–6 keywords in each language.</li>
+              </ul>
+            </article>
+          </div>
+          <div class="journal-subsection">
+            <h3>Author information</h3>
+            <ul>
+              <li>Identify the corresponding author and provide the authors’ email addresses.</li>
+              <li>Provide ORCID identifiers for all authors who have them. A missing ORCID does not prevent initial peer review.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="structure">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="neutral">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Step 3</p>
+              <h2>Manuscript structure and formatting</h2>
+            </div>
+            <p>The structure should allow readers to follow the problem statement, method, results and conclusions.</p>
+          </div>
+          <div class="journal-grid">
+            <article class="journal-card">
+              <h3>Order of material</h3>
+              <ol>
+                <li>article title;</li>
+                <li>authors, affiliations and contact details;</li>
+                <li>abstract and keywords;</li>
+                <li>main text with a logical heading structure;</li>
+                <li>conclusions;</li>
+                <li>declarations;</li>
+                <li>one consolidated reference list.</li>
+              </ol>
+            </article>
+            <article class="journal-card">
+              <h3>Main text</h3>
+              <ul>
+                <li>Times New Roman, 10 pt;</li>
+                <li>single line spacing;</li>
+                <li>a consistent heading hierarchy and uniform formatting for elements of the same type;</li>
+                <li>all parts of the manuscript must remain editable in Word for editorial processing.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="equations">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="information">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Step 4</p>
+              <h2>Equations and mathematical notation</h2>
+            </div>
+            <p>Mathematical content must remain editable and use a consistent system of notation.</p>
+          </div>
+          <ul>
+            <li>Create equations using Word or MathType; do not insert equations as raster images.</li>
+            <li>Number equations cited in the text by section, for example <code>(2.13)</code>.</li>
+            <li>Equations that are not cited may remain unnumbered.</li>
+            <li>Use the same notation in equations, text, tables and figures, and define it at first use.</li>
+            <li>Set variables and symbols for physical quantities in italic type; set units, numbers and function names in upright type.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="figures">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="heritage">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Step 5</p>
+              <h2>Figures and graphs</h2>
+            </div>
+            <p>Prepare every figure for direct reproduction after it is reduced to its final size in the article.</p>
+          </div>
+
+          <div class="journal-subsection">
+            <h3>Quality and legibility</h3>
+            <p>
+              All lines, markers, labels, legends and numerical values must remain clear. Number figures in the
+              order in which they are first mentioned and place them, with captions, near their first citation in the text.
+            </p>
+          </div>
+
+          <div class="journal-grid">
+            <article class="journal-card">
+              <h3>Graphs</h3>
+              <ul>
+                <li>label every axis and give the unit next to the symbol for the physical quantity;</li>
+                <li>identify every curve unambiguously;</li>
+                <li>distinguish curves not only by colour but also by line style, markers or other graphical means;</li>
+                <li>do not use decorative backgrounds, gradients, three-dimensional effects or excessively dense coordinate grids;</li>
+                <li>do not allow labels to overlap curves or other important elements.</li>
+              </ul>
+            </article>
+            <article class="journal-card">
+              <h3>Fonts and notation</h3>
+              <ul>
+                <li>use Times New Roman for Latin and Cyrillic text, and Symbol for Greek letters;</li>
+                <li>set variables and symbols for physical quantities in italic type;</li>
+                <li>set units, numbers, function names and explanatory text in upright type;</li>
+                <li>match the notation style used in the equations and main text.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="journal-subsection">
+            <h3>Final size and consistent styling</h3>
+            <p>
+              Within a figure, the font size used for axis labels, numerical values, legends and explanatory text
+              should be practically the same. A smaller size is permitted only for subscripts and auxiliary notation.
+              After scaling, text within the figure should visually match the main article text, that is, approximately 10 pt.
+            </p>
+            <p>
+              Across multiple figures in the same article, use the same fonts, text sizes, line weights, markers
+              and overall style.
+            </p>
+          </div>
+
+          <div class="journal-grid">
+            <article class="journal-card">
+              <h3>Files and placement</h3>
+              <p>
+                At initial submission, insert figures in the manuscript near their first citation. After acceptance,
+                the Editorial Office may request separate files. Vector formats are preferred.
+              </p>
+            </article>
+            <article class="journal-card">
+              <h3>Raster artwork</h3>
+              <p>Recommended resolution at final size:</p>
+              <ul>
+                <li>1200 dpi for line art;</li>
+                <li>600 dpi for combination artwork;</li>
+                <li>300 dpi for photographs.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="journal-subsection">
+            <h3>Colour</h3>
+            <p>Colour is permitted, but the meaning of a figure must not be conveyed by colour alone.</p>
+          </div>
+
+          <aside class="journal-warning" aria-label="Important artwork readiness requirement">
+            <p>
+              <strong>The Editorial Office does not redraw figures or perform technical editing or correction of figure labels.</strong>
+              If figures do not meet these requirements, the authors will be asked to revise and resubmit them in a form suitable for publication.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="tables">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="neutral">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Step 6</p>
+              <h2>Tables</h2>
+            </div>
+            <p>Tables should be understandable without duplicating the same data in the text or graphs.</p>
+          </div>
+          <ul>
+            <li>Create editable tables using Word tools rather than inserting them as images.</li>
+            <li>Number tables in the order in which they are first mentioned and add a short, informative title.</li>
+            <li>Explain abbreviations and notation, and give units in the relevant column or row headings.</li>
+            <li>Place each table after its first citation and check that it is legible within the page width.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="units">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="information">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Step 7</p>
+              <h2>Physical quantities and units</h2>
+            </div>
+            <p>Use consistent notation and SI units throughout the manuscript.</p>
+          </div>
+          <ul>
+            <li>Express physical quantities in SI units.</li>
+            <li>Set units in upright type and format them consistently in the text, equations, tables and figures.</li>
+            <li>Do not change the symbol used for the same quantity in different parts of the article.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="references">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="heritage">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Step 8</p>
+              <h2>References</h2>
+            </div>
+            <p>Citations must link unambiguously to complete bibliographic records in the reference list.</p>
+          </div>
+          <ul>
+            <li>Prepare one numbered list in the order in which sources are first cited.</li>
+            <li>Use square brackets for citations in the text, for example <code>[1]</code> or <code>[2, 3]</code>.</li>
+            <li>Check that the bibliographic information for every source is complete and accurate.</li>
+            <li>Where a source has a DOI, provide it as an active link in the form <code>https://doi.org/...</code>.</li>
+            <li>There is no mechanical percentage limit on self-citation: the Editorial Office assesses the scientific relevance of every source.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="declarations">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="neutral">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Step 9</p>
+              <h2>Declarations and publication ethics</h2>
+            </div>
+            <p>Include every required declaration at the end of the manuscript, even when there is nothing to report under a particular heading.</p>
+          </div>
+          <div class="journal-grid">
+            <article class="journal-card">
+              <h3>Required declarations</h3>
+              <ul>
+                <li>Author Contributions;</li>
+                <li>Funding;</li>
+                <li>Conflict of Interest / Competing Interests;</li>
+                <li>Data Availability.</li>
+              </ul>
+            </article>
+            <article class="journal-card">
+              <h3>Use of artificial intelligence</h3>
+              <ul>
+                <li>AI cannot be listed as an author.</li>
+                <li>Substantive use of AI in the research or preparation of the manuscript must be disclosed.</li>
+                <li>Routine language editing does not require a separate disclosure.</li>
+              </ul>
+            </article>
+          </div>
+          <div class="journal-note">
+            <p>
+              Submission confirms that the manuscript is original, is not being considered by another journal,
+              attributes authorship correctly and contains accurate declarations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="after-acceptance">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="information">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Step 10</p>
+              <h2>Materials after acceptance</h2>
+            </div>
+            <p>After the acceptance decision, the Editorial Office will specify which final materials are required.</p>
+          </div>
+          <ul>
+            <li>Send the final corrected Word file and verified bilingual information about the article and its authors.</li>
+            <li>If requested, supply figures as separate files in a publication-ready format and at the required resolution.</li>
+            <li>Ensure that the final equations, tables, references and declarations match the accepted version.</li>
+            <li>Copyright documents are completed only after the article is accepted; the obsolete copyright transfer agreement is not used.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="checklist">
+      <div class="container">
+        <div class="journal-panel" data-block-tone="emphasis">
+          <div class="journal-section-heading">
+            <div>
+              <p class="eyebrow">Step 11</p>
+              <h2>Pre-submission checklist</h2>
+            </div>
+            <p>Check the submission package before sending it to the Editorial Office.</p>
+          </div>
+          <ul class="journal-checklist">
+            <li>The manuscript is original and is not under consideration by another journal.</li>
+            <li>The file is in <code>.docx</code> or <code>.doc</code> format.</li>
+            <li>The manuscript does not exceed the recommended 20 pages, or an exception is justified.</li>
+            <li>The main text uses Times New Roman, 10 pt, with single line spacing.</li>
+            <li>The title, author information, affiliations, abstract and keywords are provided in both languages.</li>
+            <li>Each abstract is 150–250 words and each language version has 4–6 keywords.</li>
+            <li>A corresponding author is identified, and email addresses and available ORCIDs are provided.</li>
+            <li>Equations are editable and numbered correctly.</li>
+            <li>Figures are legible at final size, and graphs do not rely on colour alone.</li>
+            <li>Tables are editable, notation is consistent and SI units are used.</li>
+            <li>There is one numbered reference list ordered by first citation, and DOIs are active links.</li>
+            <li>All required declarations are included and substantive AI use is disclosed.</li>
+          </ul>
+          <div class="journal-actions journal-guidelines-link">
+            <a class="button primary" href={`mailto:${submissionEmail}?subject=${submissionSubject}`}>Submit the manuscript by email</a>
+            <a class="button secondary" href={withBase('/en/journal/')}>Back to the journal page</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayoutEn>

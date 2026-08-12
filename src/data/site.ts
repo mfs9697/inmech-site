@@ -18,6 +18,6 @@ export const quickLinks = [
   { title: 'Аспірантура', href: '/postgraduate/' },
   { title: 'Бібліотека', href: '/library/' },
   { title: 'Вчена рада', href: '/scientific-council/' },
-  { title: 'Журнал «Прикладна механіка»', href: 'https://applied-mechanics.inmech.kyiv.ua/' },
+  { title: 'Журнал «Прикладна механіка»', href: '/journal/' },
   { title: 'Контакти', href: '/#contacts' }
 ];

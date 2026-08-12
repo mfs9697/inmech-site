@@ -17,6 +17,6 @@ export const quickLinksEn = [
   { title: 'Postgraduate studies', href: '/en/postgraduate/' },
   { title: 'Library', href: '/en/library/' },
   { title: 'Scientific Council', href: '/en/scientific-council/' },
-  { title: 'Applied Mechanics journal', href: 'https://applied-mechanics.inmech.kyiv.ua/' },
+  { title: 'Applied Mechanics journal', href: '/en/journal/' },
   { title: 'Contacts', href: '/en/#contacts' }
 ];

@@ -45,7 +45,7 @@ const submissionSubject = encodeURIComponent('Manuscript submission to Prykladna
           <p>Manuscripts in Ukrainian are submitted to the Editorial Office as Microsoft Word files.</p>
           <div class="journal-actions">
             <a class="button primary" href={`mailto:${submissionEmail}?subject=${submissionSubject}`}>Submit by email</a>
-            <a class="button secondary" href="#authors">Author guidance</a>
+            <a class="button secondary" href={withBase('/en/journal/for-authors/')}>Author guidance</a>
           </div>
         </aside>
       </div>
@@ -55,7 +55,7 @@ const submissionSubject = encodeURIComponent('Manuscript submission to Prykladna
       <div class="container">
         <a href="#about">About</a>
         <a href="#scope">Aims and Scope</a>
-        <a href="#authors">For authors</a>
+        <a href={withBase('/en/journal/for-authors/')}>For authors</a>
         <a href="#submission">Submission</a>
         <a href="#review">Peer review</a>
         <a href="#policies">Policies</a>
@@ -206,6 +206,12 @@ const submissionSubject = encodeURIComponent('Manuscript submission to Prykladna
               Original English-language manuscripts for <em>International Applied Mechanics</em> are submitted
               through Springer Nature and may be prepared in Word or LaTeX.
             </p>
+          </div>
+
+          <div class="journal-actions journal-guidelines-link">
+            <a class="button secondary" href={withBase('/en/journal/for-authors/')}>
+              Detailed manuscript preparation requirements
+            </a>
           </div>
 
           <h3>Core manuscript package</h3>

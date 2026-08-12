@@ -45,7 +45,7 @@ const submissionSubject = encodeURIComponent('Подання рукопису д
           <p>Рукопис надсилається українською мовою у форматі Microsoft Word.</p>
           <div class="journal-actions">
             <a class="button primary" href={`mailto:${submissionEmail}?subject=${submissionSubject}`}>Подати рукопис</a>
-            <a class="button secondary" href="#authors">Вимоги до авторів</a>
+            <a class="button secondary" href={withBase('/journal/for-authors/')}>Вимоги до авторів</a>
           </div>
         </aside>
       </div>
@@ -55,7 +55,7 @@ const submissionSubject = encodeURIComponent('Подання рукопису д
       <div class="container">
         <a href="#about">Про журнал</a>
         <a href="#scope">Тематика</a>
-        <a href="#authors">Авторам</a>
+        <a href={withBase('/journal/for-authors/')}>Авторам</a>
         <a href="#submission">Подання</a>
         <a href="#review">Рецензування</a>
         <a href="#policies">Політики</a>
@@ -211,6 +211,12 @@ const submissionSubject = encodeURIComponent('Подання рукопису д
               Оригінальні англомовні рукописи для <em>International Applied Mechanics</em> подаються через
               Springer Nature у форматі Word або LaTeX.
             </p>
+          </div>
+
+          <div class="journal-actions journal-guidelines-link">
+            <a class="button secondary" href={withBase('/journal/for-authors/')}>
+              Докладні вимоги до підготовки рукопису
+            </a>
           </div>
 
           <h3>Основний комплект рукопису</h3>

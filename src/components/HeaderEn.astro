@@ -21,6 +21,7 @@ const currentPath = normalizeSitePath(Astro.url.pathname, base);
 const ukrainianPath = getUkrainianPath(Astro.url.pathname, base);
 const isSectionActive = (page: Props['activePage']) => activePage === page ? 'active' : '';
 const isCurrentPath = (path: string) => currentPath === normalizeSitePath(path);
+const isHomePage = isCurrentPath('/en/');
 const isCurrentPathPrefix = (path: string) => currentPath.startsWith(normalizeSitePath(path));
 const isPathActive = (path: string) => isCurrentPath(path) ? 'active' : '';
 const isPathPrefixActive = (path: string) => isCurrentPathPrefix(path) ? 'active' : '';
@@ -39,7 +40,9 @@ const ariaCurrentNews = () => {
 <header class="site-header">
   <div class="container header-main brand-main">
     <a class="brand" href={withBase('/en/')} aria-label="Home page">
-      <img src={withBase('/assets/img/ImechLogo.svg?v=20260615-png-final')} alt="Logo of the Institute of Mechanics" />
+      {!isHomePage && (
+        <img src={withBase('/assets/img/institute-logo-hero.png')} alt="Logo of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine" />
+      )}
       <span class="brand-text">
         <span class="brand-official">{siteEn.officialLabel}</span>
         <strong class="brand-title">{siteEn.name}</strong>
@@ -140,6 +143,11 @@ const ariaCurrentNews = () => {
   .header-main.brand-main {
     justify-content: flex-start;
     align-items: center;
+  }
+
+  .site-header .brand img {
+    object-fit: contain;
+    background: #ffffff;
   }
 
   .site-header .brand-title {

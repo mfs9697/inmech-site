@@ -29,8 +29,8 @@ profiles:
     url: "https://orcid.org/0000-0003-1720-7887"
     kind: "orcid"
   - label: "Web of Science"
-    value: "h-index: 13"
-    kind: "other"
+    url: "https://www.webofscience.com/wos/author/record/PGM-1566-2026"
+    kind: "wos"
 
 researchAreas:
   - "Аналітичні, чисельні та аналітично-чисельні методи розв’язання нелінійних і лінійних задач теорії металевих і композитних оболонок."

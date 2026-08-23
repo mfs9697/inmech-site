@@ -13,7 +13,10 @@ featured: false
 photo: "/people/tkachenko.png"
 order: 5
 
-profiles: []
+profiles:
+  - label: "Google Scholar"
+    url: "https://scholar.google.com/citations?user=en24SJwAAAAJ"
+    kind: "scholar"
 
 researchAreasEn:
   - "Optimal control of spacecraft motion."

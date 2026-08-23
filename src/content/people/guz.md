@@ -14,7 +14,10 @@ photo: "/people/guz.png"
 featured: false
 order: 2
 
-profiles: []
+profiles:
+  - label: "Scopus"
+    url: "https://www.scopus.com/authid/detail.uri?authorId=7102556771"
+    kind: "scopus"
 
 researchAreas:
   - "Тривимірна теорія стійкості деформівних тіл."

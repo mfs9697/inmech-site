@@ -17,8 +17,12 @@ order: 1
 
 profiles:
   - label: "Google Scholar"
-    url: "https://scholar.google.com.ua/citations?user=-Ew5_9gAAAAJ&hl=ru"
+    url: "https://scholar.google.com/citations?user=U299hmgAAAAJ"
     kind: "scholar"
+  - label: "ORCID iD"
+    value: "0000-0002-0839-5030"
+    url: "https://orcid.org/0000-0002-0839-5030"
+    kind: "orcid"
 
 researchAreas:
   - "Механіка матеріалів і сучасні проблеми реології."

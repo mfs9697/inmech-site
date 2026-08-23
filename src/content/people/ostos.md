@@ -11,6 +11,9 @@ photo: "/people/ostos.png"
 order: 8
 
 profiles:
+  - label: "Web of Science"
+    url: "https://www.webofscience.com/wos/author/record/HPI-0166-2023"
+    kind: "wos"
   - label: "Google Scholar"
     url: "https://scholar.google.com/citations?user=IsVzP-EAAAAJ&hl=uk"
     kind: "scholar"

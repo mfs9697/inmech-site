@@ -20,6 +20,7 @@ profiles:
     kind: "scopus"
   - label: "Google Scholar"
     value: "h-index: 3"
+    url: "https://scholar.google.com/citations?user=EsbVx3sAAAAJ"
     kind: "scholar"
   - label: "ORCID iD"
     value: "0000-0003-4763-8784"

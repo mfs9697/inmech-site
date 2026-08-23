@@ -15,7 +15,17 @@ featured: false
 photo: "/people/kiforenko.jpg"
 order: 2
 
-profiles: []
+profiles:
+  - label: "Scopus"
+    url: "https://www.scopus.com/pages/authors/6701398153"
+    kind: "scopus"
+  - label: "Google Scholar"
+    url: "https://scholar.google.com/citations?user=sw8qwoEAAAAJ"
+    kind: "scholar"
+  - label: "ORCID iD"
+    value: "0000-0002-4453-6048"
+    url: "https://orcid.org/0000-0002-4453-6048"
+    kind: "orcid"
 
 researchAreasEn:
   - "Optimal control of spacecraft motion."

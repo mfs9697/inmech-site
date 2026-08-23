@@ -14,6 +14,9 @@ photo: "/people/kyryliuk.png"
 order: 3
 
 profiles:
+  - label: "Scopus"
+    url: "https://www.scopus.com/pages/authors/8067457100"
+    kind: "scopus"
   - label: "ORCID iD"
     value: "0000-0002-8513-0378"
     url: "https://orcid.org/0000-0002-8513-0378"

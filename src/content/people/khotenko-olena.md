@@ -1,8 +1,8 @@
 ---
 name: "Хотенко Олена Олександрівна"
 nameEn: "Olena O. Khotenko"
-position: "Науковий співробітник"
-positionEn: "Researcher"
+position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ реології"
 departmentEn: "Department of Rheology"
 departmentUrl: "/departments/02-rheology/"
@@ -13,7 +13,10 @@ photo: "/people/khotenko.png"
 featured: false
 order: 4
 
-profiles: []
+profiles:
+  - label: "Google Scholar"
+    url: "https://scholar.google.com/citations?user=CZ1g0FgAAAAJ"
+    kind: "scholar"
 
 researchAreas:
   - "Механіка матеріалів і реологія."

@@ -14,6 +14,13 @@ featured: false
 order: 2
 
 profiles:
+  - label: "Google Scholar"
+    url: "https://scholar.google.com/citations?user=_Qxw7oMAAAAJ"
+    kind: "scholar"
+  - label: "ORCID iD"
+    value: "0000-0002-4775-418X"
+    url: "https://orcid.org/0000-0002-4775-418X"
+    kind: "orcid"
   - label: "LinkedIn"
     url: "https://linkedin.com/in/olha-dashko-9932171a3"
     kind: "other"

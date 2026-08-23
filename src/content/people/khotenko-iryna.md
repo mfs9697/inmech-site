@@ -15,7 +15,10 @@ photo: "/people/hotenkoi.png"
 featured: false
 order: 5
 
-profiles: []
+profiles:
+  - label: "Google Scholar"
+    url: "https://scholar.google.com/citations?user=6zQ1RAcAAAAJ"
+    kind: "scholar"
 
 researchAreas:
   - "Механіка матеріалів і реологія."

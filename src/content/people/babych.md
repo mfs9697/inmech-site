@@ -22,7 +22,7 @@ profiles:
     kind: "orcid"
   - label: "Scopus"
     value: "h-index: 7"
-    url: "https://www.scopus.com/authid/detail.uri?authorId=7006085536"
+    url: "https://www.scopus.com/authid/detail.uri?authorId=7005937163"
     kind: "scopus"
   - label: "Енциклопедія сучасної України"
     url: "https://esu.com.ua/search_articles.php?id=38597"

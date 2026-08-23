@@ -1,8 +1,8 @@
 ---
 name: "Жук Олександр Петрович"
 nameEn: "Oleksandr P. Zhuk"
-position: "Старший науковий співробітник"
-positionEn: "Senior Researcher"
+position: "Провідний науковий співробітник"
+positionEn: "Leading Researcher"
 department: "Відділ динаміки та стійкості суцільних середовищ"
 departmentEn: "Department of Dynamics and Stability of Continua"
 departmentUrl: "/departments/01-dynamics-stability/"
@@ -14,6 +14,13 @@ featured: false
 order: 7
 
 profiles:
+  - label: "Scopus"
+    url: "https://www.scopus.com/authid/detail.uri?authorId=7005528273"
+    kind: "scopus"
+  - label: "ORCID iD"
+    value: "0009-0004-7253-6127"
+    url: "https://orcid.org/0009-0004-7253-6127"
+    kind: "orcid"
   - label: "Енциклопедія сучасної України"
     url: "https://esu.com.ua/search_articles.php?id=18296"
     kind: "other"

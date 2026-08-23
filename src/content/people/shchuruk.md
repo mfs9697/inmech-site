@@ -13,7 +13,11 @@ photo: "/people/shchuruk.png"
 featured: false
 order: 11
 
-profiles: []
+profiles:
+  - label: "ORCID iD"
+    value: "0009-0006-8860-0191"
+    url: "https://orcid.org/0009-0006-8860-0191"
+    kind: "orcid"
 
 researchAreas:
   - "Хвильові процеси в циліндричних ортотропних оболонках, які містять ідеальну або в’язку стисливу рідину."

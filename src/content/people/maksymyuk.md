@@ -1,8 +1,8 @@
 ---
 name: "Максимюк Володимир Ананійович"
 nameEn: "Volodymyr A. Maksymyuk"
-position: "Старший науковий співробітник"
-positionEn: "Senior Researcher"
+position: "Провідний науковий співробітник"
+positionEn: "Leading Researcher"
 department: "Відділ динаміки та стійкості суцільних середовищ"
 departmentEn: "Department of Dynamics and Stability of Continua"
 departmentUrl: "/departments/01-dynamics-stability/"
@@ -13,7 +13,11 @@ photo: "/people/maksymiuk.png"
 featured: false
 order: 8
 
-profiles: []
+profiles:
+  - label: "ORCID iD"
+    value: "0009-0003-8622-6405"
+    url: "https://orcid.org/0009-0003-8622-6405"
+    kind: "orcid"
 
 researchAreas:
   - "Методи й алгоритми чисельного розв’язування нелінійних вироджуваних задач теорії композитних оболонок."

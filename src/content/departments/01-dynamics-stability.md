@@ -67,11 +67,11 @@ staff:
     url: "/people/bahno/"
   - name: "Жук Олександр Петрович"
     nameEn: "Oleksandr P. Zhuk"
-    positionEn: "Senior Researcher"
+    positionEn: "Leading Researcher"
     url: "/people/zhuk-oleksandr/"
   - name: "Максимюк Володимир Ананійович"
     nameEn: "Volodymyr A. Maksymyuk"
-    positionEn: "Senior Researcher"
+    positionEn: "Leading Researcher"
     url: "/people/maksymyuk/"
   - name: "Глухов Юрій Петрович"
     nameEn: "Yurii P. Glukhov"
@@ -93,6 +93,10 @@ staff:
     nameEn: "Andrii Yu. Glukhov"
     positionEn: "Senior Researcher"
     url: "/people/glukhov-andrii/"
+  - name: "Лисенко Анна Володимирівна"
+    nameEn: "Anna V. Lysenko"
+    positionEn: "Junior Researcher"
+    url: "/people/lysenko/"
 ---
 
 Відділ динаміки та стійкості суцільних середовищ організовано у 1967 році. Організатором і завідувачем відділу у 1967–2023 роках був академік НАН України, доктор технічних наук, професор Олександр Миколайович Гузь. З 2023 року відділ очолює академік НАН України, доктор фізико-математичних наук Вячеслав Леонідович Богданов.

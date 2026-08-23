@@ -15,7 +15,10 @@ photo: "/people/chernyshenko.png"
 featured: false
 order: 4
 
-profiles: []
+profiles:
+  - label: "Scopus"
+    url: "https://www.scopus.com/authid/detail.uri?authorId=7003866488"
+    kind: "scopus"
 
 researchAreas:
   - "Фізично та геометрично нелінійна теорія ізотропних і ортотропних оболонок складної геометрії з отворами."

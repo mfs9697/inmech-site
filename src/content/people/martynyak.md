@@ -17,11 +17,9 @@ photo: "/people/martynyak.png"
 
 profiles:
   - label: "Scopus"
-    value: "h-index: 13"
     url: "https://www.scopus.com/authid/detail.uri?authorId=6602805303"
     kind: "scopus"
-  - label: "ORCID iD"
-    value: "0000-0001-7613-1427"
+  - label: "ORCID"
     url: "https://orcid.org/0000-0001-7613-1427"
     kind: "orcid"
 
@@ -34,8 +32,8 @@ researchAreasEn:
   - "Fundamentals of the theory of mechanothermodiffusive interaction of structures with near-surface inhomogeneities."
   - "Mathematical models of contact between bodies with local surface irregularities and thin boundary layers in the presence of an intersurface medium, including a physical-mechanical model of contact through thickness-inhomogeneous interlayers."
 
-professionalActivity: "Професійна діяльність пов’язана з факультетом прикладної математики та інформатики Львівського національного університету імені Івана Франка."
-professionalActivityEn: "Professional activity is connected with the Faculty of Applied Mathematics and Informatics of Ivan Franko National University of Lviv."
+professionalActivity: "Професійна діяльність пов’язана з Інститутом механіки ім. С.П. Тимошенка НАН України."
+professionalActivityEn: "Professional activity is connected with the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine."
 
 publications:
   - title: "Статті у реферованих виданнях"

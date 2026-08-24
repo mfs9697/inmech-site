@@ -11,10 +11,7 @@ photo: "/people/ivanov.png"
 featured: false
 order: 3
 
-profiles:
-  - label: "Facebook"
-    url: "https://www.facebook.com/stochastician/"
-    kind: "other"
+profiles: []
 
 researchAreas:
   - "Стійкість механічних систем із запізненням та імпульсною дією."

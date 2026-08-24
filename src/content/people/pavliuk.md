@@ -13,10 +13,7 @@ photo: "/people/pavliuk.png"
 featured: false
 order: 4
 
-profiles:
-  - label: "LinkedIn"
-    url: "https://www.linkedin.com/in/yaroslav-pavlyuk-34a597244/"
-    kind: "other"
+profiles: []
 
 researchAreas:
   - "Механіка деформівного твердого тіла."

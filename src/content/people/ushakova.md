@@ -13,10 +13,7 @@ photo: "/people/ushakova.png"
 featured: false
 order: 7
 
-profiles:
-  - label: "Facebook"
-    url: "https://www.facebook.com/profile.php?id=100001618575066"
-    kind: "other"
+profiles: []
 
 researchAreas:
   - "Ідентифікація ядер спадковості нелінійно-в'язкопружних матеріалів за умов складного напруженого стану."

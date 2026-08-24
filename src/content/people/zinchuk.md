@@ -15,7 +15,10 @@ photo: "/people/zinchuk.png"
 featured: false
 order: 4
 
-profiles: []
+profiles:
+  - label: "ORCID"
+    url: "https://orcid.org/0000-0003-4615-9837"
+    kind: "orcid"
 
 researchAreas:
   - "Зв’язані задачі термоелектромеханіки геометрично нелінійних матеріалів при гармонічному навантаженні."

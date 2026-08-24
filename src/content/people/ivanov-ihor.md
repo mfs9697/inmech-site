@@ -6,15 +6,17 @@ positionEn: "Senior Researcher"
 department: "Відділ стійкості процесів"
 departmentEn: "Department of Stability of Processes"
 departmentUrl: "/departments/10-stability-processes/"
+degree: "Кандидат фізико-математичних наук"
+degreeEn: "Candidate of Physical and Mathematical Sciences"
 email: "ihorivanov@ukr.net"
 photo: "/people/ivanov.png"
 featured: false
-order: 3
+order: 4
 
 profiles: []
 
 researchAreas:
-  - "Стійкість механічних систем із запізненням та імпульсною дією."
+  - "Стійкість механічних систем із запізненням та імульсною дією."
   - "Стійкість електроенергетичних систем."
   - "Моделювання складних динамічних і соціально-демографічних процесів."
 researchAreasEn:

@@ -17,9 +17,11 @@ photo: "/people/kurchakov.jpg"
 
 profiles:
   - label: "Scopus"
-    value: "h-index: 6"
     url: "https://www.scopus.com/authid/detail.uri?authorId=15080953100"
     kind: "scopus"
+  - label: "ResearchGate"
+    url: "https://www.researchgate.net/profile/Evgeniy-Kurchakov"
+    kind: "researchgate"
 
 researchAreas:
   - "зв’язок напружень та деформацій у нелінійно пружних тілах;"

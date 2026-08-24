@@ -10,7 +10,14 @@ email: "tiger-cat@ukr.net"
 featured: false
 order: 3
 
-profiles: []
+profiles:
+  - label: "Scopus"
+    url: "https://www.scopus.com/authid/detail.uri?authorId=7005072262"
+    kind: "scopus"
+  - label: "ORCID iD"
+    value: "0000-0001-6648-8449"
+    url: "https://orcid.org/0000-0001-6648-8449"
+    kind: "orcid"
 
 researchAreas:
   - "Чисельне дослідження крайових ефектів у задачах статики і стійкості композитних матеріалів."

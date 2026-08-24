@@ -14,6 +14,12 @@ featured: false
 order: 2
 
 profiles:
+  - label: "Scopus"
+    url: "https://www.scopus.com/authid/detail.uri?authorId=54419875600"
+    kind: "scopus"
+  - label: "Google Scholar"
+    url: "https://scholar.google.com/citations?user=ntJiUgwAAAAJ"
+    kind: "scholar"
   - label: "ORCID iD"
     value: "0009-0004-9667-126X"
     url: "https://orcid.org/0009-0004-9667-126X"

@@ -6,16 +6,26 @@ positionEn: "Head of the Department of Computational Mechanics and Engineering, 
 department: "Відділ обчислювальної механіки та техніки"
 departmentEn: "Department of Computational Mechanics and Engineering"
 departmentUrl: "/departments/03-computational-mechanics-engineering/"
-degree: "Доктор фізико-математичних наук"
-degreeEn: "Doctor of Physical and Mathematical Sciences"
-academicTitle: "Академік НАН України"
-academicTitleEn: "Academician of the NAS of Ukraine"
+degree: "Доктор технічних наук"
+degreeEn: "Doctor of Technical Sciences"
+academicTitle: "Академік НАН України, професор"
+academicTitleEn: "Academician of the NAS of Ukraine, Professor"
 email: "nazvm1@gmail.com"
 photo: "/people/nazarenko.png"
 featured: false
 order: 1
 
-profiles: []
+profiles:
+  - label: "Scopus"
+    url: "https://www.scopus.com/authid/detail.uri?authorId=7101883788"
+    kind: "scopus"
+  - label: "Google Scholar"
+    url: "https://scholar.google.com/citations?user=ERu0E4EAAAAJ"
+    kind: "scholar"
+  - label: "ORCID iD"
+    value: "0000-0002-0197-5091"
+    url: "https://orcid.org/0000-0002-0197-5091"
+    kind: "orcid"
 
 researchAreas:
   - "Механіка деформівного твердого тіла."

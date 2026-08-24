@@ -17,7 +17,6 @@ profiles:
   - label: "Scopus"
     url: "https://www.scopus.com/authid/detail.uri?authorId=6603660011"
     kind: "scopus"
-    value: "h-index: 4"
 researchAreas:
   - "Механіка деформівного тіла. Коливання тонкостінних конструкцій."
 researchAreasEn:

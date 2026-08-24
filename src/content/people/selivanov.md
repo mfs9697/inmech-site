@@ -18,19 +18,15 @@ order: 1
 
 profiles:
   - label: "Scopus"
-    value: "h-index: 10"
     url: "https://www.scopus.com/authid/detail.uri?authorId=6701466024"
     kind: "scopus"
   - label: "Google Scholar"
-    value: "h-index: 14"
     url: "https://scholar.google.com/citations?user=5qv3QA4AAAAJ"
     kind: "scholar"
-  - label: "ORCID iD"
-    value: "0000-0002-5982-8983"
-    url: "https://orcid.org/0000-0002-5982-8983"
+  - label: "ORCID"
+    url: "https://orcid.org/0000-0003-1266-4042"
     kind: "orcid"
   - label: "ResearchGate"
-    value: "Профіль дослідника"
     url: "https://www.researchgate.net/profile/Mikhailo-Selivanov"
     kind: "researchgate"
 

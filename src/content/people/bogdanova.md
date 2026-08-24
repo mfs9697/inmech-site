@@ -11,12 +11,12 @@ degreeEn: "Candidate of Sciences in Physics and Mathematics"
 academicTitle: "старший науковий співробітник"
 academicTitleEn: "Senior Research Scientist"
 email: "o.bogdanova@i.ua"
+order: 4
 featured: true
 photo: "/people/bogdanova.png"
 
 profiles:
   - label: "Scopus"
-    value: "h-index: 5"
     url: "https://www.scopus.com/authid/detail.uri?authorId=7005639439"
     kind: "scopus"
 

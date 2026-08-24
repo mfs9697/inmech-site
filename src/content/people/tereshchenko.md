@@ -17,13 +17,17 @@ photo: "/people/tereshchenko.png"
 
 profiles:
   - label: "Scopus"
-    value: "h-index: 3"
-    url: "https://www.scopus.com/authid/detail.uri?authorId=57190344215"
+    url: "https://www.scopus.com/authid/detail.uri?authorId=7003877423"
     kind: "scopus"
-  - label: "ORCID iD"
-    value: "0000-0001-6068-7092"
+  - label: "Google Scholar"
+    url: "https://scholar.google.com/citations?hl=uk&user=fzZ5HA4AAAAJ"
+    kind: "scholar"
+  - label: "ORCID"
     url: "https://orcid.org/0000-0001-6068-7092"
     kind: "orcid"
+  - label: "ResearchGate"
+    url: "https://www.researchgate.net/profile/Lidiia-Tereshchenko"
+    kind: "researchgate"
 
 researchAreas:
   - "обчислювальні методи механіки руйнування."

@@ -1,8 +1,8 @@
 ---
 name: "Зеленський Валерій Степанович"
 nameEn: "Valerii S. Zelenskyi"
-position: "Старший науковий співробітник"
-positionEn: "Senior Researcher"
+position: "Заступник завідувача відділу, старший науковий співробітник"
+positionEn: "Deputy Head of Department, Senior Researcher"
 department: "Відділ обчислювальної механіки та техніки"
 departmentEn: "Department of Computational Mechanics and Engineering"
 departmentUrl: "/departments/03-computational-mechanics-engineering/"
@@ -12,7 +12,17 @@ email: "numer@inmech.kyiv.ua"
 featured: false
 order: 5
 
-profiles: []
+profiles:
+  - label: "Scopus"
+    url: "https://www.scopus.com/authid/detail.uri?authorId=7006773370"
+    kind: "scopus"
+  - label: "Google Scholar"
+    url: "https://scholar.google.com/citations?user=EX2FnVsAAAAJ"
+    kind: "scholar"
+  - label: "ORCID iD"
+    value: "0000-0001-9497-1243"
+    url: "https://orcid.org/0000-0001-9497-1243"
+    kind: "orcid"
 
 researchAreas:
   - "Чисельне дослідження стійкості традиційних та композитних матеріалів."

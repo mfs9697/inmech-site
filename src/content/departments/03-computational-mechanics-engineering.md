@@ -45,9 +45,13 @@ staff:
     nameEn: "Volodymyr A. Dekret"
     positionEn: "Leading Researcher"
     url: "/people/dekret/"
+  - name: "Шикула Олена Миколаївна"
+    nameEn: "Olena M. Shykula"
+    positionEn: "Leading Researcher"
+    url: "/people/shykula/"
   - name: "Зеленський Валерій Степанович"
     nameEn: "Valerii S. Zelenskyi"
-    positionEn: "Senior Researcher"
+    positionEn: "Deputy Head of Department, Senior Researcher"
     url: "/people/zelenskyi/"
   - name: "Жукова Наталія Борисівна"
     nameEn: "Nataliia B. Zhukova"
@@ -55,7 +59,7 @@ staff:
     url: "/people/zhukova/"
   - name: "Кіпніс Олександр Леонідович"
     nameEn: "Oleksandr L. Kipnis"
-    positionEn: "Senior Researcher"
+    positionEn: "Leading Researcher"
     url: "/people/kipnis/"
 ---
 

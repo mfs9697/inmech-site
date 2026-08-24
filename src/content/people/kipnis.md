@@ -1,8 +1,8 @@
 ---
 name: "Кіпніс Олександр Леонідович"
 nameEn: "Oleksandr L. Kipnis"
-position: "Старший науковий співробітник"
-positionEn: "Senior Researcher"
+position: "Провідний науковий співробітник"
+positionEn: "Leading Researcher"
 department: "Відділ обчислювальної механіки та техніки"
 departmentEn: "Department of Computational Mechanics and Engineering"
 departmentUrl: "/departments/03-computational-mechanics-engineering/"

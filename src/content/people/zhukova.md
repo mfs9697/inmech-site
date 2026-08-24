@@ -12,7 +12,11 @@ email: "zhukova_n@ukr.net"
 featured: false
 order: 6
 
-profiles: []
+profiles:
+  - label: "ORCID iD"
+    value: "0000-0002-2699-3771"
+    url: "https://orcid.org/0000-0002-2699-3771"
+    kind: "orcid"
 
 researchAreas:
   - "Стійкість композитних оболонок з початковими недосконалостями."

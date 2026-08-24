@@ -13,7 +13,17 @@ photo: "/people/dekret.png"
 featured: false
 order: 4
 
-profiles: []
+profiles:
+  - label: "Scopus"
+    url: "https://www.scopus.com/authid/detail.uri?authorId=6508334559"
+    kind: "scopus"
+  - label: "Google Scholar"
+    url: "https://scholar.google.com/citations?user=_BoqlyIAAAAJ"
+    kind: "scholar"
+  - label: "ORCID iD"
+    value: "0000-0001-6590-6426"
+    url: "https://orcid.org/0000-0001-6590-6426"
+    kind: "orcid"
 
 researchAreas:
   - "Механіка деформівного твердого тіла."

@@ -8,6 +8,8 @@ departmentEn: "Department of Thermoplasticity"
 departmentUrl: "/departments/06-thermoplasticity/"
 degree: "Доктор технічних наук"
 degreeEn: "Doctor of Technical Sciences"
+academicTitle: "Старший науковий співробітник"
+academicTitleEn: "Senior Researcher"
 email: "plast@inmech.kyiv.ua"
 featured: false
 order: 3

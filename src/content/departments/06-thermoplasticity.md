@@ -34,6 +34,9 @@ staff:
     url: "/people/zhuk-yaroslav/"
   - name: "Склепус Сергій Миколайович"
     nameEn: "Serhii M. Sklepus"
+    position: "заступник завідувача відділу"
+    positionEn: "Deputy Head of Department"
+    url: "/people/sklepus/"
   - name: "Савченко Віталій Григорович"
     nameEn: "Vitalii H. Savchenko"
     positionEn: "Principal Researcher"
@@ -48,8 +51,14 @@ staff:
     url: "/people/steblianko/"
   - name: "Ткаченко Неоніла Єрмолаївна"
     nameEn: "Neonila Ye. Tkachenko"
+    position: "старший науковий співробітник"
+    positionEn: "Senior Researcher"
+    url: "/people/tkachenko-neonila/"
   - name: "Гусак Віталій Олександрович"
     nameEn: "Vitalii O. Husak"
+    position: "старший науковий співробітник"
+    positionEn: "Senior Researcher"
+    url: "/people/husak/"
 ---
 
 Відділ термопластичності був заснований у 1972 році. Його наукова тематика пов’язана з механікою термов’язкопружнопластичного деформування і руйнування елементів конструкцій за складних неізотермічних процесів навантаження, а також з розробленням моделей, алгоритмів і чисельних методів для дослідження термомеханічної поведінки матеріалів.

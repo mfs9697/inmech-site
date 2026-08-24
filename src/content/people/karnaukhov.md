@@ -15,7 +15,13 @@ photo: "/people/karnaukhov.png"
 featured: false
 order: 1
 
-profiles: []
+profiles:
+  - label: "Scopus"
+    url: "https://www.scopus.com/authid/detail.uri?authorId=7103341127"
+    kind: "scopus"
+  - label: "Google Scholar"
+    url: "https://scholar.google.com/citations?user=-Ew5_9gAAAAJ"
+    kind: "scholar"
 
 researchAreas:
   - "Нелінійні моделі термомеханіки зв'язаних полів у непружних матеріалах та елементах конструкцій."

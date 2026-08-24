@@ -6,6 +6,8 @@ positionEn: "Senior Researcher"
 department: "Відділ теорії коливань"
 departmentEn: "Department of Theory of Vibrations"
 departmentUrl: "/departments/11-vibrations/"
+degree: "Доктор філософії"
+degreeEn: "Doctor of Philosophy (PhD)"
 featured: false
 photo: "/people/ostos.png"
 order: 8
@@ -17,9 +19,8 @@ profiles:
   - label: "Google Scholar"
     url: "https://scholar.google.com/citations?user=IsVzP-EAAAAJ&hl=uk"
     kind: "scholar"
-  - label: "ORCID iD"
-    value: "0009-0008-5329-1370"
-    url: "https://orcid.org/0009-0008-5329-1370"
+  - label: "ORCID"
+    url: "https://orcid.org/0009-0007-3546-2247"
     kind: "orcid"
 
 researchAreasEn:

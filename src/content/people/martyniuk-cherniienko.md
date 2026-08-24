@@ -11,7 +11,10 @@ degreeEn: "Candidate of Physical and Mathematical Sciences"
 featured: false
 order: 7
 
-profiles: []
+profiles:
+  - label: "Google Scholar"
+    url: "https://scholar.google.com/citations?user=rJize7UAAAAJ"
+    kind: "scholar"
 
 researchAreasEn:
   - "Stability of dynamical systems with imprecise parameter values."

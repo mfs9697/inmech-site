@@ -22,10 +22,12 @@ profiles:
   - label: "Google Scholar"
     url: "https://scholar.google.com/citations?user=PR3fMzcAAAAJ"
     kind: "scholar"
-  - label: "ORCID iD"
-    value: "0000-0002-7113-2276"
+  - label: "ORCID"
     url: "https://orcid.org/0000-0002-7113-2276"
     kind: "orcid"
+  - label: "ResearchGate"
+    url: "https://www.researchgate.net/profile/Ihor-Yanchevskyi"
+    kind: "researchgate"
 
 researchAreasEn:
   - "Efficient methods for solving applied problems of nonstationary hydroelectroelasticity."

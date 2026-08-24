@@ -8,6 +8,8 @@ departmentEn: "Department of Stability of Processes"
 departmentUrl: "/departments/10-stability-processes/"
 degree: "Доктор фізико-математичних наук"
 degreeEn: "Doctor of Physical and Mathematical Sciences"
+academicTitle: "Старший дослідник"
+academicTitleEn: "Senior Researcher"
 email: "khoroshunanatoliy@gmail.com"
 photo: "/people/khoroshun.png"
 featured: false
@@ -17,6 +19,9 @@ profiles:
   - label: "Google Scholar"
     url: "https://scholar.google.com/citations?user=QTyzm8sAAAAJ&hl=uk"
     kind: "scholar"
+  - label: "ResearchGate"
+    url: "https://www.researchgate.net/profile/A-Khoroshun"
+    kind: "researchgate"
 
 researchAreas:
   - "Метод функцій Ляпунова в теорії стійкості руху."

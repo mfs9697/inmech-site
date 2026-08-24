@@ -16,6 +16,12 @@ featured: false
 order: 1
 
 profiles:
+  - label: "Scopus"
+    url: "https://www.scopus.com/authid/detail.uri?authorId=7101939674"
+    kind: "scopus"
+  - label: "ORCID"
+    url: "https://orcid.org/0009-0001-6724-1066"
+    kind: "orcid"
   - label: "Personal website"
     url: "https://www.martynyuk.kiev.ua/"
     kind: "other"

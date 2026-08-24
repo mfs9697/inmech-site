@@ -16,9 +16,18 @@ featured: false
 order: 5
 
 profiles:
+  - label: "Scopus"
+    url: "https://www.scopus.com/authid/detail.uri?authorId=57203691930"
+    kind: "scopus"
+  - label: "Web of Science"
+    url: "https://www.webofscience.com/wos/author/record/55434763"
+    kind: "wos"
   - label: "Google Scholar"
     url: "https://scholar.google.com.ua/citations?hl=en&user=77lbB6QAAAAJ&view_op=list_works&authuser=1"
     kind: "scholar"
+  - label: "ORCID"
+    url: "https://orcid.org/0000-0003-0789-4409"
+    kind: "orcid"
 
 researchAreas:
   - "Теорія та числові методи розв’язування нестаціонарних і стаціонарних геометрично нелінійних задач термов’язкопластичності для просторових тіл."

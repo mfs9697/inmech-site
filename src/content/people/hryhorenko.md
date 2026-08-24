@@ -17,15 +17,9 @@ order: 1
 
 profiles:
   - label: "Scopus"
-    value: "h-index: 14"
     url: "https://www.scopus.com/authid/detail.uri?authorId=7005549978"
     kind: "scopus"
-  - label: "Web of Science"
-    value: "h-index: 12"
-    url: "https://www.webofscience.com/wos/author/record/GSM-7556-2022"
-    kind: "wos"
   - label: "Google Scholar"
-    value: "h-index: 20"
     url: "https://scholar.google.com/citations?user=ibKrt9sAAAAJ&hl=uk"
     kind: "scholar"
   - label: "ORCID iD"
@@ -65,5 +59,3 @@ publications:
       - >-
         Bogdanov V.L., Grigorenko A.Ya., Chepkov I.B. et al. Identification of Special-Purpose Structures by Their Fragments Based on Scanning Electron Microscopy Methods. Advanced Structured Materials. Springer, 2025.
 ---
-
-**Індекс Гірша:** Scopus: 14; Web of Science: 12; Google Scholar: 20.

@@ -16,15 +16,9 @@ order: 7
 
 profiles:
   - label: "Scopus"
-    value: "h-index: 10"
     url: "https://www.scopus.com/authid/detail.uri?authorId=6602283475"
     kind: "scopus"
-  - label: "Web of Science"
-    value: "h-index: 9"
-    url: "https://www.webofscience.com/wos/author/record/2205871"
-    kind: "wos"
   - label: "Google Scholar"
-    value: "h-index: 11"
     url: "https://scholar.google.ru/citations?user=-HLfucsAAAAJ&hl=uk"
     kind: "scholar"
   - label: "ORCID iD"

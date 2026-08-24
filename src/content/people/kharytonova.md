@@ -15,13 +15,9 @@ featured: false
 order: 4
 
 profiles:
-  - label: "Scopus"
-    value: "h-index: 4"
-    url: "https://www.scopus.com/authid/detail.uri?authorId=12788500400"
-    kind: "scopus"
-  - label: "Web of Science"
-    url: "https://www.webofscience.com/wos/author/record/QJU-8949-2026"
-    kind: "wos"
+  - label: "Google Scholar"
+    url: "https://scholar.google.com/citations?user=VTW81PIAAAAJ&hl=uk"
+    kind: "scholar"
   - label: "ORCID iD"
     url: "https://orcid.org/0000-0002-0108-6702"
     kind: "orcid"

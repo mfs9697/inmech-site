@@ -16,15 +16,12 @@ order: 6
 
 profiles:
   - label: "Scopus"
-    value: "h-index: 3"
     url: "https://www.scopus.com/authid/detail.uri?authorId=6507982811"
     kind: "scopus"
   - label: "Web of Science"
-    value: "h-index: 2"
     url: "https://www.webofscience.com/wos/author/record/QJV-6932-2026"
     kind: "wos"
   - label: "Google Scholar"
-    value: "h-index: 9"
     url: "https://scholar.google.com/citations?user=L7DfejsAAAAJ&hl=uk"
     kind: "scholar"
   - label: "ORCID iD"

@@ -17,8 +17,7 @@ order: 2
 
 profiles:
   - label: "Scopus"
-    value: "h-index: 4"
-    url: "https://www.scopus.com/authid/detail.uri?authorId=23494467600"
+    url: "https://www.scopus.com/authid/detail.uri?authorId=56685466500"
     kind: "scopus"
   - label: "ORCID iD"
     url: "https://orcid.org/0000-0003-3697-9997"

@@ -17,15 +17,9 @@ order: 3
 
 profiles:
   - label: "Scopus"
-    value: "h-index: 6"
     url: "https://www.scopus.com/authid/detail.uri?authorId=56092538000"
     kind: "scopus"
-  - label: "Web of Science"
-    value: "h-index: 4"
-    url: "https://www.webofscience.com/wos/author/record/2388796"
-    kind: "wos"
   - label: "Google Scholar"
-    value: "h-index: 8"
     url: "https://scholar.google.com.ua/citations?user=lV79VFQAAAAJ&hl=ru"
     kind: "scholar"
   - label: "ORCID iD"

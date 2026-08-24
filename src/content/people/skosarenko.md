@@ -19,7 +19,6 @@ profiles:
   - label: "Scopus"
     url: "https://www.scopus.com/authid/detail.uri?authorId=6603455303"
     kind: "scopus"
-    value: "h-index: 6"
   - label: "Web of Science"
     url: "https://www.webofscience.com/wos/author/record/AAE-3381-2020"
     kind: "wos"

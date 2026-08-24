@@ -1,19 +1,24 @@
 ---
 name: "Лелюх Юрій Іванович"
 nameEn: "Yurii I. Leliukh"
-position: "Старший науковий співробітник"
-positionEn: "Senior Researcher"
+position: "Заступник завідувача відділу термопружності"
+positionEn: "Deputy Head of the Department of Thermoelasticity"
 department: "Відділ термопружності"
 departmentEn: "Department of Thermoelasticity"
 departmentUrl: "/departments/07-thermoelasticity/"
 degree: "Кандидат фізико-математичних наук"
 degreeEn: "Candidate of Physical and Mathematical Sciences"
+academicTitle: "Старший науковий співробітник"
+academicTitleEn: "Senior Researcher"
 email: "yult84@ukr.net"
 photo: "/people/lelyukh.png"
 featured: false
 order: 2
 
-profiles: []
+profiles:
+  - label: "ORCID"
+    url: "https://orcid.org/0000-0001-8097-5876"
+    kind: "orcid"
 
 researchAreas:
   - "Зв’язані задачі електротермомеханіки неоднорідних тіл з п’єзомагнітних в’язкопружних матеріалів при гармонічному навантаженні."

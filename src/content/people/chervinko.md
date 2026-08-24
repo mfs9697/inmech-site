@@ -8,6 +8,8 @@ departmentEn: "Department of Thermoelasticity"
 departmentUrl: "/departments/07-thermoelasticity/"
 degree: "Кандидат фізико-математичних наук"
 degreeEn: "Candidate of Physical and Mathematical Sciences"
+academicTitle: "Старший науковий співробітник"
+academicTitleEn: "Senior Researcher"
 email: "chop497@gmail.com"
 photo: "/people/chervinko.png"
 featured: false

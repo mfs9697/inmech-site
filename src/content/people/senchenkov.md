@@ -8,12 +8,20 @@ departmentEn: "Department of Thermoelasticity"
 departmentUrl: "/departments/07-thermoelasticity/"
 degree: "Доктор фізико-математичних наук"
 degreeEn: "Doctor of Physical and Mathematical Sciences"
+academicTitle: "Старший науковий співробітник"
+academicTitleEn: "Senior Researcher"
 email: "term@inmech.kyiv.ua"
 photo: "/people/senchenkov.png"
 featured: false
 order: 3
 
-profiles: []
+profiles:
+  - label: "ORCID"
+    url: "https://orcid.org/0009-0001-2289-5066"
+    kind: "orcid"
+  - label: "ResearchGate"
+    url: "https://www.researchgate.net/profile/I-Senchenkov"
+    kind: "researchgate"
 
 researchAreas:
   - "Механіка зв’язаних полів у матеріалах і елементах конструкцій."

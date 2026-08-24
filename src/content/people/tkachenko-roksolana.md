@@ -15,7 +15,7 @@ profiles:
     url: "https://www.scopus.com/authid/detail.uri?authorId=56291226200"
     kind: "scopus"
   - label: "Google Scholar"
-    url: "https://scholar.google.com/citations?view_op=list_works&hl=uk&user=_dHiOQoAAAAJ"
+    url: "https://scholar.google.com/citations?user=41bo3GsAAAAJ"
     kind: "scholar"
   - label: "ORCID"
     url: "https://orcid.org/0009-0007-2316-3784"

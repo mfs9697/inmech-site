@@ -9,7 +9,7 @@ departmentUrl: "/departments/08-creep/"
 email: "ut4ura@ukr.net"
 photo: "/people/pelykh.png"
 featured: false
-order: 5
+order: 6
 
 profiles: []
 

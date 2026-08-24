@@ -1,19 +1,24 @@
 ---
 name: "Плащинська Алла Вікторівна"
 nameEn: "Alla V. Plashchynska"
-position: "Заступник завідувача відділу, старший науковий співробітник"
-positionEn: "Deputy Head of Department, Senior Researcher"
+position: "В.о. завідувача відділу механіки повзучості"
+positionEn: "Acting Head of the Department of Mechanics of Creep"
 department: "Відділ механіки повзучості"
 departmentEn: "Department of Mechanics of Creep"
 departmentUrl: "/departments/08-creep/"
 degree: "Кандидат технічних наук"
 degreeEn: "Candidate of Technical Sciences"
+academicTitle: "Старший науковий співробітник"
+academicTitleEn: "Senior Researcher"
 email: "creep@inmech.kyiv.ua"
 photo: "/people/plashchynska.png"
 featured: false
 order: 1
 
-profiles: []
+profiles:
+  - label: "ORCID"
+    url: "https://orcid.org/0000-0002-2654-5143"
+    kind: "orcid"
 
 researchAreas:
   - "Кінетика тріщин втоми."

@@ -8,12 +8,17 @@ departmentEn: "Department of Mechanics of Creep"
 departmentUrl: "/departments/08-creep/"
 degree: "Доктор фізико-математичних наук"
 degreeEn: "Doctor of Physical and Mathematical Sciences"
+academicTitle: "Старший науковий співробітник"
+academicTitleEn: "Senior Researcher"
 email: "creep@inmech.kyiv.ua"
 photo: "/people/maslov.png"
 featured: false
 order: 2
 
-profiles: []
+profiles:
+  - label: "ResearchGate"
+    url: "https://www.researchgate.net/profile/Boris-Maslov-2"
+    kind: "researchgate"
 
 researchAreas:
   - "Механіка повзучості."

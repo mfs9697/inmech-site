@@ -54,7 +54,7 @@ jobs:
       INMECH_PATH: ${{ secrets.INMECH_PATH }}
       INMECH_PORT: ${{ secrets.INMECH_PORT }}
       DEPLOY_KEY: ${{ secrets.INMECH_SSH_PRIVATE_KEY }}
-      INMECH_SITE_URL: ${{ vars.INMECH_SITE_URL || 'https://new.inmech.kyiv.ua' }}
+      INMECH_SITE_URL: ${{ vars.INMECH_SITE_URL || 'https://inmech.kyiv.ua' }}
 
     steps:
       - name: Checkout repository
@@ -110,7 +110,7 @@ jobs:
 
       - name: Verify public deployment
         run: |
-          PUBLIC_SITE_URL="${INMECH_SITE_URL:-https://new.inmech.kyiv.ua}"
+          PUBLIC_SITE_URL="${INMECH_SITE_URL:-https://inmech.kyiv.ua}"
           PUBLIC_SITE_URL="${PUBLIC_SITE_URL%/}"
           MARKER_URL="$PUBLIC_SITE_URL/deploy-version.txt"
           MARKER_BODY="$(mktemp)"

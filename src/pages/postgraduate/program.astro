@@ -65,6 +65,14 @@ const surveys = [
       <p class="lead">Документи освітньо-наукової програми, навчальні плани, силабуси дисциплін, відгуки стейкхолдерів і результати опитувань подано окремо від сторінки вступу, щоб зробити розділ аспірантури простішим для навігації.</p>
     </section>
 
+    <section class="accreditation-strip" aria-label="Статус акредитації освітньо-наукової програми">
+      <div>
+        <strong>Статус програми: акредитована.</strong>
+        <span>Сертифікат № 22459, чинний до 01.07.2031.</span>
+      </div>
+      <a href={withBase('/postgraduate/accreditation/')}>Акредитація і сертифікат →</a>
+    </section>
+
     <section class="section-block">
       <div class="section-heading compact-header"><div><p class="eyebrow">Документи ОНП</p><h2>Освітньо-наукові програми та навчальні плани</h2></div></div>
       <div class="year-grid">
@@ -92,10 +100,14 @@ const surveys = [
 <style>
   .postgraduate-page { max-width: 1180px; margin: 0 auto; padding: 46px 20px 72px; }
   .breadcrumbs { display: flex; gap: 10px; align-items: center; margin-bottom: 22px; color: var(--muted); font-weight: 750; }
-  .page-hero, .year-card, .table-panel, .info-panel { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+  .page-hero, .accreditation-strip, .year-card, .table-panel, .info-panel { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
   .page-hero { padding: clamp(28px, 5vw, 52px); }
   .page-hero h1 { margin: 0 0 18px; font-size: clamp(2.2rem, 4.8vw, 4.3rem); line-height: 1.04; letter-spacing: -0.04em; }
   .lead { max-width: 920px; color: var(--muted); font-size: 1.08rem; line-height: 1.7; }
+  .accreditation-strip { display: flex; justify-content: space-between; gap: 20px; align-items: center; margin-top: 22px; padding: 18px 20px; border-color: rgba(29, 79, 145, 0.2); background: var(--accent-soft); }
+  .accreditation-strip div { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; }
+  .accreditation-strip span { color: var(--muted); }
+  .accreditation-strip a { white-space: nowrap; font-weight: 850; }
   .section-block { margin-top: 34px; }
   .year-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
   .year-card { padding: 22px; }
@@ -118,4 +130,5 @@ const surveys = [
   .review-row { display: grid; grid-template-columns: 70px 1fr; gap: 12px; align-items: start; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
   .survey-list a { justify-content: flex-start; border-radius: 14px; }
   @media (max-width: 980px) { .year-grid, .two-column { grid-template-columns: 1fr; } }
+  @media (max-width: 700px) { .accreditation-strip { align-items: flex-start; flex-direction: column; } .accreditation-strip a { white-space: normal; } }
 </style>

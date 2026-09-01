@@ -24,8 +24,8 @@ const cards = [
   },
   {
     title: 'Accreditation',
-    label: 'Programme quality',
-    text: 'Accreditation materials, self-assessment documents and information on the expert-group visit.',
+    label: 'Accredited until 2031',
+    text: 'The PhD programme is accredited. Certificate No. 22459 is valid until 1 July 2031; accreditation review materials are also available.',
     href: '/en/postgraduate/accreditation/'
   },
   {
@@ -74,6 +74,9 @@ const cards = [
           This section provides information for applicants, postgraduate students, research supervisors and all
           interested users on admission, training, the PhD programme, accreditation, class schedules and research topics.
         </p>
+        <a class="accreditation-note" href={withBase('/en/postgraduate/accreditation/')}>
+          Programme accredited until 1 July 2031 · certificate No. 22459 →
+        </a>
       </div>
       <aside class="hero-badge">
         <span>PhD</span>
@@ -117,6 +120,8 @@ const cards = [
   .postgraduate-hero { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 24px; align-items: stretch; padding: clamp(28px, 5vw, 54px); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
   .postgraduate-hero h1 { margin: 0 0 18px; font-size: clamp(2.3rem, 5vw, 4.5rem); line-height: 1.02; letter-spacing: -0.04em; }
   .lead { max-width: 880px; color: var(--muted); font-size: 1.08rem; line-height: 1.7; }
+  .accreditation-note { display: inline-flex; margin-top: 14px; padding: 9px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-dark); font-size: .9rem; font-weight: 850; text-decoration: none; }
+  .accreditation-note:hover { text-decoration: none; }
   .hero-badge { display: grid; place-items: center; gap: 8px; padding: 26px; border-radius: 28px; background: linear-gradient(145deg, var(--accent-dark), var(--accent)); color: #fff; text-align: center; }
   .hero-badge span { font-weight: 850; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.82; }
   .hero-badge strong { font-size: 4rem; line-height: 1; }

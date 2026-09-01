@@ -20,8 +20,8 @@ const activeCards = [
   },
   {
     title: 'Акредитація',
-    label: 'Якість ОНП',
-    text: 'Матеріали акредитаційної експертизи, програма роботи експертної групи та відомості про самооцінювання.',
+    label: 'Акредитовано до 2031',
+    text: 'ОНП акредитовано. Сертифікат № 22459 чинний до 1 липня 2031 року; також доступні матеріали акредитаційної експертизи.',
     href: '/postgraduate/accreditation/'
   },
   {
@@ -72,6 +72,9 @@ const activeCards = [
           та всіх зацікавлених осіб щодо вступу, навчання, освітньо-наукової програми,
           акредитації, розкладу занять і наукової тематики аспірантів.
         </p>
+        <a class="accreditation-note" href={withBase('/postgraduate/accreditation/')}>
+          ОНП акредитовано до 01.07.2031 · сертифікат № 22459 →
+        </a>
       </div>
       <aside class="hero-badge">
         <span>PhD</span>
@@ -141,6 +144,22 @@ const activeCards = [
     color: var(--muted);
     font-size: 1.08rem;
     line-height: 1.7;
+  }
+
+  .accreditation-note {
+    display: inline-flex;
+    margin-top: 14px;
+    padding: 9px 12px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-size: 0.9rem;
+    font-weight: 850;
+    text-decoration: none;
+  }
+
+  .accreditation-note:hover {
+    text-decoration: none;
   }
 
   .hero-badge {

@@ -38,13 +38,15 @@ const postdocRequirements = [
   'no more than seven years have passed since the dissertation defence.'
 ];
 
-export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [
+export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [];
+
+const competitions: Omit<VacancyCompetition, 'documents'>[] = [
   {
-    id: '2026-07-20-active-announcement',
+    id: '2026-07-20-competition-18',
     date: '2026-07-20',
     year: 2026,
-    title: 'Announcement of a Competition to Fill Vacant Research Positions',
-    summary: 'Active announcement of a competition for research positions in the Institute departments.',
+    title: 'Competition to Fill Vacant Research Positions',
+    summary: 'Competition for five research positions in the Institute departments.',
     positions: [
       {
         title: 'senior research scientist',
@@ -72,18 +74,8 @@ export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [
       'for the senior research scientist positions: higher education in mechanics, including mechanics of deformable solids or theoretical mechanics, and a PhD or Candidate of Sciences degree;',
       'for leading research scientist positions: higher education in mechanics, including mechanics of deformable solids or theoretical mechanics, and a Doctor of Sciences degree;',
       'research results whose quantity and quality correspond to the stated academic degrees.'
-    ],
-    note: 'Order No. 84/к of 20 July 2026 has been added to the competition card.',
-    documents: [
-      {
-        title: 'Order No. 84/к of 20 July 2026 announcing the competition to fill vacant positions',
-        href: '/documents/vacancies/active/2026-07-20-competition/order-competition.pdf'
-      }
     ]
-  }
-];
-
-const competitions: Omit<VacancyCompetition, 'documents'>[] = [
+  },
   {
     id: '2026-03-17-competition-17',
     date: '2026-03-17',

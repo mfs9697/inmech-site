@@ -84,9 +84,11 @@ const postdocRequirements = [
   'від дати захисту дисертації минуло не більше 7 років.'
 ];
 
-export const activeVacancyAnnouncements: ActiveVacancyAnnouncement[] = [
+export const activeVacancyAnnouncements: ActiveVacancyAnnouncement[] = [];
+
+const competitions = [
   {
-    id: '2026-07-20-active-announcement',
+    id: '2026-07-20-competition-18',
     date: '2026-07-20',
     year: 2026,
     title: 'Оголошення про конкурс на заміщення вакантних посад наукових працівників',
@@ -126,10 +128,7 @@ export const activeVacancyAnnouncements: ActiveVacancyAnnouncement[] = [
         href: '/documents/vacancies/active/2026-07-20-competition/order-competition.pdf'
       }
     ]
-  }
-];
-
-const competitions = [
+  },
   {
     id: '2026-03-17-competition-17',
     date: '2026-03-17',

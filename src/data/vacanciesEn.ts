@@ -42,6 +42,41 @@ export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [];
 
 const competitions: Omit<VacancyCompetition, 'documents'>[] = [
   {
+    id: '2026-07-20-competition-18',
+    date: '2026-07-20',
+    year: 2026,
+    title: 'Competition to Fill Vacant Research Positions',
+    summary: 'Competition for five research positions in the Institute departments.',
+    positions: [
+      {
+        title: 'senior research scientist',
+        departments: [{ title: 'Department of Structural Mechanics of Thin-Walled Structures', href: '/en/departments/05-thin-walled-structures/' }]
+      },
+      {
+        title: 'senior research scientist',
+        departments: [{ title: 'Department of Fracture Mechanics of Materials', href: '/en/departments/09-fracture-mechanics/' }]
+      },
+      {
+        title: 'leading research scientist',
+        departments: [{ title: 'Department of Thermoelasticity', href: '/en/departments/07-thermoelasticity/' }]
+      },
+      {
+        title: 'leading research scientist',
+        departments: [{ title: 'Department of Computational Mechanics and Engineering', href: '/en/departments/03-computational-mechanics-engineering/' }]
+      },
+      {
+        title: 'leading research scientist',
+        departments: [{ title: 'Department of Rheology', href: '/en/departments/02-rheology/' }]
+      }
+    ],
+    deadline: '30 calendar days from the publication of the announcement.',
+    requirements: [
+      'for the senior research scientist positions: higher education in mechanics, including mechanics of deformable solids or theoretical mechanics, and a PhD or Candidate of Sciences degree;',
+      'for leading research scientist positions: higher education in mechanics, including mechanics of deformable solids or theoretical mechanics, and a Doctor of Sciences degree;',
+      'research results whose quantity and quality correspond to the stated academic degrees.'
+    ]
+  },
+  {
     id: '2026-03-17-competition-17',
     date: '2026-03-17',
     year: 2026,

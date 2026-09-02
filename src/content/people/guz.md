@@ -30,10 +30,12 @@ researchAreasEn:
   - "Mechanics of bodies with initial stresses."
   - "Non-classical problems of fracture mechanics."
 
-professionalActivity: "Організатор і завідувач відділу у 1967–2023 роках; наукова діяльність пов’язана з розвитком тривимірної теорії стійкості деформівних тіл, механіки композитів, гідропружності та некласичних задач механіки руйнування."
-professionalActivityEn: "Founder and head of the department from 1967 to 2023. His scientific activity is related to the development of the three-dimensional stability theory of deformable bodies, mechanics of composites, hydroelasticity, and non-classical problems of fracture mechanics."
+professionalActivity: "Організатор і завідувач відділу у 1967–2023 роках; директор Інституту механіки у 1976–2022 роках. Наукова діяльність пов’язана з розвитком тривимірної теорії стійкості деформівних тіл, механіки композитів, гідропружності та некласичних задач механіки руйнування."
+professionalActivityEn: "Founder and head of the department from 1967 to 2023; Director of the Institute of Mechanics from 1976 to 2022. His scientific activity is related to the development of the three-dimensional stability theory of deformable bodies, mechanics of composites, hydroelasticity, and non-classical problems of fracture mechanics."
 
 publications: []
 ---
 
 Академік НАН України, член Європейської академії наук, Fellow Нью-Йоркської академії наук, Fellow of the World Innovation Foundation.
+
+[О.М. Гузь в історії Інституту: 46 років на чолі установи →](/history/directors/guz/)

@@ -380,11 +380,6 @@
   margin-top: 28px;
 }
 
-.guz-gallery img {
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
-}
-
 .guz-works-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
@@ -516,6 +511,7 @@
 
   .guz-hero-portrait {
     max-width: 340px;
+    margin-inline: auto;
   }
 
   .guz-stats {
@@ -529,6 +525,7 @@
   .guz-medal-figure {
     position: static;
     max-width: 620px;
+    margin-inline: auto;
   }
 
   .guz-footer-nav {
@@ -536,8 +533,13 @@
   }
 }
 
+@media (max-width: 820px) {
+  .guz-timeline {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 720px) {
-  .guz-timeline,
   .guz-research-grid,
   .guz-gallery,
   .guz-works-grid {
@@ -578,5 +580,16 @@
     grid-template-columns: 86px minmax(0, 1fr);
     gap: 13px;
     padding: 15px;
+  }
+}
+
+@media (max-width: 520px) {
+  .guz-timeline li {
+    grid-template-columns: 1fr;
+  }
+
+  .guz-timeline-year {
+    width: fit-content;
+    min-width: 86px;
   }
 }

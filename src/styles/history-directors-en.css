@@ -6,6 +6,7 @@
 }
 
 .history-directors-section .history-director-card {
+  position: relative;
   display: flex;
   min-width: 0;
   min-height: 0;
@@ -25,6 +26,14 @@
   box-shadow: 0 10px 22px rgba(15, 31, 52, 0.09);
 }
 
+.history-directors-section .history-director-card.is-linked {
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.history-directors-section .history-director-card.is-linked:hover {
+  background: rgba(184, 135, 47, 0.06);
+}
+
 .history-directors-section .history-director-card img {
   display: block;
   width: 120px;
@@ -33,6 +42,11 @@
   object-position: center 22%;
   border-radius: 12px;
   filter: grayscale(1);
+  transition: filter 160ms ease;
+}
+
+.history-directors-section .history-director-card.is-linked:hover img {
+  filter: grayscale(0.35);
 }
 
 .history-directors-section .history-director-card figcaption {
@@ -64,6 +78,28 @@
 .history-directors-section .director-status {
   color: var(--accent-dark) !important;
   font-weight: 850;
+}
+
+.history-directors-section .director-more {
+  color: var(--accent-dark);
+  font-size: 0.76rem;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.history-directors-section .director-more::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+}
+
+.history-directors-section .director-more:focus-visible {
+  outline: none;
+}
+
+.history-directors-section .history-director-card:has(.director-more:focus-visible) {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
 }
 
 @media (max-width: 1100px) {

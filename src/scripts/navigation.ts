@@ -178,8 +178,8 @@ if (document.documentElement.lang === 'en' && englishHistoryDirectorsSection) {
   }
 
   const directorLinks = new Map([
-    ['S.P. Timoshenko', '/en/founder/'],
-    ['O.M. Guz', '/en/history/directors/guz/']
+    ['S.P. Timoshenko', '../founder/'],
+    ['O.M. Guz', 'directors/guz/']
   ]);
 
   englishHistoryDirectorsSection

@@ -27,6 +27,7 @@ export const historyDirectors = [
     period: '1918–1920',
     photo: '/assets/img/01_tymoshenko_portrait.jpeg',
     note: 'Засновник і перший директор Інституту.',
+    url: '/founder/',
     featured: true
   },
   {
@@ -74,6 +75,7 @@ export const historyDirectors = [
     period: '1976–2022',
     photo: '/people/guz.png',
     note: 'Очолював Інститут упродовж 46 років.',
+    url: '/history/directors/guz/',
     featured: true
   },
   {

@@ -186,9 +186,9 @@ export const guzExternalLinksEn = [
 ];
 
 export const guzPrimarySourceEn = {
-  authors: 'V.L. Bogdanov, V.M. Nazarenko, Ya.Ya. Rushchytskyi',
-  title: 'Facts and milestones in the scientific career of an outstanding scientist in mechanics. On the 85th anniversary of O.M. Guz, Academician of the NAS of Ukraine. [in Ukrainian]',
-  journal: 'Visnyk of the National Academy of Sciences of Ukraine. 2024. No. 1. P. 94–102.',
+  authors: 'Bogdanov V.L., Nazarenko V.M., Rushchitsky J.J.',
+  title: 'Facts and milestones of the scientific path of the outstanding scientist-mechanician. To the 85th anniversary of Academician of NAS of Ukraine O.M. Guz.',
+  journal: 'Visn. Nac. Akad. Nauk Ukr. 2024. No. 1. P. 94–102.',
   doi: '10.15407/visn2024.01.094',
   href: 'https://doi.org/10.15407/visn2024.01.094'
 };

@@ -87,6 +87,9 @@ const people = defineCollection({
     photo: z.string().optional(),
     order: z.number().optional(),
     featured: z.boolean().default(false),
+    historicalPageUrl: z.string().optional(),
+    historicalPageLabel: z.string().optional(),
+    historicalPageLabelEn: z.string().optional(),
 
     profiles: z.array(
       z.object({

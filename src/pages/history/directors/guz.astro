@@ -295,21 +295,26 @@ const galleryItems = guzGallery.slice(2);
           </p>
         </div>
 
-        <section class="guz-selected-works">
-          <h3>Вибрані пізні монографії</h3>
-          <ol>
-            {guzSelectedWorks.map((item) => <li>{item}</li>)}
-          </ol>
-        </section>
-
-        <details class="guz-details guz-series-details">
-          <summary>Фундаментальні багатотомні серії</summary>
-          <div class="guz-details-body">
-            <ul>
-              {guzMultivolumeWorks.map((item) => <li>{item}</li>)}
-            </ul>
-          </div>
-        </details>
+        <div class="guz-works-grid">
+          <section>
+            <h3>Вибрані пізні монографії</h3>
+            <ol>
+              {guzSelectedWorks.map((item) => <li>{item}</li>)}
+            </ol>
+          </section>
+          <section>
+            <h3>Фундаментальні багатотомні серії</h3>
+            <p class="small-note">Вісім серій, підготовлених у 1980–2018 роках.</p>
+            <details class="guz-details compact">
+              <summary>Переглянути перелік</summary>
+              <div class="guz-details-body">
+                <ul>
+                  {guzMultivolumeWorks.map((item) => <li>{item}</li>)}
+                </ul>
+              </div>
+            </details>
+          </section>
+        </div>
       </section>
 
       <section class="guz-section guz-sources-section" data-block-tone="neutral">

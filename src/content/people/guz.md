@@ -13,6 +13,9 @@ academicTitleEn: "Academician of the NAS of Ukraine, Member of the European Acad
 photo: "/people/guz.png"
 featured: false
 order: 2
+historicalPageUrl: "/history/directors/guz/"
+historicalPageLabel: "О.М. Гузь в історії Інституту"
+historicalPageLabelEn: "O.M. Guz in the Institute’s history"
 
 profiles:
   - label: "Scopus"
@@ -37,5 +40,3 @@ publications: []
 ---
 
 Академік НАН України, член Європейської академії наук, Fellow Нью-Йоркської академії наук, Fellow of the World Innovation Foundation.
-
-[О.М. Гузь в історії Інституту: 46 років на чолі установи →](/history/directors/guz/)

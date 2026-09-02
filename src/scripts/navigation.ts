@@ -202,4 +202,10 @@ if (document.documentElement.lang === 'en' && englishHistoryDirectorsSection) {
       link.setAttribute('aria-label', `${name}: learn more`);
       caption.append(link);
     });
+
+  if (window.location.hash === '#directors') {
+    window.requestAnimationFrame(() => {
+      englishHistoryDirectorsSection.scrollIntoView({ block: 'start' });
+    });
+  }
 }

@@ -2,7 +2,7 @@ export const guzStatsEn = [
   { value: '46 years', label: 'Director of the Institute of Mechanics', detail: '1976–2022' },
   { value: '76', label: 'monographs', detail: '22 single-authored' },
   { value: '≈1000', label: 'scientific publications', detail: 'more than 400 single-authored' },
-  { value: '40 / 100+', label: 'Doctors / Candidates of Sciences', detail: 'supervised' }
+  { value: '40 / 100+', label: 'Doctors / Candidates of Sciences', detail: 'trained under his supervision' }
 ];
 
 export const guzTimelineEn = [
@@ -19,7 +19,7 @@ export const guzTimelineEn = [
   {
     year: '1959–1960',
     title: 'Beginning of research at the Institute',
-    text: 'In 1959, while still a fourth-year student, he was invited by Academician H.M. Savin to take part in research; from 1960 he worked as a staff member of the Institute of Mechanics.'
+    text: 'In 1959, while still a fourth-year student, he was brought into research work by Academician H.M. Savin; from 1960 he worked as a staff member of the Institute of Mechanics.'
   },
   {
     year: '1962',
@@ -64,14 +64,14 @@ export const guzTimelineEn = [
   {
     year: '2022',
     title: 'Adviser to the Directorate',
-    text: 'Completed his term as Director of the Institute; since 2022, Adviser to the Directorate.'
+    text: 'After completing his tenure as Director of the Institute, he became Adviser to the Directorate in 2022.'
   }
 ];
 
 export const guzResearchAreasEn = [
   {
     title: 'Linearized mechanics of deformable solids',
-    text: 'Development of a general approach to mechanics problems in a linearized formulation for bodies with initial deformations and stresses.'
+    text: 'Development of a general framework for mechanics problems in a linearized formulation for bodies with initial deformations and stresses.'
   },
   {
     title: 'Three-dimensional stability theory',
@@ -79,7 +79,7 @@ export const guzResearchAreasEn = [
   },
   {
     title: 'Elastic waves in bodies with initial stresses',
-    text: 'Establishment of the effects of the initial stress state on the velocities and characteristics of elastic-wave propagation.'
+    text: 'Research into the influence of the initial stress state on the velocities and characteristics of elastic-wave propagation.'
   },
   {
     title: 'Mechanics of composite materials',
@@ -96,14 +96,14 @@ export const guzResearchAreasEn = [
 ];
 
 export const guzEffectsEn = [
-  'non-monotonic stress-concentration behaviour as holes approach one another in multiply connected bodies',
+  'a non-monotonic increase in stress concentration as holes approach one another in multiply connected bodies',
   'conditional resonances in elastic-wave diffraction and Wood-type resonances in elastic bodies with periodic structures',
-  'stability laws for three-dimensional deformable bodies and conditions governing the applicability of applied shell and plate theories',
+  'stability characteristics of three-dimensional deformable bodies and conditions governing the applicability of applied shell and plate theories',
   'a substantial influence of initial stresses on elastic-wave propagation and fracture parameters',
-  'specific stability-loss mechanisms in fibre-reinforced and layered composites',
+  'characteristic patterns of loss of stability in fibre-reinforced and layered composites',
   'resonance phenomena in contact problems for bodies with initial stresses',
   'coincidence of the onset of fracture under compression along cracks with the appearance of surface instability in the material',
-  'specific features of radiation force acting on rigid bodies in a compressible viscous fluid'
+  'specific features of the radiation force acting on rigid bodies in a compressible viscous fluid'
 ];
 
 export const guzAwardsEn = [
@@ -140,7 +140,7 @@ export const guzMultivolumeWorksEn = [
 
 export const guzSelectedWorksEn = [
   {
-    citation: 'Guz A.N. Vosem neklassicheskikh problem mekhaniki razrusheniya [Eight Non-Classical Problems of Fracture Mechanics]. Kyiv: Akademperiodyka, 2020. 398, [1] p. ISBN 978-966-360-405-3. [in Russian]'
+    citation: 'Guz A.N. Восемь неклассических проблем механики разрушения [Eight Non-Classical Problems of Fracture Mechanics]. Kyiv: Akademperiodyka, 2020. 398, [1] p. ISBN 978-966-360-405-3. [in Russian]'
   },
   {
     citation: 'Guz A.N., Bogdanov V.L., Nazarenko V.M. Fracture of Materials Under Compression Along Cracks. Advanced Structured Materials. Vol. 138. Cham: Springer, 2020. XVI, 490 p.',
@@ -158,12 +158,12 @@ export const guzGalleryEn = [
   {
     src: '/assets/img/history/guz/guz-young-director-library.webp',
     alt: 'O.M. Guz in the library of the Institute of Mechanics',
-    caption: 'The young Director of the Institute of Mechanics, O.M. Guz, in the Institute library.'
+    caption: 'The young director of the Institute of Mechanics, O.M. Guz, in the Institute library.'
   },
   {
     src: '/assets/img/history/guz/guz-meeting-deputy-directors.webp',
-    alt: 'O.M. Guz holding a meeting with deputy directors of the Institute of Mechanics',
-    caption: 'O.M. Guz holding a meeting with the deputy directors of the Institute.'
+    alt: 'O.M. Guz chairs a meeting with the deputy directors of the Institute of Mechanics',
+    caption: 'O.M. Guz chairs a meeting with the Institute’s deputy directors.'
   },
   {
     src: '/assets/img/history/guz/guz-paton-mitropolskyi.webp',
@@ -187,7 +187,7 @@ export const guzExternalLinksEn = [
 
 export const guzPrimarySourceEn = {
   authors: 'V.L. Bogdanov, V.M. Nazarenko, Ya.Ya. Rushchytskyi',
-  title: 'Facts and milestones in the scientific career of an outstanding scientist in mechanics. On the 85th anniversary of Academician of the NAS of Ukraine O.M. Guz. [in Ukrainian]',
+  title: 'Facts and milestones in the scientific career of an outstanding scientist in mechanics. On the 85th anniversary of O.M. Guz, Academician of the NAS of Ukraine. [in Ukrainian]',
   journal: 'Visnyk of the National Academy of Sciences of Ukraine. 2024. No. 1. P. 94–102.',
   doi: '10.15407/visn2024.01.094',
   href: 'https://doi.org/10.15407/visn2024.01.094'

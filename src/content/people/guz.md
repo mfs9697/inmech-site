@@ -15,7 +15,7 @@ featured: false
 order: 2
 historicalPageUrl: "/history/directors/guz/"
 historicalPageLabel: "О.М. Гузь в історії Інституту"
-historicalPageLabelEn: "O.M. Guz in the Institute’s history"
+historicalPageLabelEn: "O.M. Guz in the history of the Institute"
 
 profiles:
   - label: "Scopus"

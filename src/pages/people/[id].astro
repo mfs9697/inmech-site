@@ -87,6 +87,11 @@ const pageDescription = person.position
           <div class="profile-actions">
             {person.email && <a class="profile-button primary" href={`mailto:${person.email}`}>Написати листа</a>}
             {person.departmentUrl && <a class="profile-button secondary" href={withBase(person.departmentUrl)}>Сторінка відділу</a>}
+            {person.historicalPageUrl && (
+              <a class="profile-button secondary" href={withBase(person.historicalPageUrl)}>
+                {person.historicalPageLabel ?? 'Історична сторінка'}
+              </a>
+            )}
           </div>
         </div>
       </article>

@@ -16,6 +16,7 @@ export const siteRoutes: SiteRoute[] = [
   { uk: '/#contacts', en: '/en/#contacts', titleUk: 'Контакти', titleEn: 'Contacts', sectionUk: 'Головна', sectionEn: 'Home' },
 
   { uk: '/history/', en: '/en/history/', titleUk: 'Історія і сучасність', titleEn: 'History and present', sectionUk: 'Про інститут', sectionEn: 'About the Institute' },
+  { uk: '/history/directors/guz/', en: '/en/history/directors/guz/', titleUk: 'Олександр Миколайович Гузь', titleEn: 'Oleksandr M. Guz', sectionUk: 'Про інститут', sectionEn: 'About the Institute' },
   { uk: '/founder/', en: '/en/founder/', titleUk: 'Засновник інституту', titleEn: 'Founder of the Institute', sectionUk: 'Про інститут', sectionEn: 'About the Institute' },
   { uk: '/regulations/', en: '/en/regulations/', titleUk: 'Статут', titleEn: 'Statute', sectionUk: 'Про інститут', sectionEn: 'About the Institute' },
   { uk: '/strategy/', en: '/en/strategy/', titleUk: 'Стратегія розвитку', titleEn: 'Development strategy', sectionUk: 'Про інститут', sectionEn: 'About the Institute' },

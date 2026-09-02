@@ -1,0 +1,386 @@
+---
+import BaseLayoutEn from '../../../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../../../data/site-en';
+import {
+  guzStatsEn,
+  guzTimelineEn,
+  guzResearchAreasEn,
+  guzEffectsEn,
+  guzAwardsEn,
+  guzOtherRecognitionEn,
+  guzMultivolumeWorksEn,
+  guzSelectedWorksEn,
+  guzGalleryEn,
+  guzExternalLinksEn,
+  guzPrimarySourceEn
+} from '../../../../data/guzDirectorEn';
+import '../../../../styles/guz-director.css';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (/^(https?:)?\/\//.test(path) || path.startsWith('mailto:') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+const galleryItems = guzGalleryEn.slice(2);
+---
+
+<BaseLayoutEn
+  title={`Oleksandr M. Guz | ${siteEn.name}`}
+  description="Oleksandr M. Guz — Academician of the NAS of Ukraine, distinguished scientist in mechanics and Director of the Institute of Mechanics from 1976 to 2022."
+  activePage="about"
+>
+  <section class="guz-page">
+    <div class="container guz-container">
+      <nav class="guz-breadcrumb" aria-label="Breadcrumb">
+        <a href={withBase('/en/')}>Home</a>
+        <span aria-hidden="true">/</span>
+        <a href={withBase('/en/history/')}>History and present</a>
+        <span aria-hidden="true">/</span>
+        <a href={withBase('/en/history/#directors')}>Directors of the Institute</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">O.M. Guz</span>
+      </nav>
+
+      <header class="guz-hero" data-block-tone="heritage">
+        <div class="guz-hero-copy">
+          <p class="eyebrow">Director of the Institute · 1976–2022</p>
+          <h1>Oleksandr M. Guz</h1>
+          <p class="guz-hero-role">Academician of the NAS of Ukraine · scientist in mechanics · research leader</p>
+          <p class="lead">
+            Oleksandr M. Guz founded a scientific school in linearized mechanics of deformable
+            solids and related fields. For 46 years he led the Institute of Mechanics, combining
+            institutional leadership with an intensive research programme of his own.
+          </p>
+        </div>
+
+        <figure class="guz-hero-portrait">
+          <img
+            src={withBase('/assets/img/history/guz/guz-portrait.webp')}
+            alt="Oleksandr M. Guz"
+            loading="eager"
+            width="296"
+            height="405"
+          />
+          <figcaption>Oleksandr M. Guz</figcaption>
+        </figure>
+      </header>
+
+      <section class="guz-stats" aria-label="Key facts">
+        {guzStatsEn.map((item) => (
+          <article class="guz-stat panel">
+            <strong>{item.value}</strong>
+            <span>{item.label}</span>
+            <small>{item.detail}</small>
+          </article>
+        ))}
+      </section>
+
+      <section class="guz-section panel">
+        <div class="guz-section-heading">
+          <p class="eyebrow">Biographical milestones</p>
+          <h2>Scientific and professional career</h2>
+          <p>
+            O.M. Guz’s connection with the Institute began with research he undertook as a student
+            in 1959. He later worked here as a researcher, headed the department he established,
+            and from 1976 led the Institute itself.
+          </p>
+        </div>
+
+        <ol class="guz-timeline">
+          {guzTimelineEn.map((item) => (
+            <li>
+              <div class="guz-timeline-year">{item.year}</div>
+              <div class="guz-timeline-copy">
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="guz-section guz-directorate-section" data-block-tone="heritage">
+        <div class="guz-directorate-copy">
+          <p class="eyebrow">Institute of Mechanics</p>
+          <h2>46 years leading the Institute</h2>
+          <p>
+            In 1976, at the age of 37, O.M. Guz was appointed Director of the Institute of Mechanics
+            of the Academy of Sciences of the Ukrainian SSR. At that time, it was the largest research
+            institute in mechanics in the USSR: in 1980 its staff numbered more than 1,500, including
+            60 Doctors and 150 Candidates of Sciences.
+          </p>
+          <p>
+            The new Director made changes to the organisation of research and to how its results were
+            presented. Fundamental research results began to be systematically consolidated in
+            multivolume monograph series, while applied projects became more comprehensive and were
+            carried out jointly with the organisations that commissioned the work. A prominent example
+            was the five-volume series <em>Methods for Calculating Shells</em> (1980–1982), published
+            under the general editorship of O.M. Guz and soon translated into English in the United
+            States as supporting technical texts for NASA.
+          </p>
+          <p>
+            A major long-term area of cooperation was work with the E.O. Paton Electric Welding Institute,
+            including the development and advancement of an ultrasonic nondestructive method for studying
+            the stress-strain state of materials and structural elements. The Institute also cooperated
+            with the Yuzhnoye Design Bureau, while the general approach developed by O.M. Guz was applied
+            to problems in rock mechanics.
+          </p>
+        </div>
+
+        <div class="guz-directorate-figures">
+          <figure>
+            <img
+              src={withBase(guzGalleryEn[0].src)}
+              alt={guzGalleryEn[0].alt}
+              loading="lazy"
+              width="461"
+              height="519"
+            />
+            <figcaption>{guzGalleryEn[0].caption}</figcaption>
+          </figure>
+          <figure>
+            <img
+              src={withBase(guzGalleryEn[1].src)}
+              alt={guzGalleryEn[1].alt}
+              loading="lazy"
+              width="461"
+              height="341"
+            />
+            <figcaption>{guzGalleryEn[1].caption}</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="guz-section panel">
+        <div class="guz-section-heading">
+          <p class="eyebrow">Scientific legacy</p>
+          <h2>Scientific contribution</h2>
+          <p>
+            Linearized mechanics of deformable solids occupies a central place in O.M. Guz’s
+            scientific work. Together with Maurice Biot, O.M. Guz is regarded as one of the founders
+            of this field.
+          </p>
+          <p>
+            Results in this field and related areas — from three-dimensional stability theory and
+            elastic-wave propagation in bodies with initial stresses to fracture mechanics, contact
+            problems and dynamics in a compressible viscous fluid — are presented in 40 monographs
+            published since 1971 in Ukraine and abroad.
+          </p>
+        </div>
+
+        <div class="guz-research-grid">
+          {guzResearchAreasEn.map((item) => (
+            <article class="guz-research-card">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+
+        <details class="guz-details">
+          <summary>Principal new mechanical effects</summary>
+          <div class="guz-details-body">
+            <p>
+              In his single-authored studies and in work carried out jointly with his students,
+              O.M. Guz theoretically identified a number of new mechanical effects. Among the
+              principal ones are:
+            </p>
+            <ul>
+              {guzEffectsEn.map((item) => <li>{item}</li>)}
+            </ul>
+            <p>
+              The source article gives a more extensive list classified into twelve fields of mechanics.
+              <a href={guzPrimarySourceEn.href} target="_blank" rel="noopener"> Read the article →</a>
+            </p>
+          </div>
+        </details>
+      </section>
+
+      <section class="guz-section guz-school-section" data-block-tone="information">
+        <div class="guz-section-heading">
+          <p class="eyebrow">Scientific continuity</p>
+          <h2>The scientific school of O.M. Guz</h2>
+          <p>
+            O.M. Guz established one of the largest scientific schools in mechanics in Ukraine.
+            Its scale is reflected in the number of researchers who completed advanced degrees
+            under his supervision.
+          </p>
+        </div>
+
+        <div class="guz-school-numbers" aria-label="Training of researchers">
+          <div><strong>40</strong><span>Doctors of Sciences</span></div>
+          <div><strong>100+</strong><span>Candidates of Sciences</span></div>
+        </div>
+
+        <p class="guz-school-people">
+          Among his students are Academicians of the NAS of Ukraine <strong>Viacheslav Bogdanov</strong>,
+          <strong>Veniamin Kubenko</strong> and <strong>Volodymyr Nazarenko</strong>; Academician of the
+          Azerbaijan National Academy of Sciences G.G. Kuliyev; Corresponding Members of the NAS of
+          Ukraine Yu.M. Nemish, I.S. Chernyshenko and M.O. Shulha; and Corresponding Member of the
+          Azerbaijan National Academy of Sciences S.D. Akbarov.
+        </p>
+      </section>
+
+      <section class="guz-section panel guz-recognition-section">
+        <div class="guz-recognition-copy">
+          <p class="eyebrow">Recognition</p>
+          <h2>International recognition and awards</h2>
+          <p>
+            O.M. Guz’s achievements in research, scientific leadership and the training of researchers
+            have been recognised by numerous Ukrainian and international awards.
+          </p>
+          <p>
+            He was elected to Academia Europaea in 1992 and to the European Academy of Sciences
+            in 2002; in 1995 he was elected a member of the General Assembly of the International
+            Union of Theoretical and Applied Mechanics (IUTAM). In 2008, the European Academy of
+            Sciences awarded him the Blaise Pascal Medal.
+          </p>
+
+          <div class="guz-awards-grid">
+            {guzAwardsEn.map((item) => (
+              <article>
+                <strong>{item.year}</strong>
+                <span>{item.title}</span>
+              </article>
+            ))}
+          </div>
+
+          <details class="guz-details compact">
+            <summary>Other distinctions and academic memberships</summary>
+            <div class="guz-details-body">
+              <ul>
+                {guzOtherRecognitionEn.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          </details>
+        </div>
+
+        <figure class="guz-medal-figure">
+          <img
+            src={withBase('/assets/img/history/guz/guz-vernadskyi-medal-2014.webp')}
+            alt="President of the NAS of Ukraine B.Ye. Paton presents O.M. Guz with the V.I. Vernadsky Gold Medal"
+            loading="lazy"
+            width="653"
+            height="458"
+          />
+          <figcaption>
+            President of the NAS of Ukraine B.Ye. Paton presents O.M. Guz with the V.I. Vernadsky
+            Gold Medal of the NAS of Ukraine. May 2014.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="guz-section panel">
+        <div class="guz-section-heading">
+          <p class="eyebrow">Archival photographs</p>
+          <h2>Photographic chronicle</h2>
+        </div>
+
+        <div class="guz-gallery">
+          {galleryItems.map((item) => (
+            <figure>
+              <img src={withBase(item.src)} alt={item.alt} loading="lazy" />
+              <figcaption>{item.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section class="guz-section panel">
+        <div class="guz-section-heading">
+          <p class="eyebrow">Scientific publications</p>
+          <h2>Selected works and multivolume series</h2>
+          <p>
+            O.M. Guz is the author of 76 monographs, 22 of them single-authored, and about 1,000
+            scientific publications. The anniversary article singles out three later monographs;
+            the fundamental multivolume series are listed separately.
+          </p>
+        </div>
+
+        <div class="guz-works-grid">
+          <section>
+            <h3>Selected later monographs</h3>
+            <ol>
+              {guzSelectedWorksEn.map((item) => (
+                <li>
+                  {item.citation}
+                  {item.href && (
+                    <> <a href={item.href} target="_blank" rel="noopener">{item.linkLabel} →</a></>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </section>
+          <section>
+            <h3>Multivolume series edited by O.M. Guz</h3>
+            <p class="small-note">
+              As editor, O.M. Guz organised the publication of these series and personally prepared
+              a number of their volumes.
+            </p>
+            <details class="guz-details compact">
+              <summary>View the list</summary>
+              <div class="guz-details-body">
+                <ul>
+                  {guzMultivolumeWorksEn.map((item) => <li>{item}</li>)}
+                </ul>
+              </div>
+            </details>
+          </section>
+        </div>
+      </section>
+
+      <section class="guz-section guz-sources-section" data-block-tone="neutral">
+        <div class="guz-section-heading">
+          <p class="eyebrow">Sources</p>
+          <h2>Sources and external resources</h2>
+        </div>
+
+        <div class="guz-external-links">
+          {guzExternalLinksEn.map((item) => (
+            <a
+              href={withBase(item.href)}
+              target={item.href.startsWith('http') ? '_blank' : undefined}
+              rel={item.href.startsWith('http') ? 'noopener' : undefined}
+            >
+              {item.label} →
+            </a>
+          ))}
+        </div>
+
+        <article class="guz-primary-source">
+          <p class="eyebrow">Principal source for this page</p>
+          <h3>{guzPrimarySourceEn.title}</h3>
+          <p><strong>{guzPrimarySourceEn.authors}</strong></p>
+          <p>{guzPrimarySourceEn.journal}</p>
+          <a href={guzPrimarySourceEn.href} target="_blank" rel="noopener">
+            DOI: {guzPrimarySourceEn.doi} →
+          </a>
+          <small>
+            The main text and archival photographs on this page are based on this publication.
+            Current award information was cross-checked against the official NAS of Ukraine profile.
+          </small>
+        </article>
+      </section>
+
+      <nav class="guz-footer-nav" aria-label="Related pages">
+        <a href={withBase('/en/history/')}>
+          <span>← History and present</span>
+          <small>History of the Institute and its directors</small>
+        </a>
+        <a href={withBase('/en/people/guz/')}>
+          <span>Scientific profile of O.M. Guz →</span>
+          <small>Research areas, department and scientometric profiles</small>
+        </a>
+        <a href={withBase('/en/departments/01-dynamics-stability/')}>
+          <span>Department of Dynamics and Stability →</span>
+          <small>The department established by O.M. Guz in 1967</small>
+        </a>
+      </nav>
+    </div>
+  </section>
+</BaseLayoutEn>

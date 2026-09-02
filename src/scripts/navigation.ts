@@ -167,3 +167,45 @@ if (nav) {
     closeSubmenus();
   });
 }
+
+const englishHistoryDirectorsSection = document.querySelector<HTMLElement>(
+  '.history-directors-section'
+);
+
+if (document.documentElement.lang === 'en' && englishHistoryDirectorsSection) {
+  if (!englishHistoryDirectorsSection.id) {
+    englishHistoryDirectorsSection.id = 'directors';
+  }
+
+  const directorLinks = new Map([
+    ['S.P. Timoshenko', '../founder/'],
+    ['O.M. Guz', 'directors/guz/']
+  ]);
+
+  englishHistoryDirectorsSection
+    .querySelectorAll<HTMLElement>('.history-director-card')
+    .forEach((card) => {
+      const caption = card.querySelector<HTMLElement>('figcaption');
+      const name = caption?.querySelector<HTMLElement>('strong')?.textContent?.trim();
+      const href = name ? directorLinks.get(name) : undefined;
+
+      if (!caption || !name || !href || caption.querySelector('.director-more')) {
+        return;
+      }
+
+      card.classList.add('is-linked');
+
+      const link = document.createElement('a');
+      link.className = 'director-more';
+      link.href = href;
+      link.textContent = 'Learn more →';
+      link.setAttribute('aria-label', `${name}: learn more`);
+      caption.append(link);
+    });
+
+  if (window.location.hash === '#directors') {
+    window.requestAnimationFrame(() => {
+      englishHistoryDirectorsSection.scrollIntoView({ block: 'start' });
+    });
+  }
+}

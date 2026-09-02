@@ -1,0 +1,595 @@
+.guz-page {
+  padding: 30px 0 72px;
+}
+
+.guz-container {
+  width: min(100% - 32px, 1120px);
+}
+
+.guz-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 18px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
+.guz-breadcrumb a {
+  color: var(--accent-dark);
+  font-weight: 750;
+}
+
+.guz-hero,
+.guz-section {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.guz-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(230px, 0.58fr);
+  gap: clamp(28px, 5vw, 58px);
+  align-items: center;
+  padding: clamp(30px, 5vw, 54px);
+  box-shadow: var(--shadow);
+}
+
+.guz-hero h1 {
+  max-width: 760px;
+  margin: 0 0 16px;
+  font-size: clamp(2.5rem, 5.6vw, 4.75rem);
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.guz-hero-role {
+  max-width: 720px;
+  margin: 0 0 20px;
+  color: var(--accent-dark);
+  font-size: clamp(1.02rem, 1.8vw, 1.22rem);
+  font-weight: 850;
+  line-height: 1.45;
+}
+
+.guz-hero .lead {
+  max-width: 760px;
+  margin: 0;
+  color: var(--text);
+  font-size: 1.04rem;
+  line-height: 1.72;
+}
+
+.guz-hero-portrait {
+  margin: 0;
+}
+
+.guz-hero-portrait img {
+  display: block;
+  width: min(100%, 296px);
+  height: auto;
+  margin: 0 auto;
+  border: 1px solid rgba(125, 92, 34, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 18px 38px rgba(20, 33, 61, 0.14);
+}
+
+.guz-hero-portrait figcaption {
+  margin: 10px auto 0;
+  max-width: 296px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.guz-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.guz-stat {
+  display: grid;
+  align-content: start;
+  gap: 5px;
+  min-height: 142px;
+  padding: 20px;
+  box-shadow: 0 8px 22px rgba(20, 33, 61, 0.05);
+}
+
+.guz-stat strong {
+  color: var(--accent-dark);
+  font-size: clamp(1.55rem, 2.6vw, 2.05rem);
+  line-height: 1.08;
+}
+
+.guz-stat span {
+  color: var(--heading);
+  font-weight: 800;
+  line-height: 1.34;
+}
+
+.guz-stat small {
+  margin-top: auto;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.guz-section {
+  margin-top: 22px;
+  padding: clamp(26px, 4.5vw, 44px);
+  background: var(--surface);
+  box-shadow: 0 8px 24px rgba(20, 33, 61, 0.045);
+}
+
+.guz-section-heading {
+  max-width: 860px;
+}
+
+.guz-section h2 {
+  margin: 0 0 16px;
+  font-size: clamp(1.9rem, 3.6vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.032em;
+}
+
+.guz-section-heading > p:last-child,
+.guz-directorate-copy > p,
+.guz-recognition-copy > p,
+.guz-school-people {
+  font-size: 1.01rem;
+  line-height: 1.75;
+}
+
+.guz-directorate-copy > p + p,
+.guz-recognition-copy > p + p {
+  margin-top: 1rem;
+}
+
+.guz-timeline {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.guz-timeline li {
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr);
+  gap: 15px;
+  align-items: start;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface-soft);
+}
+
+.guz-timeline-year {
+  padding: 7px 9px;
+  border: 1px solid rgba(184, 135, 47, 0.34);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--accent-dark);
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.guz-timeline-copy h3 {
+  margin: 2px 0 6px;
+  font-size: 1.02rem;
+  line-height: 1.3;
+}
+
+.guz-timeline-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.58;
+}
+
+.guz-directorate-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(270px, 0.72fr);
+  gap: clamp(28px, 4.8vw, 52px);
+  align-items: start;
+}
+
+.guz-directorate-copy > p {
+  max-width: 720px;
+}
+
+.guz-directorate-figures {
+  display: grid;
+  gap: 20px;
+}
+
+.guz-directorate-figures figure,
+.guz-medal-figure,
+.guz-gallery figure {
+  margin: 0;
+}
+
+.guz-directorate-figures img,
+.guz-medal-figure img,
+.guz-gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 10px 26px rgba(20, 33, 61, 0.09);
+}
+
+.guz-directorate-figures figcaption,
+.guz-medal-figure figcaption,
+.guz-gallery figcaption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.48;
+}
+
+.guz-research-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+  margin-top: 30px;
+}
+
+.guz-research-card {
+  padding: 19px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface-soft);
+}
+
+.guz-research-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.02rem;
+  line-height: 1.3;
+}
+
+.guz-research-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.58;
+}
+
+.guz-details {
+  margin-top: 22px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface-soft);
+}
+
+.guz-details summary {
+  padding: 15px 18px;
+  color: var(--heading);
+  cursor: pointer;
+  font-weight: 850;
+}
+
+.guz-details-body {
+  padding: 0 18px 18px;
+}
+
+.guz-details-body p,
+.guz-details-body li {
+  line-height: 1.62;
+}
+
+.guz-details-body ul {
+  display: grid;
+  gap: 7px;
+  padding-left: 1.25rem;
+}
+
+.guz-details-body a {
+  font-weight: 800;
+}
+
+.guz-school-section {
+  background: var(--surface-soft);
+}
+
+.guz-school-numbers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+  max-width: 610px;
+  margin: 28px 0;
+}
+
+.guz-school-numbers > div {
+  display: grid;
+  gap: 5px;
+  padding: 22px;
+  border: 1px solid rgba(29, 79, 145, 0.18);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.guz-school-numbers strong {
+  color: var(--accent-dark);
+  font-size: 2.45rem;
+  line-height: 1;
+}
+
+.guz-school-numbers span {
+  color: var(--heading);
+  font-weight: 800;
+}
+
+.guz-school-people {
+  max-width: 870px;
+  margin-bottom: 0;
+}
+
+.guz-recognition-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.82fr);
+  gap: clamp(28px, 4.8vw, 50px);
+  align-items: start;
+}
+
+.guz-awards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
+  margin-top: 24px;
+}
+
+.guz-awards-grid article {
+  display: grid;
+  gap: 5px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-soft);
+}
+
+.guz-awards-grid strong {
+  color: var(--accent-dark);
+  font-size: 1.02rem;
+}
+
+.guz-awards-grid span {
+  color: var(--heading);
+  font-size: 0.9rem;
+  font-weight: 750;
+  line-height: 1.43;
+}
+
+.guz-medal-figure {
+  position: sticky;
+  top: 82px;
+}
+
+.guz-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.guz-works-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 24px;
+  margin-top: 28px;
+}
+
+.guz-works-grid section {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface-soft);
+}
+
+.guz-works-grid h3 {
+  margin: 0 0 14px;
+  font-size: 1.08rem;
+}
+
+.guz-works-grid ul,
+.guz-works-grid ol {
+  display: grid;
+  gap: 9px;
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.guz-works-grid li {
+  line-height: 1.55;
+}
+
+.guz-external-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 24px;
+}
+
+.guz-external-links a {
+  display: inline-flex;
+  padding: 9px 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--accent-dark);
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.guz-external-links a:hover {
+  border-color: rgba(29, 79, 145, 0.35);
+  background: var(--accent-soft);
+}
+
+.guz-primary-source {
+  margin-top: 26px;
+  padding: clamp(20px, 3.5vw, 30px);
+  border: 1px solid rgba(184, 135, 47, 0.3);
+  border-radius: 14px;
+  background: rgba(184, 135, 47, 0.07);
+}
+
+.guz-primary-source h3 {
+  max-width: 820px;
+  margin: 0 0 12px;
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
+.guz-primary-source p {
+  margin: 5px 0;
+  line-height: 1.58;
+}
+
+.guz-primary-source a {
+  display: inline-block;
+  margin-top: 9px;
+  font-weight: 850;
+}
+
+.guz-primary-source small {
+  display: block;
+  margin-top: 13px;
+  color: var(--muted);
+  line-height: 1.48;
+}
+
+.guz-footer-nav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+  margin-top: 22px;
+}
+
+.guz-footer-nav a {
+  display: grid;
+  gap: 5px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 8px 22px rgba(20, 33, 61, 0.05);
+  text-decoration: none;
+}
+
+.guz-footer-nav span {
+  color: var(--accent-dark);
+  font-weight: 850;
+}
+
+.guz-footer-nav small {
+  color: var(--muted);
+  line-height: 1.42;
+}
+
+@media (max-width: 980px) {
+  .guz-research-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .guz-hero,
+  .guz-directorate-section,
+  .guz-recognition-section {
+    grid-template-columns: 1fr;
+  }
+
+  .guz-hero-portrait {
+    max-width: 340px;
+    margin-inline: auto;
+  }
+
+  .guz-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .guz-directorate-figures {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .guz-medal-figure {
+    position: static;
+    max-width: 620px;
+    margin-inline: auto;
+  }
+
+  .guz-footer-nav {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 820px) {
+  .guz-timeline {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .guz-research-grid,
+  .guz-gallery,
+  .guz-works-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 660px) {
+  .guz-page {
+    padding-top: 20px;
+  }
+
+  .guz-container {
+    width: min(100% - 24px, 1120px);
+  }
+
+  .guz-hero,
+  .guz-section {
+    padding: 23px;
+  }
+
+  .guz-hero h1 {
+    font-size: clamp(2.25rem, 12.5vw, 3.45rem);
+  }
+
+  .guz-stats,
+  .guz-school-numbers,
+  .guz-awards-grid,
+  .guz-directorate-figures {
+    grid-template-columns: 1fr;
+  }
+
+  .guz-stat {
+    min-height: 0;
+  }
+
+  .guz-timeline li {
+    grid-template-columns: 86px minmax(0, 1fr);
+    gap: 13px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 520px) {
+  .guz-timeline li {
+    grid-template-columns: 1fr;
+  }
+
+  .guz-timeline-year {
+    width: fit-content;
+    min-width: 86px;
+  }
+}

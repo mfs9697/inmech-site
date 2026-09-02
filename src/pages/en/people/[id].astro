@@ -20,7 +20,7 @@ function withBase(url: string) {
 
 function toEnglishPath(url?: string) {
   if (!url) return '';
-  return url.startsWith('/departments/') || url.startsWith('/people/') ? `/en${url}` : url;
+  return url.startsWith('/departments/') || url.startsWith('/people/') || url.startsWith('/history/') ? `/en${url}` : url;
 }
 
 const displayName = person.nameEn ?? person.name;
@@ -28,6 +28,8 @@ const originalName = person.nameEn ? person.name : '';
 const position = person.positionEn ?? person.position;
 const department = person.departmentEn ?? person.department;
 const departmentUrl = toEnglishPath(person.departmentUrl);
+const historicalPageUrl = toEnglishPath(person.historicalPageUrl);
+const historicalPageLabel = person.historicalPageLabelEn ?? person.historicalPageLabel ?? 'Historical page';
 const degree = person.degreeEn ?? person.degree;
 const academicTitle = person.academicTitleEn ?? person.academicTitle;
 const researchAreas = person.researchAreasEn.length > 0 ? person.researchAreasEn : person.researchAreas;
@@ -73,6 +75,9 @@ const pageDescription = position ? `${displayName} — ${position}` : `${display
           <div class="profile-actions">
             {person.email && <a class="profile-button primary" href={`mailto:${person.email}`}>Write an email</a>}
             {departmentUrl && <a class="profile-button secondary" href={withBase(departmentUrl)}>Department page</a>}
+            {historicalPageUrl && (
+              <a class="profile-button secondary" href={withBase(historicalPageUrl)}>{historicalPageLabel}</a>
+            )}
           </div>
         </div>
       </article>

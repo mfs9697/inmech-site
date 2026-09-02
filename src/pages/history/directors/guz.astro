@@ -1,0 +1,381 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { site } from '../../../data/site';
+import {
+  guzStats,
+  guzTimeline,
+  guzResearchAreas,
+  guzEffects,
+  guzAwards,
+  guzOtherRecognition,
+  guzMultivolumeWorks,
+  guzSelectedWorks,
+  guzGallery,
+  guzExternalLinks,
+  guzPrimarySource
+} from '../../../data/guzDirector';
+import '../../../styles/guz-director.css';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (/^(https?:)?\/\//.test(path) || path.startsWith('mailto:') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+const galleryItems = guzGallery.slice(2);
+---
+
+<BaseLayout
+  title={`Олександр Миколайович Гузь | ${site.name}`}
+  description="Олександр Миколайович Гузь — академік НАН України, видатний учений-механік і директор Інституту механіки у 1976–2022 роках."
+  activePage="about"
+>
+  <section class="guz-page">
+    <div class="container guz-container">
+      <nav class="guz-breadcrumb" aria-label="Навігація">
+        <a href={withBase('/')}>Головна</a>
+        <span aria-hidden="true">/</span>
+        <a href={withBase('/history/')}>Історія і сучасність</a>
+        <span aria-hidden="true">/</span>
+        <a href={withBase('/history/#directors')}>Директори Інституту</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">О.М. Гузь</span>
+      </nav>
+
+      <header class="guz-hero" data-block-tone="heritage">
+        <div class="guz-hero-copy">
+          <p class="eyebrow">Директор Інституту · 1976–2022</p>
+          <h1>Олександр Миколайович Гузь</h1>
+          <p class="guz-hero-role">Академік НАН України · учений-механік · організатор науки</p>
+          <p class="lead">
+            Олександр Миколайович Гузь — засновник наукової школи в галузі лінеаризованої
+            механіки деформівних тіл і суміжних напрямів. Упродовж 46 років він очолював
+            Інститут механіки, поєднуючи науково-організаційну роботу з інтенсивною власною
+            науково-дослідною діяльністю.
+          </p>
+        </div>
+
+        <figure class="guz-hero-portrait">
+          <img
+            src={withBase('/assets/img/history/guz/guz-portrait.webp')}
+            alt="Олександр Миколайович Гузь"
+            loading="eager"
+            width="296"
+            height="405"
+          />
+          <figcaption>Олександр Миколайович Гузь</figcaption>
+        </figure>
+      </header>
+
+      <section class="guz-stats" aria-label="Ключові факти">
+        {guzStats.map((item) => (
+          <article class="guz-stat panel">
+            <strong>{item.value}</strong>
+            <span>{item.label}</span>
+            <small>{item.detail}</small>
+          </article>
+        ))}
+      </section>
+
+      <section class="guz-section panel">
+        <div class="guz-section-heading">
+          <p class="eyebrow">Біографічні віхи</p>
+          <h2>Науковий і професійний шлях</h2>
+          <p>
+            Від студентських досліджень 1959 року науковий шлях О.М. Гузя пов’язаний з Інститутом
+            механіки: тут він працював дослідником, очолював створений ним науковий відділ,
+            а з 1976 року — Інститут.
+          </p>
+        </div>
+
+        <ol class="guz-timeline">
+          {guzTimeline.map((item) => (
+            <li>
+              <div class="guz-timeline-year">{item.year}</div>
+              <div class="guz-timeline-copy">
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="guz-section guz-directorate-section" data-block-tone="heritage">
+        <div class="guz-directorate-copy">
+          <p class="eyebrow">Інститут механіки</p>
+          <h2>46 років на чолі Інституту</h2>
+          <p>
+            У 1976 році 37-річного О.М. Гузя було затверджено директором Інституту механіки
+            АН УРСР. На той час це був найбільший у СРСР інститут у галузі механіки: у 1980 році
+            штат налічував понад 1500 співробітників, серед них 60 докторів і 150 кандидатів наук.
+          </p>
+          <p>
+            Новий директор дещо змінив організацію наукової діяльності та представлення її
+            результатів. Результати фундаментальних досліджень почали системно оформлювати як
+            багатотомні монографічні видання, а прикладні роботи стали комплекснішими й виконувалися
+            спільно із замовниками. Показовим результатом стала п’ятитомна серія «Методы расчета
+            оболочек» (1980–1982), видана за загальною редакцією О.М. Гузя і невдовзі перекладена
+            у США як допоміжні технічні тексти для NASA.
+          </p>
+          <p>
+            Помітним напрямом стала багаторічна співпраця з Інститутом електрозварювання
+            ім. Є.О. Патона, зокрема з розроблення засад і розвитку ультразвукового неруйнівного
+            методу дослідження напружено-деформованого стану матеріалів та елементів конструкцій.
+            Інститут також співпрацював із КБ «Південне», а розроблений О.М. Гузем загальний підхід
+            було застосовано до задач механіки гірничих порід.
+          </p>
+        </div>
+
+        <div class="guz-directorate-figures">
+          <figure>
+            <img
+              src={withBase(guzGallery[0].src)}
+              alt={guzGallery[0].alt}
+              loading="lazy"
+              width="461"
+              height="519"
+            />
+            <figcaption>{guzGallery[0].caption}</figcaption>
+          </figure>
+          <figure>
+            <img
+              src={withBase(guzGallery[1].src)}
+              alt={guzGallery[1].alt}
+              loading="lazy"
+              width="461"
+              height="341"
+            />
+            <figcaption>{guzGallery[1].caption}</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="guz-section panel">
+        <div class="guz-section-heading">
+          <p class="eyebrow">Наукова спадщина</p>
+          <h2>Науковий внесок</h2>
+          <p>
+            Центральне місце у науковій творчості О.М. Гузя посідає лінеаризована механіка
+            деформівного твердого тіла. Разом із Морісом Біо він належить до основоположників
+            цього напряму.
+          </p>
+          <p>
+            Результати цього циклу та суміжних напрямів — від тривимірної теорії стійкості й
+            поширення пружних хвиль у тілах із початковими напруженнями до механіки руйнування,
+            контактних задач і динаміки у стисливій в’язкій рідині — викладено у 40 монографіях,
+            виданих від 1971 року в Україні та за кордоном.
+          </p>
+        </div>
+
+        <div class="guz-research-grid">
+          {guzResearchAreas.map((item) => (
+            <article class="guz-research-card">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+
+        <details class="guz-details">
+          <summary>Основні нові механічні ефекти</summary>
+          <div class="guz-details-body">
+            <p>
+              У працях О.М. Гузя — одноосібних і спільних з учнями — теоретично виявлено низку
+              нових механічних ефектів. Серед основних:
+            </p>
+            <ul>
+              {guzEffects.map((item) => <li>{item}</li>)}
+            </ul>
+            <p>
+              У статті-джерелі повніший перелік класифіковано за дванадцятьма напрямами механіки.
+              <a href={guzPrimarySource.href} target="_blank" rel="noopener"> Докладніше у статті →</a>
+            </p>
+          </div>
+        </details>
+      </section>
+
+      <section class="guz-section guz-school-section" data-block-tone="information">
+        <div class="guz-section-heading">
+          <p class="eyebrow">Наукова спадкоємність</p>
+          <h2>Наукова школа О.М. Гузя</h2>
+          <p>
+            О.М. Гузь створив одну з найбільших наукових шкіл України в галузі механіки.
+            Масштаб цієї школи засвідчує підготовка наукових кадрів.
+          </p>
+        </div>
+
+        <div class="guz-school-numbers" aria-label="Підготовка наукових кадрів">
+          <div><strong>40</strong><span>докторів наук</span></div>
+          <div><strong>100+</strong><span>кандидатів наук</span></div>
+        </div>
+
+        <p class="guz-school-people">
+          Серед його учнів — академіки НАН України <strong>Вячеслав Богданов</strong>,
+          <strong>Веніамін Кубенко</strong> і <strong>Володимир Назаренко</strong>; академік НАН
+          Азербайджану Г.Г. Кулієв; члени-кореспонденти НАН України Ю.М. Неміш, І.С. Чернишенко
+          і М.О. Шульга; член-кореспондент НАН Азербайджану С.Д. Акбаров.
+        </p>
+      </section>
+
+      <section class="guz-section panel guz-recognition-section">
+        <div class="guz-recognition-copy">
+          <p class="eyebrow">Визнання</p>
+          <h2>Міжнародне визнання та нагороди</h2>
+          <p>
+            Здобутки О.М. Гузя в науковій, науково-організаційній та науково-педагогічній
+            діяльності відзначено багатьма вітчизняними і міжнародними нагородами.
+          </p>
+          <p>
+            У 1992 році його обрали до Академії Європи (Academia Europaea), у 2002 році — до
+            Європейської академії наук (European Academy of Sciences), а в 1995 році — членом
+            Генеральної асамблеї Міжнародного союзу з теоретичної та прикладної механіки (IUTAM).
+            У 2008 році Європейська академія наук присудила О.М. Гузю Медаль Блеза Паскаля.
+          </p>
+
+          <div class="guz-awards-grid">
+            {guzAwards.map((item) => (
+              <article>
+                <strong>{item.year}</strong>
+                <span>{item.title}</span>
+              </article>
+            ))}
+          </div>
+
+          <details class="guz-details compact">
+            <summary>Інші відзнаки та академічні членства</summary>
+            <div class="guz-details-body">
+              <ul>
+                {guzOtherRecognition.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          </details>
+        </div>
+
+        <figure class="guz-medal-figure">
+          <img
+            src={withBase('/assets/img/history/guz/guz-vernadskyi-medal-2014.webp')}
+            alt="Президент НАН України Б.Є. Патон вручає О.М. Гузю Золоту медаль імені В.І. Вернадського"
+            loading="lazy"
+            width="653"
+            height="458"
+          />
+          <figcaption>
+            Президент НАН України Б.Є. Патон вручає О.М. Гузю Золоту медаль імені В.І. Вернадського
+            НАН України. Травень 2014 року.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="guz-section panel">
+        <div class="guz-section-heading">
+          <p class="eyebrow">Архівні світлини</p>
+          <h2>Фотолітопис</h2>
+        </div>
+
+        <div class="guz-gallery">
+          {galleryItems.map((item) => (
+            <figure>
+              <img src={withBase(item.src)} alt={item.alt} loading="lazy" />
+              <figcaption>{item.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section class="guz-section panel">
+        <div class="guz-section-heading">
+          <p class="eyebrow">Наукові видання</p>
+          <h2>Вибрані праці та монографічні серії</h2>
+          <p>
+            О.М. Гузь є автором 76 монографій, з яких 22 написано без співавторів, і близько
+            1000 наукових публікацій. Серед пізніх праць у ювілейній статті окремо відзначено
+            три монографії; багатотомні фундаментальні серії подано в окремому переліку.
+          </p>
+        </div>
+
+        <div class="guz-works-grid">
+          <section>
+            <h3>Вибрані пізні монографії</h3>
+            <ol>
+              {guzSelectedWorks.map((item) => (
+                <li>
+                  {item.citation}
+                  {item.href && (
+                    <> <a href={item.href} target="_blank" rel="noopener">{item.linkLabel} →</a></>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </section>
+          <section>
+            <h3>Багатотомні серії за редакцією О.М. Гузя</h3>
+            <p class="small-note">
+              Як редактор О.М. Гузь організував їх видання та особисто підготував низку томів.
+            </p>
+            <details class="guz-details compact">
+              <summary>Переглянути перелік</summary>
+              <div class="guz-details-body">
+                <ul>
+                  {guzMultivolumeWorks.map((item) => <li>{item}</li>)}
+                </ul>
+              </div>
+            </details>
+          </section>
+        </div>
+      </section>
+
+      <section class="guz-section guz-sources-section" data-block-tone="neutral">
+        <div class="guz-section-heading">
+          <p class="eyebrow">Джерела</p>
+          <h2>Джерела та зовнішні ресурси</h2>
+        </div>
+
+        <div class="guz-external-links">
+          {guzExternalLinks.map((item) => (
+            <a
+              href={withBase(item.href)}
+              target={item.href.startsWith('http') ? '_blank' : undefined}
+              rel={item.href.startsWith('http') ? 'noopener' : undefined}
+            >
+              {item.label} →
+            </a>
+          ))}
+        </div>
+
+        <article class="guz-primary-source">
+          <p class="eyebrow">Основне джерело цієї сторінки</p>
+          <h3>{guzPrimarySource.title}</h3>
+          <p><strong>{guzPrimarySource.authors}</strong></p>
+          <p>{guzPrimarySource.journal}</p>
+          <a href={guzPrimarySource.href} target="_blank" rel="noopener">
+            DOI: {guzPrimarySource.doi} →
+          </a>
+          <small>
+            Основний текст і архівні світлини сторінки підготовлено за матеріалами цієї публікації.
+            Актуальні відомості про відзнаки звірено з офіційним профілем НАН України.
+          </small>
+        </article>
+      </section>
+
+      <nav class="guz-footer-nav" aria-label="Пов’язані сторінки">
+        <a href={withBase('/history/')}>
+          <span>← Історія і сучасність</span>
+          <small>Історія Інституту та перелік директорів</small>
+        </a>
+        <a href={withBase('/people/guz/')}>
+          <span>Науковий профіль О.М. Гузя →</span>
+          <small>Наукові напрями, підрозділ і бібліографічні профілі</small>
+        </a>
+        <a href={withBase('/departments/01-dynamics-stability/')}>
+          <span>Відділ динаміки та стійкості →</span>
+          <small>Підрозділ, створений О.М. Гузем у 1967 році</small>
+        </a>
+      </nav>
+    </div>
+  </section>
+</BaseLayout>

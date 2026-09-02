@@ -151,6 +151,11 @@ export const guzSelectedWorks = [
     citation: 'Guz A.N. Eight Non-Classical Problems of Fracture Mechanics. Advanced Structured Materials. Vol. 159. Cham: Springer, 2022. XXXIV, 366 p.',
     href: 'https://doi.org/10.1007/978-3-030-77501-8',
     linkLabel: 'DOI'
+  },
+  {
+    citation: 'Guz A.N. Elastic Waves in Bodies with Initial (Residual) Stresses. Transl. J.J. Rushchitsky. Kyiv: Akademperiodyka, 2024. 668 p. ISBN 978-966-360-519-7.',
+    href: 'https://doi.org/10.15407/akademperiodyka.519.668',
+    linkLabel: 'DOI'
   }
 ];
 

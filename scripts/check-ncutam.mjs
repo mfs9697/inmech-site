@@ -119,9 +119,15 @@ const documentPaths = documents.map((record) => field(record, 'path')).filter(Bo
 if (new Set(documentPaths).size !== documentPaths.length) fail('documents: duplicate public path');
 
 for (const mention of media) {
-  const externalUrl = field(mention, 'externalUrl');
-  if (!externalUrl || !/^https?:\/\//.test(externalUrl)) {
-    fail(`media/${mention.id}: missing or invalid externalUrl`);
+  const url = field(mention, 'url');
+  if (!url || !/^https?:\/\//.test(url)) {
+    fail(`media/${mention.id}: missing or invalid url`);
+  }
+  if (!field(mention, 'title') || !field(mention, 'titleEn')) {
+    fail(`media/${mention.id}: missing bilingual title`);
+  }
+  if (!field(mention, 'description') || !field(mention, 'descriptionEn')) {
+    fail(`media/${mention.id}: missing bilingual description`);
   }
 }
 

@@ -116,10 +116,16 @@ const sourceNote = language === 'uk'
   .ncutam-governance section > h2 { margin: 0 0 18px; }
   .governance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
   .governance-grid-leadership { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
-  .governance-card { height: 100%; }
-  .governance-card h3 { margin: 4px 0 6px; font-size: 1.18rem; }
+  .governance-card { height: 100%; min-width: 0; }
+  .governance-card h3 { margin: 4px 0 6px; font-size: 1.18rem; overflow-wrap: anywhere; }
+  .governance-card h3 a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
   .governance-role { margin: 0; color: var(--accent-dark); font-size: 0.8rem; font-weight: 850; letter-spacing: 0.04em; text-transform: uppercase; }
   .governance-meta { margin: 0 0 14px; color: var(--muted); font-size: 0.9rem; }
   .governance-responsibilities { margin: 0; padding-left: 1.15rem; }
   .governance-responsibilities li + li { margin-top: 8px; }
+
+  @media (max-width: 560px) {
+    .governance-grid,
+    .governance-grid-leadership { grid-template-columns: 1fr; }
+  }
 </style>

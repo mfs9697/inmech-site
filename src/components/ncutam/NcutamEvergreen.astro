@@ -1,0 +1,34 @@
+---
+import { getEntry } from 'astro:content';
+import { getEnglishBody, getUkrainianBody, renderBilingualMarkdown } from '../../utils/bilingualBody';
+
+interface Props {
+  pageId: 'about' | 'iutam';
+  language?: 'uk' | 'en';
+}
+
+const { pageId, language = 'uk' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const entry = await getEntry('ncutamPages', pageId);
+const sourceBody = entry?.body ?? '';
+const body = language === 'uk' ? getUkrainianBody(sourceBody) : getEnglishBody(sourceBody);
+const html = renderBilingualMarkdown(body, base);
+---
+
+{entry ? (
+  <article class="panel content-body ncutam-evergreen" set:html={html} />
+) : (
+  <div class="panel">
+    <p>{language === 'uk' ? 'Матеріал не знайдено.' : 'Content not found.'}</p>
+  </div>
+)}
+
+<style>
+  .ncutam-evergreen {
+    max-width: 980px;
+  }
+
+  .ncutam-evergreen :global(h2:first-child) {
+    margin-top: 0;
+  }
+</style>

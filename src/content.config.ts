@@ -1,3 +1,4 @@
+import { readFile, readdir } from 'node:fs/promises';
 import { defineCollection, reference } from 'astro:content';
 import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
@@ -130,7 +131,14 @@ const ncutamInstitutions = defineCollection({
 });
 
 const ncutamMembers = defineCollection({
-  loader: file('./src/data/ncutam/members.yaml'),
+  loader: async () => {
+    const directory = new URL('./data/ncutam/members/', import.meta.url);
+    const files = (await readdir(directory)).filter((name) => name.endsWith('.json')).sort();
+    const batches = await Promise.all(
+      files.map(async (name) => JSON.parse(await readFile(new URL(name, directory), 'utf8')))
+    );
+    return batches.flat();
+  },
   schema: z.object({
     name: z.string(),
     nameEn: z.string(),

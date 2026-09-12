@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NcutamNav from '../../components/NcutamNav.astro';
+import { ncutamSections, ncutamSite } from '../../data/ncutam/site';
+import { site } from '../../data/site';
+
+export function getStaticPaths() {
+  return ncutamSections.map((section) => ({ params: { section: section.id }, props: { section } }));
+}
+
+const { section } = Astro.props as { section: (typeof ncutamSections)[number] };
+---
+
+<BaseLayout title={`${section.title} | ${ncutamSite.acronym} | ${site.shortName}`} description={section.description} activePage="ncutam">
+  <NcutamNav language="uk" active={section.id} />
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">{ncutamSite.acronym}</p>
+        <h1>{section.title}</h1>
+        <p class="lead">{section.description}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="panel ncutam-build-panel">
+        <h2>Розділ підготовлено до міграції даних</h2>
+        <p>
+          Route і навігаційний контекст уже реалізовано. Перевірений зміст та структуровані записи буде додано наступними WP6 content-import batches відповідно до WP5 migration map.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .ncutam-build-panel {
+    max-width: 900px;
+  }
+
+  .ncutam-build-panel h2 {
+    margin-top: 0;
+  }
+
+  .ncutam-build-panel p {
+    margin-bottom: 0;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+</style>

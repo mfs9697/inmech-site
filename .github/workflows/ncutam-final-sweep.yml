@@ -38,7 +38,7 @@ jobs:
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true' EXIT
           sleep 2
-          cat > /tmp/ncutam-sweep.mjs <<'EOF'
+          cat > .ncutam-sweep.mjs <<'EOF'
           import fs from 'node:fs';
           import path from 'node:path';
           import { createRequire } from 'node:module';
@@ -159,7 +159,7 @@ jobs:
           }
           console.log('NCUTAM final browser sweep passed with no blocking visual/mobile/content/accessibility findings.');
           EOF
-          node /tmp/ncutam-sweep.mjs
+          node .ncutam-sweep.mjs
 
       - name: Remove one-shot sweep workflow
         if: success()

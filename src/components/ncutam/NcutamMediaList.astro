@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  language?: 'uk' | 'en';
+}
+
+const { language = 'uk' } = Astro.props;
+const mentions = (await getCollection('ncutamMedia'))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const dateFormatter = new Intl.DateTimeFormat(language === 'uk' ? 'uk-UA' : 'en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric'
+});
+---
+
+{mentions.length > 0 ? (
+  <div class="media-list">
+    {mentions.map((entry) => (
+      <article class="panel media-card" id={entry.id}>
+        <div class="media-meta">
+          <span>{language === 'uk' ? entry.data.source : (entry.data.sourceEn ?? entry.data.source)}</span>
+          <time datetime={entry.data.date.toISOString()}>{dateFormatter.format(entry.data.date)}</time>
+        </div>
+        <h2><a href={entry.data.url} target="_blank" rel="noopener noreferrer">{language === 'uk' ? entry.data.title : entry.data.titleEn}</a></h2>
+        <p>{language === 'uk' ? entry.data.description : entry.data.descriptionEn}</p>
+      </article>
+    ))}
+  </div>
+) : (
+  <div class="panel"><p>{language === 'uk' ? 'Згадок у медіа поки що немає.' : 'No media mentions have been added yet.'}</p></div>
+)}
+
+<style>
+  .media-list { display: grid; gap: 16px; }
+  .media-card { scroll-margin-top: 90px; }
+  .media-card h2 { margin: 8px 0; font-size: 1.15rem; }
+  .media-card p { margin-bottom: 0; color: var(--muted); line-height: 1.65; }
+  .media-meta { display: flex; flex-wrap: wrap; gap: 8px 12px; color: var(--accent-dark); font-size: 0.82rem; font-weight: 750; }
+</style>

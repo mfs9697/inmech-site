@@ -11,9 +11,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
 
 const allDocuments = (await getCollection('ncutamDocuments')).sort((a, b) => {
-  const ay = a.data.date?.getFullYear?.() ?? a.data.year ?? 0;
-  const by = b.data.date?.getFullYear?.() ?? b.data.year ?? 0;
-  return by - ay;
+  const ad = a.data.date?.getTime?.() ?? (a.data.year ? new Date(`${a.data.year}-01-01`).getTime() : 0);
+  const bd = b.data.date?.getTime?.() ?? (b.data.year ? new Date(`${b.data.year}-01-01`).getTime() : 0);
+  return bd - ad;
 });
 
 const documents = view === 'reports'
@@ -21,33 +21,38 @@ const documents = view === 'reports'
   : allDocuments;
 
 const currentDocuments = documents.filter((entry) => entry.data.status === 'current');
-const historicalDocuments = documents.filter((entry) => entry.data.kind !== 'annual-report' && entry.data.status !== 'current');
+const meetingMaterials = documents.filter((entry) => entry.data.kind === 'meeting-material');
+const historicalDocuments = documents.filter((entry) =>
+  entry.data.kind !== 'annual-report' &&
+  entry.data.kind !== 'meeting-material' &&
+  entry.data.status !== 'current'
+);
 const reports = documents.filter((entry) => entry.data.kind === 'annual-report');
 
 const labels = language === 'uk'
   ? {
       current: 'Чинні нормативні документи',
       historical: 'Установчі та історичні документи',
+      meetings: 'Матеріали Загальних зборів',
       reports: 'Річні звіти',
       open: 'Відкрити PDF',
       language: 'Мова документа: українська',
       currentStatus: 'чинний',
       historicalStatus: 'історичний',
       supersededStatus: 'втратив чинність',
-      issuedBy: 'Видавець / орган',
-      year: 'Рік'
+      issuedBy: 'Видавець / орган'
     }
   : {
       current: 'Current governing documents',
       historical: 'Founding and historical documents',
+      meetings: 'General Meeting materials',
       reports: 'Annual reports',
       open: 'Open PDF',
       language: 'Document language: Ukrainian',
       currentStatus: 'current',
       historicalStatus: 'historical',
       supersededStatus: 'superseded',
-      issuedBy: 'Issued by',
-      year: 'Year'
+      issuedBy: 'Issued by'
     };
 
 const statusLabel = (status: string) => {
@@ -74,6 +79,7 @@ const sections = view === 'reports'
   : [
       { title: labels.current, entries: currentDocuments },
       { title: labels.historical, entries: historicalDocuments },
+      { title: labels.meetings, entries: meetingMaterials },
       { title: labels.reports, entries: reports }
     ];
 ---

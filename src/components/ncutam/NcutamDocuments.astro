@@ -100,7 +100,7 @@ const sections = view === 'reports'
             {noteFor(entry) && <p class="document-note">{noteFor(entry)}</p>}
             <div class="document-footer">
               <span class="document-language">{labels.language}</span>
-              <a class="button button-secondary" href={withBase(entry.data.path)} target="_blank" rel="noopener noreferrer">{labels.open}</a>
+              <a class="button secondary" href={withBase(entry.data.path)} target="_blank" rel="noopener noreferrer">{labels.open}</a>
             </div>
           </article>
         ))}
@@ -119,13 +119,15 @@ const sections = view === 'reports'
   .document-status-current { color: var(--accent-dark); }
   .document-status-superseded { color: var(--muted); }
   .document-date { color: var(--muted); font-size: .88rem; white-space: nowrap; }
-  .document-card h3 { margin: 0; font-size: 1.14rem; line-height: 1.35; }
+  .document-card h3 { margin: 0; font-size: 1.14rem; line-height: 1.35; overflow-wrap: anywhere; }
   .document-issuer, .document-note, .document-language { color: var(--muted); font-size: .92rem; line-height: 1.55; }
   .document-issuer, .document-note { margin: 0; }
   .document-footer { margin-top: auto; padding-top: 8px; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
   .document-language { margin: 0; }
+  .document-footer .button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
   @media (max-width: 560px) {
     .document-grid { grid-template-columns: 1fr; }
     .document-card-head, .document-footer { align-items: flex-start; }
+    .document-footer .button { width: 100%; }
   }
 </style>

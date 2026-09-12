@@ -1,5 +1,5 @@
-import { defineCollection } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { defineCollection, reference } from 'astro:content';
+import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 const news = defineCollection({
@@ -14,6 +14,7 @@ const news = defineCollection({
     categoryEn: z.string().optional(),
     tags: z.array(z.string()).default([]),
     tagsEn: z.array(z.string()).optional(),
+    scopes: z.array(z.enum(['institute', 'ncutam'])).default(['institute']),
     image: z.string().optional(),
     imageAlt: z.string().optional(),
     imageAltEn: z.string().optional(),
@@ -117,4 +118,156 @@ const people = defineCollection({
   })
 });
 
-export const collections = { news, departments, people };
+const ncutamInstitutions = defineCollection({
+  loader: file('./src/data/ncutam/institutions.yaml'),
+  schema: z.object({
+    name: z.string(),
+    nameEn: z.string(),
+    city: z.string(),
+    cityEn: z.string(),
+    url: z.string().url().optional()
+  })
+});
+
+const ncutamMembers = defineCollection({
+  loader: file('./src/data/ncutam/members.yaml'),
+  schema: z.object({
+    name: z.string(),
+    nameEn: z.string(),
+    sortName: z.string().optional(),
+    status: z.enum(['active', 'in-memoriam', 'former']),
+    joinedYear: z.number().int().min(1992).optional(),
+    endedYear: z.number().int().min(1992).optional(),
+    institution: reference('ncutamInstitutions').optional(),
+    city: z.string().optional(),
+    cityEn: z.string().optional(),
+    inmechPersonId: z.string().optional(),
+    profiles: z.array(
+      z.object({
+        kind: z.enum(['esu', 'orcid', 'scholar', 'other']).default('other'),
+        label: z.string(),
+        url: z.string().url()
+      })
+    ).default([])
+  })
+});
+
+const ncutamDocuments = defineCollection({
+  loader: file('./src/data/ncutam/documents.yaml'),
+  schema: z.object({
+    title: z.string(),
+    titleEn: z.string(),
+    kind: z.enum([
+      'foundation',
+      'regulation',
+      'resolution',
+      'governance',
+      'annual-report',
+      'meeting-material',
+      'other'
+    ]),
+    date: z.coerce.date().optional(),
+    year: z.number().int().optional(),
+    language: z.enum(['uk', 'en', 'bilingual']),
+    path: z.string(),
+    issuedBy: z.string().optional(),
+    issuedByEn: z.string().optional(),
+    status: z.enum(['current', 'historical', 'superseded']).default('historical'),
+    note: z.string().optional(),
+    noteEn: z.string().optional()
+  })
+});
+
+const ncutamGovernance = defineCollection({
+  loader: file('./src/data/ncutam/governance.yaml'),
+  schema: z.object({
+    member: reference('ncutamMembers'),
+    role: z.enum(['chair', 'deputy-chair', 'scientific-secretary', 'presidium-member']),
+    order: z.number().int(),
+    responsibilities: z.array(z.string()).default([]),
+    responsibilitiesEn: z.array(z.string()).default([]),
+    effectiveFrom: z.coerce.date(),
+    effectiveTo: z.coerce.date().optional(),
+    sourceDocument: reference('ncutamDocuments').optional()
+  })
+});
+
+const ncutamMedia = defineCollection({
+  loader: file('./src/data/ncutam/media.yaml'),
+  schema: z.object({
+    title: z.string(),
+    titleEn: z.string(),
+    source: z.string(),
+    sourceEn: z.string().optional(),
+    date: z.coerce.date(),
+    url: z.string().url(),
+    description: z.string(),
+    descriptionEn: z.string(),
+    relatedActivityId: z.string().optional()
+  })
+});
+
+const ncutamPages = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/ncutam-pages' }),
+  schema: z.object({
+    title: z.string(),
+    titleEn: z.string(),
+    description: z.string(),
+    descriptionEn: z.string(),
+    updated: z.coerce.date().optional(),
+    sourceDocuments: z.array(reference('ncutamDocuments')).default([])
+  })
+});
+
+const ncutamActivities = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/ncutam-activity' }),
+  schema: z.object({
+    type: z.enum(['meeting', 'conference', 'initiative', 'international']),
+    title: z.string(),
+    titleEn: z.string(),
+    summary: z.string(),
+    summaryEn: z.string(),
+    date: z.coerce.date(),
+    endDate: z.coerce.date().optional(),
+    ongoing: z.boolean().default(false),
+    location: z.string().optional(),
+    locationEn: z.string().optional(),
+    committeeRole: z.string().optional(),
+    committeeRoleEn: z.string().optional(),
+    featured: z.boolean().default(false),
+    image: z.string().optional(),
+    imageAlt: z.string().optional(),
+    imageAltEn: z.string().optional(),
+    gallery: z.array(
+      z.object({
+        src: z.string(),
+        alt: z.string(),
+        altEn: z.string().optional(),
+        caption: z.string().optional(),
+        captionEn: z.string().optional()
+      })
+    ).default([]),
+    documents: z.array(reference('ncutamDocuments')).default([]),
+    relatedNews: z.array(reference('news')).default([]),
+    externalLinks: z.array(
+      z.object({
+        label: z.string(),
+        labelEn: z.string().optional(),
+        url: z.string().url()
+      })
+    ).default([])
+  })
+});
+
+export const collections = {
+  news,
+  departments,
+  people,
+  ncutamPages,
+  ncutamActivities,
+  ncutamInstitutions,
+  ncutamMembers,
+  ncutamGovernance,
+  ncutamDocuments,
+  ncutamMedia
+};

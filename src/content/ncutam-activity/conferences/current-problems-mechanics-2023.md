@@ -8,6 +8,40 @@ date: 2023-11-14
 endDate: 2023-11-16
 location: "Київ, Дніпро, Львів, Харків / змішаний формат"
 locationEn: "Kyiv, Dnipro, Lviv and Kharkiv / hybrid format"
+image: "/images/ncutam/conferences/current-problems-mechanics-2023/01.jpg"
+imageAlt: "Фотографія з конференції «Актуальні проблеми механіки – 2023»"
+imageAltEn: "Photograph from the Current Problems in Mechanics 2023 conference"
+gallery:
+  - src: "/images/ncutam/conferences/current-problems-mechanics-2023/01.jpg"
+    alt: "Фотографія з конференції «Актуальні проблеми механіки – 2023»"
+    altEn: "Photograph from the Current Problems in Mechanics 2023 conference"
+  - src: "/images/ncutam/conferences/current-problems-mechanics-2023/02.jpg"
+    alt: "Фотографія з конференції «Актуальні проблеми механіки – 2023»"
+    altEn: "Photograph from the Current Problems in Mechanics 2023 conference"
+  - src: "/images/ncutam/conferences/current-problems-mechanics-2023/03.jpg"
+    alt: "Фотографія з конференції «Актуальні проблеми механіки – 2023»"
+    altEn: "Photograph from the Current Problems in Mechanics 2023 conference"
+  - src: "/images/ncutam/conferences/current-problems-mechanics-2023/04.jpg"
+    alt: "Фотографія з конференції «Актуальні проблеми механіки – 2023»"
+    altEn: "Photograph from the Current Problems in Mechanics 2023 conference"
+  - src: "/images/ncutam/conferences/current-problems-mechanics-2023/05.jpg"
+    alt: "Фотографія з конференції «Актуальні проблеми механіки – 2023»"
+    altEn: "Photograph from the Current Problems in Mechanics 2023 conference"
+  - src: "/images/ncutam/conferences/current-problems-mechanics-2023/06.jpg"
+    alt: "Фотографія з конференції «Актуальні проблеми механіки – 2023»"
+    altEn: "Photograph from the Current Problems in Mechanics 2023 conference"
+  - src: "/images/ncutam/conferences/current-problems-mechanics-2023/07.jpg"
+    alt: "Фотографія з конференції «Актуальні проблеми механіки – 2023»"
+    altEn: "Photograph from the Current Problems in Mechanics 2023 conference"
+  - src: "/images/ncutam/conferences/current-problems-mechanics-2023/08.jpg"
+    alt: "Фотографія з конференції «Актуальні проблеми механіки – 2023»"
+    altEn: "Photograph from the Current Problems in Mechanics 2023 conference"
+  - src: "/images/ncutam/conferences/current-problems-mechanics-2023/09.jpg"
+    alt: "Фотографія з конференції «Актуальні проблеми механіки – 2023»"
+    altEn: "Photograph from the Current Problems in Mechanics 2023 conference"
+  - src: "/images/ncutam/conferences/current-problems-mechanics-2023/10.jpg"
+    alt: "Фотографія з конференції «Актуальні проблеми механіки – 2023»"
+    altEn: "Photograph from the Current Problems in Mechanics 2023 conference"
 externalLinks:
   - label: "Повідомлення НАН України про конференцію"
     labelEn: "NAS of Ukraine report on the conference"
@@ -19,8 +53,6 @@ externalLinks:
 
 Пленарна частина дня відкриття проходила у Великому конференц-залі НАН України в Києві. Під час відкриття голова НКУТПМ академік НАН України Вячеслав Богданов також вручив дипломи новообраним членам Комітету.
 
-Оригінальну фотогалерею legacy-сайту буде підключено після перенесення вихідних зображень без Publii thumbnails.
-
 <!-- en:start -->
 
 The International Scientific Conference **Current Problems in Mechanics 2023** was held on 14–16 November 2023 in a hybrid format. The National Committee of Ukraine for Theoretical and Applied Mechanics was among the organizers together with Ukrainian research and educational institutions.
@@ -28,7 +60,5 @@ The International Scientific Conference **Current Problems in Mechanics 2023** w
 The conference marked the 145th anniversary of **Academician Stepan Prokopovych Timoshenko**. According to the Committee’s archival record, more than 200 presentations by over 400 authors were included, with more than 30 international participants. The programme was organized into 11 sections and comprised 21 sessions.
 
 The opening-day plenary programme was held in the Grand Conference Hall of the NAS of Ukraine in Kyiv. During the opening, NCUTAM Chair Academician Viacheslav Bogdanov also presented certificates to newly elected Committee members.
-
-The original legacy-site photo gallery will be attached after migration of the source images without Publii-generated thumbnails.
 
 <!-- en:end -->

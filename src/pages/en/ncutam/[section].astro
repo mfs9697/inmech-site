@@ -1,6 +1,8 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
 import NcutamNav from '../../../components/NcutamNav.astro';
+import NewsCardEn from '../../../components/NewsCardEn.astro';
 import { ncutamSections, ncutamSite } from '../../../data/ncutam/site';
 import { siteEn } from '../../../data/site-en';
 
@@ -9,6 +11,12 @@ export function getStaticPaths() {
 }
 
 const { section } = Astro.props as { section: (typeof ncutamSections)[number] };
+const isNews = section.id === 'news';
+const ncutamNews = isNews
+  ? (await getCollection('news'))
+      .filter((entry) => entry.data.scopes.includes('ncutam'))
+      .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  : [];
 ---
 
 <BaseLayoutEn title={`${section.titleEn} | ${ncutamSite.acronymEn} | ${siteEn.shortName}`} description={section.descriptionEn} activePage="ncutam">
@@ -26,12 +34,24 @@ const { section } = Astro.props as { section: (typeof ncutamSections)[number] };
 
   <section class="section">
     <div class="container">
-      <div class="panel ncutam-build-panel">
-        <h2>Section ready for content migration</h2>
-        <p>
-          The route and navigation context are now implemented. Verified content and structured records will be added in the next WP6 content-import batches according to the WP5 migration map.
-        </p>
-      </div>
+      {isNews ? (
+        ncutamNews.length > 0 ? (
+          <div class="news-list">
+            {ncutamNews.map((entry) => <NewsCardEn entry={entry} />)}
+          </div>
+        ) : (
+          <div class="panel ncutam-build-panel">
+            <h2>No NCUTAM news has been added yet</h2>
+          </div>
+        )
+      ) : (
+        <div class="panel ncutam-build-panel">
+          <h2>Section ready for content migration</h2>
+          <p>
+            The route and navigation context are now implemented. Verified content and structured records will be added in the next WP6 content-import batches according to the WP5 migration map.
+          </p>
+        </div>
+      )}
     </div>
   </section>
 </BaseLayoutEn>

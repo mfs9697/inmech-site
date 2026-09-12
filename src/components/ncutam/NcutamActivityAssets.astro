@@ -1,0 +1,144 @@
+---
+import { getEntries } from 'astro:content';
+
+interface GalleryItem {
+  src: string;
+  alt: string;
+  altEn?: string;
+  caption?: string;
+  captionEn?: string;
+}
+
+interface Props {
+  language?: 'uk' | 'en';
+  gallery?: GalleryItem[];
+  documents?: any[];
+}
+
+const { language = 'uk', gallery = [], documents = [] } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+const resolvedDocuments = documents.length > 0 ? await getEntries(documents) : [];
+
+const labels = language === 'uk'
+  ? {
+      gallery: 'Фотогалерея',
+      materials: 'Матеріали',
+      open: 'Відкрити PDF',
+      language: 'Документ українською мовою',
+      imageLink: 'Відкрити фотографію у повному розмірі'
+    }
+  : {
+      gallery: 'Photo gallery',
+      materials: 'Materials',
+      open: 'Open PDF',
+      language: 'Document in Ukrainian',
+      imageLink: 'Open full-size photograph'
+    };
+
+const documentTitle = (entry: (typeof resolvedDocuments)[number]) =>
+  language === 'uk' ? entry.data.title : entry.data.titleEn;
+const documentNote = (entry: (typeof resolvedDocuments)[number]) =>
+  language === 'uk' ? entry.data.note : entry.data.noteEn;
+---
+
+{gallery.length > 0 && (
+  <section class="activity-assets" aria-labelledby="activity-gallery-heading">
+    <h2 id="activity-gallery-heading">{labels.gallery}</h2>
+    <div class="activity-gallery">
+      {gallery.map((item) => {
+        const alt = language === 'uk' ? item.alt : (item.altEn ?? item.alt);
+        const caption = language === 'uk' ? item.caption : (item.captionEn ?? item.caption);
+        return (
+          <figure class="activity-gallery-item">
+            <a href={withBase(item.src)} target="_blank" rel="noopener noreferrer" aria-label={labels.imageLink}>
+              <img src={withBase(item.src)} alt={alt} loading="lazy" decoding="async" />
+            </a>
+            {caption && <figcaption>{caption}</figcaption>}
+          </figure>
+        );
+      })}
+    </div>
+  </section>
+)}
+
+{resolvedDocuments.length > 0 && (
+  <section class="activity-assets" aria-labelledby="activity-materials-heading">
+    <h2 id="activity-materials-heading">{labels.materials}</h2>
+    <div class="activity-materials">
+      {resolvedDocuments.map((entry) => (
+        <article class="panel activity-material-card">
+          <h3>{documentTitle(entry)}</h3>
+          {documentNote(entry) && <p>{documentNote(entry)}</p>}
+          <div class="activity-material-footer">
+            <span>{labels.language}</span>
+            <a class="button button-secondary" href={withBase(entry.data.path)} target="_blank" rel="noopener noreferrer">{labels.open}</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  .activity-assets { margin-top: 30px; }
+  .activity-assets > h2 { margin: 0 0 16px; }
+  .activity-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+  }
+  .activity-gallery-item {
+    margin: 0;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .activity-gallery-item a {
+    display: flex;
+    min-height: 220px;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface-soft, #f4f5f7);
+  }
+  .activity-gallery-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+    object-fit: contain;
+  }
+  .activity-gallery-item figcaption {
+    padding: 10px 12px 12px;
+    color: var(--muted);
+    font-size: .9rem;
+    line-height: 1.5;
+  }
+  .activity-materials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .activity-material-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+  }
+  .activity-material-card h3 { margin: 0; font-size: 1.05rem; line-height: 1.4; }
+  .activity-material-card p { margin: 0; color: var(--muted); line-height: 1.55; }
+  .activity-material-footer {
+    margin-top: auto;
+    padding-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .activity-material-footer span { color: var(--muted); font-size: .88rem; }
+  @media (max-width: 560px) {
+    .activity-gallery, .activity-materials { grid-template-columns: 1fr; }
+  }
+</style>

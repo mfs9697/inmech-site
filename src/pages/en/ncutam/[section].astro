@@ -1,0 +1,53 @@
+---
+import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
+import NcutamNav from '../../../components/NcutamNav.astro';
+import { ncutamSections, ncutamSite } from '../../../data/ncutam/site';
+import { siteEn } from '../../../data/site-en';
+
+export function getStaticPaths() {
+  return ncutamSections.map((section) => ({ params: { section: section.id }, props: { section } }));
+}
+
+const { section } = Astro.props as { section: (typeof ncutamSections)[number] };
+---
+
+<BaseLayoutEn title={`${section.titleEn} | ${ncutamSite.acronymEn} | ${siteEn.shortName}`} description={section.descriptionEn} activePage="ncutam">
+  <NcutamNav language="en" active={section.id} />
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">{ncutamSite.acronymEn}</p>
+        <h1>{section.titleEn}</h1>
+        <p class="lead">{section.descriptionEn}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="panel ncutam-build-panel">
+        <h2>Section ready for content migration</h2>
+        <p>
+          The route and navigation context are now implemented. Verified content and structured records will be added in the next WP6 content-import batches according to the WP5 migration map.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayoutEn>
+
+<style>
+  .ncutam-build-panel {
+    max-width: 900px;
+  }
+
+  .ncutam-build-panel h2 {
+    margin-top: 0;
+  }
+
+  .ncutam-build-panel p {
+    margin-bottom: 0;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+</style>

@@ -1,0 +1,58 @@
+name: NCUTAM final accessibility fixes
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout feature branch
+        uses: actions/checkout@v5
+        with:
+          ref: feat/ncutam-wp6-infrastructure
+          fetch-depth: 0
+
+      - name: Apply audited accessibility fixes
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          global_css = Path('src/styles/global.css')
+          text = global_css.read_text()
+          old = '''.eyebrow {\n  margin: 0 0 12px;\n  color: var(--gold);'''
+          new = '''.eyebrow {\n  margin: 0 0 12px;\n  color: var(--accent-dark);'''
+          if old not in text:
+              raise SystemExit('Expected .eyebrow token not found')
+          global_css.write_text(text.replace(old, new, 1))
+
+          for filename in ['src/pages/ncutam/index.astro', 'src/pages/en/ncutam/index.astro']:
+              path = Path(filename)
+              text = path.read_text()
+              old = '<section class="section" id="contacts" aria-labelledby="ncutam-contacts-heading">'
+              new = '<section class="section" id="ncutam-contacts" aria-labelledby="ncutam-contacts-heading">'
+              if old not in text:
+                  raise SystemExit(f'Expected NCUTAM contacts anchor not found in {filename}')
+              path.write_text(text.replace(old, new, 1))
+
+          header = Path('src/components/Header.astro')
+          text = header.read_text()
+          marker = '''  .primary-nav .submenu {\n    z-index: 1100;\n  }'''
+          replacement = '''  .primary-nav .submenu {\n    z-index: 1100;\n  }\n\n  .primary-nav .search-nav-link {\n    color: var(--accent-dark);\n  }'''
+          if marker not in text:
+              raise SystemExit('Expected Header submenu style marker not found')
+          header.write_text(text.replace(marker, replacement, 1))
+          PY
+
+      - name: Commit fixes and remove one-shot workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/styles/global.css src/components/Header.astro src/pages/ncutam/index.astro src/pages/en/ncutam/index.astro
+          git rm .github/workflows/ncutam-final-fixes.yml
+          git commit -m "Fix final NCUTAM accessibility findings"
+          git push origin HEAD:feat/ncutam-wp6-infrastructure

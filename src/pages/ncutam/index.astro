@@ -38,12 +38,15 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
     </div>
   </section>
 
-  <section class="section" id="contacts">
+  <section class="section" id="contacts" aria-labelledby="ncutam-contacts-heading">
     <div class="container">
       <div class="panel ncutam-contact-panel">
         <p class="eyebrow">Базова організація</p>
-        <h2>Інститут механіки ім. С.П. Тимошенка НАН України</h2>
-        <p>Контактні дані Комітету буде перенесено з перевіреного поточного запису під час content-import batch.</p>
+        <h2 id="ncutam-contacts-heading">Інститут механіки ім. С.П. Тимошенка НАН України</h2>
+        <address>
+          <p>03057 Київ, Україна, вул. Нестерова, 3</p>
+          <p>Email: <a href="mailto:natcommmech@nas.gov.ua">natcommmech@nas.gov.ua</a> · <a href="mailto:mfs@ukr.net">mfs@ukr.net</a></p>
+        </address>
       </div>
     </div>
   </section>
@@ -78,6 +81,14 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
     margin-bottom: 0;
     color: var(--muted);
     line-height: 1.65;
+  }
+
+  .ncutam-contact-panel address {
+    font-style: normal;
+  }
+
+  .ncutam-contact-panel address p + p {
+    margin-top: 8px;
   }
 
   @media (max-width: 760px) {

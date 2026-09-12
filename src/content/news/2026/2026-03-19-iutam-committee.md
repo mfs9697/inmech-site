@@ -8,6 +8,7 @@ category: "Міжнародна співпраця"
 categoryEn: "International cooperation"
 tags: ["IUTAM", "НКУТПМ", "міжнародна діяльність"]
 tagsEn: ["IUTAM", "National Committee", "international activity"]
+scopes: ["institute", "ncutam"]
 year: 2026
 featured: true
 ---

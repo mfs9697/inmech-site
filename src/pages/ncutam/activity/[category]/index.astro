@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import NcutamNav from '../../../../components/NcutamNav.astro';
+import NcutamActivityList from '../../../../components/ncutam/NcutamActivityList.astro';
+import { ncutamSite } from '../../../../data/ncutam/site';
+import { site } from '../../../../data/site';
+
+const categories = [
+  { slug: 'meetings', type: 'meeting', title: 'Загальні збори', description: 'Архів Загальних зборів Національного комітету та їхніх рішень.' },
+  { slug: 'conferences', type: 'conference', title: 'Конференції', description: 'Конференції, співорганізовані або підтримані Національним комітетом.' },
+  { slug: 'initiatives', type: 'initiative', title: 'Експертні ініціативи', description: 'Сталі записи експертних та суспільно значущих ініціатив Комітету.' },
+  { slug: 'international', type: 'international', title: 'Міжнародна діяльність', description: 'Датовані записи міжнародного представництва і взаємодії НКУТПМ.' }
+] as const;
+
+export function getStaticPaths() {
+  return categories.map((category) => ({ params: { category: category.slug }, props: { category } }));
+}
+
+const { category } = Astro.props as { category: (typeof categories)[number] };
+---
+
+<BaseLayout title={`${category.title} | ${ncutamSite.acronym} | ${site.shortName}`} description={category.description} activePage="ncutam">
+  <NcutamNav language="uk" active="activity" />
+  <section class="page-hero">
+    <div class="container"><div class="panel"><p class="eyebrow">{ncutamSite.acronym} · Діяльність</p><h1>{category.title}</h1><p class="lead">{category.description}</p></div></div>
+  </section>
+  <section class="section"><div class="container"><NcutamActivityList language="uk" type={category.type} /></div></section>
+</BaseLayout>

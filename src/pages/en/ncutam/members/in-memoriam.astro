@@ -1,0 +1,30 @@
+---
+import BaseLayoutEn from '../../../../layouts/BaseLayoutEn.astro';
+import NcutamNav from '../../../../components/NcutamNav.astro';
+import NcutamMembers from '../../../../components/ncutam/NcutamMembers.astro';
+import { ncutamSite } from '../../../../data/ncutam/site';
+import { siteEn } from '../../../../data/site-en';
+
+const title = 'In memoriam';
+const description = 'Memorial register of scholars who served as members of the National Committee of Ukraine on Theoretical and Applied Mechanics.';
+---
+
+<BaseLayoutEn title={`${title} | ${ncutamSite.acronymEn} | ${siteEn.shortName}`} description={description} activePage="ncutam">
+  <NcutamNav language="en" active="members" />
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">{ncutamSite.acronymEn}</p>
+        <h1>{title}</h1>
+        <p class="lead">{description}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <NcutamMembers language="en" status="in-memoriam" />
+    </div>
+  </section>
+</BaseLayoutEn>

@@ -61,6 +61,7 @@ export const siteRoutes: SiteRoute[] = [
   { uk: '/ncutam/about/', en: '/en/ncutam/about/', titleUk: 'Про Комітет', titleEn: 'About', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
   { uk: '/ncutam/governance/', en: '/en/ncutam/governance/', titleUk: 'Керівництво і Президія', titleEn: 'Governance', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
   { uk: '/ncutam/members/', en: '/en/ncutam/members/', titleUk: 'Члени', titleEn: 'Members', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
+  { uk: '/ncutam/members/in-memoriam/', en: '/en/ncutam/members/in-memoriam/', titleUk: 'Пам’ять', titleEn: 'In memoriam', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM', includeInHtmlSitemap: false },
   { uk: '/ncutam/activity/', en: '/en/ncutam/activity/', titleUk: 'Діяльність', titleEn: 'Activities', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
   { uk: '/ncutam/activity/meetings/', en: '/en/ncutam/activity/meetings/', titleUk: 'Загальні збори', titleEn: 'General Meetings', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM', includeInHtmlSitemap: false },
   { uk: '/ncutam/activity/conferences/', en: '/en/ncutam/activity/conferences/', titleUk: 'Конференції', titleEn: 'Conferences', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM', includeInHtmlSitemap: false },
@@ -68,6 +69,7 @@ export const siteRoutes: SiteRoute[] = [
   { uk: '/ncutam/activity/international/', en: '/en/ncutam/activity/international/', titleUk: 'Міжнародна діяльність', titleEn: 'International activity', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM', includeInHtmlSitemap: false },
   { uk: '/ncutam/activity/media/', en: '/en/ncutam/activity/media/', titleUk: 'Медіа про НКУТПМ', titleEn: 'NCUTAM in the media', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM', includeInHtmlSitemap: false },
   { uk: '/ncutam/documents/', en: '/en/ncutam/documents/', titleUk: 'Документи', titleEn: 'Documents', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
+  { uk: '/ncutam/documents/reports/', en: '/en/ncutam/documents/reports/', titleUk: 'Річні звіти', titleEn: 'Annual reports', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM', includeInHtmlSitemap: false },
   { uk: '/ncutam/iutam/', en: '/en/ncutam/iutam/', titleUk: 'IUTAM', titleEn: 'IUTAM', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
   { uk: '/ncutam/news/', en: '/en/ncutam/news/', titleUk: 'Новини НКУТПМ', titleEn: 'NCUTAM news', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
 

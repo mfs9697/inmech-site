@@ -5,18 +5,21 @@ import NcutamActivityList from '../../../../components/ncutam/NcutamActivityList
 import { ncutamSite } from '../../../../data/ncutam/site';
 import { site } from '../../../../data/site';
 
-const categories = [
-  { slug: 'meetings', type: 'meeting', title: 'Загальні збори', description: 'Архів Загальних зборів Національного комітету та їхніх рішень.' },
-  { slug: 'conferences', type: 'conference', title: 'Конференції', description: 'Конференції, співорганізовані або підтримані Національним комітетом.' },
-  { slug: 'initiatives', type: 'initiative', title: 'Експертні ініціативи', description: 'Сталі записи експертних та суспільно значущих ініціатив Комітету.' },
-  { slug: 'international', type: 'international', title: 'Міжнародна діяльність', description: 'Датовані записи міжнародного представництва і взаємодії НКУТПМ.' }
-] as const;
+type ActivityType = 'meeting' | 'conference' | 'initiative' | 'international';
+type Category = { slug: string; type: ActivityType; title: string; description: string };
 
 export function getStaticPaths() {
+  const categories: Category[] = [
+    { slug: 'meetings', type: 'meeting', title: 'Загальні збори', description: 'Архів Загальних зборів Національного комітету та їхніх рішень.' },
+    { slug: 'conferences', type: 'conference', title: 'Конференції', description: 'Конференції, співорганізовані або підтримані Національним комітетом.' },
+    { slug: 'initiatives', type: 'initiative', title: 'Експертні ініціативи', description: 'Сталі записи експертних та суспільно значущих ініціатив Комітету.' },
+    { slug: 'international', type: 'international', title: 'Міжнародна діяльність', description: 'Датовані записи міжнародного представництва і взаємодії НКУТПМ.' }
+  ];
+
   return categories.map((category) => ({ params: { category: category.slug }, props: { category } }));
 }
 
-const { category } = Astro.props as { category: (typeof categories)[number] };
+const { category } = Astro.props as { category: Category };
 ---
 
 <BaseLayout title={`${category.title} | ${ncutamSite.acronym} | ${site.shortName}`} description={category.description} activePage="ncutam">

@@ -5,18 +5,21 @@ import NcutamActivityList from '../../../../../components/ncutam/NcutamActivityL
 import { ncutamSite } from '../../../../../data/ncutam/site';
 import { siteEn } from '../../../../../data/site-en';
 
-const categories = [
-  { slug: 'meetings', type: 'meeting', title: 'General Meetings', description: 'Archive of National Committee General Meetings and their decisions.' },
-  { slug: 'conferences', type: 'conference', title: 'Conferences', description: 'Conferences co-organized or supported by the National Committee.' },
-  { slug: 'initiatives', type: 'initiative', title: 'Expert initiatives', description: 'Durable records of the Committee’s expert and societally significant initiatives.' },
-  { slug: 'international', type: 'international', title: 'International activity', description: 'Dated records of NCUTAM international representation and cooperation.' }
-] as const;
+type ActivityType = 'meeting' | 'conference' | 'initiative' | 'international';
+type Category = { slug: string; type: ActivityType; title: string; description: string };
 
 export function getStaticPaths() {
+  const categories: Category[] = [
+    { slug: 'meetings', type: 'meeting', title: 'General Meetings', description: 'Archive of National Committee General Meetings and their decisions.' },
+    { slug: 'conferences', type: 'conference', title: 'Conferences', description: 'Conferences co-organized or supported by the National Committee.' },
+    { slug: 'initiatives', type: 'initiative', title: 'Expert initiatives', description: 'Durable records of the Committee’s expert and societally significant initiatives.' },
+    { slug: 'international', type: 'international', title: 'International activity', description: 'Dated records of NCUTAM international representation and cooperation.' }
+  ];
+
   return categories.map((category) => ({ params: { category: category.slug }, props: { category } }));
 }
 
-const { category } = Astro.props as { category: (typeof categories)[number] };
+const { category } = Astro.props as { category: Category };
 ---
 
 <BaseLayoutEn title={`${category.title} | ${ncutamSite.acronymEn} | ${siteEn.shortName}`} description={category.description} activePage="ncutam">

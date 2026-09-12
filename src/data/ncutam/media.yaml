@@ -1,1 +1,61 @@
-[]
+- id: dnu-recognition-membership-2023-12-04
+  title: "Високе визнання наукової спільноти ДНУ та нові члени Національного комітету"
+  titleEn: "Recognition of the DNU scientific community and new National Committee members"
+  source: "Дніпровський національний університет імені Олеся Гончара"
+  sourceEn: "Oles Honchar Dnipro National University"
+  date: 2023-12-04
+  url: "https://www.dnu.dp.ua/newsprint/5416"
+  description: "Матеріал ДНУ про відзнаку Президії НАН України та обрання п’ятьох науковців університету до складу НКУТПМ."
+  descriptionEn: "DNU coverage of recognition by the Presidium of the NAS of Ukraine and the election of five university researchers to NCUTAM."
+
+- id: knuba-membership-2023-12-16
+  title: "Планове щорічне засідання Національного комітету: представництво КНУБА"
+  titleEn: "Annual National Committee meeting: KNUCA representation"
+  source: "Київський національний університет будівництва і архітектури"
+  sourceEn: "Kyiv National University of Construction and Architecture"
+  date: 2023-12-16
+  url: "https://www.knuba.edu.ua/planove-shhorichne-zasidannya-naczionalnogo-komitetu-ukrayiny-z-teoretychnoyi-i-prykladnoyi-mehaniky/"
+  description: "Матеріал КНУБА про результати засідання Комітету та обрання представників кафедри будівельної механіки до складу НКУТПМ."
+  descriptionEn: "KNUCA coverage of a Committee meeting and the election of representatives of its structural mechanics department to NCUTAM."
+
+- id: ntu-khpi-shmatko-2026-01-27
+  title: "Професорку НТУ «ХПІ» Тетяну Шматко обрано до складу Національного комітету"
+  titleEn: "NTU KhPI Professor Tetiana Shmatko elected to the National Committee"
+  source: "Національний технічний університет «Харківський політехнічний інститут»"
+  sourceEn: "National Technical University Kharkiv Polytechnic Institute"
+  date: 2026-01-26
+  url: "https://www.kpi.kharkov.ua/ukr/2026/01/26/profesorku-hpi-obrano-chlenkyneyu-natsionalnogo-komitetu-ukrayiny-z-teoretychnoyi-i-prykladnoyi-mehaniky/"
+  description: "Повідомлення НТУ «ХПІ» про обрання професорки Тетяни Шматко членом НКУТПМ."
+  descriptionEn: "NTU KhPI report on the election of Professor Tetiana Shmatko as a member of NCUTAM."
+
+- id: nasu-bogdanov-interview-2026-02-21
+  title: "«Механіка — надзвичайно важлива, але дуже недооцінена в Україні наука»: інтерв’ю Вячеслава Богданова"
+  titleEn: "Mechanics is extremely important but greatly undervalued in Ukraine: interview with Viacheslav Bogdanov"
+  source: "Національна академія наук України"
+  sourceEn: "National Academy of Sciences of Ukraine"
+  date: 2026-02-20
+  url: "https://www.nas.gov.ua/news/pershiy-viceprezident-nan-ukrani-akademik-vyacheslav-bogdanov-mehanika--nadzvichayno-vazhliva-ale-duzhe-nedoocinena-v-ukrani-nauka"
+  description: "Інтерв’ю голови НКУТПМ академіка Вячеслава Богданова про стан української механіки, діяльність Комітету та роль механіки у відбудові й безпеці держави."
+  descriptionEn: "Interview with NCUTAM Chair Academician Viacheslav Bogdanov on the state of mechanics in Ukraine, the Committee’s work, and the role of mechanics in reconstruction and national safety."
+
+- id: unian-paton-bridge-2026-02-26
+  title: "Науковці попередили про критичний стан мосту Патона"
+  titleEn: "Researchers warned about the critical condition of the Paton Bridge"
+  source: "УНІАН"
+  sourceEn: "UNIAN"
+  date: 2026-02-25
+  url: "https://www.unian.ua/economics/transport/mist-patona-v-kiyevi-naukovci-poperedili-pro-fatalni-naslidki-novini-kiyeva-13297134.html"
+  description: "Матеріал УНІАН про звернення НКУТПМ до влади із закликом невідкладно розпочати капітальний ремонт мосту Патона."
+  descriptionEn: "UNIAN coverage of NCUTAM’s appeal urging the authorities to begin major repairs of the Paton Bridge without delay."
+  relatedActivityId: "initiatives/paton-bridge"
+
+- id: liga-paton-bridge-2026-03-25
+  title: "«Загроза руйнування реальна»: заклик розпочати ремонт мосту Патона"
+  titleEn: "Risk of collapse is real: call to begin repairs of the Paton Bridge"
+  source: "LIGA.net"
+  sourceEn: "LIGA.net"
+  date: 2026-03-25
+  url: "https://biz.liga.net/ua/all/nedvizhimost/novosti/zahroza-ruynuvannia-realna-akademiia-nauk-zaklykala-pochaty-remont-mostu-patona"
+  description: "Матеріал LIGA.net про експертну позицію НКУТПМ щодо технічного стану мосту Патона та необхідності капітального ремонту."
+  descriptionEn: "LIGA.net coverage of NCUTAM’s expert assessment of the Paton Bridge and the need for major repairs."
+  relatedActivityId: "initiatives/paton-bridge"

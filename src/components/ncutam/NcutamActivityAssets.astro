@@ -51,7 +51,7 @@ const documentNote = (entry: (typeof resolvedDocuments)[number]) =>
         const caption = language === 'uk' ? item.caption : (item.captionEn ?? item.caption);
         return (
           <figure class="activity-gallery-item">
-            <a href={withBase(item.src)} target="_blank" rel="noopener noreferrer" aria-label={labels.imageLink}>
+            <a href={withBase(item.src)} target="_blank" rel="noopener noreferrer" aria-label={`${labels.imageLink}: ${alt}`}>
               <img src={withBase(item.src)} alt={alt} loading="lazy" decoding="async" />
             </a>
             {caption && <figcaption>{caption}</figcaption>}
@@ -72,7 +72,7 @@ const documentNote = (entry: (typeof resolvedDocuments)[number]) =>
           {documentNote(entry) && <p>{documentNote(entry)}</p>}
           <div class="activity-material-footer">
             <span>{labels.language}</span>
-            <a class="button button-secondary" href={withBase(entry.data.path)} target="_blank" rel="noopener noreferrer">{labels.open}</a>
+            <a class="button secondary" href={withBase(entry.data.path)} target="_blank" rel="noopener noreferrer">{labels.open}</a>
           </div>
         </article>
       ))}
@@ -102,6 +102,11 @@ const documentNote = (entry: (typeof resolvedDocuments)[number]) =>
     justify-content: center;
     background: var(--surface-soft, #f4f5f7);
   }
+  .activity-gallery-item a:focus-visible,
+  .activity-material-footer .button:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: -3px;
+  }
   .activity-gallery-item img {
     display: block;
     width: 100%;
@@ -126,7 +131,7 @@ const documentNote = (entry: (typeof resolvedDocuments)[number]) =>
     gap: 10px;
     height: 100%;
   }
-  .activity-material-card h3 { margin: 0; font-size: 1.05rem; line-height: 1.4; }
+  .activity-material-card h3 { margin: 0; font-size: 1.05rem; line-height: 1.4; overflow-wrap: anywhere; }
   .activity-material-card p { margin: 0; color: var(--muted); line-height: 1.55; }
   .activity-material-footer {
     margin-top: auto;
@@ -140,5 +145,7 @@ const documentNote = (entry: (typeof resolvedDocuments)[number]) =>
   .activity-material-footer span { color: var(--muted); font-size: .88rem; }
   @media (max-width: 560px) {
     .activity-gallery, .activity-materials { grid-template-columns: 1fr; }
+    .activity-gallery-item a { min-height: 0; }
+    .activity-material-footer .button { width: 100%; }
   }
 </style>

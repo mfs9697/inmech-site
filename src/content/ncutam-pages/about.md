@@ -2,7 +2,7 @@
 title: "Про Комітет"
 titleEn: "About NCUTAM"
 description: "Статус, мандат, історія та базова організація Національного комітету України з теоретичної і прикладної механіки."
-descriptionEn: "Status, mandate, history and base organization of the National Committee of Ukraine for Theoretical and Applied Mechanics."
+descriptionEn: "Status, mandate, history and host institution of the National Committee of Ukraine for Theoretical and Applied Mechanics."
 updated: 2026-09-12
 ---
 Національний комітет України з теоретичної і прикладної механіки є самостійним колегіальним науково-координаційним органом, діяльність якого спрямовується Національною академією наук України. Комітет об’єднує фахівців з різних установ і закладів вищої освіти для розвитку досліджень у галузі механіки та суміжних наук.
@@ -27,19 +27,19 @@ updated: 2026-09-12
 
 <!-- en:start -->
 
-The National Committee of Ukraine for Theoretical and Applied Mechanics is an autonomous collegial scientific-coordination body whose activities are guided by the National Academy of Sciences of Ukraine. It brings together specialists from research institutions and higher-education institutions to support the development of mechanics and related sciences.
+The National Committee of Ukraine for Theoretical and Applied Mechanics is an autonomous collegial scientific coordination body whose activities are guided by the National Academy of Sciences of Ukraine. It brings together specialists from research institutions and higher education institutions to support the development of mechanics and related sciences.
 
 ## Core responsibilities
 
-- coordinating research in theoretical and applied mechanics and supporting practical use of research results;
-- strengthening scientific links among institutions of the NAS of Ukraine, higher-education institutions, and other organizations where mechanics researchers work;
+- coordinating research in theoretical and applied mechanics and supporting the practical use of research results;
+- strengthening scientific links among institutions of the NAS of Ukraine, higher education institutions, and other organizations where mechanics researchers work;
 - developing international cooperation between Ukrainian researchers and foreign colleagues, scientific institutions, and professional associations;
 - disseminating scientific and technical information in mechanics and promoting research results;
 - supporting the organization of scientific conferences, symposia, and other professional forums.
 
-## Base organization
+## Host institution
 
-The Committee’s base organization is the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine. The Committee retains its own scientific-coordination status and is not an organizational unit of the Institute.
+The Committee is hosted by the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine. The Committee retains its own scientific coordination status and is not an organizational unit of the Institute.
 
 ## International representation
 

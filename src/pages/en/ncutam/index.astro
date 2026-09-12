@@ -1,0 +1,88 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
+import NcutamNav from '../../../components/NcutamNav.astro';
+import { ncutamSections, ncutamSite } from '../../../data/ncutam/site';
+import { siteEn } from '../../../data/site-en';
+
+const page = await getEntry('ncutamPages', 'home');
+if (!page) throw new Error('Missing NCUTAM home content entry.');
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+---
+
+<BaseLayoutEn title={`${page.data.titleEn} | ${siteEn.shortName}`} description={page.data.descriptionEn} activePage="ncutam">
+  <NcutamNav language="en" />
+
+  <section class="page-hero ncutam-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">{ncutamSite.acronymEn}</p>
+        <h1>{page.data.titleEn}</h1>
+        <p class="lead">{ncutamSite.shortDescriptionEn}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="ncutam-grid">
+        {ncutamSections.map((section) => (
+          <article class="ncutam-card">
+            <h2><a href={withBase(`/en/ncutam/${section.id}/`)}>{section.titleEn}</a></h2>
+            <p>{section.descriptionEn}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contacts">
+    <div class="container">
+      <div class="panel ncutam-contact-panel">
+        <p class="eyebrow">Base organization</p>
+        <h2>S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine</h2>
+        <p>Committee contact details will be migrated from the verified current record during the content-import batch.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayoutEn>
+
+<style>
+  .ncutam-hero .panel {
+    max-width: 980px;
+  }
+
+  .ncutam-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .ncutam-card {
+    padding: 24px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .ncutam-card h2 {
+    margin: 0 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .ncutam-card p,
+  .ncutam-contact-panel p {
+    margin-bottom: 0;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  @media (max-width: 760px) {
+    .ncutam-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

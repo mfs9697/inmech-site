@@ -10,6 +10,7 @@ permissions:
 jobs:
   sweep:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout feature branch
         uses: actions/checkout@v5

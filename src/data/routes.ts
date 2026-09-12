@@ -133,6 +133,9 @@ function getUkrainianNewsTagPath(path: string) {
   return ukrainianTag ? `/news/tags/${encodeURIComponent(ukrainianTag)}/` : undefined;
 }
 
+const ukrainianNcutamActivityDetail = /^\/ncutam\/activity\/(meetings|conferences|initiatives|international)\/.+\/$/;
+const englishNcutamActivityDetail = /^\/en\/ncutam\/activity\/(meetings|conferences|initiatives|international)\/.+\/$/;
+
 export function getEnglishPath(pathname: string, base = '') {
   const path = normalizeSitePath(pathname, base);
   const route = siteRoutes.find((item) => item.uk === path);
@@ -142,6 +145,10 @@ export function getEnglishPath(pathname: string, base = '') {
   }
 
   if (/^\/departments\/[^/]+\/$/.test(path) || /^\/people\/[^/]+\/$/.test(path)) {
+    return `/en${path}`;
+  }
+
+  if (ukrainianNcutamActivityDetail.test(path)) {
     return `/en${path}`;
   }
 
@@ -174,6 +181,10 @@ export function getUkrainianPath(pathname: string, base = '') {
     return path.replace(/^\/en/, '');
   }
 
+  if (englishNcutamActivityDetail.test(path)) {
+    return path.replace(/^\/en/, '');
+  }
+
   const ukrainianNewsTagPath = getUkrainianNewsTagPath(path);
 
   if (ukrainianNewsTagPath) {
@@ -197,6 +208,7 @@ export function hasEnglishAlternative(pathname: string, base = '') {
     ukrainianStaticPaths.has(path) ||
     /^\/departments\/[^/]+\/$/.test(path) ||
     /^\/people\/[^/]+\/$/.test(path) ||
+    ukrainianNcutamActivityDetail.test(path) ||
     Boolean(getEnglishNewsTagPath(path)) ||
     (/^\/news\/(?!tags\/).+\/$/.test(path) && path !== '/news/')
   );
@@ -208,6 +220,7 @@ export function hasUkrainianAlternative(pathname: string, base = '') {
     englishStaticPaths.has(path) ||
     /^\/en\/departments\/[^/]+\/$/.test(path) ||
     /^\/en\/people\/[^/]+\/$/.test(path) ||
+    englishNcutamActivityDetail.test(path) ||
     Boolean(getUkrainianNewsTagPath(path)) ||
     (/^\/en\/news\/(?!tags\/).+\/$/.test(path) && path !== '/en/news/')
   );

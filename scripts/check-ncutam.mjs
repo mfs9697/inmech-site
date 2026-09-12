@@ -3,24 +3,18 @@ import path from 'node:path';
 
 const root = process.cwd();
 const errors = [];
-
-const read = (relative) => fs.readFileSync(path.join(root, relative), 'utf8');
-const exists = (relative) => fs.existsSync(path.join(root, relative));
 const fail = (message) => errors.push(message);
+const exists = (relative) => fs.existsSync(path.join(root, relative));
+const read = (relative) => fs.readFileSync(path.join(root, relative), 'utf8');
 
 function topLevelYamlRecords(relative) {
   const text = read(relative);
   if (text.trim() === '[]') return [];
-
   const starts = [...text.matchAll(/^- id:\s*([^\n]+)$/gm)];
-  return starts.map((match, index) => {
-    const start = match.index;
-    const end = starts[index + 1]?.index ?? text.length;
-    return {
-      id: match[1].trim().replace(/^['"]|['"]$/g, ''),
-      text: text.slice(start, end)
-    };
-  });
+  return starts.map((match, index) => ({
+    id: match[1].trim().replace(/^['"]|['"]$/g, ''),
+    text: text.slice(match.index, starts[index + 1]?.index ?? text.length)
+  }));
 }
 
 function field(record, name) {
@@ -93,11 +87,15 @@ const formerMembers = members.filter((record) => record.status === 'former');
 const activeMemberIds = new Set(activeMembers.map((record) => record.id));
 const currentYear = new Date().getFullYear();
 
-const expectedSnapshot = { total: 429, active: 217, memorial: 211, former: 1, elected2025: 35 };
+// Fixed against the reconciled 2025/current roster. Bahno is active; his exact
+// admission year remains intentionally unset until a primary source is found.
+const expectedSnapshot = { total: 429, active: 218, memorial: 211, former: 0, elected2025: 35 };
+const activeMembersWithUnverifiedJoinedYear = new Set(['bahno-oleksandr']);
+
 if (members.length !== expectedSnapshot.total) fail(`members: expected ${expectedSnapshot.total} reconciled records, found ${members.length}`);
 if (activeMembers.length !== expectedSnapshot.active) fail(`members: expected ${expectedSnapshot.active} active records, found ${activeMembers.length}`);
 if (memorialMembers.length !== expectedSnapshot.memorial) fail(`members: expected ${expectedSnapshot.memorial} in-memoriam records, found ${memorialMembers.length}`);
-if (formerMembers.length !== expectedSnapshot.former) fail(`members: expected ${expectedSnapshot.former} former record, found ${formerMembers.length}`);
+if (formerMembers.length !== expectedSnapshot.former) fail(`members: expected ${expectedSnapshot.former} former records, found ${formerMembers.length}`);
 const elected2025 = activeMembers.filter((record) => record.joinedYear === 2025);
 if (elected2025.length !== expectedSnapshot.elected2025) fail(`members: expected ${expectedSnapshot.elected2025} active members admitted in 2025, found ${elected2025.length}`);
 
@@ -120,7 +118,9 @@ for (const member of members) {
   }
 
   if (member.status === 'active') {
-    if (!Number.isInteger(member.joinedYear)) fail(`${where}: active member missing joinedYear`);
+    if (!Number.isInteger(member.joinedYear) && !activeMembersWithUnverifiedJoinedYear.has(member.id)) {
+      fail(`${where}: active member missing joinedYear`);
+    }
     if (!member.city) fail(`${where}: active member missing city`);
   }
 
@@ -133,9 +133,14 @@ for (const member of members) {
   }
 }
 
+const missingJoinYears = activeMembers.filter((member) => !Number.isInteger(member.joinedYear)).map((member) => member.id).sort();
+const expectedMissingJoinYears = [...activeMembersWithUnverifiedJoinedYear].sort();
+if (JSON.stringify(missingJoinYears) !== JSON.stringify(expectedMissingJoinYears)) {
+  fail(`members: unverified joinedYear set changed (${missingJoinYears.join(', ') || 'none'})`);
+}
+
 const currentGovernance = governance.filter((record) => !field(record, 'effectiveTo'));
 const currentRoleCount = (role) => currentGovernance.filter((record) => field(record, 'role') === role).length;
-
 if (governance.length > 0) {
   if (currentRoleCount('chair') !== 1) fail(`governance: expected exactly one current chair, found ${currentRoleCount('chair')}`);
   if (currentRoleCount('scientific-secretary') !== 1) {
@@ -147,46 +152,32 @@ for (const assignment of governance) {
   const member = field(assignment, 'member');
   const role = field(assignment, 'role');
   const effectiveFrom = field(assignment, 'effectiveFrom');
-
   if (!member) fail(`governance/${assignment.id}: missing member reference`);
   else if (!memberIds.has(member)) fail(`governance/${assignment.id}: unknown member '${member}'`);
-
   if (!role) fail(`governance/${assignment.id}: missing role`);
   if (!effectiveFrom) fail(`governance/${assignment.id}: missing effectiveFrom`);
-
   if (!field(assignment, 'effectiveTo') && member && !activeMemberIds.has(member)) {
     fail(`governance/${assignment.id}: current assignment references non-active member '${member}'`);
   }
-
-  if (!/\n  responsibilities:\n(?:    - .+\n?)+/m.test(assignment.text)) {
-    fail(`governance/${assignment.id}: missing Ukrainian responsibilities`);
-  }
-  if (!/\n  responsibilitiesEn:\n(?:    - .+\n?)+/m.test(assignment.text)) {
-    fail(`governance/${assignment.id}: missing English responsibilities`);
-  }
+  if (!/\n  responsibilities:\n(?:    - .+\n?)+/m.test(assignment.text)) fail(`governance/${assignment.id}: missing Ukrainian responsibilities`);
+  if (!/\n  responsibilitiesEn:\n(?:    - .+\n?)+/m.test(assignment.text)) fail(`governance/${assignment.id}: missing English responsibilities`);
 }
 
 for (const document of documents) {
   const publicPath = field(document, 'path');
-  if (!publicPath?.startsWith('/documents/ncutam/')) {
-    fail(`documents/${document.id}: path must begin with /documents/ncutam/`);
-  }
+  if (!publicPath?.startsWith('/documents/ncutam/')) fail(`documents/${document.id}: path must begin with /documents/ncutam/`);
+  if (!field(document, 'title') || !field(document, 'titleEn')) fail(`documents/${document.id}: missing bilingual title`);
+  if (!field(document, 'kind')) fail(`documents/${document.id}: missing kind`);
+  if (!field(document, 'language')) fail(`documents/${document.id}: missing language`);
 }
-
 const documentPaths = documents.map((record) => field(record, 'path')).filter(Boolean);
 if (new Set(documentPaths).size !== documentPaths.length) fail('documents: duplicate public path');
 
 for (const mention of media) {
   const url = field(mention, 'url');
-  if (!url || !/^https?:\/\//.test(url)) {
-    fail(`media/${mention.id}: missing or invalid url`);
-  }
-  if (!field(mention, 'title') || !field(mention, 'titleEn')) {
-    fail(`media/${mention.id}: missing bilingual title`);
-  }
-  if (!field(mention, 'description') || !field(mention, 'descriptionEn')) {
-    fail(`media/${mention.id}: missing bilingual description`);
-  }
+  if (!url || !/^https?:\/\//.test(url)) fail(`media/${mention.id}: missing or invalid url`);
+  if (!field(mention, 'title') || !field(mention, 'titleEn')) fail(`media/${mention.id}: missing bilingual title`);
+  if (!field(mention, 'description') || !field(mention, 'descriptionEn')) fail(`media/${mention.id}: missing bilingual description`);
 }
 
 for (const page of ['home', 'about', 'iutam']) {
@@ -198,9 +189,7 @@ for (const page of ['home', 'about', 'iutam']) {
   const body = read(relative);
   if (!/^titleEn:\s*.+$/m.test(body)) fail(`${relative}: missing titleEn`);
   if (!/^descriptionEn:\s*.+$/m.test(body)) fail(`${relative}: missing descriptionEn`);
-  if (!/<!--\s*en:start\s*-->[\s\S]+<!--\s*en:end\s*-->/.test(body)) {
-    fail(`${relative}: missing substantive English body block`);
-  }
+  if (!/<!--\s*en:start\s*-->[\s\S]+<!--\s*en:end\s*-->/.test(body)) fail(`${relative}: missing substantive English body block`);
 }
 
 const activityRoot = path.join(root, 'src/content/ncutam-activity');
@@ -225,24 +214,16 @@ for (const full of walk(activityRoot).filter((file) => file.endsWith('.md'))) {
   const category = path.relative(activityRoot, full).split(path.sep)[0];
   const expectedType = allowedActivityTypes.get(category);
   const actualType = text.match(/^type:\s*([^\n]+)$/m)?.[1]?.trim();
-
   if (!expectedType) fail(`${relative}: unknown activity directory '${category}'`);
   else if (actualType !== expectedType) fail(`${relative}: type '${actualType}' does not match directory '${category}'`);
-
   for (const required of ['title', 'titleEn', 'summary', 'summaryEn', 'date']) {
     if (!new RegExp(`^${required}:\\s*.+$`, 'm').test(text)) fail(`${relative}: missing ${required}`);
   }
-
-  if (!/<!--\s*en:start\s*-->[\s\S]+<!--\s*en:end\s*-->/.test(text)) {
-    fail(`${relative}: missing English body block`);
-  }
-
+  if (!/<!--\s*en:start\s*-->[\s\S]+<!--\s*en:end\s*-->/.test(text)) fail(`${relative}: missing English body block`);
   if (category === 'meetings') {
     const fileDate = path.basename(full, '.md');
     const frontmatterDate = text.match(/^date:\s*(\d{4}-\d{2}-\d{2})/m)?.[1];
-    if (frontmatterDate && fileDate !== frontmatterDate) {
-      fail(`${relative}: meeting filename '${fileDate}' must match date '${frontmatterDate}'`);
-    }
+    if (frontmatterDate && fileDate !== frontmatterDate) fail(`${relative}: meeting filename '${fileDate}' must match date '${frontmatterDate}'`);
   }
 }
 

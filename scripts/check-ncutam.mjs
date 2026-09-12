@@ -244,8 +244,7 @@ for (const full of walk(activityRoot).filter((file) => file.endsWith('.md'))) {
     else if (!exists(`public${image}`)) fail(`${relative}: missing activity image public${image}`);
   }
 
-  const galleryBlock = frontmatter.match(/^gallery:\n([\s\S]*?)(?=^[A-Za-z][A-Za-z0-9_-]*:|$)/m)?.[1] ?? '';
-  const galleryItems = [...galleryBlock.matchAll(/^  - src:\s*["']?([^"'\n]+)["']?\s*\n((?:    .+\n?)*)/gm)];
+  const galleryItems = [...frontmatter.matchAll(/^  - src:\s*["']?([^"'\n]+)["']?\s*\n((?:    .+\n?)*)/gm)];
   const galleryPaths = [];
   for (const item of galleryItems) {
     const src = item[1];

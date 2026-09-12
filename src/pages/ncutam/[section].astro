@@ -5,6 +5,7 @@ import NcutamNav from '../../components/NcutamNav.astro';
 import NcutamActivityList from '../../components/ncutam/NcutamActivityList.astro';
 import NcutamEvergreen from '../../components/ncutam/NcutamEvergreen.astro';
 import NcutamGovernance from '../../components/ncutam/NcutamGovernance.astro';
+import NcutamMembers from '../../components/ncutam/NcutamMembers.astro';
 import NewsCard from '../../components/NewsCard.astro';
 import { ncutamSections, ncutamSite } from '../../data/ncutam/site';
 import { site } from '../../data/site';
@@ -16,6 +17,7 @@ export function getStaticPaths() {
 const { section } = Astro.props as { section: (typeof ncutamSections)[number] };
 const isNews = section.id === 'news';
 const isGovernance = section.id === 'governance';
+const isMembers = section.id === 'members';
 const isActivity = section.id === 'activity';
 const isEvergreen = section.id === 'about' || section.id === 'iutam';
 const ncutamNews = isNews
@@ -50,6 +52,8 @@ const ncutamNews = isNews
         )
       ) : isGovernance ? (
         <NcutamGovernance language="uk" />
+      ) : isMembers ? (
+        <NcutamMembers language="uk" status="active" />
       ) : isActivity ? (
         <NcutamActivityList language="uk" />
       ) : isEvergreen ? (

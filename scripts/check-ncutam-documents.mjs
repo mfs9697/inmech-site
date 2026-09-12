@@ -8,9 +8,9 @@ const manifest = fs.readFileSync(manifestPath, 'utf8');
 const errors = [];
 
 const expectedBlobs = new Map([
-  ['/documents/ncutam/foundation/1992/ncutam-creation-resolution-191-1992-07-03.pdf', 'c6ef5b54fd05219f2983c4803b810cff8c4b25f5'],
+  ['/documents/ncutam/foundation/1992/ncutam-founding-resolution-1992.pdf', 'c6ef5b54fd05219f2983c4803b810cff8c4b25f5'],
   ['/documents/ncutam/foundation/1993/ncutam-statute-1993.pdf', 'dbac09390c4798158adb3c59210d0f8c2a6250a4'],
-  ['/documents/ncutam/governance/1992/ncutam-regulation-263-1992-10-07.pdf', '804ebdf4cc65496ea92b48013b6496c4b689a8ec'],
+  ['/documents/ncutam/governance/1992/ncutam-regulation-1992.pdf', '804ebdf4cc65496ea92b48013b6496c4b689a8ec'],
   ['/documents/ncutam/governance/2024/nasu-resolution-26-2024-01-24.pdf', 'f1a654c405729eac9fc09e16095e89c7f8ac1e01'],
   ['/documents/ncutam/reports/2023/ncutam-report-2023.pdf', '3dc4784be34c19506a0181b438004897b7c6cc84'],
   ['/documents/ncutam/reports/2024/ncutam-report-2024.pdf', 'abfadd228fb3a4394d1c17b0ca263eb63a61a378'],

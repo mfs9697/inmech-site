@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
 import NcutamNav from '../../../components/NcutamNav.astro';
+import NcutamGovernance from '../../../components/ncutam/NcutamGovernance.astro';
 import NewsCardEn from '../../../components/NewsCardEn.astro';
 import { ncutamSections, ncutamSite } from '../../../data/ncutam/site';
 import { siteEn } from '../../../data/site-en';
@@ -12,6 +13,7 @@ export function getStaticPaths() {
 
 const { section } = Astro.props as { section: (typeof ncutamSections)[number] };
 const isNews = section.id === 'news';
+const isGovernance = section.id === 'governance';
 const ncutamNews = isNews
   ? (await getCollection('news'))
       .filter((entry) => entry.data.scopes.includes('ncutam'))
@@ -44,6 +46,8 @@ const ncutamNews = isNews
             <h2>No NCUTAM news has been added yet</h2>
           </div>
         )
+      ) : isGovernance ? (
+        <NcutamGovernance language="en" />
       ) : (
         <div class="panel ncutam-build-panel">
           <h2>Section ready for content migration</h2>

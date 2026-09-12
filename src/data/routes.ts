@@ -57,6 +57,15 @@ export const siteRoutes: SiteRoute[] = [
   { uk: '/journal/', en: '/en/journal/', titleUk: 'Журнал «Прикладна механіка»', titleEn: 'Prykladna Mekhanika', sectionUk: 'Публікації', sectionEn: 'Publications' },
   { uk: '/journal/for-authors/', en: '/en/journal/for-authors/', titleUk: 'Підготовка рукопису', titleEn: 'Manuscript preparation', sectionUk: 'Публікації', sectionEn: 'Publications' },
 
+  { uk: '/ncutam/', en: '/en/ncutam/', titleUk: 'НКУТПМ', titleEn: 'NCUTAM', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
+  { uk: '/ncutam/about/', en: '/en/ncutam/about/', titleUk: 'Про Комітет', titleEn: 'About', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
+  { uk: '/ncutam/governance/', en: '/en/ncutam/governance/', titleUk: 'Керівництво і Президія', titleEn: 'Governance', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
+  { uk: '/ncutam/members/', en: '/en/ncutam/members/', titleUk: 'Члени', titleEn: 'Members', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
+  { uk: '/ncutam/activity/', en: '/en/ncutam/activity/', titleUk: 'Діяльність', titleEn: 'Activities', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
+  { uk: '/ncutam/documents/', en: '/en/ncutam/documents/', titleUk: 'Документи', titleEn: 'Documents', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
+  { uk: '/ncutam/iutam/', en: '/en/ncutam/iutam/', titleUk: 'IUTAM', titleEn: 'IUTAM', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
+  { uk: '/ncutam/news/', en: '/en/ncutam/news/', titleUk: 'Новини НКУТПМ', titleEn: 'NCUTAM news', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
+
   { uk: '/sitemap/', en: '/en/sitemap/', titleUk: 'Карта сайту', titleEn: 'Sitemap', sectionUk: 'Службові сторінки', sectionEn: 'Service pages' },
   { uk: '/search/', en: '/en/search/', titleUk: 'Пошук', titleEn: 'Search', sectionUk: 'Службові сторінки', sectionEn: 'Service pages' },
   { uk: '/accessibility/', en: '/en/accessibility/', titleUk: 'Політика доступності', titleEn: 'Accessibility policy', sectionUk: 'Службові сторінки', sectionEn: 'Service pages' },

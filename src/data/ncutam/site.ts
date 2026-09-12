@@ -30,7 +30,7 @@ export const ncutamSections: Array<{
     title: 'Про Комітет',
     titleEn: 'About',
     description: 'Статус, мандат, історія, базова організація та сталі напрями діяльності Комітету.',
-    descriptionEn: 'Status, mandate, history, base organization and the Committee’s enduring areas of activity.'
+    descriptionEn: 'Status, mandate, history, host institution and the Committee’s enduring areas of activity.'
   },
   {
     id: 'governance',

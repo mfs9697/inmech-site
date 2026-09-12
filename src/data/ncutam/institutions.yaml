@@ -1,1 +1,240 @@
-[]
+- id: m-s-poliakov-institute-of-geotechnical-mechanics-of-the-nas-of-ukraine
+  name: Інститут геотехнічної механіки ім. М.С. Полякова НАН України
+  nameEn: M.S. Poliakov Institute of Geotechnical Mechanics of the NAS of Ukraine
+  city: Дніпро
+  cityEn: Dnipro
+- id: institute-of-hydromechanics-of-the-nas-of-ukraine
+  name: Інститут гідромеханіки НАН України
+  nameEn: Institute of Hydromechanics of the NAS of Ukraine
+  city: Київ
+  cityEn: Kyiv
+- id: e-o-paton-electric-welding-institute-of-the-nas-of-ukraine
+  name: Інститут електрозварювання ім. Є.О. Патона НАН України
+  nameEn: E.O. Paton Electric Welding Institute of the NAS of Ukraine
+  city: Київ
+  cityEn: Kyiv
+- id: a-m-pidgorny-institute-of-mechanical-engineering-problems
+  name: Інститут енергетичних машин і систем ім. А.М. Підгорного
+  nameEn: A.M. Pidgorny Institute of Mechanical Engineering Problems
+  city: Харків
+  cityEn: Kharkiv
+- id: v-m-glushkov-institute-of-cybernetics-of-the-nas-of-ukraine
+  name: Інститут кібернетики ім. В.М. Глушкова НАН України
+  nameEn: V.M. Glushkov Institute of Cybernetics of the NAS of Ukraine
+  city: Київ
+  cityEn: Kyiv
+- id: institute-of-mathematics-of-the-nas-of-ukraine
+  name: Інститут математики НАН України
+  nameEn: Institute of Mathematics of the NAS of Ukraine
+  city: Київ
+  cityEn: Kyiv
+- id: s-p-timoshenko-institute-of-mechanics-of-the-nas-of-ukraine
+  name: Інститут механіки ім. С.П. Тимошенка НАН України
+  nameEn: S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine
+  city: Київ
+  cityEn: Kyiv
+- id: v-m-bakul-institute-for-superhard-materials-of-the-nas-of-ukraine
+  name: Інститут надтвердих матеріалів ім. В.М. Бакуля НАН України
+  nameEn: V.M. Bakul Institute for Superhard Materials of the NAS of Ukraine
+  city: Київ
+  cityEn: Kyiv
+- id: ya-s-pidstryhach-institute-for-applied-problems-of-mechanics-and-mathematics-of-the-nas-of-ukraine
+  name: Інститут прикладних проблем механіки і математики ім. Я.С. Підстригача НАН України
+  nameEn: Ya.S. Pidstryhach Institute for Applied Problems of Mechanics and Mathematics of the NAS of Ukraine
+  city: Львів
+  cityEn: Lviv
+- id: institute-of-mathematical-machines-and-systems-problems-of-the-nas-of-ukraine
+  name: Інститут проблем математичних машин і систем НАН України
+  nameEn: Institute of Mathematical Machines and Systems Problems of the NAS of Ukraine
+  city: Київ
+  cityEn: Kyiv
+- id: i-m-frantsevich-institute-for-problems-of-materials-science-of-the-nas-of-ukraine
+  name: Інститут проблем матеріалознавства ім. І.М. Францевича НАН України
+  nameEn: I.M. Frantsevich Institute for Problems of Materials Science of the NAS of Ukraine
+  city: Київ
+  cityEn: Kyiv
+- id: g-s-pisarenko-institute-for-problems-of-strength-of-the-nas-of-ukraine
+  name: Інститут проблем міцності імені Г.С. Писаренка НАН України
+  nameEn: G.S. Pisarenko Institute for Problems of Strength of the NAS of Ukraine
+  city: Київ
+  cityEn: Kyiv
+- id: institute-of-telecommunications-and-global-information-space-of-the-nas-of-ukraine
+  name: Інститут телекомунікацій і глобального інформаційного простору НАН України
+  nameEn: Institute of Telecommunications and Global Information Space of the NAS of Ukraine
+  city: Київ
+  cityEn: Kyiv
+- id: institute-of-technical-mechanics-of-the-nas-of-ukraine-and-the-state-space-agency-of-ukraine
+  name: Інститут технічної механіки НАНУ і ДКА України
+  nameEn: Institute of Technical Mechanics of the NAS of Ukraine and the State Space Agency of Ukraine
+  city: Дніпро
+  cityEn: Dnipro
+- id: lesya-ukrainka-volyn-national-university
+  name: Волинський національний університет ім. Лесі Українки
+  nameEn: Lesya Ukrainka Volyn National University
+  city: Луцьк
+  cityEn: Lutsk
+- id: vinnytsia-national-technical-university
+  name: Вінницький національний технічний університет
+  nameEn: Vinnytsia National Technical University
+  city: Вінниця
+  cityEn: Vinnytsia
+- id: state-ecological-academy-of-postgraduate-education-and-management
+  name: Державна екологічна академія післядипломної освіти та управління
+  nameEn: State Ecological Academy of Postgraduate Education and Management
+  city: Київ
+  cityEn: Kyiv
+- id: state-kyiv-design-bureau-luch
+  name: Державне підприємство «Державне київське конструкторське бюро «Луч»
+  nameEn: State Kyiv Design Bureau Luch
+  city: Київ
+  cityEn: Kyiv
+- id: state-research-institute-of-building-constructions
+  name: Державний науково-дослідний інститут будівельних конструкцій
+  nameEn: State Research Institute of Building Constructions
+  city: Київ
+  cityEn: Kyiv
+- id: zhytomyr-polytechnic-state-university
+  name: Державний університет «Житомирська політехніка»
+  nameEn: Zhytomyr Polytechnic State University
+  city: Житомир
+  cityEn: Zhytomyr
+- id: state-university-of-information-and-communication-technologies
+  name: Державний університет інформаційно-телекомунікаційних технологій
+  nameEn: State University of Information and Communication Technologies
+  city: Київ
+  cityEn: Kyiv
+- id: state-university-of-infrastructure-and-technologies
+  name: Державний університет інфраструктури та технологій
+  nameEn: State University of Infrastructure and Technologies
+  city: Київ
+  cityEn: Kyiv
+- id: dnipro-state-agrarian-and-economic-university
+  name: Дніпровський державний аграрно-економічний університет
+  nameEn: Dnipro State Agrarian and Economic University
+  city: Дніпро
+  cityEn: Dnipro
+- id: oles-honchar-dnipro-national-university
+  name: Дніпровський національний університет ім. Олеся Гончара
+  nameEn: Oles Honchar Dnipro National University
+  city: Дніпро
+  cityEn: Dnipro
+- id: zhytomyr-ivan-franko-state-university
+  name: Житомирський державний університет ім. Івана Франка
+  nameEn: Zhytomyr Ivan Franko State University
+  city: Житомир
+  cityEn: Zhytomyr
+- id: ivchenko-progress-zaporozhye-machine-building-design-bureau
+  name: Запорізьке машинобудівне конструкторське бюро «Прогрес» імені академіка О.Г. Івченка
+  nameEn: Ivchenko-Progress Zaporozhye Machine-Building Design Bureau
+  city: Запоріжжя
+  cityEn: Zaporizhzhia
+- id: kyiv-national-university-of-construction-and-architecture
+  name: Київський національний університет будівництва і архітектури
+  nameEn: Kyiv National University of Construction and Architecture
+  city: Київ
+  cityEn: Kyiv
+- id: taras-shevchenko-national-university-of-kyiv
+  name: Київський національний університет ім. Тараса Шевченка
+  nameEn: Taras Shevchenko National University of Kyiv
+  city: Київ
+  cityEn: Kyiv
+- id: lutsk-national-technical-university
+  name: Луцький національний технічний університет
+  nameEn: Lutsk National Technical University
+  city: Луцьк
+  cityEn: Lutsk
+- id: ivan-franko-national-university-of-lviv
+  name: Львівський національний університет ім. Івана Франка
+  nameEn: Ivan Franko National University of Lviv
+  city: Львів
+  cityEn: Lviv
+- id: v-o-sukhomlynskyi-national-university-of-mykolaiv
+  name: Миколаївський національний університет ім. В.О. Сухомлинського
+  nameEn: V.O. Sukhomlynskyi National University of Mykolaiv
+  city: Миколаїв
+  cityEn: Mykolaiv
+- id: dnipro-university-of-technology
+  name: Національний технічний університет «Дніпровська політехніка»
+  nameEn: Dnipro University of Technology
+  city: Дніпро
+  cityEn: Dnipro
+- id: national-technical-university-kharkiv-polytechnic-institute
+  name: Національний технічний університет «Харківський політехнічний інститут»
+  nameEn: National Technical University Kharkiv Polytechnic Institute
+  city: Харків
+  cityEn: Kharkiv
+- id: igor-sikorsky-kyiv-polytechnic-institute
+  name: Національний технічний університет України «Київський політехнічний інститут імені Ігоря Сікорського»
+  nameEn: Igor Sikorsky Kyiv Polytechnic Institute
+  city: Київ
+  cityEn: Kyiv
+- id: national-transport-university
+  name: Національний транспортний університет
+  nameEn: National Transport University
+  city: Київ
+  cityEn: Kyiv
+- id: zaporizhzhia-polytechnic-national-university
+  name: Національний університет «Запорізька політехніка»
+  nameEn: Zaporizhzhia Polytechnic National University
+  city: Запоріжжя
+  cityEn: Zaporizhzhia
+- id: lviv-polytechnic-national-university
+  name: Національний університет «Львівська політехніка»
+  nameEn: Lviv Polytechnic National University
+  city: Львів
+  cityEn: Lviv
+- id: odesa-polytechnic-national-university
+  name: Національний університет «Одеська політехніка»
+  nameEn: Odesa Polytechnic National University
+  city: Одеса
+  cityEn: Odesa
+- id: odesa-state-academy-of-civil-engineering-and-architecture
+  name: Одеська державна академія будівництва та архітектури
+  nameEn: Odesa State Academy of Civil Engineering and Architecture
+  city: Одеса
+  cityEn: Odesa
+- id: prydniprovska-state-academy-of-civil-engineering-and-architecture
+  name: Придніпровська державна академія будівництва та архітектури
+  nameEn: Prydniprovska State Academy of Civil Engineering and Architecture
+  city: Дніпро
+  cityEn: Dnipro
+- id: prydniprovsk-research-center-of-the-nas-of-ukraine-and-the-ministry-of-education-and-science-of-ukraine
+  name: Придніпровський науковий центр НАН України і МОН України
+  nameEn: Prydniprovsk Research Center of the NAS of Ukraine and the Ministry of Education and Science of Ukraine
+  city: Дніпро
+  cityEn: Dnipro
+- id: v-m-shymanovskyi-ukrainian-institute-of-steel-construction
+  name: ТОВ «Український інститут сталевих конструкцій ім. В.М. Шимановського»
+  nameEn: V.M. Shymanovskyi Ukrainian Institute of Steel Construction
+  city: Київ
+  cityEn: Kyiv
+- id: ukrainian-academy-of-printing
+  name: Українська академія друкарства
+  nameEn: Ukrainian Academy of Printing
+  city: Львів
+  cityEn: Lviv
+- id: h-v-karpenko-physico-mechanical-institute-of-the-nas-of-ukraine
+  name: Фізико-механічний інститут ім. Г.В. Карпенка НАН України
+  nameEn: H.V. Karpenko Physico-Mechanical Institute of the NAS of Ukraine
+  city: Львів
+  cityEn: Lviv
+- id: institute-of-transport-systems-and-technologies-of-the-nas-of-ukraine
+  name: Інститут транспортних систем і технологій НАН України
+  nameEn: Institute of Transport Systems and Technologies of the NAS of Ukraine
+  city: Дніпро
+  cityEn: Dnipro
+- id: kryvyi-rih-national-university
+  name: Криворізький національний університет
+  nameEn: Kryvyi Rih National University
+  city: Кривий Ріг
+  cityEn: Kryvyi Rih
+- id: central-research-institute-of-armament-and-military-equipment-of-the-armed-forces-of-ukraine
+  name: Центральний науково-дослідний інститут озброєння та військової техніки Збройних Сил України
+  nameEn: Central Research Institute of Armament and Military Equipment of the Armed Forces of Ukraine
+  city: Київ
+  cityEn: Kyiv
+- id: national-university-of-water-and-environmental-engineering
+  name: Національний університет водного господарства та природокористування
+  nameEn: National University of Water and Environmental Engineering
+  city: Рівне
+  cityEn: Rivne

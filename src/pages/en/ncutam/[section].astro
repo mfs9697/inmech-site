@@ -2,6 +2,8 @@
 import { getCollection } from 'astro:content';
 import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
 import NcutamNav from '../../../components/NcutamNav.astro';
+import NcutamActivityList from '../../../components/ncutam/NcutamActivityList.astro';
+import NcutamEvergreen from '../../../components/ncutam/NcutamEvergreen.astro';
 import NcutamGovernance from '../../../components/ncutam/NcutamGovernance.astro';
 import NewsCardEn from '../../../components/NewsCardEn.astro';
 import { ncutamSections, ncutamSite } from '../../../data/ncutam/site';
@@ -14,6 +16,8 @@ export function getStaticPaths() {
 const { section } = Astro.props as { section: (typeof ncutamSections)[number] };
 const isNews = section.id === 'news';
 const isGovernance = section.id === 'governance';
+const isActivity = section.id === 'activity';
+const isEvergreen = section.id === 'about' || section.id === 'iutam';
 const ncutamNews = isNews
   ? (await getCollection('news'))
       .filter((entry) => entry.data.scopes.includes('ncutam'))
@@ -42,18 +46,18 @@ const ncutamNews = isNews
             {ncutamNews.map((entry) => <NewsCardEn entry={entry} />)}
           </div>
         ) : (
-          <div class="panel ncutam-build-panel">
-            <h2>No NCUTAM news has been added yet</h2>
-          </div>
+          <div class="panel ncutam-build-panel"><h2>No NCUTAM news has been added yet</h2></div>
         )
       ) : isGovernance ? (
         <NcutamGovernance language="en" />
+      ) : isActivity ? (
+        <NcutamActivityList language="en" />
+      ) : isEvergreen ? (
+        <NcutamEvergreen pageId={section.id} language="en" />
       ) : (
         <div class="panel ncutam-build-panel">
           <h2>Section ready for content migration</h2>
-          <p>
-            The route and navigation context are now implemented. Verified content and structured records will be added in the next WP6 content-import batches according to the WP5 migration map.
-          </p>
+          <p>Verified content and structured records will be added in the next WP6 content-import batches according to the WP5 migration map.</p>
         </div>
       )}
     </div>
@@ -61,17 +65,7 @@ const ncutamNews = isNews
 </BaseLayoutEn>
 
 <style>
-  .ncutam-build-panel {
-    max-width: 900px;
-  }
-
-  .ncutam-build-panel h2 {
-    margin-top: 0;
-  }
-
-  .ncutam-build-panel p {
-    margin-bottom: 0;
-    color: var(--muted);
-    line-height: 1.7;
-  }
+  .ncutam-build-panel { max-width: 900px; }
+  .ncutam-build-panel h2 { margin-top: 0; }
+  .ncutam-build-panel p { margin-bottom: 0; color: var(--muted); line-height: 1.7; }
 </style>

@@ -1,0 +1,95 @@
+name: NCUTAM asset migration
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    if: github.head_ref == 'feat/ncutam-wp6-infrastructure'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout feature branch
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Recover verified legacy assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          fetch_blob() {
+            local sha="$1"
+            local target="$2"
+            mkdir -p "$(dirname "$target")"
+            curl --fail --silent --show-error --location \
+              -H "Authorization: Bearer ${GH_TOKEN}" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/mfs9697/ncutam/git/blobs/${sha}" \
+              | jq -r '.content' | tr -d '\n' | base64 --decode > "$target"
+            local actual
+            actual="$(git hash-object "$target")"
+            if [[ "$actual" != "$sha" ]]; then
+              echo "Hash mismatch for $target: expected $sha, got $actual" >&2
+              exit 1
+            fi
+          }
+
+          # Current Problems in Mechanics 2023 — exact full-size gallery originals.
+          fetch_blob dfa8465b47fd5cdd1f8d20be17ede9c472e48597 public/images/ncutam/conferences/current-problems-mechanics-2023/01.jpg
+          fetch_blob ecc2696501ed8fc8ebb4042075024613e9c60cd7 public/images/ncutam/conferences/current-problems-mechanics-2023/02.jpg
+          fetch_blob bbab680b4b341066cf81041bee95a8ca826c1add public/images/ncutam/conferences/current-problems-mechanics-2023/03.jpg
+          fetch_blob 804153bf980457c70cee0fa50282a31059284c5b public/images/ncutam/conferences/current-problems-mechanics-2023/04.jpg
+          fetch_blob 8cac3f1e76ec0c69e69abfd7cb64e1e116c8d1b8 public/images/ncutam/conferences/current-problems-mechanics-2023/05.jpg
+          fetch_blob 445f1f88197d651107b118bfa777635b696d1e58 public/images/ncutam/conferences/current-problems-mechanics-2023/06.jpg
+          fetch_blob e8c10be655e96e0aa6b3730e362ac4804d30f4a9 public/images/ncutam/conferences/current-problems-mechanics-2023/07.jpg
+          fetch_blob 774312f793dcede2d7f5c98e86574adb9986384b public/images/ncutam/conferences/current-problems-mechanics-2023/08.jpg
+          fetch_blob 7165f94444a713c4255e63831a4645632805c833 public/images/ncutam/conferences/current-problems-mechanics-2023/09.jpg
+          fetch_blob de442a331c5a2d51d777baa99cee9a76941764ed public/images/ncutam/conferences/current-problems-mechanics-2023/10.jpg
+
+          # Mechanics: Present and Prospects 2024 — exact full-size gallery originals.
+          fetch_blob bf8e6ec4f935b31283a3c6d80755ef48202ae88b public/images/ncutam/conferences/mechanics-present-and-prospects-2024/01.jpg
+          fetch_blob 792a39c7d62cb956747a1418dcda078f6a9a1029 public/images/ncutam/conferences/mechanics-present-and-prospects-2024/02.jpg
+          fetch_blob a04e6c26535d3853b1636826b0158b5d7f7b0128 public/images/ncutam/conferences/mechanics-present-and-prospects-2024/03.jpg
+          fetch_blob 0d28ecb2539a83cb8fa5f57d652e696d1a38c47e public/images/ncutam/conferences/mechanics-present-and-prospects-2024/04.jpg
+
+          # General Meeting 2025 — five full-size photographs actually published in the legacy gallery.
+          fetch_blob 244cb87905d79c71954037758357929b5345cfe7 public/images/ncutam/meetings/2025-11-11/01.jpg
+          fetch_blob d5a8f228533864321f01bdc57bee4a9b8477dd5f public/images/ncutam/meetings/2025-11-11/02.jpg
+          fetch_blob 6b783a9f89892d1bf4e1a58f1a5c53b537eb0cf0 public/images/ncutam/meetings/2025-11-11/03.jpg
+          fetch_blob 716dbe6ac71cde2910e8dc257201e9c7b38d5e5e public/images/ncutam/meetings/2025-11-11/04.jpg
+          fetch_blob 7e2ea279b8fc58bcff37cd4e3fdb65e67cdbd80d public/images/ncutam/meetings/2025-11-11/05.jpg
+
+          # General Meeting 2023 — complete official packet preserved by the legacy site.
+          fetch_blob c2981adf88e506556498dbbab6dabf227d29245e public/documents/ncutam/meetings/2023-09-12/01-minutes.pdf
+          fetch_blob 613a61074ac6b0b3d66ec41b502c444fbc01f6d2 public/documents/ncutam/meetings/2023-09-12/02-appendix-to-minutes.pdf
+          fetch_blob 4a75992675fafbab95a8ef758403e448e4b99949 public/documents/ncutam/meetings/2023-09-12/03-resolution-1.pdf
+          fetch_blob 196ddf75d6aed30d3eb7f134ee7c7b9c68c0b234 public/documents/ncutam/meetings/2023-09-12/04-resolution-2.pdf
+          fetch_blob 90ae15aa0d64104218c81a6dcf6da0ffaa29c8c9 public/documents/ncutam/meetings/2023-09-12/05-resolution-3.pdf
+          fetch_blob 18b4ea003220ed7d61531fb0cc4508dc84de994a public/documents/ncutam/meetings/2023-09-12/06-appendix-to-resolution-3.pdf
+          fetch_blob 6a72003510d33f6438d8d6311bc6c914dac2438c public/documents/ncutam/meetings/2023-09-12/07-resolution-4.pdf
+          fetch_blob c5db532948d4cb174c064a305a4992c91f739173 public/documents/ncutam/meetings/2023-09-12/08-resolution-5.pdf
+          fetch_blob 23ea6e9324e5a8137e745cbfd736b3e5061a60c2 public/documents/ncutam/meetings/2023-09-12/09-resolution-6.pdf
+          fetch_blob 47eabbf537c2d538bf386cee6b7eda958b0ca90a public/documents/ncutam/meetings/2023-09-12/10-resolution-7.pdf
+
+          # General Meeting 2025 — official resolutions and the published 2023–2025 activity booklet.
+          fetch_blob a81aa637d7302c6bf30ca97f059271c482f642e9 public/documents/ncutam/meetings/2025-11-11/general-meeting-resolutions-2025.pdf
+          fetch_blob dffe949fc31e8696349bc14c38ac21fade11cc06 public/documents/ncutam/meetings/2025-11-11/activity-booklet-2023-2025.pdf
+
+      - name: Commit recovered assets and remove migration workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/ncutam-asset-migration.yml
+          git add public/images/ncutam public/documents/ncutam/meetings
+          git commit -m "Migrate verified NCUTAM galleries and meeting archives"
+          git push origin HEAD:${{ github.head_ref }}

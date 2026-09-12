@@ -164,7 +164,7 @@ a:hover { color: var(--accent-dark); text-decoration: underline; }
 }
 .eyebrow {
   margin: 0 0 12px;
-  color: var(--gold);
+  color: var(--accent-dark);
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;

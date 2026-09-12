@@ -1,0 +1,101 @@
+---
+import { ncutamSections, ncutamSite, type NcutamSectionId } from '../data/ncutam/site';
+
+interface Props {
+  language?: 'uk' | 'en';
+  active?: NcutamSectionId;
+}
+
+const { language = 'uk', active } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+const root = language === 'uk' ? '/ncutam/' : '/en/ncutam/';
+const label = language === 'uk' ? ncutamSite.acronym : ncutamSite.acronymEn;
+const navLabel = language === 'uk' ? 'Навігація НКУТПМ' : 'NCUTAM navigation';
+---
+
+<div class="ncutam-section-nav-shell">
+  <div class="container ncutam-section-nav-row">
+    <a class="ncutam-section-home" href={withBase(root)}>{label}</a>
+    <nav class="ncutam-section-nav" aria-label={navLabel}>
+      <ul>
+        {ncutamSections.map((section) => {
+          const href = `${root}${section.id}/`;
+          const title = language === 'uk' ? section.title : section.titleEn;
+          return (
+            <li>
+              <a class:list={{ active: active === section.id }} href={withBase(href)} aria-current={active === section.id ? 'page' : undefined}>
+                {title}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<style>
+  .ncutam-section-nav-shell {
+    border-bottom: 1px solid var(--line);
+    background: var(--surface);
+  }
+
+  .ncutam-section-nav-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    min-height: 54px;
+    overflow-x: auto;
+  }
+
+  .ncutam-section-home {
+    flex: 0 0 auto;
+    color: var(--accent-dark);
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+
+  .ncutam-section-nav ul {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    white-space: nowrap;
+  }
+
+  .ncutam-section-nav a {
+    display: inline-flex;
+    padding: 8px 10px;
+    border-radius: 9px;
+    color: var(--text);
+    font-size: 0.92rem;
+    font-weight: 750;
+    text-decoration: none;
+  }
+
+  .ncutam-section-nav a:hover,
+  .ncutam-section-nav a.active {
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    text-decoration: none;
+  }
+
+  @media (max-width: 720px) {
+    .ncutam-section-nav-row {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 6px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .ncutam-section-nav {
+      max-width: 100%;
+      overflow-x: auto;
+    }
+  }
+</style>

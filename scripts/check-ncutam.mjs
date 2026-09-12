@@ -36,42 +36,100 @@ function assertUniqueIds(records, label) {
   }
 }
 
-const memberFile = 'src/data/ncutam/members.yaml';
+function readMemberRecords(relativeDir) {
+  const directory = path.join(root, relativeDir);
+  if (!fs.existsSync(directory)) {
+    fail(`Missing NCUTAM member directory: ${relativeDir}`);
+    return [];
+  }
+
+  const files = fs.readdirSync(directory).filter((name) => name.endsWith('.json')).sort();
+  if (files.length === 0) fail(`NCUTAM member directory is empty: ${relativeDir}`);
+
+  const records = [];
+  for (const file of files) {
+    const relative = path.join(relativeDir, file).replaceAll(path.sep, '/');
+    try {
+      const batch = JSON.parse(read(relative));
+      if (!Array.isArray(batch)) {
+        fail(`${relative}: expected a JSON array`);
+        continue;
+      }
+      records.push(...batch.map((record) => ({ ...record, sourceFile: relative })));
+    } catch (error) {
+      fail(`${relative}: invalid JSON (${error.message})`);
+    }
+  }
+  return records;
+}
+
+const memberDir = 'src/data/ncutam/members';
+const institutionFile = 'src/data/ncutam/institutions.yaml';
 const governanceFile = 'src/data/ncutam/governance.yaml';
 const documentFile = 'src/data/ncutam/documents.yaml';
 const mediaFile = 'src/data/ncutam/media.yaml';
 
-for (const file of [memberFile, governanceFile, documentFile, mediaFile]) {
+for (const file of [institutionFile, governanceFile, documentFile, mediaFile]) {
   if (!exists(file)) fail(`Missing NCUTAM data file: ${file}`);
 }
 
-const members = topLevelYamlRecords(memberFile);
+const members = readMemberRecords(memberDir);
+const institutions = topLevelYamlRecords(institutionFile);
 const governance = topLevelYamlRecords(governanceFile);
 const documents = topLevelYamlRecords(documentFile);
 const media = topLevelYamlRecords(mediaFile);
 
 assertUniqueIds(members, 'members');
+assertUniqueIds(institutions, 'institutions');
 assertUniqueIds(governance, 'governance');
 assertUniqueIds(documents, 'documents');
 assertUniqueIds(media, 'media');
 
 const memberIds = new Set(members.map((record) => record.id));
-const activeMemberIds = new Set(
-  members.filter((record) => field(record, 'status') === 'active').map((record) => record.id)
-);
+const institutionIds = new Set(institutions.map((record) => record.id));
+const activeMembers = members.filter((record) => record.status === 'active');
+const memorialMembers = members.filter((record) => record.status === 'in-memoriam');
+const formerMembers = members.filter((record) => record.status === 'former');
+const activeMemberIds = new Set(activeMembers.map((record) => record.id));
+const currentYear = new Date().getFullYear();
 
+const expectedSnapshot = { total: 429, active: 217, memorial: 211, former: 1, elected2025: 35 };
+if (members.length !== expectedSnapshot.total) fail(`members: expected ${expectedSnapshot.total} reconciled records, found ${members.length}`);
+if (activeMembers.length !== expectedSnapshot.active) fail(`members: expected ${expectedSnapshot.active} active records, found ${activeMembers.length}`);
+if (memorialMembers.length !== expectedSnapshot.memorial) fail(`members: expected ${expectedSnapshot.memorial} in-memoriam records, found ${memorialMembers.length}`);
+if (formerMembers.length !== expectedSnapshot.former) fail(`members: expected ${expectedSnapshot.former} former record, found ${formerMembers.length}`);
+const elected2025 = activeMembers.filter((record) => record.joinedYear === 2025);
+if (elected2025.length !== expectedSnapshot.elected2025) fail(`members: expected ${expectedSnapshot.elected2025} active members admitted in 2025, found ${elected2025.length}`);
+
+const seenNames = new Set();
 for (const member of members) {
-  if (!field(member, 'name')) fail(`members/${member.id}: missing Ukrainian name`);
-  if (!field(member, 'nameEn')) fail(`members/${member.id}: missing English name`);
+  const where = `members/${member.id}`;
+  if (!member.id || typeof member.id !== 'string') fail(`${member.sourceFile}: member missing id`);
+  if (!member.name) fail(`${where}: missing Ukrainian name`);
+  if (!member.nameEn) fail(`${where}: missing English name`);
+  if (member.nameEn && /[А-Яа-яІіЇїЄєҐґ]/.test(member.nameEn)) fail(`${where}: English name contains Cyrillic characters`);
+  if (!['active', 'in-memoriam', 'former'].includes(member.status)) fail(`${where}: invalid status '${member.status}'`);
 
-  const joinedYear = Number(field(member, 'joinedYear'));
-  if (Number.isFinite(joinedYear) && (joinedYear < 1992 || joinedYear > new Date().getFullYear())) {
-    fail(`members/${member.id}: invalid joinedYear ${joinedYear}`);
+  if (member.name) {
+    if (seenNames.has(member.name)) fail(`members: duplicate person name '${member.name}' across statuses/records`);
+    seenNames.add(member.name);
   }
 
-  const inmechPersonId = field(member, 'inmechPersonId');
-  if (inmechPersonId && !exists(`src/content/people/${inmechPersonId}.md`)) {
-    fail(`members/${member.id}: inmechPersonId '${inmechPersonId}' has no people record`);
+  if (member.joinedYear !== undefined && (!Number.isInteger(member.joinedYear) || member.joinedYear < 1992 || member.joinedYear > currentYear)) {
+    fail(`${where}: invalid joinedYear ${member.joinedYear}`);
+  }
+
+  if (member.status === 'active') {
+    if (!Number.isInteger(member.joinedYear)) fail(`${where}: active member missing joinedYear`);
+    if (!member.city) fail(`${where}: active member missing city`);
+  }
+
+  if (member.institution && !institutionIds.has(member.institution)) {
+    fail(`${where}: unknown institution '${member.institution}'`);
+  }
+
+  if (member.inmechPersonId && !exists(`src/content/people/${member.inmechPersonId}.md`)) {
+    fail(`${where}: inmechPersonId '${member.inmechPersonId}' has no people record`);
   }
 }
 
@@ -194,4 +252,4 @@ if (errors.length > 0) {
   process.exit(1);
 }
 
-console.log(`NCUTAM semantic validation passed (${members.length} member records, ${governance.length} governance assignments, ${documents.length} documents, ${media.length} media records).`);
+console.log(`NCUTAM semantic validation passed (${members.length} members: ${activeMembers.length} active, ${memorialMembers.length} in memoriam, ${formerMembers.length} former; ${elected2025.length} admitted in 2025; ${governance.length} governance assignments, ${documents.length} documents, ${media.length} media records).`);

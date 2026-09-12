@@ -1,0 +1,15 @@
+---
+import BaseLayoutEn from '../../../../../layouts/BaseLayoutEn.astro';
+import NcutamNav from '../../../../../components/NcutamNav.astro';
+import NcutamMediaList from '../../../../../components/ncutam/NcutamMediaList.astro';
+import { ncutamSite } from '../../../../../data/ncutam/site';
+import { siteEn } from '../../../../../data/site-en';
+---
+
+<BaseLayoutEn title={`NCUTAM in the media | ${ncutamSite.acronymEn} | ${siteEn.shortName}`} description="External publications and reports about the activities of the National Committee." activePage="ncutam">
+  <NcutamNav language="en" active="activity" />
+  <section class="page-hero">
+    <div class="container"><div class="panel"><p class="eyebrow">{ncutamSite.acronymEn} · Activities</p><h1>NCUTAM in the media</h1><p class="lead">External publications and reports about the Committee. Links open the original sources.</p></div></div>
+  </section>
+  <section class="section"><div class="container"><NcutamMediaList language="en" /></div></section>
+</BaseLayoutEn>

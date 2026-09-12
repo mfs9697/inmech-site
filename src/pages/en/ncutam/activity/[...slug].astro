@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayoutEn from '../../../../layouts/BaseLayoutEn.astro';
 import NcutamNav from '../../../../components/NcutamNav.astro';
+import NcutamActivityAssets from '../../../../components/ncutam/NcutamActivityAssets.astro';
 import { ncutamSite } from '../../../../data/ncutam/site';
 import { siteEn } from '../../../../data/site-en';
 import { getEnglishBody, renderBilingualMarkdown } from '../../../../utils/bilingualBody';
@@ -46,6 +47,7 @@ const typeLabels = {
   <section class="section">
     <div class="container">
       <article class="panel content-body activity-detail-body" set:html={html} />
+      <NcutamActivityAssets language="en" gallery={entry.data.gallery} documents={entry.data.documents} />
     </div>
   </section>
 </BaseLayoutEn>

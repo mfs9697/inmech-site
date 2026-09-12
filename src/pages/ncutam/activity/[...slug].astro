@@ -1,0 +1,56 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import NcutamNav from '../../../components/NcutamNav.astro';
+import { ncutamSite } from '../../../data/ncutam/site';
+import { site } from '../../../data/site';
+import { getUkrainianBody, renderBilingualMarkdown } from '../../../utils/bilingualBody';
+
+export async function getStaticPaths() {
+  const activities = await getCollection('ncutamActivities');
+  return activities.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const body = getUkrainianBody(entry.body ?? '');
+const html = renderBilingualMarkdown(body, base);
+const date = entry.data.date.toLocaleDateString('uk-UA', { day: 'numeric', month: 'long', year: 'numeric' });
+const endDate = entry.data.endDate?.toLocaleDateString('uk-UA', { day: 'numeric', month: 'long', year: 'numeric' });
+const typeLabels = {
+  meeting: 'Загальні збори',
+  conference: 'Конференція',
+  initiative: 'Ініціатива',
+  international: 'Міжнародна діяльність'
+} as const;
+---
+
+<BaseLayout title={`${entry.data.title} | ${ncutamSite.acronym} | ${site.shortName}`} description={entry.data.summary} activePage="ncutam">
+  <NcutamNav language="uk" active="activity" />
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">{typeLabels[entry.data.type]}</p>
+        <h1>{entry.data.title}</h1>
+        <p class="lead">{entry.data.summary}</p>
+        <p class="activity-detail-meta">
+          <time datetime={entry.data.date.toISOString()}>{date}</time>
+          {endDate && <> — {endDate}</>}
+          {entry.data.location && <> · {entry.data.location}</>}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="panel content-body activity-detail-body" set:html={html} />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .activity-detail-meta { margin: 14px 0 0; color: var(--muted); }
+  .activity-detail-body { max-width: 980px; }
+</style>

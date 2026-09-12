@@ -2,6 +2,8 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import NcutamNav from '../../components/NcutamNav.astro';
+import NcutamActivityList from '../../components/ncutam/NcutamActivityList.astro';
+import NcutamEvergreen from '../../components/ncutam/NcutamEvergreen.astro';
 import NcutamGovernance from '../../components/ncutam/NcutamGovernance.astro';
 import NewsCard from '../../components/NewsCard.astro';
 import { ncutamSections, ncutamSite } from '../../data/ncutam/site';
@@ -14,6 +16,8 @@ export function getStaticPaths() {
 const { section } = Astro.props as { section: (typeof ncutamSections)[number] };
 const isNews = section.id === 'news';
 const isGovernance = section.id === 'governance';
+const isActivity = section.id === 'activity';
+const isEvergreen = section.id === 'about' || section.id === 'iutam';
 const ncutamNews = isNews
   ? (await getCollection('news'))
       .filter((entry) => entry.data.scopes.includes('ncutam'))
@@ -42,18 +46,18 @@ const ncutamNews = isNews
             {ncutamNews.map((entry) => <NewsCard entry={entry} />)}
           </div>
         ) : (
-          <div class="panel ncutam-build-panel">
-            <h2>Новини НКУТПМ поки що не додано</h2>
-          </div>
+          <div class="panel ncutam-build-panel"><h2>Новини НКУТПМ поки що не додано</h2></div>
         )
       ) : isGovernance ? (
         <NcutamGovernance language="uk" />
+      ) : isActivity ? (
+        <NcutamActivityList language="uk" />
+      ) : isEvergreen ? (
+        <NcutamEvergreen pageId={section.id} language="uk" />
       ) : (
         <div class="panel ncutam-build-panel">
           <h2>Розділ підготовлено до міграції даних</h2>
-          <p>
-            Route і навігаційний контекст уже реалізовано. Перевірений зміст та структуровані записи буде додано наступними WP6 content-import batches відповідно до WP5 migration map.
-          </p>
+          <p>Перевірений зміст та структуровані записи буде додано наступними WP6 content-import batches відповідно до WP5 migration map.</p>
         </div>
       )}
     </div>
@@ -61,17 +65,7 @@ const ncutamNews = isNews
 </BaseLayout>
 
 <style>
-  .ncutam-build-panel {
-    max-width: 900px;
-  }
-
-  .ncutam-build-panel h2 {
-    margin-top: 0;
-  }
-
-  .ncutam-build-panel p {
-    margin-bottom: 0;
-    color: var(--muted);
-    line-height: 1.7;
-  }
+  .ncutam-build-panel { max-width: 900px; }
+  .ncutam-build-panel h2 { margin-top: 0; }
+  .ncutam-build-panel p { margin-bottom: 0; color: var(--muted); line-height: 1.7; }
 </style>

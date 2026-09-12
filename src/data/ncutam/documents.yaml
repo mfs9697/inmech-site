@@ -1,1 +1,84 @@
-[]
+- id: creation-resolution-191-1992
+  title: "Постанова Президії Академії наук України № 191 від 3 липня 1992 року"
+  titleEn: "Resolution No. 191 of the Presidium of the Academy of Sciences of Ukraine, 3 July 1992"
+  kind: foundation
+  date: 1992-07-03
+  language: uk
+  path: "/documents/ncutam/foundation/1992/ncutam-creation-resolution-191-1992-07-03.pdf"
+  issuedBy: "Президія Академії наук України"
+  issuedByEn: "Presidium of the Academy of Sciences of Ukraine"
+  status: historical
+  note: "Установча постанова про створення Національного комітету України з теоретичної та прикладної механіки."
+  noteEn: "Founding resolution establishing the National Committee of Ukraine for Theoretical and Applied Mechanics."
+
+- id: statute-1993
+  title: "Статут Національного комітету України з теоретичної та прикладної механіки"
+  titleEn: "Statute of the National Committee of Ukraine for Theoretical and Applied Mechanics"
+  kind: regulation
+  year: 1993
+  language: uk
+  path: "/documents/ncutam/foundation/1993/ncutam-statute-1993.pdf"
+  issuedBy: "Національний комітет України з теоретичної та прикладної механіки"
+  issuedByEn: "National Committee of Ukraine for Theoretical and Applied Mechanics"
+  status: current
+  note: "Рік прийняття наведено за річним звітом НКУТПМ за 2025 рік, де Статут 1993 року зазначено серед чинних засад діяльності Комітету."
+  noteEn: "The year of adoption follows the 2025 NCUTAM annual report, which cites the 1993 Statute among the Committee's current governing foundations."
+
+- id: regulation-263-1992
+  title: "Положення про Національний комітет України з теоретичної та прикладної механіки, затверджене постановою № 263 від 7 жовтня 1992 року"
+  titleEn: "Regulation on the National Committee of Ukraine for Theoretical and Applied Mechanics approved by Resolution No. 263 of 7 October 1992"
+  kind: regulation
+  date: 1992-10-07
+  language: uk
+  path: "/documents/ncutam/governance/1992/ncutam-regulation-263-1992-10-07.pdf"
+  issuedBy: "Президія Академії наук України"
+  issuedByEn: "Presidium of the Academy of Sciences of Ukraine"
+  status: superseded
+  note: "Історична редакція Положення. Постановою Президії НАН України № 26 від 24 січня 2024 року постанову № 263 від 7 жовтня 1992 року визнано такою, що втратила чинність."
+  noteEn: "Historical version of the Regulation. Resolution No. 26 of the NAS of Ukraine Presidium dated 24 January 2024 repealed Resolution No. 263 of 7 October 1992."
+
+- id: nasu-resolution-26-2024
+  title: "Постанова Президії НАН України № 26 від 24 січня 2024 року"
+  titleEn: "Resolution No. 26 of the Presidium of the NAS of Ukraine, 24 January 2024"
+  kind: resolution
+  date: 2024-01-24
+  language: uk
+  path: "/documents/ncutam/governance/2024/nasu-resolution-26-2024-01-24.pdf"
+  issuedBy: "Президія Національної академії наук України"
+  issuedByEn: "Presidium of the National Academy of Sciences of Ukraine"
+  status: current
+  note: "Постанова затверджує чинне Положення про НКУТПМ; текст Положення наведено в додатку до постанови."
+  noteEn: "The Resolution approves the current Regulation on NCUTAM; the Regulation is included as an appendix."
+
+- id: annual-report-2023
+  title: "Звіт про діяльність НКУТПМ за 2023 рік"
+  titleEn: "NCUTAM annual report for 2023"
+  kind: annual-report
+  year: 2023
+  language: uk
+  path: "/documents/ncutam/reports/2023/ncutam-report-2023.pdf"
+  issuedBy: "Національний комітет України з теоретичної та прикладної механіки"
+  issuedByEn: "National Committee of Ukraine for Theoretical and Applied Mechanics"
+  status: historical
+
+- id: annual-report-2024
+  title: "Звіт про діяльність НКУТПМ за 2024 рік"
+  titleEn: "NCUTAM annual report for 2024"
+  kind: annual-report
+  year: 2024
+  language: uk
+  path: "/documents/ncutam/reports/2024/ncutam-report-2024.pdf"
+  issuedBy: "Національний комітет України з теоретичної та прикладної механіки"
+  issuedByEn: "National Committee of Ukraine for Theoretical and Applied Mechanics"
+  status: historical
+
+- id: annual-report-2025
+  title: "Звіт про діяльність НКУТПМ за 2025 рік"
+  titleEn: "NCUTAM annual report for 2025"
+  kind: annual-report
+  year: 2025
+  language: uk
+  path: "/documents/ncutam/reports/2025/ncutam-report-2025.pdf"
+  issuedBy: "Національний комітет України з теоретичної та прикладної механіки"
+  issuedByEn: "National Committee of Ukraine for Theoretical and Applied Mechanics"
+  status: historical

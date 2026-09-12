@@ -1,0 +1,27 @@
+---
+import BaseLayoutEn from '../../../../../layouts/BaseLayoutEn.astro';
+import NcutamNav from '../../../../../components/NcutamNav.astro';
+import { ncutamSite } from '../../../../../data/ncutam/site';
+import { siteEn } from '../../../../../data/site-en';
+---
+
+<BaseLayoutEn title={`In memoriam | ${ncutamSite.acronymEn} | ${siteEn.shortName}`} description="In memoriam archive for members of the National Committee of Ukraine for Theoretical and Applied Mechanics." activePage="ncutam">
+  <NcutamNav language="en" active="members" />
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">{ncutamSite.acronymEn} · Members</p>
+        <h1>In memoriam</h1>
+        <p class="lead">Archive commemorating Committee members who have passed away.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="panel">
+        <h2>Archive being prepared for migration</h2>
+        <p>The historical legacy-site list will be migrated after individual records and statuses have been reconciled in the shared Committee membership dataset.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayoutEn>

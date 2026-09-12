@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import NcutamNav from '../../components/NcutamNav.astro';
+import NcutamGovernance from '../../components/ncutam/NcutamGovernance.astro';
 import NewsCard from '../../components/NewsCard.astro';
 import { ncutamSections, ncutamSite } from '../../data/ncutam/site';
 import { site } from '../../data/site';
@@ -12,6 +13,7 @@ export function getStaticPaths() {
 
 const { section } = Astro.props as { section: (typeof ncutamSections)[number] };
 const isNews = section.id === 'news';
+const isGovernance = section.id === 'governance';
 const ncutamNews = isNews
   ? (await getCollection('news'))
       .filter((entry) => entry.data.scopes.includes('ncutam'))
@@ -44,6 +46,8 @@ const ncutamNews = isNews
             <h2>Новини НКУТПМ поки що не додано</h2>
           </div>
         )
+      ) : isGovernance ? (
+        <NcutamGovernance language="uk" />
       ) : (
         <div class="panel ncutam-build-panel">
           <h2>Розділ підготовлено до міграції даних</h2>

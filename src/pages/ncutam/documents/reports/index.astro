@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import NcutamNav from '../../../../components/NcutamNav.astro';
+import NcutamDocuments from '../../../../components/ncutam/NcutamDocuments.astro';
 import { ncutamSite } from '../../../../data/ncutam/site';
 import { site } from '../../../../data/site';
 ---
@@ -12,16 +13,13 @@ import { site } from '../../../../data/site';
       <div class="panel">
         <p class="eyebrow">{ncutamSite.acronym} · Документи</p>
         <h1>Річні звіти</h1>
-        <p class="lead">Офіційні річні звіти про діяльність Комітету.</p>
+        <p class="lead">Офіційні річні звіти про діяльність Комітету, впорядковані за роками.</p>
       </div>
     </div>
   </section>
   <section class="section">
     <div class="container">
-      <div class="panel">
-        <h2>Перевірені звіти готуються до публікації</h2>
-        <p>Фінальні PDF за 2023, 2024 і 2025 роки вже ідентифіковано у джерельному сховищі. Посилання з’являться після перенесення самих файлів до стабільних шляхів <code>/documents/ncutam/reports/…</code>.</p>
-      </div>
+      <NcutamDocuments language="uk" view="reports" />
     </div>
   </section>
 </BaseLayout>

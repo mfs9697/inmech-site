@@ -1,6 +1,8 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import NcutamNav from '../../components/NcutamNav.astro';
+import NewsCard from '../../components/NewsCard.astro';
 import { ncutamSections, ncutamSite } from '../../data/ncutam/site';
 import { site } from '../../data/site';
 
@@ -9,6 +11,12 @@ export function getStaticPaths() {
 }
 
 const { section } = Astro.props as { section: (typeof ncutamSections)[number] };
+const isNews = section.id === 'news';
+const ncutamNews = isNews
+  ? (await getCollection('news'))
+      .filter((entry) => entry.data.scopes.includes('ncutam'))
+      .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  : [];
 ---
 
 <BaseLayout title={`${section.title} | ${ncutamSite.acronym} | ${site.shortName}`} description={section.description} activePage="ncutam">
@@ -26,12 +34,24 @@ const { section } = Astro.props as { section: (typeof ncutamSections)[number] };
 
   <section class="section">
     <div class="container">
-      <div class="panel ncutam-build-panel">
-        <h2>Розділ підготовлено до міграції даних</h2>
-        <p>
-          Route і навігаційний контекст уже реалізовано. Перевірений зміст та структуровані записи буде додано наступними WP6 content-import batches відповідно до WP5 migration map.
-        </p>
-      </div>
+      {isNews ? (
+        ncutamNews.length > 0 ? (
+          <div class="news-list">
+            {ncutamNews.map((entry) => <NewsCard entry={entry} />)}
+          </div>
+        ) : (
+          <div class="panel ncutam-build-panel">
+            <h2>Новини НКУТПМ поки що не додано</h2>
+          </div>
+        )
+      ) : (
+        <div class="panel ncutam-build-panel">
+          <h2>Розділ підготовлено до міграції даних</h2>
+          <p>
+            Route і навігаційний контекст уже реалізовано. Перевірений зміст та структуровані записи буде додано наступними WP6 content-import batches відповідно до WP5 migration map.
+          </p>
+        </div>
+      )}
     </div>
   </section>
 </BaseLayout>

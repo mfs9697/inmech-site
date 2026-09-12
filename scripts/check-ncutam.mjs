@@ -81,6 +81,7 @@ assertUniqueIds(media, 'media');
 
 const memberIds = new Set(members.map((record) => record.id));
 const institutionIds = new Set(institutions.map((record) => record.id));
+const documentIds = new Set(documents.map((record) => record.id));
 const activeMembers = members.filter((record) => record.status === 'active');
 const memorialMembers = members.filter((record) => record.status === 'in-memoriam');
 const formerMembers = members.filter((record) => record.status === 'former');
@@ -199,6 +200,15 @@ const allowedActivityTypes = new Map([
   ['initiatives', 'initiative'],
   ['international', 'international']
 ]);
+const expectedGalleryCounts = new Map([
+  ['conferences/current-problems-mechanics-2023', 10],
+  ['conferences/mechanics-present-and-prospects-2024', 4],
+  ['meetings/2025-11-11', 5]
+]);
+const expectedMeetingDocumentCounts = new Map([
+  ['meetings/2023-09-12', 10],
+  ['meetings/2025-11-11', 2]
+]);
 
 function walk(dir) {
   if (!fs.existsSync(dir)) return [];
@@ -210,7 +220,9 @@ function walk(dir) {
 
 for (const full of walk(activityRoot).filter((file) => file.endsWith('.md'))) {
   const relative = path.relative(root, full).replaceAll(path.sep, '/');
+  const activityId = path.relative(activityRoot, full).replaceAll(path.sep, '/').replace(/\.md$/, '');
   const text = fs.readFileSync(full, 'utf8');
+  const frontmatter = text.match(/^---\n([\s\S]*?)\n---/)?.[1] ?? '';
   const category = path.relative(activityRoot, full).split(path.sep)[0];
   const expectedType = allowedActivityTypes.get(category);
   const actualType = text.match(/^type:\s*([^\n]+)$/m)?.[1]?.trim();
@@ -224,6 +236,39 @@ for (const full of walk(activityRoot).filter((file) => file.endsWith('.md'))) {
     const fileDate = path.basename(full, '.md');
     const frontmatterDate = text.match(/^date:\s*(\d{4}-\d{2}-\d{2})/m)?.[1];
     if (frontmatterDate && fileDate !== frontmatterDate) fail(`${relative}: meeting filename '${fileDate}' must match date '${frontmatterDate}'`);
+  }
+
+  const image = frontmatter.match(/^image:\s*["']?([^"'\n]+)["']?\s*$/m)?.[1];
+  if (image) {
+    if (!image.startsWith('/images/ncutam/')) fail(`${relative}: NCUTAM activity image must use /images/ncutam/`);
+    else if (!exists(`public${image}`)) fail(`${relative}: missing activity image public${image}`);
+  }
+
+  const galleryBlock = frontmatter.match(/^gallery:\n([\s\S]*?)(?=^[A-Za-z][A-Za-z0-9_-]*:|$)/m)?.[1] ?? '';
+  const galleryItems = [...galleryBlock.matchAll(/^  - src:\s*["']?([^"'\n]+)["']?\s*\n((?:    .+\n?)*)/gm)];
+  const galleryPaths = [];
+  for (const item of galleryItems) {
+    const src = item[1];
+    const fields = item[2];
+    galleryPaths.push(src);
+    if (!src.startsWith('/images/ncutam/')) fail(`${relative}: gallery src '${src}' must use /images/ncutam/`);
+    else if (!exists(`public${src}`)) fail(`${relative}: missing gallery asset public${src}`);
+    if (!/^    alt:\s*.+$/m.test(fields)) fail(`${relative}: gallery item '${src}' missing Ukrainian alt text`);
+    if (!/^    altEn:\s*.+$/m.test(fields)) fail(`${relative}: gallery item '${src}' missing English alt text`);
+  }
+  if (new Set(galleryPaths).size !== galleryPaths.length) fail(`${relative}: duplicate gallery src`);
+  if (expectedGalleryCounts.has(activityId) && galleryItems.length !== expectedGalleryCounts.get(activityId)) {
+    fail(`${relative}: expected ${expectedGalleryCounts.get(activityId)} gallery images, found ${galleryItems.length}`);
+  }
+
+  const documentsBlock = frontmatter.match(/^documents:\n((?:  - .+\n?)*)/m)?.[1] ?? '';
+  const activityDocuments = [...documentsBlock.matchAll(/^  -\s*["']?([^"'\n]+)["']?\s*$/gm)].map((match) => match[1]);
+  for (const documentId of activityDocuments) {
+    if (!documentIds.has(documentId)) fail(`${relative}: unknown document reference '${documentId}'`);
+  }
+  if (new Set(activityDocuments).size !== activityDocuments.length) fail(`${relative}: duplicate document reference`);
+  if (expectedMeetingDocumentCounts.has(activityId) && activityDocuments.length !== expectedMeetingDocumentCounts.get(activityId)) {
+    fail(`${relative}: expected ${expectedMeetingDocumentCounts.get(activityId)} meeting document references, found ${activityDocuments.length}`);
   }
 }
 

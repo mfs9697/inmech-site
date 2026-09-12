@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
 import NcutamNav from '../../../components/NcutamNav.astro';
 import NcutamActivityList from '../../../components/ncutam/NcutamActivityList.astro';
+import NcutamDocuments from '../../../components/ncutam/NcutamDocuments.astro';
 import NcutamEvergreen from '../../../components/ncutam/NcutamEvergreen.astro';
 import NcutamGovernance from '../../../components/ncutam/NcutamGovernance.astro';
 import NcutamMembers from '../../../components/ncutam/NcutamMembers.astro';
@@ -19,6 +20,7 @@ const isNews = section.id === 'news';
 const isGovernance = section.id === 'governance';
 const isMembers = section.id === 'members';
 const isActivity = section.id === 'activity';
+const isDocuments = section.id === 'documents';
 const isEvergreen = section.id === 'about' || section.id === 'iutam';
 const ncutamNews = isNews
   ? (await getCollection('news'))
@@ -56,6 +58,8 @@ const ncutamNews = isNews
         <NcutamMembers language="en" status="active" />
       ) : isActivity ? (
         <NcutamActivityList language="en" />
+      ) : isDocuments ? (
+        <NcutamDocuments language="en" />
       ) : isEvergreen ? (
         <NcutamEvergreen pageId={section.id} language="en" />
       ) : (

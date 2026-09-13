@@ -1,5 +1,5 @@
 ---
-import { getCollection, getEntry } from 'astro:content';
+import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
 
 interface Props {
   language?: 'uk' | 'en';
@@ -29,7 +29,7 @@ const cityEn: Record<string, string> = {
 };
 
 const englishSurname = (name: string) => name.trim().split(/\s+/).at(-1) ?? name;
-const memberSortKey = (member: Awaited<ReturnType<typeof getCollection<'ncutamMembers'>>>[number]) =>
+const memberSortKey = (member: CollectionEntry<'ncutamMembers'>) =>
   language === 'uk'
     ? (member.data.sortName ?? member.data.name)
     : englishSurname(member.data.nameEn);

@@ -1,3 +1,7 @@
+.hero-grid.hero-grid-single {
+  grid-template-columns: 1fr;
+}
+
 .hero-card-visual {
   display: grid;
   grid-template-columns: 1fr;
@@ -53,13 +57,28 @@
 }
 
 .hero-image-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: center;
+  gap: 10px;
   margin-top: 0;
-  justify-content: flex-start;
 }
 
 .hero-image-actions .button {
-  flex: 1 1 auto;
-  min-width: 132px;
+  width: 100%;
+  min-width: 0;
+}
+
+.hero-image-actions .hero-election-button {
+  border-color: rgba(184, 135, 47, 0.55);
+  background: rgba(184, 135, 47, 0.10);
+  color: #76571e;
+}
+
+.hero-image-actions .hero-election-button:hover {
+  border-color: var(--gold);
+  background: rgba(184, 135, 47, 0.16);
+  color: #624715;
 }
 
 .hero-image-card figcaption {

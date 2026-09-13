@@ -1,0 +1,26 @@
+/*
+ * NCUTAM section spacing
+ *
+ * The global `.panel` primitive supplies border/background/shadow but deliberately
+ * has no default padding. NCUTAM uses panels extensively for content cards, so
+ * provide one consistent inner gutter at the section level without changing
+ * panels elsewhere on the Institute site or the separately sized page heroes.
+ */
+
+body.ncutam-site .section .panel {
+  padding: clamp(20px, 3vw, 28px);
+}
+
+body.ncutam-site .section .panel > :first-child {
+  margin-top: 0;
+}
+
+body.ncutam-site .section .panel > :last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 680px) {
+  body.ncutam-site .section .panel {
+    padding: 18px;
+  }
+}

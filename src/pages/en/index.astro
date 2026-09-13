@@ -45,7 +45,7 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
   activePage="home"
 >
   <section class="hero">
-    <div class="container hero-grid">
+    <div class="container hero-grid hero-grid-single">
       <div class="hero-card hero-card-visual" data-block-tone="neutral">
         <div class="hero-text">
           <p class="eyebrow">National Academy of Sciences of Ukraine</p>
@@ -62,28 +62,13 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
           <div class="hero-actions hero-image-actions">
             <a class="button primary" href={withBase('/en/departments/')}>Research departments</a>
             <a class="button secondary" href={withBase('/en/news/')}>Latest news</a>
+            <a class="button secondary" href={withBase('/en/ncutam/')}>NCUTAM</a>
+            <a class="button hero-election-button" href="https://election.inmech.kyiv.ua/" target="_blank" rel="noopener">
+              Director election · 2026
+            </a>
           </div>
         </figure>
       </div>
-
-      <aside class="aside-card" data-block-tone="emphasis" aria-labelledby="institute-sites-title">
-        <h2 id="institute-sites-title">Institute websites</h2>
-        <p>
-          Separate information resources of the Institute for specialised projects, events and institutional announcements.
-        </p>
-        <ul class="aside-list">
-          <li>
-            <a href={withBase('/en/ncutam/')}>
-              National Committee of Ukraine for Theoretical and Applied Mechanics
-            </a>
-          </li>
-          <li>
-            <a href="https://election.inmech.kyiv.ua/" target="_blank" rel="noopener">
-              Election of the Director of the Institute, 2026
-            </a>
-          </li>
-        </ul>
-      </aside>
     </div>
   </section>
 

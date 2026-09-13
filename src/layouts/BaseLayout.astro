@@ -9,6 +9,7 @@ import '../styles/home-hero.css';
 import '../styles/navigation.css';
 import '../styles/dropdown-navigation.css';
 import '../styles/block-colors.css';
+import '../styles/ncutam.css';
 
 interface Props {
   title: string;
@@ -60,7 +61,7 @@ const pageProvidesMainLandmark = currentPath.startsWith('/postgraduate/');
       </>
     ) : null}
   </head>
-  <body>
+  <body class={activePage === 'ncutam' ? 'ncutam-site' : undefined}>
     <a class="skip-link" href="#main">Перейти до змісту</a>
     <Header activePage={activePage} />
     {pageProvidesMainLandmark ? (

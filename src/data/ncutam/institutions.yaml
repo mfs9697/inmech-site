@@ -238,3 +238,28 @@
   nameEn: National University of Water and Environmental Engineering
   city: Рівне
   cityEn: Rivne
+- id: odesa-i-i-mechnikov-national-university
+  name: Одеський національний університет імені І.І. Мечникова
+  nameEn: Odesa I.I. Mechnikov National University
+  city: Одеса
+  cityEn: Odesa
+- id: uzhhorod-national-university
+  name: ДВНЗ «Ужгородський національний університет»
+  nameEn: Uzhhorod National University
+  city: Ужгород
+  cityEn: Uzhhorod
+- id: ukrainian-state-university-of-science-and-technologies
+  name: Український державний університет науки і технологій
+  nameEn: Ukrainian State University of Science and Technologies
+  city: Дніпро
+  cityEn: Dnipro
+- id: ternopil-ivan-puluj-national-technical-university
+  name: Тернопільський національний технічний університет імені Івана Пулюя
+  nameEn: Ternopil Ivan Puluj National Technical University
+  city: Тернопіль
+  cityEn: Ternopil
+- id: national-university-odesa-maritime-academy
+  name: Національний університет «Одеська морська академія»
+  nameEn: National University Odesa Maritime Academy
+  city: Одеса
+  cityEn: Odesa

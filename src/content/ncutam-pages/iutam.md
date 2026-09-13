@@ -3,7 +3,7 @@ title: "IUTAM"
 titleEn: "IUTAM"
 description: "Представництво України та інституційні зв’язки НКУТПМ з Міжнародним союзом теоретичної і прикладної механіки."
 descriptionEn: "Ukraine’s representation and NCUTAM’s institutional relationship with the International Union of Theoretical and Applied Mechanics."
-updated: 2026-09-12
+updated: 2026-09-13
 ---
 Національний комітет України з теоретичної і прикладної механіки є офіційною представницькою організацією України у **Міжнародному союзі теоретичної і прикладної механіки (International Union of Theoretical and Applied Mechanics — IUTAM)**.
 
@@ -19,7 +19,7 @@ IUTAM — міжнародна наукова організація, що об�
 
 ## Поточні та історичні матеріали
 
-Датовані засідання, вибори представників України та інші події IUTAM зберігаються як окремі [записи діяльності](/ncutam/activity/) або [новини НКУТПМ](/ncutam/news/). Це дає змогу залишати цю сторінку сталою інституційною точкою входу.
+Матеріали про засідання IUTAM, вибори представників України та інші пов’язані події доступні в розділах [Діяльність](/ncutam/activity/) та [Новини](/ncutam/news/).
 
 [Офіційний перелік організацій-членів IUTAM](https://iutam.org/about-iutam/adhering-organisations)
 
@@ -37,9 +37,9 @@ Ukraine joined IUTAM as an independent member state in **1992**. Representation 
 
 The Committee also informs Ukrainian researchers about IUTAM programmes, calls, symposia, and other opportunities and supports broader participation of early-career researchers in the international professional community.
 
-## Current and historical records
+## Current and historical materials
 
-Dated meetings, elections of Ukrainian representatives, and other IUTAM events are retained as separate [activity records](/en/ncutam/activity/) or [NCUTAM news](/en/ncutam/news/). This keeps the present page as a stable institutional entry point.
+Materials on IUTAM meetings, elections of Ukrainian representatives, and other related events are available in the [Activities](/en/ncutam/activity/) and [News](/en/ncutam/news/) sections.
 
 [Official list of IUTAM adhering organizations](https://iutam.org/about-iutam/adhering-organisations)
 

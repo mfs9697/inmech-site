@@ -24,13 +24,35 @@ const errors = [];
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, 'utf8');
   if (/@@BILINGUAL|BILINGUALINLINE/.test(html)) {
-    errors.push(path.relative(root, file).replaceAll(path.sep, '/'));
+    errors.push(`${path.relative(root, file).replaceAll(path.sep, '/')}: unresolved bilingual inline placeholder`);
+  }
+}
+
+const memberPages = [
+  path.join(dist, 'ncutam', 'members', 'index.html'),
+  path.join(dist, 'ncutam', 'members', 'in-memoriam', 'index.html'),
+  path.join(dist, 'en', 'ncutam', 'members', 'index.html'),
+  path.join(dist, 'en', 'ncutam', 'members', 'in-memoriam', 'index.html')
+];
+
+for (const file of memberPages) {
+  const relative = path.relative(root, file).replaceAll(path.sep, '/');
+  if (!fs.existsSync(file)) {
+    errors.push(`${relative}: expected member-register page is missing`);
+    continue;
+  }
+
+  const html = fs.readFileSync(file, 'utf8');
+  for (const marker of ['data-members-root', 'data-members-search', 'data-members-letter', 'data-member-row']) {
+    if (!html.includes(marker)) {
+      errors.push(`${relative}: missing ${marker}`);
+    }
   }
 }
 
 if (errors.length > 0) {
-  console.error('NCUTAM rendered-output validation failed: unresolved bilingual inline placeholder found in:');
-  for (const file of errors) console.error(`  - ${file}`);
+  console.error('NCUTAM rendered-output validation failed:');
+  for (const error of errors) console.error(`  - ${error}`);
   process.exit(1);
 }
 

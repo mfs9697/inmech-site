@@ -3,7 +3,7 @@ title: "Про Комітет"
 titleEn: "About NCUTAM"
 description: "Статус, мандат, історія та базова організація Національного комітету України з теоретичної і прикладної механіки."
 descriptionEn: "Status, mandate, history and host institution of the National Committee of Ukraine for Theoretical and Applied Mechanics."
-updated: 2026-09-12
+updated: 2026-09-13
 ---
 Національний комітет України з теоретичної і прикладної механіки є самостійним колегіальним науково-координаційним органом, діяльність якого спрямовується Національною академією наук України. Комітет об’єднує фахівців з різних установ і закладів вищої освіти для розвитку досліджень у галузі механіки та суміжних наук.
 
@@ -23,7 +23,7 @@ updated: 2026-09-12
 
 Комітет представляє Україну в Міжнародному союзі теоретичної і прикладної механіки (IUTAM). Інформація про цей напрям зібрана в окремому розділі [IUTAM](/ncutam/iutam/).
 
-Датовані рішення, пріоритети окремих Загальних зборів та поточні ініціативи зберігаються в архіві [діяльності Комітету](/ncutam/activity/), а не включаються до цього сталого інституційного опису.
+Рішення Загальних зборів, матеріали про поточні ініціативи та інші датовані події Комітету доступні в розділі [Діяльність](/ncutam/activity/).
 
 <!-- en:start -->
 
@@ -45,6 +45,6 @@ The Committee is hosted by the S.P. Timoshenko Institute of Mechanics of the NAS
 
 The Committee represents Ukraine in the International Union of Theoretical and Applied Mechanics (IUTAM). This activity is presented in the dedicated [IUTAM](/en/ncutam/iutam/) section.
 
-Dated decisions, priorities adopted by individual General Meetings, and current initiatives are retained in the [Committee activities](/en/ncutam/activity/) archive rather than embedded in this enduring institutional description.
+General Meeting decisions, current initiatives, and other dated Committee activities are available in the [Activities](/en/ncutam/activity/) section.
 
 <!-- en:end -->

@@ -22,6 +22,7 @@ function withBase(path: string, base: string) {
 function renderInlineMarkdown(value: string, base: string) {
   const placeholders: string[] = [];
   let text = value;
+  const placeholder = (index: number) => `@@BILINGUALINLINE${index}@@`;
 
   text = text.replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]+)")?\)/g, (_, alt, src, title) => {
     const safeAlt = escapeHtml(alt ?? '');
@@ -29,7 +30,7 @@ function renderInlineMarkdown(value: string, base: string) {
     const safeTitle = title ? ` title="${escapeHtml(title)}"` : '';
     const html = `<img src="${safeSrc}" alt="${safeAlt}" loading="lazy" decoding="async"${safeTitle}>`;
     placeholders.push(html);
-    return `@@BILINGUAL_INLINE_${placeholders.length - 1}@@`;
+    return placeholder(placeholders.length - 1);
   });
 
   text = text.replace(/\[([^\]]+)\]\(([^)\s]+)(?:\s+"([^"]+)")?\)/g, (_, label, href, title) => {
@@ -38,7 +39,7 @@ function renderInlineMarkdown(value: string, base: string) {
     const safeTitle = title ? ` title="${escapeHtml(title)}"` : '';
     const html = `<a href="${safeHref}"${safeTitle}>${safeLabel}</a>`;
     placeholders.push(html);
-    return `@@BILINGUAL_INLINE_${placeholders.length - 1}@@`;
+    return placeholder(placeholders.length - 1);
   });
 
   text = escapeHtml(text)
@@ -48,7 +49,7 @@ function renderInlineMarkdown(value: string, base: string) {
     .replace(/_([^_]+)_/g, '<em>$1</em>');
 
   placeholders.forEach((html, index) => {
-    text = text.replace(`@@BILINGUAL_INLINE_${index}@@`, html);
+    text = text.replace(placeholder(index), html);
   });
 
   return text;

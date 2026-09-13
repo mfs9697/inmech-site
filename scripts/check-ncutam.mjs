@@ -88,17 +88,18 @@ const formerMembers = members.filter((record) => record.status === 'former');
 const activeMemberIds = new Set(activeMembers.map((record) => record.id));
 const currentYear = new Date().getFullYear();
 
-// Fixed against the reconciled 2025/current roster. Bahno is active; his exact
-// admission year remains intentionally unset until a primary source is found.
-const expectedSnapshot = { total: 429, active: 218, memorial: 211, former: 0, elected2025: 35 };
+// The migration snapshot is no longer a permanent count invariant: membership
+// must be able to change after cutover. Preserve only historical cohort facts
+// that should remain true when a member later changes status.
+const historicalJoinedYearCounts = new Map([[2025, 35]]);
 const activeMembersWithUnverifiedJoinedYear = new Set(['bahno-oleksandr']);
 
-if (members.length !== expectedSnapshot.total) fail(`members: expected ${expectedSnapshot.total} reconciled records, found ${members.length}`);
-if (activeMembers.length !== expectedSnapshot.active) fail(`members: expected ${expectedSnapshot.active} active records, found ${activeMembers.length}`);
-if (memorialMembers.length !== expectedSnapshot.memorial) fail(`members: expected ${expectedSnapshot.memorial} in-memoriam records, found ${memorialMembers.length}`);
-if (formerMembers.length !== expectedSnapshot.former) fail(`members: expected ${expectedSnapshot.former} former records, found ${formerMembers.length}`);
-const elected2025 = activeMembers.filter((record) => record.joinedYear === 2025);
-if (elected2025.length !== expectedSnapshot.elected2025) fail(`members: expected ${expectedSnapshot.elected2025} active members admitted in 2025, found ${elected2025.length}`);
+for (const [year, expectedCount] of historicalJoinedYearCounts) {
+  const cohort = members.filter((record) => record.joinedYear === year);
+  if (cohort.length !== expectedCount) {
+    fail(`members: expected historical ${year} admission cohort of ${expectedCount}, found ${cohort.length}`);
+  }
+}
 
 const seenNames = new Set();
 for (const member of members) {
@@ -277,4 +278,5 @@ if (errors.length > 0) {
   process.exit(1);
 }
 
-console.log(`NCUTAM semantic validation passed (${members.length} members: ${activeMembers.length} active, ${memorialMembers.length} in memoriam, ${formerMembers.length} former; ${elected2025.length} admitted in 2025; ${governance.length} governance assignments, ${documents.length} documents, ${media.length} media records).`);
+const cohort2025 = members.filter((record) => record.joinedYear === 2025).length;
+console.log(`NCUTAM semantic validation passed (${members.length} members: ${activeMembers.length} active, ${memorialMembers.length} in memoriam, ${formerMembers.length} former; historical 2025 admission cohort ${cohort2025}; ${governance.length} governance assignments, ${documents.length} documents, ${media.length} media records).`);

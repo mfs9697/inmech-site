@@ -1,5 +1,5 @@
 ---
-import { getCollection, getEntry } from 'astro:content';
+import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
 
 interface Props {
   language?: 'uk' | 'en';
@@ -9,6 +9,7 @@ interface Props {
 const { language = 'uk', status = 'active' } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+const locale = language === 'uk' ? 'uk' : 'en';
 
 const cityEn: Record<string, string> = {
   'Вінниця': 'Vinnytsia',
@@ -27,12 +28,20 @@ const cityEn: Record<string, string> = {
   'Харків': 'Kharkiv'
 };
 
+const englishSurname = (name: string) => name.trim().split(/\s+/).at(-1) ?? name;
+const memberSortKey = (member: CollectionEntry<'ncutamMembers'>) =>
+  language === 'uk'
+    ? (member.data.sortName ?? member.data.name)
+    : englishSurname(member.data.nameEn);
+
 const members = (await getCollection('ncutamMembers'))
   .filter((entry) => entry.data.status === status)
   .sort((a, b) => {
-    const left = language === 'uk' ? (a.data.sortName ?? a.data.name) : a.data.nameEn;
-    const right = language === 'uk' ? (b.data.sortName ?? b.data.name) : b.data.nameEn;
-    return left.localeCompare(right, language === 'uk' ? 'uk' : 'en');
+    const primary = memberSortKey(a).localeCompare(memberSortKey(b), locale);
+    if (primary !== 0) return primary;
+    const left = language === 'uk' ? a.data.name : a.data.nameEn;
+    const right = language === 'uk' ? b.data.name : b.data.nameEn;
+    return left.localeCompare(right, locale);
   });
 
 const resolved = await Promise.all(
@@ -54,19 +63,81 @@ const labels = language === 'uk'
       count: status === 'active' ? 'Чинних членів Комітету' : 'Імен у меморіальному реєстрі',
       name: 'Ім’я', institution: 'Установа', city: 'Місто', joined: 'У Комітеті з',
       memorialLink: 'Світлій пам’яті членів Комітету', currentLink: 'Поточний склад Комітету',
-      memorialNote: 'Меморіальний реєстр відтворює опублікований Комітетом список. Біографічні дати не додаються без окремого перевіреного джерела.'
+      memorialNote: 'Меморіальний реєстр відтворює опублікований Комітетом список. Біографічні дати не додаються без окремого перевіреного джерела.',
+      searchLabel: 'Пошук у реєстрі',
+      searchPlaceholder: status === 'active' ? 'Ім’я, установа або місто' : 'Ім’я',
+      alphabetLabel: 'За першою літерою прізвища',
+      allLetters: 'Усі',
+      reset: 'Скинути',
+      resultTemplate: 'Показано {visible} з {total}',
+      noResults: 'Нічого не знайдено.',
+      noResultsHint: 'Змініть пошуковий запит або скиньте фільтр.'
     }
   : {
       count: status === 'active' ? 'Current Committee members' : 'Names in the memorial register',
       name: 'Name', institution: 'Institution', city: 'City', joined: 'Member since',
       memorialLink: 'In memoriam', currentLink: 'Current Committee members',
-      memorialNote: 'The memorial register reproduces the list published by the Committee. Biographical dates are not added without a separately verified source.'
+      memorialNote: 'The memorial register reproduces the list published by the Committee. Biographical dates are not added without a separately verified source.',
+      searchLabel: 'Search the register',
+      searchPlaceholder: status === 'active' ? 'Name, institution or city' : 'Name',
+      alphabetLabel: 'By surname initial',
+      allLetters: 'All',
+      reset: 'Reset',
+      resultTemplate: 'Showing {visible} of {total}',
+      noResults: 'No matching names found.',
+      noResultsHint: 'Change the search term or reset the filter.'
     };
+
+const rows = resolved.map(({ member, institution }) => {
+  const href = memberHref(member);
+  const isInternal = Boolean(member.data.inmechPersonId);
+  const displayName = language === 'uk' ? member.data.name : member.data.nameEn;
+  const displayCity = language === 'uk'
+    ? member.data.city
+    : (member.data.cityEn ?? (member.data.city ? cityEn[member.data.city] : undefined));
+  const displayInstitution = institution
+    ? (language === 'uk' ? institution.data.name : institution.data.nameEn)
+    : undefined;
+  const initialSource = memberSortKey(member).trim();
+  const initial = Array.from(initialSource)[0]?.toLocaleUpperCase(locale) ?? '#';
+  const searchText = [
+    member.data.name,
+    member.data.nameEn,
+    institution?.data.name,
+    institution?.data.nameEn,
+    member.data.city,
+    member.data.cityEn,
+    displayCity
+  ].filter(Boolean).join(' ');
+
+  return {
+    member,
+    href,
+    isInternal,
+    displayName,
+    displayCity,
+    displayInstitution,
+    initial,
+    searchText
+  };
+});
+
+const alphabet = [...new Set(rows.map((row) => row.initial))]
+  .sort((a, b) => a.localeCompare(b, locale));
+const controlId = `ncutam-members-${language}-${status}`;
+const resultText = labels.resultTemplate
+  .replace('{visible}', String(rows.length))
+  .replace('{total}', String(rows.length));
 ---
 
-<div class="ncutam-members">
+<div
+  class="ncutam-members"
+  data-members-root
+  data-total={rows.length}
+  data-result-template={labels.resultTemplate}
+>
   <div class="members-toolbar">
-    <p><strong>{resolved.length}</strong> {labels.count.toLowerCase()}</p>
+    <p><strong>{rows.length}</strong> {labels.count.toLowerCase()}</p>
     <a href={withBase(language === 'uk'
       ? (status === 'active' ? '/ncutam/members/in-memoriam/' : '/ncutam/members/')
       : (status === 'active' ? '/en/ncutam/members/in-memoriam/' : '/en/ncutam/members/'))}>
@@ -76,7 +147,45 @@ const labels = language === 'uk'
 
   {status === 'in-memoriam' && <p class="members-note">{labels.memorialNote}</p>}
 
-  <div class="members-table-wrap">
+  <div class="members-controls" data-members-controls hidden>
+    <div class="members-search-field">
+      <label for={`${controlId}-search`}>{labels.searchLabel}</label>
+      <input
+        id={`${controlId}-search`}
+        type="search"
+        placeholder={labels.searchPlaceholder}
+        autocomplete="off"
+        spellcheck="false"
+        data-members-search
+      />
+    </div>
+
+    <div class="members-alphabet-field">
+      <span class="members-control-label">{labels.alphabetLabel}</span>
+      <div class="members-alphabet" role="group" aria-label={labels.alphabetLabel}>
+        <button type="button" class="members-letter is-active" data-members-letter="" aria-pressed="true">
+          {labels.allLetters}
+        </button>
+        {alphabet.map((letter) => (
+          <button type="button" class="members-letter" data-members-letter={letter} aria-pressed="false">
+            {letter}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <div class="members-filter-status">
+      <p class="members-result-count" data-members-result aria-live="polite">{resultText}</p>
+      <button type="button" class="members-reset" data-members-reset hidden>{labels.reset}</button>
+    </div>
+  </div>
+
+  <div class="members-empty" data-members-empty hidden role="status">
+    <strong>{labels.noResults}</strong>
+    <span>{labels.noResultsHint}</span>
+  </div>
+
+  <div class="members-table-wrap" data-members-table-wrap>
     <table class="members-table">
       <thead>
         <tr>
@@ -87,41 +196,209 @@ const labels = language === 'uk'
         </tr>
       </thead>
       <tbody>
-        {resolved.map(({ member, institution }) => {
-          const href = memberHref(member);
-          const isInternal = Boolean(member.data.inmechPersonId);
-          const displayCity = language === 'uk'
-            ? member.data.city
-            : (member.data.cityEn ?? (member.data.city ? cityEn[member.data.city] : undefined));
-          const displayInstitution = institution
-            ? (language === 'uk' ? institution.data.name : institution.data.nameEn)
-            : undefined;
-          return (
-            <tr>
-              <td data-label={labels.name}>
-                {href ? (
-                  <a href={href} target={isInternal ? undefined : '_blank'} rel={isInternal ? undefined : 'noopener noreferrer'}>
-                    {language === 'uk' ? member.data.name : member.data.nameEn}
-                  </a>
-                ) : (language === 'uk' ? member.data.name : member.data.nameEn)}
-              </td>
-              {status === 'active' && <td data-label={labels.institution}>{displayInstitution ?? '—'}</td>}
-              {status === 'active' && <td data-label={labels.city}>{displayCity ?? '—'}</td>}
-              {status === 'active' && <td data-label={labels.joined}>{member.data.joinedYear ?? '—'}</td>}
-            </tr>
-          );
-        })}
+        {rows.map(({ member, href, isInternal, displayName, displayCity, displayInstitution, initial, searchText }) => (
+          <tr data-member-row data-initial={initial} data-search={searchText}>
+            <td data-label={labels.name}>
+              {href ? (
+                <a href={href} target={isInternal ? undefined : '_blank'} rel={isInternal ? undefined : 'noopener noreferrer'}>
+                  {displayName}
+                </a>
+              ) : displayName}
+            </td>
+            {status === 'active' && <td data-label={labels.institution}>{displayInstitution ?? '—'}</td>}
+            {status === 'active' && <td data-label={labels.city}>{displayCity ?? '—'}</td>}
+            {status === 'active' && <td data-label={labels.joined}>{member.data.joinedYear ?? '—'}</td>}
+          </tr>
+        ))}
       </tbody>
     </table>
   </div>
 </div>
 
+<script>
+  const normalizeMemberSearch = (value: string) => value
+    .normalize('NFKD')
+    .replace(/\p{M}/gu, '')
+    .toLocaleLowerCase();
+
+  document.querySelectorAll<HTMLElement>('[data-members-root]').forEach((root) => {
+    if (root.dataset.membersEnhanced === 'true') return;
+    root.dataset.membersEnhanced = 'true';
+
+    const controls = root.querySelector<HTMLElement>('[data-members-controls]');
+    const search = root.querySelector<HTMLInputElement>('[data-members-search]');
+    const reset = root.querySelector<HTMLButtonElement>('[data-members-reset]');
+    const result = root.querySelector<HTMLElement>('[data-members-result]');
+    const empty = root.querySelector<HTMLElement>('[data-members-empty]');
+    const tableWrap = root.querySelector<HTMLElement>('[data-members-table-wrap]');
+    const letterButtons = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-members-letter]'));
+    const rows = Array.from(root.querySelectorAll<HTMLTableRowElement>('[data-member-row]'));
+    const total = Number(root.dataset.total ?? rows.length);
+    const resultTemplate = root.dataset.resultTemplate ?? '{visible} / {total}';
+    let activeLetter = '';
+
+    controls?.removeAttribute('hidden');
+
+    const update = () => {
+      const query = normalizeMemberSearch(search?.value ?? '').trim();
+      let visible = 0;
+
+      rows.forEach((row) => {
+        const searchText = normalizeMemberSearch(row.dataset.search ?? '');
+        const matchesQuery = !query || searchText.includes(query);
+        const matchesLetter = !activeLetter || row.dataset.initial === activeLetter;
+        const show = matchesQuery && matchesLetter;
+        row.hidden = !show;
+        if (show) visible += 1;
+      });
+
+      letterButtons.forEach((button) => {
+        const isActive = (button.dataset.membersLetter ?? '') === activeLetter;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-pressed', String(isActive));
+      });
+
+      if (result) {
+        result.textContent = resultTemplate
+          .replace('{visible}', String(visible))
+          .replace('{total}', String(total));
+      }
+
+      if (empty) empty.hidden = visible !== 0;
+      if (tableWrap) tableWrap.hidden = visible === 0;
+      if (reset) reset.hidden = !query && !activeLetter;
+    };
+
+    search?.addEventListener('input', update);
+
+    letterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const letter = button.dataset.membersLetter ?? '';
+        activeLetter = activeLetter === letter ? '' : letter;
+        update();
+      });
+    });
+
+    reset?.addEventListener('click', () => {
+      activeLetter = '';
+      if (search) search.value = '';
+      update();
+      search?.focus();
+    });
+
+    update();
+  });
+</script>
+
 <style>
   .ncutam-members { display: grid; gap: 18px; }
+  .ncutam-members [hidden] { display: none !important; }
   .members-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
   .members-toolbar p, .members-note { margin: 0; color: var(--muted); }
   .members-toolbar strong { color: var(--text); font-size: 1.25rem; }
   .members-note { max-width: 900px; line-height: 1.65; }
+
+  .members-controls {
+    display: grid;
+    grid-template-columns: minmax(240px, 0.8fr) minmax(0, 1.6fr);
+    gap: 16px 24px;
+    padding: 18px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--surface);
+  }
+
+  .members-search-field,
+  .members-alphabet-field {
+    display: grid;
+    align-content: start;
+    gap: 8px;
+  }
+
+  .members-search-field label,
+  .members-control-label {
+    color: var(--text);
+    font-size: 0.82rem;
+    font-weight: 800;
+  }
+
+  .members-search-field input {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface-2, var(--surface));
+    color: var(--text);
+    font: inherit;
+  }
+
+  .members-search-field input:focus-visible,
+  .members-letter:focus-visible,
+  .members-reset:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--accent) 32%, transparent);
+    outline-offset: 2px;
+  }
+
+  .members-alphabet {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .members-letter,
+  .members-reset {
+    min-height: 34px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--surface-2, var(--surface));
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 750;
+  }
+
+  .members-letter { min-width: 34px; padding: 6px 9px; }
+  .members-letter.is-active {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+  }
+
+  .members-filter-status {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+
+  .members-result-count {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.86rem;
+  }
+
+  .members-reset {
+    padding: 6px 12px;
+    color: var(--accent-dark);
+  }
+
+  .members-empty {
+    display: grid;
+    gap: 4px;
+    padding: 22px;
+    border: 1px dashed var(--border);
+    border-radius: 16px;
+    background: var(--surface);
+  }
+
+  .members-empty strong { color: var(--text); }
+  .members-empty span { color: var(--muted); }
+
   .members-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 16px; background: var(--surface); }
   .members-table { width: 100%; border-collapse: collapse; font-size: 0.94rem; }
   .members-table th, .members-table td { padding: 12px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); }
@@ -129,6 +406,11 @@ const labels = language === 'uk'
   .members-table tbody tr:last-child td { border-bottom: 0; }
   .members-table td:first-child { font-weight: 700; min-width: 260px; }
   .members-table td:nth-child(2) { min-width: 280px; }
+
+  @media (max-width: 820px) {
+    .members-controls { grid-template-columns: 1fr; }
+    .members-filter-status { grid-column: auto; }
+  }
 
   @media (max-width: 720px) {
     .members-table-wrap { overflow: visible; border: 0; background: transparent; }
@@ -139,5 +421,6 @@ const labels = language === 'uk'
     .members-table td { padding: 4px 0; border: 0; min-width: 0 !important; font-weight: 400; }
     .members-table td:first-child { font-weight: 750; }
     .members-table td:not(:first-child)::before { content: attr(data-label) ': '; color: var(--muted); font-weight: 650; }
+    .members-filter-status { align-items: flex-start; flex-direction: column; }
   }
 </style>

@@ -57,7 +57,7 @@ externalLinks:
 
 The International Scientific Conference **Current Problems in Mechanics 2023** was held on 14–16 November 2023 in a hybrid format. The National Committee of Ukraine for Theoretical and Applied Mechanics was among the organizers together with Ukrainian research and educational institutions.
 
-The conference marked the 145th anniversary of **Academician Stepan Prokopovych Timoshenko**. According to the Committee’s archival record, more than 200 presentations by over 400 authors were included, with more than 30 international participants. The programme was organized into 11 sections and comprised 21 sessions.
+The conference marked the 145th anniversary of **Academician Stepan Prokopovych Timoshenko**. According to the Committee’s materials, more than 200 presentations by over 400 authors were included, with more than 30 international participants. The programme was organized into 11 sections and comprised 21 sessions.
 
 The opening-day plenary programme was held in the Grand Conference Hall of the NAS of Ukraine in Kyiv. During the opening, NCUTAM Chair Academician Viacheslav Bogdanov also presented certificates to newly elected Committee members.
 

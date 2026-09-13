@@ -1,6 +1,15 @@
 const menuToggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
 const nav = document.querySelector<HTMLElement>('.primary-nav');
 const languageScrollKey = 'inmech-language-switch-scroll';
+const legacyNcutamUrl = 'https://natcommmech.inmech.kyiv.ua/';
+const canonicalNcutamPath = document.documentElement.lang === 'en' ? '/en/ncutam/' : '/ncutam/';
+
+// Keep historical templates from sending visitors through the retired NCUTAM host.
+document.querySelectorAll<HTMLAnchorElement>(`a[href="${legacyNcutamUrl}"]`).forEach((link) => {
+  link.setAttribute('href', canonicalNcutamPath);
+  link.removeAttribute('target');
+  link.removeAttribute('rel');
+});
 
 try {
   const savedLanguageScroll = window.sessionStorage.getItem(languageScrollKey);

@@ -5,9 +5,10 @@ import { getVisibleNewsTags } from '../utils/newsTags';
 interface Props {
   entry: CollectionEntry<'news'>;
   level?: 'h2' | 'h3';
+  showInlineBody?: boolean;
 }
 
-const { entry, level = 'h2' } = Astro.props;
+const { entry, level = 'h2', showInlineBody = true } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
 const date = entry.data.date.toLocaleDateString('uk-UA', {
@@ -17,7 +18,7 @@ const date = entry.data.date.toLocaleDateString('uk-UA', {
 });
 const TitleTag = level;
 const visibleTags = getVisibleNewsTags(entry);
-const hasLocalBody = !entry.data.externalUrl && Boolean(entry.body?.trim());
+const hasLocalBody = showInlineBody && !entry.data.externalUrl && Boolean(entry.body?.trim());
 const renderedEntry = hasLocalBody ? await render(entry) : null;
 const Content = renderedEntry?.Content;
 const href = entry.data.externalUrl ?? withBase(`/news/${entry.id}/`);

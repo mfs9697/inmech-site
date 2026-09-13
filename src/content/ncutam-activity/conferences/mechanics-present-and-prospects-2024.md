@@ -35,12 +35,12 @@ gallery:
 ---
 Національний комітет України з теоретичної і прикладної механіки виступив співорганізатором Міжнародної наукової конференції **«Механіка: сучасність і перспективи – 2024»**, яка тривала 8–10 жовтня 2024 року в Інституті механіки ім. С.П. Тимошенка НАН України.
 
-За архівними матеріалами Комітету, у заході взяли участь понад **270 науковців** з України та інших країн. Конференція стала майданчиком для представлення й обговорення результатів із різних напрямів сучасної теоретичної та прикладної механіки та для розвитку професійної співпраці між науковими колективами.
+За матеріалами Комітету, у заході взяли участь понад **270 науковців** з України та інших країн. Конференція стала майданчиком для представлення й обговорення результатів із різних напрямів сучасної теоретичної та прикладної механіки та для розвитку професійної співпраці між науковими колективами.
 
 <!-- en:start -->
 
 The National Committee of Ukraine for Theoretical and Applied Mechanics was a co-organizer of the International Scientific Conference **Mechanics: Present and Prospects 2024**, held on 8–10 October 2024 at the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine.
 
-According to the Committee’s archival materials, more than **270 researchers** from Ukraine and other countries participated. The conference provided a forum for presenting and discussing results across contemporary theoretical and applied mechanics and for strengthening professional cooperation among research groups.
+According to the Committee’s materials, more than **270 researchers** from Ukraine and other countries participated. The conference provided a forum for presenting and discussing results across contemporary theoretical and applied mechanics and for strengthening professional cooperation among research groups.
 
 <!-- en:end -->

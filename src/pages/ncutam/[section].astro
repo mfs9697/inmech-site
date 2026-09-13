@@ -1,0 +1,79 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NcutamNav from '../../components/NcutamNav.astro';
+import NcutamActivityList from '../../components/ncutam/NcutamActivityList.astro';
+import NcutamDocuments from '../../components/ncutam/NcutamDocuments.astro';
+import NcutamEvergreen from '../../components/ncutam/NcutamEvergreen.astro';
+import NcutamGovernance from '../../components/ncutam/NcutamGovernance.astro';
+import NcutamMembers from '../../components/ncutam/NcutamMembers.astro';
+import NewsCard from '../../components/NewsCard.astro';
+import { ncutamSections, ncutamSite } from '../../data/ncutam/site';
+import { site } from '../../data/site';
+
+export function getStaticPaths() {
+  return ncutamSections.map((section) => ({ params: { section: section.id }, props: { section } }));
+}
+
+const { section } = Astro.props as { section: (typeof ncutamSections)[number] };
+const isNews = section.id === 'news';
+const isGovernance = section.id === 'governance';
+const isMembers = section.id === 'members';
+const isActivity = section.id === 'activity';
+const isDocuments = section.id === 'documents';
+const isEvergreen = section.id === 'about' || section.id === 'iutam';
+const ncutamNews = isNews
+  ? (await getCollection('news'))
+      .filter((entry) => entry.data.scopes.includes('ncutam'))
+      .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  : [];
+---
+
+<BaseLayout title={`${section.title} | ${ncutamSite.acronym} | ${site.shortName}`} description={section.description} activePage="ncutam">
+  <NcutamNav language="uk" active={section.id} />
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">{ncutamSite.acronym}</p>
+        <h1>{section.title}</h1>
+        <p class="lead">{section.description}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {isNews ? (
+        ncutamNews.length > 0 ? (
+          <div class="news-list">
+            {ncutamNews.map((entry) => <NewsCard entry={entry} />)}
+          </div>
+        ) : (
+          <div class="panel ncutam-build-panel"><h2>Новини НКУТПМ поки що не додано</h2></div>
+        )
+      ) : isGovernance ? (
+        <NcutamGovernance language="uk" />
+      ) : isMembers ? (
+        <NcutamMembers language="uk" status="active" />
+      ) : isActivity ? (
+        <NcutamActivityList language="uk" />
+      ) : isDocuments ? (
+        <NcutamDocuments language="uk" />
+      ) : isEvergreen ? (
+        <NcutamEvergreen pageId={section.id} language="uk" />
+      ) : (
+        <div class="panel ncutam-build-panel">
+          <h2>Розділ підготовлено до міграції даних</h2>
+          <p>Перевірений зміст та структуровані записи буде додано наступними WP6 content-import batches відповідно до WP5 migration map.</p>
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .ncutam-build-panel { max-width: 900px; }
+  .ncutam-build-panel h2 { margin-top: 0; }
+  .ncutam-build-panel p { margin-bottom: 0; color: var(--muted); line-height: 1.7; }
+</style>

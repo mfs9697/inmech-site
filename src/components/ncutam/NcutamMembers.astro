@@ -1,0 +1,143 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+
+interface Props {
+  language?: 'uk' | 'en';
+  status?: 'active' | 'in-memoriam';
+}
+
+const { language = 'uk', status = 'active' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+
+const cityEn: Record<string, string> = {
+  'Вінниця': 'Vinnytsia',
+  'Дніпро': 'Dnipro',
+  'Житомир': 'Zhytomyr',
+  'Запоріжжя': 'Zaporizhzhia',
+  'Київ': 'Kyiv',
+  'Кривий Ріг': 'Kryvyi Rih',
+  'Луцьк': 'Lutsk',
+  'Львів': 'Lviv',
+  'Миколаїв': 'Mykolaiv',
+  'Одеса': 'Odesa',
+  'Рівне': 'Rivne',
+  'Тернопіль': 'Ternopil',
+  'Ужгород': 'Uzhhorod',
+  'Харків': 'Kharkiv'
+};
+
+const members = (await getCollection('ncutamMembers'))
+  .filter((entry) => entry.data.status === status)
+  .sort((a, b) => {
+    const left = language === 'uk' ? (a.data.sortName ?? a.data.name) : a.data.nameEn;
+    const right = language === 'uk' ? (b.data.sortName ?? b.data.name) : b.data.nameEn;
+    return left.localeCompare(right, language === 'uk' ? 'uk' : 'en');
+  });
+
+const resolved = await Promise.all(
+  members.map(async (member) => ({
+    member,
+    institution: member.data.institution ? await getEntry(member.data.institution) : undefined
+  }))
+);
+
+const memberHref = (member: (typeof members)[number]) => {
+  if (member.data.inmechPersonId) {
+    return withBase(language === 'uk' ? `/people/${member.data.inmechPersonId}/` : `/en/people/${member.data.inmechPersonId}/`);
+  }
+  return member.data.profiles[0]?.url;
+};
+
+const labels = language === 'uk'
+  ? {
+      count: status === 'active' ? 'Чинних членів Комітету' : 'Імен у меморіальному реєстрі',
+      name: 'Ім’я', institution: 'Установа', city: 'Місто', joined: 'У Комітеті з',
+      memorialLink: 'Світлій пам’яті членів Комітету', currentLink: 'Поточний склад Комітету',
+      memorialNote: 'Меморіальний реєстр відтворює опублікований Комітетом список. Біографічні дати не додаються без окремого перевіреного джерела.'
+    }
+  : {
+      count: status === 'active' ? 'Current Committee members' : 'Names in the memorial register',
+      name: 'Name', institution: 'Institution', city: 'City', joined: 'Member since',
+      memorialLink: 'In memoriam', currentLink: 'Current Committee members',
+      memorialNote: 'The memorial register reproduces the list published by the Committee. Biographical dates are not added without a separately verified source.'
+    };
+---
+
+<div class="ncutam-members">
+  <div class="members-toolbar">
+    <p><strong>{resolved.length}</strong> {labels.count.toLowerCase()}</p>
+    <a href={withBase(language === 'uk'
+      ? (status === 'active' ? '/ncutam/members/in-memoriam/' : '/ncutam/members/')
+      : (status === 'active' ? '/en/ncutam/members/in-memoriam/' : '/en/ncutam/members/'))}>
+      {status === 'active' ? labels.memorialLink : labels.currentLink}
+    </a>
+  </div>
+
+  {status === 'in-memoriam' && <p class="members-note">{labels.memorialNote}</p>}
+
+  <div class="members-table-wrap">
+    <table class="members-table">
+      <thead>
+        <tr>
+          <th scope="col">{labels.name}</th>
+          {status === 'active' && <th scope="col">{labels.institution}</th>}
+          {status === 'active' && <th scope="col">{labels.city}</th>}
+          {status === 'active' && <th scope="col">{labels.joined}</th>}
+        </tr>
+      </thead>
+      <tbody>
+        {resolved.map(({ member, institution }) => {
+          const href = memberHref(member);
+          const isInternal = Boolean(member.data.inmechPersonId);
+          const displayCity = language === 'uk'
+            ? member.data.city
+            : (member.data.cityEn ?? (member.data.city ? cityEn[member.data.city] : undefined));
+          const displayInstitution = institution
+            ? (language === 'uk' ? institution.data.name : institution.data.nameEn)
+            : undefined;
+          return (
+            <tr>
+              <td data-label={labels.name}>
+                {href ? (
+                  <a href={href} target={isInternal ? undefined : '_blank'} rel={isInternal ? undefined : 'noopener noreferrer'}>
+                    {language === 'uk' ? member.data.name : member.data.nameEn}
+                  </a>
+                ) : (language === 'uk' ? member.data.name : member.data.nameEn)}
+              </td>
+              {status === 'active' && <td data-label={labels.institution}>{displayInstitution ?? '—'}</td>}
+              {status === 'active' && <td data-label={labels.city}>{displayCity ?? '—'}</td>}
+              {status === 'active' && <td data-label={labels.joined}>{member.data.joinedYear ?? '—'}</td>}
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<style>
+  .ncutam-members { display: grid; gap: 18px; }
+  .members-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+  .members-toolbar p, .members-note { margin: 0; color: var(--muted); }
+  .members-toolbar strong { color: var(--text); font-size: 1.25rem; }
+  .members-note { max-width: 900px; line-height: 1.65; }
+  .members-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 16px; background: var(--surface); }
+  .members-table { width: 100%; border-collapse: collapse; font-size: 0.94rem; }
+  .members-table th, .members-table td { padding: 12px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); }
+  .members-table th { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); background: var(--surface-2, var(--surface)); }
+  .members-table tbody tr:last-child td { border-bottom: 0; }
+  .members-table td:first-child { font-weight: 700; min-width: 260px; }
+  .members-table td:nth-child(2) { min-width: 280px; }
+
+  @media (max-width: 720px) {
+    .members-table-wrap { overflow: visible; border: 0; background: transparent; }
+    .members-table, .members-table tbody, .members-table tr, .members-table td { display: block; width: 100%; }
+    .members-table thead { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    .members-table tbody { display: grid; gap: 10px; }
+    .members-table tr { padding: 12px 14px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); }
+    .members-table td { padding: 4px 0; border: 0; min-width: 0 !important; font-weight: 400; }
+    .members-table td:first-child { font-weight: 750; }
+    .members-table td:not(:first-child)::before { content: attr(data-label) ': '; color: var(--muted); font-weight: 650; }
+  }
+</style>

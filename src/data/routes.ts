@@ -57,6 +57,22 @@ export const siteRoutes: SiteRoute[] = [
   { uk: '/journal/', en: '/en/journal/', titleUk: 'Журнал «Прикладна механіка»', titleEn: 'Prykladna Mekhanika', sectionUk: 'Публікації', sectionEn: 'Publications' },
   { uk: '/journal/for-authors/', en: '/en/journal/for-authors/', titleUk: 'Підготовка рукопису', titleEn: 'Manuscript preparation', sectionUk: 'Публікації', sectionEn: 'Publications' },
 
+  { uk: '/ncutam/', en: '/en/ncutam/', titleUk: 'НКУТПМ', titleEn: 'NCUTAM', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
+  { uk: '/ncutam/about/', en: '/en/ncutam/about/', titleUk: 'Про Комітет', titleEn: 'About', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
+  { uk: '/ncutam/governance/', en: '/en/ncutam/governance/', titleUk: 'Керівництво і Президія', titleEn: 'Governance', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
+  { uk: '/ncutam/members/', en: '/en/ncutam/members/', titleUk: 'Члени', titleEn: 'Members', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
+  { uk: '/ncutam/members/in-memoriam/', en: '/en/ncutam/members/in-memoriam/', titleUk: 'Пам’ять', titleEn: 'In memoriam', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM', includeInHtmlSitemap: false },
+  { uk: '/ncutam/activity/', en: '/en/ncutam/activity/', titleUk: 'Діяльність', titleEn: 'Activities', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
+  { uk: '/ncutam/activity/meetings/', en: '/en/ncutam/activity/meetings/', titleUk: 'Загальні збори', titleEn: 'General Meetings', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM', includeInHtmlSitemap: false },
+  { uk: '/ncutam/activity/conferences/', en: '/en/ncutam/activity/conferences/', titleUk: 'Конференції', titleEn: 'Conferences', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM', includeInHtmlSitemap: false },
+  { uk: '/ncutam/activity/initiatives/', en: '/en/ncutam/activity/initiatives/', titleUk: 'Експертні ініціативи', titleEn: 'Expert initiatives', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM', includeInHtmlSitemap: false },
+  { uk: '/ncutam/activity/international/', en: '/en/ncutam/activity/international/', titleUk: 'Міжнародна діяльність', titleEn: 'International activity', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM', includeInHtmlSitemap: false },
+  { uk: '/ncutam/activity/media/', en: '/en/ncutam/activity/media/', titleUk: 'Медіа про НКУТПМ', titleEn: 'NCUTAM in the media', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM', includeInHtmlSitemap: false },
+  { uk: '/ncutam/documents/', en: '/en/ncutam/documents/', titleUk: 'Документи', titleEn: 'Documents', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
+  { uk: '/ncutam/documents/reports/', en: '/en/ncutam/documents/reports/', titleUk: 'Річні звіти', titleEn: 'Annual reports', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM', includeInHtmlSitemap: false },
+  { uk: '/ncutam/iutam/', en: '/en/ncutam/iutam/', titleUk: 'IUTAM', titleEn: 'IUTAM', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
+  { uk: '/ncutam/news/', en: '/en/ncutam/news/', titleUk: 'Новини НКУТПМ', titleEn: 'NCUTAM news', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
+
   { uk: '/sitemap/', en: '/en/sitemap/', titleUk: 'Карта сайту', titleEn: 'Sitemap', sectionUk: 'Службові сторінки', sectionEn: 'Service pages' },
   { uk: '/search/', en: '/en/search/', titleUk: 'Пошук', titleEn: 'Search', sectionUk: 'Службові сторінки', sectionEn: 'Service pages' },
   { uk: '/accessibility/', en: '/en/accessibility/', titleUk: 'Політика доступності', titleEn: 'Accessibility policy', sectionUk: 'Службові сторінки', sectionEn: 'Service pages' },
@@ -124,6 +140,9 @@ function getUkrainianNewsTagPath(path: string) {
   return ukrainianTag ? `/news/tags/${encodeURIComponent(ukrainianTag)}/` : undefined;
 }
 
+const ukrainianNcutamActivityDetail = /^\/ncutam\/activity\/(meetings|conferences|initiatives|international)\/.+\/$/;
+const englishNcutamActivityDetail = /^\/en\/ncutam\/activity\/(meetings|conferences|initiatives|international)\/.+\/$/;
+
 export function getEnglishPath(pathname: string, base = '') {
   const path = normalizeSitePath(pathname, base);
   const route = siteRoutes.find((item) => item.uk === path);
@@ -133,6 +152,10 @@ export function getEnglishPath(pathname: string, base = '') {
   }
 
   if (/^\/departments\/[^/]+\/$/.test(path) || /^\/people\/[^/]+\/$/.test(path)) {
+    return `/en${path}`;
+  }
+
+  if (ukrainianNcutamActivityDetail.test(path)) {
     return `/en${path}`;
   }
 
@@ -165,6 +188,10 @@ export function getUkrainianPath(pathname: string, base = '') {
     return path.replace(/^\/en/, '');
   }
 
+  if (englishNcutamActivityDetail.test(path)) {
+    return path.replace(/^\/en/, '');
+  }
+
   const ukrainianNewsTagPath = getUkrainianNewsTagPath(path);
 
   if (ukrainianNewsTagPath) {
@@ -188,6 +215,7 @@ export function hasEnglishAlternative(pathname: string, base = '') {
     ukrainianStaticPaths.has(path) ||
     /^\/departments\/[^/]+\/$/.test(path) ||
     /^\/people\/[^/]+\/$/.test(path) ||
+    ukrainianNcutamActivityDetail.test(path) ||
     Boolean(getEnglishNewsTagPath(path)) ||
     (/^\/news\/(?!tags\/).+\/$/.test(path) && path !== '/news/')
   );
@@ -199,6 +227,7 @@ export function hasUkrainianAlternative(pathname: string, base = '') {
     englishStaticPaths.has(path) ||
     /^\/en\/departments\/[^/]+\/$/.test(path) ||
     /^\/en\/people\/[^/]+\/$/.test(path) ||
+    englishNcutamActivityDetail.test(path) ||
     Boolean(getUkrainianNewsTagPath(path)) ||
     (/^\/en\/news\/(?!tags\/).+\/$/.test(path) && path !== '/en/news/')
   );

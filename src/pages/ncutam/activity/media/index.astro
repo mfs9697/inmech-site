@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import NcutamNav from '../../../../components/NcutamNav.astro';
+import NcutamMediaList from '../../../../components/ncutam/NcutamMediaList.astro';
+import { ncutamSite } from '../../../../data/ncutam/site';
+import { site } from '../../../../data/site';
+---
+
+<BaseLayout title={`Медіа про НКУТПМ | ${ncutamSite.acronym} | ${site.shortName}`} description="Зовнішні публікації та повідомлення про діяльність Національного комітету." activePage="ncutam">
+  <NcutamNav language="uk" active="activity" />
+  <section class="page-hero">
+    <div class="container"><div class="panel"><p class="eyebrow">{ncutamSite.acronym} · Діяльність</p><h1>Медіа про НКУТПМ</h1><p class="lead">Зовнішні публікації та повідомлення про діяльність Комітету. Посилання ведуть на оригінальні джерела.</p></div></div>
+  </section>
+  <section class="section"><div class="container"><NcutamMediaList language="uk" /></div></section>
+</BaseLayout>

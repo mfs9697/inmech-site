@@ -1,0 +1,211 @@
+- id: chair-bogdanov-2025
+  member: bogdanov-viacheslav
+  role: chair
+  order: 10
+  effectiveFrom: 2025-12-01
+  responsibilities:
+    - "Здійснює загальне керівництво Національним комітетом та його Президією, спрямовує їх діяльність на всебічне сприяння розвитку механіки та суміжних наук в Україні."
+    - "Організовує реалізацію основних завдань Комітету: координацію досліджень, розвиток взаємодії між ученими-механіками, міжнародну наукову співпрацю та поширення наукової і науково-технічної інформації."
+    - "Здійснює зв’язки Комітету з НАН України, національними галузевими академіями наук, органами державної влади, науковою громадськістю та бізнес-структурами."
+    - "Представляє Комітет у IUTAM та інших міжнародних організаціях з механіки та суміжних наук."
+    - "Організовує роботу з удосконалення нормативно-правової бази діяльності Комітету та підготовки пропозицій щодо розвитку досліджень, впровадження їх результатів і підготовки наукових кадрів."
+  responsibilitiesEn:
+    - "Provides overall leadership of the National Committee and its Presidium and directs their work toward supporting the development of mechanics and related sciences in Ukraine."
+    - "Organizes implementation of the Committee’s core tasks: coordination of research, stronger interaction among mechanics researchers, international scientific cooperation, and dissemination of scientific and technical information."
+    - "Maintains the Committee’s relations with the NAS of Ukraine, national sectoral academies, public authorities, the scientific community, and business organizations."
+    - "Represents the Committee in IUTAM and other international organizations in mechanics and related sciences."
+    - "Organizes work on improving the Committee’s regulatory framework and proposals concerning research development, practical implementation of results, and training of qualified researchers."
+
+- id: deputy-chair-bobyr-2025
+  member: bobyr-mykola
+  role: deputy-chair
+  order: 20
+  effectiveFrom: 2025-12-01
+  responsibilities:
+    - "Заступає голову Національного комітету на час його відсутності."
+    - "Відповідає за зв’язки Комітету із закладами вищої освіти України технічного профілю з питань координації досліджень, проведення наукових форумів, підготовки кадрів і поширення науково-технічної інформації з механіки."
+  responsibilitiesEn:
+    - "Acts for the Chair of the National Committee during the Chair’s absence."
+    - "Maintains relations with Ukrainian technical higher-education institutions on research coordination, scientific forums, training of specialists, and dissemination of scientific and technical information in mechanics."
+
+- id: deputy-chair-bulat-2025
+  member: bulat-anatolii
+  role: deputy-chair
+  order: 30
+  effectiveFrom: 2025-12-01
+  responsibilities:
+    - "Заступає голову Національного комітету на час його відсутності."
+    - "Сприяє розвитку співробітництва Комітету з науковими установами, закладами вищої освіти, науково-виробничими підприємствами та бізнес-структурами Придніпровського регіону."
+  responsibilitiesEn:
+    - "Acts for the Chair of the National Committee during the Chair’s absence."
+    - "Supports cooperation with research institutions, higher-education institutions, research-and-production enterprises, and business organizations in the Dnipro region."
+
+- id: deputy-chair-zhuk-2025
+  member: zhuk-yaroslav
+  role: deputy-chair
+  order: 40
+  effectiveFrom: 2025-12-01
+  responsibilities:
+    - "Заступає голову Національного комітету на час його відсутності."
+    - "Відповідає за розвиток міжнародного наукового співробітництва Комітету та разом з головою представляє Комітет у IUTAM та інших міжнародних організаціях з механіки і суміжних наук."
+    - "Сприяє налагодженню зв’язків із закордонними об’єднаннями вчених, зокрема ASME та GAMM."
+    - "Сприяє співробітництву з Київським національним університетом імені Тараса Шевченка з питань координації досліджень, наукових форумів, підготовки кадрів і поширення науково-технічної інформації."
+  responsibilitiesEn:
+    - "Acts for the Chair of the National Committee during the Chair’s absence."
+    - "Leads development of the Committee’s international scientific cooperation and, together with the Chair, represents the Committee in IUTAM and other international organizations in mechanics and related sciences."
+    - "Supports relations with international professional associations, including ASME and GAMM."
+    - "Supports cooperation with Taras Shevchenko National University of Kyiv on research coordination, scientific forums, training of specialists, and dissemination of scientific and technical information."
+
+- id: deputy-chair-kushnir-2025
+  member: kushnir-roman
+  role: deputy-chair
+  order: 50
+  effectiveFrom: 2025-12-01
+  responsibilities:
+    - "Заступає голову Національного комітету на час його відсутності."
+    - "Відповідає за зв’язки Комітету з Науковим товариством імені Шевченка в Україні та іншими громадськими науковими організаціями України."
+  responsibilitiesEn:
+    - "Acts for the Chair of the National Committee during the Chair’s absence."
+    - "Maintains relations with the Shevchenko Scientific Society in Ukraine and other Ukrainian public scientific organizations."
+
+- id: deputy-chair-nazarenko-2025
+  member: nazarenko-volodymyr
+  role: deputy-chair
+  order: 60
+  effectiveFrom: 2025-12-01
+  responsibilities:
+    - "Заступає голову Національного комітету на час його відсутності."
+    - "Відповідає за зв’язки Комітету з його базовою організацією — Інститутом механіки ім. С.П. Тимошенка НАН України."
+    - "Відповідає за зв’язки з Відділенням механіки і машинознавства НАН України та установами НАН України з питань координації досліджень і поширення науково-технічної інформації з механіки."
+    - "Координує роботу Комітету з організації та проведення наукових форумів у галузі механіки і суміжних наук."
+  responsibilitiesEn:
+    - "Acts for the Chair of the National Committee during the Chair’s absence."
+    - "Maintains relations with the Committee’s base organization, the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine."
+    - "Maintains relations with the Division of Mechanics and Mechanical Engineering of the NAS of Ukraine and NAS research institutions on research coordination and dissemination of scientific and technical information in mechanics."
+    - "Coordinates the Committee’s work on organizing scientific forums in mechanics and related sciences."
+
+- id: scientific-secretary-selivanov-2025
+  member: selivanov-mykhailo
+  role: scientific-secretary
+  order: 70
+  effectiveFrom: 2025-12-01
+  responsibilities:
+    - "Відповідає за організаційну підготовку засідань Загальних зборів членів Комітету та його Президії, а також оформлення їх рішень."
+    - "Забезпечує складання щорічних і перспективних планів роботи Комітету, веде документацію та кореспонденцію і забезпечує зберігання архіву."
+    - "Веде сайт Комітету та забезпечує розміщення і розсилання інформації про наукові форуми, у тому числі заходи IUTAM, і перспективні науково-технічні розробки."
+    - "Готує та забезпечує подання щорічних звітів про діяльність Комітету до НАН України та інформаційні збірники про діяльність членів Комітету."
+  responsibilitiesEn:
+    - "Coordinates organizational preparation of General Meetings and Presidium meetings and preparation of their decisions."
+    - "Prepares annual and forward work plans, maintains Committee documentation and correspondence, and ensures preservation of the archive."
+    - "Maintains the Committee website and distributes information on scientific forums, including IUTAM events, and promising scientific and technical developments."
+    - "Prepares annual reports on Committee activities for the NAS of Ukraine and information summaries on the activities of Committee members."
+
+- id: presidium-voropaiev-2025
+  member: voropaiev-hennadii
+  role: presidium-member
+  order: 110
+  effectiveFrom: 2025-12-01
+  responsibilities:
+    - "Відповідає за зв’язки Комітету з науковими установами та закладами вищої освіти з питань координації досліджень і наукових форумів у галузі гідромеханіки, гідрології, гідротехніки та суміжних наук."
+    - "Сприяє співробітництву з закладами вищої освіти та підприємствами суднобудівної галузі."
+  responsibilitiesEn:
+    - "Maintains relations with research and higher-education institutions on research coordination and scientific forums in hydromechanics, hydrology, hydraulic engineering, and related sciences."
+    - "Supports cooperation with higher-education institutions and shipbuilding enterprises."
+
+- id: presidium-guz-2025
+  member: guz-oleksandr
+  role: presidium-member
+  order: 120
+  effectiveFrom: 2025-12-01
+  responsibilities:
+    - "Виступає радником голови Комітету з питань керівництва роботою Комітету."
+    - "Сприяє розвитку міжнародних зв’язків Комітету та його участі в міжнародних організаціях з механіки і суміжних наук."
+  responsibilitiesEn:
+    - "Advises the Chair on leadership of the Committee’s work."
+    - "Supports development of the Committee’s international relations and participation in international organizations in mechanics and related sciences."
+
+- id: presidium-korostelov-2025
+  member: korostelov-oleh
+  role: presidium-member
+  order: 130
+  effectiveFrom: 2025-12-01
+  responsibilities:
+    - "Сприяє співробітництву Комітету з галузевими науково-технічними організаціями, науково-виробничими підприємствами і підприємницькими структурами ОПК, зокрема ракетно-космічної галузі."
+  responsibilitiesEn:
+    - "Supports cooperation with sectoral scientific and technical organizations, research-and-production enterprises, and defence-industry organizations, particularly in the rocket and space sector."
+
+- id: presidium-lobanov-2025
+  member: lobanov-leonid
+  role: presidium-member
+  order: 140
+  effectiveFrom: 2025-12-01
+  responsibilities:
+    - "Сприяє співробітництву Комітету з науковими установами НАН України матеріалознавчого профілю та розширенню зв’язків із науково-виробничими підприємствами і підприємницькими структурами машинобудівної та будівельної галузей."
+  responsibilitiesEn:
+    - "Supports cooperation with materials-science institutions of the NAS of Ukraine and expands relations with research-and-production and business organizations in mechanical engineering and construction."
+
+- id: presidium-nazarchuk-2025
+  member: nazarchuk-zinovii
+  role: presidium-member
+  order: 150
+  effectiveFrom: 2025-12-01
+  responsibilities:
+    - "Сприяє співробітництву Комітету з науковими установами, закладами вищої освіти, науково-виробничими підприємствами та бізнес-структурами Західного регіону з питань координації досліджень і проведення наукових форумів у галузі механіки та суміжних наук."
+  responsibilitiesEn:
+    - "Supports cooperation with research institutions, higher-education institutions, research-and-production enterprises, and business organizations in western Ukraine on research coordination and scientific forums in mechanics and related sciences."
+
+- id: presidium-rushchytskyi-2025
+  member: rushchytskyi-yarema
+  role: presidium-member
+  order: 160
+  effectiveFrom: 2025-12-01
+  responsibilities:
+    - "Сприяє розвитку міжнародних зв’язків Комітету, його участі в міжнародних організаціях та проведенні міжнародних наукових форумів з механіки і суміжних наук."
+    - "Надає поради вченому секретареві Комітету з питань ефективної організації діяльності Комітету."
+  responsibilitiesEn:
+    - "Supports the Committee’s international relations, participation in international organizations, and international scientific forums in mechanics and related sciences."
+    - "Advises the Scientific Secretary on effective organization of Committee activities."
+
+- id: presidium-tymokha-2025
+  member: tymokha-oleksandr
+  role: presidium-member
+  order: 170
+  effectiveFrom: 2025-12-01
+  responsibilities:
+    - "Відповідає за зв’язки Комітету з Відділенням математики НАН України."
+    - "Сприяє співробітництву з науковими установами, закладами вищої освіти і науковими товариствами з питань координації досліджень і проведення форумів з математичних проблем механіки та суміжних наук."
+  responsibilitiesEn:
+    - "Maintains relations with the Division of Mathematics of the NAS of Ukraine."
+    - "Supports cooperation with research institutions, higher-education institutions, and scientific societies on research coordination and forums concerning mathematical problems of mechanics and related sciences."
+
+- id: presidium-kharchenko-2025
+  member: kharchenko-valerii
+  role: presidium-member
+  order: 180
+  effectiveFrom: 2025-12-01
+  responsibilities:
+    - "Сприяє співробітництву Комітету з галузевими науковими організаціями, науково-виробничими підприємствами і підприємницькими структурами енергетичної галузі, зокрема атомної енергетики."
+  responsibilitiesEn:
+    - "Supports cooperation with sectoral research organizations, research-and-production enterprises, and business organizations in the energy sector, particularly nuclear energy."
+
+- id: presidium-khimich-2025
+  member: khimich-oleksandr
+  role: presidium-member
+  order: 190
+  effectiveFrom: 2025-12-01
+  responsibilities:
+    - "Відповідає за зв’язки Комітету з Відділенням інформатики НАН України."
+    - "Сприяє співробітництву з науковими установами, закладами вищої освіти і науковими товариствами у сфері обчислювальних методів механіки та розвитку комп’ютерної механіки."
+  responsibilitiesEn:
+    - "Maintains relations with the Division of Informatics of the NAS of Ukraine."
+    - "Supports cooperation with research institutions, higher-education institutions, and scientific societies in computational methods of mechanics and development of computational mechanics."
+
+- id: presidium-shymanovskyi-2025
+  member: shymanovskyi-oleksandr
+  role: presidium-member
+  order: 200
+  effectiveFrom: 2025-12-01
+  responsibilities:
+    - "Сприяє співробітництву Комітету з галузевими науково-технічними організаціями, науково-виробничими підприємствами і підприємницькими структурами будівельної галузі з питань будівельної механіки."
+  responsibilitiesEn:
+    - "Supports cooperation with sectoral scientific and technical organizations, research-and-production enterprises, and construction-industry organizations in structural mechanics."

@@ -1,0 +1,25 @@
+---
+import BaseLayoutEn from '../../../../../layouts/BaseLayoutEn.astro';
+import NcutamNav from '../../../../../components/NcutamNav.astro';
+import NcutamDocuments from '../../../../../components/ncutam/NcutamDocuments.astro';
+import { ncutamSite } from '../../../../../data/ncutam/site';
+import { siteEn } from '../../../../../data/site-en';
+---
+
+<BaseLayoutEn title={`Annual reports | ${ncutamSite.acronymEn} | ${siteEn.shortName}`} description="Archive of annual reports of the National Committee of Ukraine for Theoretical and Applied Mechanics." activePage="ncutam">
+  <NcutamNav language="en" active="documents" />
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">{ncutamSite.acronymEn} · Documents</p>
+        <h1>Annual reports</h1>
+        <p class="lead">Official annual reports on the activities of the Committee, arranged by year.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <NcutamDocuments language="en" view="reports" />
+    </div>
+  </section>
+</BaseLayoutEn>

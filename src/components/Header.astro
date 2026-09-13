@@ -3,7 +3,7 @@ import { site } from '../data/site';
 import { getEnglishPath, normalizeSitePath } from '../data/routes';
 
 interface Props {
-  activePage?: 'home' | 'news' | 'departments' | 'about' | 'education' | 'publications';
+  activePage?: 'home' | 'news' | 'departments' | 'about' | 'education' | 'publications' | 'ncutam';
 }
 
 const { activePage = 'home' } = Astro.props;
@@ -28,6 +28,7 @@ const isPathPrefixActive = (path: string) => isCurrentPathPrefix(path) ? 'active
 const ariaCurrentPage = (path: string) => isCurrentPath(path) ? 'page' : undefined;
 const ariaCurrentPrefix = (path: string) => isCurrentPath(path) ? 'page' : isCurrentPathPrefix(path) ? 'location' : undefined;
 const publicationsClass = activePage === 'publications' || isCurrentPathPrefix('/library/') || isCurrentPathPrefix('/journal/') ? 'active' : '';
+const ncutamClass = activePage === 'ncutam' || isCurrentPathPrefix('/ncutam/') ? 'active' : '';
 const ariaCurrentNews = () => {
   if (activePage !== 'news') {
     return undefined;
@@ -120,6 +121,7 @@ const ariaCurrentNews = () => {
           </ul>
         </li>
 
+        <li><a class={ncutamClass} href={withBase('/ncutam/')} aria-current={ariaCurrentPrefix('/ncutam/')}>НКУТПМ</a></li>
         <li><a class={isSectionActive('news')} href={withBase('/news/')} aria-current={ariaCurrentNews()}>Новини</a></li>
         <li><a href={withBase('/#contacts')}>Контакти</a></li>
         <li><a class={`search-nav-link ${isPathActive('/search/')}`} href={withBase('/search/')} aria-label="Пошук по сайту" aria-current={ariaCurrentPage('/search/')}>Пошук</a></li>
@@ -219,6 +221,27 @@ const ariaCurrentNews = () => {
 
   .primary-nav .submenu {
     z-index: 1100;
+  }
+
+  .primary-nav .search-nav-link {
+    color: var(--accent-dark);
+  }
+
+  @media (min-width: 1121px) {
+    .primary-nav > ul {
+      gap: 0;
+    }
+
+    .primary-nav a,
+    .primary-nav .nav-label {
+      padding: 8px 7px;
+      font-size: 0.9rem;
+    }
+
+    .nav-lang-switch {
+      margin-left: 4px;
+      padding-left: 6px;
+    }
   }
 
   @media (max-width: 1120px) {

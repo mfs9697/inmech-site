@@ -1,0 +1,99 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NcutamNav from '../../components/NcutamNav.astro';
+import { ncutamSections, ncutamSite } from '../../data/ncutam/site';
+import { site } from '../../data/site';
+
+const page = await getEntry('ncutamPages', 'home');
+if (!page) throw new Error('Missing NCUTAM home content entry.');
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+---
+
+<BaseLayout title={`${page.data.title} | ${site.shortName}`} description={page.data.description} activePage="ncutam">
+  <NcutamNav language="uk" />
+
+  <section class="page-hero ncutam-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">{ncutamSite.acronym}</p>
+        <h1>{page.data.title}</h1>
+        <p class="lead">{ncutamSite.shortDescription}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="ncutam-grid">
+        {ncutamSections.map((section) => (
+          <article class="ncutam-card">
+            <h2><a href={withBase(`/ncutam/${section.id}/`)}>{section.title}</a></h2>
+            <p>{section.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="ncutam-contacts" aria-labelledby="ncutam-contacts-heading">
+    <div class="container">
+      <div class="panel ncutam-contact-panel">
+        <p class="eyebrow">Базова організація</p>
+        <h2 id="ncutam-contacts-heading">Інститут механіки ім. С.П. Тимошенка НАН України</h2>
+        <address>
+          <p>03057 Київ, Україна, вул. Нестерова, 3</p>
+          <p>Email: <a href="mailto:natcommmech@nas.gov.ua">natcommmech@nas.gov.ua</a> · <a href="mailto:mfs@ukr.net">mfs@ukr.net</a></p>
+        </address>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .ncutam-hero .panel {
+    max-width: 980px;
+  }
+
+  .ncutam-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .ncutam-card {
+    padding: 24px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .ncutam-card h2 {
+    margin: 0 0 10px;
+    font-size: 1.3rem;
+  }
+
+  .ncutam-card p,
+  .ncutam-contact-panel p {
+    margin-bottom: 0;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .ncutam-contact-panel address {
+    font-style: normal;
+  }
+
+  .ncutam-contact-panel address p + p {
+    margin-top: 8px;
+  }
+
+  @media (max-width: 760px) {
+    .ncutam-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,133 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  language?: 'uk' | 'en';
+  view?: 'all' | 'reports';
+}
+
+const { language = 'uk', view = 'all' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+
+const allDocuments = (await getCollection('ncutamDocuments')).sort((a, b) => {
+  const ad = a.data.date?.getTime?.() ?? (a.data.year ? new Date(`${a.data.year}-01-01`).getTime() : 0);
+  const bd = b.data.date?.getTime?.() ?? (b.data.year ? new Date(`${b.data.year}-01-01`).getTime() : 0);
+  return bd - ad;
+});
+
+const documents = view === 'reports'
+  ? allDocuments.filter((entry) => entry.data.kind === 'annual-report')
+  : allDocuments;
+
+const currentDocuments = documents.filter((entry) => entry.data.status === 'current');
+const meetingMaterials = documents.filter((entry) => entry.data.kind === 'meeting-material');
+const historicalDocuments = documents.filter((entry) =>
+  entry.data.kind !== 'annual-report' &&
+  entry.data.kind !== 'meeting-material' &&
+  entry.data.status !== 'current'
+);
+const reports = documents.filter((entry) => entry.data.kind === 'annual-report');
+
+const labels = language === 'uk'
+  ? {
+      current: 'Чинні нормативні документи',
+      historical: 'Установчі та історичні документи',
+      meetings: 'Матеріали Загальних зборів',
+      reports: 'Річні звіти',
+      open: 'Відкрити PDF',
+      language: 'Мова документа: українська',
+      currentStatus: 'чинний',
+      historicalStatus: 'історичний',
+      supersededStatus: 'втратив чинність',
+      issuedBy: 'Видавець / орган'
+    }
+  : {
+      current: 'Current governing documents',
+      historical: 'Founding and historical documents',
+      meetings: 'General Meeting materials',
+      reports: 'Annual reports',
+      open: 'Open PDF',
+      language: 'Document language: Ukrainian',
+      currentStatus: 'current',
+      historicalStatus: 'historical',
+      supersededStatus: 'superseded',
+      issuedBy: 'Issued by'
+    };
+
+const statusLabel = (status: string) => {
+  if (status === 'current') return labels.currentStatus;
+  if (status === 'superseded') return labels.supersededStatus;
+  return labels.historicalStatus;
+};
+
+const formatDate = (entry: (typeof allDocuments)[number]) => {
+  if (entry.data.date) {
+    return new Intl.DateTimeFormat(language === 'uk' ? 'uk-UA' : 'en-GB', {
+      day: 'numeric', month: 'long', year: 'numeric'
+    }).format(entry.data.date);
+  }
+  return entry.data.year ? `${entry.data.year}` : '';
+};
+
+const titleFor = (entry: (typeof allDocuments)[number]) => language === 'uk' ? entry.data.title : entry.data.titleEn;
+const issuerFor = (entry: (typeof allDocuments)[number]) => language === 'uk' ? entry.data.issuedBy : entry.data.issuedByEn;
+const noteFor = (entry: (typeof allDocuments)[number]) => language === 'uk' ? entry.data.note : entry.data.noteEn;
+
+const sections = view === 'reports'
+  ? [{ title: labels.reports, entries: reports }]
+  : [
+      { title: labels.current, entries: currentDocuments },
+      { title: labels.historical, entries: historicalDocuments },
+      { title: labels.meetings, entries: meetingMaterials },
+      { title: labels.reports, entries: reports }
+    ];
+---
+
+<div class="ncutam-documents">
+  {sections.map(({ title, entries }) => entries.length > 0 && (
+    <section class="document-section">
+      <h2>{title}</h2>
+      <div class="document-grid">
+        {entries.map((entry) => (
+          <article class="panel document-card">
+            <div class="document-card-head">
+              <span class:list={['document-status', `document-status-${entry.data.status}`]}>{statusLabel(entry.data.status)}</span>
+              <span class="document-date">{formatDate(entry)}</span>
+            </div>
+            <h3>{titleFor(entry)}</h3>
+            {issuerFor(entry) && <p class="document-issuer"><strong>{labels.issuedBy}:</strong> {issuerFor(entry)}</p>}
+            {noteFor(entry) && <p class="document-note">{noteFor(entry)}</p>}
+            <div class="document-footer">
+              <span class="document-language">{labels.language}</span>
+              <a class="button secondary" href={withBase(entry.data.path)} target="_blank" rel="noopener noreferrer">{labels.open}</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  ))}
+</div>
+
+<style>
+  .ncutam-documents { display: grid; gap: 38px; }
+  .document-section > h2 { margin: 0 0 18px; }
+  .document-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 18px; }
+  .document-card { height: 100%; display: flex; flex-direction: column; gap: 12px; }
+  .document-card-head { display: flex; gap: 12px; justify-content: space-between; align-items: center; }
+  .document-status { display: inline-flex; width: fit-content; padding: 4px 9px; border-radius: 999px; font-size: .76rem; font-weight: 800; letter-spacing: .03em; text-transform: uppercase; background: var(--surface-soft, #f2f4f7); }
+  .document-status-current { color: var(--accent-dark); }
+  .document-status-superseded { color: var(--muted); }
+  .document-date { color: var(--muted); font-size: .88rem; white-space: nowrap; }
+  .document-card h3 { margin: 0; font-size: 1.14rem; line-height: 1.35; overflow-wrap: anywhere; }
+  .document-issuer, .document-note, .document-language { color: var(--muted); font-size: .92rem; line-height: 1.55; }
+  .document-issuer, .document-note { margin: 0; }
+  .document-footer { margin-top: auto; padding-top: 8px; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+  .document-language { margin: 0; }
+  .document-footer .button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  @media (max-width: 560px) {
+    .document-grid { grid-template-columns: 1fr; }
+    .document-card-head, .document-footer { align-items: flex-start; }
+    .document-footer .button { width: 100%; }
+  }
+</style>

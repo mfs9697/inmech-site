@@ -1,0 +1,216 @@
+- id: creation-resolution-191-1992
+  title: "Постанова Президії Академії наук України № 191 від 3 липня 1992 року"
+  titleEn: "Resolution No. 191 of the Presidium of the Academy of Sciences of Ukraine, 3 July 1992"
+  kind: foundation
+  date: 1992-07-03
+  language: uk
+  path: "/documents/ncutam/foundation/1992/ncutam-founding-resolution-1992.pdf"
+  issuedBy: "Президія Академії наук України"
+  issuedByEn: "Presidium of the Academy of Sciences of Ukraine"
+  status: historical
+  note: "Установча постанова про створення Національного комітету України з теоретичної та прикладної механіки."
+  noteEn: "Founding resolution establishing the National Committee of Ukraine for Theoretical and Applied Mechanics."
+
+- id: statute-1993
+  title: "Статут Національного комітету України з теоретичної та прикладної механіки"
+  titleEn: "Statute of the National Committee of Ukraine for Theoretical and Applied Mechanics"
+  kind: regulation
+  year: 1993
+  language: uk
+  path: "/documents/ncutam/foundation/1993/ncutam-statute-1993.pdf"
+  issuedBy: "Національний комітет України з теоретичної та прикладної механіки"
+  issuedByEn: "National Committee of Ukraine for Theoretical and Applied Mechanics"
+  status: current
+  note: "Рік прийняття наведено за річним звітом НКУТПМ за 2025 рік, де Статут 1993 року зазначено серед чинних засад діяльності Комітету."
+  noteEn: "The year of adoption follows the 2025 NCUTAM annual report, which cites the 1993 Statute among the Committee's current governing foundations."
+
+- id: regulation-263-1992
+  title: "Положення про Національний комітет України з теоретичної та прикладної механіки, затверджене постановою № 263 від 7 жовтня 1992 року"
+  titleEn: "Regulation on the National Committee of Ukraine for Theoretical and Applied Mechanics approved by Resolution No. 263 of 7 October 1992"
+  kind: regulation
+  date: 1992-10-07
+  language: uk
+  path: "/documents/ncutam/governance/1992/ncutam-regulation-1992.pdf"
+  issuedBy: "Президія Академії наук України"
+  issuedByEn: "Presidium of the Academy of Sciences of Ukraine"
+  status: superseded
+  note: "Історична редакція Положення. Постановою Президії НАН України № 26 від 24 січня 2024 року постанову № 263 від 7 жовтня 1992 року визнано такою, що втратила чинність."
+  noteEn: "Historical version of the Regulation. Resolution No. 26 of the NAS of Ukraine Presidium dated 24 January 2024 repealed Resolution No. 263 of 7 October 1992."
+
+- id: nasu-resolution-26-2024
+  title: "Постанова Президії НАН України № 26 від 24 січня 2024 року"
+  titleEn: "Resolution No. 26 of the Presidium of the NAS of Ukraine, 24 January 2024"
+  kind: resolution
+  date: 2024-01-24
+  language: uk
+  path: "/documents/ncutam/governance/2024/nasu-resolution-26-2024-01-24.pdf"
+  issuedBy: "Президія Національної академії наук України"
+  issuedByEn: "Presidium of the National Academy of Sciences of Ukraine"
+  status: current
+  note: "Постанова затверджує чинне Положення про НКУТПМ; текст Положення наведено в додатку до постанови."
+  noteEn: "The Resolution approves the current Regulation on NCUTAM; the Regulation is included as an appendix."
+
+- id: annual-report-2023
+  title: "Звіт про діяльність НКУТПМ за 2023 рік"
+  titleEn: "NCUTAM annual report for 2023"
+  kind: annual-report
+  year: 2023
+  language: uk
+  path: "/documents/ncutam/reports/2023/ncutam-report-2023.pdf"
+  issuedBy: "Національний комітет України з теоретичної та прикладної механіки"
+  issuedByEn: "National Committee of Ukraine for Theoretical and Applied Mechanics"
+  status: historical
+
+- id: annual-report-2024
+  title: "Звіт про діяльність НКУТПМ за 2024 рік"
+  titleEn: "NCUTAM annual report for 2024"
+  kind: annual-report
+  year: 2024
+  language: uk
+  path: "/documents/ncutam/reports/2024/ncutam-report-2024.pdf"
+  issuedBy: "Національний комітет України з теоретичної та прикладної механіки"
+  issuedByEn: "National Committee of Ukraine for Theoretical and Applied Mechanics"
+  status: historical
+
+- id: annual-report-2025
+  title: "Звіт про діяльність НКУТПМ за 2025 рік"
+  titleEn: "NCUTAM annual report for 2025"
+  kind: annual-report
+  year: 2025
+  language: uk
+  path: "/documents/ncutam/reports/2025/ncutam-report-2025.pdf"
+  issuedBy: "Національний комітет України з теоретичної та прикладної механіки"
+  issuedByEn: "National Committee of Ukraine for Theoretical and Applied Mechanics"
+  status: historical
+
+- id: meeting-2023-minutes
+  title: "Протокол Загальних зборів НКУТПМ від 12 вересня 2023 року"
+  titleEn: "Minutes of the NCUTAM General Meeting, 12 September 2023"
+  kind: meeting-material
+  date: 2023-09-12
+  language: uk
+  path: "/documents/ncutam/meetings/2023-09-12/01-minutes.pdf"
+  issuedBy: "Національний комітет України з теоретичної та прикладної механіки"
+  issuedByEn: "National Committee of Ukraine for Theoretical and Applied Mechanics"
+  status: historical
+
+- id: meeting-2023-minutes-appendix
+  title: "Додаток до протоколу Загальних зборів НКУТПМ від 12 вересня 2023 року"
+  titleEn: "Appendix to the minutes of the NCUTAM General Meeting, 12 September 2023"
+  kind: meeting-material
+  date: 2023-09-12
+  language: uk
+  path: "/documents/ncutam/meetings/2023-09-12/02-appendix-to-minutes.pdf"
+  issuedBy: "Національний комітет України з теоретичної та прикладної механіки"
+  issuedByEn: "National Committee of Ukraine for Theoretical and Applied Mechanics"
+  status: historical
+
+- id: meeting-2023-resolution-1
+  title: "Ухвала № 1 Загальних зборів НКУТПМ: про обрання головуючого на засіданні"
+  titleEn: "Resolution No. 1 of the NCUTAM General Meeting: election of the meeting chair"
+  kind: meeting-material
+  date: 2023-09-12
+  language: uk
+  path: "/documents/ncutam/meetings/2023-09-12/03-resolution-1.pdf"
+  issuedBy: "Загальні збори НКУТПМ"
+  issuedByEn: "NCUTAM General Meeting"
+  status: historical
+
+- id: meeting-2023-resolution-2
+  title: "Ухвала № 2 Загальних зборів НКУТПМ: про затвердження звіту голови Комітету"
+  titleEn: "Resolution No. 2 of the NCUTAM General Meeting: approval of the Committee Chair's report"
+  kind: meeting-material
+  date: 2023-09-12
+  language: uk
+  path: "/documents/ncutam/meetings/2023-09-12/04-resolution-2.pdf"
+  issuedBy: "Загальні збори НКУТПМ"
+  issuedByEn: "NCUTAM General Meeting"
+  status: historical
+
+- id: meeting-2023-resolution-3
+  title: "Ухвала № 3 Загальних зборів НКУТПМ: про результати виборів нових членів Комітету"
+  titleEn: "Resolution No. 3 of the NCUTAM General Meeting: results of the election of new Committee members"
+  kind: meeting-material
+  date: 2023-09-12
+  language: uk
+  path: "/documents/ncutam/meetings/2023-09-12/05-resolution-3.pdf"
+  issuedBy: "Загальні збори НКУТПМ"
+  issuedByEn: "NCUTAM General Meeting"
+  status: historical
+
+- id: meeting-2023-resolution-3-appendix
+  title: "Додаток до ухвали № 3 Загальних зборів НКУТПМ"
+  titleEn: "Appendix to Resolution No. 3 of the NCUTAM General Meeting"
+  kind: meeting-material
+  date: 2023-09-12
+  language: uk
+  path: "/documents/ncutam/meetings/2023-09-12/06-appendix-to-resolution-3.pdf"
+  issuedBy: "Загальні збори НКУТПМ"
+  issuedByEn: "NCUTAM General Meeting"
+  status: historical
+
+- id: meeting-2023-resolution-4
+  title: "Ухвала № 4 Загальних зборів НКУТПМ: про обрання голови Комітету"
+  titleEn: "Resolution No. 4 of the NCUTAM General Meeting: election of the Committee Chair"
+  kind: meeting-material
+  date: 2023-09-12
+  language: uk
+  path: "/documents/ncutam/meetings/2023-09-12/07-resolution-4.pdf"
+  issuedBy: "Загальні збори НКУТПМ"
+  issuedByEn: "NCUTAM General Meeting"
+  status: historical
+
+- id: meeting-2023-resolution-5
+  title: "Ухвала № 5 Загальних зборів НКУТПМ: про обрання заступників голови Комітету"
+  titleEn: "Resolution No. 5 of the NCUTAM General Meeting: election of Deputy Chairs"
+  kind: meeting-material
+  date: 2023-09-12
+  language: uk
+  path: "/documents/ncutam/meetings/2023-09-12/08-resolution-5.pdf"
+  issuedBy: "Загальні збори НКУТПМ"
+  issuedByEn: "NCUTAM General Meeting"
+  status: historical
+
+- id: meeting-2023-resolution-6
+  title: "Ухвала № 6 Загальних зборів НКУТПМ: про обрання ученого секретаря Комітету"
+  titleEn: "Resolution No. 6 of the NCUTAM General Meeting: election of the Scientific Secretary"
+  kind: meeting-material
+  date: 2023-09-12
+  language: uk
+  path: "/documents/ncutam/meetings/2023-09-12/09-resolution-6.pdf"
+  issuedBy: "Загальні збори НКУТПМ"
+  issuedByEn: "NCUTAM General Meeting"
+  status: historical
+
+- id: meeting-2023-resolution-7
+  title: "Ухвала № 7 Загальних зборів НКУТПМ: про затвердження персонального складу Президії"
+  titleEn: "Resolution No. 7 of the NCUTAM General Meeting: approval of the Presidium membership"
+  kind: meeting-material
+  date: 2023-09-12
+  language: uk
+  path: "/documents/ncutam/meetings/2023-09-12/10-resolution-7.pdf"
+  issuedBy: "Загальні збори НКУТПМ"
+  issuedByEn: "NCUTAM General Meeting"
+  status: historical
+
+- id: meeting-2025-resolutions
+  title: "Ухвали Загальних зборів НКУТПМ 11 листопада 2025 року"
+  titleEn: "Resolutions of the NCUTAM General Meeting, 11 November 2025"
+  kind: meeting-material
+  date: 2025-11-11
+  language: uk
+  path: "/documents/ncutam/meetings/2025-11-11/general-meeting-resolutions-2025.pdf"
+  issuedBy: "Загальні збори НКУТПМ"
+  issuedByEn: "NCUTAM General Meeting"
+  status: historical
+
+- id: meeting-2025-activity-booklet
+  title: "Інформація про діяльність членів НКУТПМ у 2023–2025 роках"
+  titleEn: "Information on the activities of NCUTAM members in 2023–2025"
+  kind: meeting-material
+  date: 2025-11-11
+  language: uk
+  path: "/documents/ncutam/meetings/2025-11-11/activity-booklet-2023-2025.pdf"
+  issuedBy: "Національний комітет України з теоретичної та прикладної механіки"
+  issuedByEn: "National Committee of Ukraine for Theoretical and Applied Mechanics"
+  status: historical

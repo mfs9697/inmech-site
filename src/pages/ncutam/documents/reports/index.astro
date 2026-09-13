@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import NcutamNav from '../../../../components/NcutamNav.astro';
+import NcutamDocuments from '../../../../components/ncutam/NcutamDocuments.astro';
+import { ncutamSite } from '../../../../data/ncutam/site';
+import { site } from '../../../../data/site';
+---
+
+<BaseLayout title={`Річні звіти | ${ncutamSite.acronym} | ${site.shortName}`} description="Архів річних звітів Національного комітету України з теоретичної і прикладної механіки." activePage="ncutam">
+  <NcutamNav language="uk" active="documents" />
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">{ncutamSite.acronym} · Документи</p>
+        <h1>Річні звіти</h1>
+        <p class="lead">Офіційні річні звіти про діяльність Комітету, впорядковані за роками.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <NcutamDocuments language="uk" view="reports" />
+    </div>
+  </section>
+</BaseLayout>

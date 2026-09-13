@@ -1,0 +1,131 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+
+interface Props {
+  language?: 'uk' | 'en';
+}
+
+const { language = 'uk' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+
+const cityEn: Record<string, string> = {
+  'Вінниця': 'Vinnytsia', 'Дніпро': 'Dnipro', 'Житомир': 'Zhytomyr', 'Запоріжжя': 'Zaporizhzhia',
+  'Київ': 'Kyiv', 'Кривий Ріг': 'Kryvyi Rih', 'Луцьк': 'Lutsk', 'Львів': 'Lviv',
+  'Миколаїв': 'Mykolaiv', 'Одеса': 'Odesa', 'Рівне': 'Rivne', 'Тернопіль': 'Ternopil',
+  'Ужгород': 'Uzhhorod', 'Харків': 'Kharkiv'
+};
+
+const assignments = (await getCollection('ncutamGovernance'))
+  .filter((entry) => !entry.data.effectiveTo)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const resolved = await Promise.all(
+  assignments.map(async (assignment) => ({
+    assignment,
+    member: await getEntry(assignment.data.member)
+  }))
+);
+
+const leadershipRoles = new Set(['chair', 'deputy-chair', 'scientific-secretary']);
+const leadership = resolved.filter(({ assignment }) => leadershipRoles.has(assignment.data.role));
+const presidium = resolved.filter(({ assignment }) => assignment.data.role === 'presidium-member');
+
+const roleLabels = {
+  chair: { uk: 'Голова Комітету', en: 'Chair of the Committee' },
+  'deputy-chair': { uk: 'Заступник голови Комітету', en: 'Deputy Chair of the Committee' },
+  'scientific-secretary': { uk: 'Вчений секретар Комітету', en: 'Scientific Secretary of the Committee' },
+  'presidium-member': { uk: 'Член Президії Комітету', en: 'Member of the Presidium' }
+} as const;
+
+const memberHref = (member: NonNullable<(typeof resolved)[number]['member']>) => {
+  if (member.data.inmechPersonId) {
+    return withBase(language === 'uk' ? `/people/${member.data.inmechPersonId}/` : `/en/people/${member.data.inmechPersonId}/`);
+  }
+  return member.data.profiles[0]?.url;
+};
+
+const memberCity = (member: NonNullable<(typeof resolved)[number]['member']>) => language === 'uk'
+  ? member.data.city
+  : (member.data.cityEn ?? (member.data.city ? cityEn[member.data.city] : undefined));
+
+const sectionTitle = language === 'uk' ? 'Керівництво Комітету' : 'Committee leadership';
+const presidiumTitle = language === 'uk' ? 'Члени Президії' : 'Members of the Presidium';
+const sourceNote = language === 'uk'
+  ? 'Повноваження наведено за розподілом, затвердженим головою Комітету 1 грудня 2025 року.'
+  : 'Responsibilities are based on the distribution approved by the Chair of the Committee on 1 December 2025.';
+---
+
+<div class="ncutam-governance">
+  <p class="governance-source">{sourceNote}</p>
+
+  <section aria-labelledby="ncutam-leadership-heading">
+    <h2 id="ncutam-leadership-heading">{sectionTitle}</h2>
+    <div class="governance-grid governance-grid-leadership">
+      {leadership.map(({ assignment, member }) => member && (
+        <article class="panel governance-card">
+          <p class="governance-role">{roleLabels[assignment.data.role][language]}</p>
+          <h3>
+            {memberHref(member) ? (
+              <a href={memberHref(member)} target={member.data.inmechPersonId ? undefined : '_blank'} rel={member.data.inmechPersonId ? undefined : 'noopener noreferrer'}>
+                {language === 'uk' ? member.data.name : member.data.nameEn}
+              </a>
+            ) : (language === 'uk' ? member.data.name : member.data.nameEn)}
+          </h3>
+          <p class="governance-meta">
+            {memberCity(member)}
+            {member.data.joinedYear ? ` · ${language === 'uk' ? 'член Комітету з' : 'Committee member since'} ${member.data.joinedYear}` : ''}
+          </p>
+          <ul class="governance-responsibilities">
+            {(language === 'uk' ? assignment.data.responsibilities : assignment.data.responsibilitiesEn).map((item) => <li>{item}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section aria-labelledby="ncutam-presidium-heading">
+    <h2 id="ncutam-presidium-heading">{presidiumTitle}</h2>
+    <div class="governance-grid">
+      {presidium.map(({ assignment, member }) => member && (
+        <article class="panel governance-card">
+          <p class="governance-role">{roleLabels[assignment.data.role][language]}</p>
+          <h3>
+            {memberHref(member) ? (
+              <a href={memberHref(member)} target={member.data.inmechPersonId ? undefined : '_blank'} rel={member.data.inmechPersonId ? undefined : 'noopener noreferrer'}>
+                {language === 'uk' ? member.data.name : member.data.nameEn}
+              </a>
+            ) : (language === 'uk' ? member.data.name : member.data.nameEn)}
+          </h3>
+          <p class="governance-meta">
+            {memberCity(member)}
+            {member.data.joinedYear ? ` · ${language === 'uk' ? 'член Комітету з' : 'Committee member since'} ${member.data.joinedYear}` : ''}
+          </p>
+          <ul class="governance-responsibilities">
+            {(language === 'uk' ? assignment.data.responsibilities : assignment.data.responsibilitiesEn).map((item) => <li>{item}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </section>
+</div>
+
+<style>
+  .ncutam-governance { display: grid; gap: 34px; }
+  .governance-source { margin: 0; color: var(--muted); font-size: 0.94rem; }
+  .ncutam-governance section > h2 { margin: 0 0 18px; }
+  .governance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+  .governance-grid-leadership { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
+  .governance-card { height: 100%; min-width: 0; }
+  .governance-card h3 { margin: 4px 0 6px; font-size: 1.18rem; overflow-wrap: anywhere; }
+  .governance-card h3 a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .governance-role { margin: 0; color: var(--accent-dark); font-size: 0.8rem; font-weight: 850; letter-spacing: 0.04em; text-transform: uppercase; }
+  .governance-meta { margin: 0 0 14px; color: var(--muted); font-size: 0.9rem; }
+  .governance-responsibilities { margin: 0; padding-left: 1.15rem; }
+  .governance-responsibilities li + li { margin-top: 8px; }
+
+  @media (max-width: 560px) {
+    .governance-grid,
+    .governance-grid-leadership { grid-template-columns: 1fr; }
+  }
+</style>

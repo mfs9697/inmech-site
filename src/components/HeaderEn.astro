@@ -3,7 +3,7 @@ import { siteEn } from '../data/site-en';
 import { getUkrainianPath, normalizeSitePath } from '../data/routes';
 
 interface Props {
-  activePage?: 'home' | 'news' | 'departments' | 'about' | 'education' | 'publications';
+  activePage?: 'home' | 'news' | 'departments' | 'about' | 'education' | 'publications' | 'ncutam';
 }
 
 const { activePage = 'home' } = Astro.props;
@@ -28,6 +28,7 @@ const isPathPrefixActive = (path: string) => isCurrentPathPrefix(path) ? 'active
 const ariaCurrentPage = (path: string) => isCurrentPath(path) ? 'page' : undefined;
 const ariaCurrentPrefix = (path: string) => isCurrentPath(path) ? 'page' : isCurrentPathPrefix(path) ? 'location' : undefined;
 const publicationsClass = activePage === 'publications' || isCurrentPathPrefix('/en/library/') || isCurrentPathPrefix('/en/journal/') ? 'active' : '';
+const ncutamClass = activePage === 'ncutam' || isCurrentPathPrefix('/en/ncutam/') ? 'active' : '';
 const ariaCurrentNews = () => {
   if (activePage !== 'news') {
     return undefined;
@@ -117,6 +118,7 @@ const ariaCurrentNews = () => {
           </ul>
         </li>
 
+        <li><a class={ncutamClass} href={withBase('/en/ncutam/')} aria-current={ariaCurrentPrefix('/en/ncutam/')}>NCUTAM</a></li>
         <li><a class={isSectionActive('news')} href={withBase('/en/news/')} aria-current={ariaCurrentNews()}>News</a></li>
         <li><a href={withBase('/en/#contacts')}>Contacts</a></li>
         <li><a class={`search-nav-link ${isPathActive('/en/search/')}`} href={withBase('/en/search/')} aria-label="Search the website" aria-current={ariaCurrentPage('/en/search/')}>Search</a></li>

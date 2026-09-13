@@ -15,7 +15,7 @@
     "check:links": "node scripts/check-internal-links.mjs --self-test && node scripts/check-internal-links.mjs",
     "check:vacancies": "node scripts/check-vacancy-archive.mjs",
     "check:defended-catalogs": "node scripts/check-defended-catalogs.mjs",
-    "check:ncutam": "node scripts/check-ncutam.mjs && node scripts/check-ncutam-documents.mjs",
+    "check:ncutam": "node scripts/check-ncutam.mjs && node scripts/check-ncutam-documents.mjs && node scripts/check-ncutam-rendered.mjs",
     "audit:assets": "node scripts/audit-generated-assets.mjs",
     "validate": "npm run build && npm run check:sitemap && npm run check:landmarks && npm run check:links && npm run check:vacancies && npm run check:defended-catalogs && npm run check:ncutam",
     "preview": "astro preview",

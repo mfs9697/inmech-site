@@ -45,7 +45,7 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
   activePage="home"
 >
   <section class="hero">
-    <div class="container hero-grid">
+    <div class="container hero-grid hero-grid-single">
       <div class="hero-card hero-card-visual" data-block-tone="neutral">
         <div class="hero-text">
           <p class="eyebrow">Національна академія наук України</p>
@@ -62,28 +62,13 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
           <div class="hero-actions hero-image-actions">
             <a class="button primary" href={withBase('/departments/')}>Наукові відділи</a>
             <a class="button secondary" href={withBase('/news/')}>Останні новини</a>
+            <a class="button secondary" href={withBase('/ncutam/')}>НКУТПМ</a>
+            <a class="button hero-election-button" href="https://election.inmech.kyiv.ua/" target="_blank" rel="noopener">
+              Вибори директора · 2026
+            </a>
           </div>
         </figure>
       </div>
-
-      <aside class="aside-card" data-block-tone="emphasis" aria-labelledby="institute-sites-title">
-        <h2 id="institute-sites-title">Інститутські сайти</h2>
-        <p>
-          Окремі інформаційні ресурси Інституту для спеціалізованих проєктів, подій та інституційних оголошень.
-        </p>
-        <ul class="aside-list">
-          <li>
-            <a href={withBase('/ncutam/')}>
-              Національний комітет України з теоретичної і прикладної механіки
-            </a>
-          </li>
-          <li>
-            <a href="https://election.inmech.kyiv.ua/" target="_blank" rel="noopener">
-              Вибори директора Інституту 2026
-            </a>
-          </li>
-        </ul>
-      </aside>
     </div>
   </section>
 

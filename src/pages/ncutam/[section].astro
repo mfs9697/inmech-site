@@ -47,7 +47,7 @@ const ncutamNews = isNews
       {isNews ? (
         ncutamNews.length > 0 ? (
           <div class="news-list">
-            {ncutamNews.map((entry) => <NewsCard entry={entry} />)}
+            {ncutamNews.map((entry) => <NewsCard entry={entry} showInlineBody={false} />)}
           </div>
         ) : (
           <div class="panel ncutam-build-panel"><h2>Новини НКУТПМ поки що не додано</h2></div>
@@ -64,8 +64,8 @@ const ncutamNews = isNews
         <NcutamEvergreen pageId={section.id} language="uk" />
       ) : (
         <div class="panel ncutam-build-panel">
-          <h2>Розділ підготовлено до міграції даних</h2>
-          <p>Перевірений зміст та структуровані записи буде додано наступними WP6 content-import batches відповідно до WP5 migration map.</p>
+          <h2>Розділ тимчасово недоступний</h2>
+          <p>Скористайтеся навігацією НКУТПМ або поверніться на головну сторінку Комітету.</p>
         </div>
       )}
     </div>

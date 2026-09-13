@@ -19,7 +19,7 @@ externalLinks:
 
 У публічних експертних оцінках увагу було звернуто на масштабні корозійні пошкодження металевих елементів та на ризик подальшого непрогнозованого погіршення стану конструкції. Комітет наголошував на необхідності переходу від тривалого обговорення проблеми до організації капітального ремонту на державному рівні.
 
-Ця сторінка є канонічним записом **ініціативи Комітету**. Окремі публікації засобів масової інформації про неї розглядаються як пов’язані джерела й не дублюються у вигляді самостійних локальних статей.
+Пов’язані публікації засобів масової інформації наведено нижче як додаткові джерела про розвиток ініціативи.
 
 <!-- en:start -->
 
@@ -29,6 +29,6 @@ At the General Meeting on **11 November 2025**, the Committee’s Presidium was 
 
 Public expert assessments drew attention to extensive corrosion damage in steel elements and to the risk of further, increasingly unpredictable deterioration of the structure. The Committee emphasized the need to move from prolonged discussion to the organization of major repairs at the national level.
 
-This page is the canonical record of the **Committee initiative**. Individual media reports on the initiative are treated as related sources rather than duplicated as separate local articles.
+Related media coverage is provided below as additional source material on the development of the initiative.
 
 <!-- en:end -->

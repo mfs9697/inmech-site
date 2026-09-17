@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { site } from '../../../data/site';
+
+const youtubeId = '8JRJvjsastY';
+const youtubeUrl = `https://youtu.be/${youtubeId}`;
+const embedUrl = `https://www.youtube-nocookie.com/embed/${youtubeId}`;
+---
+
+<BaseLayout
+  title={`Відеозапис вступного іспиту 2026 | ${site.shortName}`}
+  description="Відеозапис вступного іспиту до аспірантури Інституту механіки ім. С. П. Тимошенка НАН України від 15 вересня 2026 року."
+  activePage="education"
+>
+  <main class="exam-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumbs">
+      <a href="/postgraduate/">Аспірантура</a>
+      <span>›</span>
+      <a href="/postgraduate/admission/">Вступникам</a>
+      <span>›</span>
+      <span>Відеозапис іспиту</span>
+    </nav>
+
+    <section class="page-hero">
+      <p class="eyebrow">Вступ до аспірантури · 2026</p>
+      <h1>Відеозапис вступного іспиту</h1>
+      <p class="lead">
+        Відеозапис вступного іспиту до аспірантури Інституту механіки ім. С. П. Тимошенка НАН України,
+        проведеного 15 вересня 2026 року.
+      </p>
+    </section>
+
+    <section class="recording-section" aria-labelledby="recording-title">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Запис від 15 вересня 2026 року</p>
+          <h2 id="recording-title">Вступний іспит до аспірантури</h2>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe
+            src={embedUrl}
+            title="Відеозапис вступного іспиту до аспірантури 15 вересня 2026 року"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="video-footer">
+          <p>Запис розміщено на YouTube.</p>
+          <a class="button primary" href={youtubeUrl} target="_blank" rel="noopener noreferrer">Відкрити на YouTube ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="notice" aria-label="Інформація про записи">
+      Інші відеозаписи вступного іспиту буде додано на цю сторінку після їх оприлюднення.
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .exam-page { max-width: 1120px; margin: 0 auto; padding: 46px 20px 72px; }
+  .breadcrumbs { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 22px; color: var(--muted); font-weight: 750; }
+  .page-hero, .video-card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+  .page-hero { padding: clamp(28px, 5vw, 52px); }
+  .page-hero h1 { margin: 0 0 18px; font-size: clamp(2.15rem, 4.5vw, 4rem); line-height: 1.04; letter-spacing: -0.04em; }
+  .lead { max-width: 880px; color: var(--muted); font-size: 1.08rem; line-height: 1.7; }
+  .recording-section { margin-top: 38px; }
+  .video-card { overflow: hidden; }
+  .video-frame { position: relative; aspect-ratio: 16 / 9; background: #111; }
+  .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video-footer { display: flex; justify-content: space-between; gap: 20px; align-items: center; padding: 18px 22px; }
+  .video-footer p { margin: 0; color: var(--muted); }
+  .notice { margin-top: 24px; padding: 17px 20px; border-left: 5px solid var(--accent); border-radius: 16px; background: var(--accent-soft); line-height: 1.65; }
+  @media (max-width: 680px) {
+    .video-footer { align-items: flex-start; flex-direction: column; }
+  }
+</style>

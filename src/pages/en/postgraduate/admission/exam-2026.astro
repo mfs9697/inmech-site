@@ -1,0 +1,81 @@
+---
+import BaseLayoutEn from '../../../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../../../data/site-en';
+
+const youtubeId = '8JRJvjsastY';
+const youtubeUrl = `https://youtu.be/${youtubeId}`;
+const embedUrl = `https://www.youtube-nocookie.com/embed/${youtubeId}`;
+---
+
+<BaseLayoutEn
+  title={`2026 entrance examination recording | ${siteEn.shortName}`}
+  description="Video recording of the postgraduate entrance examination at the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine held on 15 September 2026."
+  activePage="education"
+>
+  <main class="exam-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumbs">
+      <a href="/en/postgraduate/">Postgraduate studies</a>
+      <span>›</span>
+      <a href="/en/postgraduate/admission/">Admission</a>
+      <span>›</span>
+      <span>Examination recording</span>
+    </nav>
+
+    <section class="page-hero">
+      <p class="eyebrow">Postgraduate admission · 2026</p>
+      <h1>Entrance examination recording</h1>
+      <p class="lead">
+        Video recording of the postgraduate entrance examination at the S.P. Timoshenko Institute of Mechanics
+        of the NAS of Ukraine held on 15 September 2026.
+      </p>
+    </section>
+
+    <section class="recording-section" aria-labelledby="recording-title">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Recording from 15 September 2026</p>
+          <h2 id="recording-title">Postgraduate entrance examination</h2>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe
+            src={embedUrl}
+            title="Video recording of the postgraduate entrance examination held on 15 September 2026"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="video-footer">
+          <p>The recording is hosted on YouTube.</p>
+          <a class="button primary" href={youtubeUrl} target="_blank" rel="noopener noreferrer">Open on YouTube ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="notice" aria-label="Information about recordings">
+      Additional recordings of the entrance examination will be added to this page after publication.
+    </section>
+  </main>
+</BaseLayoutEn>
+
+<style>
+  .exam-page { max-width: 1120px; margin: 0 auto; padding: 46px 20px 72px; }
+  .breadcrumbs { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 22px; color: var(--muted); font-weight: 750; }
+  .page-hero, .video-card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+  .page-hero { padding: clamp(28px, 5vw, 52px); }
+  .page-hero h1 { margin: 0 0 18px; font-size: clamp(2.15rem, 4.5vw, 4rem); line-height: 1.04; letter-spacing: -0.04em; }
+  .lead { max-width: 880px; color: var(--muted); font-size: 1.08rem; line-height: 1.7; }
+  .recording-section { margin-top: 38px; }
+  .video-card { overflow: hidden; }
+  .video-frame { position: relative; aspect-ratio: 16 / 9; background: #111; }
+  .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video-footer { display: flex; justify-content: space-between; gap: 20px; align-items: center; padding: 18px 22px; }
+  .video-footer p { margin: 0; color: var(--muted); }
+  .notice { margin-top: 24px; padding: 17px 20px; border-left: 5px solid var(--accent); border-radius: 16px; background: var(--accent-soft); line-height: 1.65; }
+  @media (max-width: 680px) {
+    .video-footer { align-items: flex-start; flex-direction: column; }
+  }
+</style>

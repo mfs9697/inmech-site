@@ -2,33 +2,14 @@
 import BaseLayoutEn from '../../../../layouts/BaseLayoutEn.astro';
 import { siteEn } from '../../../../data/site-en';
 
-const mediaBase = '/media/postgraduate/exam-2026';
-
-const cameras = [
-  {
-    title: 'Camera 1',
-    note: 'Primary view. All three clips include audio.',
-    recordings: [
-      { label: 'Clip 1', duration: '1 min 49 sec', audio: 'with audio', file: '20260915_133100_4209_ACCC8EE1BDEA.mp4' },
-      { label: 'Clip 2', duration: '40 min 30 sec', audio: 'with audio', file: '20260915_135832_3198_ACCC8EE1BDEA.mp4' },
-      { label: 'Clip 3', duration: '3 min 40 sec', audio: 'with audio', file: '20260915_144336_843F_ACCC8EE1BDEA.mp4' }
-    ]
-  },
-  {
-    title: 'Camera 2',
-    note: 'Additional view. Two clips are video-only; the third includes audio.',
-    recordings: [
-      { label: 'Clip 1', duration: '49 min 03 sec', audio: 'no audio', file: '192.168.0.13_2026915114033_2026915122933.mp4' },
-      { label: 'Clip 2', duration: '41 min 20 sec', audio: 'no audio', file: '192.168.0.13_2026915131124_2026915135241.mp4' },
-      { label: 'Clip 3', duration: '40 min 32 sec', audio: 'with audio', file: '192.168.0.13_2026-09-15_135912.mp4' }
-    ]
-  }
-];
+const youtubeId = '8JRJvjsastY';
+const youtubeUrl = `https://youtu.be/${youtubeId}`;
+const embedUrl = `https://www.youtube-nocookie.com/embed/${youtubeId}`;
 ---
 
 <BaseLayoutEn
-  title={`2026 entrance examination recordings | ${siteEn.shortName}`}
-  description="Video recordings of the postgraduate entrance examination at the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine held on 15 September 2026."
+  title={`2026 entrance examination recording | ${siteEn.shortName}`}
+  description="Video recording of the postgraduate entrance examination at the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine held on 15 September 2026."
   activePage="education"
 >
   <main class="exam-page">
@@ -37,78 +18,64 @@ const cameras = [
       <span>›</span>
       <a href="/en/postgraduate/admission/">Admission</a>
       <span>›</span>
-      <span>Examination recordings</span>
+      <span>Examination recording</span>
     </nav>
 
     <section class="page-hero">
       <p class="eyebrow">Postgraduate admission · 2026</p>
-      <h1>Entrance examination recordings</h1>
+      <h1>Entrance examination recording</h1>
       <p class="lead">
-        Video recordings of the postgraduate entrance examination at the S.P. Timoshenko Institute of Mechanics
-        of the NAS of Ukraine held on 15 September 2026. The recordings are presented separately for two cameras.
+        Video recording of the postgraduate entrance examination at the S.P. Timoshenko Institute of Mechanics
+        of the NAS of Ukraine held on 15 September 2026.
       </p>
     </section>
 
-    <section class="notice" aria-label="Playback information">
-      <strong>Note.</strong> Video data are loaded when playback starts. If a recording does not begin immediately,
-      wait a few seconds or use the direct MP4 link.
+    <section class="recording-section" aria-labelledby="recording-title">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Recording from 15 September 2026</p>
+          <h2 id="recording-title">Postgraduate entrance examination</h2>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe
+            src={embedUrl}
+            title="Video recording of the postgraduate entrance examination held on 15 September 2026"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="video-footer">
+          <p>The recording is hosted on YouTube.</p>
+          <a class="button primary" href={youtubeUrl} target="_blank" rel="noopener noreferrer">Open on YouTube ↗</a>
+        </div>
+      </div>
     </section>
 
-    {cameras.map((camera) => (
-      <section class="camera-section">
-        <div class="section-heading compact-header">
-          <div>
-            <p class="eyebrow">Video recording</p>
-            <h2>{camera.title}</h2>
-            <p class="camera-note">{camera.note}</p>
-          </div>
-        </div>
-
-        <div class="recording-list">
-          {camera.recordings.map((recording, index) => {
-            const src = `${mediaBase}/${recording.file}`;
-            return (
-              <details class="recording-card" open={camera.title === 'Camera 1' && index === 1}>
-                <summary>
-                  <span class="recording-title">{recording.label}</span>
-                  <span class="recording-meta">{recording.duration} · {recording.audio}</span>
-                </summary>
-                <div class="recording-body">
-                  <video controls preload="metadata" playsinline>
-                    <source src={src} type="video/mp4" />
-                    Your browser does not support HTML5 video playback.
-                  </video>
-                  <a class="direct-link" href={src} target="_blank" rel="noopener noreferrer">Open MP4 separately ↗</a>
-                </div>
-              </details>
-            );
-          })}
-        </div>
-      </section>
-    ))}
+    <section class="notice" aria-label="Information about recordings">
+      Additional recordings of the entrance examination will be added to this page after publication.
+    </section>
   </main>
 </BaseLayoutEn>
 
 <style>
   .exam-page { max-width: 1120px; margin: 0 auto; padding: 46px 20px 72px; }
   .breadcrumbs { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 22px; color: var(--muted); font-weight: 750; }
-  .page-hero, .recording-card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+  .page-hero, .video-card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
   .page-hero { padding: clamp(28px, 5vw, 52px); }
   .page-hero h1 { margin: 0 0 18px; font-size: clamp(2.15rem, 4.5vw, 4rem); line-height: 1.04; letter-spacing: -0.04em; }
   .lead { max-width: 880px; color: var(--muted); font-size: 1.08rem; line-height: 1.7; }
-  .notice { margin-top: 22px; padding: 17px 20px; border-left: 5px solid var(--accent); border-radius: 16px; background: var(--accent-soft); line-height: 1.65; }
-  .camera-section { margin-top: 38px; }
-  .camera-note { max-width: 760px; margin: 8px 0 0; color: var(--muted); line-height: 1.6; }
-  .recording-list { display: grid; gap: 16px; }
-  .recording-card { overflow: hidden; }
-  .recording-card summary { display: flex; justify-content: space-between; gap: 18px; align-items: center; padding: 20px 22px; cursor: pointer; list-style-position: inside; }
-  .recording-title { font-weight: 850; }
-  .recording-meta { color: var(--muted); font-size: 0.94rem; font-weight: 700; text-align: right; }
-  .recording-body { padding: 0 22px 22px; }
-  video { display: block; width: 100%; max-height: 70vh; border-radius: 14px; background: #111; }
-  .direct-link { display: inline-block; margin-top: 12px; font-weight: 800; }
+  .recording-section { margin-top: 38px; }
+  .video-card { overflow: hidden; }
+  .video-frame { position: relative; aspect-ratio: 16 / 9; background: #111; }
+  .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video-footer { display: flex; justify-content: space-between; gap: 20px; align-items: center; padding: 18px 22px; }
+  .video-footer p { margin: 0; color: var(--muted); }
+  .notice { margin-top: 24px; padding: 17px 20px; border-left: 5px solid var(--accent); border-radius: 16px; background: var(--accent-soft); line-height: 1.65; }
   @media (max-width: 680px) {
-    .recording-card summary { align-items: flex-start; flex-direction: column; }
-    .recording-meta { text-align: left; }
+    .video-footer { align-items: flex-start; flex-direction: column; }
   }
 </style>

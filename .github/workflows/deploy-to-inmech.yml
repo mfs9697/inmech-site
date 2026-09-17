@@ -104,6 +104,7 @@ jobs:
           PORT="${INMECH_PORT:-22}"
 
           rsync -az --delete-delay --delay-updates \
+            --exclude '/media/***' \
             -e "ssh -i ~/.ssh/inmech_deploy_key -p $PORT" \
             ./dist/ \
             "$INMECH_USER@$INMECH_HOST:$INMECH_PATH/"

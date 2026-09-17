@@ -111,6 +111,17 @@ const requiredDocumentsRight = [
     </section>
 
     <section class="section-block">
+      <div class="site-card exam-recording-panel" data-block-tone="information">
+        <div>
+          <p class="eyebrow">Вступний іспит · 15 вересня 2026 року</p>
+          <h2 class="site-card__title">Відеозапис вступного іспиту</h2>
+          <p class="site-card__text">Опубліковано відеозапис вступного іспиту до аспірантури. Запис доступний на окремій сторінці та відтворюється з YouTube.</p>
+        </div>
+        <a class="button primary" href={withBase('/postgraduate/admission/exam-2026/')}>Переглянути запис →</a>
+      </div>
+    </section>
+
+    <section class="section-block">
       <div class="section-heading compact-header">
         <div>
           <p class="eyebrow">Нормативна база</p>
@@ -183,11 +194,11 @@ const requiredDocumentsRight = [
   .document-card:hover { text-decoration: none; transform: translateY(-3px); }
   .document-card span { width: fit-content; padding: 5px 9px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-dark); font-size: 0.76rem; font-weight: 850; }
   .required-documents-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; padding: 24px; }
-  .supervisor-link-panel { display: flex; justify-content: space-between; gap: 28px; align-items: center; }
-  .supervisor-link-panel > div { max-width: 780px; }
-  .supervisor-link-panel .button { flex: 0 0 auto; }
+  .exam-recording-panel, .supervisor-link-panel { display: flex; justify-content: space-between; gap: 28px; align-items: center; }
+  .exam-recording-panel > div, .supervisor-link-panel > div { max-width: 780px; }
+  .exam-recording-panel .button, .supervisor-link-panel .button { flex: 0 0 auto; }
   @media (max-width: 920px) {
     .stage-grid, .document-grid, .required-documents-grid { grid-template-columns: 1fr; }
-    .supervisor-link-panel { align-items: flex-start; flex-direction: column; }
+    .exam-recording-panel, .supervisor-link-panel { align-items: flex-start; flex-direction: column; }
   }
 </style>

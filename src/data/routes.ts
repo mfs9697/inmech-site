@@ -41,6 +41,7 @@ export const siteRoutes: SiteRoute[] = [
   { uk: '/nmr/', en: '/en/nmr/', titleUk: 'Науково-методична рада', titleEn: 'Scientific and Methodological Council', sectionUk: 'Освітньо-наукова діяльність', sectionEn: 'Education and research training' },
 
   { uk: '/postgraduate/admission/', en: '/en/postgraduate/admission/', titleUk: 'Вступникам до аспірантури', titleEn: 'Admission to postgraduate studies', sectionUk: 'Аспірантура', sectionEn: 'Postgraduate studies' },
+  { uk: '/postgraduate/admission/exam-2026/', en: '/en/postgraduate/admission/exam-2026/', titleUk: 'Відеозапис вступного іспиту 2026', titleEn: '2026 entrance examination recording', sectionUk: 'Аспірантура', sectionEn: 'Postgraduate studies', includeInHtmlSitemap: false },
   { uk: '/postgraduate/program/', en: '/en/postgraduate/program/', titleUk: 'Освітньо-наукова програма', titleEn: 'Educational and scientific programme', sectionUk: 'Аспірантура', sectionEn: 'Postgraduate studies' },
   { uk: '/postgraduate/accreditation/', en: '/en/postgraduate/accreditation/', titleUk: 'Акредитація', titleEn: 'Accreditation', sectionUk: 'Аспірантура', sectionEn: 'Postgraduate studies' },
   { uk: '/postgraduate/schedule/', en: '/en/postgraduate/schedule/', titleUk: 'Розклад занять аспірантів', titleEn: 'Postgraduate class schedule', sectionUk: 'Аспірантура', sectionEn: 'Postgraduate studies' },

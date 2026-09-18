@@ -263,6 +263,11 @@ const ncutamActivities = defineCollection({
         captionEn: z.string().optional()
       })
     ).default([]),
+    video: z.object({
+      youtubeId: z.string(),
+      title: z.string(),
+      titleEn: z.string().optional()
+    }).optional(),
     documents: z.array(reference('ncutamDocuments')).default([]),
     relatedNews: z.array(reference('news')).default([]),
     externalLinks: z.array(

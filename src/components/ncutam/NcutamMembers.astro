@@ -45,10 +45,14 @@ const members = (await getCollection('ncutamMembers'))
   });
 
 const resolved = await Promise.all(
-  members.map(async (member) => ({
-    member,
-    institution: member.data.institution ? await getEntry(member.data.institution) : undefined
-  }))
+  members.map(async (member) => {
+    const institution = member.data.institution ? await getEntry(member.data.institution) : undefined;
+    const additionalInstitutions = (
+      await Promise.all(member.data.additionalInstitutions.map((ref) => getEntry(ref)))
+    ).filter(Boolean);
+
+    return { member, institution, additionalInstitutions };
+  })
 );
 
 const memberHref = (member: (typeof members)[number]) => {
@@ -88,23 +92,27 @@ const labels = language === 'uk'
       noResultsHint: 'Change the search term or reset the filter.'
     };
 
-const rows = resolved.map(({ member, institution }) => {
+const rows = resolved.map(({ member, institution, additionalInstitutions }) => {
   const href = memberHref(member);
   const isInternal = Boolean(member.data.inmechPersonId);
   const displayName = language === 'uk' ? member.data.name : member.data.nameEn;
-  const displayCity = language === 'uk'
+  const primaryCity = language === 'uk'
     ? member.data.city
     : (member.data.cityEn ?? (member.data.city ? cityEn[member.data.city] : undefined));
-  const displayInstitution = institution
-    ? (language === 'uk' ? institution.data.name : institution.data.nameEn)
-    : undefined;
+  const institutionEntries = [institution, ...additionalInstitutions].filter(Boolean);
+  const displayInstitution = institutionEntries
+    .map((entry) => language === 'uk' ? entry.data.name : entry.data.nameEn)
+    .join('; ') || undefined;
+  const additionalCities = additionalInstitutions
+    .map((entry) => language === 'uk' ? entry.data.city : entry.data.cityEn)
+    .filter(Boolean);
+  const displayCity = [...new Set([primaryCity, ...additionalCities].filter(Boolean))].join('; ') || undefined;
   const initialSource = memberSortKey(member).trim();
   const initial = Array.from(initialSource)[0]?.toLocaleUpperCase(locale) ?? '#';
   const searchText = [
     member.data.name,
     member.data.nameEn,
-    institution?.data.name,
-    institution?.data.nameEn,
+    ...institutionEntries.flatMap((entry) => [entry.data.name, entry.data.nameEn, entry.data.city, entry.data.cityEn]),
     member.data.city,
     member.data.cityEn,
     displayCity

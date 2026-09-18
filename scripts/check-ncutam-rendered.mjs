@@ -30,9 +30,9 @@ for (const file of htmlFiles) {
 
 const memberPages = [
   path.join(dist, 'ncutam', 'members', 'index.html'),
-  path.join(dist, 'ncutam', 'members', 'in-memoriam', 'index.html'),
+  path.join(dist, 'ncutam', 'members', 'former', 'index.html'),
   path.join(dist, 'en', 'ncutam', 'members', 'index.html'),
-  path.join(dist, 'en', 'ncutam', 'members', 'in-memoriam', 'index.html')
+  path.join(dist, 'en', 'ncutam', 'members', 'former', 'index.html')
 ];
 
 for (const file of memberPages) {
@@ -47,6 +47,33 @@ for (const file of memberPages) {
     if (!html.includes(marker)) {
       errors.push(`${relative}: missing ${marker}`);
     }
+  }
+}
+
+const redirectPages = [
+  {
+    file: path.join(dist, 'ncutam', 'members', 'in-memoriam', 'index.html'),
+    target: '/ncutam/members/former/'
+  },
+  {
+    file: path.join(dist, 'en', 'ncutam', 'members', 'in-memoriam', 'index.html'),
+    target: '/en/ncutam/members/former/'
+  }
+];
+
+for (const { file, target } of redirectPages) {
+  const relative = path.relative(root, file).replaceAll(path.sep, '/');
+  if (!fs.existsSync(file)) {
+    errors.push(`${relative}: expected continuity redirect is missing`);
+    continue;
+  }
+
+  const html = fs.readFileSync(file, 'utf8');
+  if (!/http-equiv=["']refresh["']/i.test(html)) {
+    errors.push(`${relative}: expected meta refresh redirect`);
+  }
+  if (!html.includes(target)) {
+    errors.push(`${relative}: redirect target should be ${target}`);
   }
 }
 

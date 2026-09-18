@@ -7,5 +7,9 @@ export default defineConfig({
   site: siteUrl,
   base: '/',
   output: 'static',
+  redirects: {
+    '/ncutam/members/in-memoriam': '/ncutam/members/former/',
+    '/en/ncutam/members/in-memoriam': '/en/ncutam/members/former/'
+  },
   integrations: [sitemap()]
 });

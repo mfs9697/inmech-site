@@ -141,6 +141,9 @@ for (const member of members) {
       if (!institutionIds.has(institution)) fail(`${where}: unknown additional institution '${institution}'`);
       if (institution === member.institution) fail(`${where}: primary institution repeated in additionalInstitutions`);
     }
+    if (additionalInstitutions.length > 0 && !(member.affiliationSources ?? []).some((source) => source.kind === 'publication')) {
+      fail(`${where}: multiple current affiliations require publication evidence`);
+    }
   }
 
   if (member.inmechPersonId && !exists(`src/content/people/${member.inmechPersonId}.md`)) {

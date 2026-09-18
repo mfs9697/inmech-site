@@ -92,11 +92,10 @@ const currentYear = new Date().getFullYear();
 // that should remain true when a member later changes status.
 const historicalJoinedYearCounts = new Map([[2025, 35]]);
 const activeMembersWithUnverifiedJoinedYear = new Set();
-// These two names conflict with the official 2023 former-member list, so their
+// One name conflicts with the official 2023 former-member list, so its
 // admission year remains intentionally unresolved pending a primary-source match.
 const formerMembersWithUnverifiedJoinedYear = new Set([
-  'prykhodko-oleksandr-anatoliiovych',
-  'chekhov-viktor-mykolaiovych'
+  'prykhodko-oleksandr-anatoliiovych'
 ]);
 
 for (const [year, expectedCount] of historicalJoinedYearCounts) {

@@ -1,0 +1,39 @@
+---
+import BaseLayoutEn from '../../../../layouts/BaseLayoutEn.astro';
+import NcutamNav from '../../../../components/NcutamNav.astro';
+import NcutamMembers from '../../../../components/ncutam/NcutamMembers.astro';
+import { ncutamSite } from '../../../../data/ncutam/site';
+import { siteEn } from '../../../../data/site-en';
+
+const title = 'Former Committee members';
+const description = 'Historical register of scholars who served as members of the National Committee of Ukraine on Theoretical and Applied Mechanics and later ceased to be current members.';
+---
+
+<BaseLayoutEn title={`${title} | ${ncutamSite.acronymEn} | ${siteEn.shortName}`} description={description} activePage="ncutam">
+  <NcutamNav language="en" active="members" />
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">{ncutamSite.acronymEn}</p>
+        <h1>{title}</h1>
+        <p class="lead">{description}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="panel">
+        <p>The register is based on the Committee’s archival records. Additional biographical information is linked only to verified academic and institutional sources, including the Encyclopedia of Modern Ukraine, the National Academy of Sciences of Ukraine, research institutes, universities, the Vernadsky National Library of Ukraine, and other authoritative resources.</p>
+        <p>Biographical details and external links are added only when supported by a reliable source.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <NcutamMembers language="en" status="former" />
+    </div>
+  </section>
+</BaseLayoutEn>

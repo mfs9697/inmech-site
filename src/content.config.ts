@@ -147,6 +147,7 @@ const ncutamMembers = defineCollection({
     joinedYear: z.number().int().min(1992).optional(),
     endedYear: z.number().int().min(1992).optional(),
     institution: reference('ncutamInstitutions').optional(),
+    additionalInstitutions: z.array(reference('ncutamInstitutions')).default([]),
     city: z.string().optional(),
     cityEn: z.string().optional(),
     inmechPersonId: z.string().optional(),

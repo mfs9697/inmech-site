@@ -92,7 +92,7 @@ const currentYear = new Date().getFullYear();
 // must be able to change after cutover. Preserve only historical cohort facts
 // that should remain true when a member later changes status.
 const historicalJoinedYearCounts = new Map([[2025, 35]]);
-const activeMembersWithUnverifiedJoinedYear = new Set(['bahno-oleksandr']);
+const activeMembersWithUnverifiedJoinedYear = new Set();
 
 for (const [year, expectedCount] of historicalJoinedYearCounts) {
   const cohort = members.filter((record) => record.joinedYear === year);

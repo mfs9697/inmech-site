@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const root = process.cwd();
 const directory = path.join(root, 'src/data/ncutam/members');
-const expectedMissing = new Set(['korsunskyi-serhii']);
+const expectedMissing = new Set();
 
 const members = fs.readdirSync(directory, { withFileTypes: true })
   .filter((entry) => entry.isFile() && entry.name.endsWith('.json'))

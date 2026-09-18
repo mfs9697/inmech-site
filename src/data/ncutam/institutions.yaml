@@ -263,3 +263,51 @@
   nameEn: National University Odesa Maritime Academy
   city: Одеса
   cityEn: Odesa
+- id: chalmers-university-of-technology
+  name: Технічний університет Чалмерса
+  nameEn: Chalmers University of Technology
+  city: Гетеборг
+  cityEn: Gothenburg
+  url: https://www.chalmers.se/en/
+- id: heriot-watt-university
+  name: Університет Геріот-Ватт
+  nameEn: Heriot-Watt University
+  city: Единбург
+  cityEn: Edinburgh
+  url: https://www.hw.ac.uk/
+- id: iowa-state-university
+  name: Університет штату Айова
+  nameEn: Iowa State University
+  city: Еймс
+  cityEn: Ames
+  url: https://www.iastate.edu/
+- id: institut-pascal-clermont-auvergne
+  name: Інститут Паскаля, Університет Клермон-Овернь / Clermont Auvergne INP
+  nameEn: Institut Pascal, Université Clermont Auvergne / Clermont Auvergne INP
+  city: Клермон-Ферран
+  cityEn: Clermont-Ferrand
+  url: https://www.institutpascal.uca.fr/
+- id: bialystok-university-of-technology
+  name: Білостоцька політехніка
+  nameEn: Bialystok University of Technology
+  city: Білосток
+  cityEn: Białystok
+  url: https://pb.edu.pl/en/
+- id: temple-university-japan-campus
+  name: Університет Темпл, кампус у Японії
+  nameEn: Temple University, Japan Campus
+  city: Токіо
+  cityEn: Tokyo
+  url: https://www.tuj.ac.jp/
+- id: cracow-university-of-technology
+  name: Краківська політехніка
+  nameEn: Cracow University of Technology
+  city: Краків
+  cityEn: Kraków
+  url: https://www.pk.edu.pl/
+- id: institute-of-ecological-renovation-and-development-of-ukraine
+  name: Державна наукова установа «Інститут екологічного відновлення та розвитку України»
+  nameEn: State Scientific Institution “Institute of Ecological Renovation and Development of Ukraine”
+  city: Київ
+  cityEn: Kyiv
+  url: https://ierdu.org.ua/

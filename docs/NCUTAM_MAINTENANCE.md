@@ -116,6 +116,14 @@ Typical active record:
   "status": "active",
   "joinedYear": 2026,
   "institution": "institution-id",
+  "additionalInstitutions": [],
+  "affiliationSources": [
+    {
+      "kind": "official",
+      "label": "Current institutional profile",
+      "url": "https://example.org/profile"
+    }
+  ],
   "city": "Київ",
   "cityEn": "Kyiv",
   "profiles": []
@@ -131,7 +139,10 @@ Rules:
 - do not invent missing biographical facts;
 - preserve the stable ID across all status changes;
 - if a person's institution is not yet present, add it to `src/data/ncutam/institutions.yaml` first;
-- `institution` must reference an institution ID, not free text;
+- `institution` must reference the current primary institution ID, not free text;
+- record the evidence for an affiliation update in `affiliationSources`; use `kind: "official"` for a current institutional source and `kind: "publication"` for a scientific publication;
+- use `additionalInstitutions` only for a genuinely simultaneous current affiliation supported by a recent scientific publication that lists both affiliations; do not preserve a historical affiliation there merely because it appeared in an older Committee register;
+- keep the primary and additional institution references distinct and source-backed;
 - `inmechPersonId`, when used, must point to an existing `src/content/people/<id>.md` record.
 
 The historical 2025 admission cohort is validated as 35 people across all statuses. A later status change does not alter that historical cohort.

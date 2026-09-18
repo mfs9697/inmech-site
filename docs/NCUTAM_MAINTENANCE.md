@@ -19,7 +19,7 @@ Every logical content change should use a short-lived branch and Pull Request to
 | --- | --- | --- |
 | Committee news | `src/content/news/YYYY/*.md` | `/news/...` and filtered `/ncutam/news/` |
 | Members | `src/data/ncutam/members/*.json` | `/ncutam/members/` |
-| In memoriam | same member dataset, `status: in-memoriam` | `/ncutam/members/in-memoriam/` |
+| Former members | same member dataset, `status: former` | `/ncutam/members/former/` |
 | Institutions | `src/data/ncutam/institutions.yaml` | rendered through member views |
 | Governance | `src/data/ncutam/governance.yaml` | `/ncutam/governance/` |
 | Activities | `src/content/ncutam-activity/**` | `/ncutam/activity/...` |
@@ -134,8 +134,9 @@ Rules:
 
 - new active members should have `joinedYear` from the election/admission source;
 - preserve `joinedYear` when a member later changes status;
-- when a member dies, change the existing record to `status: "in-memoriam"`; do not delete the record;
-- use `endedYear` when an official end year is known and relevant;
+- when a member ceases to be a current member, change the existing record to `status: "former"`; do not delete the record;
+- the public membership status does not encode the reason for departure from the current membership;
+- use `endedYear` only when a source-backed end year is known and relevant; do not infer the reason for that end year;
 - do not invent missing biographical facts;
 - preserve the stable ID across all status changes;
 - if a person's institution is not yet present, add it to `src/data/ncutam/institutions.yaml` first;
@@ -145,7 +146,7 @@ Rules:
 - keep the primary and additional institution references distinct and source-backed;
 - `inmechPersonId`, when used, must point to an existing `src/content/people/<id>.md` record.
 
-The historical 2025 admission cohort is validated as 35 people across all statuses. A later status change does not alter that historical cohort.
+The historical 2025 admission cohort is validated as 35 people across both public statuses (`active` and `former`). A later status change does not alter that historical cohort.
 
 Active members are expected to have a source-backed `joinedYear`; do not add exceptions without a source-based reason and an explicit validator change.
 

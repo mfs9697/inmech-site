@@ -43,8 +43,8 @@ export const ncutamSections: Array<{
     id: 'members',
     title: 'Члени',
     titleEn: 'Members',
-    description: 'Структурований склад Комітету та архів пам’яті членів Комітету.',
-    descriptionEn: 'Structured Committee membership and the in-memoriam archive.'
+    description: 'Структурований поточний склад Комітету та історичний реєстр колишніх членів.',
+    descriptionEn: 'Structured current Committee membership and the historical register of former members.'
   },
   {
     id: 'activity',

@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import NcutamNav from '../../../components/NcutamNav.astro';
+import NcutamMembers from '../../../components/ncutam/NcutamMembers.astro';
+import { ncutamSite } from '../../../data/ncutam/site';
+import { site } from '../../../data/site';
+
+const title = 'Колишні члени Комітету';
+const description = 'Історичний реєстр учених, які в різні роки входили до складу Національного комітету України з теоретичної і прикладної механіки та згодом вибули з числа його діючих членів.';
+---
+
+<BaseLayout title={`${title} | ${ncutamSite.acronym} | ${site.shortName}`} description={description} activePage="ncutam">
+  <NcutamNav language="uk" active="members" />
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">{ncutamSite.acronym}</p>
+        <h1>{title}</h1>
+        <p class="lead">{description}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="panel">
+        <p>Реєстр сформовано на основі архівних документів Комітету. Для додаткових біографічних відомостей використовуються перевірені академічні та інституційні джерела — Енциклопедія Сучасної України, Національна академія наук України, наукові установи, університети, Національна бібліотека України імені В. І. Вернадського та інші авторитетні ресурси.</p>
+        <p>Відомості та зовнішні посилання додаються лише за наявності надійного джерела.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <NcutamMembers language="uk" status="former" />
+    </div>
+  </section>
+</BaseLayout>

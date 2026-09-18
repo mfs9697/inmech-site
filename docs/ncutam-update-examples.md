@@ -50,7 +50,7 @@ Add one record to an appropriate `src/data/ncutam/members/members-*.json` array:
 
 If the institution ID does not exist, add it first to `src/data/ncutam/institutions.yaml`.
 
-## Change a member to in memoriam
+## Change a member to former
 
 Edit the existing record; keep its ID and historical admission data:
 
@@ -59,13 +59,13 @@ Edit the existing record; keep its ID and historical admission data:
   "id": "existing-stable-id",
   "name": "...",
   "nameEn": "...",
-  "status": "in-memoriam",
+  "status": "former",
   "joinedYear": 2025,
   "endedYear": 2026
 }
 ```
 
-Do not create a duplicate memorial record.
+Do not create a duplicate record. The public status records only that the person is no longer a current Committee member; it does not state why.
 
 ## Replace a governance assignment
 

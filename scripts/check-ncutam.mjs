@@ -83,7 +83,6 @@ const memberIds = new Set(members.map((record) => record.id));
 const institutionIds = new Set(institutions.map((record) => record.id));
 const documentIds = new Set(documents.map((record) => record.id));
 const activeMembers = members.filter((record) => record.status === 'active');
-const memorialMembers = members.filter((record) => record.status === 'in-memoriam');
 const formerMembers = members.filter((record) => record.status === 'former');
 const activeMemberIds = new Set(activeMembers.map((record) => record.id));
 const currentYear = new Date().getFullYear();
@@ -93,6 +92,11 @@ const currentYear = new Date().getFullYear();
 // that should remain true when a member later changes status.
 const historicalJoinedYearCounts = new Map([[2025, 35]]);
 const activeMembersWithUnverifiedJoinedYear = new Set();
+// One name conflicts with the official 2023 former-member list, so its
+// admission year remains intentionally unresolved pending a primary-source match.
+const formerMembersWithUnverifiedJoinedYear = new Set([
+  'prykhodko-oleksandr-anatoliiovych'
+]);
 
 for (const [year, expectedCount] of historicalJoinedYearCounts) {
   const cohort = members.filter((record) => record.joinedYear === year);
@@ -108,7 +112,7 @@ for (const member of members) {
   if (!member.name) fail(`${where}: missing Ukrainian name`);
   if (!member.nameEn) fail(`${where}: missing English name`);
   if (member.nameEn && /[А-Яа-яІіЇїЄєҐґ]/.test(member.nameEn)) fail(`${where}: English name contains Cyrillic characters`);
-  if (!['active', 'in-memoriam', 'former'].includes(member.status)) fail(`${where}: invalid status '${member.status}'`);
+  if (!['active', 'former'].includes(member.status)) fail(`${where}: invalid status '${member.status}'`);
 
   if (member.name) {
     if (seenNames.has(member.name)) fail(`members: duplicate person name '${member.name}' across statuses/records`);
@@ -124,6 +128,10 @@ for (const member of members) {
       fail(`${where}: active member missing joinedYear`);
     }
     if (!member.city) fail(`${where}: active member missing city`);
+  }
+
+  if (member.status === 'former' && !Number.isInteger(member.joinedYear) && !formerMembersWithUnverifiedJoinedYear.has(member.id)) {
+    fail(`${where}: former member missing joinedYear`);
   }
 
   if (member.institution && !institutionIds.has(member.institution)) {
@@ -154,7 +162,13 @@ for (const member of members) {
 const missingJoinYears = activeMembers.filter((member) => !Number.isInteger(member.joinedYear)).map((member) => member.id).sort();
 const expectedMissingJoinYears = [...activeMembersWithUnverifiedJoinedYear].sort();
 if (JSON.stringify(missingJoinYears) !== JSON.stringify(expectedMissingJoinYears)) {
-  fail(`members: unverified joinedYear set changed (${missingJoinYears.join(', ') || 'none'})`);
+  fail(`members: unverified active joinedYear set changed (${missingJoinYears.join(', ') || 'none'})`);
+}
+
+const formerMissingJoinYears = formerMembers.filter((member) => !Number.isInteger(member.joinedYear)).map((member) => member.id).sort();
+const expectedFormerMissingJoinYears = [...formerMembersWithUnverifiedJoinedYear].sort();
+if (JSON.stringify(formerMissingJoinYears) !== JSON.stringify(expectedFormerMissingJoinYears)) {
+  fail(`members: unverified former joinedYear set changed (${formerMissingJoinYears.join(', ') || 'none'})`);
 }
 
 const currentGovernance = governance.filter((record) => !field(record, 'effectiveTo'));
@@ -295,4 +309,4 @@ if (errors.length > 0) {
 }
 
 const cohort2025 = members.filter((record) => record.joinedYear === 2025).length;
-console.log(`NCUTAM semantic validation passed (${members.length} members: ${activeMembers.length} active, ${memorialMembers.length} in memoriam, ${formerMembers.length} former; historical 2025 admission cohort ${cohort2025}; ${governance.length} governance assignments, ${documents.length} documents, ${media.length} media records).`);
+console.log(`NCUTAM semantic validation passed (${members.length} members: ${activeMembers.length} active, ${formerMembers.length} former; historical 2025 admission cohort ${cohort2025}; ${governance.length} governance assignments, ${documents.length} documents, ${media.length} media records).`);

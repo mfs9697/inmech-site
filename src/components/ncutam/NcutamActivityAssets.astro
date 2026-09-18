@@ -9,29 +9,40 @@ interface GalleryItem {
   captionEn?: string;
 }
 
+interface VideoItem {
+  youtubeId: string;
+  title: string;
+  titleEn?: string;
+}
+
 interface Props {
   language?: 'uk' | 'en';
   gallery?: GalleryItem[];
   documents?: any[];
+  video?: VideoItem;
 }
 
-const { language = 'uk', gallery = [], documents = [] } = Astro.props;
+const { language = 'uk', gallery = [], documents = [], video } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
 const resolvedDocuments = documents.length > 0 ? await getEntries(documents) : [];
 
 const labels = language === 'uk'
   ? {
+      video: 'Відеозапис',
       gallery: 'Фотогалерея',
       materials: 'Матеріали',
       open: 'Відкрити PDF',
+      youtube: 'Відкрити на YouTube ↗',
       language: 'Документ українською мовою',
       imageLink: 'Відкрити фотографію у повному розмірі'
     }
   : {
+      video: 'Video recording',
       gallery: 'Photo gallery',
       materials: 'Materials',
       open: 'Open PDF',
+      youtube: 'Open on YouTube ↗',
       language: 'Document in Ukrainian',
       imageLink: 'Open full-size photograph'
     };
@@ -41,6 +52,32 @@ const documentTitle = (entry: (typeof resolvedDocuments)[number]) =>
 const documentNote = (entry: (typeof resolvedDocuments)[number]) =>
   language === 'uk' ? entry.data.note : entry.data.noteEn;
 ---
+
+{video && (
+  <section class="activity-assets" aria-labelledby="activity-video-heading">
+    <h2 id="activity-video-heading">{labels.video}</h2>
+    <div class="activity-video-card">
+      <div class="activity-video-frame">
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}`}
+          title={language === 'uk' ? video.title : (video.titleEn ?? video.title)}
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <div class="activity-video-footer">
+        <p>{language === 'uk' ? video.title : (video.titleEn ?? video.title)}</p>
+        <a
+          class="button secondary"
+          href={`https://youtu.be/${video.youtubeId}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >{labels.youtube}</a>
+      </div>
+    </div>
+  </section>
+)}
 
 {gallery.length > 0 && (
   <section class="activity-assets" aria-labelledby="activity-gallery-heading">
@@ -83,6 +120,36 @@ const documentNote = (entry: (typeof resolvedDocuments)[number]) =>
 <style>
   .activity-assets { margin-top: 30px; }
   .activity-assets > h2 { margin: 0 0 16px; }
+  .activity-video-card {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+  }
+  .activity-video-frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #111;
+  }
+  .activity-video-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .activity-video-footer {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 18px;
+  }
+  .activity-video-footer p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.5;
+  }
   .activity-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -144,6 +211,8 @@ const documentNote = (entry: (typeof resolvedDocuments)[number]) =>
   }
   .activity-material-footer span { color: var(--muted); font-size: .88rem; }
   @media (max-width: 560px) {
+    .activity-video-footer { align-items: flex-start; flex-direction: column; }
+    .activity-video-footer .button { width: 100%; }
     .activity-gallery, .activity-materials { grid-template-columns: 1fr; }
     .activity-gallery-item a { min-height: 0; }
     .activity-material-footer .button { width: 100%; }

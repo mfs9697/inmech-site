@@ -47,9 +47,11 @@ const members = (await getCollection('ncutamMembers'))
 const resolved = await Promise.all(
   members.map(async (member) => {
     const institution = member.data.institution ? await getEntry(member.data.institution) : undefined;
-    const additionalInstitutions = (
-      await Promise.all(member.data.additionalInstitutions.map((ref) => getEntry(ref)))
-    ).filter(Boolean);
+    const additionalInstitutions: CollectionEntry<'ncutamInstitutions'>[] = [];
+    for (const ref of member.data.additionalInstitutions) {
+      const entry = await getEntry(ref);
+      if (entry) additionalInstitutions.push(entry);
+    }
 
     return { member, institution, additionalInstitutions };
   })
@@ -99,7 +101,7 @@ const rows = resolved.map(({ member, institution, additionalInstitutions }) => {
   const primaryCity = language === 'uk'
     ? member.data.city
     : (member.data.cityEn ?? (member.data.city ? cityEn[member.data.city] : undefined));
-  const institutionEntries = [institution, ...additionalInstitutions].filter(Boolean);
+  const institutionEntries = institution ? [institution, ...additionalInstitutions] : additionalInstitutions;
   const displayInstitution = institutionEntries
     .map((entry) => language === 'uk' ? entry.data.name : entry.data.nameEn)
     .join('; ') || undefined;

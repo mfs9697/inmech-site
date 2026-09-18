@@ -63,7 +63,7 @@ export const siteRoutes: SiteRoute[] = [
   { uk: '/ncutam/about/', en: '/en/ncutam/about/', titleUk: 'Про Комітет', titleEn: 'About', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
   { uk: '/ncutam/governance/', en: '/en/ncutam/governance/', titleUk: 'Керівництво і Президія', titleEn: 'Governance', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
   { uk: '/ncutam/members/', en: '/en/ncutam/members/', titleUk: 'Члени', titleEn: 'Members', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
-  { uk: '/ncutam/members/in-memoriam/', en: '/en/ncutam/members/in-memoriam/', titleUk: 'Пам’ять', titleEn: 'In memoriam', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM', includeInHtmlSitemap: false },
+  { uk: '/ncutam/members/former/', en: '/en/ncutam/members/former/', titleUk: 'Колишні члени Комітету', titleEn: 'Former Committee members', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM', includeInHtmlSitemap: false },
   { uk: '/ncutam/activity/', en: '/en/ncutam/activity/', titleUk: 'Діяльність', titleEn: 'Activities', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM' },
   { uk: '/ncutam/activity/meetings/', en: '/en/ncutam/activity/meetings/', titleUk: 'Загальні збори', titleEn: 'General Meetings', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM', includeInHtmlSitemap: false },
   { uk: '/ncutam/activity/conferences/', en: '/en/ncutam/activity/conferences/', titleUk: 'Конференції', titleEn: 'Conferences', sectionUk: 'НКУТПМ', sectionEn: 'NCUTAM', includeInHtmlSitemap: false },

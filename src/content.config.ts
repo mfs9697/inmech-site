@@ -143,7 +143,7 @@ const ncutamMembers = defineCollection({
     name: z.string(),
     nameEn: z.string(),
     sortName: z.string().optional(),
-    status: z.enum(['active', 'in-memoriam', 'former']),
+    status: z.enum(['active', 'former']),
     joinedYear: z.number().int().min(1992).optional(),
     endedYear: z.number().int().min(1992).optional(),
     institution: reference('ncutamInstitutions').optional(),

@@ -130,6 +130,19 @@ for (const member of members) {
     fail(`${where}: unknown institution '${member.institution}'`);
   }
 
+  const additionalInstitutions = member.additionalInstitutions ?? [];
+  if (!Array.isArray(additionalInstitutions)) {
+    fail(`${where}: additionalInstitutions must be an array`);
+  } else {
+    if (new Set(additionalInstitutions).size !== additionalInstitutions.length) {
+      fail(`${where}: duplicate additional institution reference`);
+    }
+    for (const institution of additionalInstitutions) {
+      if (!institutionIds.has(institution)) fail(`${where}: unknown additional institution '${institution}'`);
+      if (institution === member.institution) fail(`${where}: primary institution repeated in additionalInstitutions`);
+    }
+  }
+
   if (member.inmechPersonId && !exists(`src/content/people/${member.inmechPersonId}.md`)) {
     fail(`${where}: inmechPersonId '${member.inmechPersonId}' has no people record`);
   }

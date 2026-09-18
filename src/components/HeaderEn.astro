@@ -41,7 +41,7 @@ const ariaCurrentNews = () => {
   <div class="container header-main brand-main">
     <a class="brand" href={withBase('/en/')} aria-label="Home page">
       {!isHomePage && (
-        <img src={withBase('/assets/img/institute-logo-hero.png')} alt="Logo of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine" />
+        <img src={withBase('/assets/img/institute-logo-hero-2026.svg')} alt="Logo of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine" />
       )}
       <span class="brand-text">
         <span class="brand-official">{siteEn.officialLabel}</span>
@@ -70,6 +70,7 @@ const ariaCurrentNews = () => {
             <li><a class={isPathActive('/en/history/')} href={withBase('/en/history/')} aria-current={ariaCurrentPage('/en/history/')}>History and present</a></li>
             <li><a class={isPathActive('/en/founder/')} href={withBase('/en/founder/')} aria-current={ariaCurrentPage('/en/founder/')}>Founder of the Institute</a></li>
             <li><a class={isPathActive('/en/regulations/')} href={withBase('/en/regulations/')} aria-current={ariaCurrentPage('/en/regulations/')}>Statute</a></li>
+            <li><a class={isPathActive('/en/identity/')} href={withBase('/en/identity/')} aria-current={ariaCurrentPage('/en/identity/')}>Logo and visual identity</a></li>
             <li><a class={isPathActive('/en/strategy/')} href={withBase('/en/strategy/')} aria-current={ariaCurrentPage('/en/strategy/')}>Development strategy</a></li>
             <li><a class={isPathActive('/en/scientific-cooperation/')} href={withBase('/en/scientific-cooperation/')} aria-current={ariaCurrentPage('/en/scientific-cooperation/')}>Scientific cooperation</a></li>
             <li><a class={isPathActive('/en/tender/')} href={withBase('/en/tender/')} aria-current={ariaCurrentPage('/en/tender/')}>Procurement and tenders</a></li>

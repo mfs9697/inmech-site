@@ -1,0 +1,197 @@
+---
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import { siteEn } from '../../data/site-en';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
+---
+
+<BaseLayoutEn
+  title={`Logo and visual identity | ${siteEn.name}`}
+  description="The official logo of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine, its approval and rules for use."
+  activePage="about"
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel identity-hero">
+        <div class="identity-copy">
+          <p class="eyebrow">About the Institute</p>
+          <h1>Logo and visual identity</h1>
+          <p class="lead">
+            The official logo of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine
+            was approved by the Scientific Council on 15 September 2026 and by a Director’s order
+            dated 15 September 2026.
+          </p>
+          <div class="identity-actions">
+            <a class="button primary" href="#approval">Approval details</a>
+            <a class="button secondary" href={withBase('/assets/img/institute-logo-hero-2026.svg')} target="_blank" rel="noopener">
+              Open reference artwork
+            </a>
+          </div>
+        </div>
+        <figure class="identity-logo">
+          <img src={withBase('/assets/img/institute-logo-hero-2026.svg')} alt="Official logo of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine" />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container identity-grid">
+      <article class="panel identity-panel">
+        <p class="eyebrow">Official identity</p>
+        <h2>Approved version</h2>
+        <p>
+          The logo is a horizontally oriented oval emblem using dark blue, gold and light neutral
+          tones. Its central field contains a stylised graphic portrait of Stephen P. Timoshenko,
+          together with <strong>KYIV / КИЇВ</strong> and <strong>EST. 1918</strong>.
+        </p>
+        <p>
+          The lower inscription reads
+          <strong>“S.P. TIMOSHENKO INSTITUTE OF MECHANICS, NAS OF UKRAINE”</strong>.
+          The wording, composition, proportions and principal colour scheme are to be reproduced
+          in accordance with the approved reference artwork.
+        </p>
+      </article>
+
+      <aside class="panel identity-panel status-panel">
+        <p class="eyebrow">Document status</p>
+        <h2>Registration details are being clarified</h2>
+        <p>
+          The Director’s order is dated 15 September 2026. Its registration number and the number
+          of the relevant Scientific Council protocol are currently being clarified.
+        </p>
+        <p class="small-note">
+          The official order is issued in Ukrainian. This page will be updated when the registration
+          details are finalised and the registered PDF is available.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="approval">
+    <div class="container">
+      <article class="panel order-panel">
+        <p class="eyebrow">Director’s order · 15 September 2026</p>
+        <h2>Approval of the Institute’s logo</h2>
+        <p>
+          The order approves the logo and its description as the official visual identity element
+          of the Institute and requires use of the approved electronic originals on the Institute’s
+          official website and other official materials.
+        </p>
+        <ul class="approval-list">
+          <li>The composition, proportions, inscriptions and principal colour scheme must not be altered arbitrarily.</li>
+          <li>Scaling is permitted only with the proportions preserved.</li>
+          <li>Monochrome or other special versions may be used when required by reproduction technology, provided that the core composition and recognisability are retained.</li>
+        </ul>
+        <p>
+          <a href={withBase('/identity/')}>Open the Ukrainian page with the official text of the order.</a>
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="panel appendix-panel">
+        <div>
+          <p class="eyebrow">Reference artwork</p>
+          <h2>Logo description</h2>
+          <p>
+            A dark-blue oval band with gold edging carries the Institute’s Ukrainian name above
+            and its English name below. The light central field contains the portrait of
+            S. P. Timoshenko, with “KYIV / КИЇВ” to the left and “EST. 1918” to the right.
+          </p>
+          <p>
+            Deformation, changes to the wording, alteration of the aspect ratio, arbitrary colour
+            changes or rearrangement of graphic elements are not permitted.
+          </p>
+        </div>
+        <img src={withBase('/assets/img/institute-logo-hero-2026.svg')} alt="" aria-hidden="true" />
+      </article>
+    </div>
+  </section>
+</BaseLayoutEn>
+
+<style>
+  .identity-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 430px);
+    gap: clamp(24px, 4vw, 44px);
+    align-items: center;
+    padding: clamp(24px, 4vw, 42px);
+  }
+
+  .identity-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .identity-logo {
+    margin: 0;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .identity-logo img,
+  .appendix-panel img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .identity-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+    gap: 18px;
+  }
+
+  .identity-panel,
+  .order-panel,
+  .appendix-panel {
+    padding: clamp(22px, 3.5vw, 34px);
+  }
+
+  .identity-panel h2,
+  .order-panel h2,
+  .appendix-panel h2 {
+    margin-top: 0;
+  }
+
+  .status-panel {
+    border-color: rgba(184, 135, 47, 0.42);
+    background: linear-gradient(145deg, #fff, rgba(184, 135, 47, 0.08));
+  }
+
+  .approval-list {
+    padding-left: 1.4rem;
+  }
+
+  .approval-list li {
+    margin: 0 0 12px;
+  }
+
+  .appendix-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 390px);
+    gap: clamp(24px, 4vw, 44px);
+    align-items: center;
+  }
+
+  @media (max-width: 820px) {
+    .identity-hero,
+    .identity-grid,
+    .appendix-panel {
+      grid-template-columns: 1fr;
+    }
+
+    .identity-logo,
+    .appendix-panel img {
+      max-width: 560px;
+    }
+  }
+</style>

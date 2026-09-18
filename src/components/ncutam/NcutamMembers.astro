@@ -3,7 +3,7 @@ import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
 
 interface Props {
   language?: 'uk' | 'en';
-  status?: 'active' | 'in-memoriam';
+  status?: 'active' | 'former';
 }
 
 const { language = 'uk', status = 'active' } = Astro.props;
@@ -64,34 +64,65 @@ const memberHref = (member: (typeof members)[number]) => {
   return member.data.profiles[0]?.url;
 };
 
+const sourceLabelEn = (url: string, kind: string) => {
+  if (kind === 'esu') return 'Encyclopedia of Modern Ukraine';
+
+  let host = '';
+  try {
+    host = new URL(url).hostname.replace(/^www\./, '');
+  } catch {
+    return 'Academic or institutional source';
+  }
+
+  if (host === 'nas.gov.ua' || host === 'old.nas.gov.ua') return 'National Academy of Sciences of Ukraine';
+  if (host === 'irbis-nbuv.gov.ua' || host === 'oai.org.ua') return 'Vernadsky National Library of Ukraine';
+  if (host === 'nrat.ukrintei.ua') return 'National Repository of Academic Texts';
+  if (host === 'lnu.edu.ua') return 'Ivan Franko National University of Lviv';
+  if (host === 'khmnu.edu.ua') return 'Khmelnytskyi National University';
+  if (host === 'science.donnu.edu.ua') return 'Vasyl’ Stus Donetsk National University';
+  if (host === 'igtm.dp.ua') return 'M. S. Poliakov Institute of Geotechnical Mechanics, NAS of Ukraine';
+  if (host === 'af.khadi.kharkov.ua') return 'Kharkiv National Automobile and Highway University';
+  if (host === 'dnu.dp.ua') return 'Oles Honchar Dnipro National University';
+  if (host === 'eztuir.ztu.edu.ua') return 'Zhytomyr Polytechnic State University';
+  if (host === 'e-library.ntu.edu.ua') return 'National Transport University';
+  if (host === 'cmm.lviv.ua') return 'Centre of Mathematical Modelling, NAS of Ukraine';
+  if (host === 'ekhnuir.karazin.ua') return 'V. N. Karazin Kharkiv National University';
+  if (host === 'zakon.rada.gov.ua') return 'Verkhovna Rada of Ukraine';
+  if (host === 'separator-ua.com') return 'Institutional history source';
+
+  return 'Academic or institutional source';
+};
+
 const labels = language === 'uk'
   ? {
-      count: status === 'active' ? 'Чинних членів Комітету' : 'Імен у меморіальному реєстрі',
-      name: 'Ім’я', institution: 'Установа', city: 'Місто', joined: 'У Комітеті з',
-      memorialLink: 'Світлій пам’яті членів Комітету', currentLink: 'Поточний склад Комітету',
-      memorialNote: 'Меморіальний реєстр відтворює опублікований Комітетом список. Біографічні дати не додаються без окремого перевіреного джерела.',
+      count: status === 'active' ? 'Чинних членів Комітету' : 'Колишніх членів Комітету',
+      name: 'Ім’я', institution: 'Установа', city: 'Місто', joined: 'У Комітеті з', source: 'Біографічне джерело',
+      formerLink: 'Колишні члени Комітету', currentLink: 'Поточний склад Комітету',
+      formerNote: 'Рік вступу наведено за архівними списками Комітету. Якщо архівні записи розходяться, рік не вказується до окремого підтвердження.',
       searchLabel: 'Пошук у реєстрі',
-      searchPlaceholder: status === 'active' ? 'Ім’я, установа або місто' : 'Ім’я',
+      searchPlaceholder: status === 'active' ? 'Ім’я, установа або місто' : 'Ім’я або джерело',
       alphabetLabel: 'За першою літерою прізвища',
       allLetters: 'Усі',
       reset: 'Скинути',
       resultTemplate: 'Показано {visible} з {total}',
       noResults: 'Нічого не знайдено.',
-      noResultsHint: 'Змініть пошуковий запит або скиньте фільтр.'
+      noResultsHint: 'Змініть пошуковий запит або скиньте фільтр.',
+      internalProfile: 'Профіль на сайті Інституту'
     }
   : {
-      count: status === 'active' ? 'Current Committee members' : 'Names in the memorial register',
-      name: 'Name', institution: 'Institution', city: 'City', joined: 'Member since',
-      memorialLink: 'In memoriam', currentLink: 'Current Committee members',
-      memorialNote: 'The memorial register reproduces the list published by the Committee. Biographical dates are not added without a separately verified source.',
+      count: status === 'active' ? 'Current Committee members' : 'Former Committee members',
+      name: 'Name', institution: 'Institution', city: 'City', joined: 'Member since', source: 'Biographical source',
+      formerLink: 'Former Committee members', currentLink: 'Current Committee members',
+      formerNote: 'Admission years are based on the Committee’s archival membership lists. Where archival records conflict, the year is left blank pending separate verification.',
       searchLabel: 'Search the register',
-      searchPlaceholder: status === 'active' ? 'Name, institution or city' : 'Name',
+      searchPlaceholder: status === 'active' ? 'Name, institution or city' : 'Name or source',
       alphabetLabel: 'By surname initial',
       allLetters: 'All',
       reset: 'Reset',
       resultTemplate: 'Showing {visible} of {total}',
       noResults: 'No matching names found.',
-      noResultsHint: 'Change the search term or reset the filter.'
+      noResultsHint: 'Change the search term or reset the filter.',
+      internalProfile: 'Institute profile'
     };
 
 const rows = resolved.map(({ member, institution, additionalInstitutions }) => {
@@ -109,11 +140,18 @@ const rows = resolved.map(({ member, institution, additionalInstitutions }) => {
     .map((entry) => language === 'uk' ? entry.data.city : entry.data.cityEn)
     .filter(Boolean);
   const displayCity = [...new Set([primaryCity, ...additionalCities].filter(Boolean))].join('; ') || undefined;
+  const profile = member.data.profiles[0];
+  const sourceHref = profile?.url ?? (member.data.inmechPersonId ? href : undefined);
+  const sourceIsInternal = !profile && Boolean(member.data.inmechPersonId);
+  const sourceLabel = profile
+    ? (language === 'uk' ? profile.label : sourceLabelEn(profile.url, profile.kind))
+    : (member.data.inmechPersonId ? labels.internalProfile : undefined);
   const initialSource = memberSortKey(member).trim();
   const initial = Array.from(initialSource)[0]?.toLocaleUpperCase(locale) ?? '#';
   const searchText = [
     member.data.name,
     member.data.nameEn,
+    sourceLabel,
     ...institutionEntries.flatMap((entry) => [entry.data.name, entry.data.nameEn, entry.data.city, entry.data.cityEn]),
     member.data.city,
     member.data.cityEn,
@@ -127,6 +165,9 @@ const rows = resolved.map(({ member, institution, additionalInstitutions }) => {
     displayName,
     displayCity,
     displayInstitution,
+    sourceHref,
+    sourceIsInternal,
+    sourceLabel,
     initial,
     searchText
   };
@@ -149,13 +190,13 @@ const resultText = labels.resultTemplate
   <div class="members-toolbar">
     <p><strong>{rows.length}</strong> {labels.count.toLowerCase()}</p>
     <a href={withBase(language === 'uk'
-      ? (status === 'active' ? '/ncutam/members/in-memoriam/' : '/ncutam/members/')
-      : (status === 'active' ? '/en/ncutam/members/in-memoriam/' : '/en/ncutam/members/'))}>
-      {status === 'active' ? labels.memorialLink : labels.currentLink}
+      ? (status === 'active' ? '/ncutam/members/former/' : '/ncutam/members/')
+      : (status === 'active' ? '/en/ncutam/members/former/' : '/en/ncutam/members/'))}>
+      {status === 'active' ? labels.formerLink : labels.currentLink}
     </a>
   </div>
 
-  {status === 'in-memoriam' && <p class="members-note">{labels.memorialNote}</p>}
+  {status === 'former' && <p class="members-note">{labels.formerNote}</p>}
 
   <div class="members-controls" data-members-controls hidden>
     <div class="members-search-field">
@@ -202,11 +243,12 @@ const resultText = labels.resultTemplate
           <th scope="col">{labels.name}</th>
           {status === 'active' && <th scope="col">{labels.institution}</th>}
           {status === 'active' && <th scope="col">{labels.city}</th>}
-          {status === 'active' && <th scope="col">{labels.joined}</th>}
+          <th scope="col">{labels.joined}</th>
+          {status === 'former' && <th scope="col">{labels.source}</th>}
         </tr>
       </thead>
       <tbody>
-        {rows.map(({ member, href, isInternal, displayName, displayCity, displayInstitution, initial, searchText }) => (
+        {rows.map(({ member, href, isInternal, displayName, displayCity, displayInstitution, sourceHref, sourceIsInternal, sourceLabel, initial, searchText }) => (
           <tr data-member-row data-initial={initial} data-search={searchText}>
             <td data-label={labels.name}>
               {href ? (
@@ -217,7 +259,16 @@ const resultText = labels.resultTemplate
             </td>
             {status === 'active' && <td data-label={labels.institution}>{displayInstitution ?? '—'}</td>}
             {status === 'active' && <td data-label={labels.city}>{displayCity ?? '—'}</td>}
-            {status === 'active' && <td data-label={labels.joined}>{member.data.joinedYear ?? '—'}</td>}
+            <td data-label={labels.joined}>{member.data.joinedYear ?? '—'}</td>
+            {status === 'former' && (
+              <td data-label={labels.source}>
+                {sourceHref && sourceLabel ? (
+                  <a href={sourceHref} target={sourceIsInternal ? undefined : '_blank'} rel={sourceIsInternal ? undefined : 'noopener noreferrer'}>
+                    {sourceLabel}<span aria-hidden="true"> ↗</span>
+                  </a>
+                ) : '—'}
+              </td>
+            )}
           </tr>
         ))}
       </tbody>
@@ -306,7 +357,7 @@ const resultText = labels.resultTemplate
   .members-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
   .members-toolbar p, .members-note { margin: 0; color: var(--muted); }
   .members-toolbar strong { color: var(--text); font-size: 1.25rem; }
-  .members-note { max-width: 900px; line-height: 1.65; }
+  .members-note { max-width: 980px; line-height: 1.65; }
 
   .members-controls {
     display: grid;
@@ -415,7 +466,8 @@ const resultText = labels.resultTemplate
   .members-table th { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); background: var(--surface-2, var(--surface)); }
   .members-table tbody tr:last-child td { border-bottom: 0; }
   .members-table td:first-child { font-weight: 700; min-width: 260px; }
-  .members-table td:nth-child(2) { min-width: 280px; }
+  .members-table td:nth-child(2) { min-width: 120px; }
+  .members-table td:last-child { min-width: 260px; }
 
   @media (max-width: 820px) {
     .members-controls { grid-template-columns: 1fr; }

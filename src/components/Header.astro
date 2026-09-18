@@ -41,7 +41,7 @@ const ariaCurrentNews = () => {
   <div class="container header-main brand-main">
     <a class="brand" href={withBase('/')} aria-label="Головна сторінка">
       {!isHomePage && (
-        <img src={withBase('/assets/img/institute-logo-hero.png')} alt="Логотип Інституту механіки ім. С.П. Тимошенка НАН України" />
+        <img src={withBase('/assets/img/institute-logo-hero-2026.svg')} alt="Логотип Інституту механіки ім. С.П. Тимошенка НАН України" />
       )}
       <span class="brand-text">
         <span class="brand-official">{site.officialLabel}</span>
@@ -71,6 +71,7 @@ const ariaCurrentNews = () => {
             <li><a class={isPathActive('/history/')} href={withBase('/history/')} aria-current={ariaCurrentPage('/history/')}>Історія і сучасність</a></li>
             <li><a class={isPathActive('/founder/')} href={withBase('/founder/')} aria-current={ariaCurrentPage('/founder/')}>Засновник інституту</a></li>
             <li><a class={isPathActive('/regulations/')} href={withBase('/regulations/')} aria-current={ariaCurrentPage('/regulations/')}>Статут</a></li>
+            <li><a class={isPathActive('/identity/')} href={withBase('/identity/')} aria-current={ariaCurrentPage('/identity/')}>Логотип і візуальна ідентичність</a></li>
             <li><a class={isPathActive('/strategy/')} href={withBase('/strategy/')} aria-current={ariaCurrentPage('/strategy/')}>Стратегія розвитку</a></li>
             <li><a class={isPathActive('/scientific-cooperation/')} href={withBase('/scientific-cooperation/')} aria-current={ariaCurrentPage('/scientific-cooperation/')}>Наукова співпраця</a></li>
             <li><a class={isPathActive('/tender/')} href={withBase('/tender/')} aria-current={ariaCurrentPage('/tender/')}>Закупівлі та тендери</a></li>

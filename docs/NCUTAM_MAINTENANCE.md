@@ -136,7 +136,7 @@ Rules:
 
 The historical 2025 admission cohort is validated as 35 people across all statuses. A later status change does not alter that historical cohort.
 
-The one currently documented exception for an active member with an unverified admission year is `bahno-oleksandr`; do not add another exception without a source-based reason and an explicit validator change.
+Active members are expected to have a source-backed `joinedYear`; do not add exceptions without a source-based reason and an explicit validator change.
 
 ## Governance
 

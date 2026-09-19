@@ -5,11 +5,14 @@ import { siteEn } from '../../../../data/site-en';
 const youtubeId = '8JRJvjsastY';
 const youtubeUrl = `https://youtu.be/${youtubeId}`;
 const embedUrl = `https://www.youtube-nocookie.com/embed/${youtubeId}`;
+const youtubeId2 = 'FzpN12p8N5o';
+const youtubeUrl2 = `https://youtu.be/${youtubeId2}`;
+const embedUrl2 = `https://www.youtube-nocookie.com/embed/${youtubeId2}`;
 ---
 
 <BaseLayoutEn
-  title={`2026 entrance examination recording | ${siteEn.shortName}`}
-  description="Video recording of the postgraduate entrance examination at the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine held on 15 September 2026."
+  title={`2026 entrance examination recordings | ${siteEn.shortName}`}
+  description="Video recordings of the postgraduate entrance examination at the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine held on 15 September 2026."
   activePage="education"
 >
   <main class="exam-page">
@@ -18,14 +21,14 @@ const embedUrl = `https://www.youtube-nocookie.com/embed/${youtubeId}`;
       <span>›</span>
       <a href="/en/postgraduate/admission/">Admission</a>
       <span>›</span>
-      <span>Examination recording</span>
+      <span>Examination recordings</span>
     </nav>
 
     <section class="page-hero">
       <p class="eyebrow">Postgraduate admission · 2026</p>
-      <h1>Entrance examination recording</h1>
+      <h1>Entrance examination recordings</h1>
       <p class="lead">
-        Video recording of the postgraduate entrance examination at the S.P. Timoshenko Institute of Mechanics
+        Video recordings of the postgraduate entrance examination at the S.P. Timoshenko Institute of Mechanics
         of the NAS of Ukraine held on 15 September 2026.
       </p>
     </section>
@@ -33,7 +36,7 @@ const embedUrl = `https://www.youtube-nocookie.com/embed/${youtubeId}`;
     <section class="recording-section" aria-labelledby="recording-title">
       <div class="section-heading compact-header">
         <div>
-          <p class="eyebrow">Recording from 15 September 2026</p>
+          <p class="eyebrow">Recordings from 15 September 2026</p>
           <h2 id="recording-title">Postgraduate entrance examination</h2>
         </div>
       </div>
@@ -42,21 +45,33 @@ const embedUrl = `https://www.youtube-nocookie.com/embed/${youtubeId}`;
         <div class="video-frame">
           <iframe
             src={embedUrl}
-            title="Video recording of the postgraduate entrance examination held on 15 September 2026"
+            title="Recording 1 of the postgraduate entrance examination held on 15 September 2026"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
           ></iframe>
         </div>
         <div class="video-footer">
-          <p>The recording is hosted on YouTube.</p>
+          <p>Recording 1 · hosted on YouTube.</p>
           <a class="button primary" href={youtubeUrl} target="_blank" rel="noopener noreferrer">Open on YouTube ↗</a>
         </div>
       </div>
-    </section>
 
-    <section class="notice" aria-label="Information about recordings">
-      Additional recordings of the entrance examination will be added to this page after publication.
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe
+            src={embedUrl2}
+            title="Recording 2 of the postgraduate entrance examination held on 15 September 2026"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="video-footer">
+          <p>Recording 2 · hosted on YouTube.</p>
+          <a class="button primary" href={youtubeUrl2} target="_blank" rel="noopener noreferrer">Open on YouTube ↗</a>
+        </div>
+      </div>
     </section>
   </main>
 </BaseLayoutEn>
@@ -70,11 +85,11 @@ const embedUrl = `https://www.youtube-nocookie.com/embed/${youtubeId}`;
   .lead { max-width: 880px; color: var(--muted); font-size: 1.08rem; line-height: 1.7; }
   .recording-section { margin-top: 38px; }
   .video-card { overflow: hidden; }
+  .video-card + .video-card { margin-top: 24px; }
   .video-frame { position: relative; aspect-ratio: 16 / 9; background: #111; }
   .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   .video-footer { display: flex; justify-content: space-between; gap: 20px; align-items: center; padding: 18px 22px; }
   .video-footer p { margin: 0; color: var(--muted); }
-  .notice { margin-top: 24px; padding: 17px 20px; border-left: 5px solid var(--accent); border-radius: 16px; background: var(--accent-soft); line-height: 1.65; }
   @media (max-width: 680px) {
     .video-footer { align-items: flex-start; flex-direction: column; }
   }

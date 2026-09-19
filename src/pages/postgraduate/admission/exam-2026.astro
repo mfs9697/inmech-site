@@ -5,11 +5,14 @@ import { site } from '../../../data/site';
 const youtubeId = '8JRJvjsastY';
 const youtubeUrl = `https://youtu.be/${youtubeId}`;
 const embedUrl = `https://www.youtube-nocookie.com/embed/${youtubeId}`;
+const youtubeId2 = 'FzpN12p8N5o';
+const youtubeUrl2 = `https://youtu.be/${youtubeId2}`;
+const embedUrl2 = `https://www.youtube-nocookie.com/embed/${youtubeId2}`;
 ---
 
 <BaseLayout
-  title={`Відеозапис вступного іспиту 2026 | ${site.shortName}`}
-  description="Відеозапис вступного іспиту до аспірантури Інституту механіки ім. С. П. Тимошенка НАН України від 15 вересня 2026 року."
+  title={`Відеозаписи вступного іспиту 2026 | ${site.shortName}`}
+  description="Відеозаписи вступного іспиту до аспірантури Інституту механіки ім. С. П. Тимошенка НАН України від 15 вересня 2026 року."
   activePage="education"
 >
   <main class="exam-page">
@@ -18,14 +21,14 @@ const embedUrl = `https://www.youtube-nocookie.com/embed/${youtubeId}`;
       <span>›</span>
       <a href="/postgraduate/admission/">Вступникам</a>
       <span>›</span>
-      <span>Відеозапис іспиту</span>
+      <span>Відеозаписи іспиту</span>
     </nav>
 
     <section class="page-hero">
       <p class="eyebrow">Вступ до аспірантури · 2026</p>
-      <h1>Відеозапис вступного іспиту</h1>
+      <h1>Відеозаписи вступного іспиту</h1>
       <p class="lead">
-        Відеозапис вступного іспиту до аспірантури Інституту механіки ім. С. П. Тимошенка НАН України,
+        Відеозаписи вступного іспиту до аспірантури Інституту механіки ім. С. П. Тимошенка НАН України,
         проведеного 15 вересня 2026 року.
       </p>
     </section>
@@ -33,7 +36,7 @@ const embedUrl = `https://www.youtube-nocookie.com/embed/${youtubeId}`;
     <section class="recording-section" aria-labelledby="recording-title">
       <div class="section-heading compact-header">
         <div>
-          <p class="eyebrow">Запис від 15 вересня 2026 року</p>
+          <p class="eyebrow">Записи від 15 вересня 2026 року</p>
           <h2 id="recording-title">Вступний іспит до аспірантури</h2>
         </div>
       </div>
@@ -42,21 +45,33 @@ const embedUrl = `https://www.youtube-nocookie.com/embed/${youtubeId}`;
         <div class="video-frame">
           <iframe
             src={embedUrl}
-            title="Відеозапис вступного іспиту до аспірантури 15 вересня 2026 року"
+            title="Запис 1 вступного іспиту до аспірантури 15 вересня 2026 року"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
           ></iframe>
         </div>
         <div class="video-footer">
-          <p>Запис розміщено на YouTube.</p>
+          <p>Запис 1 · розміщено на YouTube.</p>
           <a class="button primary" href={youtubeUrl} target="_blank" rel="noopener noreferrer">Відкрити на YouTube ↗</a>
         </div>
       </div>
-    </section>
 
-    <section class="notice" aria-label="Інформація про записи">
-      Інші відеозаписи вступного іспиту буде додано на цю сторінку після їх оприлюднення.
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe
+            src={embedUrl2}
+            title="Відеозапис 2 вступного іспиту до аспірантури 15 вересня 2026 року"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="video-footer">
+          <p>Запис 2 · розміщено на YouTube.</p>
+          <a class="button primary" href={youtubeUrl2} target="_blank" rel="noopener noreferrer">Відкрити на YouTube ↗</a>
+        </div>
+      </div>
     </section>
   </main>
 </BaseLayout>
@@ -70,11 +85,11 @@ const embedUrl = `https://www.youtube-nocookie.com/embed/${youtubeId}`;
   .lead { max-width: 880px; color: var(--muted); font-size: 1.08rem; line-height: 1.7; }
   .recording-section { margin-top: 38px; }
   .video-card { overflow: hidden; }
+  .video-card + .video-card { margin-top: 24px; }
   .video-frame { position: relative; aspect-ratio: 16 / 9; background: #111; }
   .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   .video-footer { display: flex; justify-content: space-between; gap: 20px; align-items: center; padding: 18px 22px; }
   .video-footer p { margin: 0; color: var(--muted); }
-  .notice { margin-top: 24px; padding: 17px 20px; border-left: 5px solid var(--accent); border-radius: 16px; background: var(--accent-soft); line-height: 1.65; }
   @media (max-width: 680px) {
     .video-footer { align-items: flex-start; flex-direction: column; }
   }

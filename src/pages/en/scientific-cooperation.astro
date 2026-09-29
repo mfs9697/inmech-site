@@ -2,296 +2,440 @@
 import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
 import { siteEn } from '../../data/site-en';
 
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-
-function withBase(path: string) {
-  if (path.startsWith('http') || path.startsWith('#')) {
-    return path;
-  }
-
-  return `${base}/${path.replace(/^\/+/, '')}`;
-}
-
-const agreements = [
+const domesticPartners = [
   {
-    date: '12.03.2026',
-    type: 'Cooperation agreement',
-    institution: 'G.S. Pisarenko Institute for Problems of Strength of the NAS of Ukraine',
-    href: '/documents/scientific-cooperation/2026-03-12-dogovor-imp.pdf'
-  },
-  {
-    date: '13.02.2026',
-    type: 'Cooperation agreement',
-    institution: 'National Technical University of Ukraine “Igor Sikorsky Kyiv Polytechnic Institute”',
-    href: '/documents/scientific-cooperation/2026-02-13-kpi.pdf'
-  },
-  {
-    date: '27.02.2026',
-    type: 'Agreement on postgraduate practical training',
-    institution: 'National Technical University of Ukraine “Igor Sikorsky Kyiv Polytechnic Institute”',
-    href: '/documents/scientific-cooperation/2026-02-27-kpi.pdf'
-  },
-  {
-    date: '26.12.2025',
-    type: 'Cooperation agreement',
-    institution: 'Admiral Makarov National University of Shipbuilding',
-    href: '/documents/scientific-cooperation/2025-12-26-nuk.pdf'
-  },
-  {
-    date: '01.01.2025',
-    type: 'Cooperation agreement',
-    institution: 'Separate Subdivision of the Open International University of Human Development “Ukraine” — Mykolaiv Institute of Human Development',
-    href: '/documents/scientific-cooperation/2025-01-01-vmurl.pdf'
-  },
-  {
-    date: '2025',
-    type: 'Cooperation agreement',
-    institution: 'National Transport University',
-    href: '/documents/scientific-cooperation/2025-ntu.pdf'
-  },
-  {
-    date: '02.05.2024',
-    type: 'Cooperation agreement',
-    institution: 'National University of Life and Environmental Sciences of Ukraine',
-    href: '/documents/scientific-cooperation/2024-05-02-nubip.pdf'
-  },
-  {
-    date: '17.04.2025',
-    type: 'Cooperation agreement',
-    institution: 'Taras Shevchenko National University of Kyiv',
-    href: '/documents/scientific-cooperation/2025-04-17-knu.pdf'
-  },
-  {
-    date: '25.03.2025',
-    type: 'Agreement on research, educational and cultural cooperation',
-    institution: 'Julius-Maximilians-Universität Würzburg',
-    href: '/documents/scientific-cooperation/2025-03-25-agreement-wurzburg.pdf'
-  },
-  {
-    date: '04.03.2025',
-    type: 'Partnership and cooperation agreement',
-    institution: 'Kyiv National University of Construction and Architecture',
-    href: '/documents/scientific-cooperation/2025-03-04-knuba.pdf'
-  },
-  {
-    date: '28.03.2022',
-    type: 'Cooperation agreement',
-    institution: 'Centro de Investigación Científica de Yucatán A.C. (CICY)',
-    href: '/documents/scientific-cooperation/2022-03-28-cicy.pdf'
-  },
-  {
-    date: '22.10.2024',
-    type: 'Cooperation agreement',
-    institution: 'Mykolaiv National Agrarian University',
-    href: '/documents/scientific-cooperation/2024-10-22-mnau.pdf'
-  },
-  {
-    date: '05.08.2025',
-    type: 'Agreement on access to a text-checking system',
-    institution: 'Text document verification service',
-    href: '/documents/scientific-cooperation/2025-08-05-plagiat.pdf'
-  },
-  {
-    date: '15.01.2026',
-    type: 'Cooperation agreement',
     institution: 'Institute of Hydromechanics of the NAS of Ukraine',
-    href: '/documents/scientific-cooperation/2026-01-15-gidro.pdf'
+    meta: 'Scientific and educational cooperation · 2026–2030',
+    summary:
+      'Joint scientific and educational activities, participation in research projects, practical training and internships, professional development, and postgraduate and doctoral training.',
+    tags: ['Research', 'Postgraduate training', 'Internships']
+  },
+  {
+    institution: 'G.S. Pisarenko Institute for Problems of Strength of the NAS of Ukraine',
+    meta: 'Scientific and educational cooperation · 2026–2030',
+    summary:
+      'Joint research, scientific and educational events, participation in projects, staff training and professional development, support for educational programmes, and postgraduate training.',
+    tags: ['Research', 'Education', 'Research training']
+  },
+  {
+    institution: 'Igor Sikorsky Kyiv Polytechnic Institute',
+    meta: 'Research, education, and training · through 2030',
+    summary:
+      'Joint research, participation of students and academic staff in research projects, internships and practical training, support for educational programmes, development of dual education, and career-oriented activities for students.',
+    detail:
+      'In 2026, cooperation with the Educational and Research Institute of Mechanical Engineering of Igor Sikorsky KPI also supported the teaching practice of postgraduate students of the Institute of Mechanics.',
+    tags: ['Joint research', 'Practical training', 'Dual education']
+  },
+  {
+    institution: 'Taras Shevchenko National University of Kyiv',
+    meta: 'Scientific and educational partnership · long-term agreement',
+    summary:
+      'Joint research and educational initiatives, participation in international programmes, scientific events, scholarly publishing, and the development of joint educational and research centres and laboratories.',
+    tags: ['Research', 'International programmes', 'Laboratories']
+  },
+  {
+    institution: 'Kyiv National University of Construction and Architecture',
+    meta: 'Scientific and educational cooperation · through 2029',
+    summary:
+      'Joint scientific and educational activities, participation in research projects, practical training and internships, professional development, support for educational programmes, and specialist training.',
+    tags: ['Projects', 'Practical training', 'Education']
+  },
+  {
+    institution: 'National Transport University',
+    meta: 'Scientific and educational partnership · long-term agreement',
+    summary:
+      'Joint research, international scientific and educational programmes, conferences and seminars, support for scholarly publishing, participation in editorial activities, professional training, and possible joint research centres.',
+    tags: ['Research', 'Publishing', 'International programmes']
+  },
+  {
+    institution: 'Admiral Makarov National University of Shipbuilding',
+    meta: 'Scientific and educational cooperation · through 2030',
+    summary:
+      'Joint and individual research using the research facilities of both institutions, scientific and educational events, practical training and internships, participation in projects and research activities, and support for educational programmes.',
+    tags: ['Research', 'Infrastructure', 'Internships']
+  },
+  {
+    institution: 'Mykolaiv National Agrarian University',
+    meta: 'Scientific and educational cooperation · agreement signed in 2024',
+    summary:
+      'Practical training and internships, professional development, support for educational programmes, scientific events, participation in research and project activities, information exchange, and graduate employment initiatives.',
+    detail: 'The term of the agreement is currently being clarified.',
+    tags: ['Practical training', 'Education', 'Projects']
+  },
+  {
+    institution: 'Mykolaiv Institute for Human Development, Open International University of Human Development “Ukraine”',
+    meta: 'Educational and research cooperation · long-term agreement',
+    summary:
+      'Educational and scientific links, professional training and development, exchange of practical experience, joint events, and participation in research programmes.',
+    tags: ['Education', 'Professional development', 'Joint events']
   }
 ];
 
-const cooperationAreas = [
-  'joint research in mechanics, materials science, strength, stability, vibrations and related engineering fields',
-  'academic exchange, participation in conferences, seminars and research discussions',
-  'cooperation with universities in postgraduate training, practical training and supervision of young researchers',
-  'access to research infrastructure, analytical methods and specialised expertise',
-  'international research, educational and cultural cooperation with partner institutions abroad'
+const internationalPartners = [
+  {
+    institution: 'Institute of Mathematics, Julius-Maximilians-Universität Würzburg',
+    country: 'Germany',
+    meta: 'Research, educational and academic cooperation · agreement signed in 2025',
+    summary:
+      'Joint research, exchanges of researchers, postgraduate students and students, direct cooperation between research units, exchange of scientific materials and information, and mutual participation in conferences, seminars, and workshops.',
+    term: 'The agreement was concluded for five years and may be extended by mutual written consent.',
+    tags: ['Academic exchange', 'Joint research', 'Conferences']
+  },
+  {
+    institution: 'Centro de Investigación Científica de Yucatán (CICY)',
+    country: 'Mexico',
+    meta: 'Scientific and academic cooperation · agreement signed in 2025',
+    summary:
+      'Cooperation in the physical sciences, mathematics, engineering, materials and applied sciences, joint research programmes, academic exchanges, cooperation between researchers and students, exchange of scholarly publications, and joint seminars.',
+    term: 'The agreement was concluded for five years and may be renewed.',
+    tags: ['Materials science', 'Academic exchange', 'Joint programmes']
+  }
+];
+
+const projects = [
+  {
+    title: 'English4Ukraine',
+    meta: 'Mariupol State University · 2025–2026',
+    summary:
+      'The Institute participated in the English4Ukraine project, which provided staff members and students with free access to the Reallyenglish online learning platform for improving their English-language skills.',
+    note: 'The contractual project period ended on 30 June 2026. Information on possible continuation of the cooperation is being clarified.'
+  }
+];
+
+const archive = [
+  {
+    institution: 'National University of Life and Environmental Sciences of Ukraine',
+    meta: 'Strategic educational, scientific and practice-oriented partnership · 2024–2025',
+    summary:
+      'The cooperation focused on practical training for students and postgraduate researchers, scientific consulting, innovation support, applied research, and specialist training.',
+    note: 'The agreement expired on 31 December 2025.'
+  }
+];
+
+const resources = [
+  {
+    title: 'Research4Life',
+    summary:
+      'The Institute has institutional access to scientific information resources available through the Research4Life programme under the applicable licence.'
+  },
+  {
+    title: 'StrikePlagiarism',
+    summary:
+      'The Institute uses the StrikePlagiarism system to support similarity checking of academic texts and academic integrity procedures.'
+  }
 ];
 ---
 
 <BaseLayoutEn
-  title={`Scientific cooperation | ${siteEn.name}`}
-  description="Scientific cooperation of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine: cooperation agreements, partner institutions and academic links."
+  title={`Cooperation and partnerships | ${siteEn.name}`}
+  description="Scientific, academic and international partnerships of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine, joint projects and institutional research resources."
   activePage="about"
 >
-  <section class="page-hero">
+  <section class="page-hero cooperation-hero">
     <div class="container">
       <div class="panel cooperation-hero-panel">
         <p class="eyebrow">About the Institute</p>
-        <h1>Scientific cooperation</h1>
+        <h1>Cooperation and partnerships</h1>
         <p class="lead">
-          The Institute develops cooperation with academic institutions, universities and research
-          organisations in Ukraine and abroad. This page provides access to cooperation agreements,
-          partnership documents and related materials.
+          The S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine develops
+          scientific, educational, and international cooperation with NAS of Ukraine
+          research institutions, universities, and international research centres.
+        </p>
+        <p class="cooperation-hero-note">
+          This page provides an overview of the Institute’s principal current and recent
+          institutional partnerships. Official agreements are retained by the Institute.
         </p>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container split-layout">
-      <article class="panel content-card">
-        <p class="eyebrow">Partnership framework</p>
-        <h2>Purpose of cooperation</h2>
-        <p>
-          Scientific cooperation supports the Institute’s mission by linking fundamental and applied
-          research in mechanics with university education, experimental facilities, engineering
-          applications and international academic exchange.
-        </p>
-        <p>
-          The agreements listed below document institutional partnerships and provide a transparent
-          reference point for joint research, educational activities and professional contacts.
-        </p>
-      </article>
-
-      <aside class="panel content-card accent-card">
-        <p class="eyebrow">Main areas</p>
-        <ul class="check-list">
-          {cooperationAreas.map((item) => <li>{item}</li>)}
-        </ul>
-      </aside>
-    </div>
-  </section>
-
-  <section class="section muted-section">
+  <section class="section cooperation-section">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header cooperation-section-header">
         <div>
-          <p class="eyebrow">Agreements and partner institutions</p>
-          <h2 class="section-title">Established partnership relations</h2>
+          <p class="eyebrow">Ukraine</p>
+          <h2 class="section-title">Scientific and academic partners</h2>
           <p class="section-text">
-            The list is based on the documents published in the Scientific cooperation section of
-            the Institute website. The PDF files are official documents, mostly in Ukrainian.
+            Cooperation covers joint research, postgraduate training, internships and
+            practical training, scientific events, educational programmes, and access
+            to research infrastructure.
           </p>
         </div>
       </div>
 
-      <div class="agreement-grid">
-        {agreements.map((agreement) => (
-          <article class="agreement-card">
-            <div class="agreement-meta">{agreement.date}</div>
-            <h2>{agreement.institution}</h2>
-            <p>{agreement.type}</p>
-            <a class="button secondary" href={withBase(agreement.href)} target="_blank" rel="noopener">
-              Open PDF
-            </a>
+      <div class="partner-grid">
+        {domesticPartners.map((partner) => (
+          <article class="panel partner-card">
+            <p class="partner-meta">{partner.meta}</p>
+            <h3>{partner.institution}</h3>
+            <p class="partner-summary">{partner.summary}</p>
+            {partner.detail && <p class="partner-detail">{partner.detail}</p>}
+            <ul class="partner-tags" aria-label="Areas of cooperation">
+              {partner.tags.map((tag) => <li>{tag}</li>)}
+            </ul>
           </article>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section muted-section cooperation-section">
     <div class="container">
-      <article class="panel content-card">
-        <p class="eyebrow">Note</p>
-        <h2>Official documents</h2>
-        <p>
-          The English page provides translated titles and explanatory text for navigation. The PDF
-          files themselves remain official source documents in the language in which they were signed
-          or published.
-        </p>
-      </article>
+      <div class="section-header cooperation-section-header">
+        <div>
+          <p class="eyebrow">International links</p>
+          <h2 class="section-title">International cooperation</h2>
+          <p class="section-text">
+            Institutional agreements support joint research, academic exchange,
+            direct links between research units, and participation in international
+            scientific events.
+          </p>
+        </div>
+      </div>
+
+      <div class="international-grid">
+        {internationalPartners.map((partner) => (
+          <article class="panel partner-card international-card">
+            <div class="international-heading">
+              <p class="partner-meta">{partner.meta}</p>
+              <span class="country-badge">{partner.country}</span>
+            </div>
+            <h3>{partner.institution}</h3>
+            <p class="partner-summary">{partner.summary}</p>
+            <p class="partner-detail">{partner.term}</p>
+            <ul class="partner-tags" aria-label="Areas of cooperation">
+              {partner.tags.map((tag) => <li>{tag}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section cooperation-section">
+    <div class="container">
+      <div class="section-header cooperation-section-header">
+        <div>
+          <p class="eyebrow">Joint initiatives</p>
+          <h2 class="section-title">Educational and institutional projects</h2>
+        </div>
+      </div>
+
+      <div class="project-grid">
+        {projects.map((project) => (
+          <article class="panel project-card">
+            <p class="partner-meta">{project.meta}</p>
+            <h3>{project.title}</h3>
+            <p>{project.summary}</p>
+            <p class="partner-detail">{project.note}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section muted-section cooperation-section">
+    <div class="container">
+      <div class="section-header cooperation-section-header">
+        <div>
+          <p class="eyebrow">Completed agreements</p>
+          <h2 class="section-title">Cooperation archive</h2>
+        </div>
+      </div>
+
+      <div class="archive-grid">
+        {archive.map((item) => (
+          <article class="panel archive-card">
+            <p class="partner-meta">{item.meta}</p>
+            <h3>{item.institution}</h3>
+            <p>{item.summary}</p>
+            <p class="partner-detail">{item.note}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section cooperation-section">
+    <div class="container">
+      <div class="section-header cooperation-section-header">
+        <div>
+          <p class="eyebrow">Research infrastructure</p>
+          <h2 class="section-title">Information resources and academic integrity</h2>
+          <p class="section-text">
+            These services support research and research training, but are not listed as
+            scientific partnerships.
+          </p>
+        </div>
+      </div>
+
+      <div class="resource-grid">
+        {resources.map((resource) => (
+          <article class="panel resource-card">
+            <h3>{resource.title}</h3>
+            <p>{resource.summary}</p>
+          </article>
+        ))}
+      </div>
+
+      <p class="cooperation-disclaimer">
+        The information on this page is provided for general reference and does not
+        replace the official texts of agreements. Partnership information is updated
+        when agreements are concluded, renewed, amended, or completed.
+      </p>
     </div>
   </section>
 </BaseLayoutEn>
 
 <style>
-  .split-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.9fr);
-    gap: 24px;
-    align-items: stretch;
+  .cooperation-hero-panel {
+    padding: clamp(28px, 4vw, 48px);
   }
 
-  .content-card {
-    padding: clamp(26px, 3vw, 40px);
-  }
-
-  .content-card h2 {
-    margin-top: 0;
-    margin-bottom: 14px;
-  }
-
-  .content-card p {
-    color: var(--muted);
-    line-height: 1.72;
-  }
-
-  .content-card p:last-child,
-  .check-list:last-child {
-    margin-bottom: 0;
-  }
-
-  .accent-card {
-    background: linear-gradient(145deg, #ffffff 0%, var(--surface-soft) 100%);
-  }
-
-  .check-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 14px;
-  }
-
-  .check-list li {
-    position: relative;
-    padding-left: 30px;
+  .cooperation-hero-note {
+    max-width: 900px;
+    margin: 18px 0 0;
     color: var(--muted);
     line-height: 1.65;
   }
 
-  .check-list li::before {
-    content: '';
-    position: absolute;
-    left: 2px;
-    top: 0.65em;
-    width: 9px;
-    height: 9px;
-    border-radius: 999px;
-    background: var(--accent);
-    box-shadow: 0 0 0 5px var(--accent-soft);
+  .cooperation-section-header {
+    max-width: 940px;
+    margin-bottom: 26px;
   }
 
-  .agreement-grid {
+  .partner-grid,
+  .international-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
+    gap: 18px;
   }
 
-  .agreement-card {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: clamp(20px, 2.5vw, 30px);
+  .partner-card,
+  .project-card,
+  .archive-card,
+  .resource-card {
+    padding: clamp(22px, 3vw, 32px);
   }
 
-  .agreement-card h2 {
-    margin: 8px 0 10px;
-    font-size: 1.12rem;
+  .partner-card {
+    display: flex;
+    flex-direction: column;
   }
 
-  .agreement-card p {
-    color: var(--muted);
-    line-height: 1.6;
+  .partner-card h3,
+  .project-card h3,
+  .archive-card h3,
+  .resource-card h3 {
+    margin: 8px 0 12px;
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
   }
 
-  .agreement-meta {
-    display: inline-flex;
+  .partner-meta {
     width: fit-content;
-    padding: 6px 10px;
+    margin: 0;
+    color: var(--accent-dark);
+    font-size: 0.82rem;
+    font-weight: 850;
+    line-height: 1.4;
+  }
+
+  .partner-summary,
+  .project-card p,
+  .archive-card p,
+  .resource-card p {
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .partner-detail {
+    margin-top: 8px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    color: var(--text);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .partner-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: auto 0 0;
+    padding: 18px 0 0;
+    list-style: none;
+  }
+
+  .partner-tags li,
+  .country-badge {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
     border-radius: 999px;
     background: var(--accent-soft);
     color: var(--accent-dark);
-    font-size: 0.84rem;
-    font-weight: 850;
+    font-size: 0.78rem;
+    font-weight: 800;
   }
 
-  @media (max-width: 860px) {
-    .split-layout,
-    .agreement-grid {
+  .partner-tags li {
+    padding: 6px 10px;
+  }
+
+  .international-card {
+    border-top: 4px solid var(--accent);
+  }
+
+  .international-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+  }
+
+  .country-badge {
+    flex: 0 0 auto;
+    padding: 6px 10px;
+  }
+
+  .project-grid,
+  .archive-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 920px;
+  }
+
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .resource-card h3 {
+    margin-top: 0;
+  }
+
+  .cooperation-disclaimer {
+    max-width: 960px;
+    margin: 26px 0 0;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 820px) {
+    .partner-grid,
+    .international-grid,
+    .resource-grid {
       grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .international-heading {
+      flex-direction: column;
     }
   }
 </style>

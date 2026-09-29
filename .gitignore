@@ -3,3 +3,5 @@ dist/
 .astro/
 .env
 .DS_Store
+# Signed cooperation agreements are retained outside the public repository.
+public/documents/scientific-cooperation/*.pdf

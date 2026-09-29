@@ -2,142 +2,439 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
 
-const siteBase = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '');
-const withBase = (path: string) => `${siteBase}/${path.replace(/^\/+/, '')}`;
-const docHref = (href: string) => href.startsWith('/documents/') ? withBase(href) : href;
-
-const agreements = [
+const domesticPartners = [
   {
-    date: '12.03.2026',
-    type: 'Договір про співпрацю',
+    institution: 'Інститут гідромеханіки НАН України',
+    meta: 'Наукова та освітня співпраця · 2026–2030',
+    summary:
+      'Спільні наукові та освітні заходи, участь у науково-дослідних роботах і проєктах, практика та стажування, підвищення кваліфікації, підготовка кадрів через аспірантуру і докторантуру.',
+    tags: ['Дослідження', 'Аспірантура', 'Стажування']
+  },
+  {
     institution: 'Інститут проблем міцності імені Г. С. Писаренка НАН України',
-    href: '/documents/scientific-cooperation/2026-03-12-dogovor-imp.pdf'
+    meta: 'Наукова та освітня співпраця · 2026–2030',
+    summary:
+      'Спільні дослідження, наукові та освітні заходи, участь у проєктах, стажування і підвищення кваліфікації працівників, підтримка освітніх програм та підготовка наукових кадрів.',
+    tags: ['Дослідження', 'Освіта', 'Наукові кадри']
   },
   {
-    date: '13.02.2026',
-    type: 'Договір про співпрацю',
-    institution: 'Національний технічний університет України «Київський політехнічний інститут імені Ігоря Сікорського»',
-    href: '/documents/scientific-cooperation/2026-02-13-kpi.pdf'
+    institution: 'КПІ ім. Ігоря Сікорського',
+    meta: 'Наука, освіта та підготовка кадрів · до 2030 року',
+    summary:
+      'Спільні науково-дослідні роботи, участь студентів і викладачів у наукових проєктах, практика та стажування, підтримка освітніх програм, розвиток дуальної освіти й професійна орієнтація здобувачів.',
+    detail:
+      'У 2026 році в межах співпраці з Навчально-науковим механіко-машинобудівним інститутом КПІ ім. Ігоря Сікорського було організовано педагогічну практику аспірантів Інституту механіки.',
+    tags: ['Спільні НДР', 'Практика', 'Дуальна освіта']
   },
   {
-    date: '27.02.2026',
-    type: 'Угода про проведення практики аспірантів',
-    institution: 'Національний технічний університет України «Київський політехнічний інститут імені Ігоря Сікорського»',
-    href: '/documents/scientific-cooperation/2026-02-27-kpi.pdf'
-  },
-  {
-    date: '26.12.2025',
-    type: 'Договір про співпрацю',
-    institution: 'Національний університет кораблебудування імені адмірала Макарова',
-    href: '/documents/scientific-cooperation/2025-12-26-nuk.pdf'
-  },
-  {
-    date: '01.01.2025',
-    type: 'Договір про співпрацю',
-    institution: 'ВСП ЗВО «Відкритий міжнародний університет розвитку людини “Україна”» — Миколаївський інститут розвитку людини',
-    href: '/documents/scientific-cooperation/2025-01-01-vmurl.pdf'
-  },
-  {
-    date: '2025',
-    type: 'Договір про співпрацю',
-    institution: 'Національний транспортний університет',
-    href: '/documents/scientific-cooperation/2025-ntu.pdf'
-  },
-  {
-    date: '02.05.2024',
-    type: 'Договір про співпрацю',
-    institution: 'Національний університет біоресурсів і природокористування України',
-    href: '/documents/scientific-cooperation/2024-05-02-nubip.pdf'
-  },
-  {
-    date: '17.04.2025',
-    type: 'Договір про співпрацю',
     institution: 'Київський національний університет імені Тараса Шевченка',
-    href: '/documents/scientific-cooperation/2025-04-17-knu.pdf'
+    meta: 'Науково-освітнє партнерство · довгострокова угода',
+    summary:
+      'Спільні наукові дослідження та освітні ініціативи, участь у міжнародних програмах, проведення наукових заходів, взаємодія у видавничій діяльності, створення спільних навчально-наукових центрів і лабораторій.',
+    tags: ['Дослідження', 'Міжнародні програми', 'Лабораторії']
   },
   {
-    date: '25.03.2025',
-    type: 'Agreement on research, educational and cultural cooperation',
-    institution: 'Institute of Julius-Maximilians-Universität Würzburg',
-    href: '/documents/scientific-cooperation/2025-03-25-agreement-wurzburg.pdf'
-  },
-  {
-    date: '04.03.2025',
-    type: 'Договір про партнерство і співробітництво',
     institution: 'Київський національний університет будівництва і архітектури',
-    href: '/documents/scientific-cooperation/2025-03-04-knuba.pdf'
+    meta: 'Наукова та освітня співпраця · до 2029 року',
+    summary:
+      'Спільні наукові та освітні заходи, участь у дослідницьких проєктах, практика й стажування, підвищення кваліфікації, підтримка освітніх програм та підготовка фахівців.',
+    tags: ['Проєкти', 'Практика', 'Освіта']
   },
   {
-    date: '28.03.2022',
-    type: 'Cooperation agreement',
-    institution: 'Centro de Investigación Científica de Yucatán A. C. (CICY)',
-    href: '/documents/scientific-cooperation/2022-03-28-cicy.pdf'
+    institution: 'Національний транспортний університет',
+    meta: 'Науково-освітнє партнерство · довгострокова угода',
+    summary:
+      'Спільні наукові дослідження, міжнародні науково-освітні програми, конференції та семінари, взаємне сприяння публікаціям, участь у роботі редакційних колегій, стажування та можливість створення спільних дослідних центрів.',
+    tags: ['Дослідження', 'Публікації', 'Міжнародні програми']
   },
   {
-    date: '22.10.2024',
-    type: 'Договір про співпрацю',
+    institution: 'Національний університет кораблебудування імені адмірала Макарова',
+    meta: 'Наукова та освітня співпраця · до 2030 року',
+    summary:
+      'Спільні та індивідуальні дослідження з використанням наукового обладнання сторін, наукові й освітні заходи, практика та стажування, участь у проєктах і науково-дослідних роботах, підтримка освітніх програм.',
+    tags: ['Дослідження', 'Інфраструктура', 'Стажування']
+  },
+  {
     institution: 'Миколаївський національний аграрний університет',
-    href: '/documents/scientific-cooperation/2024-10-22-mnau.pdf'
+    meta: 'Наукова та освітня співпраця · угода 2024 року',
+    summary:
+      'Практика та стажування, підвищення кваліфікації, підтримка освітніх програм, організація наукових заходів, участь у дослідницьких роботах і проєктах, інформаційна взаємодія та сприяння працевлаштуванню випускників.',
+    detail: 'Строк дії угоди уточнюється.',
+    tags: ['Практика', 'Освіта', 'Проєкти']
   },
   {
-    date: '05.08.2025',
-    type: 'Договір про надання доступу до системи перевірки текстів',
-    institution: 'Сервіс перевірки текстових документів',
-    href: '/documents/scientific-cooperation/2025-08-05-plagiat.pdf'
+    institution: 'Миколаївський інститут розвитку людини Університету «Україна»',
+    meta: 'Освітня та науково-методична співпраця · довгострокова угода',
+    summary:
+      'Розвиток освітніх і наукових зв’язків, професійна підготовка та підвищення кваліфікації, обмін практичним досвідом, проведення спільних заходів і участь у науково-дослідних програмах.',
+    tags: ['Освіта', 'Професійний розвиток', 'Спільні заходи']
+  }
+];
+
+const internationalPartners = [
+  {
+    institution: 'Institute of Mathematics, Julius-Maximilians-Universität Würzburg',
+    country: 'Німеччина',
+    meta: 'Research, educational and academic cooperation · угода 2025 року',
+    summary:
+      'Спільні наукові дослідження, обмін ученими, аспірантами та студентами, розвиток прямих контактів між науковими підрозділами, обмін науковими матеріалами та взаємна участь у конференціях, семінарах і наукових школах.',
+    term: 'Угода укладена строком на п’ять років із можливістю продовження за взаємною письмовою згодою.',
+    tags: ['Обміни', 'Спільні дослідження', 'Конференції']
   },
   {
-    date: '15.01.2026',
-    type: 'Договір про співпрацю',
-    institution: 'Інститут гідромеханіки Національної академії наук України',
-    href: '/documents/scientific-cooperation/2026-01-15-gidro.pdf'
+    institution: 'Centro de Investigación Científica de Yucatán (CICY)',
+    country: 'Мексика',
+    meta: 'Scientific and academic cooperation · угода 2025 року',
+    summary:
+      'Співпраця у фізико-математичних, інженерних та матеріалознавчих дослідженнях, спільні наукові програми, академічні обміни, взаємодія дослідників і здобувачів освіти, обмін науковими публікаціями та спільні семінари.',
+    term: 'Угода укладена строком на п’ять років із можливістю поновлення.',
+    tags: ['Матеріалознавство', 'Обміни', 'Спільні програми']
+  }
+];
+
+const projects = [
+  {
+    title: 'English4Ukraine',
+    meta: 'Маріупольський державний університет · 2025–2026',
+    summary:
+      'Інститут долучився до проєкту English4Ukraine, у межах якого співробітники та здобувачі освіти отримали можливість безоплатно користуватися електронною платформою Reallyenglish для вдосконалення знань англійської мови.',
+    note: 'Договірний період завершився 30 червня 2026 року. Інформація про можливе продовження співпраці уточнюється.'
+  }
+];
+
+const archive = [
+  {
+    institution: 'Національний університет біоресурсів і природокористування України',
+    meta: 'Стратегічне освітньо-науково-виробниче партнерство · 2024–2025',
+    summary:
+      'Співпраця була спрямована на практичну підготовку студентів і аспірантів, наукове консультування, підтримку інновацій, спільні прикладні дослідження та взаємодію у сфері підготовки фахівців.',
+    note: 'Строк дії договору завершився 31 грудня 2025 року.'
+  }
+];
+
+const resources = [
+  {
+    title: 'Research4Life',
+    summary:
+      'Інститут має інституційний доступ до наукових інформаційних ресурсів програми Research4Life відповідно до чинної ліцензійної угоди.'
+  },
+  {
+    title: 'StrikePlagiarism',
+    summary:
+      'Для перевірки академічних текстів на текстові збіги та підтримки процедур академічної доброчесності Інститут використовує спеціалізовану систему StrikePlagiarism.'
   }
 ];
 ---
 
 <BaseLayout
-  title={`Наукова співпраця | ${site.name}`}
-  description="Наукова співпраця Інституту механіки ім. С.П. Тимошенка НАН України: договори, угоди та партнерські установи."
+  title={`Співпраця та партнерство | ${site.name}`}
+  description="Наукові, академічні та міжнародні партнерства Інституту механіки ім. С.П. Тимошенка НАН України, спільні проєкти та інституційні ресурси."
   activePage="about"
 >
-  <section class="page-hero">
+  <section class="page-hero cooperation-hero">
     <div class="container">
       <div class="panel cooperation-hero-panel">
         <p class="eyebrow">Про інститут</p>
-        <h1>Наукова співпраця</h1>
+        <h1>Співпраця та партнерство</h1>
         <p class="lead">
-          На цій сторінці подано встановлені відносини Інституту з науковими,
-          освітніми та іншими партнерськими установами. Кожна картка містить
-          назву установи, тип документа, дату та посилання на PDF.
+          Інститут механіки ім. С. П. Тимошенка НАН України розвиває наукову, освітню
+          та міжнародну співпрацю з установами Національної академії наук України,
+          закладами вищої освіти та закордонними науковими центрами.
+        </p>
+        <p class="cooperation-hero-note">
+          На сторінці подано узагальнену інформацію про основні чинні та нещодавні
+          інституційні партнерства. Офіційні договори й угоди зберігаються в Інституті.
         </p>
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section cooperation-section">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header cooperation-section-header">
         <div>
-          <p class="eyebrow">Договори та угоди</p>
-          <h2 class="section-title">Встановлені партнерські відносини</h2>
+          <p class="eyebrow">Україна</p>
+          <h2 class="section-title">Наукові та академічні партнери</h2>
           <p class="section-text">
-            Перелік сформовано на основі документів, оприлюднених у розділі
-            «Наукова співпраця» попередньої версії сайту Інституту.
+            Співпраця охоплює спільні дослідження, підготовку наукових кадрів,
+            стажування і практику, наукові заходи, освітні програми та використання
+            дослідницької інфраструктури.
           </p>
         </div>
       </div>
 
-      <div class="agreement-grid">
-        {agreements.map((agreement) => (
-          <article class="agreement-card">
-            <div class="agreement-meta">{agreement.date}</div>
-            <h2>{agreement.institution}</h2>
-            <p>{agreement.type}</p>
-            <a class="button secondary" href={docHref(agreement.href)} target="_blank" rel="noopener">
-              Відкрити PDF
-            </a>
+      <div class="partner-grid">
+        {domesticPartners.map((partner) => (
+          <article class="panel partner-card">
+            <p class="partner-meta">{partner.meta}</p>
+            <h3>{partner.institution}</h3>
+            <p class="partner-summary">{partner.summary}</p>
+            {partner.detail && <p class="partner-detail">{partner.detail}</p>}
+            <ul class="partner-tags" aria-label="Напрями співпраці">
+              {partner.tags.map((tag) => <li>{tag}</li>)}
+            </ul>
           </article>
         ))}
       </div>
     </div>
   </section>
+
+  <section class="section muted-section cooperation-section">
+    <div class="container">
+      <div class="section-header cooperation-section-header">
+        <div>
+          <p class="eyebrow">Міжнародні зв’язки</p>
+          <h2 class="section-title">Міжнародне співробітництво</h2>
+          <p class="section-text">
+            Інституційні угоди підтримують спільні дослідження, академічні обміни,
+            прямі контакти між науковими підрозділами та участь у міжнародних заходах.
+          </p>
+        </div>
+      </div>
+
+      <div class="international-grid">
+        {internationalPartners.map((partner) => (
+          <article class="panel partner-card international-card">
+            <div class="international-heading">
+              <p class="partner-meta">{partner.meta}</p>
+              <span class="country-badge">{partner.country}</span>
+            </div>
+            <h3>{partner.institution}</h3>
+            <p class="partner-summary">{partner.summary}</p>
+            <p class="partner-detail">{partner.term}</p>
+            <ul class="partner-tags" aria-label="Напрями співпраці">
+              {partner.tags.map((tag) => <li>{tag}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section cooperation-section">
+    <div class="container">
+      <div class="section-header cooperation-section-header">
+        <div>
+          <p class="eyebrow">Спільні ініціативи</p>
+          <h2 class="section-title">Освітні та інституційні проєкти</h2>
+        </div>
+      </div>
+
+      <div class="project-grid">
+        {projects.map((project) => (
+          <article class="panel project-card">
+            <p class="partner-meta">{project.meta}</p>
+            <h3>{project.title}</h3>
+            <p>{project.summary}</p>
+            <p class="partner-detail">{project.note}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section muted-section cooperation-section">
+    <div class="container">
+      <div class="section-header cooperation-section-header">
+        <div>
+          <p class="eyebrow">Завершені угоди</p>
+          <h2 class="section-title">Архів співпраці</h2>
+        </div>
+      </div>
+
+      <div class="archive-grid">
+        {archive.map((item) => (
+          <article class="panel archive-card">
+            <p class="partner-meta">{item.meta}</p>
+            <h3>{item.institution}</h3>
+            <p>{item.summary}</p>
+            <p class="partner-detail">{item.note}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section cooperation-section">
+    <div class="container">
+      <div class="section-header cooperation-section-header">
+        <div>
+          <p class="eyebrow">Дослідницька інфраструктура</p>
+          <h2 class="section-title">Інформаційні ресурси та академічна доброчесність</h2>
+          <p class="section-text">
+            Ці сервіси підтримують дослідження й освітньо-наукову діяльність, але не
+            належать до переліку наукових партнерів.
+          </p>
+        </div>
+      </div>
+
+      <div class="resource-grid">
+        {resources.map((resource) => (
+          <article class="panel resource-card">
+            <h3>{resource.title}</h3>
+            <p>{resource.summary}</p>
+          </article>
+        ))}
+      </div>
+
+      <p class="cooperation-disclaimer">
+        Інформація на сторінці має оглядовий характер і не замінює офіційних текстів
+        договорів та угод. Відомості оновлюються після укладення, продовження,
+        зміни або завершення відповідних домовленостей.
+      </p>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .cooperation-hero-panel {
+    padding: clamp(28px, 4vw, 48px);
+  }
+
+  .cooperation-hero-note {
+    max-width: 900px;
+    margin: 18px 0 0;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .cooperation-section-header {
+    max-width: 940px;
+    margin-bottom: 26px;
+  }
+
+  .partner-grid,
+  .international-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .partner-card,
+  .project-card,
+  .archive-card,
+  .resource-card {
+    padding: clamp(22px, 3vw, 32px);
+  }
+
+  .partner-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .partner-card h3,
+  .project-card h3,
+  .archive-card h3,
+  .resource-card h3 {
+    margin: 8px 0 12px;
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
+  }
+
+  .partner-meta {
+    width: fit-content;
+    margin: 0;
+    color: var(--accent-dark);
+    font-size: 0.82rem;
+    font-weight: 850;
+    line-height: 1.4;
+  }
+
+  .partner-summary,
+  .project-card p,
+  .archive-card p,
+  .resource-card p {
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .partner-detail {
+    margin-top: 8px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    color: var(--text);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .partner-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: auto 0 0;
+    padding: 18px 0 0;
+    list-style: none;
+  }
+
+  .partner-tags li,
+  .country-badge {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-size: 0.78rem;
+    font-weight: 800;
+  }
+
+  .partner-tags li {
+    padding: 6px 10px;
+  }
+
+  .international-card {
+    border-top: 4px solid var(--accent);
+  }
+
+  .international-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+  }
+
+  .country-badge {
+    flex: 0 0 auto;
+    padding: 6px 10px;
+  }
+
+  .project-grid,
+  .archive-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 920px;
+  }
+
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .resource-card h3 {
+    margin-top: 0;
+  }
+
+  .cooperation-disclaimer {
+    max-width: 960px;
+    margin: 26px 0 0;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 820px) {
+    .partner-grid,
+    .international-grid,
+    .resource-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .international-heading {
+      flex-direction: column;
+    }
+  }
+</style>

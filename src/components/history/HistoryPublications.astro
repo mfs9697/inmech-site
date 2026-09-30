@@ -33,6 +33,22 @@ const springerBooks = [
     doi: '10.1007/978-3-031-54063-9',
     href: 'https://link.springer.com/book/10.1007/978-3-031-54063-9',
     cover: '/assets/img/history/books/978-3-031-54063-9.webp'
+  },
+  {
+    year: '2026',
+    title: 'Fracture Mechanics and Adjacent Fields: Insights from Ukrainian Research',
+    subtitle: 'Volume 1: Foundations and Interface Phenomena',
+    editors:
+      'Holm Altenbach, Viacheslav Bogdanov, Volodymyr Nazarenko, Roman Kushnir, Alexander Grigorenko, Mikhailo Selivanov',
+    description:
+      'Перший том двотомної колективної монографії представляє сучасні дослідження українських наукових шкіл з механіки руйнування та суміжних напрямів. Видання охоплює фундаментальні питання поведінки тріщин, накопичення пошкоджень, міцності та міжфазних явищ, поєднуючи аналітичні, чисельні й експериментальні підходи.',
+    series: 'Advanced Structured Materials, vol. 258',
+    chapters: 'перший том двотомного видання',
+    pages: 'XIV + 350 сторінок',
+    illustrations: '73 чорно-білі та 16 кольорових ілюстрацій',
+    doi: '10.1007/978-3-032-30673-9',
+    href: 'https://link.springer.com/book/9783032306722',
+    cover: '/assets/img/history/books/978-3-032-30672-2.webp'
   }
 ];
 ---
@@ -127,35 +143,6 @@ const springerBooks = [
       ))}
     </div>
 
-    <article class="panel history-featured-book">
-      <div class="history-featured-year">2026</div>
-      <div>
-        <p class="eyebrow">Опубліковане видання</p>
-        <h3>Fracture Mechanics and Adjacent Fields: Insights from Ukrainian Research</h3>
-        <p class="history-featured-book-subtitle"><strong>Volume 1: Foundations and Interface Phenomena</strong></p>
-        <p>
-          У вересні 2026 року видавництво Springer опублікувало перший том двотомної
-          колективної монографії, що представляє сучасні дослідження з механіки руйнування
-          та суміжних напрямів українських наукових шкіл.
-        </p>
-        <p>
-          <strong>Редактори:</strong> Holm Altenbach, Viacheslav Bogdanov, Volodymyr Nazarenko,
-          Roman Kushnir, Alexander Grigorenko, Mikhailo Selivanov.
-        </p>
-        <p>
-          Серія <strong>Advanced Structured Materials, Vol. 258</strong>;
-          ISBN 978-3-032-30672-2; eBook ISBN 978-3-032-30673-9.
-        </p>
-        <a
-          class="button secondary"
-          href="https://link.springer.com/book/9783032306722"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Сторінка першого тому у Springer
-        </a>
-      </div>
-    </article>
 
     <article class="panel history-journal-card">
       <div class="history-journal-mark" aria-hidden="true">
@@ -239,7 +226,6 @@ const springerBooks = [
 
   .history-books-overview h3,
   .history-springer-heading h3,
-  .history-featured-book h3,
   .history-journal-card h3 {
     margin-top: 0;
     font-size: clamp(1.3rem, 2.2vw, 1.65rem);
@@ -353,39 +339,6 @@ const springerBooks = [
     line-height: 1.4;
   }
 
-  .history-featured-book {
-    display: grid;
-    grid-template-columns: 130px minmax(0, 1fr);
-    gap: clamp(24px, 4vw, 40px);
-    align-items: center;
-    padding: clamp(24px, 4vw, 38px);
-    margin-bottom: 24px;
-  }
-
-  .history-featured-year {
-    display: grid;
-    min-height: 110px;
-    place-items: center;
-    border-radius: 22px;
-    background: var(--accent-soft);
-    color: var(--accent-dark);
-    font-size: 2rem;
-    font-weight: 900;
-  }
-
-  .history-featured-book p {
-    color: var(--muted);
-    line-height: 1.55;
-  }
-
-  .history-featured-book-subtitle {
-    color: var(--heading) !important;
-  }
-
-  .history-featured-book .button {
-    margin-top: 8px;
-  }
-
   .history-journal-card {
     display: grid;
     grid-template-columns: 220px minmax(0, 1fr);
@@ -453,7 +406,6 @@ const springerBooks = [
 
   @media (max-width: 680px) {
     .history-springer-card,
-    .history-featured-book,
     .history-journal-card {
       grid-template-columns: 1fr;
     }
@@ -466,9 +418,6 @@ const springerBooks = [
       grid-template-columns: 1fr;
     }
 
-    .history-featured-year {
-      min-height: 90px;
-    }
 
     .history-journal-mark {
       min-height: 145px;

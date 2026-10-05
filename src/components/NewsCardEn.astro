@@ -23,12 +23,13 @@ const href = entry.data.externalUrl ?? withBase(`/en/news/${entry.id}/`);
 const isExternal = Boolean(entry.data.externalUrl);
 const image = entry.data.image ? withBase(entry.data.image) : undefined;
 const imageAlt = entry.data.imageAltEn ?? entry.data.imageAlt ?? '';
+const usesBookCover = entry.data.image?.includes('/assets/img/history/books/') ?? false;
 ---
 
 <article class:list={["news-card", { "news-card-with-image": Boolean(image) }]}>
   {image ? (
     <a
-      class="news-card-image"
+      class:list={["news-card-image", { "news-card-image-book": usesBookCover }]}
       href={href}
       target={isExternal ? '_blank' : undefined}
       rel={isExternal ? 'noopener noreferrer' : undefined}
@@ -88,6 +89,18 @@ const imageAlt = entry.data.imageAltEn ?? entry.data.imageAlt ?? '';
     transform: scale(1.025);
   }
 
+  .news-card-image-book {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    background: var(--surface-soft);
+  }
+
+  .news-card-image-book img {
+    object-fit: contain;
+  }
+
   .news-card-body {
     min-width: 0;
   }
@@ -119,6 +132,12 @@ const imageAlt = entry.data.imageAltEn ?? entry.data.imageAlt ?? '';
       aspect-ratio: 16 / 9;
       height: auto;
       min-height: 0;
+    }
+
+    .news-card-image-book img {
+      aspect-ratio: auto;
+      max-height: 320px;
+      object-fit: contain;
     }
   }
 </style>

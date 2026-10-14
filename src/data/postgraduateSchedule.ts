@@ -4,9 +4,8 @@
  * Keep this structured data separate from the public Astro presentation.
  * Do not add source scans/PDFs to the public site.
  *
- * Source discrepancy: year 2, B. P. Maslov's June 2027 dates are labelled
- * "Thursday 6, 12, 19, 26; Friday 7" but do not match the 2027 calendar.
- * The conflicting June dates are deliberately NOT added to timed sessions.
+ * The corrected year-2 schedule was verified against the 2026–2027 calendar:
+ * B. P. Maslov's Thursday/Friday sessions are in May and June 2027.
  */
 export type TeacherId =
   | 'zhuk' | 'vasylieva' | 'ivanov' | 'yanchevskyi' | 'kipnis'
@@ -162,8 +161,12 @@ export const scheduleSubjects: ScheduleSubject[] = [
     uk: 'Методи визначення функцій та реологічних параметрів у нелінійній теорії в’язкопружності',
     en: 'Methods for Determining Functions and Rheological Parameters in Nonlinear Viscoelasticity',
     teachers: ['maslov'], audience: ['Назарчук Ю.'],
-    // July dates agree with the 2027 calendar; June dates in the PDF do not.
-    slots: [slot('2027-07', [2, 9, 16, 23, 30], '12:00–14:00')]
+    slots: [
+      slot('2027-05', [6, 13, 20, 27], '12:00–14:00'),
+      slot('2027-05', [7], '12:30–14:30'),
+      slot('2027-06', [3, 10, 17, 24], '12:00–14:00'),
+      slot('2027-06', [4], '12:30–14:30')
+    ]
   },
   {
     id: 'pedagogy-third', course: 3,
@@ -200,13 +203,11 @@ export const scheduleNotes = [
     en: 'Philosophy — according to the schedule of the NAS of Ukraine Centre for Humanities Education.' },
   { course: 2, uk: 'Педагогічна практика (викладач Борисенко Максим Юрійович) — дати узгоджуються.',
     en: 'Teaching practice (instructor Maksym Yuriiovych Borysenko) — dates to be agreed.' },
-  { course: 2, uk: 'Заняття з методів визначення реологічних параметрів у червні: дати уточнюються (у затвердженій таблиці дати не відповідають дням тижня).',
-    en: 'June sessions for methods of determining rheological parameters: dates require confirmation (the provided dates do not match weekdays).' },
   { course: 3, uk: 'Педагогічна практика (викладач Борисенко Максим Юрійович) — дати у грудні та січні узгоджуються.',
     en: 'Teaching practice (instructor Maksym Yuriiovych Borysenko) — December and January dates to be agreed.' }
 ] as const;
 
 export const availableMonths = [
   '2026-10', '2026-11', '2026-12', '2027-01', '2027-02',
-  '2027-03', '2027-04', '2027-05', '2027-06', '2027-07'
+  '2027-03', '2027-04', '2027-05', '2027-06'
 ] as const;

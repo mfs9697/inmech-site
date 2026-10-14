@@ -1,0 +1,162 @@
+---
+import { availableMonths, classSessions, scheduleNotes, teachers } from '../data/postgraduateSchedule';
+const { lang = 'uk' } = Astro.props;
+const en = lang === 'en';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path: string) => base + path;
+const initialMonth = '2026-10';
+const months = new Intl.DateTimeFormat(en ? 'en-GB' : 'uk-UA', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+const fullDates = new Intl.DateTimeFormat(en ? 'en-GB' : 'uk-UA', {
+  weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC'
+});
+const formatMonth = (date: string) => months.format(new Date(date + '-01T12:00:00Z'));
+const formatDate = (date: string) => fullDates.format(new Date(date + 'T12:00:00Z'));
+const getPeopleUrl = (slug: string) => withBase('/people/' + slug + '/');
+---
+
+<div class="schedule-app" data-schedule-app>
+  <div class="schedule-controls" aria-label={en ? 'Schedule filters' : 'Фільтри розкладу'}>
+    <div class="control-label" id="study-year-label">{en ? 'Year of study' : 'Курс навчання'}</div>
+    <div class="course-tabs" role="group" aria-labelledby="study-year-label">
+      {[1, 2, 3].map((year) => (
+        <button
+          type="button"
+          class="course-tab"
+          data-year={year}
+          aria-pressed={year === 1 ? 'true' : 'false'}
+        >
+          {en ? 'Year ' + year : year + '-й курс'}
+        </button>
+      ))}
+    </div>
+    <label class="month-filter" for="schedule-month">
+      <span>{en ? 'Month' : 'Місяць'}</span>
+      <select id="schedule-month" data-month-select>
+        {availableMonths.map((month) => (
+          <option value={month} selected={month === initialMonth}>{formatMonth(month)}</option>
+        ))}
+      </select>
+    </label>
+  </div>
+
+  <div class="result-heading">
+    <h2>{en ? 'Classes by date' : 'Заняття за датами'}</h2>
+    <p data-session-count aria-live="polite"></p>
+  </div>
+  <div class="session-list" data-session-list>
+    {classSessions.map((session) => (
+      <article
+        class="lesson-card"
+        data-course={session.course}
+        data-month={session.date.slice(0, 7)}
+        hidden={session.course !== 1 || !session.date.startsWith(initialMonth)}
+      >
+        <div class="lesson-meta">
+          <time datetime={session.date} class="lesson-date">{formatDate(session.date)}</time>
+          <span class="lesson-time" aria-label={en ? 'Class time' : 'Час заняття'}>{session.time}</span>
+        </div>
+        <h3>{en ? session.en : session.uk}</h3>
+        <div class="teacher-lines">
+          {session.teachers.map((id) => (
+            <div class="teacher">
+              <span class="teacher-label">{en ? 'Instructor' : 'Викладач'}:</span>
+              <a href={getPeopleUrl(teachers[id].profile)}>{en ? teachers[id].en : teachers[id].uk}</a>
+            </div>
+          ))}
+        </div>
+        {session.audience && session.audience.length > 0 && (
+          <details class="audience">
+            <summary>{en ? 'Participants' : 'Слухачі'}</summary>
+            <p>{session.audience.join(', ')}</p>
+          </details>
+        )}
+      </article>
+    ))}
+  </div>
+  <p class="empty-state" data-empty hidden>
+    {en ? 'No dated classes are listed for this month. See notes below for classes scheduled separately or awaiting dates.' : 'На цей місяць занять із визначеними датами немає. Нижче наведено дисципліни за окремими розкладами та заняття з датами, що уточнюються.'}
+  </p>
+
+  <section class="schedule-notes" aria-labelledby="notes-heading">
+    <h2 id="notes-heading">{en ? 'Other classes and arrangements' : 'Інші заняття та уточнення'}</h2>
+    <div class="notes-list">
+      {scheduleNotes.map((item) => (
+        <div class="note-item" data-note-course={item.course} hidden={item.course !== 1}>
+          <span class="note-icon" aria-hidden="true">i</span>
+          <p>{en ? item.en : item.uk}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</div>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector('[data-schedule-app]');
+    if (!root) return;
+    const tabs = [...root.querySelectorAll('[data-year]')];
+    const select = root.querySelector('[data-month-select]');
+    const cards = [...root.querySelectorAll('.lesson-card')];
+    const notes = [...root.querySelectorAll('[data-note-course]')];
+    const count = root.querySelector('[data-session-count]');
+    const empty = root.querySelector('[data-empty]');
+    const isEnglish = document.documentElement.lang.startsWith('en');
+    let course = '1';
+    const update = () => {
+      let visible = 0;
+      for (const card of cards) {
+        const show = card.dataset.course === course && card.dataset.month === select.value;
+        card.hidden = !show;
+        if (show) visible++;
+      }
+      for (const note of notes) note.hidden = note.dataset.noteCourse !== course;
+      for (const tab of tabs) tab.setAttribute('aria-pressed', String(tab.dataset.year === course));
+      empty.hidden = visible !== 0;
+      count.textContent = isEnglish ? visible + ' class' + (visible === 1 ? '' : 'es') : visible + ' ' + (
+        visible % 10 === 1 && visible % 100 !== 11 ? 'заняття' :
+        visible % 10 >= 2 && visible % 10 <= 4 && (visible % 100 < 12 || visible % 100 > 14) ? 'заняття' : 'занять'
+      );
+    };
+    tabs.forEach(tab => tab.addEventListener('click', () => { course = tab.dataset.year; update(); }));
+    select.addEventListener('change', update);
+    update();
+  })();
+</script>
+
+<style>
+  .schedule-app { margin-top: 28px; }
+  .schedule-controls { display: flex; align-items: end; flex-wrap: wrap; gap: 18px 30px; padding: 22px; border: 1px solid var(--line); border-radius: 22px; background: var(--surface); box-shadow: var(--shadow); }
+  .control-label,.month-filter span { display: block; margin-bottom: 9px; font-size: .9rem; font-weight: 800; color: var(--muted); }
+  .course-tabs { display: flex; flex-wrap: wrap; gap: 6px; padding: 5px; border-radius: 15px; background: var(--surface-soft); }
+  .course-tab { appearance: none; border: 0; border-radius: 12px; background: transparent; color: var(--text); padding: 11px 18px; font: inherit; font-weight: 800; cursor: pointer; min-height: 44px; }
+  .course-tab[aria-pressed="true"] { background: var(--accent-dark); color: white; box-shadow: 0 2px 9px rgba(0,0,0,.12); }
+  .course-tab:focus-visible,.month-filter select:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .month-filter { min-width: 240px; flex: 1 1 220px; max-width: 360px; }
+  .month-filter select { appearance: auto; width: 100%; max-width: 100%; min-height: 48px; padding: 10px 13px; font: inherit; font-weight: 700; color: var(--text); border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+  .result-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin: 28px 0 14px; }
+  .result-heading h2 { margin: 0; font-size: 1.45rem; }
+  .result-heading p { color: var(--muted); margin: 0; }
+  .session-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .lesson-card { min-width: 0; padding: 20px 22px; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); box-shadow: var(--shadow); }
+  .lesson-card[hidden],.note-item[hidden],.empty-state[hidden] { display: none !important; }
+  .lesson-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
+  .lesson-date { font-weight: 850; }
+  .lesson-time { font-variant-numeric: tabular-nums; color: var(--accent-dark); font-weight: 850; background: var(--accent-soft); padding: 5px 10px; border-radius: 10px; white-space: nowrap; }
+  .lesson-card h3 { margin: 0 0 15px; font-size: clamp(1rem, 2vw, 1.18rem); line-height: 1.42; overflow-wrap: anywhere; }
+  .teacher-lines { display: grid; gap: 5px; }
+  .teacher { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 8px; line-height: 1.5; }
+  .teacher-label { color: var(--muted); font-size: .9rem; }
+  .teacher a { color: var(--accent-dark); font-weight: 750; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  .audience { margin-top: 15px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: .87rem; }
+  .audience summary { cursor: pointer; font-weight: 750; width: fit-content; }
+  .audience p { margin: 8px 0 0; line-height: 1.55; }
+  .empty-state { margin-top: 14px; padding: 22px; background: var(--surface-soft); border-radius: 15px; }
+  .schedule-notes { margin-top: 38px; }
+  .schedule-notes h2 { margin-bottom: 15px; font-size: 1.32rem; }
+  .notes-list { display: grid; gap: 10px; }
+  .note-item { display: flex; align-items: flex-start; gap: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+  .note-item p { margin: 0; line-height: 1.6; }
+  .note-icon { display: grid; flex: 0 0 22px; place-items: center; border-radius: 50%; background: var(--accent-soft); color: var(--accent-dark); font-size: .85rem; font-weight: 800; }
+  @media (max-width: 790px) { .session-list { grid-template-columns: 1fr; } }
+  @media (max-width: 540px) { .schedule-controls { padding: 14px; } .course-tabs { width: 100%; } .course-tab { flex: 1; padding: 10px 6px; font-size: .92rem; } .month-filter { max-width: none; width: 100%; } .lesson-card { padding: 16px; } .result-heading { flex-wrap: wrap; } }
+</style>

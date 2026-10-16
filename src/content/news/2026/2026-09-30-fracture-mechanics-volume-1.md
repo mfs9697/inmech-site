@@ -25,6 +25,8 @@ featured: true
 
 Підготовка першого тому — результат великої спільної роботи редакторів і авторського колективу. **Щиро вітаємо всіх причетних до видання та бажаємо книзі широкого наукового читача!**
 
+Матеріал про монографію також опубліковано на сайті **Національної академії наук України**: [«Виходить англомовна колективна монографія, що представляє сучасні дослідження українських наукових шкіл у галузі механіки руйнування та суміжних напрямів»](https://www.nas.gov.ua/scientific-publications/vihodit-anglomovna-kolektivna-monografiya-shcho-predstavlyaye-suchasni-doslidzhennya-ukranskih-naukovih-shkil-u-galuzi-mehaniki-ruynuvannya-ta-sumizhnih-napryamiv).
+
 [Сторінка книги у Springer](https://link.springer.com/book/9783032306722)
 
 <!-- en:start -->
@@ -38,6 +40,8 @@ The volume presents contemporary research in fracture mechanics and adjacent fie
 The book is part of the **Advanced Structured Materials** series, Vol. 258. According to Springer’s current bibliographic data, the volume comprises **VIII + 345 pages** and includes **71 black-and-white and 19 colour illustrations**. eBook ISBN: **978-3-032-30673-9**, due **21 October 2026**; hardcover ISBN: **978-3-032-30672-2**, due **27 November 2026**.
 
 Preparation of Volume 1 is the result of extensive collaborative work by the editors and contributing authors. **We warmly congratulate everyone involved and wish the book a wide readership in the international research community!**
+
+A feature about the monograph has also been published on the website of the **National Academy of Sciences of Ukraine**: [feature on the NAS of Ukraine website (in Ukrainian)](https://www.nas.gov.ua/scientific-publications/vihodit-anglomovna-kolektivna-monografiya-shcho-predstavlyaye-suchasni-doslidzhennya-ukranskih-naukovih-shkil-u-galuzi-mehaniki-ruynuvannya-ta-sumizhnih-napryamiv).
 
 [Book page at Springer](https://link.springer.com/book/9783032306722)
 

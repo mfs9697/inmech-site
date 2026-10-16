@@ -21,7 +21,7 @@ featured: true
 
 **Редактори тому:** Holm Altenbach, Viacheslav Bogdanov, Volodymyr Nazarenko, Roman Kushnir, Alexander Grigorenko, Mikhailo Selivanov.
 
-Книга входить до серії **Advanced Structured Materials, Vol. 258**. За актуальними бібліографічними даними Springer, обсяг видання становить **VIII + 345 сторінок**; воно містить **71 чорно-білу та 19 кольорових ілюстрацій**. eBook ISBN: **978-3-032-30673-9**; електронне видання заплановано на **21 жовтня 2026 року**. Hardcover ISBN: **978-3-032-30672-2**; друковане видання заплановано на **27 листопада 2026 року**.
+Книга входить до серії **Advanced Structured Materials, Vol. 258**. За актуальними бібліографічними даними Springer, обсяг видання становить **VIII + 345 сторінок**; воно містить **71 чорно-білу та 19 кольорових ілюстрацій**. eBook ISBN: **978-3-032-30673-9**; електронне видання заплановано на **21 жовтня 2026 року**. Hardcover ISBN: **978-3-032-30672-2**; друковане видання заплановано на **18 лютого 2027 року**.
 
 Підготовка першого тому — результат великої спільної роботи редакторів і авторського колективу. **Щиро вітаємо всіх причетних до видання та бажаємо книзі широкого наукового читача!**
 
@@ -37,7 +37,7 @@ The volume presents contemporary research in fracture mechanics and adjacent fie
 
 **Editors:** Holm Altenbach, Viacheslav Bogdanov, Volodymyr Nazarenko, Roman Kushnir, Alexander Grigorenko, Mikhailo Selivanov.
 
-The book is part of the **Advanced Structured Materials** series, Vol. 258. According to Springer’s current bibliographic data, the volume comprises **VIII + 345 pages** and includes **71 black-and-white and 19 colour illustrations**. eBook ISBN: **978-3-032-30673-9**, due **21 October 2026**; hardcover ISBN: **978-3-032-30672-2**, due **27 November 2026**.
+The book is part of the **Advanced Structured Materials** series, Vol. 258. According to Springer’s current bibliographic data, the volume comprises **VIII + 345 pages** and includes **71 black-and-white and 19 colour illustrations**. eBook ISBN: **978-3-032-30673-9**, due **21 October 2026**; hardcover ISBN: **978-3-032-30672-2**, due **18 February 2027**.
 
 Preparation of Volume 1 is the result of extensive collaborative work by the editors and contributing authors. **We warmly congratulate everyone involved and wish the book a wide readership in the international research community!**
 

@@ -1,0 +1,24 @@
+---
+import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
+import EventCalendar from '../../../components/InstituteEventCalendar.astro';
+import { siteEn } from '../../../data/site-en';
+---
+<BaseLayoutEn title={`Events calendar | ${siteEn.shortName}`} description="Calendar of scientific seminars, conferences, meetings and events at the S.P. Timoshenko Institute of Mechanics.">
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel event-hero-panel">
+        <p class="eyebrow">Life at the Institute</p>
+        <h1>Events calendar</h1>
+        <p class="lead">Research seminars, conferences, meetings and other Institute events in one place. Browse by month or date in a clear, mobile-friendly view.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container"><EventCalendar lang="en" /></div>
+  </section>
+</BaseLayoutEn>
+<style>
+  .event-hero-panel { padding: clamp(25px, 4vw, 43px); }
+  .event-hero-panel h1 { margin: 0 0 12px; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -.035em; }
+  .event-hero-panel .lead { max-width: 840px; }
+</style>

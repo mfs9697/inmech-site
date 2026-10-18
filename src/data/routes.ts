@@ -13,6 +13,7 @@ export interface SiteRoute {
 export const siteRoutes: SiteRoute[] = [
   { uk: '/', en: '/en/', titleUk: 'Головна сторінка', titleEn: 'Home page', sectionUk: 'Головна', sectionEn: 'Home' },
   { uk: '/news/', en: '/en/news/', titleUk: 'Новини', titleEn: 'News', sectionUk: 'Головна', sectionEn: 'Home' },
+  { uk: '/events/', en: '/en/events/', titleUk: 'Календар подій', titleEn: 'Events calendar', sectionUk: 'Головна', sectionEn: 'Home' },
   { uk: '/#contacts', en: '/en/#contacts', titleUk: 'Контакти', titleEn: 'Contacts', sectionUk: 'Головна', sectionEn: 'Home' },
 
   { uk: '/history/', en: '/en/history/', titleUk: 'Історія і сучасність', titleEn: 'History and present', sectionUk: 'Про інститут', sectionEn: 'About the Institute' },

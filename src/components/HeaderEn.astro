@@ -119,6 +119,7 @@ const ariaCurrentNews = () => {
         </li>
 
         <li><a class={isSectionActive('news')} href={withBase('/en/news/')} aria-current={ariaCurrentNews()}>News</a></li>
+        <li><a class={isPathActive('/en/events/')} href={withBase('/en/events/')} aria-current={ariaCurrentPage('/en/events/')}>Events</a></li>
         <li><a href={withBase('/en/#contacts')}>Contacts</a></li>
         <li><a class={`search-nav-link ${isPathActive('/en/search/')}`} href={withBase('/en/search/')} aria-label="Search the website" aria-current={ariaCurrentPage('/en/search/')}>Search</a></li>
       </ul>

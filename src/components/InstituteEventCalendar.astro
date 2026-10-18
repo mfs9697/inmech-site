@@ -1,0 +1,262 @@
+---
+import { instituteEvents } from '../data/instituteEvents';
+
+interface Props { lang?: 'uk' | 'en'; }
+const { lang = 'uk' } = Astro.props;
+const isEn = lang === 'en';
+const archiveUrl = 'https://old.inmech.kyiv.ua/l/ua/calendar_g/';
+---
+
+<section class="event-calendar" data-institute-calendar data-lang={lang} data-records={JSON.stringify(instituteEvents)} aria-label={isEn ? 'Institute events calendar' : 'Календар подій Інституту'}>
+  <div class="event-calendar-toolbar">
+    <div class="event-calendar-heading">
+      <p class="calendar-kicker">{isEn ? 'Browse by month' : 'Перегляд за місяцями'}</p>
+      <h2 data-month-label aria-live="polite"></h2>
+    </div>
+    <div class="calendar-controls" role="group" aria-label={isEn ? 'Calendar navigation' : 'Навігація календарем'}>
+      <button type="button" data-prev-month aria-label={isEn ? 'Previous month' : 'Попередній місяць'} title={isEn ? 'Previous month' : 'Попередній місяць'}>‹</button>
+      <button type="button" data-today class="today-button">{isEn ? 'Today' : 'Сьогодні'}</button>
+      <button type="button" data-next-month aria-label={isEn ? 'Next month' : 'Наступний місяць'} title={isEn ? 'Next month' : 'Наступний місяць'}>›</button>
+    </div>
+  </div>
+
+  <div class="event-calendar-layout">
+    <div class="calendar-month" aria-label={isEn ? 'Month grid' : 'Календар місяця'}>
+      <div class="calendar-weekdays" aria-hidden="true">
+        {(isEn ? ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'] : ['Пн','Вт','Ср','Чт','Пт','Сб','Нд']).map((day) => <span>{day}</span>)}
+      </div>
+      <div class="calendar-days" data-days-grid></div>
+      <p class="calendar-grid-help">{isEn ? 'Select a day to filter the event list. Select it again to show the whole month.' : 'Натисніть дату, щоб переглянути події цього дня. Повторне натискання повертає весь місяць.'}</p>
+    </div>
+
+    <div class="calendar-agenda">
+      <div class="agenda-header">
+        <div>
+          <p class="calendar-kicker">{isEn ? 'Schedule' : 'Програма'}</p>
+          <h3 data-agenda-title>{isEn ? 'Events this month' : 'Події місяця'}</h3>
+        </div>
+        <button type="button" class="all-days-button" data-clear-selection hidden>{isEn ? 'All dates' : 'Увесь місяць'}</button>
+      </div>
+      <div class="agenda-items" data-agenda-items aria-live="polite"></div>
+      <div class="calendar-empty" data-calendar-empty>
+        <span class="empty-calendar-symbol" aria-hidden="true">◷</span>
+        <p class="empty-title">{isEn ? 'Calendar data is awaiting connection' : 'Очікуємо на підключення календаря'}</p>
+        <p>{isEn ? 'The interface is ready; the public sources from the previous website still need verification. No events are invented or copied from private calendars.' : 'Інтерфейс готовий, але публічні джерела зі старого сайту ще потрібно перевірити. Події не вигадуються і не копіюються з приватних календарів.'}</p>
+        <a href={archiveUrl} target="_blank" rel="noopener noreferrer">{isEn ? 'Open the previous calendar ↗' : 'Відкрити попередній календар ↗'}</a>
+      </div>
+    </div>
+  </div>
+  <p class="calendar-footnote">
+    {isEn ? 'Times are shown in Kyiv time. The old calendar remains available during migration.' : 'Час подій — київський. Під час перенесення старий календар залишається доступним.'}
+  </p>
+</section>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector('[data-institute-calendar]');
+    if (!root) return;
+
+    const lang = root.dataset.lang === 'en' ? 'en' : 'uk';
+    const locale = lang === 'en' ? 'en-GB' : 'uk-UA';
+    const records = JSON.parse(root.dataset.records || '[]');
+    const monthLabel = root.querySelector('[data-month-label]');
+    const dayGrid = root.querySelector('[data-days-grid]');
+    const agendaTitle = root.querySelector('[data-agenda-title]');
+    const agendaItems = root.querySelector('[data-agenda-items]');
+    const empty = root.querySelector('[data-calendar-empty]');
+    const clear = root.querySelector('[data-clear-selection]');
+
+    // Use the Institute's time zone rather than the visitor's local date.
+    const kyivParts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Europe/Kyiv', year: 'numeric', month: '2-digit', day: '2-digit'
+    }).formatToParts(new Date());
+    const part = (type) => Number(kyivParts.find((p) => p.type === type)?.value);
+    const today = [part('year'), String(part('month')).padStart(2, '0'), String(part('day')).padStart(2, '0')].join('-');
+    let year = part('year');
+    let month = part('month') - 1;
+    let selected = null;
+
+    const isoDate = (y, m, d) =>
+      [y, String(m + 1).padStart(2, '0'), String(d).padStart(2, '0')].join('-');
+    const dateObj = (date) => new Date(date + 'T12:00:00Z');
+    const isOnDate = (event, date) => event.date <= date && (event.endDate || event.date) >= date;
+    const inMonth = (event, y, m) => {
+      const first = isoDate(y, m, 1);
+      const last = isoDate(y, m, new Date(Date.UTC(y, m + 1, 0)).getUTCDate());
+      return event.date <= last && (event.endDate || event.date) >= first;
+    };
+    const label = (date) => dateObj(date).toLocaleDateString(locale, { day: 'numeric', month: 'short', timeZone: 'UTC' });
+
+    function render() {
+      const viewed = new Date(Date.UTC(year, month, 1));
+      monthLabel.textContent = viewed.toLocaleDateString(locale, { month: 'long', year: 'numeric', timeZone: 'UTC' });
+      dayGrid.replaceChildren();
+
+      const firstWeekday = (viewed.getUTCDay() + 6) % 7;
+      const monthDays = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+      const slots = Math.ceil((firstWeekday + monthDays) / 7) * 7;
+      for (let i = 0; i < slots; i++) {
+        const d = new Date(Date.UTC(year, month, i - firstWeekday + 1));
+        const key = isoDate(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'calendar-day';
+        if (d.getUTCMonth() !== month) button.classList.add('outside');
+        if (key === today) button.classList.add('current-day');
+        if (key === selected) button.classList.add('selected-day');
+        button.setAttribute('aria-pressed', String(key === selected));
+        button.setAttribute('aria-label', d.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }));
+        const number = document.createElement('span');
+        number.className = 'day-number';
+        number.textContent = String(d.getUTCDate());
+        button.append(number);
+        const count = records.filter((event) => isOnDate(event, key)).length;
+        if (count) {
+          button.classList.add('has-events');
+          const dot = document.createElement('span');
+          dot.className = 'event-dot';
+          dot.setAttribute('aria-label', lang === 'en' ? count + ' events' : count + ' подій');
+          button.append(dot);
+        }
+        button.addEventListener('click', () => {
+          year = d.getUTCFullYear();
+          month = d.getUTCMonth();
+          selected = selected === key ? null : key;
+          render();
+        });
+        dayGrid.append(button);
+      }
+
+      clear.hidden = !selected;
+      agendaTitle.textContent = selected
+        ? dateObj(selected).toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
+        : (lang === 'en' ? 'Events this month' : 'Події місяця');
+
+      const displayed = records.filter((event) => selected
+        ? isOnDate(event, selected)
+        : inMonth(event, year, month)).sort((a, b) =>
+          a.date.localeCompare(b.date) || (a.time || '').localeCompare(b.time || '') || a.id.localeCompare(b.id));
+      agendaItems.replaceChildren();
+      for (const event of displayed) {
+        const article = document.createElement('article');
+        article.className = 'agenda-card';
+        const date = document.createElement('div');
+        date.className = 'agenda-date';
+        const day = document.createElement('strong');
+        day.textContent = dateObj(event.date).toLocaleDateString(locale, { day: 'numeric', timeZone: 'UTC' });
+        const small = document.createElement('span');
+        small.textContent = dateObj(event.date).toLocaleDateString(locale, { month: 'short', timeZone: 'UTC' });
+        date.append(day, small);
+        const body = document.createElement('div');
+        body.className = 'agenda-body';
+        const category = document.createElement('p');
+        category.className = 'agenda-category';
+        category.textContent = lang === 'en' ? (event.categoryEn || event.categoryUk || 'Event') : (event.categoryUk || 'Подія');
+        const heading = document.createElement('h4');
+        heading.textContent = lang === 'en' ? (event.titleEn || event.titleUk) : event.titleUk;
+        body.append(category, heading);
+        const details = [event.time || '', lang === 'en' ? (event.locationEn || event.locationUk || '') : (event.locationUk || '')].filter(Boolean);
+        if (event.endDate && event.endDate !== event.date) details.unshift(label(event.date) + ' – ' + label(event.endDate));
+        if (details.length) {
+          const meta = document.createElement('p');
+          meta.className = 'agenda-meta';
+          meta.textContent = details.join(' · ');
+          body.append(meta);
+        }
+        if (event.url) {
+          try {
+            const target = new URL(event.url, window.location.origin);
+            if (target.protocol === 'https:' || target.protocol === 'http:') {
+              const a = document.createElement('a');
+              a.href = target.href;
+              a.target = '_blank';
+              a.rel = 'noopener noreferrer';
+              a.textContent = lang === 'en' ? 'Event details ↗' : 'Про подію ↗';
+              body.append(a);
+            }
+          } catch (_) { /* Ignore invalid archival URLs. */ }
+        }
+        article.append(date, body);
+        agendaItems.append(article);
+      }
+      empty.hidden = displayed.length > 0;
+      if (!records.length) {
+        empty.querySelector('.empty-title').textContent = lang === 'en' ? 'Calendar data is awaiting connection' : 'Очікуємо на підключення календаря';
+      } else if (!displayed.length) {
+        empty.querySelector('.empty-title').textContent = lang === 'en' ? 'No announced events for this period' : 'На цей період немає анонсованих подій';
+        empty.querySelector('p:not(.empty-title)').textContent = lang === 'en' ? 'Choose another month or date to browse the calendar.' : 'Перейдіть до іншого місяця або оберіть іншу дату.';
+      } else {
+        empty.querySelector('p:not(.empty-title)').textContent = '';
+      }
+    }
+
+    root.querySelector('[data-prev-month]').addEventListener('click', () => {
+      month--; if (month < 0) { month = 11; year--; } selected = null; render();
+    });
+    root.querySelector('[data-next-month]').addEventListener('click', () => {
+      month++; if (month > 11) { month = 0; year++; } selected = null; render();
+    });
+    root.querySelector('[data-today]').addEventListener('click', () => {
+      year = part('year'); month = part('month') - 1; selected = null; render();
+    });
+    clear.addEventListener('click', () => { selected = null; render(); });
+    render();
+  })();
+</script>
+
+<style>
+  .event-calendar { background: #fff; border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow); padding: clamp(16px, 3vw, 30px); }
+  .event-calendar-toolbar { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+  .calendar-kicker { margin: 0 0 4px; color: var(--accent-dark); font-size: .75rem; font-weight: 800; letter-spacing: .085em; text-transform: uppercase; }
+  .event-calendar-heading h2 { margin: 0; font-size: clamp(1.45rem, 2.5vw, 2rem); text-transform: capitalize; letter-spacing: -.025em; }
+  .calendar-controls { display: flex; align-items: center; gap: 8px; }
+  .calendar-controls button, .all-days-button { border: 1px solid var(--line); background: #fff; color: var(--text); border-radius: 11px; min-width: 42px; min-height: 42px; padding: 7px 12px; font: inherit; font-weight: 750; cursor: pointer; }
+  .calendar-controls button:first-child, .calendar-controls button:last-child { font-size: 1.5rem; line-height: 1; }
+  .calendar-controls button:hover, .all-days-button:hover { background: var(--accent-soft); border-color: var(--accent); }
+  .event-calendar-layout { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(300px, .95fr); gap: clamp(18px, 3vw, 30px); align-items: start; }
+  .calendar-month { min-width: 0; }
+  .calendar-weekdays, .calendar-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px; }
+  .calendar-weekdays span { font-size: .8rem; font-weight: 800; color: var(--muted); text-align: center; padding: 10px 0; }
+  .calendar-days { border-top: 1px solid var(--line); padding-top: 10px; }
+  .calendar-day { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 7px; min-width: 0; min-height: 68px; padding: 11px 3px 7px; font: inherit; font-size: .95rem; border: 1px solid transparent; border-radius: 12px; background: #f5f8fc; color: var(--text); cursor: pointer; }
+  .calendar-day:hover { border-color: #93b6df; background: #eaf3ff; }
+  .calendar-day.outside { color: #8795a5; background: #fafbfd; }
+  .calendar-day.current-day .day-number { background: var(--accent); color: #fff; border-radius: 50%; width: 30px; height: 30px; display: grid; place-items: center; margin-top: -4px; }
+  .calendar-day.selected-day { border: 2px solid var(--accent); background: var(--accent-soft); }
+  .calendar-day.has-events { background: #eaf2ff; }
+  .event-dot { display: block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+  .calendar-grid-help { font-size: .78rem; color: var(--muted); margin: 15px 0 0; }
+  .calendar-agenda { min-width: 0; border-left: 1px solid var(--line); padding-left: clamp(18px, 2.5vw, 30px); }
+  .agenda-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
+  .agenda-header h3 { margin: 0; font-size: 1.2rem; }
+  .all-days-button { font-size: .8rem; min-width: auto; min-height: 36px; }
+  .agenda-items { display: grid; gap: 12px; }
+  .agenda-card { display: flex; gap: 14px; padding: 15px; border: 1px solid var(--line); border-radius: 15px; background: #fbfdff; }
+  .agenda-date { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 52px; height: 60px; color: var(--accent); background: var(--accent-soft); border-radius: 11px; }
+  .agenda-date strong { line-height: 1.05; font-size: 1.45rem; }
+  .agenda-date span { font-size: .75rem; font-weight: 700; }
+  .agenda-body { min-width: 0; }
+  .agenda-category { margin: 0 0 4px; color: var(--accent-dark); font-size: .7rem; font-weight: 850; text-transform: uppercase; }
+  .agenda-body h4 { margin: 0; font-size: 1rem; line-height: 1.4; }
+  .agenda-meta { margin: 7px 0 0; color: var(--muted); font-size: .85rem; }
+  .agenda-body a { display: inline-block; margin-top: 9px; font-size: .85rem; font-weight: 700; }
+  .calendar-empty { padding: 24px 18px; border-radius: 16px; border: 1px dashed #a9c2db; background: #f7fbff; color: var(--muted); font-size: .91rem; }
+  .calendar-empty[hidden], .all-days-button[hidden] { display: none; }
+  .calendar-empty p { margin: 10px 0; }
+  .calendar-empty .empty-title { color: var(--text); font-weight: 800; }
+  .calendar-empty a { font-weight: 750; }
+  .empty-calendar-symbol { color: var(--accent); font-size: 2.2rem; line-height: 1; }
+  .calendar-footnote { margin: 24px 0 0; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: .82rem; }
+  @media (max-width: 900px) {
+    .event-calendar-layout { grid-template-columns: 1fr; }
+    .calendar-agenda { border-left: 0; border-top: 1px solid var(--line); padding: 22px 0 0; }
+  }
+  @media (max-width: 620px) {
+    .calendar-month { display: none; }
+    .event-calendar-toolbar { align-items: center; }
+    .event-calendar { padding: 18px 15px; }
+    .calendar-agenda { border-top: 0; padding-top: 0; }
+    .calendar-grid-help { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .calendar-controls button { transition: none; } }
+</style>

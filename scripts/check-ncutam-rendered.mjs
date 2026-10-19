@@ -95,8 +95,8 @@ if (!fs.existsSync(notePage)) {
       continue;
     }
     const section = html.slice(start, end);
-    const lists = [...section.matchAll(/<ol(?:\\s[^>]*)?>([\\s\\S]*?)<\\/ol>/g)];
-    const items = lists.length === 1 ? [...lists[0][1].matchAll(/<li(?:\\s[^>]*)?>/g)].length : 0;
+    const lists = [...section.matchAll(/<ol(?:\s[^>]*)?>([\s\S]*?)<\/ol>/g)];
+    const items = lists.length === 1 ? [...lists[0][1].matchAll(/<li(?:\s[^>]*)?>/g)].length : 0;
     if (lists.length !== 1 || items !== count) {
       errors.push(`NCUTAM analytical note ${first}: expected one <ol> with ${count} items; got ${lists.length} lists, ${items} items`);
     }

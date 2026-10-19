@@ -90,8 +90,9 @@ export function renderBilingualMarkdown(markdown: string, base = '') {
     const line = rawLine.trim();
 
     if (!line) {
+      // Blank lines between consecutive Markdown list items are allowed.
+      // Close the list only when a heading, another list type, or prose follows.
       flushParagraph();
-      closeList();
       continue;
     }
 
@@ -134,6 +135,7 @@ export function renderBilingualMarkdown(markdown: string, base = '') {
       continue;
     }
 
+    closeList();
     paragraph.push(line);
   }
 

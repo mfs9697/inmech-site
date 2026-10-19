@@ -77,6 +77,32 @@ for (const { file, target } of redirectPages) {
   }
 }
 
+// Regression: the two seven-point numbered sections in the 2026 analytical
+// note must remain one ordered list each, even with blank lines between items.
+const notePage = path.join(dist, 'ncutam', 'activity', 'initiatives', '2026-10-19-mechanics-analytical-note', 'index.html');
+if (!fs.existsSync(notePage)) {
+  errors.push('NCUTAM analytical note page is missing from dist/');
+} else {
+  const html = fs.readFileSync(notePage, 'utf8');
+  for (const { first, next, count } of [
+    { first: 'ncutam-4', next: 'ncutam-5', count: 7 },
+    { first: 'ncutam-5', next: 'ncutam-sources', count: 7 }
+  ]) {
+    const start = html.indexOf(`<h2 id="${first}">`);
+    const end = html.indexOf(`<h2 id="${next}">`, start);
+    if (start < 0 || end < 0) {
+      errors.push(`NCUTAM analytical note: missing section boundary ${first} / ${next}`);
+      continue;
+    }
+    const section = html.slice(start, end);
+    const lists = [...section.matchAll(/<ol(?:\\s[^>]*)?>([\\s\\S]*?)<\\/ol>/g)];
+    const items = lists.length === 1 ? [...lists[0][1].matchAll(/<li(?:\\s[^>]*)?>/g)].length : 0;
+    if (lists.length !== 1 || items !== count) {
+      errors.push(`NCUTAM analytical note ${first}: expected one <ol> with ${count} items; got ${lists.length} lists, ${items} items`);
+    }
+  }
+}
+
 if (errors.length > 0) {
   console.error('NCUTAM rendered-output validation failed:');
   for (const error of errors) console.error(`  - ${error}`);

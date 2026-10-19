@@ -214,3 +214,14 @@
   issuedBy: "Національний комітет України з теоретичної та прикладної механіки"
   issuedByEn: "National Committee of Ukraine for Theoretical and Applied Mechanics"
   status: historical
+
+- id: analytical-note-mechanics-2026
+  title: "Аналітична записка НКУТПМ про стан і перспективи досліджень у галузі механіки"
+  titleEn: "NCUTAM analytical note on the state and prospects of mechanics research"
+  kind: other
+  date: 2026-10-19
+  language: uk
+  path: "/documents/ncutam/analysis/2026/ncutam-analytical-note-mechanics-2026.pdf"
+  issuedBy: "Національний комітет України з теоретичної і прикладної механіки"
+  issuedByEn: "National Committee of Ukraine for Theoretical and Applied Mechanics"
+  status: current

@@ -102,7 +102,11 @@ export function renderBilingualMarkdown(markdown: string, base = '') {
       flushParagraph();
       closeList();
       const level = Math.min(heading[1].length, 6);
-      html.push(`<h${level}>${renderInlineMarkdown(heading[2], base)}</h${level}>`);
+      // Support explicit, validated heading anchors for long NCUTAM documents.
+      const explicitId = heading[2].match(/^(.*?)\s+\{#([A-Za-z0-9_-]+)\}$/);
+      const headingText = explicitId ? explicitId[1] : heading[2];
+      const anchorAttribute = explicitId ? ` id="${escapeHtml(explicitId[2])}"` : '';
+      html.push(`<h${level}${anchorAttribute}>${renderInlineMarkdown(headingText, base)}</h${level}>`);
       continue;
     }
 

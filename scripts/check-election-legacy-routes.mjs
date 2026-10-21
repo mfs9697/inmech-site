@@ -42,7 +42,8 @@ function validate(data, options = {}) {
     if (row.sourceContent === 'empty-body') empty++;
     assert(/^\/director-election\/2026\/(?:[a-z0-9-]+\/)*$/.test(row.targetPath), 'Unexpected destination');
     assert(['built', 'planned-page'].includes(row.targetState));
-    assert.equal(row.targetState === 'built', row.targetPath === siteRoot, 'Only year root is published at this stage');
+    if (row.sourcePath === '/') assert.equal(row.targetState, 'built', 'Election root must remain published');
+    else assert.notEqual(row.targetPath, siteRoot, 'Historical detail page must not be redirected to the year homepage');
     targets.set(row.targetPath, (targets.get(row.targetPath) ?? 0) + 1);
     const html = path.join(root, 'dist', row.targetPath.slice(1), 'index.html');
     if (checkGenerated) {
@@ -106,7 +107,8 @@ function validate(data, options = {}) {
   assert.equal(retained, 4, 'Four verified old-main originals stay available');
   assert.equal(planned, 12, 'Seven election downloads and five main-host aliases are pending');
   assert.equal(keys.size, 42, 'Preserve all 25 HTML + 17 download/alias observations');
-  return { html: data.htmlRoutes.length, htmlTargets: targets.size, plannedPages: 21, documentAliases: data.documentRoutes.length };
+  const pending = new Set(data.htmlRoutes.filter(r => r.targetState === 'planned-page').map(r => r.targetPath));
+  return { html: data.htmlRoutes.length, htmlTargets: targets.size, plannedPages: pending.size, documentAliases: data.documentRoutes.length };
 }
 
 function selfTest() {

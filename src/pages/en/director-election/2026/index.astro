@@ -1,0 +1,13 @@
+---
+import BaseLayoutEn from '../../../../layouts/BaseLayoutEn.astro';
+import ElectionArchive from '../../../../components/elections/ElectionArchive.astro';
+import { siteEn } from '../../../../data/site-en';
+---
+
+<BaseLayoutEn
+  title={'Director election 2026 | ' + siteEn.name}
+  description="Original documents and recorded results of the 16 June 2026 director election at the S.P. Timoshenko Institute of Mechanics."
+  activePage="about"
+>
+  <ElectionArchive lang="en" view="year" />
+</BaseLayoutEn>

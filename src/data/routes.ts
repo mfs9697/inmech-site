@@ -22,6 +22,8 @@ export const siteRoutes: SiteRoute[] = [
   { uk: '/regulations/', en: '/en/regulations/', titleUk: 'Статут', titleEn: 'Statute', sectionUk: 'Про інститут', sectionEn: 'About the Institute' },
   { uk: '/identity/', en: '/en/identity/', titleUk: 'Логотип і візуальна ідентичність', titleEn: 'Logo and visual identity', sectionUk: 'Про інститут', sectionEn: 'About the Institute' },
   { uk: '/strategy/', en: '/en/strategy/', titleUk: 'Стратегія розвитку', titleEn: 'Development strategy', sectionUk: 'Про інститут', sectionEn: 'About the Institute' },
+  { uk: '/director-election/', en: '/en/director-election/', titleUk: 'Архів виборів директора', titleEn: 'Director elections archive', sectionUk: 'Про інститут', sectionEn: 'About the Institute' },
+  { uk: '/director-election/2026/', en: '/en/director-election/2026/', titleUk: 'Вибори директора 2026', titleEn: 'Director election 2026', sectionUk: 'Про інститут', sectionEn: 'About the Institute' },
   { uk: '/scientific-cooperation/', en: '/en/scientific-cooperation/', titleUk: 'Співпраця та партнерство', titleEn: 'Cooperation and partnerships', sectionUk: 'Про інститут', sectionEn: 'About the Institute' },
   { uk: '/tender/', en: '/en/tender/', titleUk: 'Закупівлі та тендери', titleEn: 'Procurement and tenders', sectionUk: 'Про інститут', sectionEn: 'About the Institute' },
   { uk: '/vacancies/', en: '/en/vacancies/', titleUk: 'Вакансії', titleEn: 'Vacancies', sectionUk: 'Про інститут', sectionEn: 'About the Institute' },

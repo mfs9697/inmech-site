@@ -84,8 +84,8 @@ const additionalScientificInfo = [
   'посилання на наукові онлайн-профілі.'
 ];
 
-const postdocRegulationHref =
-  'https://newin.nas.gov.ua/legaltexts/DocCorporate/Postanova/2025/P-250507-164-0.pdf';
+const postdocRegulationConfirmationHref =
+  'https://www.nas.gov.ua/storage/files/normativni-akti-nan-ukrayini/r-rozporyadzennya/2026/r-260130-53.pdf';
 ---
 
 <BaseLayout
@@ -224,9 +224,11 @@ const postdocRegulationHref =
                         {track.id === 'postdoc' && (
                           <p class="track-reference">
                             <strong>Нормативна база:</strong>{' '}
-                            <a href={postdocRegulationHref} target="_blank" rel="noopener">
-                              Положення про програму постдокторальних досліджень у НАН України
-                              (редакція постанови Президії НАН України від 07.05.2025 № 164)
+                            Положення про програму постдокторальних досліджень у НАН України
+                            (редакція постанови Президії НАН України від 07.05.2025 № 164).{' '}
+                            <a href={postdocRegulationConfirmationHref} target="_blank" rel="noopener">
+                              Офіційне підтвердження чинної редакції на сайті НАН України
+                              (розпорядження від 30.01.2026 № 53)
                             </a>
                           </p>
                         )}

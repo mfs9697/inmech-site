@@ -84,8 +84,6 @@ const additionalScientificInfo = [
   'посилання на наукові онлайн-профілі.'
 ];
 
-const postdocRegulationConfirmationHref =
-  'https://www.nas.gov.ua/storage/files/normativni-akti-nan-ukrayini/r-rozporyadzennya/2026/r-260130-53.pdf';
 ---
 
 <BaseLayout
@@ -224,12 +222,9 @@ const postdocRegulationConfirmationHref =
                         {track.id === 'postdoc' && (
                           <p class="track-reference">
                             <strong>Нормативна база:</strong>{' '}
-                            Положення про програму постдокторальних досліджень у НАН України
-                            (редакція постанови Президії НАН України від 07.05.2025 № 164).{' '}
-                            <a href={postdocRegulationConfirmationHref} target="_blank" rel="noopener">
-                              Офіційне підтвердження чинної редакції на сайті НАН України
-                              (розпорядження від 30.01.2026 № 53)
-                            </a>
+                            Положення про програму постдокторальних досліджень у Національній академії наук України,
+                            затверджене постановою Президії НАН України від 09.12.2020 № 275,
+                            у редакції постанови Президії НАН України від 07.05.2025 № 164.
                           </p>
                         )}
                         {track.note && <p class="track-note">{track.note}</p>}
@@ -565,10 +560,6 @@ const postdocRegulationConfirmationHref =
       padding-top: 10px;
       color: var(--muted);
       font-size: 0.92rem;
-    }
-
-    .track-reference a {
-      font-weight: 780;
     }
 
     .postdoc-submission-panel {

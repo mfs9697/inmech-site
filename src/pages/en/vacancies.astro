@@ -222,10 +222,14 @@ const additionalScientificInfo = [
                         {track.id === 'postdoc' && (
                           <p class="track-reference">
                             <strong>Regulatory basis:</strong>{' '}
-                            Regulations on the Postdoctoral Research Programme of the NAS of Ukraine,
-                            approved by Presidium Resolution No. 275 of 9 December 2020,
-                            in the version of Resolution No. 38 of 26 January 2022;
-                            paragraph 3.1 was amended by Presidium Resolution No. 260 of 23 June 2023.
+                            <a href={withBase('/documents/postdoc/regulations/')}>
+                              Regulations on the Postdoctoral Research Programme of the NAS of Ukraine
+                              (consolidated text, Ukrainian)
+                            </a>
+                            {' · '}
+                            <a href={withBase('/documents/postdoc/resolution-260/')}>
+                              Presidium Resolution No. 260 of 23 June 2023 (Ukrainian)
+                            </a>
                           </p>
                         )}
                         {track.note && <p class="track-note">{track.note}</p>}
@@ -565,6 +569,10 @@ const additionalScientificInfo = [
       padding-top: 10px;
       color: var(--muted);
       font-size: 0.92rem;
+    }
+
+    .track-reference a {
+      font-weight: 780;
     }
 
     .postdoc-submission-panel {

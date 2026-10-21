@@ -222,10 +222,14 @@ const additionalScientificInfo = [
                         {track.id === 'postdoc' && (
                           <p class="track-reference">
                             <strong>Нормативна база:</strong>{' '}
-                            Положення про програму постдокторальних досліджень у Національній академії наук України,
-                            затверджене постановою Президії НАН України від 09.12.2020 № 275,
-                            у редакції постанови Президії НАН України від 26.01.2022 № 38;
-                            пункт 3.1 змінено постановою Президії НАН України від 23.06.2023 № 260.
+                            <a href={withBase('/documents/postdoc/regulations/')}>
+                              Положення про програму постдокторальних досліджень у НАН України
+                              (чинний консолідований текст)
+                            </a>
+                            {' · '}
+                            <a href={withBase('/documents/postdoc/resolution-260/')}>
+                              постанова Президії НАН України від 23.06.2023 № 260
+                            </a>
                           </p>
                         )}
                         {track.note && <p class="track-note">{track.note}</p>}
@@ -567,6 +571,10 @@ const additionalScientificInfo = [
       padding-top: 10px;
       color: var(--muted);
       font-size: 0.92rem;
+    }
+
+    .track-reference a {
+      font-weight: 780;
     }
 
     .postdoc-submission-panel {

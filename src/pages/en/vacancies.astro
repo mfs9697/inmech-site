@@ -84,8 +84,8 @@ const additionalScientificInfo = [
   'links to online scientific profiles.'
 ];
 
-const postdocRegulationHref =
-  'https://newin.nas.gov.ua/legaltexts/DocCorporate/Postanova/2025/P-250507-164-0.pdf';
+const postdocRegulationConfirmationHref =
+  'https://www.nas.gov.ua/storage/files/normativni-akti-nan-ukrayini/r-rozporyadzennya/2026/r-260130-53.pdf';
 ---
 
 <BaseLayoutEn
@@ -224,9 +224,11 @@ const postdocRegulationHref =
                         {track.id === 'postdoc' && (
                           <p class="track-reference">
                             <strong>Regulatory basis:</strong>{' '}
-                            <a href={postdocRegulationHref} target="_blank" rel="noopener">
-                              Regulations on the Postdoctoral Research Programme of the NAS of Ukraine
-                              (version approved by Resolution No. 164 of 7 May 2025)
+                            Regulations on the Postdoctoral Research Programme of the NAS of Ukraine
+                            (version approved by Resolution No. 164 of 7 May 2025).{' '}
+                            <a href={postdocRegulationConfirmationHref} target="_blank" rel="noopener">
+                              Official NAS of Ukraine confirmation of the current version
+                              (Order No. 53 of 30 January 2026)
                             </a>
                           </p>
                         )}

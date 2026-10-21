@@ -1,0 +1,13 @@
+---
+import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
+import ElectionArchive from '../../../components/elections/ElectionArchive.astro';
+import { siteEn } from '../../../data/site-en';
+---
+
+<BaseLayoutEn
+  title={'Director elections archive | ' + siteEn.name}
+  description="Historical archive of S.P. Timoshenko Institute of Mechanics director-election records and original documents."
+  activePage="about"
+>
+  <ElectionArchive lang="en" view="archive" />
+</BaseLayoutEn>

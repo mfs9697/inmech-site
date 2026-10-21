@@ -1,0 +1,254 @@
+/* Director-election archive: scoped to avoid changing existing Institute sections. */
+.election-archive {
+  --election-gap: clamp(14px, 2.2vw, 22px);
+}
+
+.election-archive .election-hero {
+  padding: clamp(26px, 4vw, 48px);
+}
+
+.election-archive .election-hero h1 {
+  max-width: 900px;
+  margin: 0 0 18px;
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  line-height: 1.1;
+}
+
+.election-archive .election-hero .lead {
+  max-width: 850px;
+  margin-bottom: 12px;
+}
+
+.election-archive .election-year-grid {
+  max-width: 720px;
+  margin-top: 24px;
+}
+
+.election-archive .election-year-link {
+  display: flex;
+  flex-direction: column;
+  min-height: 230px;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+
+.election-archive .election-year-link .site-card__title,
+.election-archive .election-year-link .site-card__text {
+  margin: 0;
+}
+
+.election-archive .election-breadcrumb {
+  margin-bottom: 18px;
+}
+
+.election-archive .election-breadcrumb a {
+  font-weight: 750;
+}
+
+.election-archive .election-breadcrumb span {
+  color: var(--muted);
+}
+
+.election-archive .election-quicklinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.election-archive .election-quicklinks a,
+.election-archive .election-document-action {
+  display: inline-block;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--accent-dark);
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.election-archive .election-quicklinks a:hover,
+.election-archive .election-quicklinks a:focus-visible,
+.election-archive .election-document-action:hover,
+.election-archive .election-document-action:focus-visible {
+  text-decoration: underline;
+  outline-offset: 3px;
+}
+
+.election-archive .election-section-header {
+  margin-bottom: 20px;
+}
+
+.election-archive .election-section-header h2 {
+  margin: 0 0 9px;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+}
+
+.election-archive .election-section-header p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.election-archive .election-timeline {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--election-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.election-archive .election-timeline li {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.election-archive .election-timeline time {
+  color: var(--accent-dark);
+  font-weight: 850;
+}
+
+.election-archive .election-timeline p {
+  margin: 0;
+  flex: 1;
+}
+
+.election-archive .election-timeline a {
+  margin-top: auto;
+  font-weight: 750;
+}
+
+.election-archive .election-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--election-gap);
+  margin: 0;
+}
+
+.election-archive .election-stats dt {
+  color: var(--muted);
+  font-weight: 650;
+}
+
+.election-archive .election-stats dd {
+  margin: 12px 0 0;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  line-height: 1.1;
+  font-weight: 850;
+}
+
+.election-archive .election-source-note {
+  margin: 20px 0 0;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.election-archive .election-source-note a {
+  display: inline-block;
+  margin-left: 10px;
+  font-weight: 750;
+}
+
+.election-archive .election-document-section + .election-document-section {
+  margin-top: 42px;
+}
+
+.election-archive .election-document-section > h3 {
+  margin: 0 0 20px;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+}
+
+.election-archive .election-document-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--election-gap);
+}
+
+.election-archive .election-document-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 12px;
+}
+
+.election-archive .election-document-card h4 {
+  margin: 0;
+  font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+  overflow-wrap: anywhere;
+}
+
+.election-archive .election-document-card > p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.election-archive .election-document-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.election-archive .election-document-meta > span {
+  padding: 3px 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.election-archive .election-dates {
+  margin: 0;
+  padding-left: 18px;
+  line-height: 1.6;
+  font-size: 0.91rem;
+}
+
+.election-archive .election-dates li span {
+  color: var(--muted);
+}
+
+.election-archive .election-document-action {
+  align-self: flex-start;
+  margin-top: auto;
+  overflow-wrap: anywhere;
+}
+
+.election-archive .election-missing {
+  margin-top: auto !important;
+  color: var(--text) !important;
+}
+
+.election-archive .election-context h2 {
+  margin-top: 0;
+}
+
+.election-archive .election-context {
+  padding: clamp(22px, 3vw, 34px);
+}
+
+.election-archive .election-context p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 850px) {
+  .election-archive .election-timeline,
+  .election-archive .election-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .election-archive .election-document-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .election-archive .election-quicklinks a,
+  .election-archive .election-document-action {
+    max-width: 100%;
+  }
+}

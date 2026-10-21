@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ElectionArchive from '../../../components/elections/ElectionArchive.astro';
+import { site } from '../../../data/site';
+---
+
+<BaseLayout
+  title={'Вибори директора 2026 | ' + site.name}
+  description="Документи та зафіксовані результати виборів директора Інституту механіки ім. С. П. Тимошенка НАН України 16 червня 2026 року."
+  activePage="about"
+>
+  <ElectionArchive lang="uk" view="year" />
+</BaseLayout>

@@ -1,0 +1,254 @@
+---
+import { getCollection } from 'astro:content';
+import '../../styles/elections.css';
+
+interface Props {
+  lang: 'uk' | 'en';
+  view: 'archive' | 'year';
+}
+
+const { lang, view } = Astro.props;
+const en = lang === 'en';
+const prefix = en ? '/en' : '';
+const archiveHref = prefix + '/director-election/';
+const yearHref = archiveHref + '2026/';
+const documents = (await getCollection('electionDocuments')).map((entry) => entry.data);
+const byId = new Map(documents.map((document) => [document.id, document]));
+const label = en ? {
+  breadcrumb: 'Director elections archive',
+  period: 'Historical institutional record',
+  archiveTitle: 'Director elections',
+  archiveIntro: 'A permanent archive of Institute director-election records. Each election year remains separate from current announcements.',
+  yearTitle: 'Director election · 2026',
+  yearSummary: 'Documents and recorded results of the election held on 16 June 2026, presented as historical sources.',
+  yearLink: 'Explore the 2026 record',
+  overview: '2026 election overview',
+  back: 'All election years',
+  records: 'Original election records',
+  original: 'Open original',
+  originalLanguage: 'Original in Ukrainian',
+  absent: 'Document unavailable',
+  unavailableInfo: 'The historical site references this extract, but the original file has not been recovered. No replacement has been created.',
+  date: 'Date',
+  files: 'Verified files',
+  protocol: 'Protocol',
+  context: 'Source context',
+  disclaimerTitle: 'About this archive',
+  disclaimer: 'Dates, names and results reflect the preserved historical sources. An election result does not itself establish a later Academy appointment. Unresolved discrepancies and missing documents remain identified; original signed files are not edited.',
+  legacy: 'Original historical election website',
+  timeline: 'Documented chronology',
+  results: 'Recorded voting figures',
+  electorate: 'Voters on the historical roll',
+  registered: 'Registered participants',
+  votes: 'Votes recorded for V. M. Nazarenko',
+  resultsNote: 'Figures reported in the preserved 16 June 2026 meeting and election commission protocols. They describe the recorded vote, not a subsequent appointment.',
+  source: 'Source documents',
+  categories: {
+    administration: 'Election organization and regulations',
+    nomination: 'Nomination and institutional context',
+    voting: 'Voting and observer forms',
+    outcomes: 'Protocols and results'
+  }
+} : {
+  breadcrumb: 'Архів виборів директора',
+  period: 'Історичні документи Інституту',
+  archiveTitle: 'Вибори директора',
+  archiveIntro: 'Постійний архів документів щодо виборів директора Інституту. Матеріали кожного року зберігаються окремо від поточних оголошень.',
+  yearTitle: 'Вибори директора · 2026',
+  yearSummary: 'Документи та зафіксовані результати виборів, проведених 16 червня 2026 року, як історичні джерела.',
+  yearLink: 'Переглянути матеріали за 2026 рік',
+  overview: 'Вибори директора 2026 року',
+  back: 'Усі роки',
+  records: 'Оригінальні матеріали виборів',
+  original: 'Відкрити оригінал',
+  originalLanguage: 'Оригінал українською',
+  absent: 'Документ недоступний',
+  unavailableInfo: 'Історичний сайт посилається на цей витяг, але оригінал поки не знайдено. Замінник не створювався.',
+  date: 'Дата',
+  files: 'Перевірені файли',
+  protocol: 'Протокол',
+  context: 'Походження матеріалів',
+  disclaimerTitle: 'Про цей архів',
+  disclaimer: 'Дати, імена та результати відображають збережені історичні джерела. Результат виборів сам по собі не підтверджує подальшого призначення Президією НАН України. Невирішені розбіжності й відсутні документи позначено; підписані оригінали не змінювалися.',
+  legacy: 'Початковий історичний сайт виборів',
+  timeline: 'Хронологія за документами',
+  results: 'Зафіксовані результати голосування',
+  electorate: 'Виборців в історичному списку',
+  registered: 'Зареєстрованих учасників',
+  votes: 'Голосів за В. М. Назаренка',
+  resultsNote: 'Дані зі збережених протоколів зборів та виборчої комісії від 16 червня 2026 року. Вони описують зафіксоване голосування, а не подальше призначення.',
+  source: 'Документи-джерела',
+  categories: {
+    administration: 'Організація виборів і положення',
+    nomination: 'Висунення та матеріали Інституту',
+    voting: 'Голосування та спостерігачі',
+    outcomes: 'Протоколи та результати'
+  }
+};
+
+const groups = [
+  { id: 'administration', records: ['order-124', 'organizing-committee-regulations', 'election-commission-regulations'] },
+  { id: 'nomination', records: ['candidate-nomination-slides', 'development-strategy-2026-2030', 'committee-protocol-5-extract'] },
+  { id: 'voting', records: ['observer-application'] },
+  { id: 'outcomes', records: ['staff-meeting-protocol', 'staff-meeting-protocol-legacy-main', 'election-commission-protocol'] }
+] as const;
+const dateLabels: Record<string, [string, string]> = {
+  issued: ['Видано', 'Issued'],
+  published: ['Оприлюднено', 'Published'],
+  event: ['Подія', 'Event'],
+  document: ['Документ від', 'Document dated'],
+  approved: ['Затверджено', 'Approved'],
+  agreed: ['Погоджено', 'Agreed'],
+  considered: ['Розглянуто', 'Considered'],
+  'referenced-meeting': ['Засідання, на яке є посилання', 'Meeting referred to']
+};
+function displayDate(value: string) {
+  return new Intl.DateTimeFormat(en ? 'en-GB' : 'uk-UA', {
+    day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC'
+  }).format(new Date(value + 'T00:00:00Z'));
+}
+function formatBytes(value: number) {
+  return new Intl.NumberFormat(en ? 'en-GB' : 'uk-UA', { maximumFractionDigits: 0 }).format(Math.round(value / 1024)) + ' KB';
+}
+const milestones = [
+  { date: '2026-04-15', title: en ? 'Order No. 124 on election arrangements' : 'Наказ №124 про організацію виборів', record: 'order-124' },
+  { date: '2026-04-28', title: en ? 'Scientific Council nomination meeting' : 'Засідання Вченої ради щодо висунення', record: 'candidate-nomination-slides' },
+  { date: '2026-06-16', title: en ? 'Staff election meeting and commission protocol' : 'Збори наукових працівників і протокол комісії', record: 'election-commission-protocol' }
+];
+const fileCount = documents.filter((item) => item.sourceStatus === 'preserved').length;
+---
+
+<div class="election-archive">
+  <section class="page-hero">
+    <div class="container">
+      <div class="site-card election-hero" data-block-tone="heritage">
+        <p class="eyebrow">{label.period}</p>
+        {view === 'archive' ? (
+          <>
+            <h1>{label.archiveTitle}</h1>
+            <p class="lead">{label.archiveIntro}</p>
+            <div class="election-grid election-year-grid">
+              <a href={yearHref} class="site-card site-card--interactive election-year-link" data-block-tone="information">
+                <span class="site-card__label">2026</span>
+                <h2 class="site-card__title">{label.yearTitle}</h2>
+                <p class="site-card__text">{label.yearSummary}</p>
+                <span class="site-card__action">{label.yearLink} →</span>
+              </a>
+            </div>
+          </>
+        ) : (
+          <>
+            <nav class="election-breadcrumb" aria-label={en ? 'Breadcrumb' : 'Навігаційний ланцюжок'}>
+              <a href={archiveHref}>{label.breadcrumb}</a><span aria-hidden="true"> / </span><span aria-current="page">2026</span>
+            </nav>
+            <h1>{label.yearTitle}</h1>
+            <p class="lead">{label.yearSummary}</p>
+            <nav class="election-quicklinks" aria-label={en ? 'On this page' : 'На цій сторінці'}>
+              <a href="#election-timeline">{label.timeline}</a>
+              <a href="#election-results">{label.results}</a>
+              <a href="#election-documents">{label.records}</a>
+            </nav>
+          </>
+        )}
+      </div>
+    </div>
+  </section>
+
+  {view === 'year' && (
+    <>
+      <section class="section" id="election-timeline" aria-labelledby="election-timeline-heading">
+        <div class="container">
+          <div class="election-section-header">
+            <h2 id="election-timeline-heading">{label.timeline}</h2>
+          </div>
+          <ol class="election-timeline">
+            {milestones.map((item) => (
+              <li class="site-card" data-block-tone="information">
+                <time datetime={item.date}>{displayDate(item.date)}</time>
+                <p>{item.title}</p>
+                {byId.get(item.record)?.sourceStatus === 'preserved' && (
+                  <a href={byId.get(item.record)?.path}>{label.source} →</a>
+                )}
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section class="section" id="election-results" aria-labelledby="election-results-heading">
+        <div class="container">
+          <div class="election-section-header">
+            <h2 id="election-results-heading">{label.results}</h2>
+          </div>
+          <dl class="election-stats">
+            <div class="site-card" data-block-tone="neutral"><dt>{label.electorate}</dt><dd>92</dd></div>
+            <div class="site-card" data-block-tone="neutral"><dt>{label.registered}</dt><dd>79</dd></div>
+            <div class="site-card" data-block-tone="neutral"><dt>{label.votes}</dt><dd>79</dd></div>
+          </dl>
+          <p class="election-source-note">
+            {label.resultsNote}
+            <a href={byId.get('staff-meeting-protocol')?.path}>{en ? 'Meeting protocol' : 'Протокол зборів'}</a>
+            <span aria-hidden="true"> · </span>
+            <a href={byId.get('election-commission-protocol')?.path}>{en ? 'Commission protocol' : 'Протокол комісії'}</a>
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="election-documents" aria-labelledby="election-documents-heading">
+        <div class="container">
+          <div class="election-section-header">
+            <h2 id="election-documents-heading">{label.records}</h2>
+            <p>{fileCount} {en ? 'verified original files; one referenced extract is unavailable.' : 'перевірених оригіналів; один згаданий витяг недоступний.'}</p>
+          </div>
+          {groups.map((group) => (
+            <section class="election-document-section" aria-labelledby={'group-' + group.id} id={'election-' + group.id}>
+              <h3 id={'group-' + group.id}>{label.categories[group.id]}</h3>
+              <div class="election-document-grid">
+                {group.records.map((id) => {
+                  const document = byId.get(id);
+                  if (!document) return null;
+                  return (
+                    <article class="site-card election-document-card" data-block-tone={document.sourceStatus === 'missing' ? 'heritage' : 'neutral'}>
+                      <h4>{en ? document.titleEn : document.title}</h4>
+                      <div class="election-document-meta">
+                        <span>{document.format.toUpperCase()}</span>
+                        {document.sourceStatus === 'preserved' && <span>{formatBytes(document.bytes)}</span>}
+                        {document.sourceStatus === 'preserved' && <span>{label.originalLanguage}</span>}
+                      </div>
+                      {document.dates.length > 0 && (
+                        <ul class="election-dates">
+                          {document.dates.map((d) => (
+                            <li><span>{dateLabels[d.type][en ? 1 : 0]}:</span> <time datetime={d.date}>{displayDate(d.date)}</time></li>
+                          ))}
+                        </ul>
+                      )}
+                      <p>{en ? document.noteEn : document.note}</p>
+                      {document.sourceStatus === 'preserved' ? (
+                        <a class="election-document-action" href={document.path} aria-label={label.original + ': ' + (en ? document.titleEn : document.title)}>
+                          {label.original} ({document.format.toUpperCase()}) →
+                        </a>
+                      ) : (
+                        <p class="election-missing"><strong>{label.absent}.</strong> {label.unavailableInfo}</p>
+                      )}
+                    </article>
+                  );
+                })}
+              </div>
+            </section>
+          ))}
+        </div>
+      </section>
+    </>
+  )}
+
+  <section class="section" aria-labelledby="election-context-heading">
+    <div class="container">
+      <aside class="site-card election-context" data-block-tone="heritage">
+        <h2 id="election-context-heading">{label.disclaimerTitle}</h2>
+        <p>{label.disclaimer}</p>
+        <p><a href="https://election.inmech.kyiv.ua/">{label.legacy} ↗</a></p>
+        {view === 'year' && <p><a href={archiveHref}>← {label.back}</a></p>}
+      </aside>
+    </div>
+  </section>
+</div>

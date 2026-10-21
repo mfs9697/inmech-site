@@ -30,6 +30,18 @@ export interface VacancyCompetition {
   documents: VacancyDocument[];
 }
 
+export interface ActiveVacancyTrack {
+  id: string;
+  label: string;
+  title: string;
+  positions: VacancyPosition[];
+  deadline: string;
+  requirements: string[];
+  researchTopicLabel?: string;
+  researchTopic?: string;
+  note?: string;
+}
+
 export interface ActiveVacancyAnnouncement {
   id: string;
   date: string;
@@ -40,6 +52,10 @@ export interface ActiveVacancyAnnouncement {
   deadline: string;
   requirements: string[];
   note: string;
+  orderNumber?: string;
+  publicationDate?: string;
+  updatedDate?: string;
+  tracks?: ActiveVacancyTrack[];
   documents?: {
     title: string;
     href: string;
@@ -84,7 +100,82 @@ const postdocRequirements = [
   'від дати захисту дисертації минуло не більше 7 років.'
 ];
 
-export const activeVacancyAnnouncements: ActiveVacancyAnnouncement[] = [];
+export const activeVacancyAnnouncements: ActiveVacancyAnnouncement[] = [
+  {
+    id: '2026-10-01-competition-19',
+    date: '2026-10-01',
+    year: 2026,
+    orderNumber: '118/к',
+    publicationDate: '2026-10-21',
+    title: 'Конкурси за наказом від 01 жовтня 2026 року № 118/к',
+    summary: 'Конкурс на дві керівні наукові посади та конкурсний відбір для участі у програмі постдокторальних досліджень НАН України.',
+    positions: [
+      {
+        title: 'завідувач відділу — 1,0 штатної одиниці',
+        departments: [{ title: 'Відділ реології', href: '/departments/02-rheology/' }]
+      },
+      {
+        title: 'завідувач відділу — 1,0 штатної одиниці',
+        departments: [{ title: 'Відділ термопластичності', href: '/departments/06-thermoplasticity/' }]
+      },
+      {
+        title: 'участь у програмі постдокторальних досліджень НАН України — 1 місце'
+      }
+    ],
+    deadline: 'Строки подання документів наведено окремо для кожного конкурсного відбору.',
+    requirements: [],
+    tracks: [
+      {
+        id: 'research-positions',
+        label: 'Вакантні наукові посади',
+        title: 'Конкурс на заміщення вакантних наукових посад',
+        positions: [
+          {
+            title: 'завідувач відділу — 1,0 штатної одиниці',
+            departments: [{ title: 'Відділ реології', href: '/departments/02-rheology/' }]
+          },
+          {
+            title: 'завідувач відділу — 1,0 штатної одиниці',
+            departments: [{ title: 'Відділ термопластичності', href: '/departments/06-thermoplasticity/' }]
+          }
+        ],
+        deadline: 'До 20 листопада 2026 року включно (30 календарних днів від дати оприлюднення оголошення).',
+        requirements: [
+          'вища освіта не нижче другого (магістерського) рівня за профілем діяльності відповідного наукового підрозділу;',
+          'науковий ступінь доктора наук або доктора філософії (кандидата наук);',
+          'наукові результати, рівень, кількість і якість яких відповідають напряму діяльності підрозділу та рівню посади.'
+        ],
+        note: 'Працівники Інституту механіки ім. С. П. Тимошенка НАН України для участі у конкурсі подають лише заяву.'
+      },
+      {
+        id: 'postdoc',
+        label: 'Постдокторальна програма НАН України',
+        title: 'Конкурсний відбір для участі у програмі постдокторальних досліджень',
+        positions: [
+          {
+            title: '1 місце для участі у програмі постдокторальних досліджень НАН України'
+          }
+        ],
+        deadline: 'Строк подання документів визначається відповідно до умов конкурсного відбору НАН України та буде уточнений у цій картці.',
+        requirements: [
+          'науковий ступінь кандидата наук або доктора філософії (PhD);',
+          'претендент не працює за основним місцем роботи в Інституті механіки ім. С. П. Тимошенка НАН України;',
+          'інші вимоги — відповідно до чинного Положення про програму постдокторальних досліджень у НАН України (редакція постанови Президії НАН України від 07.05.2025 № 164).'
+        ],
+        researchTopicLabel: 'Орієнтовна науково-дослідна тема',
+        researchTopic: 'Математичне моделювання зв’язаних задач контактної взаємодії деформівних тіл',
+        note: 'Формулювання теми буде уточнено під час підготовки конкурсних матеріалів. Відомості про керівника постдока та наукового консультанта буде додано після погодження теми.'
+      }
+    ],
+    note: 'Наказ від 01 жовтня 2026 року № 118/к додано до картки. Оголошення оприлюднено 21 жовтня 2026 року.',
+    documents: [
+      {
+        title: 'Наказ про проведення конкурсів від 01.10.2026 № 118/к',
+        href: '/documents/vacancies/active/2026-10-01-competition/order-competition.pdf'
+      }
+    ]
+  }
+];
 
 const competitions = [
   {

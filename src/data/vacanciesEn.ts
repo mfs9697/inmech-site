@@ -38,7 +38,81 @@ const postdocRequirements = [
   'no more than seven years have passed since the dissertation defence.'
 ];
 
-export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [];
+export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [
+  {
+    id: '2026-10-01-competition-19',
+    date: '2026-10-01',
+    year: 2026,
+    orderNumber: '118/k',
+    publicationDate: '2026-10-21',
+    title: 'Competition for vacant research positions and postdoctoral selection',
+    summary: 'Competition for two research-management positions and a competitive selection for participation in the NAS of Ukraine postdoctoral research programme.',
+    positions: [
+      {
+        title: 'head of department — 1.0 FTE',
+        departments: [{ title: 'Department of Rheology', href: '/en/departments/02-rheology/' }]
+      },
+      {
+        title: 'head of department — 1.0 FTE',
+        departments: [{ title: 'Department of Thermoplasticity', href: '/en/departments/06-thermoplasticity/' }]
+      },
+      {
+        title: 'participation in the NAS of Ukraine postdoctoral research programme — 1 place'
+      }
+    ],
+    deadline: 'Submission deadlines are stated separately for each competitive selection.',
+    requirements: [],
+    tracks: [
+      {
+        id: 'research-positions',
+        label: 'Vacant research positions',
+        title: 'Competition to fill vacant research positions',
+        positions: [
+          {
+            title: 'head of department — 1.0 FTE',
+            departments: [{ title: 'Department of Rheology', href: '/en/departments/02-rheology/' }]
+          },
+          {
+            title: 'head of department — 1.0 FTE',
+            departments: [{ title: 'Department of Thermoplasticity', href: '/en/departments/06-thermoplasticity/' }]
+          }
+        ],
+        deadline: 'Through 20 November 2026 inclusive (30 calendar days from publication of the announcement).',
+        requirements: [
+          'higher education at no lower than the second-cycle (Master’s) level relevant to the scientific profile of the respective department;',
+          'a Doctor of Sciences degree or a PhD / Candidate of Sciences degree;',
+          'research results whose level, quantity and quality correspond to the department’s field and the level of the position.'
+        ],
+        note: 'Employees of the S. P. Timoshenko Institute of Mechanics of the NAS of Ukraine submit only an application to participate in the competition.'
+      },
+      {
+        id: 'postdoc',
+        label: 'NAS of Ukraine postdoctoral programme',
+        title: 'Competitive selection for participation in the postdoctoral research programme',
+        positions: [
+          {
+            title: '1 place in the NAS of Ukraine postdoctoral research programme'
+          }
+        ],
+        deadline: 'The document submission deadline is determined by the conditions of the current NAS of Ukraine competitive selection.',
+        requirements: [
+          'a Candidate of Sciences degree or PhD;',
+          'the applicant is not employed at the S. P. Timoshenko Institute of Mechanics of the NAS of Ukraine as their principal place of work;',
+          'other requirements are governed by the current Regulations on the Postdoctoral Research Programme of the NAS of Ukraine (version approved by Resolution No. 164 of 7 May 2025).'
+        ],
+        researchTopicLabel: 'Indicative research topic',
+        researchTopic: 'Mathematical modelling of coupled contact-interaction problems for deformable bodies',
+      }
+    ],
+    note: 'The signed Order No. 118/k of 1 October 2026 is available below.',
+    documents: [
+      {
+        title: 'Order announcing the competitions, 01.10.2026, No. 118/k',
+        href: '/documents/vacancies/active/2026-10-01-competition/order-competition.pdf'
+      }
+    ]
+  }
+];
 
 const competitions: Omit<VacancyCompetition, 'documents'>[] = [
   {

@@ -95,11 +95,7 @@ export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [
           }
         ],
         deadline: 'The document submission deadline is determined by the conditions of the current NAS of Ukraine competitive selection.',
-        requirements: [
-          'a Candidate of Sciences degree or PhD;',
-          'the applicant is not employed at the S. P. Timoshenko Institute of Mechanics of the NAS of Ukraine as their principal place of work;',
-          'other requirements are governed by the current Regulations on the Postdoctoral Research Programme of the NAS of Ukraine (version approved by Resolution No. 164 of 7 May 2025).'
-        ],
+        requirements: postdocRequirements,
         researchTopicLabel: 'Indicative research topic',
         researchTopic: 'Mathematical modelling of coupled contact-interaction problems for deformable bodies',
       }

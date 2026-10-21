@@ -2,6 +2,7 @@ import { readFile, readdir } from 'node:fs/promises';
 import { defineCollection, reference } from 'astro:content';
 import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { electionDocumentSchema } from './data/elections/documents-schema.mjs';
 
 const news = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/news' }),
@@ -168,6 +169,11 @@ const ncutamMembers = defineCollection({
   })
 });
 
+const electionDocuments = defineCollection({
+  loader: file('./src/data/elections/2026/documents.json'),
+  schema: electionDocumentSchema
+});
+
 const ncutamDocuments = defineCollection({
   loader: file('./src/data/ncutam/documents.yaml'),
   schema: z.object({
@@ -284,6 +290,7 @@ export const collections = {
   news,
   departments,
   people,
+  electionDocuments,
   ncutamPages,
   ncutamActivities,
   ncutamInstitutions,

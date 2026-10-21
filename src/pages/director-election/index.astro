@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ElectionArchive from '../../components/elections/ElectionArchive.astro';
+import { site } from '../../data/site';
+---
+
+<BaseLayout
+  title={'Архів виборів директора | ' + site.name}
+  description="Історичний архів документів та результатів виборів директора Інституту механіки ім. С. П. Тимошенка НАН України."
+  activePage="about"
+>
+  <ElectionArchive lang="uk" view="archive" />
+</BaseLayout>

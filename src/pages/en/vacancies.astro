@@ -60,7 +60,10 @@ const submissionDocuments = [
     text: 'copies of documents on higher education, advanced training, and military registration document for servicemembers or persons liable for military service;'
   },
   {
-    text: 'a list of the candidate\'s scientific publications in domestic and foreign, including international, peer-reviewed professional journals;'
+    text: 'copies of documents confirming an academic degree and academic title, if applicable;'
+  },
+  {
+    text: 'a list of the candidate\'s scientific publications over the last five years in domestic and foreign, including international, peer-reviewed professional journals;'
   },
   {
     text: 'written consent to personal data processing',
@@ -84,16 +87,16 @@ const additionalScientificInfo = [
 
 <BaseLayoutEn
   title={`Vacancies | ${instituteName}`}
-  description={`Announcements and orders for competitions to fill vacant positions at the ${instituteName}.`}
+  description={`Announcements for vacant research positions and other competitive selections at the ${instituteName}.`}
   activePage="about"
 >
   <section class="page-hero vacancies-hero">
     <div class="container">
       <div class="panel">
         <p class="eyebrow">Vacancies</p>
-        <h1>Competitions for Vacant Positions</h1>
+        <h1>Vacancies and Competitive Selections</h1>
         <p class="lead">
-          Announcements and orders for competitions to fill vacant positions at the {instituteName}.
+          Announcements for vacant research positions, postdoctoral selections, and other competitive procedures at the {instituteName}.
         </p>
 
         <dl class="vacancy-stats" aria-label="Vacancy competition summary">
@@ -118,7 +121,7 @@ const additionalScientificInfo = [
             <dd>{documentCount}</dd>
           </div>
           <div>
-            <dt>Latest update</dt>
+            <dt>Latest competition</dt>
             <dd>{formatDate.format(new Date(`${latestEntry.date}T00:00:00`))}</dd>
           </div>
         </dl>
@@ -134,7 +137,7 @@ const additionalScientificInfo = [
             <p class="eyebrow">Active Announcements</p>
             <h2 class="section-title">Current Competitions</h2>
             <p class="section-text">
-              These announcements are published before the competition archive card is formed. The archive record with the three standard PDF documents will be added after the relevant orders are available.
+              An active card may contain several related competitive selections announced by the same order. Positions or programmes, eligibility requirements and submission deadlines are shown separately for each procedure.
             </p>
           </div>
         </div>
@@ -144,6 +147,7 @@ const additionalScientificInfo = [
             <article class="vacancy-card active-vacancy-card">
               <div class="vacancy-date">
                 <time datetime={entry.date}>{formatDate.format(new Date(`${entry.date}T00:00:00`))}</time>
+                {entry.orderNumber && <span class="vacancy-order-number">Order No. {entry.orderNumber}</span>}
               </div>
 
               <div class="vacancy-content">
@@ -151,41 +155,107 @@ const additionalScientificInfo = [
                   <div>
                     <h3>{entry.title}</h3>
                     <p>{entry.summary}</p>
+                    {(entry.publicationDate || entry.updatedDate) && (
+                      <p class="announcement-meta">
+                        {entry.publicationDate && (
+                          <>Published: {formatDate.format(new Date(`${entry.publicationDate}T00:00:00`))}</>
+                        )}
+                        {entry.publicationDate && entry.updatedDate && <> · </>}
+                        {entry.updatedDate && (
+                          <>Updated: {formatDate.format(new Date(`${entry.updatedDate}T00:00:00`))}</>
+                        )}
+                      </p>
+                    )}
                   </div>
                 </div>
 
-                <div class="card-announcement">
-                  <div class="card-field positions-field">
-                    <p class="card-label">Vacant Positions</p>
-                    <ul class="position-list">
-                      {entry.positions.map((position) => (
-                        <li>
-                          <span>{position.title}</span>
-                          {position.departments && position.departments.length > 0 && (
-                            <span class="position-departments">
-                              {position.departments.map((department, index) => (
-                                <>
-                                  {index > 0 && ', '}
-                                  <a href={withBase(department.href)}>{department.title}</a>
-                                </>
+                {entry.tracks && entry.tracks.length > 0 ? (
+                  <div class="competition-tracks">
+                    {entry.tracks.map((track) => (
+                      <section class="competition-track">
+                        <p class="track-label">{track.label}</p>
+                        <h4>{track.title}</h4>
+
+                        <div class="track-grid">
+                          <div class="card-field positions-field">
+                            <p class="card-label">Positions / places</p>
+                            <ul class="position-list">
+                              {track.positions.map((position) => (
+                                <li>
+                                  <span>{position.title}</span>
+                                  {position.departments && position.departments.length > 0 && (
+                                    <span class="position-departments">
+                                      {position.departments.map((department, index) => (
+                                        <>
+                                          {index > 0 && ', '}
+                                          <a href={withBase(department.href)}>{department.title}</a>
+                                        </>
+                                      ))}
+                                    </span>
+                                  )}
+                                </li>
                               ))}
-                            </span>
+                            </ul>
+                          </div>
+
+                          <div class="card-field deadline-field">
+                            <p class="card-label">Document submission deadline</p>
+                            <p class="card-note">{track.deadline}</p>
+                          </div>
+
+                          {track.researchTopic && (
+                            <div class="card-field research-topic-field">
+                              <p class="card-label">{track.researchTopicLabel ?? 'Research topic'}</p>
+                              <p class="research-topic">{track.researchTopic}</p>
+                            </div>
                           )}
-                        </li>
-                      ))}
-                    </ul>
+
+                          <div class="card-field requirements-field">
+                            <p class="card-label">Eligibility requirements</p>
+                            <ul class="requirement-list">
+                              {track.requirements.map((requirement) => <li>{requirement}</li>)}
+                            </ul>
+                          </div>
+                        </div>
+
+                        {track.note && <p class="track-note">{track.note}</p>}
+                      </section>
+                    ))}
                   </div>
-                  <div class="card-field deadline-field">
-                    <p class="card-label">Document Submission Period</p>
-                    <p class="card-note">{entry.deadline}</p>
+                ) : (
+                  <div class="card-announcement">
+                    <div class="card-field positions-field">
+                      <p class="card-label">Vacant Positions</p>
+                      <ul class="position-list">
+                        {entry.positions.map((position) => (
+                          <li>
+                            <span>{position.title}</span>
+                            {position.departments && position.departments.length > 0 && (
+                              <span class="position-departments">
+                                {position.departments.map((department, index) => (
+                                  <>
+                                    {index > 0 && ', '}
+                                    <a href={withBase(department.href)}>{department.title}</a>
+                                  </>
+                                ))}
+                              </span>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div class="card-field deadline-field">
+                      <p class="card-label">Document Submission Period</p>
+                      <p class="card-note">{entry.deadline}</p>
+                    </div>
+                    <div class="card-field requirements-field">
+                      <p class="card-label">Requirements for Competition Participants</p>
+                      <ul class="requirement-list">
+                        {entry.requirements.map((requirement) => <li>{requirement}</li>)}
+                      </ul>
+                    </div>
                   </div>
-                  <div class="card-field requirements-field">
-                    <p class="card-label">Requirements for Competition Participants</p>
-                    <ul class="requirement-list">
-                      {entry.requirements.map((requirement) => <li>{requirement}</li>)}
-                    </ul>
-                  </div>
-                </div>
+                )}
 
                 <p class="active-announcement-note">{entry.note}</p>
                 {entry.documents && entry.documents.length > 0 && (
@@ -209,7 +279,7 @@ const additionalScientificInfo = [
     <div class="container">
       <div class="submission-panel">
         <p class="eyebrow">Documents for Participation</p>
-        <h3>Required Documents for Participation in the Competition</h3>
+        <h3>Documents for the competition to fill vacant research positions</h3>
         <ol>
           {submissionDocuments.map((item) => (
             <li>
@@ -253,8 +323,22 @@ const additionalScientificInfo = [
           <a href="mailto:inst_mech@inmech.kyiv.ua">inst_mech@inmech.kyiv.ua</a>.
         </p>
         <p>
-          The Institute does not provide housing to persons hired after competitive selection. The authorized person for clarifications regarding
-          the competition procedure is Mykhailo F. Selivanov, Deputy Director for Research of the {instituteName}.
+          The Institute does not provide housing to persons appointed to vacant research positions following the competition. The authorized person
+          for clarifications regarding the competition procedure is Mykhailo F. Selivanov, Deputy Director for Research of the {instituteName}.
+        </p>
+      </div>
+
+      <div class="submission-panel postdoc-submission-panel">
+        <p class="eyebrow">Postdoctoral programme</p>
+        <h3>Documents for the postdoctoral competitive selection</h3>
+        <p>
+          The postdoctoral selection uses a separate application package under the current Regulations on the Postdoctoral Research Programme of the
+          NAS of Ukraine and the conditions of the specific selection. The general document list for staff competitions shown above does not
+          automatically apply to the postdoctoral procedure.
+        </p>
+        <p>
+          The active competition card states the research topic, eligibility requirements and submission deadline separately. A refined list of
+          documents will be added together with the final conditions for the current postdoctoral selection.
         </p>
       </div>
 
@@ -400,6 +484,75 @@ const additionalScientificInfo = [
     .active-vacancy-card {
       border-color: rgba(184, 135, 47, 0.46);
       background: linear-gradient(180deg, #fffdf7 0%, var(--surface) 100%);
+    }
+
+    .vacancy-order-number {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 750;
+    }
+
+    .announcement-meta {
+      margin-top: 8px !important;
+      font-size: 0.86rem;
+    }
+
+    .competition-tracks {
+      display: grid;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .competition-track {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      padding: 16px;
+    }
+
+    .competition-track h4 {
+      margin: 2px 0 12px;
+      font-size: 1.05rem;
+    }
+
+    .track-label {
+      margin: 0;
+      color: var(--accent-dark);
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .track-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 0.42fr);
+      gap: 12px;
+    }
+
+    .research-topic-field,
+    .requirements-field {
+      grid-column: 1 / -1;
+    }
+
+    .research-topic {
+      margin: 4px 0 0;
+      font-weight: 780;
+      line-height: 1.45;
+    }
+
+    .track-note {
+      margin: 12px 0 0;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .postdoc-submission-panel {
+      margin-top: 14px;
     }
 
     .active-announcement-note,

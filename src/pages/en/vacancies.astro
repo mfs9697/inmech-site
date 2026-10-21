@@ -218,6 +218,15 @@ const additionalScientificInfo = [
                           </div>
                         </div>
 
+                        {track.id === 'postdoc' && (
+                          <p class="track-reference">
+                            <strong>Regulatory basis:</strong>{' '}
+                            <a href={postdocRegulationHref} target="_blank" rel="noopener">
+                              Regulations on the Postdoctoral Research Programme of the NAS of Ukraine
+                              (version approved by Resolution No. 164 of 7 May 2025)
+                            </a>
+                          </p>
+                        )}
                         {track.note && <p class="track-note">{track.note}</p>}
                       </section>
                     ))}
@@ -544,12 +553,17 @@ const additionalScientificInfo = [
       line-height: 1.45;
     }
 
+    .track-reference,
     .track-note {
       margin: 12px 0 0;
       border-top: 1px solid var(--line);
       padding-top: 10px;
       color: var(--muted);
       font-size: 0.92rem;
+    }
+
+    .track-reference a {
+      font-weight: 780;
     }
 
     .postdoc-submission-panel {

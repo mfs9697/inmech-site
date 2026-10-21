@@ -1,0 +1,447 @@
+[
+  {
+    "id": "candidate-nomination-slides",
+    "electionYear": 2026,
+    "title": "Матеріали висунення кандидата на посаду директора",
+    "titleEn": "Candidate nomination meeting slides",
+    "kind": "meeting-material",
+    "language": "uk",
+    "format": "pdf",
+    "mimeType": "application/pdf",
+    "originalFilename": "DirectorElection2.pdf",
+    "dates": [
+      {
+        "type": "event",
+        "date": "2026-04-28",
+        "evidence": "Scientific Council meeting identified in the original slides."
+      }
+    ],
+    "note": "Матеріали засідання, не передвиборча програма і не витяг з протоколу.",
+    "noteEn": "Meeting slides; neither the candidate programme nor the missing protocol extract.",
+    "sourceStatus": "preserved",
+    "storage": "added",
+    "path": "/documents/elections/2026/candidate-nomination-slides.pdf",
+    "bytes": 104772,
+    "sha256": "1a43151da72fd0b519def5a8beaa915f10f276eec6a1df43fce040a4f1aadec7",
+    "sources": [
+      {
+        "url": "https://election.inmech.kyiv.ua/DirectorElection2.pdf",
+        "originalFilename": "DirectorElection2.pdf",
+        "checkedAt": "2026-10-21T19:54:38Z",
+        "sourceStatus": "available",
+        "httpStatus": 200,
+        "finalUrl": "https://election.inmech.kyiv.ua/DirectorElection2.pdf",
+        "mimeType": "application/pdf",
+        "bytes": 104772,
+        "sha256": "1a43151da72fd0b519def5a8beaa915f10f276eec6a1df43fce040a4f1aadec7"
+      }
+    ]
+  },
+  {
+    "id": "order-124",
+    "electionYear": 2026,
+    "title": "Наказ №124 від 15.04.2026 про забезпечення проведення виборів директора Інституту",
+    "titleEn": "Order No. 124 of 15 April 2026 on arrangements for the director election",
+    "kind": "order",
+    "language": "uk",
+    "format": "pdf",
+    "mimeType": "application/pdf",
+    "originalFilename": "Document_2026-04-16_114124.pdf",
+    "dates": [
+      {
+        "type": "issued",
+        "date": "2026-04-15",
+        "evidence": "Date on the signed order."
+      },
+      {
+        "type": "published",
+        "date": "2026-04-16",
+        "evidence": "Existing Astro news: src/content/news/2026/2026-04-16-director-election-order.md; not the order issue date."
+      }
+    ],
+    "note": "Повторно використано наявний файл; дата у назві не є датою видання наказу.",
+    "noteEn": "Existing binary reused; the filename date is not the issue date.",
+    "sourceStatus": "preserved",
+    "storage": "existing",
+    "path": "/documents/institute/orders/director-election-order-2026-04-16.pdf",
+    "bytes": 1449561,
+    "sha256": "609d59084ef66e38ed1cd499b00bf47340258961461c10ce222ed1103a1fa95d",
+    "sources": [
+      {
+        "url": "https://election.inmech.kyiv.ua/Document_2026-04-16_114124.pdf",
+        "originalFilename": "Document_2026-04-16_114124.pdf",
+        "checkedAt": "2026-10-21T19:54:38Z",
+        "sourceStatus": "available",
+        "httpStatus": 200,
+        "finalUrl": "https://election.inmech.kyiv.ua/Document_2026-04-16_114124.pdf",
+        "mimeType": "application/pdf",
+        "bytes": 1449561,
+        "sha256": "609d59084ef66e38ed1cd499b00bf47340258961461c10ce222ed1103a1fa95d"
+      },
+      {
+        "url": "https://old.inmech.kyiv.ua/doc/Document_2026-04-16_114124.pdf",
+        "originalFilename": "Document_2026-04-16_114124.pdf",
+        "checkedAt": "2026-10-21T19:54:38Z",
+        "sourceStatus": "available",
+        "httpStatus": 200,
+        "finalUrl": "https://old.inmech.kyiv.ua/doc/Document_2026-04-16_114124.pdf",
+        "mimeType": "application/pdf",
+        "bytes": 1449561,
+        "sha256": "609d59084ef66e38ed1cd499b00bf47340258961461c10ce222ed1103a1fa95d"
+      },
+      {
+        "url": "https://inmech.kyiv.ua/doc/Document_2026-04-16_114124.pdf",
+        "originalFilename": "Document_2026-04-16_114124.pdf",
+        "checkedAt": "2026-10-21T19:54:38Z",
+        "sourceStatus": "missing",
+        "httpStatus": 404
+      }
+    ]
+  },
+  {
+    "id": "organizing-committee-regulations",
+    "electionYear": 2026,
+    "title": "Положення про організаційний комітет з проведення виборів директора",
+    "titleEn": "Regulations for the organizing committee for the director election",
+    "kind": "regulation",
+    "language": "uk",
+    "format": "pdf",
+    "mimeType": "application/pdf",
+    "originalFilename": "ПОЛОЖЕННЯ про організаційний комітет.pdf",
+    "dates": [
+      {
+        "type": "approved",
+        "date": "2026-04-28",
+        "evidence": "Scientific Council, protocol No. 5, shown in PDF."
+      },
+      {
+        "type": "agreed",
+        "date": "2026-05-26",
+        "evidence": "Trade union, protocol No. 5, shown in PDF."
+      }
+    ],
+    "note": "Оригінал положення; витяг з протоколу обліковано окремо як відсутній.",
+    "noteEn": "Original regulations; the unavailable protocol extract is a separate record.",
+    "sourceStatus": "preserved",
+    "storage": "added",
+    "path": "/documents/elections/2026/organizing-committee-regulations.pdf",
+    "bytes": 315611,
+    "sha256": "227a8ee1d4e0af62f752d1fd32f6d0643a6ba07633e2a0adf1359b64edba6a18",
+    "sources": [
+      {
+        "url": "https://election.inmech.kyiv.ua/ПОЛОЖЕННЯ про організаційний комітет.pdf",
+        "originalFilename": "ПОЛОЖЕННЯ про організаційний комітет.pdf",
+        "checkedAt": "2026-10-21T19:54:39Z",
+        "sourceStatus": "available",
+        "httpStatus": 200,
+        "finalUrl": "https://election.inmech.kyiv.ua/%D0%9F%D0%9E%D0%9B%D0%9E%D0%96%D0%95%D0%9D%D0%9D%D0%AF%20%D0%BF%D1%80%D0%BE%20%D0%BE%D1%80%D0%B3%D0%B0%D0%BD%D1%96%D0%B7%D0%B0%D1%86%D1%96%D0%B9%D0%BD%D0%B8%D0%B9%20%D0%BA%D0%BE%D0%BC%D1%96%D1%82%D0%B5%D1%82.pdf",
+        "mimeType": "application/pdf",
+        "bytes": 315611,
+        "sha256": "227a8ee1d4e0af62f752d1fd32f6d0643a6ba07633e2a0adf1359b64edba6a18"
+      }
+    ]
+  },
+  {
+    "id": "election-commission-regulations",
+    "electionYear": 2026,
+    "title": "Положення про виборчу (лічильну) комісію",
+    "titleEn": "Regulations for the election (counting) commission",
+    "kind": "regulation",
+    "language": "uk",
+    "format": "pdf",
+    "mimeType": "application/pdf",
+    "originalFilename": "ПОЛОЖЕННЯ про лічильну комісію.pdf",
+    "dates": [
+      {
+        "type": "approved",
+        "date": "2026-04-28",
+        "evidence": "Scientific Council, protocol No. 5, shown in PDF."
+      },
+      {
+        "type": "agreed",
+        "date": "2026-05-26",
+        "evidence": "Trade union, protocol No. 5, shown in PDF."
+      }
+    ],
+    "note": "Збережено оригінальні байти.",
+    "noteEn": "Original bytes preserved.",
+    "sourceStatus": "preserved",
+    "storage": "added",
+    "path": "/documents/elections/2026/election-commission-regulations.pdf",
+    "bytes": 313626,
+    "sha256": "2c4eab9eef3bcdd1ed91aa45adc58125cbc5e4f399352053b2f615315e6a1f35",
+    "sources": [
+      {
+        "url": "https://election.inmech.kyiv.ua/ПОЛОЖЕННЯ про лічильну комісію.pdf",
+        "originalFilename": "ПОЛОЖЕННЯ про лічильну комісію.pdf",
+        "checkedAt": "2026-10-21T19:54:40Z",
+        "sourceStatus": "available",
+        "httpStatus": 200,
+        "finalUrl": "https://election.inmech.kyiv.ua/%D0%9F%D0%9E%D0%9B%D0%9E%D0%96%D0%95%D0%9D%D0%9D%D0%AF%20%D0%BF%D1%80%D0%BE%20%D0%BB%D1%96%D1%87%D0%B8%D0%BB%D1%8C%D0%BD%D1%83%20%D0%BA%D0%BE%D0%BC%D1%96%D1%81%D1%96%D1%8E.pdf",
+        "mimeType": "application/pdf",
+        "bytes": 313626,
+        "sha256": "2c4eab9eef3bcdd1ed91aa45adc58125cbc5e4f399352053b2f615315e6a1f35"
+      }
+    ]
+  },
+  {
+    "id": "staff-meeting-protocol",
+    "electionYear": 2026,
+    "title": "Протокол зборів наукових працівників від 16.06.2026 — копія з виборчого сайту",
+    "titleEn": "Staff meeting protocol of 16 June 2026 — election-site copy",
+    "kind": "meeting-protocol",
+    "language": "uk",
+    "format": "pdf",
+    "mimeType": "application/pdf",
+    "originalFilename": "ПРОТОКОЛ зборі.pdf",
+    "dates": [
+      {
+        "type": "document",
+        "date": "2026-06-16",
+        "evidence": "Dated meeting protocol in the original PDF."
+      }
+    ],
+    "note": "Оригінальне ім’я файлу збережено в метаданих, включно з написанням «зборі». Іншу копію збережено окремо.",
+    "noteEn": "Original filename retains the source spelling «зборі». The distinct legacy-main copy is retained separately.",
+    "sourceStatus": "preserved",
+    "storage": "added",
+    "path": "/documents/elections/2026/staff-meeting-protocol.pdf",
+    "bytes": 498398,
+    "sha256": "fc6e72d0674cdffffb632d262b821f519631688c8c2ddcceb8bac3b7ca854f92",
+    "sources": [
+      {
+        "url": "https://election.inmech.kyiv.ua/ПРОТОКОЛ зборі.pdf",
+        "originalFilename": "ПРОТОКОЛ зборі.pdf",
+        "checkedAt": "2026-10-21T19:54:40Z",
+        "sourceStatus": "available",
+        "httpStatus": 200,
+        "finalUrl": "https://election.inmech.kyiv.ua/%D0%9F%D0%A0%D0%9E%D0%A2%D0%9E%D0%9A%D0%9E%D0%9B%20%D0%B7%D0%B1%D0%BE%D1%80%D1%96.pdf",
+        "mimeType": "application/pdf",
+        "bytes": 498398,
+        "sha256": "fc6e72d0674cdffffb632d262b821f519631688c8c2ddcceb8bac3b7ca854f92"
+      }
+    ]
+  },
+  {
+    "id": "election-commission-protocol",
+    "electionYear": 2026,
+    "title": "Протокол засідання виборчої комісії від 16.06.2026",
+    "titleEn": "Election commission meeting protocol of 16 June 2026",
+    "kind": "commission-protocol",
+    "language": "uk",
+    "format": "pdf",
+    "mimeType": "application/pdf",
+    "originalFilename": "Протокол засідання виборчої комісії 16.06.2026.pdf",
+    "dates": [
+      {
+        "type": "document",
+        "date": "2026-06-16",
+        "evidence": "Dated commission protocol in the original PDF."
+      }
+    ],
+    "note": "Копія зі старого основного сайту має ті самі байти; її URL є додатковим джерелом.",
+    "noteEn": "The old-main copy is byte-identical and recorded as another source URL.",
+    "sourceStatus": "preserved",
+    "storage": "added",
+    "path": "/documents/elections/2026/election-commission-protocol.pdf",
+    "bytes": 1074267,
+    "sha256": "7425affe75f9a97f81b207466ce9e0ce497759f402ca3135529e2be138a8ca85",
+    "sources": [
+      {
+        "url": "https://election.inmech.kyiv.ua/Протокол засідання виборчої комісії 16.06.2026.pdf",
+        "originalFilename": "Протокол засідання виборчої комісії 16.06.2026.pdf",
+        "checkedAt": "2026-10-21T19:54:41Z",
+        "sourceStatus": "available",
+        "httpStatus": 200,
+        "finalUrl": "https://election.inmech.kyiv.ua/%D0%9F%D1%80%D0%BE%D1%82%D0%BE%D0%BA%D0%BE%D0%BB%20%D0%B7%D0%B0%D1%81%D1%96%D0%B4%D0%B0%D0%BD%D0%BD%D1%8F%20%D0%B2%D0%B8%D0%B1%D0%BE%D1%80%D1%87%D0%BE%D1%97%20%D0%BA%D0%BE%D0%BC%D1%96%D1%81%D1%96%D1%97%2016.06.2026.pdf",
+        "mimeType": "application/pdf",
+        "bytes": 1074267,
+        "sha256": "7425affe75f9a97f81b207466ce9e0ce497759f402ca3135529e2be138a8ca85"
+      },
+      {
+        "url": "https://old.inmech.kyiv.ua/doc/news/2026/2026_protokol_zasidanya.pdf",
+        "originalFilename": "2026_protokol_zasidanya.pdf",
+        "checkedAt": "2026-10-21T19:54:41Z",
+        "sourceStatus": "available",
+        "httpStatus": 200,
+        "finalUrl": "https://old.inmech.kyiv.ua/doc/news/2026/2026_protokol_zasidanya.pdf",
+        "mimeType": "application/pdf",
+        "bytes": 1074267,
+        "sha256": "7425affe75f9a97f81b207466ce9e0ce497759f402ca3135529e2be138a8ca85"
+      },
+      {
+        "url": "https://inmech.kyiv.ua/doc/news/2026/2026_protokol_zasidanya.pdf",
+        "originalFilename": "2026_protokol_zasidanya.pdf",
+        "checkedAt": "2026-10-21T19:54:41Z",
+        "sourceStatus": "missing",
+        "httpStatus": 404
+      }
+    ]
+  },
+  {
+    "id": "observer-application",
+    "electionYear": 2026,
+    "title": "Заява спостерігача",
+    "titleEn": "Observer application form",
+    "kind": "form",
+    "language": "uk",
+    "format": "docx",
+    "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "originalFilename": "Заява спостерігача.docx",
+    "dates": [],
+    "note": "Недатований оригінальний бланк DOCX; дату не вигадано.",
+    "noteEn": "Undated original DOCX form; no date has been inferred.",
+    "sourceStatus": "preserved",
+    "storage": "added",
+    "path": "/documents/elections/2026/observer-application.docx",
+    "bytes": 17968,
+    "sha256": "2c6b9a9b7c6aec2c7c14f608583bb479d9569ef01808024c7464f7a44f065ac0",
+    "sources": [
+      {
+        "url": "https://election.inmech.kyiv.ua/Заява спостерігача.docx",
+        "originalFilename": "Заява спостерігача.docx",
+        "checkedAt": "2026-10-21T19:54:42Z",
+        "sourceStatus": "available",
+        "httpStatus": 200,
+        "finalUrl": "https://election.inmech.kyiv.ua/%D0%97%D0%B0%D1%8F%D0%B2%D0%B0%20%D1%81%D0%BF%D0%BE%D1%81%D1%82%D0%B5%D1%80%D1%96%D0%B3%D0%B0%D1%87%D0%B0.docx",
+        "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "bytes": 17968,
+        "sha256": "2c6b9a9b7c6aec2c7c14f608583bb479d9569ef01808024c7464f7a44f065ac0"
+      }
+    ]
+  },
+  {
+    "id": "development-strategy-2026-2030",
+    "electionYear": 2026,
+    "title": "Стратегія розвитку Інституту на 2026–2030 роки",
+    "titleEn": "Institute development strategy for 2026–2030",
+    "kind": "strategy",
+    "language": "uk",
+    "format": "pdf",
+    "mimeType": "application/pdf",
+    "originalFilename": "strategy_2026-2030.pdf",
+    "dates": [
+      {
+        "type": "considered",
+        "date": "2025-12-25",
+        "evidence": "Scientific Council protocol No. 17 on the original cover."
+      },
+      {
+        "type": "approved",
+        "date": "2025-12-26",
+        "evidence": "Signed/stamped approval on the original cover."
+      }
+    ],
+    "note": "Історичне джерело, пов’язане з виборами; застосовність потребує підтвердження установи. Сторінку чинної стратегії не змінено.",
+    "noteEn": "Election-related historical source; applicability requires institutional confirmation. The current strategy page is unchanged.",
+    "sourceStatus": "preserved",
+    "storage": "added",
+    "path": "/documents/institute/strategy/development-strategy-2026-2030.pdf",
+    "bytes": 553774,
+    "sha256": "9e67b4cb640dec1f8717a6f057f7b8382c1d10f3f1a3884b058b0596d3dc8cb9",
+    "sources": [
+      {
+        "url": "https://old.inmech.kyiv.ua/doc/doc/strategy_2026-2030.pdf",
+        "originalFilename": "strategy_2026-2030.pdf",
+        "checkedAt": "2026-10-21T19:54:42Z",
+        "sourceStatus": "available",
+        "httpStatus": 200,
+        "finalUrl": "https://old.inmech.kyiv.ua/doc/doc/strategy_2026-2030.pdf",
+        "mimeType": "application/pdf",
+        "bytes": 553774,
+        "sha256": "9e67b4cb640dec1f8717a6f057f7b8382c1d10f3f1a3884b058b0596d3dc8cb9"
+      },
+      {
+        "url": "https://inmech.kyiv.ua/doc/doc/strategy_2026-2030.pdf",
+        "originalFilename": "strategy_2026-2030.pdf",
+        "checkedAt": "2026-10-21T19:54:42Z",
+        "sourceStatus": "missing",
+        "httpStatus": 404
+      }
+    ]
+  },
+  {
+    "id": "staff-meeting-protocol-legacy-main",
+    "electionYear": 2026,
+    "title": "Протокол зборів наукових працівників від 16.06.2026 — копія зі старого основного сайту",
+    "titleEn": "Staff meeting protocol of 16 June 2026 — legacy-main copy",
+    "kind": "meeting-protocol",
+    "language": "uk",
+    "format": "pdf",
+    "mimeType": "application/pdf",
+    "originalFilename": "2026_protokol_zboriv.pdf",
+    "dates": [
+      {
+        "type": "document",
+        "date": "2026-06-16",
+        "evidence": "Dated meeting protocol in the original PDF."
+      }
+    ],
+    "note": "Окремий варіант з іншими байтами, збережений до перевірки установою. PDF не виправлено й не перезбережено.",
+    "noteEn": "Distinct bytes retained pending institutional review. The PDF has not been repaired or re-saved.",
+    "sourceStatus": "preserved",
+    "storage": "added",
+    "path": "/documents/elections/2026/staff-meeting-protocol-legacy-main.pdf",
+    "bytes": 494372,
+    "sha256": "3de81e422343d2463884752d7bf489897621edbb265a1c0279de91cb689ba341",
+    "sources": [
+      {
+        "url": "https://old.inmech.kyiv.ua/doc/news/2026/2026_protokol_zboriv.pdf",
+        "originalFilename": "2026_protokol_zboriv.pdf",
+        "checkedAt": "2026-10-21T19:54:43Z",
+        "sourceStatus": "available",
+        "httpStatus": 200,
+        "finalUrl": "https://old.inmech.kyiv.ua/doc/news/2026/2026_protokol_zboriv.pdf",
+        "mimeType": "application/pdf",
+        "bytes": 494372,
+        "sha256": "3de81e422343d2463884752d7bf489897621edbb265a1c0279de91cb689ba341"
+      },
+      {
+        "url": "https://inmech.kyiv.ua/doc/news/2026/2026_protokol_zboriv.pdf",
+        "originalFilename": "2026_protokol_zboriv.pdf",
+        "checkedAt": "2026-10-21T19:54:43Z",
+        "sourceStatus": "missing",
+        "httpStatus": 404
+      },
+      {
+        "url": "http://inmech.kyiv.ua/doc/news/2026/2026_protokol_zboriv.pdf",
+        "originalFilename": "2026_protokol_zboriv.pdf",
+        "checkedAt": "2026-10-21T19:54:43Z",
+        "sourceStatus": "missing",
+        "httpStatus": 404
+      }
+    ],
+    "variantOf": "staff-meeting-protocol"
+  },
+  {
+    "id": "committee-protocol-5-extract",
+    "electionYear": 2026,
+    "title": "Витяг з Протоколу №5 засідання Вченої ради від 28.04.2026",
+    "titleEn": "Extract from Scientific Council protocol No. 5 of 28 April 2026",
+    "kind": "extract",
+    "language": "und",
+    "format": "pdf",
+    "mimeType": "application/pdf",
+    "originalFilename": "vityag-protokol-5.pdf",
+    "dates": [
+      {
+        "type": "referenced-meeting",
+        "date": "2026-04-28",
+        "evidence": "Reference on the committee page; the missing original was not inspected."
+      }
+    ],
+    "note": "Посилання повертає 404. Вміст і мову оригіналу не перевірено; заміну не створено.",
+    "noteEn": "Linked original returns 404. Contents and original language are unverified; no replacement has been created.",
+    "sourceStatus": "missing",
+    "referenceUrl": "https://election.inmech.kyiv.ua/polozhennya-pro-organizaciyniy-komitet-z-provedennya-viboriv-direktora.html",
+    "sources": [
+      {
+        "url": "https://election.inmech.kyiv.ua/media/files/vityag-protokol-5.pdf",
+        "originalFilename": "vityag-protokol-5.pdf",
+        "checkedAt": "2026-10-21T19:54:43Z",
+        "sourceStatus": "missing",
+        "httpStatus": 404
+      }
+    ]
+  }
+]

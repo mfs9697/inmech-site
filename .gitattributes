@@ -1,0 +1,5 @@
+# Election originals are immutable binaries, including the reused institute order.
+public/documents/elections/2026/*.pdf -text
+public/documents/elections/2026/*.docx -text
+public/documents/institute/orders/director-election-order-2026-04-16.pdf -text
+public/documents/institute/strategy/development-strategy-2026-2030.pdf -text

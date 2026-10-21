@@ -60,7 +60,10 @@ const submissionDocuments = [
     text: 'копії документів про вищу освіту, підвищення кваліфікації, військового квитка (для військовослужбовців або військовозобов’язаних);'
   },
   {
-    text: 'перелік наукових праць кандидата у вітчизняних та іноземних (міжнародних) рецензованих фахових виданнях;'
+    text: 'копії документів про присудження наукового ступеня та присвоєння вченого звання (за наявності);'
+  },
+  {
+    text: 'перелік наукових праць кандидата за останні п’ять років у вітчизняних та іноземних (міжнародних) рецензованих фахових виданнях;'
   },
   {
     text: 'письмова згода на обробку персональних даних',
@@ -84,16 +87,16 @@ const additionalScientificInfo = [
 
 <BaseLayout
   title={`Вакансії | ${site.name}`}
-  description="Оголошення про конкурси на заміщення вакантних посад наукових працівників Інституту механіки та відповідні накази."
+  description="Оголошення про конкурси на вакантні наукові посади та інші конкурсні відбори Інституту механіки ім. С. П. Тимошенка НАН України."
   activePage="about"
 >
   <section class="page-hero vacancies-hero">
     <div class="container">
       <div class="panel">
         <p class="eyebrow">Вакансії</p>
-        <h1>Конкурси на заміщення вакантних посад</h1>
+        <h1>Вакансії та конкурсні відбори</h1>
         <p class="lead">
-          Оголошення про вакантні посади та накази щодо конкурсів на посади наукових працівників Інституту механіки ім. С. П. Тимошенка НАН України.
+          Оголошення про вакантні наукові посади, постдокторальні та інші конкурсні відбори Інституту механіки ім. С. П. Тимошенка НАН України.
         </p>
 
         <dl class="vacancy-stats" aria-label="Зведення конкурсів на вакантні посади">
@@ -118,7 +121,7 @@ const additionalScientificInfo = [
             <dd>{documentCount}</dd>
           </div>
           <div>
-            <dt>Останнє оновлення</dt>
+            <dt>Останній конкурс</dt>
             <dd>{formatDate.format(new Date(`${latestEntry.date}T00:00:00`))}</dd>
           </div>
         </dl>
@@ -134,7 +137,7 @@ const additionalScientificInfo = [
             <p class="eyebrow">Активні оголошення</p>
             <h2 class="section-title">Поточні конкурси</h2>
             <p class="section-text">
-              Ці оголошення оприлюднюються до формування архівної картки конкурсу. Архівний запис із трьома стандартними PDF-документами буде додано після появи відповідних наказів.
+              Активна картка може містити кілька пов’язаних конкурсних відборів за одним наказом. Для кожної процедури окремо зазначаються посади або програма, вимоги та строк подання документів.
             </p>
           </div>
         </div>
@@ -144,6 +147,7 @@ const additionalScientificInfo = [
             <article class="vacancy-card active-vacancy-card">
               <div class="vacancy-date">
                 <time datetime={entry.date}>{formatDate.format(new Date(`${entry.date}T00:00:00`))}</time>
+                {entry.orderNumber && <span class="vacancy-order-number">Наказ № {entry.orderNumber}</span>}
               </div>
 
               <div class="vacancy-content">
@@ -151,41 +155,107 @@ const additionalScientificInfo = [
                   <div>
                     <h3>{entry.title}</h3>
                     <p>{entry.summary}</p>
+                    {(entry.publicationDate || entry.updatedDate) && (
+                      <p class="announcement-meta">
+                        {entry.publicationDate && (
+                          <>Оприлюднено: {formatDate.format(new Date(`${entry.publicationDate}T00:00:00`))}</>
+                        )}
+                        {entry.publicationDate && entry.updatedDate && <> · </>}
+                        {entry.updatedDate && (
+                          <>Оновлено: {formatDate.format(new Date(`${entry.updatedDate}T00:00:00`))}</>
+                        )}
+                      </p>
+                    )}
                   </div>
                 </div>
 
-                <div class="card-announcement">
-                  <div class="card-field positions-field">
-                    <p class="card-label">Вакантні посади</p>
-                    <ul class="position-list">
-                      {entry.positions.map((position) => (
-                        <li>
-                          <span>{position.title}</span>
-                          {position.departments && position.departments.length > 0 && (
-                            <span class="position-departments">
-                              {position.departments.map((department, index) => (
-                                <>
-                                  {index > 0 && ', '}
-                                  <a href={withBase(department.href)}>{department.title}</a>
-                                </>
+                {entry.tracks && entry.tracks.length > 0 ? (
+                  <div class="competition-tracks">
+                    {entry.tracks.map((track) => (
+                      <section class="competition-track">
+                        <p class="track-label">{track.label}</p>
+                        <h4>{track.title}</h4>
+
+                        <div class="track-grid">
+                          <div class="card-field positions-field">
+                            <p class="card-label">Посади / місця</p>
+                            <ul class="position-list">
+                              {track.positions.map((position) => (
+                                <li>
+                                  <span>{position.title}</span>
+                                  {position.departments && position.departments.length > 0 && (
+                                    <span class="position-departments">
+                                      {position.departments.map((department, index) => (
+                                        <>
+                                          {index > 0 && ', '}
+                                          <a href={withBase(department.href)}>{department.title}</a>
+                                        </>
+                                      ))}
+                                    </span>
+                                  )}
+                                </li>
                               ))}
-                            </span>
+                            </ul>
+                          </div>
+
+                          <div class="card-field deadline-field">
+                            <p class="card-label">Строк подання документів</p>
+                            <p class="card-note">{track.deadline}</p>
+                          </div>
+
+                          {track.researchTopic && (
+                            <div class="card-field research-topic-field">
+                              <p class="card-label">{track.researchTopicLabel ?? 'Науково-дослідна тема'}</p>
+                              <p class="research-topic">{track.researchTopic}</p>
+                            </div>
                           )}
-                        </li>
-                      ))}
-                    </ul>
+
+                          <div class="card-field requirements-field">
+                            <p class="card-label">Вимоги до учасників</p>
+                            <ul class="requirement-list">
+                              {track.requirements.map((requirement) => <li>{requirement}</li>)}
+                            </ul>
+                          </div>
+                        </div>
+
+                        {track.note && <p class="track-note">{track.note}</p>}
+                      </section>
+                    ))}
                   </div>
-                  <div class="card-field deadline-field">
-                    <p class="card-label">Строк подання документів</p>
-                    <p class="card-note">{entry.deadline}</p>
+                ) : (
+                  <div class="card-announcement">
+                    <div class="card-field positions-field">
+                      <p class="card-label">Вакантні посади</p>
+                      <ul class="position-list">
+                        {entry.positions.map((position) => (
+                          <li>
+                            <span>{position.title}</span>
+                            {position.departments && position.departments.length > 0 && (
+                              <span class="position-departments">
+                                {position.departments.map((department, index) => (
+                                  <>
+                                    {index > 0 && ', '}
+                                    <a href={withBase(department.href)}>{department.title}</a>
+                                  </>
+                                ))}
+                              </span>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div class="card-field deadline-field">
+                      <p class="card-label">Строк подання документів</p>
+                      <p class="card-note">{entry.deadline}</p>
+                    </div>
+                    <div class="card-field requirements-field">
+                      <p class="card-label">Вимоги до учасників конкурсу</p>
+                      <ul class="requirement-list">
+                        {entry.requirements.map((requirement) => <li>{requirement}</li>)}
+                      </ul>
+                    </div>
                   </div>
-                  <div class="card-field requirements-field">
-                    <p class="card-label">Вимоги до учасників конкурсу</p>
-                    <ul class="requirement-list">
-                      {entry.requirements.map((requirement) => <li>{requirement}</li>)}
-                    </ul>
-                  </div>
-                </div>
+                )}
 
                 <p class="active-announcement-note">{entry.note}</p>
                 {entry.documents && entry.documents.length > 0 && (
@@ -209,7 +279,7 @@ const additionalScientificInfo = [
     <div class="container">
       <div class="submission-panel">
         <p class="eyebrow">Документи для участі</p>
-        <h3>Перелік необхідних документів для участі у конкурсі</h3>
+        <h3>Документи для конкурсу на вакантні наукові посади</h3>
         <ol>
           {submissionDocuments.map((item) => (
             <li>
@@ -249,12 +319,26 @@ const additionalScientificInfo = [
         </p>
         <p>
           Заяви та документи приймаються за адресою: вул. П. Нестерова, м. Київ, 03057, а також на електронну пошту
-          <a href="mailto:inst_mech@inmech.kyiv.ua">inst_mech@inmech.kyiv.ua</a>. При прийомі на роботу осіб, які пройшли конкурсний відбір,
-          Інститут житлом не забезпечує.
+          <a href="mailto:inst_mech@inmech.kyiv.ua">inst_mech@inmech.kyiv.ua</a>. Для осіб, прийнятих на вакантні наукові посади за результатами
+          конкурсу, Інститут житлом не забезпечує.
         </p>
         <p>
           Уповноважена особа для надання роз’яснень щодо проведення конкурсу: Селіванов Михайло Федорович, заступник директора з наукової роботи
           Інституту механіки ім. С. П. Тимошенка НАН України.
+        </p>
+      </div>
+
+      <div class="submission-panel postdoc-submission-panel">
+        <p class="eyebrow">Постдокторальна програма</p>
+        <h3>Документи для участі у постдокторальному відборі</h3>
+        <p>
+          Для конкурсного відбору до програми постдокторальних досліджень застосовується окремий пакет документів відповідно до чинного Положення
+          про програму постдокторальних досліджень у НАН України та умов конкретного відбору. Загальний перелік документів для кадрового конкурсу,
+          наведений вище, до постдокторальної процедури автоматично не застосовується.
+        </p>
+        <p>
+          У картці активного конкурсу окремо зазначаються науково-дослідна тема, вимоги до претендента та строк подання документів. Уточнений перелік
+          документів буде додано разом з остаточними умовами поточного постдокторального відбору.
         </p>
       </div>
 
@@ -263,8 +347,9 @@ const additionalScientificInfo = [
           <p class="eyebrow">Архів документів</p>
           <h2 class="section-title">Оголошення та накази</h2>
           <p class="section-text">
-            Для кожного конкурсу подано три PDF-документи: наказ про конкурс, наказ про затвердження учасників і наказ про затвердження результатів.
-            Строк подання документів і вимоги до учасників наведено безпосередньо в картці відповідного конкурсу.
+            Для кадрових конкурсів в архіві зберігаються наказ про конкурс, наказ про затвердження учасників і наказ про результати. Матеріали
+            постдокторальних та інших спеціальних конкурсних відборів зберігаються відповідно до їхньої окремої процедури. Строки та вимоги
+            наводяться безпосередньо в картці відповідного конкурсу.
           </p>
         </div>
       </div>
@@ -400,6 +485,75 @@ const additionalScientificInfo = [
     .active-vacancy-card {
       border-color: rgba(184, 135, 47, 0.46);
       background: linear-gradient(180deg, #fffdf7 0%, var(--surface) 100%);
+    }
+
+    .vacancy-order-number {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 750;
+    }
+
+    .announcement-meta {
+      margin-top: 8px !important;
+      font-size: 0.86rem;
+    }
+
+    .competition-tracks {
+      display: grid;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .competition-track {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      padding: 16px;
+    }
+
+    .competition-track h4 {
+      margin: 2px 0 12px;
+      font-size: 1.05rem;
+    }
+
+    .track-label {
+      margin: 0;
+      color: var(--accent-dark);
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .track-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 0.42fr);
+      gap: 12px;
+    }
+
+    .research-topic-field,
+    .requirements-field {
+      grid-column: 1 / -1;
+    }
+
+    .research-topic {
+      margin: 4px 0 0;
+      font-weight: 780;
+      line-height: 1.45;
+    }
+
+    .track-note {
+      margin: 12px 0 0;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .postdoc-submission-panel {
+      margin-top: 14px;
     }
 
     .active-announcement-note,

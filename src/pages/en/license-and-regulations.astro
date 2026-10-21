@@ -66,6 +66,14 @@ const regulationGroups = [
       ['Regulations on the procedure for competition to fill vacant research positions at the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine', '/documents/postgraduate/regulations/staff-and-methodology/staff-competition-regulation-2021.pdf'],
       ['Regulations on the Scientific and Methodological Council', '/documents/postgraduate/regulations/staff-and-methodology/nmr-regulation.pdf']
     ]
+  },
+  {
+    title: 'Postdoctoral programme',
+    description: 'Regulatory documents governing competitive selection and participation in the NAS of Ukraine postdoctoral research programme.',
+    documents: [
+      ['Regulations on the Postdoctoral Research Programme of the NAS of Ukraine (consolidated text, Ukrainian)', '/documents/postdoc/regulations/'],
+      ['Presidium Resolution No. 260 of 23 June 2023 (Ukrainian)', '/documents/postdoc/resolution-260/']
+    ]
   }
 ];
 
@@ -171,7 +179,7 @@ const relatedLinks = [
         </div>
         <p>
           The documents are grouped by topic to make it easier to find the required regulation:
-          educational process, admission, mobility, integrity, staff and methodological procedures.
+          educational process, admission, mobility, integrity, staff procedures and the postdoctoral programme.
         </p>
       </div>
 
@@ -182,7 +190,7 @@ const relatedLinks = [
             <p>{group.description}</p>
             <div class="regulation-link-list">
               {group.documents.map(([title, href]) => (
-                <a href={href} target="_blank" rel="noopener noreferrer">{title}</a>
+                <a href={docHref(href)} target="_blank" rel="noopener noreferrer">{title}</a>
               ))}
             </div>
           </article>

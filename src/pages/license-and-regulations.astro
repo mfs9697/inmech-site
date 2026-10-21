@@ -66,6 +66,14 @@ const regulationGroups = [
       ['Положення про порядок проведення конкурсу на заміщення вакантних посад наукових працівників в Інституті механіки ім. С. П. Тимошенка НАН України', '/documents/postgraduate/regulations/staff-and-methodology/staff-competition-regulation-2021.pdf'],
       ['Положення про науково-методичну раду', '/documents/postgraduate/regulations/staff-and-methodology/nmr-regulation.pdf']
     ]
+  },
+  {
+    title: 'Постдокторальна програма',
+    description: 'Нормативні документи, що регулюють конкурсний відбір та участь у програмі постдокторальних досліджень НАН України.',
+    documents: [
+      ['Положення про програму постдокторальних досліджень у НАН України (чинний консолідований текст)', '/documents/postdoc/regulations/'],
+      ['Постанова Президії НАН України від 23.06.2023 № 260', '/documents/postdoc/resolution-260/']
+    ]
   }
 ];
 
@@ -171,7 +179,7 @@ const relatedLinks = [
         </div>
         <p>
           Документи згруповано за змістом, щоб швидше знаходити потрібний регламент:
-          освітній процес, вступ, мобільність, доброчесність, кадрові та методичні процедури.
+          освітній процес, вступ, мобільність, доброчесність, кадрові процедури та постдокторальна програма.
         </p>
       </div>
 
@@ -182,7 +190,7 @@ const relatedLinks = [
             <p>{group.description}</p>
             <div class="regulation-link-list">
               {group.documents.map(([title, href]) => (
-                <a href={href} target="_blank" rel="noopener noreferrer">{title}</a>
+                <a href={docHref(href)} target="_blank" rel="noopener noreferrer">{title}</a>
               ))}
             </div>
           </article>

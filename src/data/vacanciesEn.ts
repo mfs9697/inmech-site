@@ -45,7 +45,7 @@ export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [
     year: 2026,
     orderNumber: '118/k',
     publicationDate: '2026-10-21',
-    title: 'Competitions under Order No. 118/k of 1 October 2026',
+    title: 'Competition for vacant research positions and postdoctoral selection',
     summary: 'Competition for two research-management positions and a competitive selection for participation in the NAS of Ukraine postdoctoral research programme.',
     positions: [
       {
@@ -94,7 +94,7 @@ export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [
             title: '1 place in the NAS of Ukraine postdoctoral research programme'
           }
         ],
-        deadline: 'The document submission deadline is determined by the applicable NAS of Ukraine selection conditions and will be specified in this card.',
+        deadline: 'The document submission deadline is determined by the conditions of the current NAS of Ukraine competitive selection.',
         requirements: [
           'a Candidate of Sciences degree or PhD;',
           'the applicant is not employed at the S. P. Timoshenko Institute of Mechanics of the NAS of Ukraine as their principal place of work;',
@@ -102,10 +102,9 @@ export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [
         ],
         researchTopicLabel: 'Indicative research topic',
         researchTopic: 'Mathematical modelling of coupled contact-interaction problems for deformable bodies',
-        note: 'The wording of the topic will be refined while the competition materials are being prepared. Information on the postdoctoral supervisor and scientific consultant will be added after the topic is agreed.'
       }
     ],
-    note: 'Order No. 118/k of 1 October 2026 is attached to this card. The announcement was published on 21 October 2026.',
+    note: 'The signed Order No. 118/k of 1 October 2026 is available below.',
     documents: [
       {
         title: 'Order announcing the competitions, 01.10.2026, No. 118/k',

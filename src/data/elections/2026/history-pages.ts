@@ -3,7 +3,7 @@
 // Original legacy URLs and observation dates are tracked in legacy-routes.json.
 export interface ElectionHistoryRecord {
   slug: string;
-  group: 'regulations' | 'documents';
+  group: 'regulations' | 'documents' | 'candidates' | 'voting' | 'results';
   title: string;
   titleEn: string;
   summary: string;
@@ -11,7 +11,7 @@ export interface ElectionHistoryRecord {
   paragraphs: string[];
   paragraphsEn: string[];
   documents: string[];
-  reviewState: 'historical-summary' | 'source-gap';
+  reviewState: 'historical-summary' | 'source-gap' | 'publication-review';
   note?: string;
   noteEn?: string;
 }
@@ -207,4 +207,234 @@ export const electionHistoryPages: ElectionHistoryRecord[] = [
     note: 'Джерело не встановлено. Якщо підписані оригінали будуть знайдені, їх слід додати окремим перевіреним оновленням.',
     noteEn: 'Original minutes are not verified. If authenticated copies are recovered, add them through a separately reviewed change.'
   }
+,
+  {
+    slug: 'candidates',
+    group: 'candidates',
+    title: 'Кандидати на посаду директора',
+    titleEn: 'Candidates for Institute director',
+    summary: 'Архів матеріалів про висунення кандидатури на виборах директора Інституту 2026 року.',
+    summaryEn: 'Archive of the 2026 nomination materials for the Institute director election.',
+    paragraphs: [
+      'Історична сторінка повідомляла про висунення кандидатури академіка НАН України Володимира Михайловича Назаренка на посаду директора Інституту механіки ім. С. П. Тимошенка НАН України.',
+      'Засідання Вченої ради, на якому розглядалося висунення, відбулося 28 квітня 2026 року. Збереглися матеріали доповіді до цього засідання у форматі PDF.',
+      'Передвиборча програма кандидата була окремо оприлюднена на історичному сайті. У цьому архіві вона описана як позиція кандидата, а не як затверджена програма Інституту.'
+    ],
+    paragraphsEn: [
+      'The historical election site records the nomination of NAS of Ukraine Academician Volodymyr Mykhailovych Nazarenko for the post of director of the S.P. Timoshenko Institute of Mechanics.',
+      'The Scientific Council meeting considering the nomination took place on 28 April 2026. The presentation slides for that meeting are preserved as an original PDF.',
+      'The candidate’s election programme was published separately on the legacy site. It is identified here as the candidate’s own proposals, not an Institute-approved policy document.'
+    ],
+    documents: ['candidate-nomination-slides'],
+    reviewState: 'historical-summary'
+  },
+  {
+    slug: 'candidates/programme',
+    group: 'candidates',
+    title: 'Передвиборча програма В. М. Назаренка',
+    titleEn: 'Election programme of V. M. Nazarenko',
+    summary: 'Передвиборча програма кандидата, оприлюднена на історичному сайті виборів.',
+    summaryEn: 'The candidate’s election programme as published on the historical election website.',
+    paragraphs: [
+      'На історичному сайті оприлюднено передвиборчу програму кандидата на посаду директора академіка НАН України Володимира Михайловича Назаренка. Її положення відображають особисті пропозиції кандидата станом на виборчу кампанію 2026 року.',
+      'Серед пріоритетів програми — підвищення результатів атестації, залучення міжнародних грантів, оновлення кадрового складу, розвиток аспірантури, видавничої діяльності та міжнародних наукових журналів, ремонт і утримання інфраструктури, відновлення експериментальних досліджень та робота у сфері оборони й безпеки.',
+      'Програма посилається на окремо затверджену Стратегію розвитку Інституту на 2026–2030 роки. Збережений оригінальний PDF цієї стратегії доступний нижче.',
+      'Повний первісно оприлюднений текст передвиборчої програми доступний за посиланням на історичну сторінку. Додатковий PDF-файл програми з робочого Google Drive ще проходить окреме рішення щодо оприлюднення і не додається тут як новий публічний документ.'
+    ],
+    paragraphsEn: [
+      'The historical website published the election programme of NAS of Ukraine Academician Volodymyr Mykhailovych Nazarenko, a candidate for Institute director. Its proposals reflect the candidate’s position during the 2026 campaign.',
+      'Themes include research evaluation, international grants, recruitment and renewal of research staff, postgraduate training, academic publishing and journals, infrastructure maintenance, experimental research, and defence- and security-related work.',
+      'The programme refers to the Institute’s separately approved Development Strategy for 2026–2030. The preserved original strategy PDF is linked below.',
+      'The complete originally published programme remains accessible through the historical source-page link. A further programme PDF found in the working Google Drive folder is undergoing a separate publication decision and is not introduced as a new public file here.'
+    ],
+    documents: ['development-strategy-2026-2030'],
+    reviewState: 'historical-summary',
+    note: 'Авторський текст програми не слід змішувати з офіційним рішенням Вченої ради чи з результатами голосування.',
+    noteEn: 'The candidate-authored programme must not be confused with a Scientific Council decision or the vote results.'
+  },
+  {
+    slug: 'voting',
+    group: 'voting',
+    title: 'Організація голосування та виборці',
+    titleEn: 'Voting arrangements and electorate',
+    summary: 'Історичні повідомлення щодо голосування, списку виборців, делегатів та спостерігачів.',
+    summaryEn: 'Historical notices on voting, the electorate, delegates and observers.',
+    paragraphs: [
+      'Вибори директора відбулися 16 червня 2026 року. Організаційні повідомлення і списки виборців на старому сайті описували порядок участі в голосуванні.',
+      'За збереженим протоколом виборчої комісії на дату виборів до складу штатних наукових працівників належали 92 особи, а для голосування зареєструвалися 79 учасників.',
+      'Історичні повідомлення розходяться щодо місця проведення виборів і окремих формулювань права участі. Їх наведено як різні історичні джерела, а не виправлено припущенням.'
+    ],
+    paragraphsEn: [
+      'The director election took place on 16 June 2026. The old site published election arrangements and an electorate roll explaining how participation was organized.',
+      'The preserved election commission protocol records 92 staff researchers on the day of the election and 79 participants registered for voting.',
+      'Historical notices differ on the voting venue and certain voter-eligibility descriptions. These are treated as distinct historical sources rather than silently reconciled.'
+    ],
+    documents: ['election-commission-protocol', 'observer-application'],
+    reviewState: 'historical-summary'
+  },
+  {
+    slug: 'voting/notice',
+    group: 'voting',
+    title: 'Офіційне оголошення про дату, час та місце голосування',
+    titleEn: 'Official notice of voting date, time and venue',
+    summary: 'Архівний запис про проведення голосування 16 червня 2026 року та розбіжність щодо місця проведення.',
+    summaryEn: 'Historical voting notice for 16 June 2026, including the unresolved venue discrepancy.',
+    paragraphs: [
+      'Історичний виборчий сайт повідомляв про голосування 16 червня 2026 року і називав місцем проведення велику конференц-залу на третьому поверсі.',
+      'Інше історичне оголошення на старому основному сайті Інституту зазначало аудиторію 211. Обидва формулювання збережено як свідчення різних джерел; місце проведення в цьому архіві не оголошується остаточно підтвердженим.',
+      'Дата належить до завершених виборів 2026 року. Ця сторінка не є актуальним запрошенням на голосування.'
+    ],
+    paragraphsEn: [
+      'The dedicated election website gave 16 June 2026 as the voting date and described the location as the large conference hall on the third floor.',
+      'A different historical announcement on the old primary Institute website identified room 211. Both descriptions are retained as source-specific evidence; the venue is not presented here as finally verified.',
+      'This record refers to the concluded 2026 election and is not a current voting notice.'
+    ],
+    documents: [],
+    reviewState: 'historical-summary',
+    note: 'Розбіжність «велика конференц-зала / аудиторія 211» потребує перевірки відповідальним працівником Інституту.',
+    noteEn: 'The “large conference hall / room 211” discrepancy requires confirmation by the responsible Institute records officer.'
+  },
+  {
+    slug: 'voting/delegates',
+    group: 'voting',
+    title: 'Порядок обрання делегатів',
+    titleEn: 'Election of delegates',
+    summary: 'Історична рубрика без змістовного тексту про порядок обрання делегатів.',
+    summaryEn: 'An empty historical page on the process for electing delegates.',
+    paragraphs: [
+      'На сайті виборів існувала сторінка з назвою «Порядок обрання делегатів», однак під час аудиту вона не містила основного тексту.',
+      'У перевіреному наборі документів немає автентифікованого окремого порядку обрання делегатів. Тому не реконструюємо процедуру та не подаємо вигаданих рішень чи списків.'
+    ],
+    paragraphsEn: [
+      'The historical election site contained a page titled “Election of delegates”, but the audited page had no substantive body text.',
+      'The verified document set does not contain an authenticated separate delegate-election procedure. We therefore do not reconstruct the process or invent decisions or delegate lists.'
+    ],
+    documents: [],
+    reviewState: 'source-gap',
+    note: 'Оригінальний матеріал відсутній у перевіреній публікації; можливі внутрішні документи потребують окремої архівної перевірки.',
+    noteEn: 'The audited public page lacked source material; any internal records require a separate archival check.'
+  },
+  {
+    slug: 'voting/voters',
+    group: 'voting',
+    title: 'Загальний список виборців (архів 2026 року)',
+    titleEn: 'Historical voter roll (2026)',
+    summary: 'Історична виборча відомість зі 92 записами; повторне оприлюднення поіменного списку потребує окремого підтвердження.',
+    summaryEn: 'Historical electorate roll with 92 entries; republication of the name-by-name list requires separate review.',
+    paragraphs: [
+      'На історичному сайті виборів було оприлюднено загальний список із 92 записами. Це список станом на виборчу кампанію 2026 року, а не актуальний перелік працівників Інституту.',
+      'Кількість 92 також наведена в збереженому протоколі виборчої комісії від 16 червня 2026 року. Історичні джерела містять різні формулювання щодо участі працівників за сумісництвом; їхню відповідність не встановлено автоматично.',
+      'Поіменний перелік не дублюється на новій сторінці до підтвердження відповідальним зберігачем документів можливості подальшого оприлюднення, точності порядку записів і належності даних до дати виборів. Історичне посилання зберігається окремо.'
+    ],
+    paragraphsEn: [
+      'The historical election website published a roll comprising 92 entries. It is an electorate list from the 2026 campaign, not the Institute’s current staff directory.',
+      'The figure of 92 is also recorded by the preserved election commission protocol of 16 June 2026. The historical materials differ on the participation of part-time employees, and those differences have not been resolved by inference.',
+      'The name-by-name roll is not copied to this new page until the responsible records owner confirms continued publication, source ordering and the historical as-of context. A link to the original historical page remains distinct.'
+    ],
+    documents: ['election-commission-protocol'],
+    reviewState: 'publication-review',
+    note: 'Поіменний склад виборців залишається предметом редакційної перевірки; нові персональні дані не додаються.',
+    noteEn: 'The named voter roll remains subject to records-owner review; no new personal details are added.'
+  },
+  {
+    slug: 'voting/observers',
+    group: 'voting',
+    title: 'Правила акредитації спостерігачів',
+    titleEn: 'Observer accreditation rules',
+    summary: 'Архівний опис участі спостерігачів і збережений шаблон заяви у форматі DOCX.',
+    summaryEn: 'Historical overview of observer accreditation and the preserved DOCX application template.',
+    paragraphs: [
+      'Історичний виборчий сайт містив повідомлення про акредитацію спостерігачів на виборах директора. Збережено початковий редагований файл заяви спостерігача у форматі DOCX.',
+      'Файл подано як зразок із завершеної виборчої кампанії 2026 року. Він не є чинною формою для нових конкурсів, а порядок акредитації не реконструюється поза межами перевірених джерел.'
+    ],
+    paragraphsEn: [
+      'The historical election website described observer accreditation for the director election. Its original editable observer application form has been preserved as a DOCX.',
+      'The file is presented as a historical 2026 form, not as a currently valid application. No unverified accreditation rules have been added.'
+    ],
+    documents: ['observer-application'],
+    reviewState: 'historical-summary'
+  },
+  {
+    slug: 'results',
+    group: 'results',
+    title: 'Результати виборів директора 2026 року',
+    titleEn: '2026 director-election results',
+    summary: 'Документально підтверджені підсумки голосування та подальше направлення матеріалів до НАН України.',
+    summaryEn: 'Documented voting figures and the subsequent transmission of election records to the NAS of Ukraine.',
+    paragraphs: [
+      '16 червня 2026 року відбулися збори колективу наукових працівників, на яких проведено голосування щодо кандидата на посаду директора. Збережені протоколи фіксують 92 особи в історичному складі наукових працівників, 79 зареєстрованих учасників і 79 голосів за В. М. Назаренка.',
+      'У текстовому підсумку виборчого сайту голоси «проти» й недійсні бюлетені записано як нуль; у частині сканованої таблиці використано прочерки. Оригінальне оформлення не змінюємо, а підсумок зазначає джерело.',
+      'Історичне повідомлення фіксує направлення документів до НАН України листом від 18 червня 2026 року № 50-02-07-173. Документального підтвердження окремого подальшого призначення Президією НАН України серед перевірених матеріалів не знайдено.'
+    ],
+    paragraphsEn: [
+      'A meeting of Institute research staff on 16 June 2026 held the director-election vote. The preserved protocols report 92 research staff on the historical roll, 79 registered participants and 79 votes in favour of V. M. Nazarenko.',
+      'The election website’s summary reports zero votes against and zero invalid ballots, while parts of the scanned original table use dashes. The original notation is preserved and the summary remains source-attributed.',
+      'A historical notice records the forwarding of materials to the NAS of Ukraine under a letter dated 18 June 2026, No. 50-02-07-173. No separate subsequent appointment resolution has been verified among the inspected records.'
+    ],
+    documents: ['staff-meeting-protocol','staff-meeting-protocol-legacy-main','election-commission-protocol'],
+    reviewState: 'historical-summary'
+  },
+  {
+    slug: 'results/commission-protocol',
+    group: 'results',
+    title: 'Протокол виборчої комісії від 16 червня 2026 року',
+    titleEn: 'Election commission protocol of 16 June 2026',
+    summary: 'Збережений підписаний протокол та зафіксована статистика таємного голосування.',
+    summaryEn: 'Preserved signed commission protocol and the recorded secret-ballot figures.',
+    paragraphs: [
+      'Збережений протокол виборчої комісії датований 16 червня 2026 року. Згідно з опублікованим підсумком, зі складу 92 наукових працівників зареєструвалися 79 осіб; видано й виявлено в урні 79 бюлетенів.',
+      'За кандидатуру академіка НАН України В. М. Назаренка віддано 79 голосів. Історичний вебпідсумок зазначає нуль голосів проти та нуль недійсних бюлетенів; у сканованій таблиці окремі значення позначено прочерками.',
+      'Рішення виборчої комісії щодо результатів виборів зафіксовано у протоколі. Це не замінює окремого акта Президії НАН України про подальше призначення.'
+    ],
+    paragraphsEn: [
+      'The preserved election commission protocol is dated 16 June 2026. Its published summary records 92 research staff, 79 registered participants, and 79 ballots issued and recovered from the ballot box.',
+      'Seventy-nine votes were cast for NAS of Ukraine Academician V. M. Nazarenko. The legacy web summary gives zero votes against and zero invalid ballots; the scanned table uses dashes in some corresponding fields.',
+      'The commission’s decision is recorded in the signed original. It does not substitute for a separate subsequent appointment act of the NAS of Ukraine Presidium.'
+    ],
+    documents: ['election-commission-protocol'],
+    reviewState: 'historical-summary'
+  },
+  {
+    slug: 'results/staff-meeting',
+    group: 'results',
+    title: 'Рішення зборів наукових працівників',
+    titleEn: 'Decision of the research staff meeting',
+    summary: 'Матеріали зборів 16 червня 2026 року; збережено два окремі скановані варіанти протоколу.',
+    summaryEn: 'Records of the 16 June 2026 staff meeting; two distinct scanned protocol variants are preserved.',
+    paragraphs: [
+      'Історична вебсторінка з заголовком «Офіційне рішення Організаційного комітету» містила відомості про рішення зборів наукових працівників. У новому архіві ці різні назви не ототожнюються автоматично.',
+      'Протокол зборів наукових працівників від 16 червня 2026 року зберігся у двох варіантах PDF: з виборчого сайту і зі старого основного сайту Інституту. Їхні розміри та SHA-256 відрізняються; обидва варіанти подано без редагування чи безпідставного вилучення.',
+      'У протоколах містяться дані про проведення голосування. Текст цієї сторінки є історичним оглядом і не становить нового рішення організаційного комітету.'
+    ],
+    paragraphsEn: [
+      'The historical page titled “Official decision of the Organizing Committee” discussed the decision of the staff meeting. The new archive does not silently treat these differently titled acts as interchangeable.',
+      'The staff meeting protocol of 16 June 2026 survives in two PDF variants, one from the election website and one from the Institute’s former primary website. Their sizes and SHA-256 hashes differ; both originals are presented unmodified.',
+      'The protocols document the election meeting. This summary does not create or attribute a new decision to the organizing committee.'
+    ],
+    documents: ['staff-meeting-protocol','staff-meeting-protocol-legacy-main'],
+    reviewState: 'historical-summary'
+  },
+  {
+    slug: 'results/document-submission',
+    group: 'results',
+    title: 'Повідомлення про направлення документів до НАН України',
+    titleEn: 'Notice of forwarding documents to the NAS of Ukraine',
+    summary: 'Повідомлення про подання виборчих матеріалів листом від 18 червня 2026 року.',
+    summaryEn: 'Notice concerning the transmission of election materials by letter dated 18 June 2026.',
+    paragraphs: [
+      'Історична сторінка виборів повідомляла про направлення матеріалів до Національної академії наук України за листом від 18 червня 2026 року № 50-02-07-173.',
+      'Текст повідомлення є свідченням етапу подання документів після голосування. Скан листа не входить до перевіреного набору дев’яти оригіналів. Без окремого підтвердження не зазначаємо дату призначення директора Президією НАН України.',
+      'Посилання на історичну сторінку збережено як джерело повідомлення; не створюємо замінника відсутнього листа.'
+    ],
+    paragraphsEn: [
+      'The historical election page reports that documents were forwarded to the National Academy of Sciences of Ukraine under letter No. 50-02-07-173 dated 18 June 2026.',
+      'This notice documents a post-vote submission stage. A scanned copy of the letter is not among the nine verified originals. No appointment date by the NAS of Ukraine Presidium is asserted without separate evidence.',
+      'A reference to the historical webpage is retained as the source; no substitute letter has been fabricated.'
+    ],
+    documents: [],
+    reviewState: 'historical-summary',
+    note: 'Оригінал листа № 50-02-07-173 окремо не перевірено.',
+    noteEn: 'The original of letter No. 50-02-07-173 has not been independently verified.'
+  }
+
 ];

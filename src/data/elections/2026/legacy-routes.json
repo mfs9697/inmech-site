@@ -136,7 +136,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "substantive",
       "targetPath": "/director-election/2026/candidates/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {
@@ -145,7 +145,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "substantive",
       "targetPath": "/director-election/2026/candidates/programme/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {
@@ -154,7 +154,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "empty-body",
       "targetPath": "/director-election/2026/voting/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {
@@ -163,7 +163,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "substantive",
       "targetPath": "/director-election/2026/voting/notice/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {
@@ -172,7 +172,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "empty-body",
       "targetPath": "/director-election/2026/voting/delegates/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {
@@ -181,7 +181,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "substantive",
       "targetPath": "/director-election/2026/voting/voters/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {
@@ -190,7 +190,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "substantive",
       "targetPath": "/director-election/2026/voting/observers/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {
@@ -199,7 +199,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "empty-body",
       "targetPath": "/director-election/2026/results/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {
@@ -208,7 +208,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "substantive",
       "targetPath": "/director-election/2026/results/commission-protocol/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {
@@ -217,7 +217,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "substantive",
       "targetPath": "/director-election/2026/results/staff-meeting/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {
@@ -226,7 +226,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "substantive",
       "targetPath": "/director-election/2026/results/document-submission/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     }
   ],

@@ -41,7 +41,9 @@ jobs:
         run: npm ci
 
       - name: Validate generated site
-        run: npm run validate
+        run: |
+          npm run validate
+          node scripts/check-election-production.mjs --self-test
 
   build-and-deploy:
     if: github.event_name != 'pull_request'
@@ -80,7 +82,9 @@ jobs:
         run: npm ci
 
       - name: Validate generated site
-        run: npm run validate
+        run: |
+          npm run validate
+          node scripts/check-election-production.mjs --self-test
 
       - name: Write deployment marker
         run: printf '%s' "$GITHUB_SHA" > dist/deploy-version.txt
@@ -217,3 +221,6 @@ jobs:
 
             rm -f "$SMOKE_BODY"
           done
+
+      - name: Verify director-election archive and approved source files
+        run: node scripts/check-election-production.mjs

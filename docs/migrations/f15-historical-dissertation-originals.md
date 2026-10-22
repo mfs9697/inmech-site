@@ -146,3 +146,5 @@ Because `unzip` and 7-Zip disagreed on historic archive handling, the **three na
 - Further inspection of compressed payloads, archive readers, CRC verification and any malware scans must be recorded before a separate publication PR moves the exact originals into public paths. A future public copy must retain the identical SHA-256 digest.
 
 The original full-byte preservation objective covers **all 15** files, but the public site will expose only the **12 PDFs** until the three compressed containers are approved for publication.
+
+**Final public/private separation check:** [GitHub Actions #39770596925](https://github.com/mfs9697/inmech-site/actions/runs/39770596925) passed: 440 pages, 19,734 internal links, all 22 original source hashes, 12 public 2019 PDFs byte-identical in `dist/`, and three retained ZIP/RAR originals **absent** from both `dist/` and bilingual public download links. The 3 native archives are not deployed with the static website.

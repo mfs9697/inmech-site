@@ -113,12 +113,12 @@ The entire **15-file** source-folder 2019 inventory from the Codex F15 audit (Ap
 
 ### Compressed-archive format compatibility and caution
 
-**Complete-byte integrity is not the same as archive extraction safety.** The original files have verified source signatures and pinned byte-for-byte hashes. Two independent archive implementations disagreed on the ZIP, and RAR compatibility still needs investigation:
+**Complete-byte integrity is not the same as archive extraction safety.** The original files have verified source signatures and pinned byte-for-byte hashes. The archive readers disagreed on the ZIP and the RAR files, so full archive extraction safety remains distinct from verified original bytes:
 
 - `20dis.zip`: 7-Zip 23.01 and Python's `zipfile.testzip()` validated its **ten PDF members**, but `unzip -t` reported an *overlapped components (possible zip bomb)* warning and returned status 12. This is an unresolved cross-reader compatibility/security warning, not proof of malicious intent.
-- `20ref.rar` and `19dis.rar`: `file` identifies **RAR v4** originals; 7-Zip 23.01 exited with a segmentation fault (139) for each. This is a tool/source compatibility failure, **not** proof of internal structural integrity or file corruption. An independent reader should be used for further review.
+- `20ref.rar` and `19dis.rar`: `file` identifies **RAR v4** originals; 7-Zip 23.01 exited with a segmentation fault (139) for each. **An independent libarchive/bsdtar reader successfully listed the contents of both archives** in [read-only CI #39769093394](https://github.com/mfs9697/inmech-site/actions/runs/39769093394), but full decompression/CRC testing was not performed. The 7-Zip crashes are a reader compatibility failure; they do not establish that the files are malicious, corrupt, or completely safe.
 - The official source files must not be rewritten, "repaired", OCR'd or auto-extracted to make any tool pass. Any preview or extraction should be a separately verified derivative, never a replacement for the historical original.
-- Visitors on the new UA/EN archive page receive a warning for original compressed files. **Publication of the 2019 archive should receive explicit review of these issues**, not only a green hash/build CI result.
+- Visitors on the new UA/EN archive page receive a warning for original compressed files. **Publication of the 2019 archive should receive explicit review of these reader disagreements**, not only a green hash/build CI result.
 
 ### Bilingual publication plan
 

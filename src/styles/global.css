@@ -444,6 +444,16 @@ a:hover { color: var(--accent-dark); text-decoration: underline; }
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     padding: 12px;
+    box-sizing: border-box;
+    /* Keep the long menu inside the visible screen, even on short viewports.
+       JS measures the available height beneath the sticky navigation row;
+       dvh provides a CSS-only fallback while it initializes. */
+    max-height: var(--mobile-nav-available-height, calc(100dvh - 80px));
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+    scroll-padding-block: 12px;
   }
   .primary-nav.open { display: block; }
   .primary-nav > ul { display: grid; align-items: stretch; }

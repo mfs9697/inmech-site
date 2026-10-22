@@ -1,11 +1,12 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
+import { readNormalizedText, documentManifestPaths } from './lib/ncutam-text.mjs';
 
 const root = process.cwd();
 const manifestPath = path.join(root, 'src/data/ncutam/documents.yaml');
 const ledgerPath = path.join(root, 'src/data/ncutam/document-hashes.json');
-const manifest = fs.readFileSync(manifestPath, 'utf8');
+const manifest = readNormalizedText(manifestPath);
 const errors = [];
 
 let expectedBlobs = new Map();
@@ -16,7 +17,7 @@ try {
   errors.push(`documents: invalid hash ledger ${path.relative(root, ledgerPath)} (${error.message})`);
 }
 
-const manifestPaths = [...manifest.matchAll(/^  path:\s*["']?([^"'\n]+)["']?\s*$/gm)].map((match) => match[1]);
+const manifestPaths = documentManifestPaths(manifest);
 
 if (new Set(manifestPaths).size !== manifestPaths.length) {
   errors.push('documents: duplicate public path in manifest');

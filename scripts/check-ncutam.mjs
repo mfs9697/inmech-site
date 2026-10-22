@@ -1,26 +1,21 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import {
+  readNormalizedText,
+  topLevelYamlRecords as parseYamlRecords,
+  yamlField,
+  hasResponsibilityList,
+  activityFrontmatter,
+  activityGalleryItems,
+  activityDocumentIds
+} from './lib/ncutam-text.mjs';
 
 const root = process.cwd();
 const errors = [];
 const fail = (message) => errors.push(message);
 const exists = (relative) => fs.existsSync(path.join(root, relative));
-const read = (relative) => fs.readFileSync(path.join(root, relative), 'utf8');
-
-function topLevelYamlRecords(relative) {
-  const text = read(relative);
-  if (text.trim() === '[]') return [];
-  const starts = [...text.matchAll(/^- id:\s*([^\n]+)$/gm)];
-  return starts.map((match, index) => ({
-    id: match[1].trim().replace(/^['"]|['"]$/g, ''),
-    text: text.slice(match.index, starts[index + 1]?.index ?? text.length)
-  }));
-}
-
-function field(record, name) {
-  const match = record.text.match(new RegExp(`^  ${name}:\\s*(.+)$`, 'm'));
-  return match?.[1]?.trim().replace(/^['"]|['"]$/g, '');
-}
+const read = (relative) => readNormalizedText(path.join(root, relative));
+const topLevelYamlRecords = (relative) => parseYamlRecords(read(relative));
 
 function assertUniqueIds(records, label) {
   const seen = new Set();
@@ -171,8 +166,8 @@ if (JSON.stringify(formerMissingJoinYears) !== JSON.stringify(expectedFormerMiss
   fail(`members: unverified former joinedYear set changed (${formerMissingJoinYears.join(', ') || 'none'})`);
 }
 
-const currentGovernance = governance.filter((record) => !field(record, 'effectiveTo'));
-const currentRoleCount = (role) => currentGovernance.filter((record) => field(record, 'role') === role).length;
+const currentGovernance = governance.filter((record) => !yamlField(record, 'effectiveTo'));
+const currentRoleCount = (role) => currentGovernance.filter((record) => yamlField(record, 'role') === role).length;
 if (governance.length > 0) {
   if (currentRoleCount('chair') !== 1) fail(`governance: expected exactly one current chair, found ${currentRoleCount('chair')}`);
   if (currentRoleCount('scientific-secretary') !== 1) {
@@ -181,35 +176,35 @@ if (governance.length > 0) {
 }
 
 for (const assignment of governance) {
-  const member = field(assignment, 'member');
-  const role = field(assignment, 'role');
-  const effectiveFrom = field(assignment, 'effectiveFrom');
+  const member = yamlField(assignment, 'member');
+  const role = yamlField(assignment, 'role');
+  const effectiveFrom = yamlField(assignment, 'effectiveFrom');
   if (!member) fail(`governance/${assignment.id}: missing member reference`);
   else if (!memberIds.has(member)) fail(`governance/${assignment.id}: unknown member '${member}'`);
   if (!role) fail(`governance/${assignment.id}: missing role`);
   if (!effectiveFrom) fail(`governance/${assignment.id}: missing effectiveFrom`);
-  if (!field(assignment, 'effectiveTo') && member && !activeMemberIds.has(member)) {
+  if (!yamlField(assignment, 'effectiveTo') && member && !activeMemberIds.has(member)) {
     fail(`governance/${assignment.id}: current assignment references non-active member '${member}'`);
   }
-  if (!/\n  responsibilities:\n(?:    - .+\n?)+/m.test(assignment.text)) fail(`governance/${assignment.id}: missing Ukrainian responsibilities`);
-  if (!/\n  responsibilitiesEn:\n(?:    - .+\n?)+/m.test(assignment.text)) fail(`governance/${assignment.id}: missing English responsibilities`);
+  if (!hasResponsibilityList(assignment, 'uk')) fail(`governance/${assignment.id}: missing Ukrainian responsibilities`);
+  if (!hasResponsibilityList(assignment, 'en')) fail(`governance/${assignment.id}: missing English responsibilities`);
 }
 
 for (const document of documents) {
-  const publicPath = field(document, 'path');
+  const publicPath = yamlField(document, 'path');
   if (!publicPath?.startsWith('/documents/ncutam/')) fail(`documents/${document.id}: path must begin with /documents/ncutam/`);
-  if (!field(document, 'title') || !field(document, 'titleEn')) fail(`documents/${document.id}: missing bilingual title`);
-  if (!field(document, 'kind')) fail(`documents/${document.id}: missing kind`);
-  if (!field(document, 'language')) fail(`documents/${document.id}: missing language`);
+  if (!yamlField(document, 'title') || !yamlField(document, 'titleEn')) fail(`documents/${document.id}: missing bilingual title`);
+  if (!yamlField(document, 'kind')) fail(`documents/${document.id}: missing kind`);
+  if (!yamlField(document, 'language')) fail(`documents/${document.id}: missing language`);
 }
-const documentPaths = documents.map((record) => field(record, 'path')).filter(Boolean);
+const documentPaths = documents.map((record) => yamlField(record, 'path')).filter(Boolean);
 if (new Set(documentPaths).size !== documentPaths.length) fail('documents: duplicate public path');
 
 for (const mention of media) {
-  const url = field(mention, 'url');
+  const url = yamlField(mention, 'url');
   if (!url || !/^https?:\/\//.test(url)) fail(`media/${mention.id}: missing or invalid url`);
-  if (!field(mention, 'title') || !field(mention, 'titleEn')) fail(`media/${mention.id}: missing bilingual title`);
-  if (!field(mention, 'description') || !field(mention, 'descriptionEn')) fail(`media/${mention.id}: missing bilingual description`);
+  if (!yamlField(mention, 'title') || !yamlField(mention, 'titleEn')) fail(`media/${mention.id}: missing bilingual title`);
+  if (!yamlField(mention, 'description') || !yamlField(mention, 'descriptionEn')) fail(`media/${mention.id}: missing bilingual description`);
 }
 
 for (const page of ['home', 'about', 'iutam']) {
@@ -252,8 +247,8 @@ function walk(dir) {
 for (const full of walk(activityRoot).filter((file) => file.endsWith('.md'))) {
   const relative = path.relative(root, full).replaceAll(path.sep, '/');
   const activityId = path.relative(activityRoot, full).replaceAll(path.sep, '/').replace(/\.md$/, '');
-  const text = fs.readFileSync(full, 'utf8');
-  const frontmatter = text.match(/^---\n([\s\S]*?)\n---/)?.[1] ?? '';
+  const text = readNormalizedText(full);
+  const frontmatter = activityFrontmatter(text);
   const category = path.relative(activityRoot, full).split(path.sep)[0];
   const expectedType = allowedActivityTypes.get(category);
   const actualType = text.match(/^type:\s*([^\n]+)$/m)?.[1]?.trim();
@@ -275,11 +270,10 @@ for (const full of walk(activityRoot).filter((file) => file.endsWith('.md'))) {
     else if (!exists(`public${image}`)) fail(`${relative}: missing activity image public${image}`);
   }
 
-  const galleryItems = [...frontmatter.matchAll(/^  - src:\s*["']?([^"'\n]+)["']?\s*\n((?:    .+\n?)*)/gm)];
+  const galleryItems = activityGalleryItems(frontmatter);
   const galleryPaths = [];
   for (const item of galleryItems) {
-    const src = item[1];
-    const fields = item[2];
+    const { src, fields } = item;
     galleryPaths.push(src);
     if (!src.startsWith('/images/ncutam/')) fail(`${relative}: gallery src '${src}' must use /images/ncutam/`);
     else if (!exists(`public${src}`)) fail(`${relative}: missing gallery asset public${src}`);
@@ -291,8 +285,7 @@ for (const full of walk(activityRoot).filter((file) => file.endsWith('.md'))) {
     fail(`${relative}: expected ${expectedGalleryCounts.get(activityId)} gallery images, found ${galleryItems.length}`);
   }
 
-  const documentsBlock = frontmatter.match(/^documents:\n((?:  - .+\n?)*)/m)?.[1] ?? '';
-  const activityDocuments = [...documentsBlock.matchAll(/^  -\s*["']?([^"'\n]+)["']?\s*$/gm)].map((match) => match[1]);
+  const activityDocuments = activityDocumentIds(frontmatter);
   for (const documentId of activityDocuments) {
     if (!documentIds.has(documentId)) fail(`${relative}: unknown document reference '${documentId}'`);
   }

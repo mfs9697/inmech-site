@@ -40,6 +40,12 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
+      # TEMPORARY F15 ORIGINAL-SOURCE PROBE: remove before merge.
+      - name: Probe legacy dissertation originals (F15 temporary)
+        if: github.event_name == 'pull_request' && github.head_ref == 'archive/f15-2021-originals-pilot'
+        continue-on-error: true
+        run: node scripts/f15-2021-originals.mjs --probe
+
       - name: Validate generated site
         run: |
           npm run validate

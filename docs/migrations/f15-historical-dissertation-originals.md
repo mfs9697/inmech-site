@@ -193,3 +193,24 @@ The two identified 2017 original PDF files, `11refer.pdf` and `11dis.pdf`, were 
 **Running total after PR approval and merge: 30 of the original 50 missing F15 files preserved in Git; 20 remain (2015: 2 PDF, 2016: 18 PDF/DOC/ZIP)**. The three historical 2019 compressed files remain preserved outside the public site pending independent extraction-safety review. The dissertation catalogue stays **615 entries in each language**, unchanged.
 
 Final gates: full CI, localized-page visual review, and deployment HTTP/MIME/byte count check after owner-approved merge.
+
+## Sixth preservation batch — original files from 2015 source folder (22 October 2026)
+
+Both missing files in the audit's **2015 source-folder inventory** (`01refer.pdf`, `01dis.pdf`) were independently retrieved from `old.inmech.kyiv.ua` through **complete HTTPS GET**, checked as PDF binaries and SHA-256 pinned, and committed without changing any original byte. **Total 2,851,697 bytes.**
+
+| Original PDF | Exact bytes | SHA-256 |
+| --- | ---: | --- |
+| `01refer.pdf` | 734,761 | `7678f00d68f52dc718a66549dc7bbfb5938107830d15830e76f95da9b057f78d` |
+| `01dis.pdf` | 2,116,936 | `7a1482d59d55b34ab266a326be4996d040b2fa6bf083a19a8581904d7f1db181` |
+
+- Full source GET and hash evidence: [GitHub Actions probe #39782944312](https://github.com/mfs9697/inmech-site/actions/runs/39782944312). Committed source originals under `public/documents/dissertations/archive/2015/`.
+- Source URLs and hashes: `src/data/dissertations/archive-2015-pilot.json`; separately recorded original-byte ledger: `docs/migrations/f15-2015-originals-verified.json`.
+- Repeatable validation: `node scripts/f15-2015-originals.mjs --verify` checks each committed PDF against the immutable ledger, verifies `dist/` PDF byte copies and both localized page links.
+- Bilingual publication pages `/dissertations/archive/2015/` and `/en/dissertations/archive/2015/`, linked from dissertation overview pages and registered as translations.
+- Do not infer person, dissertation title or actual defence date from numerical file IDs; 615 bibliographic records per language unchanged.
+- No re-saving, OCR, conversion, rewriting, legacy-host/DNS change, extraction or other official document alteration.
+- Temporary CI source probe and branch write permission removed; deployment workflow restored exactly to `main`.
+
+**Running original preservation once approved and merged: 32 of 50** (year folders: 2015, 2017–2021); **18 remain in the 2016 folder**, including historical DOC and ZIP sources that require a more cautious format and release assessment. The **three 2019 ZIP/RAR originals remain preserved but withheld from the new public site** pending separate archive security review.
+
+Post-merge public HTTP/MIME/size and legacy-source continuity still require a deployment smoke test. The source-folder year alone is not proof of the actual calendar year of the defence.

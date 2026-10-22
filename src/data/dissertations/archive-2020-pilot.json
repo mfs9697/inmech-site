@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "note": "Two missing archive-folder 2020 originals from Codex F15 Appendix D and documents-migration.csv. Binary hashes/sizes pending verified complete GET; do not publish until pinned and imported.",
+  "pilot": [
+    {
+      "id": "2020-23ref",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2020/23ref.pdf",
+      "target": "public/documents/dissertations/archive/2020/23ref.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2020-23dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2020/23dis.pdf",
+      "target": "public/documents/dissertations/archive/2020/23dis.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    }
+  ]
+}

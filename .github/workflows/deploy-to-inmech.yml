@@ -40,6 +40,11 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
+      # TEMPORARY READ-ONLY complete GET; remove before merge.
+      - name: Probe exact 2016 original PDF DOC ZIP files (temporary F15)
+        if: github.event_name == 'pull_request' && github.head_ref == 'archive/f15-2016-originals'
+        run: node scripts/f15-2016-originals.mjs --probe
+
       - name: Validate generated site
         run: |
           npm run validate

@@ -12,7 +12,8 @@ function withBase(path: string) {
   return `${base}${path.startsWith('/') ? path : `/${path}`}`;
 }
 
-const strategyPdf = withBase('/documents/institute/strategy/development-strategy-2021-2025.pdf');
+const currentStrategyPdf = withBase('/documents/institute/strategy/development-strategy-2026-2030.pdf');
+const previousStrategyPdf = withBase('/documents/institute/strategy/development-strategy-2021-2025.pdf');
 
 const values = [
   'high professional competence',
@@ -81,26 +82,48 @@ const strategicTasks = [
 ---
 
 <BaseLayoutEn
-  title={`Development Strategy | ${siteEn.shortName}`}
-  description="Development strategy and prospective research directions of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine."
+  title={`Development Strategy 2026–2030 | ${siteEn.shortName}`}
+  description="Approved 2026–2030 Development Strategy of the S.P. Timoshenko Institute of Mechanics and the archived 2021–2025 strategy."
   activePage="about"
 >
   <section class="page-hero">
     <div class="container">
       <div class="panel strategy-hero-panel">
         <p class="eyebrow">About the Institute</p>
-        <h1>Development Strategy</h1>
+        <h1>Development Strategy 2026–2030</h1>
         <p class="lead">
-          The Development Strategy of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine
-          for 2021–2025 defines the mission, vision, values, prospective research directions and main
-          institutional development tasks of the Institute.
+          The Institute’s Development Strategy for 2026–2030 was considered by the
+          Scientific Council on 25 December 2025 (Protocol No. 17) and approved
+          on 26 December 2025. The unchanged official original is available
+          in Ukrainian.
         </p>
         <div class="hero-actions">
-          <a class="button primary" href={strategyPdf} target="_blank" rel="noopener">
-            Open the full PDF document
+          <a class="button primary" href={currentStrategyPdf} target="_blank" rel="noopener">
+            Open the 2026–2030 Strategy (original PDF in Ukrainian)
+          </a>
+          <a class="button secondary" href="#previous-strategy">
+            Previous Strategy 2021–2025
           </a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="section" id="previous-strategy">
+    <div class="container">
+      <article class="panel strategy-note">
+        <p class="eyebrow">Archive</p>
+        <h2>Development Strategy 2021–2025</h2>
+        <p>
+          The previous Strategy is retained as a historical Institute document.
+          The thematic overview of mission, values, research directions and tasks
+          below describes the 2021–2025 materials; it is not a summary or an
+          official translation of the new 2026–2030 Strategy.
+        </p>
+        <a class="button secondary" href={previousStrategyPdf} target="_blank" rel="noopener">
+          Open the archived 2021–2025 Strategy (PDF)
+        </a>
+      </article>
     </div>
   </section>
 
@@ -135,7 +158,7 @@ const strategicTasks = [
           <p class="eyebrow">Values</p>
           <h2 class="section-title">Principles of the Institute’s activity</h2>
           <p class="section-text">
-            The Strategy emphasises professional competence, academic integrity, openness,
+            The 2021–2025 Strategy emphasised professional competence, academic integrity, openness,
             responsibility and international integration.
           </p>
         </div>
@@ -154,7 +177,7 @@ const strategicTasks = [
           <p class="eyebrow">Prospective directions</p>
           <h2 class="section-title">Research activity</h2>
           <p class="section-text">
-            The priority directions are formulated according to the Institute’s scientific profile and
+            The archived Strategy framed the priority directions according to the Institute’s scientific profile and
             statutory tasks.
           </p>
         </div>
@@ -178,7 +201,7 @@ const strategicTasks = [
           <p class="eyebrow">Strategic tasks</p>
           <h2 class="section-title">Institutional development</h2>
           <p class="section-text">
-            Special attention is given to personnel policy, educational and scientific activity,
+            In the previous Strategy, particular attention was given to personnel policy, educational and scientific activity,
             international cooperation, publication activity and strengthening of the material base.
           </p>
         </div>
@@ -199,7 +222,7 @@ const strategicTasks = [
     <div class="container">
       <article class="panel strategy-note">
         <p class="eyebrow">Document</p>
-        <h2>Full text of the Strategy</h2>
+        <h2>Full text of the previous 2021–2025 Strategy</h2>
         <p>
           The full document contains a detailed list of research tasks for each direction, measures
           for the development of postgraduate training, international cooperation, the journal
@@ -208,7 +231,7 @@ const strategicTasks = [
         <p>
           The official document is provided in Ukrainian.
         </p>
-        <a class="button secondary" href={strategyPdf} target="_blank" rel="noopener">
+        <a class="button secondary" href={previousStrategyPdf} target="_blank" rel="noopener">
           Download or open PDF
         </a>
       </article>

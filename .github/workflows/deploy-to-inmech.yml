@@ -41,7 +41,9 @@ jobs:
         run: npm ci
 
       - name: Validate generated site
-        run: npm run validate
+        run: |
+          npm run validate
+          node scripts/check-election-production.mjs --self-test
 
   build-and-deploy:
     if: github.event_name != 'pull_request'
@@ -80,7 +82,9 @@ jobs:
         run: npm ci
 
       - name: Validate generated site
-        run: npm run validate
+        run: |
+          npm run validate
+          node scripts/check-election-production.mjs --self-test
 
       - name: Write deployment marker
         run: printf '%s' "$GITHUB_SHA" > dist/deploy-version.txt
@@ -219,4 +223,4 @@ jobs:
           done
 
       - name: Verify director-election archive and approved source files
-        run: npm run check:election-production
+        run: node scripts/check-election-production.mjs

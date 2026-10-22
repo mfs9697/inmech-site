@@ -75,7 +75,7 @@ The public Ukrainian/English archive routes are `/dissertations/archive/2020/` a
 - [x] Preserve both unmodified PDFs and lock verification in `npm run check:f15` together with all five 2021 originals.
 - [x] Add bilingual document-list pages with direct original downloads and old-source provenance.
 - [x] Remove temporary GitHub Actions write permissions and import steps; restore baseline deployment workflow.
-- [ ] Confirm final clean CI results on the committed bytes and pages; after merge verify HTTP 200, MIME types and exact public file sizes.
+- [x] Final clean CI on committed bytes and bilingual archive pages: [GitHub Actions #39767024460](https://github.com/mfs9697/inmech-site/actions/runs/39767024460) passed, with **438 built pages**, **19,652 checked links** and exact SHA-256 verification of all **7** preserved originals (5 from 2021, 2 from 2020). After merge, HTTP 200, MIME and public byte sizes still require live confirmation.
 - [ ] Identify original author/defence relationships from authoritative records before attaching these numeric files to bibliography entries.
 
 **Running archive tally (after this branch is merged):** seven of the fifty F15 files preserved (five from source folder 2021, two from 2020), **43 remain**. Subsequent batches should retain full source formats and verified source ledgers. The source-folder year does not, by itself, prove the actual defence date.

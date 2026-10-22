@@ -76,15 +76,15 @@ const years = (archiveYear ? [archiveYear] : [2021, 2020, 2019, 2018, 2017, 2016
       {archiveYear && <h2 class="sr-only" id={`archive-heading-${year}`}>{english ? `Dissertations in archive folder ${year}` : `Дисертації архівної папки ${year}`}</h2>}
       <ul class="dissertation-card-grid" aria-labelledby={`archive-heading-${year}`}>
         {items.map((card) => (
-          <li class="dissertation-card" id={card.id} data-card-id={card.id}>
+          <li class="dissertation-card" id={card.id} data-card-id={card.id} data-attribution={card.author && card.title ? 'identified' : 'unverified'}>
             <article>
               <div class="card-overline">
                 <span class="archive-year-tag">{english ? `Source folder ${year}` : `Папка ${year}`}</span>
                 {card.printedYear && <span class="title-year">{english ? `Title page: ${card.printedYear}` : `На титулі: ${card.printedYear}`}</span>}
               </div>
-              <h3>{card.author || (english ? 'Attribution awaiting review' : 'Авторство уточнюється')}</h3>
+              <h3>{card.author || (english ? 'Unattributed document set' : 'Неатрибутований комплект документів')}</h3>
               <p class="research-title">
-                {card.title || (english ? 'Original documents awaiting source review' : 'Оригінальні документи потребують перевірки')}
+                {card.title || (english ? 'Author and work title not verified from source documents' : 'Автор і назва роботи не підтверджені за джерелами')}
               </p>
               {english && card.title && <p class="source-language">Original Ukrainian title</p>}
               {card.degree && <p class="academic-degree"><strong>{english ? 'Degree sought:' : 'На здобуття ступеня:'}</strong> {degreeNames[card.degree]?.[english ? 1 : 0]}</p>}

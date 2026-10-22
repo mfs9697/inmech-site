@@ -12,8 +12,12 @@ const LEGACY_ORIGIN = 'https://old.inmech.kyiv.ua';
 
 function validateEntry(entry) {
   assert(/^2019-\d+(?:ref|refer|dis|dis-last)$/.test(entry.id), 'Unexpected pilot id: ' + entry.id);
-  assert(/^public\/documents\/dissertations\/archive\/2019\/[a-z0-9-]+\.(pdf|rar|zip)$/.test(entry.target),
-    'Unsafe or unexpected target path: ' + entry.target);
+  const publicPdf = entry.format === 'pdf' && entry.publicationStatus === 'public' &&
+    /^public\/documents\/dissertations\/archive\/2019\/[a-z0-9-]+\.pdf$/.test(entry.target);
+  const preservedArchive = ['rar', 'zip'].includes(entry.format) &&
+    entry.publicationStatus === 'withheld-security-review' &&
+    /^preserved\/dissertations\/2019\/[a-z0-9-]+\.(?:rar|zip)$/.test(entry.target);
+  assert(publicPdf || preservedArchive, 'Unsafe or unexpected target/publication status: ' + entry.target);
   const source = new URL(entry.sourceUrl);
   assert.equal(source.origin, LEGACY_ORIGIN, 'Unexpected source host');
   assert.equal(source.pathname, '/doc/postgraduate/dis/2019/' + path.posix.basename(entry.target).replace('dis-last', 'dis_last'));
@@ -132,7 +136,7 @@ async function main() {
     const ledger = path.join(root, 'docs/migrations/f15-2019-originals-verified.json');
     const saved = JSON.parse(fs.readFileSync(ledger, 'utf8'));
     assert.deepEqual(saved.entries, observed, 'Committed originals differ from SHA-256 ledger');
-    console.log('F15 archive verification passed: ' + observed.length + ' 2019 original files match immutable hashes.');
+    console.log('F15 archive verification passed: ' + observed.length + ' 2019 original files match immutable hashes (12 public PDFs, 3 quarantined ZIP/RAR).');
   } else console.log('F15_' + (mode === '--import' ? 'IMPORTED' : 'PROBED') + ':' + JSON.stringify(observed));
 }
 

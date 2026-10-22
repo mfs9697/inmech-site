@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "note": "Final 18 audited source-folder-2016 originals. PDF may publish after byte validation. Legacy DOC and ZIP are preserved outside Astro public until format safety review. Exact source bytes and hashes pending complete GET. Do not infer authors or defence dates.",
+  "note": "All 18 2016-folder originals verified by complete GET, PDF/DOC/ZIP signature, exact byte counts and SHA-256 in GitHub Actions #39816774597 on 22 Oct 2026. Public: 15 PDFs; withheld outside Astro public: 2 DOC and 1 ZIP, pending format safety checks.",
   "pilot": [
     {
       "id": "2016-10refer",
@@ -8,8 +8,8 @@
       "target": "public/documents/dissertations/archive/2016/10refer.pdf",
       "format": "pdf",
       "publicationStatus": "public",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "666e81ea412e32db7bb056589da651f13f1459611f1f4565d83e9924409c5095",
+      "expectedBytes": 9547073
     },
     {
       "id": "2016-10dis",
@@ -17,8 +17,8 @@
       "target": "public/documents/dissertations/archive/2016/10dis.pdf",
       "format": "pdf",
       "publicationStatus": "public",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "737612ee375a1e297c479c033a7e6babccfa082da0e73916504ae09ec58fb772",
+      "expectedBytes": 19281873
     },
     {
       "id": "2016-09refer",
@@ -26,8 +26,8 @@
       "target": "public/documents/dissertations/archive/2016/09refer.pdf",
       "format": "pdf",
       "publicationStatus": "public",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "f57424f5524bab9166a97c8bb7f4bcedecc61d6522a9e929e0b077637f7f4993",
+      "expectedBytes": 1014003
     },
     {
       "id": "2016-09dis",
@@ -35,8 +35,8 @@
       "target": "public/documents/dissertations/archive/2016/09dis.pdf",
       "format": "pdf",
       "publicationStatus": "public",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "1376b237350c02b0dc58edbfd484884ac2375e00d88b1055576d9a3cd31de9a1",
+      "expectedBytes": 2575861
     },
     {
       "id": "2016-08refer",
@@ -44,8 +44,8 @@
       "target": "public/documents/dissertations/archive/2016/08refer.pdf",
       "format": "pdf",
       "publicationStatus": "public",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "2f45ff458c47d92d180c7141c04d815423c6a9b685d3883a295a3d32094b8b50",
+      "expectedBytes": 1552310
     },
     {
       "id": "2016-08dis",
@@ -53,8 +53,8 @@
       "target": "preserved/dissertations/2016/08dis.zip",
       "format": "zip",
       "publicationStatus": "withheld-security-review",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "18727280aa0ffdc6b3636a503b2032d9b17559c35d461d7ccc7c0fd798f62279",
+      "expectedBytes": 9137524
     },
     {
       "id": "2016-07refer1",
@@ -62,8 +62,8 @@
       "target": "public/documents/dissertations/archive/2016/07refer1.pdf",
       "format": "pdf",
       "publicationStatus": "public",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "793dd2cf3b444924ee14b1a5468e9cca681f23b6c9ddab7ed307525a7e67cbbc",
+      "expectedBytes": 150450
     },
     {
       "id": "2016-07dis",
@@ -71,8 +71,8 @@
       "target": "public/documents/dissertations/archive/2016/07dis.pdf",
       "format": "pdf",
       "publicationStatus": "public",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "212c79d395aaaabb9aae2f8fc71ae588edbde4e1ad3e9fa128404c1acbe83e7d",
+      "expectedBytes": 3769955
     },
     {
       "id": "2016-06refer",
@@ -80,8 +80,8 @@
       "target": "public/documents/dissertations/archive/2016/06refer.pdf",
       "format": "pdf",
       "publicationStatus": "public",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "92e57d5c2e6bd93cd84789b0c64cb2fbbe4d66ab4166f498f32b0fc478f63aba",
+      "expectedBytes": 823116
     },
     {
       "id": "2016-06dis",
@@ -89,8 +89,8 @@
       "target": "public/documents/dissertations/archive/2016/06dis.pdf",
       "format": "pdf",
       "publicationStatus": "public",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "4a7dab4f8cb2b5dd1b106091136cff34478c1925f024eb6c5e56358a40ec5d1f",
+      "expectedBytes": 2025960
     },
     {
       "id": "2016-05refer1",
@@ -98,8 +98,8 @@
       "target": "public/documents/dissertations/archive/2016/05refer1.pdf",
       "format": "pdf",
       "publicationStatus": "public",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "18ea317dd7b31d796eb0c4f4ebe2d6d6f6800fb73aa3df75d8668d82da5cc940",
+      "expectedBytes": 225515
     },
     {
       "id": "2016-05dis",
@@ -107,8 +107,8 @@
       "target": "public/documents/dissertations/archive/2016/05dis.pdf",
       "format": "pdf",
       "publicationStatus": "public",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "d4508465219252063fd14a917ab30e000bd4f514dacd83ecdab442e26157d6f1",
+      "expectedBytes": 6266513
     },
     {
       "id": "2016-04refer",
@@ -116,8 +116,8 @@
       "target": "public/documents/dissertations/archive/2016/04refer.pdf",
       "format": "pdf",
       "publicationStatus": "public",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "bcf4c1316237f79d2d0ac629386a1fc6090e84abf95d0bf9e318603003a52f8b",
+      "expectedBytes": 1059749
     },
     {
       "id": "2016-04dis",
@@ -125,8 +125,8 @@
       "target": "public/documents/dissertations/archive/2016/04dis.pdf",
       "format": "pdf",
       "publicationStatus": "public",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "e2160899146a1489c1842c15026856c9c22a225dba218060f6ab505575fbdcd9",
+      "expectedBytes": 7004258
     },
     {
       "id": "2016-03refer",
@@ -134,8 +134,8 @@
       "target": "preserved/dissertations/2016/03refer.doc",
       "format": "doc",
       "publicationStatus": "withheld-security-review",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "cc0f52e60b32b67a2716fd32448d26584565cdcf43f64c1aae956b3da4b9358c",
+      "expectedBytes": 1488384
     },
     {
       "id": "2016-03dis",
@@ -143,8 +143,8 @@
       "target": "preserved/dissertations/2016/03dis.doc",
       "format": "doc",
       "publicationStatus": "withheld-security-review",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "dc74668cf36a0e23494f80b7fb58f4693a7ffdf0059dc4ba7c39f00cb6318f89",
+      "expectedBytes": 7667712
     },
     {
       "id": "2016-02refer",
@@ -152,8 +152,8 @@
       "target": "public/documents/dissertations/archive/2016/02refer.pdf",
       "format": "pdf",
       "publicationStatus": "public",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "87ddefd24c20508a0a3bac4c72a519b8d477b97d9421e66864a9f1185124c6aa",
+      "expectedBytes": 1785901
     },
     {
       "id": "2016-02dis",
@@ -161,8 +161,8 @@
       "target": "public/documents/dissertations/archive/2016/02dis.pdf",
       "format": "pdf",
       "publicationStatus": "public",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "2f45225476b2e27fd563160cb2aae1e920a1eec3a602471739e601f65b79b267",
+      "expectedBytes": 10017498
     }
   ]
 }

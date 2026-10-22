@@ -37,7 +37,7 @@
     {
       "id": "2019-20ref",
       "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/20ref.rar",
-      "target": "public/documents/dissertations/archive/2019/20ref.rar",
+      "target": "preserved/dissertations/2019/20ref.rar",
       "format": "rar",
       "bytes": 458123,
       "sha256": "30965595efea67eb9a3e75635ec8abf8d145628b9a2e100b2241367b9ae73aa3"
@@ -45,7 +45,7 @@
     {
       "id": "2019-20dis",
       "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/20dis.zip",
-      "target": "public/documents/dissertations/archive/2019/20dis.zip",
+      "target": "preserved/dissertations/2019/20dis.zip",
       "format": "zip",
       "bytes": 2211076,
       "sha256": "ffa66f63435bcbca33bcaf089b318a0f87ee578b777e1efbd02e6cac772f6160"
@@ -53,7 +53,7 @@
     {
       "id": "2019-19dis",
       "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/19dis.rar",
-      "target": "public/documents/dissertations/archive/2019/19dis.rar",
+      "target": "preserved/dissertations/2019/19dis.rar",
       "format": "rar",
       "bytes": 33257015,
       "sha256": "3de65b902331e7f5f3921f4667d0848e055021c162849f1d7abf757c0233dba0"

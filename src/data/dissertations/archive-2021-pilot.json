@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "note": "Planned public 2021 defence-file sources from Codex F15 and documents-migration.csv. Do not advertise local downloads until source bytes are verified and committed.",
+  "pilot": [
+    {
+      "id": "2021-26ref",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2021/26ref.pdf",
+      "target": "public/documents/dissertations/archive/2021/26ref.pdf",
+      "format": "pdf",
+      "expectedSha256": "c655306c6f3ef7332385db145e6ac9deab0cd800bbc51d52df8fb0896f38e49b",
+      "expectedBytes": 3231648
+    },
+    {
+      "id": "2021-26dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2021/26dis.pdf",
+      "target": "public/documents/dissertations/archive/2021/26dis.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2021-25ref",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2021/25ref.docx",
+      "target": "public/documents/dissertations/archive/2021/25ref.docx",
+      "format": "docx",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2021-25dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2021/25dis.docx",
+      "target": "public/documents/dissertations/archive/2021/25dis.docx",
+      "format": "docx",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2021-24dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2021/24dis.pdf",
+      "target": "public/documents/dissertations/archive/2021/24dis.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    }
+  ]
+}

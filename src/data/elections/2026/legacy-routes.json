@@ -1,0 +1,371 @@
+{
+  "schemaVersion": 1,
+  "evidenceDate": "2026-10-21",
+  "status": "planning-only",
+  "notes": "Source statuses were observed during the 21 October 2026 audit and must be reverified before host activation; no server rules are generated or activated by this ledger.",
+  "htmlRoutes": [
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/",
+      "sourceHttpStatus": 200,
+      "sourceContent": "substantive",
+      "targetPath": "/director-election/2026/",
+      "targetState": "built",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/normativna-baza-ta-oficiyni-ogoloshennya.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "empty-body",
+      "targetPath": "/director-election/2026/regulations/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/ogoloshennya-prezidiyi-nan-ukrayini.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "substantive",
+      "targetPath": "/director-election/2026/regulations/announcement/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/normativna-baza-vibori-kerivnika-ustanovi-u-statuti-nan-ukrayini.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "substantive",
+      "targetPath": "/director-election/2026/regulations/nas-statute/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/normativna-baza-osoblivosti-obrannya-kerivnika-naukovoyi-ustanovi.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "substantive",
+      "targetPath": "/director-election/2026/regulations/resolution-998/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/rozyasnennya-shchodo-pidtverdzhennya-rivnya-volodinnya-derzhavnoyu-movoyu-dlya-pretendentiv.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "substantive",
+      "targetPath": "/director-election/2026/regulations/language-requirements/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/dokumenti-institutu-robochi-organi.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "empty-body",
+      "targetPath": "/director-election/2026/documents/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/nakaz-no-124-vid-15042026-r-pro-zabezpechennya-provedennya-viboriv-direktora-institutu.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "substantive",
+      "targetPath": "/director-election/2026/documents/order-124/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/nakaz-no-124-vid-15042026-r.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "empty-body",
+      "targetPath": "/director-election/2026/documents/order-124/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/polozhennya-pro-organizaciyniy-komitet-z-provedennya-viboriv-direktora.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "substantive",
+      "targetPath": "/director-election/2026/documents/organizing-committee/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/polozhennya-pro-organizaciyniy-komitet.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "empty-body",
+      "targetPath": "/director-election/2026/documents/organizing-committee/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/polozhennya-pro-viborchu-lichilnu-komisiyu-2.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "substantive",
+      "targetPath": "/director-election/2026/documents/election-commission/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/polozhennya-pro-viborchu-lichilnu-komisiyu.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "empty-body",
+      "targetPath": "/director-election/2026/documents/election-commission/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/protokoli-zasidan-organizaciynogo-komitetu.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "empty-body",
+      "targetPath": "/director-election/2026/documents/committee-minutes/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/kandidati-na-posadu-direktora.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "substantive",
+      "targetPath": "/director-election/2026/candidates/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/peredviborchi-programi-kandidativ.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "substantive",
+      "targetPath": "/director-election/2026/candidates/programme/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/organizaciya-golosuvannya-ta-viborci.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "empty-body",
+      "targetPath": "/director-election/2026/voting/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/oficiyne-ogoloshennya-pro-datu-chas-ta-misce.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "substantive",
+      "targetPath": "/director-election/2026/voting/notice/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/poryadok-obrannya-delegativ.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "empty-body",
+      "targetPath": "/director-election/2026/voting/delegates/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/zagalniy-spisok-viborciv.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "substantive",
+      "targetPath": "/director-election/2026/voting/voters/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/pravila-akreditaciyi-sposterigachiv.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "substantive",
+      "targetPath": "/director-election/2026/voting/observers/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/rezultati-viboriv.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "empty-body",
+      "targetPath": "/director-election/2026/results/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/protokol-lichilnoyi-komisiyi.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "substantive",
+      "targetPath": "/director-election/2026/results/commission-protocol/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/oficiyne-rishennya-organizaciynogo-komitetu.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "substantive",
+      "targetPath": "/director-election/2026/results/staff-meeting/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    },
+    {
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/povidomlennya-pro-napravlennya-dokumentiv.html",
+      "sourceHttpStatus": 200,
+      "sourceContent": "substantive",
+      "targetPath": "/director-election/2026/results/document-submission/",
+      "targetState": "planned-page",
+      "handling": "planned-301"
+    }
+  ],
+  "documentRoutes": [
+    {
+      "scheme": "https",
+      "handling": "planned-301",
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/DirectorElection2.pdf",
+      "documentId": "candidate-nomination-slides",
+      "httpStatus": 200
+    },
+    {
+      "scheme": "https",
+      "handling": "planned-301",
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/Document_2026-04-16_114124.pdf",
+      "documentId": "order-124",
+      "httpStatus": 200
+    },
+    {
+      "scheme": "https",
+      "handling": "planned-301",
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/ПОЛОЖЕННЯ про організаційний комітет.pdf",
+      "documentId": "organizing-committee-regulations",
+      "httpStatus": 200
+    },
+    {
+      "scheme": "https",
+      "handling": "planned-301",
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/ПОЛОЖЕННЯ про лічильну комісію.pdf",
+      "documentId": "election-commission-regulations",
+      "httpStatus": 200
+    },
+    {
+      "scheme": "https",
+      "handling": "planned-301",
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/ПРОТОКОЛ зборі.pdf",
+      "documentId": "staff-meeting-protocol",
+      "httpStatus": 200
+    },
+    {
+      "scheme": "https",
+      "handling": "planned-301",
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/Протокол засідання виборчої комісії 16.06.2026.pdf",
+      "documentId": "election-commission-protocol",
+      "httpStatus": 200
+    },
+    {
+      "scheme": "https",
+      "handling": "planned-301",
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/Заява спостерігача.docx",
+      "documentId": "observer-application",
+      "httpStatus": 200
+    },
+    {
+      "scheme": "https",
+      "handling": "retain-404",
+      "host": "election.inmech.kyiv.ua",
+      "sourcePath": "/media/files/vityag-protokol-5.pdf",
+      "documentId": "committee-protocol-5-extract",
+      "httpStatus": 404
+    },
+    {
+      "scheme": "https",
+      "handling": "planned-301",
+      "host": "inmech.kyiv.ua",
+      "sourcePath": "/doc/doc/strategy_2026-2030.pdf",
+      "documentId": "development-strategy-2026-2030",
+      "httpStatus": 404
+    },
+    {
+      "scheme": "https",
+      "handling": "planned-301",
+      "host": "inmech.kyiv.ua",
+      "sourcePath": "/doc/news/2026/2026_protokol_zboriv.pdf",
+      "documentId": "staff-meeting-protocol-legacy-main",
+      "httpStatus": 404
+    },
+    {
+      "scheme": "https",
+      "handling": "planned-301",
+      "host": "inmech.kyiv.ua",
+      "sourcePath": "/doc/news/2026/2026_protokol_zasidanya.pdf",
+      "documentId": "election-commission-protocol",
+      "httpStatus": 404
+    },
+    {
+      "scheme": "https",
+      "handling": "planned-301",
+      "host": "inmech.kyiv.ua",
+      "sourcePath": "/doc/Document_2026-04-16_114124.pdf",
+      "documentId": "order-124",
+      "httpStatus": 404
+    },
+    {
+      "scheme": "https",
+      "handling": "retain-original",
+      "host": "old.inmech.kyiv.ua",
+      "sourcePath": "/doc/doc/strategy_2026-2030.pdf",
+      "documentId": "development-strategy-2026-2030",
+      "httpStatus": 200
+    },
+    {
+      "scheme": "https",
+      "handling": "retain-original",
+      "host": "old.inmech.kyiv.ua",
+      "sourcePath": "/doc/news/2026/2026_protokol_zboriv.pdf",
+      "documentId": "staff-meeting-protocol-legacy-main",
+      "httpStatus": 200
+    },
+    {
+      "scheme": "https",
+      "handling": "retain-original",
+      "host": "old.inmech.kyiv.ua",
+      "sourcePath": "/doc/news/2026/2026_protokol_zasidanya.pdf",
+      "documentId": "election-commission-protocol",
+      "httpStatus": 200
+    },
+    {
+      "scheme": "https",
+      "handling": "retain-original",
+      "host": "old.inmech.kyiv.ua",
+      "sourcePath": "/doc/Document_2026-04-16_114124.pdf",
+      "documentId": "order-124",
+      "httpStatus": 200
+    },
+    {
+      "scheme": "http",
+      "handling": "planned-301",
+      "host": "inmech.kyiv.ua",
+      "sourcePath": "/doc/news/2026/2026_protokol_zboriv.pdf",
+      "documentId": "staff-meeting-protocol-legacy-main",
+      "httpStatus": 404
+    }
+  ]
+}

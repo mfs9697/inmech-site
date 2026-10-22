@@ -40,6 +40,40 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
+      # TEMPORARY read-only diagnostic; restored to main after evidence collection.
+      - name: Examine original compressed archive readers (temporary F15)
+        if: github.event_name == 'pull_request' && github.head_ref == 'archive/f15-2019-originals'
+        run: |
+          file public/documents/dissertations/archive/2019/20dis.zip public/documents/dissertations/archive/2019/20ref.rar public/documents/dissertations/archive/2019/19dis.rar
+          python3 - <<'PY'
+          import zipfile
+          source = 'public/documents/dissertations/archive/2019/20dis.zip'
+          try:
+              with zipfile.ZipFile(source) as archive:
+                  print('F15_ZIP_MEMBERS:', [(x.filename, x.file_size, x.compress_size, x.header_offset, x.flag_bits) for x in archive.infolist()])
+                  try:
+                      print('F15_ZIP_PYTHON_TEST:', archive.testzip())
+                  except Exception as e:
+                      print('F15_ZIP_PYTHON_TEST_ERROR:', type(e).__name__, str(e))
+          except Exception as e:
+              print('F15_ZIP_PYTHON_OPEN_ERROR:', type(e).__name__, str(e))
+          PY
+          if command -v bsdtar >/dev/null 2>&1; then
+            echo "F15_BSDTAR_AVAILABLE:yes"
+            for source in public/documents/dissertations/archive/2019/20ref.rar public/documents/dissertations/archive/2019/19dis.rar; do
+              if timeout 60 bsdtar -tf "$source" > /tmp/f15-bsdtar.log 2>&1; then
+                echo "F15_BSDTAR_LIST_OK:$source"
+                head -n 4 /tmp/f15-bsdtar.log
+              else
+                code=$?
+                echo "F15_BSDTAR_LIST_FAILED:$source:$code"
+                tail -n 10 /tmp/f15-bsdtar.log
+              fi
+            done
+          else
+            echo "F15_BSDTAR_AVAILABLE:no"
+          fi
+
       - name: Validate generated site
         run: |
           npm run validate

@@ -18,7 +18,7 @@
     "check:elections": "node scripts/check-elections.mjs --self-test && node scripts/check-elections.mjs",
     "check:ncutam": "node scripts/check-ncutam-line-endings.mjs && node scripts/check-ncutam.mjs && node scripts/check-ncutam-member-affiliations.mjs && node scripts/check-ncutam-documents.mjs && node scripts/check-ncutam-rendered.mjs",
     "audit:assets": "node scripts/audit-generated-assets.mjs",
-    "validate": "npm run build && npm run check:sitemap && npm run check:landmarks && npm run check:mobile-navigation && npm run check:trust-box && npm run check:links && npm run check:vacancies && npm run check:defended-catalogs && npm run check:f15 && npm run check:elections && npm run check:election-pages && npm run check:election-history && npm run check:election-final && npm run check:election-legacy && npm run check:strategy-pages && npm run check:ncutam",
+    "validate": "npm run build && npm run check:sitemap && npm run check:landmarks && npm run check:mobile-navigation && npm run check:trust-box && npm run check:links && npm run check:vacancies && npm run check:f16 && npm run check:defended-catalogs && npm run check:f15 && npm run check:elections && npm run check:election-pages && npm run check:election-history && npm run check:election-final && npm run check:election-legacy && npm run check:strategy-pages && npm run check:ncutam",
     "preview": "astro preview",
     "astro": "astro",
     "check:election-pages": "node scripts/check-election-pages.mjs",
@@ -28,7 +28,8 @@
     "check:strategy-pages": "node scripts/check-strategy-pages.mjs",
     "check:mobile-navigation": "node scripts/check-mobile-navigation.mjs",
     "check:trust-box": "node scripts/check-trust-box.mjs",
-    "check:f15": "node scripts/f15-2021-originals.mjs --verify && node scripts/f15-2020-originals.mjs --verify && node scripts/f15-2019-originals.mjs --verify && node scripts/f15-2018-originals.mjs --verify && node scripts/f15-2017-originals.mjs --verify && node scripts/f15-2015-originals.mjs --verify && node scripts/f15-2016-originals.mjs --verify"
+    "check:f15": "node scripts/f15-2021-originals.mjs --verify && node scripts/f15-2020-originals.mjs --verify && node scripts/f15-2019-originals.mjs --verify && node scripts/f15-2018-originals.mjs --verify && node scripts/f15-2017-originals.mjs --verify && node scripts/f15-2015-originals.mjs --verify && node scripts/f15-2016-originals.mjs --verify",
+    "check:f16": "node scripts/check-f16-program-parity.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

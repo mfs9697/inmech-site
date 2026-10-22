@@ -34,11 +34,26 @@ Each legacy source URL is `https://old.inmech.kyiv.ua/doc/postgraduate/dis/2021/
 - [x] Confirm PR #180 merged and the five pilot destination files are absent on current `main`.
 - [x] Extract five exact old-source/destination pairs from original Codex source ledger.
 - [x] Add `src/data/dissertations/archive-2021-pilot.json` and a bounded signature/hash-aware read-only probe.
-- [ ] Confirm independent complete GET and hashes for all five from the old host.
-- [ ] Preserve exact binaries and pin all source hashes without overwriting an existing official file.
-- [ ] Verify document identities, provide stable public links (UA/EN), preserve existing bibliography count and legacy URL availability.
-- [ ] Pass full binary/HTML/release checks; merge only after owner review.
+- [x] Confirm independent complete GET and SHA-256 hashes for all five on 22 October 2026 — [read-only Actions probe #39763947430](https://github.com/mfs9697/inmech-site/actions/runs/39763947430).
+- [x] Commit the **five exact original binaries** without conversion or modification, and pin source hashes/bytes in `src/data/dissertations/archive-2021-pilot.json` plus `docs/migrations/f15-2021-originals-verified.json` — import commit `9baf81120e254a74b22d17be86ae29163b12b54a`.
+- [x] Preserve public links to each archival original on bilingual pages `/dissertations/archive/2021/` and `/en/dissertations/archive/2021/`, linked from the dissertation overview, with no speculative author attribution. The 615-record bibliography remains unchanged.
+- [x] Restore the original GitHub deployment/validation workflow; temporary write permissions and import step have been removed.
+- [ ] Obtain final clean `npm ci && npm run validate` on the committed binary sources and registered bilingual pages.
+- [ ] Confirm that the published new download URLs return the right MIME and bytes after approved merge; keep all original old-host URLs intact.
+- [ ] Review author/title/defence-to-file associations from official archived records, separately and without changing the binary copies.
 
 The initial temporary GitHub Actions read-only probe is solely for gathering download evidence because the assistant's local network cannot resolve the old host; its **workflow instrumentation must be removed** from the final PR. A failed probe is a blocker to actual binary preservation, not permission to fabricate source files.
 
 **Reference:** `docs/audits/2026-10-21/WEBSITE_AUDIT_2026.md` (F15, Appendix D) and `documents-migration.csv`.
+
+## Verified byte inventory — 22 October 2026
+
+| File | Bytes | SHA-256 |
+| --- | ---: | --- |
+| `26ref.pdf` | 3,231,648 | `c655306c6f3ef7332385db145e6ac9deab0cd800bbc51d52df8fb0896f38e49b` |
+| `26dis.pdf` | 34,250,583 | `9c54551e207e090e2486618993c50a01707ed283f2b1887a7a6ddba41d57e6ba` |
+| `25ref.docx` | 265,525 | `f92bd149b4f85baef3b45fe32f3a6778b7c3e27e2c64b7ee2acb68639fd29d28` |
+| `25dis.docx` | 726,030 | `7fc994fb40ef16f45fc71e6a706f46d74d26318416046a8d0ccdea28371848b4` |
+| `24dis.pdf` | 6,351,633 | `a15fc171ac5fb46798d74be0295b50d86c365ba7a839857e63c192808a2c12ce` |
+
+**Total original bytes:** 44,825,419. All five were retrieved with complete GET responses from the old host, identified by PDF/DOCX magic bytes, hashed, committed and verified. The two DOCX files passed `unzip -t` inside GitHub Actions; the PDFs were not rewritten. Source folder year alone does **not** establish the calendar year of the associated defence.

@@ -1,0 +1,23 @@
+---
+import BaseLayoutEn from '../../../../layouts/BaseLayoutEn.astro';
+import ElectionHistoryPage from '../../../../components/elections/ElectionHistoryPage.astro';
+import { electionHistoryPages, type ElectionHistoryRecord } from '../../../../data/elections/2026/history-pages';
+import { siteEn } from '../../../../data/site-en';
+
+export function getStaticPaths() {
+  return electionHistoryPages.map(page => ({
+    params: { slug: page.slug },
+    props: { page }
+  }));
+}
+
+const { page } = Astro.props as { page: ElectionHistoryRecord };
+---
+
+<BaseLayoutEn
+  title={page.titleEn + ' | ' + siteEn.name}
+  description={page.summaryEn}
+  activePage="about"
+>
+  <ElectionHistoryPage page={page} lang="en" />
+</BaseLayoutEn>

@@ -28,7 +28,7 @@
     "check:strategy-pages": "node scripts/check-strategy-pages.mjs",
     "check:mobile-navigation": "node scripts/check-mobile-navigation.mjs",
     "check:trust-box": "node scripts/check-trust-box.mjs",
-    "check:f15": "node scripts/f15-2021-originals.mjs --self-test"
+    "check:f15": "node scripts/f15-2021-originals.mjs --verify"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

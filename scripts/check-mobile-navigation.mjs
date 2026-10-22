@@ -173,6 +173,9 @@ async function exerciseInteractions() {
   assert(nav.classList.contains('open'), 'Header Escape must preserve mobile panel');
   assert.equal(buttons[0].getAttribute('aria-expanded'), 'false');
 
+  const secondEscape = buttons[0].dispatch('keydown', { key: 'Escape' });
+  assert(!secondEscape.stopped, 'Escape on a collapsed heading must bubble to close mobile panel');
+  // Fake DOM has no native event bubbling: dispatch the unstopped event to the document.
   doc.dispatch('keydown', { key: 'Escape' });
   assert(!nav.classList.contains('open'), 'Global Escape must close the mobile panel');
   assert.equal(toggle.getAttribute('aria-expanded'), 'false');

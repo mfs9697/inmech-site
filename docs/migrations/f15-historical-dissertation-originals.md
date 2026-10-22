@@ -12,11 +12,11 @@ Do not infer authors, dates, dissertation titles or relationships to 615 bibliog
 
 | Source old-host filename | Planned destination (under `public/documents/dissertations/archive/2021/`) | Format | Hash status |
 | --- | --- | --- | --- |
-| `26ref.pdf` | `26ref.pdf` | PDF | Audit GET SHA-256 recorded; requires recheck |
-| `26dis.pdf` | `26dis.pdf` | PDF | Complete GET and hash required |
-| `25ref.docx` | `25ref.docx` | DOCX | Complete GET and hash required |
-| `25dis.docx` | `25dis.docx` | DOCX | Complete GET and hash required |
-| `24dis.pdf` | `24dis.pdf` | PDF | Complete GET and hash required |
+| `26ref.pdf` | `26ref.pdf` | PDF | Codex audit and 22 October 2026 full GET match |
+| `26dis.pdf` | `26dis.pdf` | PDF | Complete GET and SHA-256 pinned |
+| `25ref.docx` | `25ref.docx` | DOCX | Complete GET and SHA-256 pinned |
+| `25dis.docx` | `25dis.docx` | DOCX | Complete GET and SHA-256 pinned |
+| `24dis.pdf` | `24dis.pdf` | PDF | Complete GET and SHA-256 pinned |
 
 Each legacy source URL is `https://old.inmech.kyiv.ua/doc/postgraduate/dis/2021/<filename>`. The historical live URLs must remain available; **no redirects, deletions or edits to the old host** are authorized.
 
@@ -38,11 +38,11 @@ Each legacy source URL is `https://old.inmech.kyiv.ua/doc/postgraduate/dis/2021/
 - [x] Commit the **five exact original binaries** without conversion or modification, and pin source hashes/bytes in `src/data/dissertations/archive-2021-pilot.json` plus `docs/migrations/f15-2021-originals-verified.json` — import commit `9baf81120e254a74b22d17be86ae29163b12b54a`.
 - [x] Preserve public links to each archival original on bilingual pages `/dissertations/archive/2021/` and `/en/dissertations/archive/2021/`, linked from the dissertation overview, with no speculative author attribution. The 615-record bibliography remains unchanged.
 - [x] Restore the original GitHub deployment/validation workflow; temporary write permissions and import step have been removed.
-- [ ] Obtain final clean `npm ci && npm run validate` on the committed binary sources and registered bilingual pages.
+- [x] Final clean `npm ci && npm run validate` on the committed binary sources and registered bilingual pages — [GitHub Actions #39764942589](https://github.com/mfs9697/inmech-site/actions/runs/39764942589): 436 generated pages, 19,570 checked internal links, five exact originals SHA-verified, 615 bibliographic records per language unchanged.
 - [ ] Confirm that the published new download URLs return the right MIME and bytes after approved merge; keep all original old-host URLs intact.
 - [ ] Review author/title/defence-to-file associations from official archived records, separately and without changing the binary copies.
 
-The initial temporary GitHub Actions read-only probe is solely for gathering download evidence because the assistant's local network cannot resolve the old host; its **workflow instrumentation must be removed** from the final PR. A failed probe is a blocker to actual binary preservation, not permission to fabricate source files.
+A read-only GitHub Actions probe verified all five complete files; a restricted, temporary same-repository import then committed the original bytes. **Both temporary workflow changes and elevated write permissions have been removed** from this PR. The normal deployment workflow is identical to `main`. The five files are now verified locally by `npm run check:f15` during every `npm run validate`.
 
 **Reference:** `docs/audits/2026-10-21/WEBSITE_AUDIT_2026.md` (F15, Appendix D) and `documents-migration.csv`.
 

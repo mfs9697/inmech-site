@@ -26,10 +26,15 @@ jobs:
   validate:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+    # TEMPORARY: scoped write solely to relocate 3 originals outside public/.
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v5
@@ -39,6 +44,21 @@ jobs:
 
       - name: Install locked dependencies
         run: npm ci
+
+      # TEMPORARY: remove before final review/merge.
+      - name: Withhold three unreviewed archive originals from public deployment (F15)
+        if: github.event_name == 'pull_request' && github.head_ref == 'archive/f15-2019-originals' && github.event.pull_request.head.repo.full_name == 'mfs9697/inmech-site' && hashFiles('public/documents/dissertations/archive/2019/20ref.rar') != ''
+        run: |
+          mkdir -p preserved/dissertations/2019
+          git mv public/documents/dissertations/archive/2019/20ref.rar preserved/dissertations/2019/20ref.rar
+          git mv public/documents/dissertations/archive/2019/20dis.zip preserved/dissertations/2019/20dis.zip
+          git mv public/documents/dissertations/archive/2019/19dis.rar preserved/dissertations/2019/19dis.rar
+          node scripts/f15-2019-originals.mjs --verify
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Withhold three verified compressed 2019 originals from public deployment"
+          git push origin "HEAD:refs/heads/${GITHUB_HEAD_REF}"
 
       - name: Validate generated site
         run: |

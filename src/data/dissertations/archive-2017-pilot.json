@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "note": "Source-folder 2017 originals from Codex F15 and documents-migration.csv. Complete GET/hash validation required before preservation. Numeric filenames do not establish author/defence identity.",
+  "pilot": [
+    {
+      "id": "2017-11refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2017/11refer.pdf",
+      "target": "public/documents/dissertations/archive/2017/11refer.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2017-11dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2017/11dis.pdf",
+      "target": "public/documents/dissertations/archive/2017/11dis.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    }
+  ]
+}

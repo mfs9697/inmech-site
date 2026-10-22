@@ -11,7 +11,7 @@ const withBase = (url: string) => `${base}/${url.replace(/^\/+/, '')}`;
   description="Дисертації з архівної папки 2020 року: автори, назви робіт, ступені та посилання на збережені оригінали документів."
   activePage="education"
 >
-  <main class="archive-page">
+  <div class="archive-page">
     <div class="archive-container">
       <nav class="archive-breadcrumbs" aria-label="Навігаційний шлях">
         <a href={withBase('/dissertations/')}>Захист дисертацій</a>
@@ -29,7 +29,7 @@ const withBase = (url: string) => `${base}/${url.replace(/^\/+/, '')}`;
       <DissertationArchiveGallery lang="uk" archiveYear={2020} />
       <p class="return-link"><a href={withBase('/dissertations/archive/')}>← Усі картки історичного архіву</a></p>
     </div>
-  </main>
+  </div>
 </BaseLayout>
 
 <style>

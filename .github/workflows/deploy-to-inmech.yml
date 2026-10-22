@@ -26,10 +26,15 @@ jobs:
   validate:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+    # TEMPORARY limited PR-branch import; restore before merge.
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v5
@@ -40,10 +45,18 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
-      # TEMPORARY READ-ONLY complete GET; remove before merge.
-      - name: Probe exact 2016 original PDF DOC ZIP files (temporary F15)
-        if: github.event_name == 'pull_request' && github.head_ref == 'archive/f15-2016-originals'
-        run: node scripts/f15-2016-originals.mjs --probe
+      # TEMPORARY, only original-byte import; removed after commit.
+      - name: Import 18 pinned 2016 originals and immutable ledger (temporary F15)
+        if: github.event_name == 'pull_request' && github.head_ref == 'archive/f15-2016-originals' && github.event.pull_request.head.repo.full_name == 'mfs9697/inmech-site' && hashFiles('public/documents/dissertations/archive/2016/10refer.pdf') == ''
+        run: |
+          node scripts/f15-2016-originals.mjs --import
+          # Import verifies source bytes/hashes; built dist/ is checked after page generation.
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- public/documents/dissertations/archive/2016/ preserved/dissertations/2016/ docs/migrations/f15-2016-originals-verified.json
+          git diff --cached --check
+          git commit -m "Preserve 18 original 2016 dissertation PDF DOC ZIP files"
+          git push origin "HEAD:refs/heads/${GITHUB_HEAD_REF}"
 
       - name: Validate generated site
         run: |

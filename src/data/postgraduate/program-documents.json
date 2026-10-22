@@ -1,0 +1,287 @@
+{
+  "schemaVersion": 1,
+  "notice": "Canonical document IDs and original PDF URLs shared by Ukrainian and English pages. Labels are localized in the templates. Do not translate or rewrite official originals.",
+  "programYears": [
+    {
+      "year": "2025",
+      "program": "/documents/postgraduate/program/onp/educational-program-2025.pdf",
+      "curriculum": "/documents/postgraduate/program/curricula/curriculum-2025.pdf"
+    },
+    {
+      "year": "2024",
+      "program": "/documents/postgraduate/program/onp/educational-program-2024.pdf",
+      "curriculum": "/documents/postgraduate/program/curricula/curriculum-2024.pdf"
+    },
+    {
+      "year": "2023",
+      "program": "/documents/postgraduate/program/onp/educational-program-2023.pdf",
+      "curriculum": "/documents/postgraduate/program/curricula/curriculum-2023.pdf"
+    },
+    {
+      "year": "2022",
+      "program": "/documents/postgraduate/program/onp/educational-program-2022.pdf",
+      "curriculum": "/documents/postgraduate/program/curricula/curriculum-2022.pdf"
+    }
+  ],
+  "syllabi": {
+    "OK1": [
+      {
+        "year": "2024",
+        "href": "/documents/postgraduate/program/syllabi/2024/ok1-rp-2024.pdf"
+      }
+    ],
+    "OK2": [
+      {
+        "year": "2025",
+        "href": "/documents/postgraduate/program/syllabi/2025/ok2-rp-2025.pdf"
+      }
+    ],
+    "OK3": [
+      {
+        "year": "2025",
+        "href": "/documents/postgraduate/program/syllabi/2025/ok3-syl-2025.pdf"
+      },
+      {
+        "year": "2024",
+        "href": "/documents/postgraduate/program/syllabi/2024/ok3-syl-2024.pdf"
+      }
+    ],
+    "OK4": [
+      {
+        "year": "2025",
+        "href": "/documents/postgraduate/program/syllabi/2025/ok4-syl-2025.pdf"
+      },
+      {
+        "year": "2024",
+        "href": "/documents/postgraduate/program/syllabi/2024/ok4-syl-2024.pdf"
+      }
+    ],
+    "OK5": [
+      {
+        "year": "2025",
+        "href": "/documents/postgraduate/program/syllabi/2025/ok5-syl-2025.pdf"
+      },
+      {
+        "year": "2024",
+        "href": "/documents/postgraduate/program/syllabi/2024/ok5-syl-2024.pdf"
+      }
+    ],
+    "OK6": [
+      {
+        "year": "2025",
+        "href": "/documents/postgraduate/program/syllabi/2025/ok6-syl-2025.pdf"
+      },
+      {
+        "year": "2024",
+        "href": "/documents/postgraduate/program/syllabi/2024/ok6-syl-2024.pdf"
+      }
+    ],
+    "OK7": [
+      {
+        "year": "2025",
+        "href": "/documents/postgraduate/program/syllabi/2025/ok7-syl-2025.pdf"
+      },
+      {
+        "year": "2024",
+        "href": "/documents/postgraduate/program/syllabi/2024/ok7-syl-2024.pdf"
+      }
+    ],
+    "OK8": [
+      {
+        "year": "2025",
+        "href": "/documents/postgraduate/program/syllabi/2025/ok8-syl-2025.pdf"
+      },
+      {
+        "year": "2024",
+        "href": "/documents/postgraduate/program/syllabi/2024/ok8-syl-2024.pdf"
+      }
+    ],
+    "VK1": [
+      {
+        "year": "2025",
+        "href": "/documents/postgraduate/program/syllabi/2025/vk1-syl-2025.pdf"
+      },
+      {
+        "year": "2024",
+        "href": "/documents/postgraduate/program/syllabi/2024/vk1-syl-2024.pdf"
+      }
+    ],
+    "VK2": [
+      {
+        "year": "2025",
+        "href": "/documents/postgraduate/program/syllabi/2025/vk2-syl-2025.pdf"
+      },
+      {
+        "year": "2024",
+        "href": "/documents/postgraduate/program/syllabi/2024/vk2-syl-2024.pdf"
+      }
+    ],
+    "VK3": [
+      {
+        "year": "2025",
+        "href": "/documents/postgraduate/program/syllabi/2025/vk3-syl-2025.pdf"
+      }
+    ],
+    "VK4": [
+      {
+        "year": "2025",
+        "href": "/documents/postgraduate/program/syllabi/2025/vk4-syl-2025.pdf"
+      },
+      {
+        "year": "2024",
+        "href": "/documents/postgraduate/program/syllabi/2024/vk4-syl-2024.pdf"
+      }
+    ],
+    "VK5": [
+      {
+        "year": "2025",
+        "href": "/documents/postgraduate/program/syllabi/2025/vk5-syl-2025.pdf"
+      },
+      {
+        "year": "2024",
+        "href": "/documents/postgraduate/program/syllabi/2024/vk5-syl-2024.pdf"
+      }
+    ],
+    "VK6": [
+      {
+        "year": "2025",
+        "href": "/documents/postgraduate/program/syllabi/2025/vk6-syl-2025.pdf"
+      },
+      {
+        "year": "2024",
+        "href": "/documents/postgraduate/program/syllabi/2024/vk6-syl-2024.pdf"
+      }
+    ],
+    "VK7": [
+      {
+        "year": "2025",
+        "href": "/documents/postgraduate/program/syllabi/2025/vk7-syl-2025.pdf"
+      },
+      {
+        "year": "2024",
+        "href": "/documents/postgraduate/program/syllabi/2024/vk7-syl-2024.pdf"
+      }
+    ],
+    "VK8": [
+      {
+        "year": "2025",
+        "href": "/documents/postgraduate/program/syllabi/2025/vk8-syl-2025.pdf"
+      },
+      {
+        "year": "2024",
+        "href": "/documents/postgraduate/program/syllabi/2024/vk8-syl-2024.pdf"
+      }
+    ],
+    "VK9": [
+      {
+        "year": "2025",
+        "href": "/documents/postgraduate/program/syllabi/2025/vk9-syl-2025.pdf"
+      },
+      {
+        "year": "2024",
+        "href": "/documents/postgraduate/program/syllabi/2024/vk9-syl-2024.pdf"
+      }
+    ],
+    "VK10": [
+      {
+        "year": "2025",
+        "href": "/documents/postgraduate/program/syllabi/2025/vk10-syl-2025.pdf"
+      },
+      {
+        "year": "2024",
+        "href": "/documents/postgraduate/program/syllabi/2024/vk10-syl-2024.pdf"
+      }
+    ]
+  },
+  "reviews": [
+    {
+      "year": "2026",
+      "documents": [
+        {
+          "id": "review-1",
+          "href": "/documents/postgraduate/program/reviews/2026/review-1-2026.pdf"
+        },
+        {
+          "id": "review-2",
+          "href": "/documents/postgraduate/program/reviews/2026/review-2-2026.pdf"
+        },
+        {
+          "id": "review-3",
+          "href": "/documents/postgraduate/program/reviews/2026/review-3-2026.pdf"
+        },
+        {
+          "id": "review-4",
+          "href": "/documents/postgraduate/program/reviews/2026/review-2026-4.pdf"
+        }
+      ]
+    },
+    {
+      "year": "2025",
+      "documents": [
+        {
+          "id": "review-1",
+          "href": "/documents/postgraduate/program/reviews/2025/review-1-2025.pdf"
+        },
+        {
+          "id": "review-2",
+          "href": "/documents/postgraduate/program/reviews/2025/review-2-2025.pdf"
+        }
+      ]
+    },
+    {
+      "year": "2024",
+      "documents": [
+        {
+          "id": "review-1",
+          "href": "/documents/postgraduate/program/reviews/2024/review-1-2024.pdf"
+        },
+        {
+          "id": "review-2",
+          "href": "/documents/postgraduate/program/reviews/2024/review-2-2024.pdf"
+        }
+      ]
+    },
+    {
+      "year": "2023",
+      "documents": [
+        {
+          "id": "review-1",
+          "href": "/documents/postgraduate/program/reviews/2023/review-1-2023.pdf"
+        },
+        {
+          "id": "review-2",
+          "href": "/documents/postgraduate/program/reviews/2023/review-2-2023.pdf"
+        },
+        {
+          "id": "review-3",
+          "href": "/documents/postgraduate/program/reviews/2023/review-3-2023.pdf"
+        },
+        {
+          "id": "review-4",
+          "href": "/documents/postgraduate/program/reviews/2023/review-4-2023.pdf"
+        }
+      ]
+    },
+    {
+      "year": "2022",
+      "documents": [
+        {
+          "id": "review-1",
+          "href": "/documents/postgraduate/program/reviews/2022/review-1-2022.pdf"
+        },
+        {
+          "id": "review-2",
+          "href": "/documents/postgraduate/program/reviews/2022/review-2-2022.pdf"
+        }
+      ]
+    }
+  ],
+  "surveys": {
+    "first-year-2026": "/documents/postgraduate/program/surveys/2026/survey-1-kurs-02-2026.pdf",
+    "general-2025": "/documents/postgraduate/program/surveys/2025/survey-09-2025.pdf",
+    "ok3-2026": "/documents/postgraduate/program/surveys/2026/survey-ok3-04-2026.pdf",
+    "ok4-2026": "/documents/postgraduate/program/surveys/2026/survey-ok4-04-2026.pdf",
+    "ok5-2026": "/documents/postgraduate/program/surveys/2026/survey-ok5-04-2026.pdf",
+    "ok6-2026": "/documents/postgraduate/program/surveys/2026/survey-ok6-04-2026.pdf"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "note": "Two historical source-folder 2015 PDF originals documented in Codex F15 and documents-migration.csv. Do not infer author, dissertation title, actual defence date or catalogue link from numeric filenames. Full GET and SHA-256 required.",
+  "pilot": [
+    {
+      "id": "2015-01refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2015/01refer.pdf",
+      "target": "public/documents/dissertations/archive/2015/01refer.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2015-01dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2015/01dis.pdf",
+      "target": "public/documents/dissertations/archive/2015/01dis.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    }
+  ]
+}

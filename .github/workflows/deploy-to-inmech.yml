@@ -45,6 +45,16 @@ jobs:
           npm run validate
           node scripts/check-election-production.mjs --self-test
 
+      # TEMPORARY final audit diagnostics; remove before PR merge.
+      - name: Independent F15 offline reconciliation (audit only)
+        if: github.event_name == 'pull_request' && github.head_ref == 'audit/f15-final-verification-2026-10'
+        run: python3 scripts/audit_f15_final.py
+
+      - name: Test live archive deployment from GitHub runner (audit only)
+        if: github.event_name == 'pull_request' && github.head_ref == 'audit/f15-final-verification-2026-10'
+        continue-on-error: true
+        run: python3 scripts/audit_f15_final.py --live --expected-main 71919aba0d69308615f69ac877dfe90ff2135a9a
+
   build-and-deploy:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest

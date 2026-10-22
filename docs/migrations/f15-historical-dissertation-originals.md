@@ -148,3 +148,28 @@ Because `unzip` and 7-Zip disagreed on historic archive handling, the **three na
 The original full-byte preservation objective covers **all 15** files, but the public site will expose only the **12 PDFs** until the three compressed containers are approved for publication.
 
 **Final public/private separation check:** [GitHub Actions #39770596925](https://github.com/mfs9697/inmech-site/actions/runs/39770596925) passed: 440 pages, 19,734 internal links, all 22 original source hashes, 12 public 2019 PDFs byte-identical in `dist/`, and three retained ZIP/RAR originals **absent** from both `dist/` and bilingual public download links. The 3 native archives are not deployed with the static website.
+
+## Fourth preservation batch — original files from 2018 source folder (22 October 2026)
+
+All six source-folder 2018 PDFs in Codex F15 Appendix D and `documents-migration.csv` were downloaded with full GET from the original `old.inmech.kyiv.ua` host, matched by PDF signature, source URL, complete SHA-256 digest and exact byte size, and committed unchanged to `public/documents/dissertations/archive/2018/`. **12,142,142 bytes** in this batch.
+
+| Original PDF | Bytes | SHA-256 |
+| --- | ---: | --- |
+| `14refer.pdf` | 456,656 | `7ec78f899b8f3f1fe3ebdb371dfff836c5d06254d1ba9efda5e1881b8f50c865` |
+| `14dis.pdf` | 1,522,839 | `f9555c22418a27ffffaa6742c880b0fb461372cbacfe676acdb3c0b24d824357` |
+| `13refer.pdf` | 1,857,645 | `b9c92fcc6725d503ac8c96bec605b46fea4a64b8322a9db371c75a5381aab2bd` |
+| `13dis.pdf` | 6,477,651 | `0c00f700045af67592d8e153d6914191c7b2cf80a74743581d9b115bce66b69a` |
+| `12refer.pdf` | 449,777 | `d1f7fb1d40667d97fb6b20b7d6d6cbb266fcfd6c36daa146edab7551881fd2a4` |
+| `12dis.pdf` | 1,377,574 | `ba2ff405ca12f23cacdc82b445989320b31f88020b32da40267c3c570b0d0498` |
+
+- Source full-download proof: [GitHub Actions #39777521215](https://github.com/mfs9697/inmech-site/actions/runs/39777521215).
+- Original bytes and immutable provenance ledger: `public/documents/dissertations/archive/2018/`, `src/data/dissertations/archive-2018-pilot.json`, `docs/migrations/f15-2018-originals-verified.json`.
+- Repeatable release check `node scripts/f15-2018-originals.mjs --verify` compares all six Git-committed originals and the exact PDF bytes copied into Astro's `dist/` directory. It also checks all six download links exist in the Ukrainian and English generated archive pages.
+- Reciprocal public pages: `/dissertations/archive/2018/` and `/en/dissertations/archive/2018/` (both linked from the respective dissertation-defence overview pages).
+- The source filenames do not independently prove actual authors, titles or defence dates, so this batch adds no speculative attribution and changes none of the 615/615 bibliographic records.
+- No conversion, PDF editing, metadata revision, OCR, hosting/DNS change or old-website redirect is included.
+- The temporary CI downloader/write permissions were removed and the baseline deployment workflow restored before final review.
+
+**Running archival total after an approved merge: 28 of the 50 missing originals preserved in Git (25 publishable PDF/DOCX originals, 3 nonpublic 2019 ZIP/RAR originals); 22 remain** (2017: 2, 2016: 18, 2015: 2). The 2019 compressed originals remain outside `public/` and their extraction-safety review is a separate task.
+
+**Release gates:** full GitHub Actions `npm ci && npm run validate` including the F15 source+dist checks; independent public-server HTTP/MIME/size smoke checks after deployment. No source-year-to-defence-year inference.

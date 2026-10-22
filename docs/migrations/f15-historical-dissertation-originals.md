@@ -214,3 +214,46 @@ Both missing files in the audit's **2015 source-folder inventory** (`01refer.pdf
 **Running original preservation once approved and merged: 32 of 50** (year folders: 2015, 2017–2021); **18 remain in the 2016 folder**, including historical DOC and ZIP sources that require a more cautious format and release assessment. The **three 2019 ZIP/RAR originals remain preserved but withheld from the new public site** pending separate archive security review.
 
 Post-merge public HTTP/MIME/size and legacy-source continuity still require a deployment smoke test. The source-folder year alone is not proof of the actual calendar year of the defence.
+
+## Seventh preservation batch — final original documents from the 2016 source folder (22 October 2026)
+
+All **18** missing source-folder 2016 files in the original Codex F15 audit have been retrieved as complete binaries directly from the unchanged legacy `old.inmech.kyiv.ua` site, validated against original signatures (PDF, OLE compound-file DOC, ZIP), complete exact byte sizes and SHA-256, and committed byte-for-byte. **Total 85,393,655 bytes.**
+
+### Immutable inventory and publication status
+
+| Original filename | Source format | Bytes | SHA-256 | New-site access |
+| --- | --- | ---: | --- | --- |
+| `10refer.pdf` | PDF | 9,547,073 | `666e81ea412e32db7bb056589da651f13f1459611f1f4565d83e9924409c5095` | Public PDF |
+| `10dis.pdf` | PDF | 19,281,873 | `737612ee375a1e297c479c033a7e6babccfa082da0e73916504ae09ec58fb772` | Public PDF |
+| `09refer.pdf` | PDF | 1,014,003 | `f57424f5524bab9166a97c8bb7f4bcedecc61d6522a9e929e0b077637f7f4993` | Public PDF |
+| `09dis.pdf` | PDF | 2,575,861 | `1376b237350c02b0dc58edbfd484884ac2375e00d88b1055576d9a3cd31de9a1` | Public PDF |
+| `08refer.pdf` | PDF | 1,552,310 | `2f45ff458c47d92d180c7141c04d815423c6a9b685d3883a295a3d32094b8b50` | Public PDF |
+| `08dis.zip` | ZIP | 9,137,524 | `18727280aa0ffdc6b3636a503b2032d9b17559c35d461d7ccc7c0fd798f62279` | Preserved; download withheld |
+| `07refer1.pdf` | PDF | 150,450 | `793dd2cf3b444924ee14b1a5468e9cca681f23b6c9ddab7ed307525a7e67cbbc` | Public PDF |
+| `07dis.pdf` | PDF | 3,769,955 | `212c79d395aaaabb9aae2f8fc71ae588edbde4e1ad3e9fa128404c1acbe83e7d` | Public PDF |
+| `06refer.pdf` | PDF | 823,116 | `92e57d5c2e6bd93cd84789b0c64cb2fbbe4d66ab4166f498f32b0fc478f63aba` | Public PDF |
+| `06dis.pdf` | PDF | 2,025,960 | `4a7dab4f8cb2b5dd1b106091136cff34478c1925f024eb6c5e56358a40ec5d1f` | Public PDF |
+| `05refer1.pdf` | PDF | 225,515 | `18ea317dd7b31d796eb0c4f4ebe2d6d6f6800fb73aa3df75d8668d82da5cc940` | Public PDF |
+| `05dis.pdf` | PDF | 6,266,513 | `d4508465219252063fd14a917ab30e000bd4f514dacd83ecdab442e26157d6f1` | Public PDF |
+| `04refer.pdf` | PDF | 1,059,749 | `bcf4c1316237f79d2d0ac629386a1fc6090e84abf95d0bf9e318603003a52f8b` | Public PDF |
+| `04dis.pdf` | PDF | 7,004,258 | `e2160899146a1489c1842c15026856c9c22a225dba218060f6ab505575fbdcd9` | Public PDF |
+| `03refer.doc` | DOC | 1,488,384 | `cc0f52e60b32b67a2716fd32448d26584565cdcf43f64c1aae956b3da4b9358c` | Preserved; download withheld |
+| `03dis.doc` | DOC | 7,667,712 | `dc74668cf36a0e23494f80b7fb58f4693a7ffdf0059dc4ba7c39f00cb6318f89` | Preserved; download withheld |
+| `02refer.pdf` | PDF | 1,785,901 | `87ddefd24c20508a0a3bac4c72a519b8d477b97d9421e66864a9f1185124c6aa` | Public PDF |
+| `02dis.pdf` | PDF | 10,017,498 | `2f45225476b2e27fd563160cb2aae1e920a1eec3a602471739e601f65b79b267` | Public PDF |
+
+- Complete read-only source proof: [GitHub Actions #39816774597](https://github.com/mfs9697/inmech-site/actions/runs/39816774597), covering all 18 URLs and SHA-256 digests. Original binary commit `89df47f7e5d14be9235753b42b944cd55e2c7b0f`.
+- Canonical source/target/hash manifest: `src/data/dissertations/archive-2016-pilot.json`. Frozen original-GET size/hash ledger: `docs/migrations/f15-2016-originals-verified.json`. The exact files are under `public/documents/dissertations/archive/2016/` for public PDFs and `preserved/dissertations/2016/` for withheld DOC and ZIP.
+- **15 PDF originals** are prepared for download as unchanged files after PR approval. **Two binary Word 97–2003 DOC originals** (`03refer.doc`, `03dis.doc`) and **one ZIP original** (`08dis.zip`) remain unchanged in Git but are **not served by the new static site**. A format signature is not proof of macro safety or compressed-content safety; these should receive independent security/structure review before publication.
+- Ukrainian `/dissertations/archive/2016/` and English `/en/dissertations/archive/2016/` pages list all 18 originals, expose links only for the 15 PDFs and explain the three withheld files. Both are linked from existing dissertation overviews.
+- `npm run check:f15` incorporates `node scripts/f15-2016-originals.mjs --verify` after Astro build. It checks the exact hashes and byte-size ledger for all 18 original files, verifies each of 15 public PDFs against the built site, and fails if any of the three withheld files or their download links appear in either public-language page or `dist/`.
+- No document content, layout, internal metadata or file format has been changed; old website hosting, URLs and DNS remain untouched. No authors, defence dates or bibliography relationships are inferred from numeric filenames.
+- The original publication workflow is unchanged; temporary PR-branch write permissions and downloader automation have been removed before review.
+
+### F15 preservation inventory complete, public publication partially withheld
+
+**50/50** original source files in Codex F15 are preserved in the Git repository after this PR merges (five 2021, two 2020, fifteen 2019, six 2018, two 2017, two 2015, and eighteen 2016).
+
+Of those fifty, **44** originals (all 2015–2021 public PDFs and the two 2021 DOCX originals) can be published through the static site once approved. **Six** compressed or legacy binary Word originals remain intentionally outside public output pending independent format safety review: `preserved/dissertations/2019/` (RAR × 2, ZIP × 1) and `preserved/dissertations/2016/` (DOC × 2, ZIP × 1). These figures distinguish preservation from publication, and none of the three withheld 2019 originals were made public by this batch.
+
+Remaining verification after owner-approved merge: check live HTTP status, MIME, file byte counts, bilingual page display and original legacy-host continuity. A full review of individual author/title/defence associations remains separate from preservation and must rely on original institutional sources.

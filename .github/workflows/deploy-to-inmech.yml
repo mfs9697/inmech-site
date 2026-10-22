@@ -37,12 +37,6 @@ jobs:
           node-version: 24
           cache: npm
 
-      # TEMPORARY LOCKFILE GENERATION FOR PR REVIEW; REMOVE BEFORE MERGE.
-      - name: Generate reviewed npm lockfile (temporary)
-        run: |
-          npm install --package-lock-only --ignore-scripts --no-fund --no-audit
-          node -e "const fs = require('node:fs'); const s = fs.readFileSync('package-lock.json', 'utf8'); console.log('BEGIN_INMECH_LOCK'); for (const line of s.split(String.fromCharCode(10))) console.log('INMECH_LOCK_ROW:' + line); console.log('END_INMECH_LOCK');"
-
       - name: Install locked dependencies
         run: npm ci
 
@@ -50,11 +44,6 @@ jobs:
         run: |
           npm run validate
           node scripts/check-election-production.mjs --self-test
-
-      - name: Report npm security audit for proposed lockfile (temporary)
-        run: |
-          npm audit --json > /tmp/inmech-dependency-audit.json || true
-          node -e "const fs = require('node:fs'); const d = JSON.parse(fs.readFileSync('/tmp/inmech-dependency-audit.json', 'utf8')); console.log('REVIEW_NPM_AUDIT_COUNTS:' + JSON.stringify(d.metadata?.vulnerabilities ?? {})); console.log('REVIEW_NPM_AUDIT_PACKAGES:' + JSON.stringify(Object.entries(d.vulnerabilities ?? {}).map(([name, issue]) => ({ name, severity: issue.severity, isDirect: issue.isDirect, range: issue.range }))));"
 
   build-and-deploy:
     if: github.event_name != 'pull_request'

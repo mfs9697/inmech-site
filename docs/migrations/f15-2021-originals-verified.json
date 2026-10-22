@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-22T10:37:21.462Z",
+  "source": "old.inmech.kyiv.ua (complete binary GET)",
+  "entries": [
+    {
+      "id": "2021-26ref",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2021/26ref.pdf",
+      "target": "public/documents/dissertations/archive/2021/26ref.pdf",
+      "format": "pdf",
+      "bytes": 3231648,
+      "sha256": "c655306c6f3ef7332385db145e6ac9deab0cd800bbc51d52df8fb0896f38e49b"
+    },
+    {
+      "id": "2021-26dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2021/26dis.pdf",
+      "target": "public/documents/dissertations/archive/2021/26dis.pdf",
+      "format": "pdf",
+      "bytes": 34250583,
+      "sha256": "9c54551e207e090e2486618993c50a01707ed283f2b1887a7a6ddba41d57e6ba"
+    },
+    {
+      "id": "2021-25ref",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2021/25ref.docx",
+      "target": "public/documents/dissertations/archive/2021/25ref.docx",
+      "format": "docx",
+      "bytes": 265525,
+      "sha256": "f92bd149b4f85baef3b45fe32f3a6778b7c3e27e2c64b7ee2acb68639fd29d28"
+    },
+    {
+      "id": "2021-25dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2021/25dis.docx",
+      "target": "public/documents/dissertations/archive/2021/25dis.docx",
+      "format": "docx",
+      "bytes": 726030,
+      "sha256": "7fc994fb40ef16f45fc71e6a706f46d74d26318416046a8d0ccdea28371848b4"
+    },
+    {
+      "id": "2021-24dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2021/24dis.pdf",
+      "target": "public/documents/dissertations/archive/2021/24dis.pdf",
+      "format": "pdf",
+      "bytes": 6351633,
+      "sha256": "a15fc171ac5fb46798d74be0295b50d86c365ba7a839857e63c192808a2c12ce"
+    }
+  ]
+}

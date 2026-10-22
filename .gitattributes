@@ -13,3 +13,6 @@ preserved/dissertations/2019/* -text -diff
 public/documents/dissertations/archive/2018/* -text -diff
 public/documents/dissertations/archive/2017/* -text -diff
 public/documents/dissertations/archive/2015/* -text -diff
+# Original 2016 PDFs are public; legacy DOC and ZIP stay in nonpublic preservation.
+public/documents/dissertations/archive/2016/* -text -diff
+preserved/dissertations/2016/* -text -diff

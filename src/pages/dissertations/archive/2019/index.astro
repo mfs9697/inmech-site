@@ -7,7 +7,7 @@ const withBase = (value: string) => `${base}/${value.replace(/^\/+/, '')}`;
 const documents = archive.pilot.map((entry) => ({
   ...entry,
   filename: entry.target.split('/').at(-1) ?? entry.id,
-  publicPath: entry.target.replace(/^public/, ''),
+  publicPath: entry.publicationStatus === 'public' ? entry.target.replace(/^public/, '') : null,
   megabytes: (entry.expectedBytes / 1_000_000).toFixed(2)
 }));
 ---
@@ -46,13 +46,19 @@ const documents = archive.pilot.map((entry) => ({
             <p>Індекс архівного файла: <code>{entry.id}</code></p>
             {(entry.format === 'zip' || entry.format === 'rar') && (
               <p class="archive-warning" role="note">
-                Стиснений архів у вихідному форматі. Перевірка внутрішньої структури ще не завершена;
-                будьте обережні під час відкриття або розпакування.
+                Оригінал стисненого архіву збережено без змін у репозиторії, проте його
+                завантаження з сайту тимчасово недоступне до завершення перевірки безпеки.
               </p>
             )}
             <div class="document-links">
-              <a class="button primary" href={withBase(entry.publicPath)}>Завантажити оригінал</a>
-              <a href={entry.sourceUrl} target="_blank" rel="noopener noreferrer">Початкове джерело ↗</a>
+              {entry.publicPath ? (
+                <>
+                  <a class="button primary" href={withBase(entry.publicPath)}>Завантажити оригінал</a>
+                  <a href={entry.sourceUrl} target="_blank" rel="noopener noreferrer">Початкове джерело ↗</a>
+                </>
+              ) : (
+                <span class="archive-pending">Завантаження відкладено до перевірки архіву</span>
+              )}
             </div>
           </li>
         ))}
@@ -80,5 +86,6 @@ const documents = archive.pilot.map((entry) => ({
   .document-links { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
   .archive-source-note { margin-top: 22px; color: var(--muted); }
   .archive-warning { padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-soft); }
+  .archive-pending { color: var(--muted); font-weight: 700; }
   @media (max-width: 680px) { .historical-document-grid { grid-template-columns: 1fr; } }
 </style>

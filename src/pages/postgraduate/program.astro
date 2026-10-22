@@ -1,54 +1,51 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { site } from '../../data/site';
+import programmeDocs from '../../data/postgraduate/program-documents.json';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
 
-const programYears = [
-  ['2025', 'F1 Прикладна математика', '/documents/postgraduate/program/onp/educational-program-2025.pdf', '/documents/postgraduate/program/curricula/curriculum-2025.pdf'],
-  ['2024', '113 Прикладна математика', '/documents/postgraduate/program/onp/educational-program-2024.pdf', '/documents/postgraduate/program/curricula/curriculum-2024.pdf'],
-  ['2023', '113 Прикладна математика', '/documents/postgraduate/program/onp/educational-program-2023.pdf', '/documents/postgraduate/program/curricula/curriculum-2023.pdf'],
-  ['2022', '113 Прикладна математика', '/documents/postgraduate/program/onp/educational-program-2022.pdf', '/documents/postgraduate/program/curricula/curriculum-2022.pdf']
-];
+const programYears = programmeDocs.programYears.map(({ year, program, curriculum }) => [
+  year, `${year === '2025' ? 'F1' : '113'} Прикладна математика`, program, curriculum
+]);
 
 const courses = [
-  ['ОК1', 'Філософія науки і культури', '6', 'к.філос.н., доцент Вільчинська С. В.; к.філос.н. Літус І. І.', [['2024', '/documents/postgraduate/program/syllabi/2024/ok1-rp-2024.pdf']]],
-  ['ОК2', 'Іноземна мова професійного спрямування для підготовки аспірантів до рівня загальноєвропейського стандарту володіння мовою С1', '8', 'к.ф.н. Рубашова Л. М.', [['2025', '/documents/postgraduate/program/syllabi/2025/ok2-rp-2025.pdf']]],
-  ['ОК3', 'Методологія, організація та технологія наукових досліджень в механіці', '6', 'д.ф.-м.н., член-кор. НАНУ Жук Я. О.; к.ф.-м.н. Васильєва Н. В.', [['2025', '/documents/postgraduate/program/syllabi/2025/ok3-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/ok3-syl-2024.pdf']]],
-  ['ОК4', 'Поглиблений курс теоретичної механіки', '4', 'к.ф.-м.н. Іванов І. Л.', [['2025', '/documents/postgraduate/program/syllabi/2025/ok4-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/ok4-syl-2024.pdf']]],
-  ['ОК5', 'Механіка деформівного твердого тіла', '4', 'д.ф.-м.н., член-кор. НАН України Селіванов М. Ф.', [['2025', '/documents/postgraduate/program/syllabi/2025/ok5-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/ok5-syl-2024.pdf']]],
-  ['ОК6', 'Чисельні методи розв’язання задач прикладної математики', '4', 'д.ф.-м.н. Янчевський І. В.', [['2025', '/documents/postgraduate/program/syllabi/2025/ok6-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/ok6-syl-2024.pdf']]],
-  ['ОК7', 'Педагогіка і методика викладання прикладної математики', '2', 'д.т.н. Борисенко М. Ю.', [['2025', '/documents/postgraduate/program/syllabi/2025/ok7-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/ok7-syl-2024.pdf']]],
-  ['ОК8', 'Педагогічна практика', '2', 'д.т.н. Борисенко М. Ю.', [['2025', '/documents/postgraduate/program/syllabi/2025/ok8-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/ok8-syl-2024.pdf']]],
-  ['ВК1', 'Нелінійна теорія оболонок з отворами', '4', 'д.ф.-м.н., член-кор. НАН України Сторожук Є. А.; д.ф.-м.н. Максимюк В. А.', [['2025', '/documents/postgraduate/program/syllabi/2025/vk1-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/vk1-syl-2024.pdf']]],
-  ['ВК2', 'Аналітично-чисельне дослідження стійкості та руйнування матеріалів з тонким покриттям та армованих композитних матеріалів із застосуванням високопродуктивних обчислень', '4', 'д.ф.-м.н. Декрет В. А.; д.ф.-м.н. Кіпніс О. Л.', [['2025', '/documents/postgraduate/program/syllabi/2025/vk2-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/vk2-syl-2024.pdf']]],
-  ['ВК3', 'Поширення хвиль з врахуванням структурних рівнів матеріалів та базових властивостей деформування матеріалів', '4', 'д.ф.-м.н. Юрчук В. М.', [['2025', '/documents/postgraduate/program/syllabi/2025/vk3-syl-2025.pdf']]],
-  ['ВК4', 'Механіка руйнування в’язкопружних матеріалів', '4', 'к.ф.-м.н. Чорноіван Ю. О.', [['2025', '/documents/postgraduate/program/syllabi/2025/vk4-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/vk4-syl-2024.pdf']]],
-  ['ВК5', 'Математичні моделі термомеханіки суцільних середовищ', '4', 'д.ф.-м.н., член-кор. НАН України Жук Я. О.', [['2025', '/documents/postgraduate/program/syllabi/2025/vk5-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/vk5-syl-2024.pdf']]],
-  ['ВК6', 'Динаміка структурно неоднорідних оболонок', '4', 'к.т.н. Колядюк А. С.', [['2025', '/documents/postgraduate/program/syllabi/2025/vk6-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/vk6-syl-2024.pdf']]],
-  ['ВК7', 'Чисельний аналіз механічної поведінки оболонкових систем', '4', 'д.т.н. Борисенко М. Ю.', [['2025', '/documents/postgraduate/program/syllabi/2025/vk7-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/vk7-syl-2024.pdf']]],
-  ['ВК8', 'Стійкість і керування рухом складних систем', '4', 'к.ф.-м.н. Іванов І. Л.', [['2025', '/documents/postgraduate/program/syllabi/2025/vk8-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/vk8-syl-2024.pdf']]],
-  ['ВК9', 'Методи визначення функцій та реологічних параметрів в нелінійній теорії в’язкопружності', '4', 'д.ф.-м.н. Маслов Б. П.', [['2025', '/documents/postgraduate/program/syllabi/2025/vk9-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/vk9-syl-2024.pdf']]],
-  ['ВК10', 'Сучасні чисельні методи розв’язання прикладних задач механіки деформівного тіла', '4', 'д.ф.-м.н. Янчевський І. В.', [['2025', '/documents/postgraduate/program/syllabi/2025/vk10-syl-2025.pdf'], ['2024', '/documents/postgraduate/program/syllabi/2024/vk10-syl-2024.pdf']]]
+  ['ОК1', 'Філософія науки і культури', '6', 'к.філос.н., доцент Вільчинська С. В.; к.філос.н. Літус І. І.'],
+  ['ОК2', 'Іноземна мова професійного спрямування для підготовки аспірантів до рівня загальноєвропейського стандарту володіння мовою С1', '8', 'к.ф.н. Рубашова Л. М.'],
+  ['ОК3', 'Методологія, організація та технологія наукових досліджень в механіці', '6', 'д.ф.-м.н., член-кор. НАНУ Жук Я. О.; к.ф.-м.н. Васильєва Н. В.'],
+  ['ОК4', 'Поглиблений курс теоретичної механіки', '4', 'к.ф.-м.н. Іванов І. Л.'],
+  ['ОК5', 'Механіка деформівного твердого тіла', '4', 'д.ф.-м.н., член-кор. НАН України Селіванов М. Ф.'],
+  ['ОК6', 'Чисельні методи розв’язання задач прикладної математики', '4', 'д.ф.-м.н. Янчевський І. В.'],
+  ['ОК7', 'Педагогіка і методика викладання прикладної математики', '2', 'д.т.н. Борисенко М. Ю.'],
+  ['ОК8', 'Педагогічна практика', '2', 'д.т.н. Борисенко М. Ю.'],
+  ['ВК1', 'Нелінійна теорія оболонок з отворами', '4', 'д.ф.-м.н., член-кор. НАН України Сторожук Є. А.; д.ф.-м.н. Максимюк В. А.'],
+  ['ВК2', 'Аналітично-чисельне дослідження стійкості та руйнування матеріалів з тонким покриттям та армованих композитних матеріалів із застосуванням високопродуктивних обчислень', '4', 'д.ф.-м.н. Декрет В. А.; д.ф.-м.н. Кіпніс О. Л.'],
+  ['ВК3', 'Поширення хвиль з врахуванням структурних рівнів матеріалів та базових властивостей деформування матеріалів', '4', 'д.ф.-м.н. Юрчук В. М.'],
+  ['ВК4', 'Механіка руйнування в’язкопружних матеріалів', '4', 'к.ф.-м.н. Чорноіван Ю. О.'],
+  ['ВК5', 'Математичні моделі термомеханіки суцільних середовищ', '4', 'д.ф.-м.н., член-кор. НАН України Жук Я. О.'],
+  ['ВК6', 'Динаміка структурно неоднорідних оболонок', '4', 'к.т.н. Колядюк А. С.'],
+  ['ВК7', 'Чисельний аналіз механічної поведінки оболонкових систем', '4', 'д.т.н. Борисенко М. Ю.'],
+  ['ВК8', 'Стійкість і керування рухом складних систем', '4', 'к.ф.-м.н. Іванов І. Л.'],
+  ['ВК9', 'Методи визначення функцій та реологічних параметрів в нелінійній теорії в’язкопружності', '4', 'д.ф.-м.н. Маслов Б. П.'],
+  ['ВК10', 'Сучасні чисельні методи розв’язання прикладних задач механіки деформівного тіла', '4', 'д.ф.-м.н. Янчевський І. В.']
 ];
 
-const reviews = [
-  ['2026', [['відгук 1', '/documents/postgraduate/program/reviews/2026/review-1-2026.pdf'], ['відгук 2', '/documents/postgraduate/program/reviews/2026/review-2-2026.pdf'], ['відгук 3', '/documents/postgraduate/program/reviews/2026/review-3-2026.pdf'], ['відгук 4', '/documents/postgraduate/program/reviews/2026/review-2026-4.pdf']]],
-  ['2025', [['відгук 1', '/documents/postgraduate/program/reviews/2025/review-1-2025.pdf'], ['відгук 2', '/documents/postgraduate/program/reviews/2025/review-2-2025.pdf']]],
-  ['2024', [['відгук 1', '/documents/postgraduate/program/reviews/2024/review-1-2024.pdf'], ['відгук 2', '/documents/postgraduate/program/reviews/2024/review-2-2024.pdf']]],
-  ['2023', [['відгук 1', '/documents/postgraduate/program/reviews/2023/review-1-2023.pdf'], ['відгук 2', '/documents/postgraduate/program/reviews/2023/review-2-2023.pdf'], ['відгук 3', '/documents/postgraduate/program/reviews/2023/review-3-2023.pdf'], ['відгук 4', '/documents/postgraduate/program/reviews/2023/review-4-2023.pdf']]],
-  ['2022', [['відгук 1', '/documents/postgraduate/program/reviews/2022/review-1-2022.pdf'], ['відгук 2', '/documents/postgraduate/program/reviews/2022/review-2-2022.pdf']]]
-];
+const reviews = programmeDocs.reviews.map(({ year, documents }) => [
+  year, documents.map((doc, index) => [`відгук ${index + 1}`, doc.href])
+]);
 
 const surveys = [
-  ['Результати опитування аспірантів 1-го курсу, 2026', '/documents/postgraduate/program/surveys/2026/survey-1-kurs-02-2026.pdf'],
-  ['Результати опитування, 2025', '/documents/postgraduate/program/surveys/2025/survey-09-2025.pdf'],
-  ['ОК3, квітень 2026', '/documents/postgraduate/program/surveys/2026/survey-ok3-04-2026.pdf'],
-  ['ОК4, квітень 2026', '/documents/postgraduate/program/surveys/2026/survey-ok4-04-2026.pdf'],
-  ['ОК5, квітень 2026', '/documents/postgraduate/program/surveys/2026/survey-ok5-04-2026.pdf'],
-  ['ОК6, квітень 2026', '/documents/postgraduate/program/surveys/2026/survey-ok6-04-2026.pdf']
-];
+  ["Результати опитування аспірантів 1-го курсу, 2026", 'first-year-2026'],
+  ["Результати опитування, 2025", 'general-2025'],
+  ["ОК3, квітень 2026", 'ok3-2026'],
+  ["ОК4, квітень 2026", 'ok4-2026'],
+  ["ОК5, квітень 2026", 'ok5-2026'],
+  ["ОК6, квітень 2026", 'ok6-2026']
+].map(([label, id]) => [label, programmeDocs.surveys[id as keyof typeof programmeDocs.surveys]]);
+
+const syllabiForCourse = (code: string) =>
+  programmeDocs.syllabi[code.replace(/^ОК/, 'OK').replace(/^ВК/, 'VK') as keyof typeof programmeDocs.syllabi] ?? [];
 ---
 
 <BaseLayout
@@ -124,7 +121,7 @@ const surveys = [
               </tr>
             </thead>
             <tbody>
-              {courses.map(([code, title, credits, teachers, docs]) => (
+              {courses.map(([code, title, credits, teachers]) => (
                 <tr>
                   <td>{code}</td>
                   <td>{title}</td>
@@ -132,8 +129,8 @@ const surveys = [
                   <td>{teachers}</td>
                   <td>
                     <div class="mini-links">
-                      {docs.map(([label, href]) => (
-                        <a href={href} target="_blank" rel="noopener noreferrer">{label}</a>
+                      {syllabiForCourse(code).map(({ year, href }) => (
+                        <a href={href} target="_blank" rel="noopener noreferrer">{year}</a>
                       ))}
                     </div>
                   </td>

@@ -11,7 +11,7 @@ const withBase = (url: string) => `${base}/${url.replace(/^\/+/, '')}`;
   description="Source-documented dissertation cards from the 2018 historical archive folder, with original files, authors, titles and declared degree where verified."
   activePage="education"
 >
-  <main class="archive-page">
+  <div class="archive-page">
     <div class="archive-container">
       <nav class="archive-breadcrumbs" aria-label="Breadcrumbs">
         <a href={withBase('/en/dissertations/')}>Dissertation defences</a>
@@ -29,7 +29,7 @@ const withBase = (url: string) => `${base}/${url.replace(/^\/+/, '')}`;
       <DissertationArchiveGallery lang="en" archiveYear={2018} />
       <p class="return-link"><a href={withBase('/en/dissertations/archive/')}>← View all historical dissertation cards</a></p>
     </div>
-  </main>
+  </div>
 </BaseLayoutEn>
 
 <style>

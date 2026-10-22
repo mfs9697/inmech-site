@@ -1,0 +1,231 @@
+---
+import { getCollection } from 'astro:content';
+import { electionHistoryPages, type ElectionHistoryRecord } from '../../data/elections/2026/history-pages';
+import legacyLedger from '../../data/elections/2026/legacy-routes.json';
+import '../../styles/elections.css';
+
+interface Props {
+  lang: 'uk' | 'en';
+  page: ElectionHistoryRecord;
+}
+
+const { lang, page } = Astro.props;
+const en = lang === 'en';
+const prefix = en ? '/en' : '';
+const yearRoot = prefix + '/director-election/2026/';
+const currentPath = yearRoot + page.slug + '/';
+const originalPath = '/director-election/2026/' + page.slug + '/';
+const groupPath = yearRoot + page.group + '/';
+const category = page.group === 'regulations'
+  ? (en ? 'Regulations and announcements' : 'Нормативна база й оголошення')
+  : (en ? 'Institute documents and election bodies' : 'Документи Інституту та робочі органи');
+const isCategory = page.slug === page.group;
+const others = electionHistoryPages.filter(p => p.group === page.group && p.slug !== page.slug && p.slug !== page.group);
+const documents = (await getCollection('electionDocuments')).map(e => e.data);
+const byDocumentId = new Map(documents.map(d => [d.id, d]));
+const originalPages = legacyLedger.htmlRoutes.filter(row => row.targetPath === originalPath);
+const historicalSource = originalPages.find(row => row.sourceContent === 'substantive') ?? originalPages[0];
+const ui = en ? {
+  archive: 'Director elections',
+  election: 'Election 2026',
+  information: 'Historical source summary',
+  pageGap: 'Unverified source',
+  notice: 'Historical context, not current legal advice or an active election announcement.',
+  primaryDocuments: 'Verified original documents',
+  preserved: 'Open original',
+  missing: 'Original unavailable',
+  missingExplain: 'No verified original has been recovered. No download or substitute was created.',
+  related: isCategory ? 'Pages in this section' : 'Other pages in this section',
+  source: 'Original page on the election website',
+  sourceGap: 'The historical page contained no substantive body text. The Institute archive does not supply an invented replacement.',
+  sourceContext: 'Source and provenance',
+  originalLanguage: 'Original in Ukrainian',
+  back: 'Back to section',
+  noText: 'The source webpage is preserved by reference; this summary does not replace or authenticate a full legal text.'
+} : {
+  archive: 'Архів виборів директора',
+  election: 'Вибори 2026 року',
+  information: 'Огляд історичного джерела',
+  pageGap: 'Непідтверджене джерело',
+  notice: 'Історичний контекст, а не чинна правова консультація чи поточне оголошення про вибори.',
+  primaryDocuments: 'Перевірені оригінальні документи',
+  preserved: 'Відкрити оригінал',
+  missing: 'Оригінал недоступний',
+  missingExplain: 'Перевірений оригінал не знайдено. Завантаження чи замінника немає.',
+  related: isCategory ? 'Сторінки розділу' : 'Інші матеріали розділу',
+  source: 'Початкова сторінка на сайті виборів',
+  sourceGap: 'На історичній сторінці не було змістовного тексту. Архів не підмінює його вигаданими матеріалами.',
+  sourceContext: 'Джерела та походження',
+  originalLanguage: 'Оригінал українською',
+  back: 'До розділу',
+  noText: 'Історичне джерело збережено посиланням; цей огляд не замінює та не засвідчує повний текст нормативного акта.'
+};
+const title = en ? page.titleEn : page.title;
+const summary = en ? page.summaryEn : page.summary;
+const paragraphs = en ? page.paragraphsEn : page.paragraphs;
+const note = en ? page.noteEn : page.note;
+---
+
+<div class="election-archive election-history">
+  <section class="page-hero">
+    <div class="container">
+      <div class="site-card election-hero" data-block-tone="heritage">
+        <nav class="election-breadcrumb" aria-label={en ? 'Breadcrumb' : 'Навігаційний ланцюжок'}>
+          <a href={prefix + '/director-election/'}>{ui.archive}</a>
+          <span aria-hidden="true"> / </span>
+          <a href={yearRoot}>{ui.election}</a>
+          <span aria-hidden="true"> / </span>
+          {isCategory
+            ? <span aria-current="page">{category}</span>
+            : <><a href={groupPath}>{category}</a><span aria-hidden="true"> / </span><span aria-current="page">{title}</span></>
+          }
+        </nav>
+        <p class="eyebrow">{page.reviewState === 'source-gap' ? ui.pageGap : ui.information}</p>
+        <h1>{title}</h1>
+        <p class="lead">{summary}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="historical-information">
+    <div class="container history-layout">
+      <article class="site-card history-content" data-block-tone="neutral">
+        <h2 id="historical-information">{en ? 'About the historical material' : 'Про історичний матеріал'}</h2>
+        {paragraphs.map(p => <p>{p}</p>)}
+        {note && <p class="history-note">{note}</p>}
+        {page.reviewState === 'source-gap' && (
+          <p class="history-missing-source"><strong>{ui.pageGap}.</strong> {ui.sourceGap}</p>
+        )}
+      </article>
+      <aside class="site-card history-context" data-block-tone="information">
+        <h2>{ui.sourceContext}</h2>
+        <p>{ui.notice}</p>
+        <p>{ui.noText}</p>
+        {historicalSource && (
+          <p>
+            <a href={'https://election.inmech.kyiv.ua' + historicalSource.sourcePath} rel="noopener noreferrer">
+              {ui.source} ↗
+            </a>
+          </p>
+        )}
+        {!isCategory && <p><a href={groupPath}>← {ui.back}</a></p>}
+      </aside>
+    </div>
+  </section>
+
+  {page.documents.length > 0 && (
+    <section class="section" aria-labelledby="history-documents-title">
+      <div class="container">
+        <h2 id="history-documents-title">{ui.primaryDocuments}</h2>
+        <div class="election-document-grid">
+          {page.documents.map(id => {
+            const doc = byDocumentId.get(id);
+            if (!doc) return null;
+            return (
+              <article class="site-card election-document-card" data-block-tone={doc.sourceStatus === 'missing' ? 'heritage' : 'neutral'}>
+                <h3>{en ? doc.titleEn : doc.title}</h3>
+                <p>{en ? doc.noteEn : doc.note}</p>
+                {doc.sourceStatus === 'preserved' ? (
+                  <>
+                    <p class="history-document-meta">{doc.format.toUpperCase()} · {ui.originalLanguage}</p>
+                    <a class="election-document-action" href={doc.path}>
+                      {ui.preserved} ({doc.format.toUpperCase()}) →
+                    </a>
+                  </>
+                ) : (
+                  <p class="history-missing-source"><strong>{ui.missing}.</strong> {ui.missingExplain}</p>
+                )}
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {others.length > 0 && (
+    <section class="section" aria-labelledby="history-related">
+      <div class="container">
+        <h2 id="history-related">{ui.related}</h2>
+        <div class="election-document-grid">
+          {others.map(item => (
+            <a class="site-card site-card--interactive history-related-card" href={yearRoot + item.slug + '/'} data-block-tone="neutral">
+              <h3>{en ? item.titleEn : item.title}</h3>
+              <p>{en ? item.summaryEn : item.summary}</p>
+              <span class="site-card__action">{en ? 'Read more' : 'Докладніше'} →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</div>
+
+<style>
+  .history-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(250px, 0.9fr);
+    align-items: start;
+    gap: 18px;
+  }
+
+  .history-content, .history-context {
+    padding: clamp(20px, 3vw, 30px);
+    min-width: 0;
+  }
+
+  .history-content h2, .history-context h2, .election-history .section h2 {
+    margin-top: 0;
+    font-size: clamp(1.35rem, 2vw, 1.8rem);
+  }
+
+  .history-content p, .history-context p {
+    line-height: 1.72;
+    margin-bottom: 16px;
+  }
+
+  .history-note, .history-missing-source {
+    padding: 12px 16px;
+    border-left: 3px solid var(--accent);
+    background: var(--surface-soft);
+    border-radius: 5px;
+  }
+
+  .history-related-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+    text-decoration: none;
+  }
+
+  .history-related-card h3, .election-history .election-document-card h3 {
+    margin: 0;
+    font-size: 1.16rem;
+  }
+
+  .history-related-card p {
+    margin: 0;
+    color: var(--muted);
+    flex: 1;
+  }
+
+  .history-document-meta {
+    font-size: .92rem;
+    color: var(--muted);
+  }
+
+  .election-history .election-document-card h3 {
+    overflow-wrap: anywhere;
+  }
+
+  .election-history .election-document-grid {
+    margin-top: 18px;
+  }
+
+  @media (max-width: 850px) {
+    .history-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

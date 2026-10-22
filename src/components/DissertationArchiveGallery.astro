@@ -1,0 +1,153 @@
+---
+import cardRegistry from '../data/dissertations/archive-research-cards.json';
+import year2015 from '../data/dissertations/archive-2015-pilot.json';
+import year2016 from '../data/dissertations/archive-2016-pilot.json';
+import year2017 from '../data/dissertations/archive-2017-pilot.json';
+import year2018 from '../data/dissertations/archive-2018-pilot.json';
+import year2019 from '../data/dissertations/archive-2019-pilot.json';
+import year2020 from '../data/dissertations/archive-2020-pilot.json';
+import year2021 from '../data/dissertations/archive-2021-pilot.json';
+
+interface Props {
+  lang: 'uk' | 'en';
+  archiveYear?: number;
+}
+
+const { lang, archiveYear } = Astro.props;
+const english = lang === 'en';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (url: string) => `${base}/${url.replace(/^\/+/, '')}`;
+const manifests: Record<number, { pilot: Array<any> }> = {
+  2015: year2015, 2016: year2016, 2017: year2017, 2018: year2018,
+  2019: year2019, 2020: year2020, 2021: year2021
+};
+const allFiles = new Map(Object.values(manifests).flatMap((year) => year.pilot.map((file) => [file.id, file])));
+const degreeNames: Record<string, [string, string]> = {
+  'candidate-physmath': ['кандидата фізико-математичних наук', 'Candidate of Physical and Mathematical Sciences'],
+  'candidate-technical': ['кандидата технічних наук', 'Candidate of Technical Sciences'],
+  'doctor-physmath': ['доктора фізико-математичних наук', 'Doctor of Physical and Mathematical Sciences'],
+  'doctor-technical': ['доктора технічних наук', 'Doctor of Technical Sciences'],
+  'phd': ['доктора філософії (PhD)', 'Doctor of Philosophy (PhD)']
+};
+const specialties: Record<string, [string, string]> = {
+  '01.02.01': ['теоретична механіка', 'Theoretical Mechanics'],
+  '01.02.04': ['механіка деформівного твердого тіла', 'Mechanics of Deformable Solids'],
+  '113': ['прикладна математика', 'Applied Mathematics']
+};
+const fileLabel = (id: string, format: string) => {
+  if (id === '2019-16dis') return english ? 'Dissertation appendices' : 'Додатки до дисертації';
+  if (/ref(?:er(?:1)?)?$/.test(id)) return english ? 'Abstract' : 'Автореферат';
+  if (format === 'zip' || format === 'rar' || format === 'doc')
+    return english ? 'Original document' : 'Оригінал документа';
+  return english ? 'Dissertation' : 'Дисертація';
+};
+const years = (archiveYear ? [archiveYear] : [2021, 2020, 2019, 2018, 2017, 2016, 2015])
+  .map((year) => ({
+    year,
+    items: cardRegistry.cards.filter((card) => card.archiveYear === year).map((card) => ({
+      ...card,
+      files: card.documentIds.map((id) => {
+        const source = allFiles.get(id);
+        if (!source) throw new Error('Missing original for dissertation card: ' + id);
+        return {
+          ...source,
+          label: fileLabel(id, source.format),
+          filename: source.target.split('/').at(-1),
+          href: source.publicationStatus === 'withheld-security-review'
+            ? null : source.target.replace(/^public/, ''),
+          megabytes: (source.expectedBytes / 1_000_000).toFixed(2)
+        };
+      })
+    }))
+  }));
+---
+
+<div class="historical-archive" data-dissertation-cards>
+  {years.map(({ year, items }) => (
+    <section class="archive-year-group" id={`year-${year}`} aria-labelledby={`archive-heading-${year}`}>
+      {!archiveYear && (
+        <div class="archive-year-heading">
+          <h2 id={`archive-heading-${year}`}>{english ? `Archive folder ${year}` : `Архівна папка ${year}`}</h2>
+          <a href={withBase(`${english ? '/en' : ''}/dissertations/archive/${year}/`)}>
+            {english ? 'This year’s records →' : 'Записи цього року →'}
+          </a>
+        </div>
+      )}
+      {archiveYear && <h2 class="sr-only" id={`archive-heading-${year}`}>{english ? `Dissertations in archive folder ${year}` : `Дисертації архівної папки ${year}`}</h2>}
+      <ul class="dissertation-card-grid" aria-labelledby={`archive-heading-${year}`}>
+        {items.map((card) => (
+          <li class="dissertation-card" id={card.id} data-card-id={card.id}>
+            <article>
+              <div class="card-overline">
+                <span class="archive-year-tag">{english ? `Source folder ${year}` : `Папка ${year}`}</span>
+                {card.printedYear && <span class="title-year">{english ? `Title page: ${card.printedYear}` : `На титулі: ${card.printedYear}`}</span>}
+              </div>
+              <h3>{card.author || (english ? 'Attribution awaiting review' : 'Авторство уточнюється')}</h3>
+              <p class="research-title">
+                {card.title || (english ? 'Original documents awaiting source review' : 'Оригінальні документи потребують перевірки')}
+              </p>
+              {english && card.title && <p class="source-language">Original Ukrainian title</p>}
+              {card.degree && <p class="academic-degree"><strong>{english ? 'Degree sought:' : 'На здобуття ступеня:'}</strong> {degreeNames[card.degree]?.[english ? 1 : 0]}</p>}
+              {card.specialty && <p class="specialty"><strong>{english ? 'Specialty:' : 'Спеціальність:'}</strong> {card.specialty} — {specialties[card.specialty]?.[english ? 1 : 0]}</p>}
+              {(english ? card.notesEn : card.notes).length > 0 && (
+                <div class="card-notes" role="note">
+                  {(english ? card.notesEn : card.notes).map((note) => <p>{note}</p>)}
+                </div>
+              )}
+              <div class="card-documents" aria-label={english ? 'Archival originals' : 'Архівні оригінали'}>
+                <strong class="document-heading">{english ? 'Original documents' : 'Оригінальні документи'}</strong>
+                {card.files.map((file) => (
+                  <div class="original-row" data-source-id={file.id}>
+                    <span class="original-name">
+                      {file.label}
+                      <small>{file.filename} · {file.format.toUpperCase()} · {file.megabytes} {english ? 'MB' : 'МБ'}</small>
+                    </span>
+                    {file.href ? (
+                      <a class="original-download" href={withBase(file.href)} aria-label={`${file.label}: ${file.filename}`}>
+                        {english ? 'Open file ↗' : 'Відкрити ↗'}
+                      </a>
+                    ) : (
+                      <span class="original-restricted">{english ? 'Access withheld' : 'Доступ обмежено'}</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </article>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</div>
+
+<style>
+  .historical-archive { display: grid; gap: 42px; }
+  .archive-year-group { min-width: 0; }
+  .archive-year-heading { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 17px; }
+  .archive-year-heading h2 { margin: 0; font-size: clamp(1.4rem, 2.4vw, 2rem); }
+  .archive-year-heading a { font-weight: 800; color: var(--accent-dark); }
+  .dissertation-card-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; gap: 20px; }
+  .dissertation-card { min-width: 0; border: 1px solid var(--line); background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+  .dissertation-card article { min-width: 0; padding: clamp(20px, 3vw, 30px); height: 100%; box-sizing: border-box; display: flex; flex-direction: column; }
+  .card-overline { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; font-size: .8rem; font-weight: 800; }
+  .archive-year-tag { border-radius: 999px; background: var(--accent-soft); color: var(--accent-dark); padding: 6px 10px; }
+  .title-year { color: var(--muted); }
+  .dissertation-card h3 { margin: 0 0 12px; font-size: clamp(1.12rem, 1.6vw, 1.4rem); line-height: 1.28; overflow-wrap: anywhere; }
+  .research-title { font-weight: 780; margin: 0 0 14px; font-size: 1rem; line-height: 1.5; overflow-wrap: anywhere; }
+  .source-language { color: var(--muted); margin: -7px 0 14px; font-size: .82rem; }
+  .academic-degree,.specialty { color: var(--muted); margin: 0 0 9px; line-height: 1.52; font-size: .9rem; }
+  .academic-degree strong,.specialty strong { color: var(--text); }
+  .card-notes { border-left: 3px solid var(--gold); margin: 10px 0 16px; padding: 5px 0 5px 12px; font-size: .88rem; color: var(--muted); }
+  .card-notes p { margin: 4px 0; line-height: 1.46; }
+  .card-documents { margin-top: auto; padding-top: 16px; }
+  .document-heading { display: block; font-size: .91rem; margin-bottom: 9px; }
+  .original-row { display: flex; justify-content: space-between; align-items: center; min-width: 0; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
+  .original-name { min-width: 0; font-size: .9rem; font-weight: 750; overflow-wrap: anywhere; }
+  .original-name small { display: block; margin-top: 3px; color: var(--muted); font-weight: 550; font-size: .77rem; }
+  .original-download { flex-shrink: 0; background: var(--accent-soft); color: var(--accent-dark); border-radius: 999px; padding: 8px 12px; font-weight: 850; text-align: center; font-size: .84rem; text-decoration: none; }
+  .original-download:hover { text-decoration: none; filter: brightness(.94); }
+  .original-restricted { font-size: .8rem; color: var(--muted); font-weight: 750; text-align: right; max-width: 122px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+  @media (max-width: 860px) { .dissertation-card-grid { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 430px) { .original-row { flex-wrap: wrap; align-items: flex-start; } .original-download { min-height: 40px; display: inline-flex; align-items: center; } }
+</style>

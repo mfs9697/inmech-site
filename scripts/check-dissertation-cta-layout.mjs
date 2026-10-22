@@ -14,7 +14,11 @@ for (const language of ['uk', 'en']) {
   const source = fs.readFileSync(sourcePath, 'utf8');
   const generated = fs.readFileSync(generatedPath, 'utf8');
 
-  const layout = source.match(/\.catalog-cta-panel\s*\{([^}]+)\}/)?.[1];
+  // The selector also appears in an earlier shared card-style group.
+  // Check the dedicated layout rule, not the first generic background rule.
+  const layout = [...source.matchAll(/\.catalog-cta-panel\s*\{([^}]+)\}/g)]
+    .map((match) => match[1])
+    .find((rule) => rule.includes('grid-template-columns:'));
   assert(layout, language + ': missing archive panel styles');
   assert(/grid-template-columns:\s*minmax\(0,\s*1fr\)\s*;/.test(layout),
     language + ': archive callout must have a single available-width column');

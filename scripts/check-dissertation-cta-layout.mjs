@@ -44,12 +44,12 @@ for (const language of ['uk', 'en']) {
   const hrefs = [...section.matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
   const expected = [
     prefix + '/defended-dissertations/',
-    ...years.map((year) => prefix + '/dissertations/archive/' + year + '/')
+    prefix + '/dissertations/archive/'
   ];
-  assert.equal(hrefs.length, 8, language + ': expected catalogue and seven archive links');
+  assert.equal(hrefs.length, 2, language + ': expect catalogue and direct card archive links');
   assert.deepEqual([...hrefs].sort(), [...expected].sort(),
     language + ': archive links missing, duplicated or changed');
 
   console.log(language.toUpperCase() +
-    ' dissertation callout: full-width copy; seven linked archive years; wrapped desktop/mobile actions.');
+    ' dissertation callout: full-width copy; direct catalogue and research-card archive actions; responsive wrapping.');
 }

@@ -40,6 +40,11 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
+      # TEMPORARY F15 2015 original download probe; remove before merge.
+      - name: Probe original 2015 dissertation PDFs (temporary)
+        if: github.event_name == 'pull_request' && github.head_ref == 'archive/f15-2015-originals'
+        run: node scripts/f15-2015-originals.mjs --probe
+
       - name: Validate generated site
         run: |
           npm run validate

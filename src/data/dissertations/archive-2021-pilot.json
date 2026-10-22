@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "note": "Planned public 2021 defence-file sources from Codex F15 and documents-migration.csv. Do not advertise local downloads until source bytes are verified and committed.",
+  "note": "Five 2021 historical public originals confirmed by full GET in GitHub Actions run 39763947430 (22 Oct 2026). Hashes and byte counts are immutable source evidence; no inferred person/defence links.",
   "pilot": [
     {
       "id": "2021-26ref",
@@ -15,32 +15,32 @@
       "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2021/26dis.pdf",
       "target": "public/documents/dissertations/archive/2021/26dis.pdf",
       "format": "pdf",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "9c54551e207e090e2486618993c50a01707ed283f2b1887a7a6ddba41d57e6ba",
+      "expectedBytes": 34250583
     },
     {
       "id": "2021-25ref",
       "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2021/25ref.docx",
       "target": "public/documents/dissertations/archive/2021/25ref.docx",
       "format": "docx",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "f92bd149b4f85baef3b45fe32f3a6778b7c3e27e2c64b7ee2acb68639fd29d28",
+      "expectedBytes": 265525
     },
     {
       "id": "2021-25dis",
       "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2021/25dis.docx",
       "target": "public/documents/dissertations/archive/2021/25dis.docx",
       "format": "docx",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "7fc994fb40ef16f45fc71e6a706f46d74d26318416046a8d0ccdea28371848b4",
+      "expectedBytes": 726030
     },
     {
       "id": "2021-24dis",
       "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2021/24dis.pdf",
       "target": "public/documents/dissertations/archive/2021/24dis.pdf",
       "format": "pdf",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "a15fc171ac5fb46798d74be0295b50d86c365ba7a839857e63c192808a2c12ce",
+      "expectedBytes": 6351633
     }
   ]
 }

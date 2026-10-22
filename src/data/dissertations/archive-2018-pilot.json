@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "note": "Six source-folder 2018 PDFs from Codex F15 and documents-migration.csv. Source bytes and hashes require complete GET. Do not infer authors or defence dates from numeric file identifiers.",
+  "pilot": [
+    {
+      "id": "2018-14refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2018/14refer.pdf",
+      "target": "public/documents/dissertations/archive/2018/14refer.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2018-14dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2018/14dis.pdf",
+      "target": "public/documents/dissertations/archive/2018/14dis.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2018-13refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2018/13refer.pdf",
+      "target": "public/documents/dissertations/archive/2018/13refer.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2018-13dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2018/13dis.pdf",
+      "target": "public/documents/dissertations/archive/2018/13dis.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2018-12refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2018/12refer.pdf",
+      "target": "public/documents/dissertations/archive/2018/12refer.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2018-12dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2018/12dis.pdf",
+      "target": "public/documents/dissertations/archive/2018/12dis.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    }
+  ]
+}

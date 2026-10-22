@@ -8,3 +8,5 @@ public/documents/institute/strategy/development-strategy-2026-2030.pdf -text
 public/documents/dissertations/archive/2021/* -text -diff
 public/documents/dissertations/archive/2020/* -text -diff
 public/documents/dissertations/archive/2019/* -text -diff
+# Withhold source compressed archives from public deployment pending independent safety review.
+preserved/dissertations/2019/* -text -diff

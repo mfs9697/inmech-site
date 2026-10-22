@@ -19,7 +19,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "empty-body",
       "targetPath": "/director-election/2026/regulations/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {
@@ -28,7 +28,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "substantive",
       "targetPath": "/director-election/2026/regulations/announcement/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {
@@ -37,7 +37,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "substantive",
       "targetPath": "/director-election/2026/regulations/nas-statute/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {
@@ -46,7 +46,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "substantive",
       "targetPath": "/director-election/2026/regulations/resolution-998/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {
@@ -55,7 +55,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "substantive",
       "targetPath": "/director-election/2026/regulations/language-requirements/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {
@@ -64,7 +64,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "empty-body",
       "targetPath": "/director-election/2026/documents/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {
@@ -73,7 +73,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "substantive",
       "targetPath": "/director-election/2026/documents/order-124/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {
@@ -82,7 +82,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "empty-body",
       "targetPath": "/director-election/2026/documents/order-124/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {
@@ -91,7 +91,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "substantive",
       "targetPath": "/director-election/2026/documents/organizing-committee/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {
@@ -100,7 +100,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "empty-body",
       "targetPath": "/director-election/2026/documents/organizing-committee/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {
@@ -109,7 +109,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "substantive",
       "targetPath": "/director-election/2026/documents/election-commission/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {
@@ -118,7 +118,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "empty-body",
       "targetPath": "/director-election/2026/documents/election-commission/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {
@@ -127,7 +127,7 @@
       "sourceHttpStatus": 200,
       "sourceContent": "empty-body",
       "targetPath": "/director-election/2026/documents/committee-minutes/",
-      "targetState": "planned-page",
+      "targetState": "built",
       "handling": "planned-301"
     },
     {

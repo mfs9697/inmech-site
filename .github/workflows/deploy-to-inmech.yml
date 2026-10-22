@@ -40,6 +40,11 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
+      # TEMPORARY read-only full-GET probe for F15 2019. Remove before merge.
+      - name: Probe 2019 historical PDF RAR ZIP originals (temporary F15)
+        if: github.event_name == 'pull_request' && github.head_ref == 'archive/f15-2019-originals'
+        run: node scripts/f15-2019-originals.mjs --probe
+
       - name: Validate generated site
         run: |
           npm run validate

@@ -49,8 +49,9 @@ jobs:
       - name: Commit byte-verified 2017 originals to PR branch
         if: github.event_name == 'pull_request' && github.head_ref == 'archive/f15-2017-originals' && github.event.pull_request.head.repo.full_name == 'mfs9697/inmech-site' && hashFiles('public/documents/dissertations/archive/2017/11refer.pdf') == ''
         run: |
+          # --import checks complete original bytes and the pinned SHA-256.
+          # Built dist/ and localized pages are verified in final npm run validate.
           node scripts/f15-2017-originals.mjs --import
-          node scripts/f15-2017-originals.mjs --verify
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -- public/documents/dissertations/archive/2017/ docs/migrations/f15-2017-originals-verified.json

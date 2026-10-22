@@ -1,77 +1,45 @@
 ---
 import BaseLayoutEn from '../../../../../layouts/BaseLayoutEn.astro';
-import archive from '../../../../../data/dissertations/archive-2018-pilot.json';
+import DissertationArchiveGallery from '../../../../../components/DissertationArchiveGallery.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const withBase = (value: string) => `${base}/${value.replace(/^\/+/, '')}`;
-const documents = archive.pilot.map((entry) => ({
-  ...entry,
-  filename: entry.target.split('/').at(-1) ?? entry.id,
-  publicPath: entry.target.replace(/^public/, ''),
-  megabytes: (entry.expectedBytes / 1_000_000).toFixed(2)
-}));
+const withBase = (url: string) => `${base}/${url.replace(/^\/+/, '')}`;
 ---
 
 <BaseLayoutEn
-  title="Historical dissertation defence materials — 2018 originals"
-  description="Verified unchanged originals from the Institute's historical 2018 dissertation defence files."
+  title="Dissertations from the 2018 archive | Institute of Mechanics"
+  description="Source-documented dissertation cards from the 2018 historical archive folder, with original files, authors, titles and declared degree where verified."
   activePage="education"
 >
-  <section class="page-hero">
-    <div class="container">
-      <div class="panel">
-        <p class="eyebrow">Dissertation defence materials · historical archive</p>
-        <h1>Original files from the 2018 archive folder</h1>
-        <p class="lead">
-          The six files below were copied unchanged from the Institute’s previous website.
-          Complete binary copies were verified by byte size and SHA-256.
-          Neither their contents, formatting nor original document metadata were modified.
-        </p>
-        <p>
-          <strong>Important:</strong> numerical filenames have been preserved as in the original source.
-          They do not independently establish authorship, a defence date or a match to an entry in the
-          bibliographic catalogue. Those associations require separate source review.
-        </p>
-        <p><a href={withBase('/en/dissertations/')}>← Back to dissertation defences</a></p>
-      </div>
+  <main class="archive-page">
+    <div class="archive-container">
+      <nav class="archive-breadcrumbs" aria-label="Breadcrumbs">
+        <a href={withBase('/en/dissertations/')}>Dissertation defences</a>
+        <span aria-hidden="true">›</span>
+        <a href={withBase('/en/dissertations/archive/')}>Historical archive</a>
+        <span aria-hidden="true">›</span>
+        <span>2018</span>
+      </nav>
+      <header class="archive-hero">
+        <p class="archive-eyebrow">Historical dissertation archive</p>
+        <h1>Research cards — archive folder 2018</h1>
+        <p>Names, original titles, degrees and specialties are transcribed from the title pages of available original documents. The archive-folder year is not automatically a confirmed defence date.</p>
+        <p class="archive-disclaimer">Where an original could not be safely inspected or its identification remains uncertain, the card explicitly says so. Withheld legacy DOC, ZIP and RAR files have no download link.</p>
+      </header>
+      <DissertationArchiveGallery lang="en" archiveYear={2018} />
+      <p class="return-link"><a href={withBase('/en/dissertations/archive/')}>← View all historical dissertation cards</a></p>
     </div>
-  </section>
-  <section class="section">
-    <div class="container">
-      <ul class="historical-document-grid" aria-label="Original 2018 files">
-        {documents.map((entry) => (
-          <li class="panel historical-document">
-            <h2>{entry.filename}</h2>
-            <p>Original format: <strong>{entry.format.toUpperCase()}</strong> · {entry.megabytes} MB</p>
-            <p>Archive file index: <code>{entry.id}</code></p>
-            <div class="document-links">
-              <a class="button primary" href={withBase(entry.publicPath)}>Download original</a>
-              <a href={entry.sourceUrl} target="_blank" rel="noopener noreferrer">Original source ↗</a>
-            </div>
-          </li>
-        ))}
-      </ul>
-      <p class="archive-source-note">
-        Each file was preserved after a verified full download, not merely a HEAD response.
-        The old source website remains intact and accessible under its existing addresses.
-      </p>
-    </div>
-  </section>
+  </main>
 </BaseLayoutEn>
 
 <style>
-  .historical-document-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  .historical-document { padding: clamp(20px, 3vw, 30px); min-width: 0; }
-  .historical-document h2 { font-size: 1.2rem; margin-top: 0; overflow-wrap: anywhere; }
-  .historical-document p { color: var(--muted); }
-  .document-links { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-  .archive-source-note { margin-top: 22px; color: var(--muted); }
-  @media (max-width: 680px) { .historical-document-grid { grid-template-columns: 1fr; } }
+  .archive-page { padding: 34px 0 72px; }
+  .archive-container { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+  .archive-breadcrumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; color: var(--muted); font-size: .9rem; margin-bottom: 24px; }
+  .archive-hero { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(25px, 4.5vw, 48px); margin-bottom: 26px; box-shadow: var(--shadow); }
+  .archive-eyebrow { color: var(--accent-dark); font-weight: 900; text-transform: uppercase; letter-spacing: .07em; font-size: .78rem; }
+  .archive-hero h1 { font-size: clamp(2rem, 4vw, 3.3rem); line-height: 1.1; letter-spacing: -.03em; margin: 10px 0 18px; }
+  .archive-hero p { max-width: 83ch; line-height: 1.65; color: var(--muted); }
+  .archive-hero .archive-disclaimer { font-size: .9rem; }
+  .return-link { margin-top: 28px; font-weight: 800; }
 </style>

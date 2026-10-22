@@ -16,9 +16,14 @@ const yearRoot = prefix + '/director-election/2026/';
 const currentPath = yearRoot + page.slug + '/';
 const originalPath = '/director-election/2026/' + page.slug + '/';
 const groupPath = yearRoot + page.group + '/';
-const category = page.group === 'regulations'
-  ? (en ? 'Regulations and announcements' : 'Нормативна база й оголошення')
-  : (en ? 'Institute documents and election bodies' : 'Документи Інституту та робочі органи');
+const categories = {
+  regulations: ['Нормативна база й оголошення', 'Regulations and announcements'],
+  documents: ['Документи Інституту та робочі органи', 'Institute documents and election bodies'],
+  candidates: ['Кандидати на посаду директора', 'Candidates for director'],
+  voting: ['Організація голосування та виборці', 'Voting arrangements and electorate'],
+  results: ['Результати виборів', 'Election results']
+} as const;
+const category = categories[page.group][en ? 1 : 0];
 const isCategory = page.slug === page.group;
 const others = electionHistoryPages.filter(p => p.group === page.group && p.slug !== page.slug && p.slug !== page.group);
 const documents = (await getCollection('electionDocuments')).map(e => e.data);
@@ -30,7 +35,8 @@ const ui = en ? {
   election: 'Election 2026',
   information: 'Historical source summary',
   pageGap: 'Unverified source',
-  notice: 'Historical context, not current legal advice or an active election announcement.',
+  publicationReview: 'Voter-roll publication review',
+  notice: 'Historical record of the 2026 election. This is not an active announcement or evidence of a subsequent appointment.',
   primaryDocuments: 'Verified original documents',
   preserved: 'Open original',
   missing: 'Original unavailable',
@@ -47,7 +53,8 @@ const ui = en ? {
   election: 'Вибори 2026 року',
   information: 'Огляд історичного джерела',
   pageGap: 'Непідтверджене джерело',
-  notice: 'Історичний контекст, а не чинна правова консультація чи поточне оголошення про вибори.',
+  publicationReview: 'Перевірка оприлюднення списку',
+  notice: 'Історичні матеріали виборів 2026 року, а не чинне оголошення чи документ про подальше призначення.',
   primaryDocuments: 'Перевірені оригінальні документи',
   preserved: 'Відкрити оригінал',
   missing: 'Оригінал недоступний',
@@ -58,7 +65,7 @@ const ui = en ? {
   sourceContext: 'Джерела та походження',
   originalLanguage: 'Оригінал українською',
   back: 'До розділу',
-  noText: 'Історичне джерело збережено посиланням; цей огляд не замінює та не засвідчує повний текст нормативного акта.'
+  noText: 'Посилання на первісну сторінку збережено; цей огляд не є засвідченим відтворенням її повного тексту.'
 };
 const title = en ? page.titleEn : page.title;
 const summary = en ? page.summaryEn : page.summary;
@@ -80,7 +87,7 @@ const note = en ? page.noteEn : page.note;
             : <><a href={groupPath}>{category}</a><span aria-hidden="true"> / </span><span aria-current="page">{title}</span></>
           }
         </nav>
-        <p class="eyebrow">{page.reviewState === 'source-gap' ? ui.pageGap : ui.information}</p>
+        <p class="eyebrow">{page.reviewState === 'source-gap' ? ui.pageGap : page.reviewState === 'publication-review' ? ui.publicationReview : ui.information}</p>
         <h1>{title}</h1>
         <p class="lead">{summary}</p>
       </div>

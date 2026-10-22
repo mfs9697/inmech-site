@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-22T12:22:43.547Z",
+  "source": "old.inmech.kyiv.ua (complete binary GET)",
+  "entries": [
+    {
+      "id": "2018-14refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2018/14refer.pdf",
+      "target": "public/documents/dissertations/archive/2018/14refer.pdf",
+      "format": "pdf",
+      "bytes": 456656,
+      "sha256": "7ec78f899b8f3f1fe3ebdb371dfff836c5d06254d1ba9efda5e1881b8f50c865"
+    },
+    {
+      "id": "2018-14dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2018/14dis.pdf",
+      "target": "public/documents/dissertations/archive/2018/14dis.pdf",
+      "format": "pdf",
+      "bytes": 1522839,
+      "sha256": "f9555c22418a27ffffaa6742c880b0fb461372cbacfe676acdb3c0b24d824357"
+    },
+    {
+      "id": "2018-13refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2018/13refer.pdf",
+      "target": "public/documents/dissertations/archive/2018/13refer.pdf",
+      "format": "pdf",
+      "bytes": 1857645,
+      "sha256": "b9c92fcc6725d503ac8c96bec605b46fea4a64b8322a9db371c75a5381aab2bd"
+    },
+    {
+      "id": "2018-13dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2018/13dis.pdf",
+      "target": "public/documents/dissertations/archive/2018/13dis.pdf",
+      "format": "pdf",
+      "bytes": 6477651,
+      "sha256": "0c00f700045af67592d8e153d6914191c7b2cf80a74743581d9b115bce66b69a"
+    },
+    {
+      "id": "2018-12refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2018/12refer.pdf",
+      "target": "public/documents/dissertations/archive/2018/12refer.pdf",
+      "format": "pdf",
+      "bytes": 449777,
+      "sha256": "d1f7fb1d40667d97fb6b20b7d6d6cbb266fcfd6c36daa146edab7551881fd2a4"
+    },
+    {
+      "id": "2018-12dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2018/12dis.pdf",
+      "target": "public/documents/dissertations/archive/2018/12dis.pdf",
+      "format": "pdf",
+      "bytes": 1377574,
+      "sha256": "ba2ff405ca12f23cacdc82b445989320b31f88020b32da40267c3c570b0d0498"
+    }
+  ]
+}

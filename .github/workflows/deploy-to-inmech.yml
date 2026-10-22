@@ -26,15 +26,10 @@ jobs:
   validate:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
-    # TEMPORARY: scoped write permission solely to commit verified F15 PDFs.
-    permissions:
-      contents: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v5
@@ -44,19 +39,6 @@ jobs:
 
       - name: Install locked dependencies
         run: npm ci
-
-      # TEMPORARY import — will be fully removed after initial commit.
-      - name: Import verified 2020 historical PDF originals (temporary F15)
-        if: github.event_name == 'pull_request' && github.head_ref == 'archive/f15-2020-originals' && github.event.pull_request.head.repo.full_name == 'mfs9697/inmech-site' && hashFiles('public/documents/dissertations/archive/2020/23ref.pdf') == ''
-        run: |
-          node scripts/f15-2020-originals.mjs --import
-          node scripts/f15-2020-originals.mjs --verify
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- public/documents/dissertations/archive/2020/ docs/migrations/f15-2020-originals-verified.json
-          git diff --cached --check
-          git commit -m "Preserve two byte-verified original 2020 dissertation PDFs"
-          git push origin "HEAD:refs/heads/${GITHUB_HEAD_REF}"
 
       - name: Validate generated site
         run: |

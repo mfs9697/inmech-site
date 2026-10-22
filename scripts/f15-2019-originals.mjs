@@ -136,7 +136,37 @@ async function main() {
     const ledger = path.join(root, 'docs/migrations/f15-2019-originals-verified.json');
     const saved = JSON.parse(fs.readFileSync(ledger, 'utf8'));
     assert.deepEqual(saved.entries, observed, 'Committed originals differ from SHA-256 ledger');
-    console.log('F15 archive verification passed: ' + observed.length + ' 2019 original files match immutable hashes (12 public PDFs, 3 quarantined ZIP/RAR).');
+
+    // Release boundary: PDF originals are shipped, but questionable compressed
+    // archives are preserved in Git only, never copied into the static site.
+    const publicEntries = pilot.filter((entry) => entry.publicationStatus === 'public');
+    const withheldEntries = pilot.filter((entry) => entry.publicationStatus === 'withheld-security-review');
+    assert.equal(publicEntries.length, 12, 'Expected exactly 12 released PDF originals');
+    assert.equal(withheldEntries.length, 3, 'Expected exactly three withheld archives');
+    const buildDir = path.join(root, 'dist/documents/dissertations/archive/2019');
+    for (const entry of publicEntries) {
+      const shipped = path.join(buildDir, path.basename(entry.target));
+      assert(fs.existsSync(shipped), entry.id + ': public original missing from Astro dist');
+      checkBytes(entry, fs.readFileSync(shipped));
+    }
+    for (const entry of withheldEntries) {
+      const forbidden = path.join(buildDir, path.basename(entry.target));
+      assert(!fs.existsSync(forbidden), entry.id + ': withheld archive leaked into Astro dist');
+    }
+    const archiveHtml = [
+      'dist/dissertations/archive/2019/index.html',
+      'dist/en/dissertations/archive/2019/index.html'
+    ];
+    for (const page of archiveHtml) {
+      const html = fs.readFileSync(path.join(root, page), 'utf8');
+      for (const entry of withheldEntries) {
+        const filename = path.basename(entry.target);
+        assert(html.includes(filename), page + ': withheld entry is not transparently listed: ' + filename);
+        assert(!html.includes('/documents/dissertations/archive/2019/' + filename),
+          page + ': public link to withheld compressed archive was generated: ' + filename);
+      }
+    }
+    console.log('F15 archive verification passed: ' + observed.length + ' 2019 original files match immutable hashes; 12 source PDFs match published dist bytes, 3 original ZIP/RAR files withheld from dist and both localized download lists.');
   } else console.log('F15_' + (mode === '--import' ? 'IMPORTED' : 'PROBED') + ':' + JSON.stringify(observed));
 }
 

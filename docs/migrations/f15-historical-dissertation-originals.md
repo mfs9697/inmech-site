@@ -129,3 +129,9 @@ The entire **15-file** source-folder 2019 inventory from the Codex F15 audit (Ap
 - Keep old-host URLs intact; no redirects, deletion or DNS changes.
 
 After 2019 is merged, **22 of the 50** missing F15 originals will be preserved in the source repository, and **28 will remain**. The next smallest simple batches are 2017 (two PDFs) and 2015 (two PDFs); 2018 contains six PDFs; 2016 contains 18 files, including DOC and ZIP.
+
+### Final repository validation (2019 PR)
+
+[GitHub Actions #39769510661](https://github.com/mfs9697/inmech-site/actions/runs/39769510661) **passed** with the committed original files and standard read-only workflow: `npm ci`, `npm run validate`, **440** generated pages, **19,734** checked internal links and **22/22** exact-byte original files (2019: 15; 2020: 2; 2021: 5) verified against pinned SHA-256 and byte size. Ukrainian and English defended-dissertation catalogue counts remain **615/615** unchanged. The production deployment job was intentionally skipped for the draft PR. No production or old-host modifications were performed.
+
+**Remaining release considerations:** manual archive-download/reader review (especially the ZIP `unzip` overlap warning and the RAR 7-Zip 23.01 segmentation faults), inspection of mobile UA/EN archive pages, and post-deploy HTTP/MIME/size checks after approved merge. The `7z` reader failures were independently cross-checked: `libarchive/bsdtar` successfully listed each RAR's members, but full decompression/CRC integrity is not claimed.

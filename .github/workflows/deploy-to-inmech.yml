@@ -50,6 +50,10 @@ jobs:
         if: github.event_name == 'pull_request' && github.head_ref == 'audit/f15-final-verification-2026-10'
         run: python3 scripts/audit_f15_final.py
 
+      - name: Non-extracting diagnostics of six withheld originals (audit only)
+        if: github.event_name == 'pull_request' && github.head_ref == 'audit/f15-final-verification-2026-10'
+        run: python3 scripts/audit_f15_withheld.py
+
       - name: Test live archive deployment from GitHub runner (audit only)
         if: github.event_name == 'pull_request' && github.head_ref == 'audit/f15-final-verification-2026-10'
         continue-on-error: true

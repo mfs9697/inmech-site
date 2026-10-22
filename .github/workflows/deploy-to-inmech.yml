@@ -26,10 +26,15 @@ jobs:
   validate:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+    # TEMPORARY write permission for reviewed, hash-pinned original binary import.
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v5
@@ -40,10 +45,26 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
-      # TEMPORARY read-only full-GET probe for F15 2019. Remove before merge.
-      - name: Probe 2019 historical PDF RAR ZIP originals (temporary F15)
-        if: github.event_name == 'pull_request' && github.head_ref == 'archive/f15-2019-originals'
-        run: node scripts/f15-2019-originals.mjs --probe
+      # TEMPORARY write-enabled importer removed before merge.
+      - name: Import verified 2019 historical PDFs and native archives (temporary F15)
+        if: github.event_name == 'pull_request' && github.head_ref == 'archive/f15-2019-originals' && github.event.pull_request.head.repo.full_name == 'mfs9697/inmech-site' && hashFiles('public/documents/dissertations/archive/2019/22ref.pdf') == ''
+        run: |
+          node scripts/f15-2019-originals.mjs --import
+          node scripts/f15-2019-originals.mjs --verify
+          unzip -t public/documents/dissertations/archive/2019/20dis.zip > /dev/null
+          if command -v 7z >/dev/null 2>&1; then
+            7z t public/documents/dissertations/archive/2019/20ref.rar > /dev/null
+            7z t public/documents/dissertations/archive/2019/19dis.rar > /dev/null
+            echo "RAR structural integrity tested with 7z"
+          else
+            echo "RAR structural extraction integrity not tested: 7z unavailable (magic + pinned SHA-256 verified)"
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- public/documents/dissertations/archive/2019/ docs/migrations/f15-2019-originals-verified.json
+          git diff --cached --check
+          git commit -m "Preserve 15 original 2019 dissertation PDF ZIP RAR files"
+          git push origin "HEAD:refs/heads/${GITHUB_HEAD_REF}"
 
       - name: Validate generated site
         run: |

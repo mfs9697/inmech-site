@@ -28,8 +28,8 @@
     "check:strategy-pages": "node scripts/check-strategy-pages.mjs"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.3",
-    "astro": "^7.0.6"
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.8"
   },
   "devDependencies": {}
 }

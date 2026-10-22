@@ -49,6 +49,11 @@ for (const lang of ['uk', 'en']) {
     lang + ': missing research records on unified archive');
   assert.deepEqual(findIds(allPage, 'source-id').sort(), [...originals.keys()].sort(),
     lang + ': incomplete preserved originals on unified archive');
+  const attributions = [...allPage.matchAll(/data-attribution="(identified|unverified)"/g)].map(m => m[1]);
+  assert.equal(attributions.filter(value => value === 'identified').length, 23,
+    lang + ': wrong count of source-identified dissertation cards');
+  assert.equal(attributions.filter(value => value === 'unverified').length, 3,
+    lang + ': unverified document sets must remain distinct');
   for (const year of years) {
     const html = readPage(lang, year);
     const localCards = cards.filter(x => x.archiveYear === year);
@@ -74,5 +79,12 @@ for (const lang of ['uk', 'en']) {
   const overview = fs.readFileSync(path.join(cwd, 'dist', ...(lang==='en'?['en']:[]), 'dissertations', 'index.html'), 'utf8');
   assert(overview.includes('href="' + (lang==='en'?'/en':'') + '/dissertations/archive/"'),
     lang + ': main dissertation page needs direct card archive link');
+}
+const routes = fs.readFileSync(path.join(cwd, 'src/data/routes.ts'), 'utf8');
+for (const year of years) {
+  assert(routes.includes(`titleUk: 'Картки дисертацій — архівна папка ${year}'`),
+    'Outdated Ukrainian archive route title ' + year);
+  assert(routes.includes(`titleEn: 'Dissertation cards — archive folder ${year}'`),
+    'Outdated English archive route title ' + year);
 }
 console.log('Dissertation source cards passed: 26/26 records, 50/50 preserved originals, 16 bilingual archive pages; 23 research titles from source documents; 3 unreviewed records and six safely withheld binaries. Year counts: ' + JSON.stringify(yearCounts));

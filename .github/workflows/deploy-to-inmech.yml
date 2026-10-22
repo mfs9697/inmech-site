@@ -26,15 +26,10 @@ jobs:
   validate:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
-    # TEMPORARY write permission for reviewed, hash-pinned original binary import.
-    permissions:
-      contents: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v5
@@ -44,41 +39,6 @@ jobs:
 
       - name: Install locked dependencies
         run: npm ci
-
-      # TEMPORARY write-enabled importer removed before merge.
-      - name: Import verified 2019 historical PDFs and native archives (temporary F15)
-        if: github.event_name == 'pull_request' && github.head_ref == 'archive/f15-2019-originals' && github.event.pull_request.head.repo.full_name == 'mfs9697/inmech-site' && hashFiles('public/documents/dissertations/archive/2019/22ref.pdf') == ''
-        run: |
-          node scripts/f15-2019-originals.mjs --import
-          node scripts/f15-2019-originals.mjs --verify
-          # Preserve archival bytes regardless of whether an old tool can
-          # unpack these historic formats; diagnose without hiding errors.
-          if unzip -t public/documents/dissertations/archive/2019/20dis.zip > /tmp/f15-zip-test.log 2>&1; then
-            echo "F15_ZIP_TEST:ok (unzip)"
-          else
-            code=$?
-            echo "F15_ZIP_TEST:failed (unzip exit code $code)"
-            cat /tmp/f15-zip-test.log
-          fi
-          if command -v 7z >/dev/null 2>&1; then
-            for source in public/documents/dissertations/archive/2019/20dis.zip public/documents/dissertations/archive/2019/20ref.rar public/documents/dissertations/archive/2019/19dis.rar; do
-              if 7z t "$source" > /tmp/f15-7z-test.log 2>&1; then
-                echo "F15_7Z_TEST:ok $source"
-              else
-                code=$?
-                echo "F15_7Z_TEST:failed $source (exit code $code)"
-                tail -n 25 /tmp/f15-7z-test.log
-              fi
-            done
-          else
-            echo "F15_7Z_TEST:not available on runner; only magic and pinned SHA-256 verified"
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- public/documents/dissertations/archive/2019/ docs/migrations/f15-2019-originals-verified.json
-          git diff --cached --check
-          git commit -m "Preserve 15 original 2019 dissertation PDF ZIP RAR files"
-          git push origin "HEAD:refs/heads/${GITHUB_HEAD_REF}"
 
       - name: Validate generated site
         run: |

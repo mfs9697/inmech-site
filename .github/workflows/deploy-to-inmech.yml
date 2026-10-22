@@ -40,6 +40,11 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
+      # TEMPORARY read-only F15 source probe — remove from the final PR.
+      - name: Probe 2020 historical originals (temporary F15)
+        if: github.event_name == 'pull_request' && github.head_ref == 'archive/f15-2020-originals'
+        run: node scripts/f15-2020-originals.mjs --probe
+
       - name: Validate generated site
         run: |
           npm run validate

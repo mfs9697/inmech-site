@@ -283,7 +283,7 @@ const featuredDefenses = [
   <section class="section catalog-cta-section">
     <div class="container">
       <div class="catalog-cta-panel">
-        <div>
+        <div class="catalog-cta-copy">
           <p class="eyebrow">Full archive</p>
           <h2>Catalogue of dissertations defended at the Institute of Mechanics</h2>
           <p>
@@ -291,7 +291,7 @@ const featuredDefenses = [
             It contains historical records, an alphabetical catalogue and archive materials from previous years.
           </p>
         </div>
-        <div class="defense-links">
+        <div class="defense-links catalog-cta-actions">
           <a class="button primary" href={withBase('/en/defended-dissertations/')}>Open catalogue</a>
           <a class="button secondary" href={withBase('/en/dissertations/archive/2015/')}>Original 2015 archive files</a>
           <a class="button secondary" href={withBase('/en/dissertations/archive/2016/')}>Original 2016 archive files</a>
@@ -615,12 +615,35 @@ const featuredDefenses = [
 
   .catalog-cta-panel {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 24px;
-    align-items: center;
+    /* Archive actions belong below the copy. An auto-sized action column
+       consumed nearly all the available width once seven archive links were added. */
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+    align-items: start;
     padding: clamp(24px, 4vw, 42px);
     background: linear-gradient(135deg, rgba(184, 135, 47, 0.12), rgba(29, 79, 145, 0.08));
     border-color: rgba(184, 135, 47, 0.35);
+  }
+
+  .catalog-cta-copy {
+    min-width: 0;
+    max-width: 78ch;
+  }
+
+  .catalog-cta-actions {
+    min-width: 0;
+    width: 100%;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .catalog-cta-actions .button {
+    box-sizing: border-box;
+    max-width: 100%;
+    min-height: 44px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-align: center;
   }
 
   .catalog-cta-panel h2 {
@@ -633,6 +656,13 @@ const featuredDefenses = [
   .catalog-cta-panel p:last-child {
     margin-bottom: 0;
     color: var(--muted);
+  }
+
+  @media (max-width: 600px) {
+    .catalog-cta-actions {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 
   @media (max-width: 900px) {

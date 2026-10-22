@@ -57,3 +57,25 @@ A read-only GitHub Actions probe verified all five complete files; a restricted,
 | `24dis.pdf` | 6,351,633 | `a15fc171ac5fb46798d74be0295b50d86c365ba7a839857e63c192808a2c12ce` |
 
 **Total original bytes:** 44,825,419. All five were retrieved with complete GET responses from the old host, identified by PDF/DOCX magic bytes, hashed, committed and verified. The two DOCX files passed `unzip -t` inside GitHub Actions; the PDFs were not rewritten. Source folder year alone does **not** establish the calendar year of the associated defence.
+
+## Second preservation batch — 2020 source-folder PDFs (22 October 2026)
+
+Two further originals in the audit's missing-file inventory were downloaded with **complete HTTPS GET** from their unchanged old-host URLs, checked for the PDF magic signature, byte size and SHA-256, and copied without any format conversion, PDF rewriting or metadata edit.
+
+| Original source file | Bytes | SHA-256 |
+| --- | ---: | --- |
+| `2020/23ref.pdf` | 1,919,545 | `6e887f97a2b22e7ea76c4faa6e9308b8dccd0118a0497a021262deed08639db3` |
+| `2020/23dis.pdf` | 9,843,897 | `4c1e9dd631047e6c833c2d9e11566eab7265a1693d29242b66dfb89883ee1790` |
+
+**Total original bytes this batch:** 11,763,442. Full-download hashes were first recorded by [read-only GitHub Actions source probe #39766469558](https://github.com/mfs9697/inmech-site/actions/runs/39766469558), independently pinned in `src/data/dissertations/archive-2020-pilot.json`, then compared against committed copies using `node scripts/f15-2020-originals.mjs --verify`. Complete originals and source provenance are in `public/documents/dissertations/archive/2020/` and `docs/migrations/f15-2020-originals-verified.json`.
+
+The public Ukrainian/English archive routes are `/dissertations/archive/2020/` and `/en/dissertations/archive/2020/`, linked from each dissertation-defence overview. Filenames such as `23ref.pdf` are archival identifiers, **not independently verified author/title or defence-date identifiers**. The 615-record bibliographic catalogue remains untouched.
+
+- [x] Capture two complete old-host PDF downloads and SHA-256 checks without changing source host.
+- [x] Preserve both unmodified PDFs and lock verification in `npm run check:f15` together with all five 2021 originals.
+- [x] Add bilingual document-list pages with direct original downloads and old-source provenance.
+- [x] Remove temporary GitHub Actions write permissions and import steps; restore baseline deployment workflow.
+- [ ] Confirm final clean CI results on the committed bytes and pages; after merge verify HTTP 200, MIME types and exact public file sizes.
+- [ ] Identify original author/defence relationships from authoritative records before attaching these numeric files to bibliography entries.
+
+**Running archive tally (after this branch is merged):** seven of the fifty F15 files preserved (five from source folder 2021, two from 2020), **43 remain**. Subsequent batches should retain full source formats and verified source ledgers. The source-folder year does not, by itself, prove the actual defence date.

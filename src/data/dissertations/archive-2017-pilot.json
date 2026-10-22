@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "note": "Both original 2017 source-folder PDFs verified by complete GET, file signature, exact bytes and SHA-256 on 22 Oct 2026, GitHub Actions #39780131290; no speculative defence identity.",
+  "pilot": [
+    {
+      "id": "2017-11refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2017/11refer.pdf",
+      "target": "public/documents/dissertations/archive/2017/11refer.pdf",
+      "format": "pdf",
+      "expectedSha256": "6d40251c7d61bc65a9903744a26cd5c617ae7c374620cca5103feb3c2ded4d28",
+      "expectedBytes": 1462130
+    },
+    {
+      "id": "2017-11dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2017/11dis.pdf",
+      "target": "public/documents/dissertations/archive/2017/11dis.pdf",
+      "format": "pdf",
+      "expectedSha256": "566d34043e4ac71ba2f87d8168fc0ccd768bb160e7db08390cec784ec75bbae0",
+      "expectedBytes": 3736259
+    }
+  ]
+}

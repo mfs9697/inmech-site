@@ -173,3 +173,23 @@ All six source-folder 2018 PDFs in Codex F15 Appendix D and `documents-migration
 **Running archival total after an approved merge: 28 of the 50 missing originals preserved in Git (25 publishable PDF/DOCX originals, 3 nonpublic 2019 ZIP/RAR originals); 22 remain** (2017: 2, 2016: 18, 2015: 2). The 2019 compressed originals remain outside `public/` and their extraction-safety review is a separate task.
 
 **Release gates:** full GitHub Actions `npm ci && npm run validate` including the F15 source+dist checks; independent public-server HTTP/MIME/size smoke checks after deployment. No source-year-to-defence-year inference.
+
+## Fifth preservation batch — original files from 2017 source folder (22 October 2026)
+
+The two identified 2017 original PDF files, `11refer.pdf` and `11dis.pdf`, were retrieved through complete HTTPS GET from the legacy site, binary-signature checked, SHA-256 verified, and committed unchanged. The original file size total is **5,198,389 bytes**.
+
+| Original PDF | Bytes | SHA-256 |
+| --- | ---: | --- |
+| `11refer.pdf` | 1,462,130 | `6d40251c7d61bc65a9903744a26cd5c617ae7c374620cca5103feb3c2ded4d28` |
+| `11dis.pdf` | 3,736,259 | `566d34043e4ac71ba2f87d8168fc0ccd768bb160e7db08390cec784ec75bbae0` |
+
+- Source GET/size/hash evidence: [GitHub Actions #39780131290](https://github.com/mfs9697/inmech-site/actions/runs/39780131290).
+- Verifiable local binaries: `public/documents/dissertations/archive/2017/`; pinned manifest: `src/data/dissertations/archive-2017-pilot.json`; independent commit ledger: `docs/migrations/f15-2017-originals-verified.json`.
+- `npm run check:f15` executes `node scripts/f15-2017-originals.mjs --verify` after Astro build. It checks original bytes, SHA-256, generated copies under `dist/` and original PDF links in Ukrainian/English archive pages.
+- The new reciprocal pages are `/dissertations/archive/2017/` and `/en/dissertations/archive/2017/`, both linked from the respective dissertation overview.
+- No PDF editing/OCR, author or actual defence-year attribution, old-host redirects, DNS/hosting changes or bibliography edits.
+- The temporary runner download/import settings were removed; the protected-branch workflow is unchanged.
+
+**Running total after PR approval and merge: 30 of the original 50 missing F15 files preserved in Git; 20 remain (2015: 2 PDF, 2016: 18 PDF/DOC/ZIP)**. The three historical 2019 compressed files remain preserved outside the public site pending independent extraction-safety review. The dissertation catalogue stays **615 entries in each language**, unchanged.
+
+Final gates: full CI, localized-page visual review, and deployment HTTP/MIME/byte count check after owner-approved merge.

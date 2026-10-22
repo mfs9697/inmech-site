@@ -40,6 +40,11 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
+      # TEMPORARY READ-ONLY: complete-GET source audit for F15 2018; remove before merge.
+      - name: Probe six 2018 historical PDF originals (temporary F15)
+        if: github.event_name == 'pull_request' && github.head_ref == 'archive/f15-2018-originals'
+        run: node scripts/f15-2018-originals.mjs --probe
+
       - name: Validate generated site
         run: |
           npm run validate

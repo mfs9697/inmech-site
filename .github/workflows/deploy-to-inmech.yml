@@ -51,13 +51,27 @@ jobs:
         run: |
           node scripts/f15-2019-originals.mjs --import
           node scripts/f15-2019-originals.mjs --verify
-          unzip -t public/documents/dissertations/archive/2019/20dis.zip > /dev/null
-          if command -v 7z >/dev/null 2>&1; then
-            7z t public/documents/dissertations/archive/2019/20ref.rar > /dev/null
-            7z t public/documents/dissertations/archive/2019/19dis.rar > /dev/null
-            echo "RAR structural integrity tested with 7z"
+          # Preserve archival bytes regardless of whether an old tool can
+          # unpack these historic formats; diagnose without hiding errors.
+          if unzip -t public/documents/dissertations/archive/2019/20dis.zip > /tmp/f15-zip-test.log 2>&1; then
+            echo "F15_ZIP_TEST:ok (unzip)"
           else
-            echo "RAR structural extraction integrity not tested: 7z unavailable (magic + pinned SHA-256 verified)"
+            code=$?
+            echo "F15_ZIP_TEST:failed (unzip exit code $code)"
+            cat /tmp/f15-zip-test.log
+          fi
+          if command -v 7z >/dev/null 2>&1; then
+            for source in public/documents/dissertations/archive/2019/20dis.zip public/documents/dissertations/archive/2019/20ref.rar public/documents/dissertations/archive/2019/19dis.rar; do
+              if 7z t "$source" > /tmp/f15-7z-test.log 2>&1; then
+                echo "F15_7Z_TEST:ok $source"
+              else
+                code=$?
+                echo "F15_7Z_TEST:failed $source (exit code $code)"
+                tail -n 25 /tmp/f15-7z-test.log
+              fi
+            done
+          else
+            echo "F15_7Z_TEST:not available on runner; only magic and pinned SHA-256 verified"
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

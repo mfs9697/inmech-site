@@ -73,14 +73,30 @@ if (nav) {
     }
   }
 
+  function updateMobileMenuHeight() {
+    if (desktopMedia.matches || !primaryNav.classList.contains('open')) return;
+
+    // The row is sticky, so its position can change with zoom and scrolling.
+    // Measure the actual visible space below the panel instead of assuming a
+    // fixed header height. visualViewport also accounts for mobile browser UI.
+    const viewport = window.visualViewport;
+    const visibleBottom = viewport ? viewport.offsetTop + viewport.height : window.innerHeight;
+    const availableHeight = Math.max(0, Math.floor(visibleBottom - primaryNav.getBoundingClientRect().top - 12));
+    primaryNav.style.setProperty('--mobile-nav-available-height', `${availableHeight}px`);
+  }
+
   function setMenuState(open: boolean) {
     primaryNav.classList.toggle('open', open);
     menuToggle?.setAttribute('aria-expanded', String(open));
 
-    if (!desktopMedia.matches) {
-      submenuButtons.forEach((button) => setSubmenuState(button, open));
-    } else if (!open) {
-      closeSubmenus();
+    // Starting with every mobile submenu expanded makes the menu prohibitively
+    // long. Open only the section the visitor explicitly chooses.
+    closeSubmenus();
+    if (open && !desktopMedia.matches) {
+      updateMobileMenuHeight();
+      primaryNav.scrollTop = 0;
+    } else {
+      primaryNav.style.removeProperty('--mobile-nav-available-height');
     }
   }
 
@@ -99,8 +115,11 @@ if (nav) {
     });
 
     button.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
+      // Escape from an already-collapsed heading should bubble to the mobile
+      // panel handler, so a second Escape closes the panel itself.
+      if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
         event.preventDefault();
+        event.stopPropagation();
         setSubmenuState(button, false);
         button.focus();
       }
@@ -133,6 +152,18 @@ if (nav) {
     setMenuState(!primaryNav.classList.contains('open'));
   });
 
+  // A same-page anchor may not reload the document; close the overlay when
+  // following any menu link, just as with navigation to a different page.
+  primaryNav.addEventListener('click', (event) => {
+    if (!desktopMedia.matches && event.target instanceof Element && event.target.closest('a')) {
+      setMenuState(false);
+    }
+  });
+
+  window.addEventListener('resize', updateMobileMenuHeight);
+  window.visualViewport?.addEventListener('resize', updateMobileMenuHeight);
+  window.visualViewport?.addEventListener('scroll', updateMobileMenuHeight);
+
   document.addEventListener('click', (event) => {
     const target = event.target;
 
@@ -154,6 +185,15 @@ if (nav) {
       return;
     }
 
+    // Escape from an open mobile panel closes it and returns keyboard focus
+    // to its toggle. Submenu-local Escape handlers stop propagation and only
+    // collapse that submenu, keeping the surrounding mobile menu available.
+    if (!desktopMedia.matches && primaryNav.classList.contains('open')) {
+      setMenuState(false);
+      menuToggle?.focus();
+      return;
+    }
+
     const expandedButton = submenuButtons.find(
       (button) => button.getAttribute('aria-expanded') === 'true'
     );
@@ -161,19 +201,11 @@ if (nav) {
     if (expandedButton) {
       setSubmenuState(expandedButton, false);
       expandedButton.focus();
-      return;
-    }
-
-    if (primaryNav.classList.contains('open')) {
-      setMenuState(false);
-      menuToggle?.focus();
     }
   });
 
   desktopMedia.addEventListener('change', () => {
-    primaryNav.classList.remove('open');
-    menuToggle?.setAttribute('aria-expanded', 'false');
-    closeSubmenus();
+    setMenuState(false);
   });
 }
 

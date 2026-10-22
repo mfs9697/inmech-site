@@ -26,10 +26,15 @@ jobs:
   validate:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+    # TEMPORARY write access strictly for verified original 2017 file import.
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v5
@@ -40,10 +45,18 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
-      # TEMPORARY F15 source-only probe; remove before merge.
-      - name: Verify old-host 2017 originals by complete GET (temporary)
-        if: github.event_name == 'pull_request' && github.head_ref == 'archive/f15-2017-originals'
-        run: node scripts/f15-2017-originals.mjs --probe
+      # TEMPORARY importer; removed before final PR review.
+      - name: Commit byte-verified 2017 originals to PR branch
+        if: github.event_name == 'pull_request' && github.head_ref == 'archive/f15-2017-originals' && github.event.pull_request.head.repo.full_name == 'mfs9697/inmech-site' && hashFiles('public/documents/dissertations/archive/2017/11refer.pdf') == ''
+        run: |
+          node scripts/f15-2017-originals.mjs --import
+          node scripts/f15-2017-originals.mjs --verify
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- public/documents/dissertations/archive/2017/ docs/migrations/f15-2017-originals-verified.json
+          git diff --cached --check
+          git commit -m "Preserve two original 2017 dissertation PDFs byte-for-byte"
+          git push origin "HEAD:refs/heads/${GITHUB_HEAD_REF}"
 
       - name: Validate generated site
         run: |

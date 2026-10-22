@@ -100,25 +100,27 @@ const relatedLinks = [
           </div>
         </div>
 
-        <form class="trust-form" id="trustForm">
+        <div class="trust-form" id="trustComposer" data-email={site.email} data-subject="Скринька довіри">
           <label for="trustMessage">Текст звернення</label>
           <textarea
             id="trustMessage"
-            name="message"
+            aria-describedby="trustComposerNote"
             rows="10"
             placeholder="Введіть текст звернення. Якщо Ви бажаєте отримати відповідь, наприкінці повідомлення зазначте контакт для зв’язку."
           ></textarea>
 
-          <p class="form-note">
-            Ця форма працює на статичному сайті: після натискання кнопки буде відкрито Вашу
-            поштову програму з підготовленим листом на адресу Інституту.
+          <p class="form-note" id="trustComposerNote">
+            Цей сайт не надсилає звернення самостійно. Кнопка «Підготувати лист» відкриває чернетку у Вашій поштовій програмі; для відправлення листа необхідно підтвердити надсилання.
           </p>
 
           <div class="trust-form-actions">
-            <button class="button primary" type="submit">Підготувати лист</button>
-            <a class="button secondary" href={`mailto:${site.email}?subject=Скринька довіри`}>Написати через email</a>
+            <button class="button primary" type="button" id="trustPrepareButton" hidden>Підготувати лист</button>
+            <a class="button secondary" href={`mailto:${site.email}?subject=${encodeURIComponent('Скринька довіри')}`}>Написати через email</a>
           </div>
-        </form>
+          <noscript>
+            <p class="form-note">Якщо JavaScript вимкнено, скопіюйте текст звернення у свою поштову програму та скористайтеся посиланням «Написати через email».</p>
+          </noscript>
+        </div>
       </article>
 
       <aside class="trust-topics-panel">
@@ -166,19 +168,7 @@ const relatedLinks = [
   </section>
 
   <script>
-    const form = document.getElementById('trustForm');
-    const textarea = document.getElementById('trustMessage');
-    const email = "inst_mech@inmech.kyiv.ua";
-
-    if (form && textarea) {
-      form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const message = textarea.value.trim();
-        const subject = encodeURIComponent('Скринька довіри');
-        const body = encodeURIComponent(message || '');
-        window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-      });
-    }
+    import '../scripts/trust-box.ts';
   </script>
 </BaseLayout>
 
@@ -390,6 +380,11 @@ const relatedLinks = [
   .trust-form-actions button {
     cursor: pointer;
     font: inherit;
+  }
+
+  /* Keep the JS-only composer button hidden even when .button sets display. */
+  .trust-form-actions button[hidden] {
+    display: none !important;
   }
 
   .trust-topics-panel ul {

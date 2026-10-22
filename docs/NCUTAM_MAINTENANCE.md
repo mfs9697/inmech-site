@@ -45,6 +45,14 @@ The paired English routes are generated from the same records. Do not create sep
 
 For Windows PowerShell, `npm.cmd` may be used instead of `npm`.
 
+### Portable line endings (Windows / Linux / macOS)
+
+NCUTAM source YAML and Markdown may be checked out as LF or CRLF, depending on Git settings. The semantic and document validators now normalize those line endings **in memory**, without rewriting files, changing institutional records, or relaxing validation requirements. Legacy bare-CR text is also normalized when parsed. JSON records and binary PDFs are unaffected; verified document-byte hashes remain authoritative.
+
+`npm run check:ncutam` begins with `scripts/check-ncutam-line-endings.mjs`, which exercises the real governance records, document manifest, activity galleries and meeting-document references with LF, CRLF and CR variants. The test also checks that absent English responsibilities, alt text and document blocks remain absent rather than being silently accepted. The full `npm run validate` includes this check.
+
+Do not run bulk line-ending conversions against official documents or modify governance records merely to satisfy a parser. Use normal Git/Editor settings for new text changes; the validators should pass on either checkout format. If Windows validation fails, report the failing check and test case rather than disabling the semantic safeguards.
+
 ## News
 
 Create Committee news in:

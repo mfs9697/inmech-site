@@ -75,6 +75,29 @@ for (const page of htmlPaths) {
   assert.deepEqual([...paths].sort(), [...all].sort(), page + ': document parity with source registry failed');
   assert(html.includes('class="table-scroll"'), page + ': horizontally scrollable course table missing');
 }
+// Catch a swapped syllabus/course association even if global URL parity still passes.
+for (const [language, page] of [
+  ['uk', 'dist/postgraduate/program/index.html'],
+  ['en', 'dist/en/postgraduate/program/index.html']
+]) {
+  const html = read(page);
+  const rows = [...html.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/g)].map((m) => m[1]);
+  const syllabusRows = rows.filter((row) => /<td[^>]*>\s*(?:ОК|ВК|OC|EC)\d+\s*<\/td>/u.test(row));
+  assert.equal(syllabusRows.length, 18, language + ': 18 discipline rows expected');
+  for (const [id, documents] of Object.entries(docs.syllabi)) {
+    const code = language === 'uk'
+      ? id.replace(/^OK/, 'ОК').replace(/^VK/, 'ВК')
+      : id.replace(/^OK/, 'OC').replace(/^VK/, 'EC');
+    const row = syllabusRows.find((part) =>
+      new RegExp('<td[^>]*>\\s*' + code + '\\s*</td>', 'u').test(part));
+    assert(row, language + ': course not found: ' + code);
+    const links = [...row.matchAll(/href="([^"]+\.pdf)"/g)]
+      .map((match) => new URL(match[1], 'https://inmech.kyiv.ua').pathname).sort();
+    assert.deepEqual(links, documents.map((d) => d.href).sort(),
+      language + ': incorrect syllabi attached to course ' + code);
+  }
+}
+
 const english = read('dist/en/postgraduate/program/index.html');
 assert(english.includes('Syllabus (original in Ukrainian)'), 'Explicit syllabus language cue missing');
 assert(english.includes('Original documents in Ukrainian'), 'Stakeholder review language cue missing');

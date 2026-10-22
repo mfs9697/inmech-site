@@ -31,5 +31,7 @@
     "@astrojs/sitemap": "^3.7.4",
     "astro": "^7.3.8"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
 }

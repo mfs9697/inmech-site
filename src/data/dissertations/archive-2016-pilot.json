@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "note": "Final 18 audited source-folder-2016 originals. PDF may publish after byte validation. Legacy DOC and ZIP are preserved outside Astro public until format safety review. Exact source bytes and hashes pending complete GET. Do not infer authors or defence dates.",
+  "pilot": [
+    {
+      "id": "2016-10refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/10refer.pdf",
+      "target": "public/documents/dissertations/archive/2016/10refer.pdf",
+      "format": "pdf",
+      "publicationStatus": "public",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2016-10dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/10dis.pdf",
+      "target": "public/documents/dissertations/archive/2016/10dis.pdf",
+      "format": "pdf",
+      "publicationStatus": "public",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2016-09refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/09refer.pdf",
+      "target": "public/documents/dissertations/archive/2016/09refer.pdf",
+      "format": "pdf",
+      "publicationStatus": "public",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2016-09dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/09dis.pdf",
+      "target": "public/documents/dissertations/archive/2016/09dis.pdf",
+      "format": "pdf",
+      "publicationStatus": "public",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2016-08refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/08refer.pdf",
+      "target": "public/documents/dissertations/archive/2016/08refer.pdf",
+      "format": "pdf",
+      "publicationStatus": "public",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2016-08dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/08dis.zip",
+      "target": "preserved/dissertations/2016/08dis.zip",
+      "format": "zip",
+      "publicationStatus": "withheld-security-review",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2016-07refer1",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/07refer1.pdf",
+      "target": "public/documents/dissertations/archive/2016/07refer1.pdf",
+      "format": "pdf",
+      "publicationStatus": "public",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2016-07dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/07dis.pdf",
+      "target": "public/documents/dissertations/archive/2016/07dis.pdf",
+      "format": "pdf",
+      "publicationStatus": "public",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2016-06refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/06refer.pdf",
+      "target": "public/documents/dissertations/archive/2016/06refer.pdf",
+      "format": "pdf",
+      "publicationStatus": "public",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2016-06dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/06dis.pdf",
+      "target": "public/documents/dissertations/archive/2016/06dis.pdf",
+      "format": "pdf",
+      "publicationStatus": "public",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2016-05refer1",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/05refer1.pdf",
+      "target": "public/documents/dissertations/archive/2016/05refer1.pdf",
+      "format": "pdf",
+      "publicationStatus": "public",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2016-05dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/05dis.pdf",
+      "target": "public/documents/dissertations/archive/2016/05dis.pdf",
+      "format": "pdf",
+      "publicationStatus": "public",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2016-04refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/04refer.pdf",
+      "target": "public/documents/dissertations/archive/2016/04refer.pdf",
+      "format": "pdf",
+      "publicationStatus": "public",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2016-04dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/04dis.pdf",
+      "target": "public/documents/dissertations/archive/2016/04dis.pdf",
+      "format": "pdf",
+      "publicationStatus": "public",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2016-03refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/03refer.doc",
+      "target": "preserved/dissertations/2016/03refer.doc",
+      "format": "doc",
+      "publicationStatus": "withheld-security-review",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2016-03dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/03dis.doc",
+      "target": "preserved/dissertations/2016/03dis.doc",
+      "format": "doc",
+      "publicationStatus": "withheld-security-review",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2016-02refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/02refer.pdf",
+      "target": "public/documents/dissertations/archive/2016/02refer.pdf",
+      "format": "pdf",
+      "publicationStatus": "public",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2016-02dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/02dis.pdf",
+      "target": "public/documents/dissertations/archive/2016/02dis.pdf",
+      "format": "pdf",
+      "publicationStatus": "public",
+      "expectedSha256": null,
+      "expectedBytes": null
+    }
+  ]
+}

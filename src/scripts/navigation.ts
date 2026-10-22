@@ -115,7 +115,9 @@ if (nav) {
     });
 
     button.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
+      // Escape from an already-collapsed heading should bubble to the mobile
+      // panel handler, so a second Escape closes the panel itself.
+      if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
         event.preventDefault();
         event.stopPropagation();
         setSubmenuState(button, false);

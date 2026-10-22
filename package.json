@@ -28,7 +28,7 @@
     "check:strategy-pages": "node scripts/check-strategy-pages.mjs",
     "check:mobile-navigation": "node scripts/check-mobile-navigation.mjs",
     "check:trust-box": "node scripts/check-trust-box.mjs",
-    "check:f15": "node scripts/f15-2021-originals.mjs --verify && node scripts/f15-2020-originals.mjs --verify && node scripts/f15-2019-originals.mjs --verify && node scripts/f15-2018-originals.mjs --verify && node scripts/f15-2017-originals.mjs --verify"
+    "check:f15": "node scripts/f15-2021-originals.mjs --verify && node scripts/f15-2020-originals.mjs --verify && node scripts/f15-2019-originals.mjs --verify && node scripts/f15-2018-originals.mjs --verify && node scripts/f15-2017-originals.mjs --verify && node scripts/f15-2015-originals.mjs --self-test"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

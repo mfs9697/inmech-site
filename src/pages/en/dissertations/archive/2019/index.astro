@@ -7,7 +7,7 @@ const withBase = (value: string) => `${base}/${value.replace(/^\/+/, '')}`;
 const documents = archive.pilot.map((entry) => ({
   ...entry,
   filename: entry.target.split('/').at(-1) ?? entry.id,
-  publicPath: entry.target.replace(/^public/, ''),
+  publicPath: entry.publicationStatus === 'public' ? entry.target.replace(/^public/, '') : null,
   megabytes: (entry.expectedBytes / 1_000_000).toFixed(2)
 }));
 ---
@@ -46,13 +46,19 @@ const documents = archive.pilot.map((entry) => ({
             <p>Archive file index: <code>{entry.id}</code></p>
             {(entry.format === 'zip' || entry.format === 'rar') && (
               <p class="archive-warning" role="note">
-                Original compressed archive. Internal structure validation is not yet complete;
-                use caution when opening or extracting this file.
+                The unchanged compressed original is preserved in the repository, but downloads
+                from this website are withheld pending further archive safety review.
               </p>
             )}
             <div class="document-links">
-              <a class="button primary" href={withBase(entry.publicPath)}>Download original</a>
-              <a href={entry.sourceUrl} target="_blank" rel="noopener noreferrer">Original source ↗</a>
+              {entry.publicPath ? (
+                <>
+                  <a class="button primary" href={withBase(entry.publicPath)}>Download original</a>
+                  <a href={entry.sourceUrl} target="_blank" rel="noopener noreferrer">Original source ↗</a>
+                </>
+              ) : (
+                <span class="archive-pending">Download withheld pending archive safety review</span>
+              )}
             </div>
           </li>
         ))}
@@ -80,5 +86,6 @@ const documents = archive.pilot.map((entry) => ({
   .document-links { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
   .archive-source-note { margin-top: 22px; color: var(--muted); }
   .archive-warning { padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-soft); }
+  .archive-pending { color: var(--muted); font-weight: 700; }
   @media (max-width: 680px) { .historical-document-grid { grid-template-columns: 1fr; } }
 </style>

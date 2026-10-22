@@ -15,7 +15,8 @@
         "2015-01refer",
         "2015-01dis"
       ],
-      "notes": []
+      "notes": [],
+      "notesEn": []
     },
     {
       "id": "2016-10",
@@ -31,6 +32,9 @@
       ],
       "notes": [
         "Титульна сторінка автореферату не має текстового шару; його відповідність дисертації потребує візуальної звірки."
+      ],
+      "notesEn": [
+        "The abstract has no extractable text layer. Its match to the dissertation requires a visual title-page check."
       ]
     },
     {
@@ -47,6 +51,9 @@
       ],
       "notes": [
         "Повний текст дисертації — російською; назва і автор наведені за українським авторефератом."
+      ],
+      "notesEn": [
+        "The dissertation text is in Russian; the author and title are taken from the Ukrainian abstract."
       ]
     },
     {
@@ -63,6 +70,9 @@
       ],
       "notes": [
         "Повний текст дисертації збережений у ZIP; завантаження відкладено до перевірки архіву."
+      ],
+      "notesEn": [
+        "The dissertation is preserved as a ZIP original; downloading it is withheld pending archive review."
       ]
     },
     {
@@ -79,6 +89,9 @@
       ],
       "notes": [
         "Повний текст дисертації — російською; назва наведена за українським авторефератом."
+      ],
+      "notesEn": [
+        "The dissertation text is in Russian; the author and title are taken from the Ukrainian abstract."
       ]
     },
     {
@@ -93,7 +106,8 @@
         "2016-06refer",
         "2016-06dis"
       ],
-      "notes": []
+      "notes": [],
+      "notesEn": []
     },
     {
       "id": "2016-05",
@@ -107,7 +121,8 @@
         "2016-05refer1",
         "2016-05dis"
       ],
-      "notes": []
+      "notes": [],
+      "notesEn": []
     },
     {
       "id": "2016-04",
@@ -121,7 +136,8 @@
         "2016-04refer",
         "2016-04dis"
       ],
-      "notes": []
+      "notes": [],
+      "notesEn": []
     },
     {
       "id": "2016-03",
@@ -137,6 +153,9 @@
       ],
       "notes": [
         "Два оригінали у форматі DOC збережені, але не опубліковані; авторство, тема та ступінь не встановлювалися без безпечного аналізу вмісту."
+      ],
+      "notesEn": [
+        "Two DOC originals are preserved but withheld. Their author, title and degree have not been established without a safe content review."
       ]
     },
     {
@@ -153,6 +172,9 @@
       ],
       "notes": [
         "Автореферат датовано 2015 роком, дисертацію — 2016 роком; рік у картці позначає папку архіву."
+      ],
+      "notesEn": [
+        "The abstract title page is dated 2015; the dissertation title page says 2016. Archive-folder year is not the confirmed defence year."
       ]
     },
     {
@@ -167,7 +189,8 @@
         "2017-11refer",
         "2017-11dis"
       ],
-      "notes": []
+      "notes": [],
+      "notesEn": []
     },
     {
       "id": "2018-14",
@@ -181,7 +204,8 @@
         "2018-14refer",
         "2018-14dis"
       ],
-      "notes": []
+      "notes": [],
+      "notesEn": []
     },
     {
       "id": "2018-13",
@@ -195,7 +219,8 @@
         "2018-13refer",
         "2018-13dis"
       ],
-      "notes": []
+      "notes": [],
+      "notesEn": []
     },
     {
       "id": "2018-12",
@@ -211,6 +236,9 @@
       ],
       "notes": [
         "На титульних аркушах документів зазначено 2017 рік, хоча документи містяться в архівній папці 2018 року."
+      ],
+      "notesEn": [
+        "Both document title pages indicate 2017, although the files are in the 2018 archive folder."
       ]
     },
     {
@@ -225,7 +253,8 @@
         "2019-22ref",
         "2019-22dis"
       ],
-      "notes": []
+      "notes": [],
+      "notesEn": []
     },
     {
       "id": "2019-21",
@@ -241,6 +270,9 @@
       ],
       "notes": [
         "У файлі дисертації ім’я подано у відмінюваній формі; назву й ПІБ відтворено за авторефератом."
+      ],
+      "notesEn": [
+        "The dissertation file gives the name in an inflected grammatical form. The full name and title here follow the abstract."
       ]
     },
     {
@@ -257,6 +289,9 @@
       ],
       "notes": [
         "Оригінали RAR/ZIP не оприлюднено; метадані не встановлено з неперевірених архівів."
+      ],
+      "notesEn": [
+        "RAR and ZIP originals remain unpublished. Their academic metadata has not been determined from unreviewed archives."
       ]
     },
     {
@@ -272,6 +307,9 @@
       ],
       "notes": [
         "Оригінал RAR не оприлюднено; метадані не встановлено з неперевіреного архіву."
+      ],
+      "notesEn": [
+        "The RAR original remains unpublished. Its academic metadata has not been determined from the unreviewed archive."
       ]
     },
     {
@@ -286,7 +324,8 @@
         "2019-18refer",
         "2019-18dis"
       ],
-      "notes": []
+      "notes": [],
+      "notesEn": []
     },
     {
       "id": "2019-17",
@@ -302,6 +341,9 @@
       ],
       "notes": [
         "Титульна сторінка доступного автореферату відсутня в текстовому витягу; тему й автора встановлено за дисертацією, потребує звірки титулу автореферату."
+      ],
+      "notesEn": [
+        "The available abstract text begins after its title page. Author and title are based on the dissertation; the abstract's title page still needs visual review."
       ]
     },
     {
@@ -318,6 +360,9 @@
       ],
       "notes": [
         "Файл 16dis.pdf містить позначку «Додатки»; не слід ототожнювати його з повним текстом основної дисертації."
+      ],
+      "notesEn": [
+        "The file 16dis.pdf is explicitly marked as appendices; it is not presented as the main dissertation text."
       ]
     },
     {
@@ -334,6 +379,9 @@
       ],
       "notes": [
         "Титульні аркуші датовані 2018 роком, а вихідні файли належать архівній папці 2019 року."
+      ],
+      "notesEn": [
+        "Both title pages are dated 2018, while the originals are stored in the 2019 archive folder."
       ]
     },
     {
@@ -350,6 +398,9 @@
       ],
       "notes": [
         "Однойменний текст автора також міститься в архівній папці 2021 року з іншим зазначеним ступенем. Версії наведено окремо без припущення щодо дат захисту."
+      ],
+      "notesEn": [
+        "A work of the same title by this author appears in the 2021 archive folder with a different stated degree. These versions are listed separately; defence dates are not inferred."
       ]
     },
     {
@@ -364,7 +415,8 @@
         "2021-26ref",
         "2021-26dis"
       ],
-      "notes": []
+      "notes": [],
+      "notesEn": []
     },
     {
       "id": "2021-25",
@@ -380,6 +432,9 @@
       ],
       "notes": [
         "У заголовку DOCX-дисертації є редакційна розбіжність; назву картки взято з автореферату та анотації самої дисертації."
+      ],
+      "notesEn": [
+        "The DOCX dissertation title page contains a textual inconsistency. The card title follows the abstract and the dissertation's own summary."
       ]
     },
     {
@@ -395,6 +450,9 @@
       ],
       "notes": [
         "Однойменна робота автора є також у папці 2020 року, але титульні аркуші вказують різні ступені. Це різні архівні версії; дата захисту тут не встановлена."
+      ],
+      "notesEn": [
+        "A work of the same title by this author appears in the 2020 folder, but the title pages state different degrees. These are listed as separate archival versions; no defence date is inferred."
       ]
     }
   ]

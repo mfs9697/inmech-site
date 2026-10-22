@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "note": "Two historical source-folder 2015 PDF originals documented in Codex F15 and documents-migration.csv. Do not infer author, dissertation title, actual defence date or catalogue link from numeric filenames. Full GET and SHA-256 required.",
+  "note": "Original 2015 PDFs verified by complete GET in GitHub Actions #39782944312 on 22 Oct 2026; byte counts and SHA-256 pinned. No speculative author, title, or defence dates.",
   "pilot": [
     {
       "id": "2015-01refer",
       "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2015/01refer.pdf",
       "target": "public/documents/dissertations/archive/2015/01refer.pdf",
       "format": "pdf",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "7678f00d68f52dc718a66549dc7bbfb5938107830d15830e76f95da9b057f78d",
+      "expectedBytes": 734761
     },
     {
       "id": "2015-01dis",
       "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2015/01dis.pdf",
       "target": "public/documents/dissertations/archive/2015/01dis.pdf",
       "format": "pdf",
-      "expectedSha256": null,
-      "expectedBytes": null
+      "expectedSha256": "7a1482d59d55b34ab266a326be4996d040b2fa6bf083a19a8581904d7f1db181",
+      "expectedBytes": 2116936
     }
   ]
 }

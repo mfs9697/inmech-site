@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-22T10:55:31.213Z",
+  "source": "old.inmech.kyiv.ua (complete binary GET)",
+  "entries": [
+    {
+      "id": "2020-23ref",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2020/23ref.pdf",
+      "target": "public/documents/dissertations/archive/2020/23ref.pdf",
+      "format": "pdf",
+      "bytes": 1919545,
+      "sha256": "6e887f97a2b22e7ea76c4faa6e9308b8dccd0118a0497a021262deed08639db3"
+    },
+    {
+      "id": "2020-23dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2020/23dis.pdf",
+      "target": "public/documents/dissertations/archive/2020/23dis.pdf",
+      "format": "pdf",
+      "bytes": 9843897,
+      "sha256": "4c1e9dd631047e6c833c2d9e11566eab7265a1693d29242b66dfb89883ee1790"
+    }
+  ]
+}

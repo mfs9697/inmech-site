@@ -6,3 +6,4 @@ public/documents/institute/strategy/development-strategy-2026-2030.pdf -text
 
 # Preserve historical dissertation originals byte-for-byte (never newline-convert).
 public/documents/dissertations/archive/2021/* -text -diff
+public/documents/dissertations/archive/2020/* -text -diff

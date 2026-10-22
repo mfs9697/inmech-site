@@ -146,6 +146,8 @@ const fileCount = documents.filter((item) => item.sourceStatus === 'preserved').
             <nav class="election-quicklinks" aria-label={en ? 'On this page' : 'На цій сторінці'}>
               <a href="#election-timeline">{label.timeline}</a>
               <a href="#election-results">{label.results}</a>
+              <a href={yearHref + 'regulations/'}>{en ? 'Regulations and announcements' : 'Нормативна база й оголошення'}</a>
+              <a href={yearHref + 'documents/'}>{en ? 'Institute election documents' : 'Документи Інституту'}</a>
               <a href="#election-documents">{label.records}</a>
             </nav>
           </>

@@ -124,7 +124,19 @@ async function main() {
     const ledger = path.join(root, 'docs/migrations/f15-2018-originals-verified.json');
     const saved = JSON.parse(fs.readFileSync(ledger, 'utf8'));
     assert.deepEqual(saved.entries, observed, 'Committed originals differ from SHA-256 ledger');
-    console.log('F15 archive verification passed: ' + observed.length + ' 2018 original files match immutable hashes.');
+    for (const entry of pilot) {
+      const shippedFile = path.join(root, entry.target.replace(/^public\//, 'dist/'));
+      assert(fs.existsSync(shippedFile), entry.id + ': archive original missing from built site');
+      checkBytes(entry, fs.readFileSync(shippedFile));
+    }
+    for (const page of ['dist/dissertations/archive/2018/index.html', 'dist/en/dissertations/archive/2018/index.html']) {
+      const html = fs.readFileSync(path.join(root, page), 'utf8');
+      for (const entry of pilot) {
+        assert(html.includes('/documents/dissertations/archive/2018/' + path.basename(entry.target)),
+          page + ': missing original download link: ' + entry.id);
+      }
+    }
+    console.log('F15 archive verification passed: ' + observed.length + ' 2018 original files match immutable hashes, built PDF bytes and both language download links.');
   } else console.log('F15_' + (mode === '--import' ? 'IMPORTED' : 'PROBED') + ':' + JSON.stringify(observed));
 }
 

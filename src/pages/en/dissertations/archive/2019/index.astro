@@ -1,0 +1,91 @@
+---
+import BaseLayoutEn from '../../../../../layouts/BaseLayoutEn.astro';
+import archive from '../../../../../data/dissertations/archive-2019-pilot.json';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (value: string) => `${base}/${value.replace(/^\/+/, '')}`;
+const documents = archive.pilot.map((entry) => ({
+  ...entry,
+  filename: entry.target.split('/').at(-1) ?? entry.id,
+  publicPath: entry.publicationStatus === 'public' ? entry.target.replace(/^public/, '') : null,
+  megabytes: (entry.expectedBytes / 1_000_000).toFixed(2)
+}));
+---
+
+<BaseLayoutEn
+  title="Historical dissertation defence materials — 2019 originals"
+  description="Verified unchanged originals from the Institute's historical 2019 dissertation defence files."
+  activePage="education"
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">Dissertation defence materials · historical archive</p>
+        <h1>Original files from the 2019 archive folder</h1>
+        <p class="lead">
+          The fifteen files below were copied unchanged from the Institute’s previous website.
+          Complete binary copies were verified by byte size and SHA-256.
+          Neither their contents, formatting nor original document metadata were modified.
+        </p>
+        <p>
+          <strong>Important:</strong> numerical filenames have been preserved as in the original source.
+          They do not independently establish authorship, a defence date or a match to an entry in the
+          bibliographic catalogue. Those associations require separate source review.
+        </p>
+        <p><a href={withBase('/en/dissertations/')}>← Back to dissertation defences</a></p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <ul class="historical-document-grid" aria-label="Original 2019 files">
+        {documents.map((entry) => (
+          <li class="panel historical-document">
+            <h2>{entry.filename}</h2>
+            <p>Original format: <strong>{entry.format.toUpperCase()}</strong> · {entry.megabytes} MB</p>
+            <p>Archive file index: <code>{entry.id}</code></p>
+            {(entry.format === 'zip' || entry.format === 'rar') && (
+              <p class="archive-warning" role="note">
+                The unchanged compressed original is preserved in the repository, but downloads
+                from this website are withheld pending further archive safety review.
+              </p>
+            )}
+            <div class="document-links">
+              {entry.publicPath ? (
+                <>
+                  <a class="button primary" href={withBase(entry.publicPath)}>Download original</a>
+                  <a href={entry.sourceUrl} target="_blank" rel="noopener noreferrer">Original source ↗</a>
+                </>
+              ) : (
+                <span class="archive-pending">Download withheld pending archive safety review</span>
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
+      <p class="archive-source-note">
+        Each file was preserved after a verified full download, not merely a HEAD response.
+        The old source website remains intact and accessible under its existing addresses.
+      </p>
+    </div>
+  </section>
+</BaseLayoutEn>
+
+<style>
+  .historical-document-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .historical-document { padding: clamp(20px, 3vw, 30px); min-width: 0; }
+  .historical-document h2 { font-size: 1.2rem; margin-top: 0; overflow-wrap: anywhere; }
+  .historical-document p { color: var(--muted); }
+  .document-links { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .archive-source-note { margin-top: 22px; color: var(--muted); }
+  .archive-warning { padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-soft); }
+  .archive-pending { color: var(--muted); font-weight: 700; }
+  @media (max-width: 680px) { .historical-document-grid { grid-template-columns: 1fr; } }
+</style>

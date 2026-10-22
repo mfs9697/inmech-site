@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import archive from '../../../../data/dissertations/archive-2019-pilot.json';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (value: string) => `${base}/${value.replace(/^\/+/, '')}`;
+const documents = archive.pilot.map((entry) => ({
+  ...entry,
+  filename: entry.target.split('/').at(-1) ?? entry.id,
+  publicPath: entry.publicationStatus === 'public' ? entry.target.replace(/^public/, '') : null,
+  megabytes: (entry.expectedBytes / 1_000_000).toFixed(2)
+}));
+---
+
+<BaseLayout
+  title="Архівні матеріали захистів — файли 2019 року"
+  description="Перевірені оригінальні файли з історичного каталогу матеріалів захистів 2019 року Інституту механіки."
+  activePage="education"
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">Матеріали захистів · історичний архів</p>
+        <h1>Оригінальні файли архівної папки 2019 року</h1>
+        <p class="lead">
+          Нижче наведено п’ятнадцять файлів, перенесених без змін із попереднього сайту Інституту.
+          Повні копії звірено за розміром та SHA-256. Під час перенесення
+          не змінено текст, структуру, оформлення чи метадані документів.
+        </p>
+        <p>
+          <strong>Примітка:</strong> числові назви файлів збережено відповідно до оригіналів.
+          Вони самі по собі не встановлюють прізвища автора, дату захисту чи відповідність
+          певному запису бібліографічного каталогу. Ці зв’язки потребують окремої перевірки.
+        </p>
+        <p><a href={withBase('/dissertations/')}>← Повернутися до захистів дисертацій</a></p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <ul class="historical-document-grid" aria-label="Оригінали файлів 2019 року">
+        {documents.map((entry) => (
+          <li class="panel historical-document">
+            <h2>{entry.filename}</h2>
+            <p>Оригінальний формат: <strong>{entry.format.toUpperCase()}</strong> · {entry.megabytes} МБ</p>
+            <p>Індекс архівного файла: <code>{entry.id}</code></p>
+            {(entry.format === 'zip' || entry.format === 'rar') && (
+              <p class="archive-warning" role="note">
+                Оригінал стисненого архіву збережено без змін у репозиторії, проте його
+                завантаження з сайту тимчасово недоступне до завершення перевірки безпеки.
+              </p>
+            )}
+            <div class="document-links">
+              {entry.publicPath ? (
+                <>
+                  <a class="button primary" href={withBase(entry.publicPath)}>Завантажити оригінал</a>
+                  <a href={entry.sourceUrl} target="_blank" rel="noopener noreferrer">Початкове джерело ↗</a>
+                </>
+              ) : (
+                <span class="archive-pending">Завантаження відкладено до перевірки архіву</span>
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
+      <p class="archive-source-note">
+        Перенесення здійснено з перевіркою повного вмісту, а не лише відповіді сервера на HEAD-запит.
+        Обидва варіанти адрес зберігаються; попередній сайт не змінено.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .historical-document-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .historical-document { padding: clamp(20px, 3vw, 30px); min-width: 0; }
+  .historical-document h2 { font-size: 1.2rem; margin-top: 0; overflow-wrap: anywhere; }
+  .historical-document p { color: var(--muted); }
+  .document-links { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .archive-source-note { margin-top: 22px; color: var(--muted); }
+  .archive-warning { padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-soft); }
+  .archive-pending { color: var(--muted); font-weight: 700; }
+  @media (max-width: 680px) { .historical-document-grid { grid-template-columns: 1fr; } }
+</style>

@@ -79,3 +79,72 @@ The public Ukrainian/English archive routes are `/dissertations/archive/2020/` a
 - [ ] Identify original author/defence relationships from authoritative records before attaching these numeric files to bibliography entries.
 
 **Running archive tally (after this branch is merged):** seven of the fifty F15 files preserved (five from source folder 2021, two from 2020), **43 remain**. Subsequent batches should retain full source formats and verified source ledgers. The source-folder year does not, by itself, prove the actual defence date.
+
+## Third preservation batch — original files from 2019 source folder (22 October 2026)
+
+The entire **15-file** source-folder 2019 inventory from the Codex F15 audit (Appendix D) has now been retrieved by complete GET from `old.inmech.kyiv.ua` and committed in Git, without changing any original bytes or extracting/repacking compressed archives.
+
+- Formats: 12 original PDFs, two RAR v4 archives and one ZIP.
+- Size: **71,137,292 bytes** (71.14 MB).
+- Immutable ledger: `docs/migrations/f15-2019-originals-verified.json`; expected original source URLs, target paths and SHA-256 hashes: `src/data/dissertations/archive-2019-pilot.json`.
+- Original 2019 source document `21dis_last.pdf` retains its exact source URL while the planned on-site repository filename is `21dis-last.pdf`; no modification of bytes.
+- Full-download source proof: [GitHub Actions #39767873100](https://github.com/mfs9697/inmech-site/actions/runs/39767873100). Original binary import commit: `5e33f507c259377d34f6cd798067882b86229d60`.
+- Normal validation must execute `node scripts/f15-2019-originals.mjs --verify` alongside 2020 and 2021 verified originals (all **22** files).
+
+### Verified inventory
+
+| Legacy filename | Repository filename | Format | Bytes | SHA-256 |
+| --- | --- | --- | ---: | --- |
+| `22ref.pdf` | `22ref.pdf` | PDF | 1,433,520 | `5c07cc875514258d66a6bb8f250b494360e10b94cdf0dbf39a05b5a9f8b1412a` |
+| `22dis.pdf` | `22dis.pdf` | PDF | 2,776,016 | `e3ff75683582ec21a3ef6ae4d275f1217d6c81cf3b0645da1edcbd037e0b2481` |
+| `21ref.pdf` | `21ref.pdf` | PDF | 1,307,255 | `3296c79c905a9544416eafcf3850e1f61a47196c501b031d9e7f986779c73ce2` |
+| `21dis_last.pdf` | `21dis-last.pdf` | PDF | 4,494,736 | `e0bb156c55ea69fbad94a3ec96ca1e8dc58e8f49614c7ce87bcdcde152dbe949` |
+| `20ref.rar` | `20ref.rar` | RAR | 458,123 | `30965595efea67eb9a3e75635ec8abf8d145628b9a2e100b2241367b9ae73aa3` |
+| `20dis.zip` | `20dis.zip` | ZIP | 2,211,076 | `ffa66f63435bcbca33bcaf089b318a0f87ee578b777e1efbd02e6cac772f6160` |
+| `19dis.rar` | `19dis.rar` | RAR | 33,257,015 | `3de65b902331e7f5f3921f4667d0848e055021c162849f1d7abf757c0233dba0` |
+| `18refer.pdf` | `18refer.pdf` | PDF | 911,638 | `92be722f9e4a67adafdd3927b6704149a03a3d47f8de89dc9425c33c9888f3e7` |
+| `18dis.pdf` | `18dis.pdf` | PDF | 5,993,589 | `0beb06b002122eee1b701d5b507d5105c4d56de377d389e720debc6ee53f0fc3` |
+| `17refer.pdf` | `17refer.pdf` | PDF | 2,451,995 | `e587ddd4c2408bcfa2801aa77acecd7e540fc9d66bcbc46ba3abeff9a1c4d3d3` |
+| `17dis.pdf` | `17dis.pdf` | PDF | 6,768,522 | `122a816eff3ef3cd015ab975619c538e97aaa5924b90df6ce87fc45a5663505a` |
+| `16refer.pdf` | `16refer.pdf` | PDF | 793,731 | `b51e9f7edaaa50a7e6508d451aa1fbe90fc63cfa71b6431c752dd48b73c650e2` |
+| `16dis.pdf` | `16dis.pdf` | PDF | 5,740,480 | `45a8b98a15976b62809527b239b3de6c63c83479e852bfe12aa6de143bca81b6` |
+| `15refer.pdf` | `15refer.pdf` | PDF | 638,574 | `7d0e66104df25610de16522aa1f31e0bb90e5fa6a4e119bcb406844b070898f0` |
+| `15dis.pdf` | `15dis.pdf` | PDF | 1,901,022 | `8ae5d54252bf48ce62accc9db26a80aec613a3dcbddee07c6e2470d535388c9b` |
+
+### Compressed-archive format compatibility and caution
+
+**Complete-byte integrity is not the same as archive extraction safety.** The original files have verified source signatures and pinned byte-for-byte hashes. The archive readers disagreed on the ZIP and the RAR files, so full archive extraction safety remains distinct from verified original bytes:
+
+- `20dis.zip`: 7-Zip 23.01 and Python's `zipfile.testzip()` validated its **ten PDF members**, but `unzip -t` reported an *overlapped components (possible zip bomb)* warning and returned status 12. This is an unresolved cross-reader compatibility/security warning, not proof of malicious intent.
+- `20ref.rar` and `19dis.rar`: `file` identifies **RAR v4** originals; 7-Zip 23.01 exited with a segmentation fault (139) for each. **An independent libarchive/bsdtar reader successfully listed the contents of both archives** in [read-only CI #39769093394](https://github.com/mfs9697/inmech-site/actions/runs/39769093394), but full decompression/CRC testing was not performed. The 7-Zip crashes are a reader compatibility failure; they do not establish that the files are malicious, corrupt, or completely safe.
+- The official source files must not be rewritten, "repaired", OCR'd or auto-extracted to make any tool pass. Any preview or extraction should be a separately verified derivative, never a replacement for the historical original.
+- Visitors on the new UA/EN archive page receive a warning for original compressed files. **Publication of the 2019 archive should receive explicit review of these reader disagreements**, not only a green hash/build CI result.
+
+### Bilingual publication plan
+
+- Ukrainian: `/dissertations/archive/2019/`.
+- English: `/en/dissertations/archive/2019/`.
+- Link both from existing dissertation-defence overviews and register localized route pairs.
+- List numeric filenames without guessing a defender, dissertation title or actual year of defence.
+- Keep old-host URLs intact; no redirects, deletion or DNS changes.
+
+After 2019 is merged, **22 of the 50** missing F15 originals will be preserved in the source repository, and **28 will remain**. The next smallest simple batches are 2017 (two PDFs) and 2015 (two PDFs); 2018 contains six PDFs; 2016 contains 18 files, including DOC and ZIP.
+
+### Final repository validation (2019 PR)
+
+[GitHub Actions #39769510661](https://github.com/mfs9697/inmech-site/actions/runs/39769510661) **passed** with the committed original files and standard read-only workflow: `npm ci`, `npm run validate`, **440** generated pages, **19,734** checked internal links and **22/22** exact-byte original files (2019: 15; 2020: 2; 2021: 5) verified against pinned SHA-256 and byte size. Ukrainian and English defended-dissertation catalogue counts remain **615/615** unchanged. The production deployment job was intentionally skipped for the draft PR. No production or old-host modifications were performed.
+
+**Remaining release considerations:** manual archive-download/reader review (especially the ZIP `unzip` overlap warning and the RAR 7-Zip 23.01 segmentation faults), inspection of mobile UA/EN archive pages, and post-deploy HTTP/MIME/size checks after approved merge. The `7z` reader failures were independently cross-checked: `libarchive/bsdtar` successfully listed each RAR's members, but full decompression/CRC integrity is not claimed.
+
+### Publication-safe handling of compressed originals
+
+Because `unzip` and 7-Zip disagreed on historic archive handling, the **three native compressed archives have been retained in Git under `preserved/dissertations/2019/`**, *outside Astro's `public/` directory*. Their exact SHA-256 hashes, sizes and original source URLs remain pinned in `src/data/dissertations/archive-2019-pilot.json` and the corresponding immutable-content ledger. No source bytes were changed; Git tracked these three moves as relocations.
+
+- **12 PDF files** remain published in `public/documents/dissertations/archive/2019/` for ordinary download after approved deployment.
+- **2 RAR files + 1 ZIP file** are preserved but **not served by the new website**. Ukrainian and English archive pages list the entries and explain why downloads are withheld.
+- The separate legacy website remains untouched and was not instructed to redirect or delete files.
+- Further inspection of compressed payloads, archive readers, CRC verification and any malware scans must be recorded before a separate publication PR moves the exact originals into public paths. A future public copy must retain the identical SHA-256 digest.
+
+The original full-byte preservation objective covers **all 15** files, but the public site will expose only the **12 PDFs** until the three compressed containers are approved for publication.
+
+**Final public/private separation check:** [GitHub Actions #39770596925](https://github.com/mfs9697/inmech-site/actions/runs/39770596925) passed: 440 pages, 19,734 internal links, all 22 original source hashes, 12 public 2019 PDFs byte-identical in `dist/`, and three retained ZIP/RAR originals **absent** from both `dist/` and bilingual public download links. The 3 native archives are not deployed with the static website.

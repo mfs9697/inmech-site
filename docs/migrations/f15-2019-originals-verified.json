@@ -1,0 +1,126 @@
+{
+  "date": "2026-10-22T11:08:44.690Z",
+  "source": "old.inmech.kyiv.ua (complete binary GET)",
+  "entries": [
+    {
+      "id": "2019-22ref",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/22ref.pdf",
+      "target": "public/documents/dissertations/archive/2019/22ref.pdf",
+      "format": "pdf",
+      "bytes": 1433520,
+      "sha256": "5c07cc875514258d66a6bb8f250b494360e10b94cdf0dbf39a05b5a9f8b1412a"
+    },
+    {
+      "id": "2019-22dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/22dis.pdf",
+      "target": "public/documents/dissertations/archive/2019/22dis.pdf",
+      "format": "pdf",
+      "bytes": 2776016,
+      "sha256": "e3ff75683582ec21a3ef6ae4d275f1217d6c81cf3b0645da1edcbd037e0b2481"
+    },
+    {
+      "id": "2019-21ref",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/21ref.pdf",
+      "target": "public/documents/dissertations/archive/2019/21ref.pdf",
+      "format": "pdf",
+      "bytes": 1307255,
+      "sha256": "3296c79c905a9544416eafcf3850e1f61a47196c501b031d9e7f986779c73ce2"
+    },
+    {
+      "id": "2019-21dis-last",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/21dis_last.pdf",
+      "target": "public/documents/dissertations/archive/2019/21dis-last.pdf",
+      "format": "pdf",
+      "bytes": 4494736,
+      "sha256": "e0bb156c55ea69fbad94a3ec96ca1e8dc58e8f49614c7ce87bcdcde152dbe949"
+    },
+    {
+      "id": "2019-20ref",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/20ref.rar",
+      "target": "preserved/dissertations/2019/20ref.rar",
+      "format": "rar",
+      "bytes": 458123,
+      "sha256": "30965595efea67eb9a3e75635ec8abf8d145628b9a2e100b2241367b9ae73aa3"
+    },
+    {
+      "id": "2019-20dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/20dis.zip",
+      "target": "preserved/dissertations/2019/20dis.zip",
+      "format": "zip",
+      "bytes": 2211076,
+      "sha256": "ffa66f63435bcbca33bcaf089b318a0f87ee578b777e1efbd02e6cac772f6160"
+    },
+    {
+      "id": "2019-19dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/19dis.rar",
+      "target": "preserved/dissertations/2019/19dis.rar",
+      "format": "rar",
+      "bytes": 33257015,
+      "sha256": "3de65b902331e7f5f3921f4667d0848e055021c162849f1d7abf757c0233dba0"
+    },
+    {
+      "id": "2019-18refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/18refer.pdf",
+      "target": "public/documents/dissertations/archive/2019/18refer.pdf",
+      "format": "pdf",
+      "bytes": 911638,
+      "sha256": "92be722f9e4a67adafdd3927b6704149a03a3d47f8de89dc9425c33c9888f3e7"
+    },
+    {
+      "id": "2019-18dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/18dis.pdf",
+      "target": "public/documents/dissertations/archive/2019/18dis.pdf",
+      "format": "pdf",
+      "bytes": 5993589,
+      "sha256": "0beb06b002122eee1b701d5b507d5105c4d56de377d389e720debc6ee53f0fc3"
+    },
+    {
+      "id": "2019-17refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/17refer.pdf",
+      "target": "public/documents/dissertations/archive/2019/17refer.pdf",
+      "format": "pdf",
+      "bytes": 2451995,
+      "sha256": "e587ddd4c2408bcfa2801aa77acecd7e540fc9d66bcbc46ba3abeff9a1c4d3d3"
+    },
+    {
+      "id": "2019-17dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/17dis.pdf",
+      "target": "public/documents/dissertations/archive/2019/17dis.pdf",
+      "format": "pdf",
+      "bytes": 6768522,
+      "sha256": "122a816eff3ef3cd015ab975619c538e97aaa5924b90df6ce87fc45a5663505a"
+    },
+    {
+      "id": "2019-16refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/16refer.pdf",
+      "target": "public/documents/dissertations/archive/2019/16refer.pdf",
+      "format": "pdf",
+      "bytes": 793731,
+      "sha256": "b51e9f7edaaa50a7e6508d451aa1fbe90fc63cfa71b6431c752dd48b73c650e2"
+    },
+    {
+      "id": "2019-16dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/16dis.pdf",
+      "target": "public/documents/dissertations/archive/2019/16dis.pdf",
+      "format": "pdf",
+      "bytes": 5740480,
+      "sha256": "45a8b98a15976b62809527b239b3de6c63c83479e852bfe12aa6de143bca81b6"
+    },
+    {
+      "id": "2019-15refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/15refer.pdf",
+      "target": "public/documents/dissertations/archive/2019/15refer.pdf",
+      "format": "pdf",
+      "bytes": 638574,
+      "sha256": "7d0e66104df25610de16522aa1f31e0bb90e5fa6a4e119bcb406844b070898f0"
+    },
+    {
+      "id": "2019-15dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/15dis.pdf",
+      "target": "public/documents/dissertations/archive/2019/15dis.pdf",
+      "format": "pdf",
+      "bytes": 1901022,
+      "sha256": "8ae5d54252bf48ce62accc9db26a80aec613a3dcbddee07c6e2470d535388c9b"
+    }
+  ]
+}

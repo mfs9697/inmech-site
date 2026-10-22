@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "note": "15 previously absent source-folder 2019 originals per Codex F15 and documents-migration.csv. Full GET and hash required; 21dis_last.pdf retains original underscore at source and canonical hyphen target. Do not infer author/defence date.",
+  "pilot": [
+    {
+      "id": "2019-22ref",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/22ref.pdf",
+      "target": "public/documents/dissertations/archive/2019/22ref.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2019-22dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/22dis.pdf",
+      "target": "public/documents/dissertations/archive/2019/22dis.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2019-21ref",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/21ref.pdf",
+      "target": "public/documents/dissertations/archive/2019/21ref.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2019-21dis-last",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/21dis_last.pdf",
+      "target": "public/documents/dissertations/archive/2019/21dis-last.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2019-20ref",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/20ref.rar",
+      "target": "public/documents/dissertations/archive/2019/20ref.rar",
+      "format": "rar",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2019-20dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/20dis.zip",
+      "target": "public/documents/dissertations/archive/2019/20dis.zip",
+      "format": "zip",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2019-19dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/19dis.rar",
+      "target": "public/documents/dissertations/archive/2019/19dis.rar",
+      "format": "rar",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2019-18refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/18refer.pdf",
+      "target": "public/documents/dissertations/archive/2019/18refer.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2019-18dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/18dis.pdf",
+      "target": "public/documents/dissertations/archive/2019/18dis.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2019-17refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/17refer.pdf",
+      "target": "public/documents/dissertations/archive/2019/17refer.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2019-17dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/17dis.pdf",
+      "target": "public/documents/dissertations/archive/2019/17dis.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2019-16refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/16refer.pdf",
+      "target": "public/documents/dissertations/archive/2019/16refer.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2019-16dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/16dis.pdf",
+      "target": "public/documents/dissertations/archive/2019/16dis.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2019-15refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/15refer.pdf",
+      "target": "public/documents/dissertations/archive/2019/15refer.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    },
+    {
+      "id": "2019-15dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2019/15dis.pdf",
+      "target": "public/documents/dissertations/archive/2019/15dis.pdf",
+      "format": "pdf",
+      "expectedSha256": null,
+      "expectedBytes": null
+    }
+  ]
+}

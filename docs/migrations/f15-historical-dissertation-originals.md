@@ -135,3 +135,14 @@ After 2019 is merged, **22 of the 50** missing F15 originals will be preserved i
 [GitHub Actions #39769510661](https://github.com/mfs9697/inmech-site/actions/runs/39769510661) **passed** with the committed original files and standard read-only workflow: `npm ci`, `npm run validate`, **440** generated pages, **19,734** checked internal links and **22/22** exact-byte original files (2019: 15; 2020: 2; 2021: 5) verified against pinned SHA-256 and byte size. Ukrainian and English defended-dissertation catalogue counts remain **615/615** unchanged. The production deployment job was intentionally skipped for the draft PR. No production or old-host modifications were performed.
 
 **Remaining release considerations:** manual archive-download/reader review (especially the ZIP `unzip` overlap warning and the RAR 7-Zip 23.01 segmentation faults), inspection of mobile UA/EN archive pages, and post-deploy HTTP/MIME/size checks after approved merge. The `7z` reader failures were independently cross-checked: `libarchive/bsdtar` successfully listed each RAR's members, but full decompression/CRC integrity is not claimed.
+
+### Publication-safe handling of compressed originals
+
+Because `unzip` and 7-Zip disagreed on historic archive handling, the **three native compressed archives have been retained in Git under `preserved/dissertations/2019/`**, *outside Astro's `public/` directory*. Their exact SHA-256 hashes, sizes and original source URLs remain pinned in `src/data/dissertations/archive-2019-pilot.json` and the corresponding immutable-content ledger. No source bytes were changed; Git tracked these three moves as relocations.
+
+- **12 PDF files** remain published in `public/documents/dissertations/archive/2019/` for ordinary download after approved deployment.
+- **2 RAR files + 1 ZIP file** are preserved but **not served by the new website**. Ukrainian and English archive pages list the entries and explain why downloads are withheld.
+- The separate legacy website remains untouched and was not instructed to redirect or delete files.
+- Further inspection of compressed payloads, archive readers, CRC verification and any malware scans must be recorded before a separate publication PR moves the exact originals into public paths. A future public copy must retain the identical SHA-256 digest.
+
+The original full-byte preservation objective covers **all 15** files, but the public site will expose only the **12 PDFs** until the three compressed containers are approved for publication.

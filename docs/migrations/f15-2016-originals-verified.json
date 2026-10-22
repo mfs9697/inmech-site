@@ -1,0 +1,150 @@
+{
+  "date": "2026-10-22T16:49:33.892Z",
+  "source": "old.inmech.kyiv.ua (complete binary GET)",
+  "entries": [
+    {
+      "id": "2016-10refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/10refer.pdf",
+      "target": "public/documents/dissertations/archive/2016/10refer.pdf",
+      "format": "pdf",
+      "bytes": 9547073,
+      "sha256": "666e81ea412e32db7bb056589da651f13f1459611f1f4565d83e9924409c5095"
+    },
+    {
+      "id": "2016-10dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/10dis.pdf",
+      "target": "public/documents/dissertations/archive/2016/10dis.pdf",
+      "format": "pdf",
+      "bytes": 19281873,
+      "sha256": "737612ee375a1e297c479c033a7e6babccfa082da0e73916504ae09ec58fb772"
+    },
+    {
+      "id": "2016-09refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/09refer.pdf",
+      "target": "public/documents/dissertations/archive/2016/09refer.pdf",
+      "format": "pdf",
+      "bytes": 1014003,
+      "sha256": "f57424f5524bab9166a97c8bb7f4bcedecc61d6522a9e929e0b077637f7f4993"
+    },
+    {
+      "id": "2016-09dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/09dis.pdf",
+      "target": "public/documents/dissertations/archive/2016/09dis.pdf",
+      "format": "pdf",
+      "bytes": 2575861,
+      "sha256": "1376b237350c02b0dc58edbfd484884ac2375e00d88b1055576d9a3cd31de9a1"
+    },
+    {
+      "id": "2016-08refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/08refer.pdf",
+      "target": "public/documents/dissertations/archive/2016/08refer.pdf",
+      "format": "pdf",
+      "bytes": 1552310,
+      "sha256": "2f45ff458c47d92d180c7141c04d815423c6a9b685d3883a295a3d32094b8b50"
+    },
+    {
+      "id": "2016-08dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/08dis.zip",
+      "target": "preserved/dissertations/2016/08dis.zip",
+      "format": "zip",
+      "bytes": 9137524,
+      "sha256": "18727280aa0ffdc6b3636a503b2032d9b17559c35d461d7ccc7c0fd798f62279"
+    },
+    {
+      "id": "2016-07refer1",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/07refer1.pdf",
+      "target": "public/documents/dissertations/archive/2016/07refer1.pdf",
+      "format": "pdf",
+      "bytes": 150450,
+      "sha256": "793dd2cf3b444924ee14b1a5468e9cca681f23b6c9ddab7ed307525a7e67cbbc"
+    },
+    {
+      "id": "2016-07dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/07dis.pdf",
+      "target": "public/documents/dissertations/archive/2016/07dis.pdf",
+      "format": "pdf",
+      "bytes": 3769955,
+      "sha256": "212c79d395aaaabb9aae2f8fc71ae588edbde4e1ad3e9fa128404c1acbe83e7d"
+    },
+    {
+      "id": "2016-06refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/06refer.pdf",
+      "target": "public/documents/dissertations/archive/2016/06refer.pdf",
+      "format": "pdf",
+      "bytes": 823116,
+      "sha256": "92e57d5c2e6bd93cd84789b0c64cb2fbbe4d66ab4166f498f32b0fc478f63aba"
+    },
+    {
+      "id": "2016-06dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/06dis.pdf",
+      "target": "public/documents/dissertations/archive/2016/06dis.pdf",
+      "format": "pdf",
+      "bytes": 2025960,
+      "sha256": "4a7dab4f8cb2b5dd1b106091136cff34478c1925f024eb6c5e56358a40ec5d1f"
+    },
+    {
+      "id": "2016-05refer1",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/05refer1.pdf",
+      "target": "public/documents/dissertations/archive/2016/05refer1.pdf",
+      "format": "pdf",
+      "bytes": 225515,
+      "sha256": "18ea317dd7b31d796eb0c4f4ebe2d6d6f6800fb73aa3df75d8668d82da5cc940"
+    },
+    {
+      "id": "2016-05dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/05dis.pdf",
+      "target": "public/documents/dissertations/archive/2016/05dis.pdf",
+      "format": "pdf",
+      "bytes": 6266513,
+      "sha256": "d4508465219252063fd14a917ab30e000bd4f514dacd83ecdab442e26157d6f1"
+    },
+    {
+      "id": "2016-04refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/04refer.pdf",
+      "target": "public/documents/dissertations/archive/2016/04refer.pdf",
+      "format": "pdf",
+      "bytes": 1059749,
+      "sha256": "bcf4c1316237f79d2d0ac629386a1fc6090e84abf95d0bf9e318603003a52f8b"
+    },
+    {
+      "id": "2016-04dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/04dis.pdf",
+      "target": "public/documents/dissertations/archive/2016/04dis.pdf",
+      "format": "pdf",
+      "bytes": 7004258,
+      "sha256": "e2160899146a1489c1842c15026856c9c22a225dba218060f6ab505575fbdcd9"
+    },
+    {
+      "id": "2016-03refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/03refer.doc",
+      "target": "preserved/dissertations/2016/03refer.doc",
+      "format": "doc",
+      "bytes": 1488384,
+      "sha256": "cc0f52e60b32b67a2716fd32448d26584565cdcf43f64c1aae956b3da4b9358c"
+    },
+    {
+      "id": "2016-03dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/03dis.doc",
+      "target": "preserved/dissertations/2016/03dis.doc",
+      "format": "doc",
+      "bytes": 7667712,
+      "sha256": "dc74668cf36a0e23494f80b7fb58f4693a7ffdf0059dc4ba7c39f00cb6318f89"
+    },
+    {
+      "id": "2016-02refer",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/02refer.pdf",
+      "target": "public/documents/dissertations/archive/2016/02refer.pdf",
+      "format": "pdf",
+      "bytes": 1785901,
+      "sha256": "87ddefd24c20508a0a3bac4c72a519b8d477b97d9421e66864a9f1185124c6aa"
+    },
+    {
+      "id": "2016-02dis",
+      "sourceUrl": "https://old.inmech.kyiv.ua/doc/postgraduate/dis/2016/02dis.pdf",
+      "target": "public/documents/dissertations/archive/2016/02dis.pdf",
+      "format": "pdf",
+      "bytes": 10017498,
+      "sha256": "2f45225476b2e27fd563160cb2aae1e920a1eec3a602471739e601f65b79b267"
+    }
+  ]
+}

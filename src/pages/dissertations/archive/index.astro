@@ -12,7 +12,7 @@ const years = [2021, 2020, 2019, 2018, 2017, 2016, 2015];
   description="Історичний архів дисертацій (2015–2021): здобувачі, теми, наукові ступені та оригінальні документи з примітками."
   activePage="education"
 >
-  <main class="archive-page">
+  <div class="archive-page">
     <div class="archive-container">
       <nav class="archive-breadcrumbs" aria-label="Навігаційний шлях">
         <a href={withBase('/dissertations/')}>Захист дисертацій</a>
@@ -31,7 +31,7 @@ const years = [2021, 2020, 2019, 2018, 2017, 2016, 2015];
       <DissertationArchiveGallery lang="uk" />
       <p class="return-link"><a href={withBase('/dissertations/')}>← Повернутися до захистів дисертацій</a></p>
     </div>
-  </main>
+  </div>
 </BaseLayout>
 
 <style>

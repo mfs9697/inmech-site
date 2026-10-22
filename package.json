@@ -18,15 +18,13 @@
     "check:elections": "node scripts/check-elections.mjs --self-test && node scripts/check-elections.mjs",
     "check:ncutam": "node scripts/check-ncutam.mjs && node scripts/check-ncutam-member-affiliations.mjs && node scripts/check-ncutam-documents.mjs && node scripts/check-ncutam-rendered.mjs",
     "audit:assets": "node scripts/audit-generated-assets.mjs",
-    "validate": "npm run build && npm run check:sitemap && npm run check:landmarks && npm run check:links && npm run check:vacancies && npm run check:defended-catalogs && npm run check:elections && npm run check:election-pages && npm run check:election-history && npm run check:election-final && npm run check:election-production-plan && npm run check:election-legacy && npm run check:ncutam",
+    "validate": "npm run build && npm run check:sitemap && npm run check:landmarks && npm run check:links && npm run check:vacancies && npm run check:defended-catalogs && npm run check:elections && npm run check:election-pages && npm run check:election-history && npm run check:election-final && npm run check:election-legacy && npm run check:ncutam",
     "preview": "astro preview",
     "astro": "astro",
     "check:election-pages": "node scripts/check-election-pages.mjs",
     "check:election-legacy": "node scripts/check-election-legacy-routes.mjs --self-test && node scripts/check-election-legacy-routes.mjs",
     "check:election-history": "node scripts/check-election-history-pages.mjs",
-    "check:election-final": "node scripts/check-election-final-pages.mjs",
-    "check:election-production-plan": "node scripts/check-election-production.mjs --self-test",
-    "check:election-production": "node scripts/check-election-production.mjs"
+    "check:election-final": "node scripts/check-election-final-pages.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

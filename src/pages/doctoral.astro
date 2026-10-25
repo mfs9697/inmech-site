@@ -12,21 +12,6 @@ function withBase(path: string) {
   return `${base}${path.startsWith('/') ? path : `/${path}`}`;
 }
 
-const processSteps = [
-  {
-    title: 'Ознайомлення з правилами прийому',
-    text: 'Вступник опрацьовує актуальні правила прийому до докторантури та вимоги до подання документів.'
-  },
-  {
-    title: 'Підготовка наукових матеріалів',
-    text: 'Формується пакет документів, що підтверджує наукові результати, публікації та відповідність напряму дослідження профілю Інституту.'
-  },
-  {
-    title: 'Розгляд в Інституті',
-    text: 'Матеріали розглядаються відповідними структурними підрозділами та науковими органами Інституту згідно з установленими процедурами.'
-  }
-];
-
 const infoCards = [
   {
     label: 'Рівень підготовки',
@@ -44,7 +29,6 @@ const infoCards = [
     text: 'координація освітньо-наукових і методичних питань'
   }
 ];
-
 
 const doctoralStudents = [
   {
@@ -125,7 +109,6 @@ const relatedLinks = [
       </div>
     </div>
   </section>
-
 
   <section class="section doctoral-cohort-section" id="doctoral-students-2026">
     <div class="container">
@@ -238,13 +221,13 @@ const relatedLinks = [
           <h3>Строки та організація підготовки</h3>
           <p>
             Дати початку й завершення прийому заяв, строки відбору та наявність місць
-            визначаються для кожної вступної кампанії окремо.
+            визначаються для кожної вступної кампанії окремо.{' '}
             <strong>Початок перебування в докторантурі — 1 вересня.</strong>
           </p>
           <p>
             Після зарахування докторант погоджує індивідуальний план наукової роботи
-            з науковим консультантом. Вчена рада затверджує його
-            <strong>протягом двох місяців від дати зарахування</strong>.
+            з науковим консультантом. Вчена рада затверджує його{' '}
+            <strong>протягом двох місяців від дати зарахування</strong>.{' '}
             Дослідження проводяться відповідно до затвердженого плану.
           </p>
           <p>
@@ -256,43 +239,13 @@ const relatedLinks = [
       </div>
 
       <div class="doctoral-rules-source">
-        <strong>Нормативна основа:</strong>
+        <strong>Нормативна основа:</strong>{' '}
         <a href="https://zakon.rada.gov.ua/laws/show/261-2016-%D0%BF" target="_blank" rel="noopener noreferrer">
           Порядок підготовки здобувачів ступеня доктора філософії та доктора наук (постанова КМУ № 261)
-        </a>.
+        </a>.{' '}
         Цей розділ — інформація для вступників на основі правил Інституту та чинного
         Порядку; він не замінює формально затверджених правил конкретної вступної кампанії.
       </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container doctoral-two-column">
-      <article class="doctoral-panel">
-        <p class="eyebrow">Вступ і супровід</p>
-        <h2>Основні кроки</h2>
-        <div class="doctoral-step-list">
-          {processSteps.map((step, index) => (
-            <div class="doctoral-step">
-              <span>{index + 1}</span>
-              <div>
-                <h3>{step.title}</h3>
-                <p>{step.text}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </article>
-
-      <article class="doctoral-panel accent-panel">
-        <p class="eyebrow">Науково-методична рада</p>
-        <h2>Методичний супровід</h2>
-        <p>
-          Питання методичного забезпечення та добору наукових працівників до викладацького
-          складу належать до сфери Науково-методичної ради.
-        </p>
-        <a class="button primary" href={withBase('/nmr/')}>Перейти до НМР</a>
-      </article>
     </div>
   </section>
 
@@ -439,7 +392,6 @@ const relatedLinks = [
   .doctoral-hero-panel,
   .doctoral-mark-card,
   .doctoral-info-card,
-  .doctoral-panel,
   .related-panel {
     background: var(--surface);
     border: 1px solid var(--line);
@@ -575,65 +527,13 @@ const relatedLinks = [
     color: var(--muted);
   }
 
-  .doctoral-two-column {
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
-    gap: 16px;
-  }
-
-  .doctoral-panel,
   .related-panel {
     padding: clamp(22px, 3vw, 34px);
   }
 
-  .doctoral-panel h2,
   .related-panel h2 {
     margin-top: 0;
     font-size: clamp(1.45rem, 2.3vw, 2.1rem);
-  }
-
-  .doctoral-panel p {
-    color: var(--muted);
-  }
-
-  .doctoral-step-list {
-    display: grid;
-    gap: 16px;
-  }
-
-  .doctoral-step {
-    display: grid;
-    grid-template-columns: 52px minmax(0, 1fr);
-    gap: 16px;
-    align-items: start;
-  }
-
-  .doctoral-step span {
-    display: grid;
-    place-items: center;
-    width: 46px;
-    height: 46px;
-    border-radius: 16px;
-    background: var(--accent-soft);
-    color: var(--accent-dark);
-    font-weight: 950;
-  }
-
-  .doctoral-step h3 {
-    margin: 0 0 6px;
-  }
-
-  .doctoral-step p {
-    margin: 0;
-  }
-
-  .accent-panel {
-    background: linear-gradient(135deg, rgba(184, 135, 47, 0.12), rgba(29, 79, 145, 0.08));
-    border-color: rgba(184, 135, 47, 0.35);
-  }
-
-  .accent-panel .button {
-    margin-top: 12px;
   }
 
   .related-panel {
@@ -668,7 +568,6 @@ const relatedLinks = [
     .doctoral-info-grid,
     .doctoral-rules-grid,
     .doctoral-students-grid,
-      .doctoral-two-column,
     .related-panel,
     .related-link-grid {
       grid-template-columns: 1fr;
@@ -692,8 +591,5 @@ const relatedLinks = [
       columns: 1;
     }
 
-    .doctoral-step {
-      grid-template-columns: 1fr;
-    }
   }
 </style>

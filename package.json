@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/build-ncutam-thumbnails.mjs && astro build",
     "check:sitemap": "node scripts/check-sitemap-output.mjs",
     "check:landmarks": "node scripts/check-main-landmarks.mjs",
     "check:links": "node scripts/check-internal-links.mjs --self-test && node scripts/check-internal-links.mjs",
@@ -36,7 +36,8 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
-    "astro": "^7.4.2"
+    "astro": "^7.4.2",
+    "sharp": "^0.35.5"
   },
   "devDependencies": {
     "esbuild": "^0.28.2"

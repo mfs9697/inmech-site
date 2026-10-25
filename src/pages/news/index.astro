@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { hasNewsScope } from '../../utils/newsScopes';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import NewsCard from '../../components/NewsCard.astro';
 import { site } from '../../data/site';
@@ -10,7 +11,7 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
 const currentYear = new Date().getFullYear();
 
 const news = (await getCollection('news'))
-  .filter((entry) => entry.data.year === currentYear || entry.data.date.getFullYear() === currentYear)
+  .filter((entry) => hasNewsScope(entry, 'institute') && (entry.data.year === currentYear || entry.data.date.getFullYear() === currentYear))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const tags = allowedNewsTags.filter((tag) => news.some((entry) => getVisibleNewsTags(entry).includes(tag)));

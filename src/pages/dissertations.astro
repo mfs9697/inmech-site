@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
+import { publicDissertationPdfMetadata } from '../utils/publicPdfMetadata';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -251,9 +252,19 @@ const featuredDefenses = [
 
             {defense.links.length > 0 && (
               <div class="defense-links">
-                {defense.links.map(([label, href]) => (
-                  <a href={withBase(href)} target="_blank" rel="noopener noreferrer">{label}</a>
-                ))}
+                {defense.links.map(([label, href]) => {
+                  const pdf = publicDissertationPdfMetadata(href);
+                  return (
+                    <a href={withBase(href)} target="_blank" rel="noopener noreferrer">
+                      <span>{label}</span>
+                      {pdf && (
+                        <small class="pdf-file-size">
+                          PDF · {pdf.megabytes} МБ{pdf.large ? ' · Великий файл' : ''}
+                        </small>
+                      )}
+                    </a>
+                  );
+                })}
               </div>
             )}
 
@@ -265,6 +276,12 @@ const featuredDefenses = [
                     <a class="opponent-card" href={withBase(href)} target="_blank" rel="noopener noreferrer">
                       <strong>{name}</strong>
                       <span>{degree}</span>
+                      {publicDissertationPdfMetadata(href) && (
+                        <small class="pdf-file-size">
+                          PDF · {publicDissertationPdfMetadata(href)!.megabytes} МБ
+                          {publicDissertationPdfMetadata(href)!.large ? ' · Великий файл' : ''}
+                        </small>
+                      )}
                       <em>Переглянути відгук →</em>
                     </a>
                   ))}
@@ -550,6 +567,24 @@ const featuredDefenses = [
   .defense-links a:hover {
     background: var(--accent-soft);
     text-decoration: none;
+  }
+
+  .defense-links a {
+    flex-direction: column;
+    gap: 3px;
+    align-items: flex-start;
+  }
+
+  .pdf-file-size {
+    display: block;
+    color: var(--muted);
+    font-size: .78rem;
+    font-weight: 650;
+    line-height: 1.35;
+  }
+
+  .opponent-card .pdf-file-size {
+    overflow-wrap: anywhere;
   }
 
   .opponents-details {

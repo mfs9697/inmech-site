@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { hasNewsScope } from '../../utils/newsScopes';
 import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
 import HomeNewsBlock from '../../components/HomeNewsBlock.astro';
 import DepartmentCard from '../../components/DepartmentCard.astro';
@@ -16,6 +17,7 @@ function withBase(path: string) {
 }
 
 const news = (await getCollection('news'))
+  .filter((entry) => hasNewsScope(entry, 'institute'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 4);
 

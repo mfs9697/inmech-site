@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { hasNewsScope } from '../../../../utils/newsScopes';
 import BaseLayoutEn from '../../../../layouts/BaseLayoutEn.astro';
 import NewsCardEn from '../../../../components/NewsCardEn.astro';
 import { siteEn } from '../../../../data/site-en';
@@ -10,13 +11,13 @@ const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${p
 const currentYear = new Date().getFullYear();
 
 const allCurrentNews = (await getCollection('news'))
-  .filter((entry) => entry.data.year === currentYear || entry.data.date.getFullYear() === currentYear)
+  .filter((entry) => hasNewsScope(entry, 'institute') && (entry.data.year === currentYear || entry.data.date.getFullYear() === currentYear))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 export async function getStaticPaths() {
   const buildYear = new Date().getFullYear();
   const entries = (await getCollection('news'))
-    .filter((entry) => entry.data.year === buildYear || entry.data.date.getFullYear() === buildYear);
+    .filter((entry) => hasNewsScope(entry, 'institute') && (entry.data.year === buildYear || entry.data.date.getFullYear() === buildYear));
 
   const tags = allowedNewsTagsEn.filter((tag) => entries.some((entry) => getVisibleNewsTagsEn(entry).includes(tag)));
 

@@ -1,0 +1,43 @@
+---
+import type { BibliographyEntry } from '../../data/bibliography';
+import { bibliographyTagLabels } from '../../data/bibliographyTags';
+import { bibliographyTagLabelsEn, bookTypeLabels } from '../../data/bookLabels';
+
+interface Props {
+  item: BibliographyEntry;
+  language: 'uk' | 'en';
+}
+const { item, language } = Astro.props;
+const en = language === 'en';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const overview = base + (en ? '/en/library/scientific-books/' : '/library/scientific-books/');
+const typeLabel = bookTypeLabels[item.type][en ? 1 : 0];
+---
+
+<article class="book-card" data-book-card data-tags={JSON.stringify(item.tags)} data-book-id={item.id}>
+  <div class="book-card-topline">
+    <span>{typeLabel}</span>
+    {item.year && <strong>{item.year}</strong>}
+  </div>
+  <h3>{item.title}</h3>
+  <p class="authors">{item.authors}</p>
+  <p class="details">
+    {item.publisher}{item.pages ? ', ' + item.pages : ''}{item.isbn ? '; ISBN ' + item.isbn : ''}{item.doi ? '; DOI ' + item.doi : ''}.
+  </p>
+  {item.note && <p class="note">{item.note}</p>}
+  <div class="entry-tags">
+    {item.tags.map((tag) => (
+      <a class="tag-filter entry-tag" href={overview + '#tag-' + tag} data-tag-filter={tag}>
+        {en ? (bibliographyTagLabelsEn[tag] ?? tag) : bibliographyTagLabels[tag]}
+      </a>
+    ))}
+  </div>
+  {item.inLibraryOfCongress && (
+    <p class="loc-badge">{en ? 'Library of Congress' : 'Бібліотека Конгресу США'}</p>
+  )}
+  {item.url && (
+    <a class="card-link" href={item.url} target="_blank" rel="noopener noreferrer">
+      {en ? 'Electronic resource' : 'Електронний ресурс →'}
+    </a>
+  )}
+</article>

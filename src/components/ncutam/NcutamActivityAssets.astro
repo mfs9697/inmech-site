@@ -1,5 +1,6 @@
 ---
 import { getEntries } from 'astro:content';
+import galleryVariants from '../../data/ncutam-gallery.generated.json';
 
 interface GalleryItem {
   src: string;
@@ -26,6 +27,21 @@ const { language = 'uk', gallery = [], documents = [], video } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
 const resolvedDocuments = documents.length > 0 ? await getEntries(documents) : [];
+interface ResponsiveVariant {
+  src: string;
+  width: number;
+  height: number;
+  bytes: number;
+}
+interface GalleryVariantEntry {
+  width: number;
+  height: number;
+  originalBytes: number;
+  originalSha256: string;
+  small: ResponsiveVariant;
+  large: ResponsiveVariant;
+}
+const optimizedGallery = galleryVariants as Record<string, GalleryVariantEntry>;
 
 const labels = language === 'uk'
   ? {
@@ -86,10 +102,24 @@ const documentNote = (entry: (typeof resolvedDocuments)[number]) =>
       {gallery.map((item) => {
         const alt = language === 'uk' ? item.alt : (item.altEn ?? item.alt);
         const caption = language === 'uk' ? item.caption : (item.captionEn ?? item.caption);
+        const variant = optimizedGallery[item.src];
         return (
           <figure class="activity-gallery-item">
             <a href={withBase(item.src)} target="_blank" rel="noopener noreferrer" aria-label={`${labels.imageLink}: ${alt}`}>
-              <img src={withBase(item.src)} alt={alt} loading="lazy" decoding="async" />
+              {variant ? (
+                <img
+                  src={withBase(variant.small.src)}
+                  srcset={`${withBase(variant.small.src)} ${variant.small.width}w, ${withBase(variant.large.src)} ${variant.large.width}w`}
+                  sizes="(max-width: 700px) calc(100vw - 44px), (max-width: 1150px) 46vw, 32vw"
+                  width={variant.width}
+                  height={variant.height}
+                  alt={alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <img src={withBase(item.src)} alt={alt} loading="lazy" decoding="async" />
+              )}
             </a>
             {caption && <figcaption>{caption}</figcaption>}
           </figure>

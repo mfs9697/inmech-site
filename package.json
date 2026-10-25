@@ -13,7 +13,7 @@
     "check:sitemap": "node scripts/check-sitemap-output.mjs",
     "check:landmarks": "node scripts/check-main-landmarks.mjs",
     "check:links": "node scripts/check-internal-links.mjs --self-test && node scripts/check-internal-links.mjs",
-    "check:vacancies": "node scripts/check-vacancy-archive.mjs",
+    "check:vacancies": "node scripts/check-vacancy-archive.mjs && node scripts/check-active-vacancies.mjs --self-test",
     "check:defended-catalogs": "node scripts/check-defended-catalogs.mjs",
     "check:elections": "node scripts/check-elections.mjs --self-test && node scripts/check-elections.mjs",
     "check:ncutam": "node scripts/check-ncutam-line-endings.mjs && node scripts/check-ncutam.mjs && node scripts/check-ncutam-member-affiliations.mjs && node scripts/check-ncutam-documents.mjs && node scripts/check-ncutam-rendered.mjs",

@@ -179,7 +179,7 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
                 );
 
                 return (
-                  <article class="catalog-entry-card" data-entry-card data-entry-topics={topicIds.join('|')}>
+                  <article class="catalog-entry-card" data-entry-card data-entry-topics={topicIds.join('|')} data-entry-year={entry.year}>
                     <div class="entry-header">
                       <div>
                         <h3>{entry.author.en}</h3>
@@ -232,74 +232,7 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
         ))}
       </div>
 
-      <div class="catalog-groups" data-catalog-view="year" hidden>
-        {yearGroups.map((group) => (
-          <section class="catalog-letter-group" aria-labelledby={`year-${group.year}`} data-catalog-group>
-            <div class="letter-heading year-heading" id={`year-${group.year}`}>
-              <span>{group.year}</span>
-              <strong data-group-count>{group.records.length} entries</strong>
-            </div>
-
-            <div class="catalog-entry-grid">
-              {group.records.map(({ entry, topicIds }) => {
-                const defenceDate = formatDate(entry.defenceDate);
-                const sourceLanguage = entry.bibliography?.originalLanguage
-                  ? defendedDissertationLanguageLabels[entry.bibliography.originalLanguage]
-                  : null;
-
-                return (
-                  <article class="catalog-entry-card" data-entry-card data-entry-topics={topicIds.join('|')}>
-                    <div class="entry-header">
-                      <div>
-                        <h3>{entry.author.en}</h3>
-                        <p class="entry-title">{entry.title.en}</p>
-                      </div>
-                      <span class="entry-year">{entry.year}</span>
-                    </div>
-
-                    <dl class="entry-meta-grid">
-                      {defenceDate && (
-                        <div>
-                          <dt>Defence date</dt>
-                          <dd>{defenceDate}</dd>
-                        </div>
-                      )}
-                      <div>
-                        <dt>Degree</dt>
-                        <dd>{entry.degree.en}</dd>
-                      </div>
-                      {entry.specialty && (
-                        <div>
-                          <dt>Specialty</dt>
-                          <dd>{entry.specialty.code ? `${entry.specialty.code} — ${entry.specialty.en}` : entry.specialty.en}</dd>
-                        </div>
-                      )}
-                      {entry.bibliography?.pages && (
-                        <div>
-                          <dt>Pages</dt>
-                          <dd>{entry.bibliography.pages}</dd>
-                        </div>
-                      )}
-                      {sourceLanguage && (
-                        <div>
-                          <dt>Language</dt>
-                          <dd>{sourceLanguage}</dd>
-                        </div>
-                      )}
-                    </dl>
-
-                    {topicIds.length > 0 && (
-                      <div class="tag-list" aria-label="Topic tags">
-                        {topicIds.map((topicId) => <span>{topicLabelById.get(topicId)}</span>)}
-                      </div>
-                    )}
-                  </article>
-                );
-              })}
-            </div>
-          </section>
-        ))}
-      </div>
+      <div class="catalog-groups" data-catalog-view="year" hidden>      </div>
     </div>
   </section>
 
@@ -317,6 +250,46 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
 
   function entryLabel(count) {
     return `${count} ${count === 1 ? 'entry' : 'entries'}`;
+  }
+
+  // Generate the alternative year grouping only when the visitor selects it.
+  // The first (alphabetical) view remains complete without JavaScript, preserving
+  // all bibliographic records and the existing stable letter anchors.
+  let yearViewBuilt = false;
+  function buildYearView() {
+    if (yearViewBuilt) return;
+    const alphabetical = document.querySelector('[data-catalog-view="surname"]');
+    const target = document.querySelector('[data-catalog-view="year"]');
+    if (!alphabetical || !target) return;
+    const byYear = new Map();
+    alphabetical.querySelectorAll('[data-entry-card]').forEach((card) => {
+      const year = card.dataset.entryYear || 'Year unknown';
+      if (!byYear.has(year)) byYear.set(year, []);
+      byYear.get(year).push(card);
+    });
+    const years = [...byYear.keys()].sort((a, b) =>
+      a === 'Year unknown' ? 1 : b === 'Year unknown' ? -1 : Number(b) - Number(a)
+    );
+    for (const year of years) {
+      const group = document.createElement('section');
+      group.className = 'catalog-letter-group';
+      group.dataset.catalogGroup = '';
+      const header = document.createElement('div');
+      header.className = 'letter-heading year-heading';
+      header.id = 'year-' + year;
+      const title = document.createElement('span');
+      title.textContent = year;
+      const count = document.createElement('strong');
+      count.dataset.groupCount = '';
+      count.textContent = entryLabel(byYear.get(year).length);
+      header.append(title, count);
+      const grid = document.createElement('div');
+      grid.className = 'catalog-entry-grid';
+      byYear.get(year).forEach((card) => grid.append(card.cloneNode(true)));
+      group.append(header, grid);
+      target.append(group);
+    }
+    yearViewBuilt = true;
   }
 
   function applyCatalogueState() {
@@ -363,6 +336,7 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
   viewButtons.forEach((button) => {
     button.addEventListener('click', () => {
       activeView = button.dataset.viewButton || 'surname';
+      if (activeView === 'year') buildYearView();
       applyCatalogueState();
     });
   });

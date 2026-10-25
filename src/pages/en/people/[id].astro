@@ -34,7 +34,8 @@ const degree = person.degreeEn ?? person.degree;
 const academicTitle = person.academicTitleEn ?? person.academicTitle;
 const researchAreas = person.researchAreasEn.length > 0 ? person.researchAreasEn : person.researchAreas;
 const professionalActivity = person.professionalActivityEn ?? person.professionalActivity;
-const profileLinks = person.profiles.filter((profile) => profile.url);
+const profileLinks = person.profiles.filter((profile) => profile.url && profile.kind !== 'other');
+const informationResources = person.profiles.filter((profile) => profile.url && profile.kind === 'other');
 const publicationGroups = person.publications
   .map((group) => ({ title: group.titleEn ?? group.title, type: group.type, items: group.itemsEn ?? group.items }))
   .filter((group) => group.items.length > 0);
@@ -102,6 +103,20 @@ const pageDescription = position ? `${displayName} — ${position}` : `${display
                   <article class={`metric-card metric-${profile.kind}`}>
                     <span>{profile.label}</span>
                     <a href={profile.url} target="_blank" rel="noopener">View profile →</a>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {informationResources.length > 0 && (
+            <section class="profile-panel compact">
+              <h2>Information resources</h2>
+              <div class="metric-stack">
+                {informationResources.map((resource) => (
+                  <article class="metric-card">
+                    <span>{resource.label}</span>
+                    <a href={resource.url} target="_blank" rel="noopener noreferrer">Open resource →</a>
                   </article>
                 ))}
               </div>

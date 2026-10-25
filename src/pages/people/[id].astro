@@ -41,7 +41,8 @@ const initials = person.name
   .join('')
   .toUpperCase();
 
-const keyProfiles = person.profiles.filter((profile) => profile.url);
+const keyProfiles = person.profiles.filter((profile) => profile.url && profile.kind !== 'other');
+const informationResources = person.profiles.filter((profile) => profile.url && profile.kind === 'other');
 const pageTitle = `${person.name} | ${site.name}`;
 const pageDescription = person.position
   ? `${person.name} — ${person.position}`
@@ -116,6 +117,20 @@ const pageDescription = person.position
                   <article class={`metric-card metric-${profile.kind}`}>
                     <span>{profile.label}</span>
                     <a href={profile.url} target="_blank" rel="noopener">Переглянути профіль →</a>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {informationResources.length > 0 && (
+            <section class="profile-panel compact">
+              <h2>Інформаційні ресурси</h2>
+              <div class="metric-stack">
+                {informationResources.map((resource) => (
+                  <article class="metric-card">
+                    <span>{resource.label}</span>
+                    <a href={resource.url} target="_blank" rel="noopener noreferrer">Відкрити ресурс →</a>
                   </article>
                 ))}
               </div>

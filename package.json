@@ -7,8 +7,8 @@
     "node": ">=22.23.4"
   },
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
+    "dev": "node scripts/build-ncutam-thumbnails.mjs && astro dev",
+    "start": "npm run dev",
     "build": "node scripts/build-ncutam-thumbnails.mjs && astro build",
     "check:sitemap": "node scripts/check-sitemap-output.mjs",
     "check:landmarks": "node scripts/check-main-landmarks.mjs",

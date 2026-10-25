@@ -1,0 +1,15 @@
+---
+import ScientificBooksCatalog from '../../../../components/ScientificBooksCatalog.astro';
+import { bibliographyLetters, catalogueLetterSlug } from '../../../../data/bibliographyCatalogueIndex';
+
+export function getStaticPaths() {
+  return bibliographyLetters.map((selectedLetter) => ({
+    params: { letter: catalogueLetterSlug(selectedLetter) },
+    props: { selectedLetter }
+  }));
+}
+
+const { selectedLetter } = Astro.props as { selectedLetter: string };
+---
+
+<ScientificBooksCatalog selectedLetter={selectedLetter} />

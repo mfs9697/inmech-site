@@ -26,7 +26,7 @@ function fail(message) {
 }
 
 function localDestination(url) {
-  if (url.endsWith('.pdf')) return path.join(root, url.slice(1));
+  if (/\.(pdf|docx)$/.test(url)) return path.join(root, url.slice(1));
   return path.join(root, url.slice(1), 'index.html');
 }
 
@@ -36,11 +36,11 @@ for (const { language, file, html, probes } of checks) {
   const index = JSON.parse(readFileSync(jsonPath, 'utf8'));
   if (!Array.isArray(index) || index.length < 100) fail(file + ' unexpectedly small');
   const keys = new Set();
-  let pdfCount = 0;
+  let documentCount = 0;
   for (const item of index) {
     if (!item || !['title', 'url', 'type', 'description', 'keywords'].every(
       (key) => typeof item[key] === 'string')) fail(file + ' invalid item');
-    if (!/^\/(?!\/)/.test(item.url) || !(item.url.endsWith('/') || item.url.endsWith('.pdf'))) {
+    if (!/^\/(?!\/)/.test(item.url) || !(item.url.endsWith('/') || /\.(pdf|docx)$/.test(item.url))) {
       fail(file + ': invalid href ' + item.url);
     }
     const key = item.url + '\0' + item.title;
@@ -49,7 +49,7 @@ for (const { language, file, html, probes } of checks) {
     if (!existsSync(localDestination(item.url))) {
       fail(file + ' target missing: ' + item.url);
     }
-    if (item.url.endsWith('.pdf')) pdfCount += 1;
+    if (/\.(pdf|docx)$/.test(item.url)) documentCount += 1;
     if (item.url.includes('committee-protocol-5-extract.pdf')) {
       fail(file + ' indexed missing election original');
     }
@@ -68,6 +68,6 @@ for (const { language, file, html, probes } of checks) {
     fail(language + ' search HTML unexpectedly large');
   }
   console.log('F05 ' + language + ': ' + index.length + ' entries, ' +
-    pdfCount + ' PDF metadata entries, JSON ' + statSync(jsonPath).size +
+    documentCount + ' document metadata entries, JSON ' + statSync(jsonPath).size +
     ' bytes, HTML ' + statSync(path.join(root, html)).size + ' bytes.');
 }

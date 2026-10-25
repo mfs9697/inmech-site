@@ -16,12 +16,12 @@ These three new static routes return *ordinary HTML pages*, not an HTTP redirect
 
 **Year-sensitive news:** The older news archive has not been fully migrated. An incoming `/l/ua/news/?year=2018` must **not** be sent to the 2026 new-site archive. The gateway shows the requested year and offers an old-host link preserving `?year=2018`. The legacy original is outside the present GitHub deployment and its continued availability must be checked separately. Pages with JavaScript disabled retain an unconditional link to the original historical news archive. **PR #201**, covering annual news routes derived from *currently migrated* records, was still **open** when this phase was planned; it does not itself import earlier years.
 
-## 2. Main-domain document URL inventory (184 exact URLs)
+## 2. Main-domain document URL inventory (184 rows, 183 distinct URLs)
 
 The existing `documents-migration.csv` is the authoritative **main-host document correspondence ledger**, with original URL, suggested replacement and status. It is not an HTTP rewrite config.
 
-On this baseline it includes **184 unique** primary-host `/doc/` URLs:
-- **173** mapped paths point to physically preserved public files (including 3 URLs explicitly marked as canonical vacancy-archive entries).
+On this baseline it includes **184 CSV rows describing 183 distinct** primary-host `/doc/` URLs. One URL (`/doc/postgraduate/rating_2024_2025.pdf`) is referenced from two original pages, both pointing to the same preserved target; this duplication is source provenance rather than a conflicting mapping:
+- **173 mapping rows (172 distinct source URLs)** point to physically preserved public files (including 3 URLs explicitly marked as canonical vacancy-archive entries).
 - **1** retired DOCX is expressly replaced by the canonical `/doctoral/` page rather than another downloadable file.
 - **10** proposed files are *not present*, and must not receive speculative downloadable aliases.
 
@@ -65,4 +65,4 @@ The existing `src/data/elections/2026/legacy-routes.json` inventories **25 histo
 5. Test actual HTTP statuses, `Location`, query handling, no redirect loops, stable canonical content, and old-host availability.
 6. Deploy only after the institutional records owner and server administrator review the mapping and rollback plan; monitor legacy 404 logs.
 
-**Automated PR checks:** `npm run check:f11` builds/verifies the three gateway pages, exact canonical targets, and every row of the 184-item CSV, including the ten explicitly missing paths. It also confirms the election ledger is still planning-only. Checks do not touch DNS, web-server config, or original bytes.
+**Automated PR checks:** `npm run check:f11` builds/verifies the three gateway pages, exact canonical targets, and every row of the 184-row CSV, including the one consistent repeated URL and the ten explicitly missing paths. It also confirms the election ledger is still planning-only. Checks do not touch DNS, web-server config, or original bytes.

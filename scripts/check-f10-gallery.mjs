@@ -63,7 +63,8 @@ for (const id of originals) {
 }
 
 for (const [index, html] of pagesHtml.entries()) {
-  const imageSrcsets = [...html.matchAll(/<img\b[^>]*srcset="[^"]*\/images\/ncutam\/meetings\/2025-11-11\/variants\/[^"]+"/g)];
+  const imageSrcsets = [...html.matchAll(/<img\b[^>]*>/g)].filter((match) =>
+    match[0].includes('srcset=') && match[0].includes(directory + 'variants/'));
   invariant(imageSrcsets.length === 5,
     pages[index] + ' does not have all five responsive images: ' + imageSrcsets.length);
   for (const img of imageSrcsets) {

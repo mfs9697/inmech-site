@@ -21,6 +21,23 @@ for (const [source, output, selector, label] of catalogs) {
   if (!html.includes('catalog-') && !html.includes('alphabet-group')) {
     throw new Error('F10: catalogue records/group markup missing in ' + output);
   }
-  console.log('F10 ' + label + ': ' + statSync(output).size + ' HTML bytes; offscreen paint containment configured.');
+  const bytes = statSync(output).size;
+  const maxBytes = label.includes('dissertations') ? 1_150_000 : 720_000;
+  if (bytes > maxBytes) {
+    throw new Error('F10: ' + label + ' exceeds its HTML budget: ' + bytes + ' > ' + maxBytes);
+  }
+  if (label.includes('dissertations')) {
+    if (!css.includes('data-entry-year=') || !css.includes('function buildYearView()')) {
+      throw new Error('F10: ' + label + ' must build year grouping on demand');
+    }
+    const placeholder = /data-catalog-view="year" hidden>\s*<\/div>/;
+    if (!placeholder.test(css)) {
+      throw new Error('F10: ' + label + ' still embeds the duplicate year-view cards');
+    }
+    const cards = (html.match(/data-entry-year=/g) || []).length;
+    if (cards < 600) throw new Error('F10: missing dissertation cards in ' + label + ': ' + cards);
+    console.log('F10 ' + label + ': ' + cards + ' single-rendered cards.');
+  }
+  console.log('F10 ' + label + ': ' + bytes + ' HTML bytes (limit ' + maxBytes + ').');
 }
-console.log('F10 note: HTML payloads are still unpartitioned; archive anchor and filter preservation take priority.');
+console.log('F10 note: single HTML catalogue pages remain; responsive image derivatives and further pagination require a separate change.');

@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { hasNewsScope } from '../../utils/newsScopes';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import NcutamNav from '../../components/NcutamNav.astro';
 import NcutamActivityList from '../../components/ncutam/NcutamActivityList.astro';
@@ -24,7 +25,7 @@ const isDocuments = section.id === 'documents';
 const isEvergreen = section.id === 'about' || section.id === 'iutam';
 const ncutamNews = isNews
   ? (await getCollection('news'))
-      .filter((entry) => entry.data.scopes.includes('ncutam'))
+      .filter((entry) => hasNewsScope(entry, 'ncutam'))
       .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   : [];
 ---

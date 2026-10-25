@@ -133,7 +133,6 @@ function mapPostgraduateRegulation(filename) {
     'reting_rules.pdf': 'nmr/teacher-rating-rules.pdf',
     'rating_2024_2025.pdf': 'nmr/teacher-rating-2024-2025.pdf',
     'selection_procedure.pdf': 'nmr/teacher-selection-procedure.pdf',
-    '2023_doct.docx': '../doctoral/admission/doctoral-admission-rules.docx',
     'program.pdf': 'accreditation/2026/expert-group-program-2026.pdf',
     'self-assessment.pdf': 'accreditation/2026/self-assessment-2026.pdf'
   };
@@ -224,6 +223,9 @@ function proposePath(oldUrl) {
 
   const schedule = pathname.match(/^\/doc\/postgraduate\/shedule\/2025_2026\/shedule_2025_2026_(\d)\.pdf$/);
   if (schedule) return `public/documents/postgraduate/schedule/2025-2026/year-${schedule[1]}.pdf`;
+
+  // The legacy DOCX was superseded by the permanent, on-page admissions guidance.
+  if (pathname === '/doc/postgraduate/2023_doct.docx') return 'src/pages/doctoral.astro';
 
   if (pathname.startsWith('/doc/postgraduate/')) {
     const mapped = mapPostgraduateRegulation(filename);

@@ -44,7 +44,7 @@ export async function buildSearchIndex(language: SearchLanguage): Promise<Search
   const entries: SearchItem[] = [];
 
   function add(title: unknown, url: string, type: keyof typeof labels, description: unknown = '', terms: unknown[] = []) {
-    if (!text(title).trim() || !url.startsWith('/') || !(url.endsWith('/') || url.endsWith('.pdf'))) {
+    if (!text(title).trim() || !url.startsWith('/') || !(url.endsWith('/') || /\.(pdf|docx)$/.test(url))) {
       throw new Error('Invalid search entry: ' + JSON.stringify({ title, url }));
     }
     entries.push({

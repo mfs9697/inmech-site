@@ -108,6 +108,25 @@ for (const { lang, prefix } of [{ lang: 'uk', prefix: '' }, { lang: 'en', prefix
     largest + ' B.');
 }
 
+const largeCurrentPdfs = [
+  '/documents/dissertations/2025/01/opponent-review-1.pdf',
+  '/documents/dissertations/2025/01/opponent-review-2.pdf',
+  '/documents/dissertations/2025/01/opponent-review-3.pdf',
+  '/documents/dissertations/2025/02/dissertation.pdf',
+  '/documents/dissertations/2025/03/dissertation.pdf'
+];
+for (const prefix of ['', 'en/']) {
+  const html = page(prefix + 'dissertations/index.html');
+  for (const href of largeCurrentPdfs) {
+    const location = html.indexOf(href);
+    check(location >= 0, prefix + ' large PDF link missing: ' + href);
+    if (location >= 0) {
+      check(/PDF,\s*[\d.]+\s*(?:МБ|MB)/.test(html.slice(location, location + 600)),
+        prefix + ' large PDF size not visible by link: ' + href);
+    }
+  }
+}
+
 const metadataPath = path.join(thumbs, 'metadata.json');
 check(existsSync(metadataPath), 'photo dimensions manifest missing');
 const metadata = existsSync(metadataPath) ? JSON.parse(readFileSync(metadataPath, 'utf8')) : {};

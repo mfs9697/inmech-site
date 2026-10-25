@@ -6,6 +6,7 @@ import sharp from 'sharp';
 const directory = path.resolve('public/images/ncutam/meetings/2025-11-11');
 const output = path.join(directory, 'thumbs');
 await fs.mkdir(output, { recursive: true });
+const dimensions = {};
 
 for (let number = 1; number <= 5; number++) {
   const name = String(number).padStart(2, '0');
@@ -15,6 +16,7 @@ for (let number = 1; number <= 5; number++) {
   if (!metadata.width || !metadata.height || metadata.format !== 'jpeg') {
     throw new Error('Unrecognized NCUTAM original: ' + source);
   }
+  dimensions[name] = { width: metadata.width, height: metadata.height };
   for (const size of [480, 960]) {
     await sharp(source)
       .rotate()
@@ -23,4 +25,5 @@ for (let number = 1; number <= 5; number++) {
       .toFile(path.join(output, name + '-' + size + '.webp'));
   }
 }
+await fs.writeFile(path.join(output, 'metadata.json'), JSON.stringify(dimensions, null, 2) + '\n');
 console.log('F10: generated ten responsive WebP derivatives from five preserved NCUTAM originals.');

@@ -1,0 +1,16 @@
+---
+import DefendedDissertationCatalogEn from '../../../../components/DefendedDissertationCatalogEn.astro';
+import { catalogueLetterSlug } from '../../../../data/defendedCatalogueLetters';
+import { defendedDissertationsEn, groupDefendedDissertationsEn } from '../../../../data/defendedDissertationsEn';
+
+export function getStaticPaths() {
+  return groupDefendedDissertationsEn(defendedDissertationsEn).map(({ letter }) => ({
+    params: { letter: catalogueLetterSlug(letter) },
+    props: { selectedLetter: letter }
+  }));
+}
+
+const { selectedLetter } = Astro.props as { selectedLetter: string };
+---
+
+<DefendedDissertationCatalogEn selectedLetter={selectedLetter} />

@@ -6,14 +6,14 @@ shortTitle: "Механіка повзучості"
 shortTitleEn: "Mechanics of Creep"
 group: "Механіка руйнування та втома"
 groupEn: "Fracture Mechanics and Fatigue"
-head: "в.о. завідувача А.В. Плащинська"
-headEn: "Acting Head A.V. Plashchynska"
+head: "д.т.н. А.В. Молтасов (тимчасово виконує обов’язки завідувача)"
+headEn: "Andrii V. Moltasov, Doctor of Technical Sciences (Acting Head)"
 summary: "Нелінійна тривимірна теорія в’язкопружності, довготривале руйнування внаслідок повзучості, накопичення пошкоджень, прогнозування втомної довговічності та експериментальна апробація моделей повзучості й втоми."
 summaryEn: "Nonlinear three-dimensional viscoelasticity, long-term creep fracture, damage accumulation, fatigue life prediction and experimental validation of creep and fatigue models."
 sectionsEn:
   - title: "History and development"
     paragraphs:
-      - "The Department of Mechanics of Creep was formed on the basis of the Laboratory of Dynamic Strength, which was reorganized in 1966 into the Department of Dynamic Strength. In 1969 the department became the Department for the Study of Properties of New Materials, and in 1986 it was transformed into the Department of Mechanics of Creep. From 1986 to 2025 the department was headed by Vladyslav P. Golub, Doctor of Technical Sciences, Professor. The department is currently headed on an acting basis by Alla V. Plashchynska, Candidate of Technical Sciences, Senior Researcher."
+      - "The Department of Mechanics of Creep was formed on the basis of the Laboratory of Dynamic Strength, which was reorganized in 1966 into the Department of Dynamic Strength. In 1969 the department became the Department for the Study of Properties of New Materials, and in 1986 it was transformed into the Department of Mechanics of Creep. From 1986 to 2025 the department was headed by Vladyslav P. Golub, Doctor of Technical Sciences, Professor. The duties of Head of Department are currently performed on an acting basis by Andrii V. Moltasov, Doctor of Technical Sciences."
     items: []
   - title: "Research profile"
     paragraphs:
@@ -34,8 +34,8 @@ contactEmail: "creep@inmech.kyiv.ua"
 staff:
   - name: "Плащинська Алла Вікторівна"
     nameEn: "Alla V. Plashchynska"
-    position: "в.о. завідувача відділу"
-    positionEn: "Acting Head of Department"
+    position: "старший науковий співробітник"
+    positionEn: "Senior Researcher"
     url: "/people/plashchynska/"
   - name: "Маслов Борис Петрович"
     nameEn: "Borys P. Maslov"
@@ -69,7 +69,7 @@ staff:
     url: "/people/ushakova/"
 ---
 
-Відділ механіки повзучості сформувався на основі лабораторії динамічної міцності, яку у 1966 році було перетворено на відділ динамічної міцності. У 1969 році відділ перетворено на відділ дослідження властивостей нових матеріалів, а у 1986 році — на відділ механіки повзучості. У 1986–2025 роках відділ очолював доктор технічних наук, професор В.П. Голуб. Нині обов’язки завідувача відділу виконує кандидат технічних наук, старший науковий співробітник А.В. Плащинська.
+Відділ механіки повзучості сформувався на основі лабораторії динамічної міцності, яку у 1966 році було перетворено на відділ динамічної міцності. У 1969 році відділ перетворено на відділ дослідження властивостей нових матеріалів, а у 1986 році — на відділ механіки повзучості. У 1986–2025 роках відділ очолював доктор технічних наук, професор В.П. Голуб. Нині обов’язки завідувача відділу тимчасово виконує доктор технічних наук Андрій Валерійович Молтасов.
 
 ### Основні наукові напрями відділу
 

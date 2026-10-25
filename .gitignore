@@ -3,5 +3,9 @@ dist/
 .astro/
 .env
 .DS_Store
+# Generated responsive gallery assets and image-size manifest.
+public/images/ncutam/meetings/2025-11-11/variants/
+src/data/ncutam-gallery.generated.json
+
 # Signed cooperation agreements are retained outside the public repository.
 public/documents/scientific-cooperation/*.pdf

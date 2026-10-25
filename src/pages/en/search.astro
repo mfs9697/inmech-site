@@ -1,111 +1,23 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
 import { siteEn } from '../../data/site-en';
-import { getEnglishNewsBody } from '../../utils/newsBody';
-import { getVisibleNewsTagsEn } from '../../utils/newsTags';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-function withBase(path: string) {
-  if (/^(https?:)?\/\//.test(path) || path.startsWith('mailto:') || path.startsWith('#')) {
-    return path;
-  }
-
-  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
-}
-
-const staticPages = [
-  ['Home', '/en/', 'Home page of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine.'],
-  ['News', '/en/news/', 'News and announcements of the Institute.'],
-  ['Research departments', '/en/departments/', 'Structure of the Institute research departments.'],
-  ['Library', '/en/library/', 'Monographs, textbooks, historical materials and catalogues.'],
-  ['Postgraduate studies', '/en/postgraduate/', 'Admission, educational and research programme, accreditation, students and supervisors.'],
-  ['Dissertation defenses', '/en/dissertations/', 'Materials of current and previous dissertation defenses.'],
-  ['Catalogue of defended dissertations', '/en/defended-dissertations/', 'Alphabetical catalogue of dissertations defended at the Institute.'],
-  ['Scientific Council', '/en/scientific-council/', 'Scientific Council of the Institute of Mechanics.'],
-  ['Scientific and Methodological Council', '/en/nmr/', 'Methodological support of educational and research activities.'],
-  ['Doctoral studies', '/en/doctoral/', 'Information on doctoral studies at the Institute.'],
-  ['Sitemap', '/en/sitemap/', 'Structured list of the main pages of the website.'],
-  ['Accessibility policy', '/en/accessibility/', 'Website accessibility policy.'],
-  ['Site administration', '/en/site-administration/', 'Website administration and maintenance information.'],
-  ['Trust box', '/en/trust-box/', 'Confidential communication channel for postgraduate students and stakeholders.']
-];
-
-const news = (await getCollection('news')).map((entry) => ({
-  title: entry.data.titleEn ?? entry.data.title,
-  url: entry.data.externalUrl ?? `/en/news/${entry.id}/`,
-  type: 'News',
-  description: entry.data.descriptionEn ?? entry.data.description,
-  keywords: [
-    entry.data.categoryEn,
-    ...(entry.data.tagsEn ?? []),
-    ...getVisibleNewsTagsEn(entry),
-    String(entry.data.year),
-    getEnglishNewsBody(entry.body ?? '')
-  ].filter(Boolean).join(' ')
-}));
-
-const departments = (await getCollection('departments')).map((entry) => ({
-  title: entry.data.titleEn ?? entry.data.title,
-  url: `/en/departments/${entry.id}/`,
-  type: 'Research departments',
-  description: entry.data.summaryEn ?? entry.data.summary,
-  keywords: [
-    entry.data.shortTitleEn,
-    entry.data.shortTitle,
-    entry.data.groupEn,
-    entry.data.group,
-    entry.data.headEn,
-    entry.data.head,
-    ...entry.data.staff.map((item) => item.nameEn ?? item.name),
-    entry.body
-  ].filter(Boolean).join(' ')
-}));
-
-const people = (await getCollection('people')).map((entry) => ({
-  title: entry.data.nameEn ?? entry.data.name,
-  url: `/en/people/${entry.id}/`,
-  type: 'People',
-  description: [
-    entry.data.positionEn ?? entry.data.position,
-    entry.data.departmentEn ?? entry.data.department,
-    entry.data.degreeEn ?? entry.data.degree
-  ].filter(Boolean).join(' · '),
-  keywords: [
-    entry.data.name,
-    entry.data.academicTitleEn,
-    entry.data.academicTitle,
-    entry.data.email,
-    ...entry.data.researchAreasEn,
-    ...entry.data.researchAreas,
-    entry.body
-  ].filter(Boolean).join(' ')
-}));
-
-const searchItems = [
-  ...staticPages.map(([title, url, description]) => ({ title, url, type: 'Pages', description, keywords: '' })),
-  ...news,
-  ...departments,
-  ...people
-].map((item) => ({
-  ...item,
-  url: withBase(item.url),
-  haystack: `${item.title} ${item.type} ${item.description} ${item.keywords}`.toLocaleLowerCase('en-US')
-}));
+const withBase = (path: string) => base + path;
 ---
+
 
 <BaseLayoutEn
   title={`Search | ${siteEn.shortName}`}
   description="Search page of the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine website."
   activePage="home"
 >
-  <div class="search-page">
+  <div class="search-page" data-site-search data-search-lang="en" data-search-index={withBase('/en/search-index.json')}>
     <section class="search-hero">
       <p class="eyebrow">Navigation</p>
       <h1>Search the website</h1>
       <p class="lead">
-        Enter a surname, section title, research topic or keyword to find pages, news,
-        research departments and staff profiles.
+        Enter a surname, document name, competition, research topic or keyword. Results also cover the director-election archive, educational documents and NCUTAM.
       </p>
     </section>
 
@@ -115,7 +27,8 @@ const searchItems = [
         <input id="site-search" type="search" placeholder="For example: postgraduate, SCADAS, fracture, Selivanov" autocomplete="off" />
         <button type="button" data-clear-search>Clear</button>
       </div>
-      <p class="search-help">The search runs in your browser across the main indexed pages and materials of the English section.</p>
+      <p class="search-help">Search page titles, summaries and document metadata. PDF full text is not indexed.</p>
+      <noscript><p class="search-help">Search requires JavaScript. Browse the <a href={withBase('/en/sitemap/')}>sitemap</a> instead.</p></noscript>
     </section>
 
     <section class="search-results-section" aria-live="polite">
@@ -128,62 +41,8 @@ const searchItems = [
   </div>
 </BaseLayoutEn>
 
-<script define:vars={{ searchItems }}>
-  const input = document.querySelector('#site-search');
-  const clearButton = document.querySelector('[data-clear-search]');
-  const results = document.querySelector('[data-search-results]');
-  const count = document.querySelector('[data-results-count]');
-
-  function escapeHtml(value) {
-    return value
-      .replaceAll('&', '&amp;')
-      .replaceAll('<', '&lt;')
-      .replaceAll('>', '&gt;')
-      .replaceAll('"', '&quot;')
-      .replaceAll("'", '&#039;');
-  }
-
-  function renderResults(query) {
-    const normalizedQuery = query.trim().toLocaleLowerCase('en-US');
-
-    if (!normalizedQuery) {
-      results.innerHTML = '';
-      count.textContent = 'Start typing a query';
-      return;
-    }
-
-    const words = normalizedQuery.split(/\s+/).filter(Boolean);
-    const found = searchItems
-      .map((item) => {
-        const score = words.reduce((sum, word) => sum + (item.haystack.includes(word) ? 1 : 0), 0);
-        return { ...item, score };
-      })
-      .filter((item) => item.score > 0)
-      .sort((a, b) => b.score - a.score || a.title.localeCompare(b.title, 'en'))
-      .slice(0, 50);
-
-    count.textContent = found.length === 1 ? '1 result' : `${found.length} results`;
-
-    if (found.length === 0) {
-      results.innerHTML = '<p class="empty-results">No results found for this query.</p>';
-      return;
-    }
-
-    results.innerHTML = found.map((item) => `
-      <article class="result-card">
-        <span>${escapeHtml(item.type)}</span>
-        <h3><a href="${item.url}">${escapeHtml(item.title)}</a></h3>
-        ${item.description ? `<p>${escapeHtml(item.description)}</p>` : ''}
-      </article>
-    `).join('');
-  }
-
-  input?.addEventListener('input', () => renderResults(input.value));
-  clearButton?.addEventListener('click', () => {
-    input.value = '';
-    input.focus();
-    renderResults('');
-  });
+<script>
+  import '../../scripts/site-search';
 </script>
 
 <style>

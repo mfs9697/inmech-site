@@ -80,6 +80,10 @@ const documentIds = new Set(documents.map((record) => record.id));
 const activeMembers = members.filter((record) => record.status === 'active');
 const formerMembers = members.filter((record) => record.status === 'former');
 const activeMemberIds = new Set(activeMembers.map((record) => record.id));
+const chernyshenko = members.find((record) => record.id === 'chernyshenko-ivan');
+if (!chernyshenko || chernyshenko.status !== 'former' || chernyshenko.joinedYear !== 1993 || chernyshenko.endedYear !== 2026) {
+  fail('members/chernyshenko-ivan: preserved historical membership must be former (1993–2026)');
+}
 const currentYear = new Date().getFullYear();
 
 // The migration snapshot is no longer a permanent count invariant: membership

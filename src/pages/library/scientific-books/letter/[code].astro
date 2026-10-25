@@ -1,0 +1,10 @@
+---
+import { scientificBookGroups } from '../../../../data/scientificBookPartitions';
+import ScientificBookLetter from '../../../../components/library/ScientificBookLetter.astro';
+
+export function getStaticPaths() {
+  return scientificBookGroups.map((group) => ({ params: { code: group.code }, props: { group } }));
+}
+const { group } = Astro.props;
+---
+<ScientificBookLetter group={group} language="uk" />

@@ -256,21 +256,26 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
     const years = [...byYear.keys()].sort((a, b) =>
       a === 'Year unknown' ? 1 : b === 'Year unknown' ? -1 : Number(b) - Number(a)
     );
+    const templateGroup = alphabetical.querySelector('[data-catalog-group]');
+    const templateHeader = templateGroup?.querySelector('.letter-heading');
+    const templateTitle = templateHeader?.querySelector('span');
+    const templateCount = templateHeader?.querySelector('[data-group-count]');
+    const templateGrid = templateGroup?.querySelector('.catalog-entry-grid');
+    if (!templateGroup || !templateHeader || !templateTitle || !templateCount || !templateGrid) return;
     for (const year of years) {
-      const group = document.createElement('section');
-      group.className = 'catalog-letter-group';
-      group.dataset.catalogGroup = '';
-      const header = document.createElement('div');
-      header.className = 'letter-heading year-heading';
+      // Clone scoped Astro markup instead of creating unstyled elements from scratch.
+      const group = templateGroup.cloneNode(false);
+      group.removeAttribute('id');
+      group.hidden = false;
+      const header = templateHeader.cloneNode(false);
       header.id = 'year-' + year;
-      const title = document.createElement('span');
+      group.setAttribute('aria-labelledby', header.id);
+      const title = templateTitle.cloneNode(false);
       title.textContent = year;
-      const count = document.createElement('strong');
-      count.dataset.groupCount = '';
+      const count = templateCount.cloneNode(false);
       count.textContent = entryLabel(byYear.get(year).length);
       header.append(title, count);
-      const grid = document.createElement('div');
-      grid.className = 'catalog-entry-grid';
+      const grid = templateGrid.cloneNode(false);
       byYear.get(year).forEach((card) => grid.append(card.cloneNode(true)));
       group.append(header, grid);
       target.append(group);

@@ -1,0 +1,15 @@
+---
+import ScientificBooksCatalog from '../../../../components/ScientificBooksCatalog.astro';
+import { bibliographyTopicTags } from '../../../../data/bibliographyCatalogueIndex';
+
+export function getStaticPaths() {
+  return bibliographyTopicTags.map((selectedTag) => ({
+    params: { tag: selectedTag },
+    props: { selectedTag }
+  }));
+}
+
+const { selectedTag } = Astro.props as { selectedTag: string };
+---
+
+<ScientificBooksCatalog selectedTag={selectedTag} />

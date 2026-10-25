@@ -83,7 +83,8 @@ function validateDocuments() {
   const table = csvRows(readFileSync('documents-migration.csv', 'utf8'));
   assert.deepEqual(table.shift(), ['source_file', 'old_url', 'suggested_new_path', 'status']);
   assert.equal(table.length, 184, 'Unexpected document migration ledger count');
-  const seen = new Set();
+  const seen = new Map();
+  const duplicateUrls = new Set();
   const missing = new Set();
   let existing = 0;
   let htmlReplacement = 0;
@@ -96,8 +97,16 @@ function validateDocuments() {
     assert.equal(old.protocol, 'https:');
     assert(old.pathname.startsWith('/doc/'));
     assert(!old.search && !old.hash, 'Unexpected query in exact document URL');
-    assert(!seen.has(url), 'Duplicate legacy document URL ' + url);
-    seen.add(url);
+    const previous = seen.get(url);
+    if (previous) {
+      assert.equal(url, 'https://inmech.kyiv.ua/doc/postgraduate/rating_2024_2025.pdf',
+        'Unexpected duplicated source URL: ' + url);
+      assert.deepEqual(previous, { dest, status },
+        'One source URL must never point to contradictory destinations');
+      duplicateUrls.add(url);
+    } else {
+      seen.set(url, { dest, status });
+    }
     assert(['to-download', 'replaced-by-page', 'canonical-vacancy-archive'].includes(status));
     if (status === 'replaced-by-page') {
       assert.equal(dest, 'src/pages/doctoral.astro');
@@ -119,6 +128,8 @@ function validateDocuments() {
   }
   assert.deepEqual([...missing].sort(), [...missingAllowed].sort(),
     'Withheld/missing sources must remain explicitly recorded; no fabricated downloads');
+  assert.equal(seen.size, 183, 'Number of distinct historical document URLs changed');
+  assert.equal(duplicateUrls.size, 1, 'Expected precisely one shared historical URL');
   assert.equal(existing, 173, 'Existing file destinations have changed');
   assert.equal(canonicalVacancy, 3);
   assert.equal(htmlReplacement, 1);
@@ -126,7 +137,8 @@ function validateDocuments() {
   assert.equal(elections.documentRoutes.length, 17);
   assert.equal(elections.status, 'planning-only',
     'Election host redirects cannot be activated from this static site');
-  console.log('F11 documents: ' + table.length + ' exact legacy source URLs, ' +
+  console.log('F11 documents: ' + table.length + ' inventory rows, ' +
+    seen.size + ' distinct legacy source URLs, ' +
     existing + ' existing public targets, ' + missing.size + ' absent/withheld files, ' +
     htmlReplacement + ' replacement page; election-host 25 HTML + 17 document URLs remain a separate ledger.');
 }

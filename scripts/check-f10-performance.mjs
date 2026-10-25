@@ -17,7 +17,7 @@ for (const { lang, prefix } of [{ lang: 'uk', prefix: '' }, { lang: 'en', prefix
   const base = prefix + 'defended-dissertations/';
   const index = page(base + 'index.html');
   check(index.includes('letter/'), lang + ' index lacks crawlable alphabet links');
-  check((index.match(/data-entry-card/g) ?? []).length === 0,
+  check((index.match(/<article class="catalog-entry-card" data-entry-card/g) ?? []).length === 0,
     lang + ' index still renders all dissertation cards');
   const letterDir = path.join(dist, base, 'letter');
   const slugs = existsSync(letterDir)
@@ -29,7 +29,7 @@ for (const { lang, prefix } of [{ lang: 'uk', prefix: '' }, { lang: 'en', prefix
   for (const slug of slugs) {
     const route = base + 'letter/' + slug + '/';
     const html = page(route + 'index.html');
-    const cards = (html.match(/data-entry-card data-entry-topics=/g) ?? []).length;
+    const cards = (html.match(/<article class="catalog-entry-card" data-entry-card/g) ?? []).length;
     // The retained surname/year grouping renders each record once per view.
     check(cards % 2 === 0, lang + ' mismatched two grouping views: ' + route);
     cardCount += cards / 2;

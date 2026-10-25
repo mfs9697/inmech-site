@@ -1,11 +1,29 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
+import * as esbuild from 'esbuild';
 
 const dist = path.resolve('dist');
 const source = path.resolve('public/images/ncutam/meetings/2025-11-11');
 const photoRoot = path.join(dist, 'images/ncutam/meetings/2025-11-11');
 const thumbs = path.join(photoRoot, 'thumbs');
 const errors = [];
+const bibliographyBundle = await esbuild.build({
+  stdin: {
+    contents: "export { bibliographyAll } from './src/data/bibliographyAll';",
+    resolveDir: process.cwd(),
+    sourcefile: 'f10-bibliography-check.ts',
+    loader: 'ts'
+  },
+  bundle: true,
+  platform: 'node',
+  format: 'esm',
+  write: false,
+  logLevel: 'silent'
+});
+const { bibliographyAll } = await import(
+  'data:text/javascript;charset=utf-8,' + encodeURIComponent(bibliographyBundle.outputFiles[0].text)
+);
+
 function check(condition, message) { if (!condition) errors.push(message); }
 function page(rel) {
   const full = path.join(dist, rel);
@@ -48,9 +66,7 @@ for (const { lang, prefix } of [{ lang: 'uk', prefix: '' }, { lang: 'en', prefix
 for (const { lang, prefix } of [{ lang: 'uk', prefix: '' }, { lang: 'en', prefix: 'en/' }]) {
   const base = prefix + 'library/scientific-books/';
   const index = page(base + 'index.html');
-  const countMatch = /class="books-stats"[^>]*>[\s\S]{0,150}?<strong>(\d+)<\/strong>/.exec(index);
-  check(Boolean(countMatch), lang + ' bibliography total is not rendered');
-  const expected = Number(countMatch?.[1]);
+  const expected = bibliographyAll.length;
   check(!/<article class="book-card" data-book-card/.test(index),
     lang + ' bibliography index is still oversized with all records');
   const letterDir = path.join(dist, base, 'letter');

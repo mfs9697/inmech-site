@@ -1,0 +1,59 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayoutEn from '../../../layouts/BaseLayoutEn.astro';
+import NewsCardEn from '../../../components/NewsCardEn.astro';
+import YearArchive from '../../../components/YearArchive.astro';
+import { getInstituteNewsByYear, getInstituteNewsYears } from '../../../utils/newsArchive';
+import { siteEn } from '../../../data/site-en';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('news');
+  return getInstituteNewsYears(entries).map((year) => ({
+    params: { year: String(year) },
+    props: { year }
+  }));
+}
+
+const { year } = Astro.props as { year: number };
+const allNews = await getCollection('news');
+const years = getInstituteNewsYears(allNews);
+const news = getInstituteNewsByYear(allNews, year);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayoutEn
+  title={`Institute news · ${year} | ${siteEn.name}`}
+  description={`News archive ${year} — ${siteEn.name}.`}
+  activePage="news"
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">Browse by year</p>
+        <h1>Institute news · {year}</h1>
+        <p class="lead">Institute news published in the selected year. Other years are available through the year navigation below.</p>
+        <YearArchive years={years} activeYear={year} lang="en" />
+        <p class="archive-overview"><a href={`${base}/en/news/`}>All news</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {news.length > 0 ? (
+        <div class="news-list">
+          {news.map((entry) => <NewsCardEn entry={entry} />)}
+        </div>
+      ) : (
+        <div class="panel"><p>No Institute news is available for this year.</p></div>
+      )}
+    </div>
+  </section>
+</BaseLayoutEn>
+
+<style>
+  .archive-overview {
+    margin: 14px 0 0;
+    font-weight: 700;
+  }
+</style>

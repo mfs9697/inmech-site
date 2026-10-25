@@ -1,13 +1,64 @@
 ---
 interface Props {
+  years: number[];
   activeYear?: number;
+  lang?: 'uk' | 'en';
 }
 
-const { activeYear = new Date().getFullYear() } = Astro.props;
-const currentYear = new Date().getFullYear();
+const { years, activeYear, lang = 'uk' } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const prefix = lang === 'en' ? '/en/news/' : '/news/';
+const allLabel = lang === 'en' ? 'All years' : 'Усі роки';
+const ariaLabel = lang === 'en' ? 'Browse news by year' : 'Перегляд новин за роками';
 ---
 
-<nav class="year-nav" aria-label="Архів за роками">
-  <a class={currentYear === activeYear ? 'active' : ''} href={`${base}/news/`}>{currentYear}</a>
+<nav class="year-nav" aria-label={ariaLabel}>
+  <a
+    class:list={['year-link', { active: activeYear === undefined }]}
+    href={`${base}${prefix}`}
+    aria-current={activeYear === undefined ? 'page' : undefined}
+  >{allLabel}</a>
+  {years.map((year) => (
+    <a
+      class:list={['year-link', { active: activeYear === year }]}
+      href={`${base}${prefix}${year}/`}
+      aria-current={activeYear === year ? 'page' : undefined}
+    >{year}</a>
+  ))}
 </nav>
+
+<style>
+  .year-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 18px 0 0;
+  }
+
+  .year-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 8px 16px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--text);
+    background: var(--surface);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .year-link:hover,
+  .year-link.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    text-decoration: none;
+  }
+
+  .year-link:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+  }
+</style>

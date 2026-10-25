@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
-import { hasNewsScope } from '../../utils/newsScopes';
+import YearArchive from '../../components/YearArchive.astro';
+import { getInstituteNews, getInstituteNewsYears } from '../../utils/newsArchive';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import NewsCard from '../../components/NewsCard.astro';
 import { site } from '../../data/site';
@@ -8,18 +9,16 @@ import { allowedNewsTags, getVisibleNewsTags } from '../../utils/newsTags';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
-const currentYear = new Date().getFullYear();
-
-const news = (await getCollection('news'))
-  .filter((entry) => hasNewsScope(entry, 'institute') && (entry.data.year === currentYear || entry.data.date.getFullYear() === currentYear))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const allNews = await getCollection('news');
+const news = getInstituteNews(allNews);
+const years = getInstituteNewsYears(allNews);
 
 const tags = allowedNewsTags.filter((tag) => news.some((entry) => getVisibleNewsTags(entry).includes(tag)));
 ---
 
 <BaseLayout
-  title={`Новини ${currentYear} | ${site.name}`}
-  description={`Новини Інституту механіки ім. С. П. Тимошенка НАН України за ${currentYear} рік.`}
+  title={`Новини | ${site.name}`}
+  description="Новини Інституту механіки ім. С. П. Тимошенка НАН України за всі доступні роки."
   activePage="news"
 >
   <section class="page-hero">
@@ -28,8 +27,10 @@ const tags = allowedNewsTags.filter((tag) => news.some((entry) => getVisibleNews
         <p class="eyebrow">Новини</p>
         <h1>Новини Інституту</h1>
         <p class="lead">
-          На цій сторінці подано новини поточного року. Для швидкого пошуку можна скористатися тегами.
+          Усі опубліковані новини Інституту за роками. Оберіть потрібний рік або скористайтеся тегами.
         </p>
+
+        <YearArchive years={years} lang="uk" />
 
         {tags.length > 0 && (
           <nav class="tag-nav" aria-label="Фільтр новин за тегами">
@@ -51,7 +52,7 @@ const tags = allowedNewsTags.filter((tag) => news.some((entry) => getVisibleNews
         </div>
       ) : (
         <div class="empty-news-panel">
-          <h2>Новини за {currentYear} рік поки що не додано</h2>
+          <h2>Новини Інституту поки що не додано</h2>
         </div>
       )}
     </div>

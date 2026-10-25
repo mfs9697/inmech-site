@@ -1,0 +1,59 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NewsCard from '../../components/NewsCard.astro';
+import YearArchive from '../../components/YearArchive.astro';
+import { getInstituteNewsByYear, getInstituteNewsYears } from '../../utils/newsArchive';
+import { site } from '../../data/site';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('news');
+  return getInstituteNewsYears(entries).map((year) => ({
+    params: { year: String(year) },
+    props: { year }
+  }));
+}
+
+const { year } = Astro.props as { year: number };
+const allNews = await getCollection('news');
+const years = getInstituteNewsYears(allNews);
+const news = getInstituteNewsByYear(allNews, year);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout
+  title={`Новини Інституту · ${year} | ${site.name}`}
+  description={`Архів новин ${year} — ${site.name}.`}
+  activePage="news"
+>
+  <section class="page-hero">
+    <div class="container">
+      <div class="panel">
+        <p class="eyebrow">Архів за роками</p>
+        <h1>Новини Інституту · {year}</h1>
+        <p class="lead">Огляд повідомлень Інституту за вибраний рік. Усі інші роки доступні через навігацію нижче.</p>
+        <YearArchive years={years} activeYear={year} lang="uk" />
+        <p class="archive-overview"><a href={`${base}/news/`}>До всіх новин</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {news.length > 0 ? (
+        <div class="news-list">
+          {news.map((entry) => <NewsCard entry={entry} />)}
+        </div>
+      ) : (
+        <div class="panel"><p>За вибраний рік новин Інституту немає.</p></div>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .archive-overview {
+    margin: 14px 0 0;
+    font-weight: 700;
+  }
+</style>

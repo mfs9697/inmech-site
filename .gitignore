@@ -5,3 +5,6 @@ dist/
 .DS_Store
 # Signed cooperation agreements are retained outside the public repository.
 public/documents/scientific-cooperation/*.pdf
+
+# F10: generated build-time WebP previews; original JPEGs remain versioned.
+/public/images/ncutam/meetings/2025-11-11/thumbs/

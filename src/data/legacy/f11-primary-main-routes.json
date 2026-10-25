@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "purpose": "F11 first batch: main-host HTML compatibility and pending redirect decisions",
+  "status": "static-compatibility-only",
+  "sourceHost": "inmech.kyiv.ua",
+  "entries": [
+    {
+      "oldPath": "/l/ua/news/",
+      "destination": "/news/",
+      "compatibilityPage": "/l/ua/news/",
+      "language": "uk",
+      "handling": "static-contextual-gateway",
+      "queryPolicy": "year-on-original-host",
+      "equivalence": "partial",
+      "note": "The current news page does not yet contain the complete legacy news archive."
+    },
+    {
+      "oldPath": "/l/en/news/",
+      "destination": "/en/news/",
+      "compatibilityPage": "/l/en/news/",
+      "language": "en",
+      "handling": "static-contextual-gateway",
+      "queryPolicy": "year-on-original-host",
+      "equivalence": "partial",
+      "note": "Historic year query is preserved as a hyperlink to the old host, not redirected to 2026."
+    },
+    {
+      "oldPath": "/l/ua/calendar_g/",
+      "destination": "/events/",
+      "compatibilityPage": "/l/ua/calendar_g/",
+      "language": "uk",
+      "handling": "static-contextual-gateway",
+      "queryPolicy": "none",
+      "equivalence": "calendar-moved",
+      "note": "The events calendar is now embedded on the new /events/ page."
+    }
+  ],
+  "documentInventory": "documents-migration.csv",
+  "electionHostInventory": "src/data/elections/2026/legacy-routes.json",
+  "hostLevelRedirects": "not-activated",
+  "unverifiedCategories": [
+    "unmigrated pre-2026 news years",
+    "historical staff and employee URLs",
+    "old-host/election-host HTTP rules",
+    "missing or withheld document binaries"
+  ]
+}

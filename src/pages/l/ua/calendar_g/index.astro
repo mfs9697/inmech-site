@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout
+  title="Перенесення календаря подій | Інститут механіки"
+  description="Інформація про перенесення календаря подій зі старої адреси Інституту механіки."
+  activePage="home"
+>
+  <section class="section">
+    <div class="container">
+      <div class="panel" style="padding: clamp(24px, 5vw, 48px);">
+        <p class="eyebrow">Історична адреса</p>
+        <h1>Календар подій перенесено</h1>
+        <p class="lead">
+          Календар Інституту тепер доступний в оновленому розділі.
+          Події та вбудований календар можна переглянути за посиланням:
+        </p>
+        <p><a class="button primary" href={base + '/events/'}>Відкрити календар подій</a></p>
+        <p>Ця сторінка збережена для відвідувачів зі старими закладками.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

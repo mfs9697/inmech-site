@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
+import { site } from '../../data/site';
+import { siteEn } from '../../data/site-en';
+
+interface Props {
+  language: 'uk' | 'en';
+}
+
+const { language } = Astro.props;
+const en = language === 'en';
+const Layout = en ? BaseLayoutEn : BaseLayout;
+const originPrefix = en ? '/l/en/news/' : '/l/ua/news/';
+const modern = en ? '/en/news/' : '/news/';
+const alt = en ? '/l/ua/news/' : '/l/en/news/';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const currentLink = base + modern;
+const otherLink = base + alt;
+const archiveHost = 'https://old.inmech.kyiv.ua' + originPrefix;
+---
+
+<Layout
+  title={en ? `Historical news links | ${siteEn.shortName}` : `Історичні адреси новин | ${site.shortName}`}
+  description={en
+    ? 'Compatibility page for historical Institute news URLs, with links to the current news and original archive.'
+    : 'Сторінка переходу зі старих адрес новин Інституту на новий сайт та історичний архів.'}
+  activePage="news"
+>
+  <section class="section">
+    <div class="container">
+      <div class="panel legacy-news-panel" data-legacy-news-gateway
+        data-archive-url={archiveHost}>
+        <p class="eyebrow">{en ? 'Archived address · news' : 'Стара адреса · новини'}</p>
+        <h1>{en ? 'You followed a historical news link' : 'Ви перейшли за історичним посиланням на новини'}</h1>
+        <p class="lead">
+          {en
+            ? 'The Institute now publishes news in a different section. The older archive has not yet been fully migrated; a news year from the historical URL must not be silently replaced with news from another year.'
+            : 'Новини Інституту тепер розміщуються в іншому розділі. Старий архів ще не перенесено повністю: рік із попереднього посилання не можна непомітно замінювати новинами іншого року.'}
+        </p>
+        <div class="legacy-news-links">
+          <a class="button primary" href={currentLink}>
+            {en ? 'Current Institute news' : 'Новини Інституту на новому сайті'}
+          </a>
+          <a class="button secondary" href={archiveHost}>
+            {en ? 'Original historical news archive' : 'Історичний архів на старому сайті'}
+          </a>
+        </div>
+        <p class="legacy-year" hidden data-legacy-selected-year>
+          <span data-legacy-year-label></span>{' '}
+          <a data-legacy-year-link href={archiveHost}>
+            {en ? 'Open this year on the original site' : 'Відкрити цей рік на старому сайті'}
+          </a>
+        </p>
+        <p class="legacy-note">
+          {en
+            ? 'Some historical documents and news items may not yet have a replacement on the new website. This page does not assert that any year-specific archive has been migrated.'
+            : 'Для деяких історичних матеріалів і документів ще немає відповідників на новому сайті. Ця сторінка не стверджує, що архів певного року вже перенесено.'}
+        </p>
+        <a href={otherLink}>{en ? 'Українська версія цієї сторінки' : 'English version of this page'}</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const gateway = document.querySelector<HTMLElement>('[data-legacy-news-gateway]');
+  if (gateway) {
+    const raw = new URLSearchParams(window.location.search).get('year');
+    if (raw && /^(19|20)\d{2}$/.test(raw)) {
+      const year = Number(raw);
+      if (year >= 1990 && year <= new Date().getFullYear()) {
+        const container = gateway.querySelector<HTMLElement>('[data-legacy-selected-year]');
+        const label = gateway.querySelector<HTMLElement>('[data-legacy-year-label]');
+        const link = gateway.querySelector<HTMLAnchorElement>('[data-legacy-year-link]');
+        const prefix = gateway.closest('html')?.lang === 'en' ? 'Requested archive year:' : 'Рік із попереднього посилання:';
+        if (container && label && link) {
+          label.textContent = prefix + ' ' + year + '.';
+          // The query belongs to the ORIGINAL archive. Do not redirect it to an unrelated new year.
+          link.href = gateway.dataset.archiveUrl + '?year=' + String(year);
+          container.hidden = false;
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  .legacy-news-panel {
+    padding: clamp(24px, 5vw, 48px);
+    max-width: 950px;
+    margin: 0 auto;
+  }
+  .legacy-news-panel h1 { max-width: 22ch; font-size: clamp(1.9rem, 4vw, 3rem); }
+  .legacy-news-panel .lead { max-width: 74ch; line-height: 1.65; }
+  .legacy-news-links { display: flex; gap: 12px; flex-wrap: wrap; margin: 24px 0; }
+  .legacy-year { padding: 14px 18px; border-left: 3px solid var(--accent); background: var(--surface-soft); }
+  .legacy-note { color: var(--muted); font-size: .92rem; line-height: 1.55; }
+</style>

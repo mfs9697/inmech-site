@@ -1,8 +1,8 @@
 ---
 name: "Плащинська Алла Вікторівна"
 nameEn: "Alla V. Plashchynska"
-position: "В.о. завідувача відділу механіки повзучості"
-positionEn: "Acting Head of the Department of Mechanics of Creep"
+position: "Старший науковий співробітник"
+positionEn: "Senior Researcher"
 department: "Відділ механіки повзучості"
 departmentEn: "Department of Mechanics of Creep"
 departmentUrl: "/departments/08-creep/"

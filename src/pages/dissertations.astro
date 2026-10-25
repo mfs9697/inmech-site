@@ -1,4 +1,5 @@
 ---
+import { largeDissertationPdfSize } from '../utils/publicDocumentSize';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
 
@@ -252,7 +253,9 @@ const featuredDefenses = [
             {defense.links.length > 0 && (
               <div class="defense-links">
                 {defense.links.map(([label, href]) => (
-                  <a href={withBase(href)} target="_blank" rel="noopener noreferrer">{label}</a>
+                  <a href={withBase(href)} target="_blank" rel="noopener noreferrer">
+                    {label}{largeDissertationPdfSize(href) && <span> · PDF, {largeDissertationPdfSize(href)} МБ</span>}
+                  </a>
                 ))}
               </div>
             )}
@@ -265,7 +268,7 @@ const featuredDefenses = [
                     <a class="opponent-card" href={withBase(href)} target="_blank" rel="noopener noreferrer">
                       <strong>{name}</strong>
                       <span>{degree}</span>
-                      <em>Переглянути відгук →</em>
+                      <em>Переглянути відгук → {largeDissertationPdfSize(href) && <span>· PDF, {largeDissertationPdfSize(href)} МБ</span>}</em>
                     </a>
                   ))}
                 </div>

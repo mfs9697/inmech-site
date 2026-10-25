@@ -22,7 +22,7 @@ for (const [source, output, selector, label] of catalogs) {
     throw new Error('F10: catalogue records/group markup missing in ' + output);
   }
   const bytes = statSync(output).size;
-  const maxBytes = label.includes('dissertations') ? 1_150_000 : 720_000;
+  const maxBytes = label.includes('dissertations') ? 1_150_000 : 85_000;
   if (bytes > maxBytes) {
     throw new Error('F10: ' + label + ' exceeds its HTML budget: ' + bytes + ' > ' + maxBytes);
   }
@@ -40,4 +40,4 @@ for (const [source, output, selector, label] of catalogs) {
   }
   console.log('F10 ' + label + ': ' + bytes + ' HTML bytes (limit ' + maxBytes + ').');
 }
-console.log('F10 note: single HTML catalogue pages remain; responsive image derivatives and further pagination require a separate change.');
+console.log('F10: scientific books are partitioned into crawlable letter pages; dissertation archives retain single-copy records.');

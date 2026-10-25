@@ -1,5 +1,9 @@
 ---
 import { defendedDissertationsA } from '../data/defendedDissertationsA';
+import { catalogueLetterSlug } from '../data/defendedCatalogueLetters';
+
+interface Props { selectedLetter?: string; }
+const { selectedLetter } = Astro.props;
 import { defendedDissertationsB } from '../data/defendedDissertationsB';
 import { defendedDissertationsV } from '../data/defendedDissertationsV';
 import { defendedDissertationsG } from '../data/defendedDissertationsG';
@@ -77,6 +81,7 @@ const catalog = baseCatalog.map((group) => ({
 }));
 
 const allCatalogItems = catalog.flatMap((group) => group.items);
+const visibleCatalog = selectedLetter ? catalog.filter((group) => group.letter === selectedLetter) : [];
 const totalItems = allCatalogItems.length;
 const candidateDegreePattern = /к\.ф\.-?м\.н\.|к\.т\.н\./i;
 const doctoralDegreePattern = /д\.ф\.-?м\.н\.|д\.т\.н\./i;
@@ -135,7 +140,7 @@ const topicOptions = defendedDissertationTopics
   .slice(0, defendedDissertationTopicLimit)
   .sort((a, b) => a.uk.localeCompare(b.uk, 'uk', { sensitivity: 'base' }));
 const topicLabelById = new Map(defendedDissertationTopics.map((topic) => [topic.id, topic.uk]));
-const catalogRecords = catalog.flatMap((group) =>
+const catalogRecords = visibleCatalog.flatMap((group) =>
   group.items.map((item) => ({
     item,
     letter: group.letter,
@@ -197,6 +202,7 @@ const yearGroups = Array.from(recordsByYear, ([year, records]) => ({ year, recor
       </article>
     </div>
 
+    {selectedLetter && (
     <div class="catalog-controls-panel" aria-labelledby="catalog-controls-heading">
       <div class="catalog-controls-heading">
         <div>
@@ -223,10 +229,16 @@ const yearGroups = Array.from(recordsByYear, ([year, records]) => ({ year, recor
       </div>
       <p class="catalog-filter-status" data-filter-status>{totalItems} записів · за прізвищем</p>
     </div>
+    )}
 
     <nav class="diss-alpha-nav" data-surname-navigation aria-label="Алфавітна навігація каталогу захищених дисертацій">
-      {catalog.map((group) => (
-        <a href={`#catalog-${group.letter}`}>{group.letter}</a>
+      <a href={withBase('/defended-dissertations/')} aria-current={!selectedLetter ? 'page' : undefined}>Усі літери</a>
+      {catalog.filter((group) => group.items.length).map((group) => (
+        <a
+          id={!selectedLetter ? `catalog-${group.letter}` : undefined}
+          href={withBase(`/defended-dissertations/letter/${catalogueLetterSlug(group.letter)}/#catalog-${group.letter}`)}
+          aria-current={selectedLetter === group.letter ? 'page' : undefined}
+        >{group.letter} · {group.items.length}</a>
       ))}
     </nav>
 
@@ -236,8 +248,9 @@ const yearGroups = Array.from(recordsByYear, ([year, records]) => ({ year, recor
       на сторінці <a href={withBase('/dissertations/')}>«Захист дисертацій»</a>.
     </div>
 
+    {selectedLetter && (<>
     <div class="diss-groups" data-catalog-view="surname">
-      {catalog.map((group) => (
+      {visibleCatalog.map((group) => (
         <section class="diss-letter-group" id={`catalog-${group.letter}`} data-catalog-group>
           <div class="diss-letter-header">
             <h3>{group.letter}</h3>
@@ -356,6 +369,7 @@ const yearGroups = Array.from(recordsByYear, ([year, records]) => ({ year, recor
         </section>
       ))}
     </div>
+    </>)}
   </div>
 </section>
 

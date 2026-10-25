@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import { hasNewsScope } from '../../../../utils/newsScopes';
+import { getInstituteNews } from '../../../../utils/newsArchive';
 import BaseLayoutEn from '../../../../layouts/BaseLayoutEn.astro';
 import NewsCardEn from '../../../../components/NewsCardEn.astro';
 import { siteEn } from '../../../../data/site-en';
@@ -8,16 +8,10 @@ import { allowedNewsTagsEn, getVisibleNewsTagsEn } from '../../../../utils/newsT
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
-const currentYear = new Date().getFullYear();
-
-const allCurrentNews = (await getCollection('news'))
-  .filter((entry) => hasNewsScope(entry, 'institute') && (entry.data.year === currentYear || entry.data.date.getFullYear() === currentYear))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const allNews = getInstituteNews(await getCollection('news'));
 
 export async function getStaticPaths() {
-  const buildYear = new Date().getFullYear();
-  const entries = (await getCollection('news'))
-    .filter((entry) => hasNewsScope(entry, 'institute') && (entry.data.year === buildYear || entry.data.date.getFullYear() === buildYear));
+  const entries = getInstituteNews(await getCollection('news'));
 
   const tags = allowedNewsTagsEn.filter((tag) => entries.some((entry) => getVisibleNewsTagsEn(entry).includes(tag)));
 
@@ -29,12 +23,12 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.props;
 const decodedTag = decodeURIComponent(tag ?? '');
-const tags = allowedNewsTagsEn.filter((item) => allCurrentNews.some((entry) => getVisibleNewsTagsEn(entry).includes(item)));
-const news = allCurrentNews.filter((entry) => getVisibleNewsTagsEn(entry).includes(decodedTag));
+const tags = allowedNewsTagsEn.filter((item) => allNews.some((entry) => getVisibleNewsTagsEn(entry).includes(item)));
+const news = allNews.filter((entry) => getVisibleNewsTagsEn(entry).includes(decodedTag));
 ---
 
 <BaseLayoutEn
-  title={`${decodedTag} | News ${currentYear} | ${siteEn.shortName}`}
+  title={`${decodedTag} | News | ${siteEn.shortName}`}
   description={`News tagged “${decodedTag}” from the S.P. Timoshenko Institute of Mechanics of the NAS of Ukraine.`}
   activePage="news"
 >
@@ -43,7 +37,7 @@ const news = allCurrentNews.filter((entry) => getVisibleNewsTagsEn(entry).includ
       <div class="panel">
         <p class="eyebrow">News tag</p>
         <h1>{decodedTag}</h1>
-        <p class="lead">News and announcements for {currentYear} tagged “{decodedTag}”.</p>
+        <p class="lead">News and announcements from all years tagged “{decodedTag}”.</p>
         <nav class="tag-nav" aria-label="Filter news by tags">
           <a class="tag-filter" href={withBase('/en/news/')}>All news</a>
           {tags.map((item) => (

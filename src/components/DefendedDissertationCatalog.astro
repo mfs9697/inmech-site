@@ -316,20 +316,24 @@ const topicLabelById = new Map(defendedDissertationTopics.map((topic) => [topic.
     const years = [...byYear.keys()].sort((a, b) =>
       a === 'Рік не визначено' ? 1 : b === 'Рік не визначено' ? -1 : Number(b) - Number(a)
     );
+    const templateGroup = alphabetical.querySelector('[data-catalog-group]');
+    const templateHeader = templateGroup?.querySelector('.diss-letter-header');
+    const templateTitle = templateHeader?.querySelector('h3');
+    const templateCount = templateHeader?.querySelector('[data-group-count]');
+    const templateGrid = templateGroup?.querySelector('.diss-card-grid');
+    if (!templateGroup || !templateHeader || !templateTitle || !templateCount || !templateGrid) return;
     for (const year of years) {
-      const group = document.createElement('section');
-      group.className = 'diss-letter-group';
-      group.dataset.catalogGroup = '';
-      const header = document.createElement('div');
-      header.className = 'diss-letter-header';
-      const title = document.createElement('h3');
+      // Clone scoped Astro markup instead of creating unstyled elements from scratch.
+      const group = templateGroup.cloneNode(false);
+      group.removeAttribute('id');
+      group.hidden = false;
+      const header = templateHeader.cloneNode(false);
+      const title = templateTitle.cloneNode(false);
       title.textContent = year;
-      const count = document.createElement('span');
-      count.dataset.groupCount = '';
+      const count = templateCount.cloneNode(false);
       count.textContent = recordLabel(byYear.get(year).length);
       header.append(title, count);
-      const grid = document.createElement('div');
-      grid.className = 'diss-card-grid';
+      const grid = templateGrid.cloneNode(false);
       byYear.get(year).forEach((card) => grid.append(card.cloneNode(true)));
       group.append(header, grid);
       target.append(group);

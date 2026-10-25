@@ -56,6 +56,28 @@ const infoCards = [
   }
 ];
 
+
+const doctoralStudents = [
+  {
+    name: 'Бабенко Сергій Віталійович',
+    department: 'Відділ стійкості процесів',
+    profileHref: '/people/babenko-serhii/',
+    topic: 'Мультиагентні механічні системи на часових шкалах: варіаційне моделювання та синтез керування для забезпечення консолідованого руху',
+    consultant: 'Мартинюк Анатолій Андрійович',
+    consultantHref: '/people/martyniuk-anatolii/',
+    videoHref: 'https://www.youtube.com/watch?v=mhghDKpHSdg'
+  },
+  {
+    name: 'Павлюк Ярослав Вікторович',
+    department: 'Відділ механіки повзучості',
+    profileHref: '/people/pavliuk/',
+    topic: "Спадкова повзучість лінійно- та нелінійно-в'язкопружних спадкових матеріалів за умов складного напруженого стану",
+    consultant: 'Сенченков Ігор Костянтинович',
+    consultantHref: '/people/senchenkov/',
+    videoHref: 'https://www.youtube.com/watch?v=_ep5iTj9_IY'
+  }
+];
+
 const relatedLinks = [
   {
     title: 'Науково-методична рада',
@@ -109,6 +131,41 @@ const relatedLinks = [
             <p>{card.label}</p>
             <span>{card.value}</span>
             <strong>{card.text}</strong>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section doctoral-cohort-section" id="doctoral-students-2026">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Набір 2026 року</p>
+          <h2>Докторанти Інституту</h2>
+        </div>
+        <p>Дата вступу до докторантури — <strong>1 вересня 2026 року</strong>.</p>
+      </div>
+
+      <p class="doctoral-provisional-note">
+        <strong>Попередня інформація:</strong> наведені теми докторських дисертацій і кандидатури
+        наукових консультантів запропоновані та ще не затверджені Вченою радою Інституту.
+      </p>
+
+      <div class="doctoral-students-grid">
+        {doctoralStudents.map((student) => (
+          <article class="doctoral-student-card">
+            <h3><a href={withBase(student.profileHref)}>{student.name}</a></h3>
+            <p class="doctoral-student-department">{student.department}</p>
+            <p><strong>Запропонована тема:</strong> {student.topic}</p>
+            <p>
+              <strong>Запропонований науковий консультант:</strong>{' '}
+              <a href={withBase(student.consultantHref)}>{student.consultant}</a>
+            </p>
+            <a class="button secondary" href={student.videoHref} target="_blank" rel="noopener noreferrer">
+              Дивитися запис наукового семінару ↗
+            </a>
           </article>
         ))}
       </div>
@@ -190,6 +247,57 @@ const relatedLinks = [
 </BaseLayout>
 
 <style>
+
+  .doctoral-cohort-section {
+    padding-top: 16px;
+  }
+
+  .doctoral-provisional-note {
+    margin: 0 0 20px;
+    padding: 16px 20px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--surface-soft);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .doctoral-students-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .doctoral-student-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: clamp(22px, 3vw, 34px);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .doctoral-student-card h3 {
+    margin: 0;
+    font-size: clamp(1.24rem, 2.1vw, 1.55rem);
+  }
+
+  .doctoral-student-card p {
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  .doctoral-student-department {
+    color: var(--muted);
+  }
+
+  .doctoral-student-card .button {
+    margin-top: auto;
+  }
+
   .doctoral-hero {
     padding: 52px 0 18px;
   }
@@ -475,6 +583,7 @@ const relatedLinks = [
   @media (max-width: 900px) {
     .doctoral-hero-grid,
     .doctoral-info-grid,
+    .doctoral-students-grid,
     .doctoral-document-grid,
     .doctoral-two-column,
     .related-panel,

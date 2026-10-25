@@ -54,6 +54,28 @@ const infoCards = [
   }
 ];
 
+
+const doctoralStudents = [
+  {
+    name: 'Serhii V. Babenko',
+    department: 'Department of Stability of Processes',
+    profileHref: '/en/people/babenko-serhii/',
+    topic: 'Multi-agent mechanical systems on time scales: variational modeling and control synthesis to ensure consolidated motion',
+    consultant: 'Anatolii A. Martyniuk',
+    consultantHref: '/en/people/martyniuk-anatolii/',
+    videoHref: 'https://www.youtube.com/watch?v=mhghDKpHSdg'
+  },
+  {
+    name: 'Yaroslav V. Pavliuk',
+    department: 'Department of Mechanics of Creep',
+    profileHref: '/en/people/pavliuk/',
+    topic: 'Hereditary creep of linear and nonlinear hereditary viscoelastic materials under complex stress states',
+    consultant: 'Ihor K. Senchenkov',
+    consultantHref: '/en/people/senchenkov/',
+    videoHref: 'https://www.youtube.com/watch?v=_ep5iTj9_IY'
+  }
+];
+
 const relatedLinks = [
   {
     title: 'Scientific and Methodological Council',
@@ -107,6 +129,42 @@ const relatedLinks = [
             <p>{card.label}</p>
             <span>{card.value}</span>
             <strong>{card.text}</strong>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section doctoral-cohort-section" id="doctoral-students-2026">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">2026 intake</p>
+          <h2>Doctoral researchers</h2>
+        </div>
+        <p>Date of admission to doctoral studies: <strong>1 September 2026</strong>.</p>
+      </div>
+
+      <p class="doctoral-provisional-note">
+        <strong>Provisional information:</strong> the dissertation topics and proposed academic
+        supervisors (scientific consultants) shown below have not yet been formally approved
+        by the Institute's Scientific Council.
+      </p>
+
+      <div class="doctoral-students-grid">
+        {doctoralStudents.map((student) => (
+          <article class="doctoral-student-card">
+            <h3><a href={withBase(student.profileHref)}>{student.name}</a></h3>
+            <p class="doctoral-student-department">{student.department}</p>
+            <p><strong>Proposed dissertation topic:</strong> {student.topic}</p>
+            <p>
+              <strong>Proposed scientific consultant:</strong>{' '}
+              <a href={withBase(student.consultantHref)}>{student.consultant}</a>
+            </p>
+            <a class="button secondary" href={student.videoHref} target="_blank" rel="noopener noreferrer">
+              Watch the research seminar recording ↗
+            </a>
           </article>
         ))}
       </div>
@@ -188,6 +246,57 @@ const relatedLinks = [
 </BaseLayoutEn>
 
 <style>
+
+  .doctoral-cohort-section {
+    padding-top: 16px;
+  }
+
+  .doctoral-provisional-note {
+    margin: 0 0 20px;
+    padding: 16px 20px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--surface-soft);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .doctoral-students-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .doctoral-student-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: clamp(22px, 3vw, 34px);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .doctoral-student-card h3 {
+    margin: 0;
+    font-size: clamp(1.24rem, 2.1vw, 1.55rem);
+  }
+
+  .doctoral-student-card p {
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  .doctoral-student-department {
+    color: var(--muted);
+  }
+
+  .doctoral-student-card .button {
+    margin-top: auto;
+  }
+
   .doctoral-hero {
     padding: 52px 0 18px;
   }
@@ -473,6 +582,7 @@ const relatedLinks = [
   @media (max-width: 900px) {
     .doctoral-hero-grid,
     .doctoral-info-grid,
+    .doctoral-students-grid,
     .doctoral-document-grid,
     .doctoral-two-column,
     .related-panel,

@@ -55,7 +55,8 @@ const years = (archiveYear ? [archiveYear] : [2021, 2020, 2019, 2018, 2017, 2016
           filename: source.target.split('/').at(-1),
           href: source.publicationStatus === 'withheld-security-review'
             ? null : source.target.replace(/^public/, ''),
-          megabytes: (source.expectedBytes / 1_000_000).toFixed(2)
+          megabytes: (source.expectedBytes / 1_000_000).toFixed(2),
+          largePdf: source.format === 'pdf' && source.expectedBytes > 10_000_000
         };
       })
     }))
@@ -100,7 +101,7 @@ const years = (archiveYear ? [archiveYear] : [2021, 2020, 2019, 2018, 2017, 2016
                   <div class="original-row" data-source-id={file.id}>
                     <span class="original-name">
                       {file.label}
-                      <small>{file.filename} · {file.format.toUpperCase()} · {file.megabytes} {english ? 'MB' : 'МБ'}</small>
+                      <small>{file.filename} · {file.format.toUpperCase()} · {file.megabytes} {english ? 'MB' : 'МБ'}{file.largePdf ? (english ? ' · Large file' : ' · Великий файл') : ''}</small>
                     </span>
                     {file.href ? (
                       <a class="original-download" href={withBase(file.href)} aria-label={`${file.label}: ${file.filename}`}>

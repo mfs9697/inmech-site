@@ -43,7 +43,7 @@ export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [
     id: '2026-10-01-competition-19',
     date: '2026-10-01',
     year: 2026,
-    orderNumber: '118/k',
+    orderNumber: '118/к',
     publicationDate: '2026-10-21',
     title: 'Competition for vacant research positions and postdoctoral selection',
     summary: 'Competition for two research-management positions and a competitive selection for participation in the NAS of Ukraine postdoctoral research programme.',
@@ -78,6 +78,7 @@ export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [
           }
         ],
         deadline: 'Through 20 November 2026 inclusive (30 calendar days from publication of the announcement).',
+        deadlineDate: '2026-11-20',
         requirements: [
           'higher education at no lower than the second-cycle (Master’s) level relevant to the scientific profile of the respective department;',
           'a Doctor of Sciences degree or a PhD / Candidate of Sciences degree;',
@@ -100,10 +101,10 @@ export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [
         researchTopic: 'Mathematical modelling of coupled contact-interaction problems for deformable bodies',
       }
     ],
-    note: 'The signed Order No. 118/k of 1 October 2026 is available below.',
+    note: 'The signed Order No. 118/к of 1 October 2026 is available below.',
     documents: [
       {
-        title: 'Order announcing the competitions, 01.10.2026, No. 118/k',
+        title: 'Order announcing the competitions, 01.10.2026, No. 118/к',
         href: '/documents/vacancies/active/2026-10-01-competition/order-competition.pdf'
       }
     ]

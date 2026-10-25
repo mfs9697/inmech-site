@@ -250,7 +250,7 @@ const yearGroups = Array.from(recordsByYear, ([year, records]) => ({ year, recor
               const topicIds = matchDefendedDissertationTopics(`${item.title} ${item.details}`);
 
               return (
-                <article class="catalog-entry-card" data-entry-card data-entry-topics={topicIds.join('|')}>
+                <article class="catalog-entry-card" data-entry-card data-entry-topics={topicIds.join('|')} data-entry-year={meta.year ?? ''}>
                   <div class="entry-header">
                     <div>
                       <h4>{item.name}</h4>
@@ -299,63 +299,7 @@ const yearGroups = Array.from(recordsByYear, ([year, records]) => ({ year, recor
       ))}
     </div>
 
-    <div class="diss-groups" data-catalog-view="year" hidden>
-      {yearGroups.map((group) => (
-        <section class="diss-letter-group" data-catalog-group>
-          <div class="diss-letter-header">
-            <h3>{group.year}</h3>
-            <span data-group-count>{group.records.length} записів</span>
-          </div>
-
-          <div class="diss-card-grid">
-            {group.records.map(({ item, meta, topicIds }) => (
-              <article class="catalog-entry-card" data-entry-card data-entry-topics={topicIds.join('|')}>
-                <div class="entry-header">
-                  <div>
-                    <h4>{item.name}</h4>
-                    <p class="entry-title">{item.title}</p>
-                  </div>
-                  {meta.year && <span class="entry-year">{meta.year}</span>}
-                </div>
-
-                <dl class="entry-meta-grid">
-                  {meta.defenceDate && (
-                    <div>
-                      <dt>Дата захисту</dt>
-                      <dd>{meta.defenceDate}</dd>
-                    </div>
-                  )}
-                  {meta.degree && (
-                    <div>
-                      <dt>Ступінь</dt>
-                      <dd>{meta.degree}</dd>
-                    </div>
-                  )}
-                  {meta.specialty && (
-                    <div>
-                      <dt>Спеціальність</dt>
-                      <dd>{meta.specialty}</dd>
-                    </div>
-                  )}
-                  {meta.pages && (
-                    <div>
-                      <dt>Обсяг</dt>
-                      <dd>{meta.pages}</dd>
-                    </div>
-                  )}
-                </dl>
-
-                {topicIds.length > 0 && (
-                  <div class="tag-list" aria-label="Ключові слова">
-                    {topicIds.map((topicId) => <span>{topicLabelById.get(topicId)}</span>)}
-                  </div>
-                )}
-              </article>
-            ))}
-          </div>
-        </section>
-      ))}
-    </div>
+    <div class="diss-groups" data-catalog-view="year" hidden>    </div>
   </div>
 </section>
 
@@ -374,6 +318,45 @@ const yearGroups = Array.from(recordsByYear, ([year, records]) => ({ year, recor
     const mod10 = count % 10;
     const noun = mod100 >= 11 && mod100 <= 14 ? 'записів' : mod10 === 1 ? 'запис' : mod10 >= 2 && mod10 <= 4 ? 'записи' : 'записів';
     return `${count} ${noun}`;
+  }
+
+  // Generate the alternative year grouping only when the visitor selects it.
+  // The first (alphabetical) view remains complete without JavaScript, preserving
+  // all bibliographic records and the existing stable letter anchors.
+  let yearViewBuilt = false;
+  function buildYearView() {
+    if (yearViewBuilt) return;
+    const alphabetical = document.querySelector('[data-catalog-view="surname"]');
+    const target = document.querySelector('[data-catalog-view="year"]');
+    if (!alphabetical || !target) return;
+    const byYear = new Map();
+    alphabetical.querySelectorAll('[data-entry-card]').forEach((card) => {
+      const year = card.dataset.entryYear || 'Рік не визначено';
+      if (!byYear.has(year)) byYear.set(year, []);
+      byYear.get(year).push(card);
+    });
+    const years = [...byYear.keys()].sort((a, b) =>
+      a === 'Рік не визначено' ? 1 : b === 'Рік не визначено' ? -1 : Number(b) - Number(a)
+    );
+    for (const year of years) {
+      const group = document.createElement('section');
+      group.className = 'diss-letter-group';
+      group.dataset.catalogGroup = '';
+      const header = document.createElement('div');
+      header.className = 'diss-letter-header';
+      const title = document.createElement('h3');
+      title.textContent = year;
+      const count = document.createElement('span');
+      count.dataset.groupCount = '';
+      count.textContent = recordLabel(byYear.get(year).length);
+      header.append(title, count);
+      const grid = document.createElement('div');
+      grid.className = 'diss-card-grid';
+      byYear.get(year).forEach((card) => grid.append(card.cloneNode(true)));
+      group.append(header, grid);
+      target.append(group);
+    }
+    yearViewBuilt = true;
   }
 
   function applyCatalogueState() {
@@ -420,6 +403,7 @@ const yearGroups = Array.from(recordsByYear, ([year, records]) => ({ year, recor
   viewButtons.forEach((button) => {
     button.addEventListener('click', () => {
       activeView = button.dataset.viewButton || 'surname';
+      if (activeView === 'year') buildYearView();
       applyCatalogueState();
     });
   });

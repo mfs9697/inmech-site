@@ -36,6 +36,7 @@ export interface ActiveVacancyTrack {
   title: string;
   positions: VacancyPosition[];
   deadline: string;
+  deadlineDate?: string;
   requirements: string[];
   researchTopicLabel?: string;
   researchTopic?: string;
@@ -140,6 +141,7 @@ export const activeVacancyAnnouncements: ActiveVacancyAnnouncement[] = [
           }
         ],
         deadline: 'До 20 листопада 2026 року включно (30 календарних днів від дати оприлюднення оголошення).',
+        deadlineDate: '2026-11-20',
         requirements: [
           'вища освіта не нижче другого (магістерського) рівня за профілем діяльності відповідного наукового підрозділу;',
           'науковий ступінь доктора наук або доктора філософії (кандидата наук);',

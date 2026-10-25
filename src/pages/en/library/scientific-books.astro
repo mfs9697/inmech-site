@@ -7,6 +7,9 @@ import {
   bibliographyUsedTags,
   bibliographyYears
 } from '../../../data/bibliographyAll';
+import { scientificBookGroups } from '../../../data/scientificBookPartitions';
+import { bibliographyTagLabelsEn } from '../../../data/bookLabels';
+import '../../../styles/scientific-book-cards.css';
 
 const combinedBibliography = bibliographyAll;
 
@@ -20,74 +23,11 @@ function withBase(path: string) {
   return `${base}${path.startsWith('/') ? path : `/${path}`}`;
 }
 
-function normalizeAuthorKey(authors: string) {
-  return authors
-    .replace(/^За заг\. ред\.\s*/i, '')
-    .replace(/^За ред\.\s*/i, '')
-    .replace(/^Под общ\. ред\.\s*/i, '')
-    .trim();
-}
-
-function getInitial(authors: string) {
-  const normalized = normalizeAuthorKey(authors);
-  const first = normalized.charAt(0).toUpperCase();
-  return first || '#';
-}
-
-const bibliographyTypeLabels = {
-  monograph: 'Monograph',
-  textbook: 'Teaching publication',
-  handbook: 'Handbook',
-  dictionary: 'Dictionary',
-  'edited-volume': 'Edited volume',
-  chapter: 'Chapter',
-  'series-volume': 'Series volume'
-} as const;
-
-const bibliographyTagLabelsEn = {
-  'shells-plates': 'Shells and plates',
-  composites: 'Composites',
-  'fracture-mechanics': 'Fracture mechanics',
-  'dynamics-waves': 'Dynamics, vibrations and waves',
-  'thermoelasticity-creep': 'Thermoelasticity and creep',
-  'stability-control': 'Stability and control',
-  'contact-mechanics': 'Contact mechanics',
-  'solid-mechanics': 'Solid mechanics',
-  'materials-mechanics': 'Mechanics of materials',
-  'theoretical-mechanics': 'Theoretical mechanics',
-  'experimental-mechanics': 'Experimental mechanics',
-  'numerical-methods': 'Numerical and mathematical methods',
-  'signal-processing': 'Signal processing',
-  'fluid-gas-mechanics': 'Fluid and gas mechanics',
-  acoustics: 'Acoustics',
-  'initial-stresses': 'Initial stresses',
-  piezoelectricity: 'Piezoelectric materials',
-  'interdisciplinary-modeling': 'Interdisciplinary modelling',
-  'reference-edition': 'Reference edition',
-  'history-of-science': 'History of science',
-  'institute-history': 'Institute history',
-  textbook: 'Textbook / teaching aid',
-  monograph: 'Monograph',
-  'edited-volume': 'Edited volume',
-  chapter: 'Chapter',
-  multivolume: 'Multivolume edition'
-} as const;
-
 function tagLabel(tag: keyof typeof bibliographyTagLabelsEn) {
   return bibliographyTagLabelsEn[tag] ?? tag;
 }
 
-const sortedBibliography = [...combinedBibliography].sort((a, b) =>
-  normalizeAuthorKey(a.authors).localeCompare(normalizeAuthorKey(b.authors), 'uk') ||
-  a.title.localeCompare(b.title, 'uk')
-);
-
-const alphabetGroups = [...sortedBibliography.reduce((acc, entry) => {
-  const initial = getInitial(entry.authors);
-  if (!acc.has(initial)) acc.set(initial, []);
-  acc.get(initial)?.push(entry);
-  return acc;
-}, new Map<string, typeof combinedBibliography>())].map(([letter, items]) => ({ letter, items }));
+const alphabetGroups = scientificBookGroups;
 
 const hasEntries = combinedBibliography.length > 0;
 ---
@@ -117,7 +57,7 @@ const hasEntries = combinedBibliography.length > 0;
   </section>
 
   <section class="section">
-    <div class="container">
+    <div class="container" data-scientific-books data-language="en" data-total={combinedBibliography.length} data-index-url={withBase('/library/scientific-books/filters.json')}>
       <div class="section-heading compact-header">
         <div>
           <p class="eyebrow">Catalogue</p>
@@ -153,39 +93,22 @@ const hasEntries = combinedBibliography.length > 0;
         No records match the selected tag.
       </p>
 
+      <noscript><p class="book-group-prompt">Without JavaScript, complete bibliographic records are available on each letter page.</p></noscript>
       <div class="alphabet-groups">
         {alphabetGroups.map((group) => (
-          <section class="alphabet-group" id={`books-${group.letter}`} data-alphabet-group>
+          <section class="alphabet-group" id={`books-${group.letter}`} data-alphabet-group
+            data-letter={group.letter} data-letter-code={group.code} data-count={group.items.length}>
             <div class="alphabet-header">
               <h3>{group.letter}</h3>
-              <span data-group-count>{group.items.length} record{group.items.length === 1 ? '' : 's'}</span>
+              <span data-group-count>{group.items.length} records</span>
             </div>
-
-            <div class="book-grid">
-              {group.items.map((item) => (
-                <article class="book-card" data-book-card data-tags={JSON.stringify(item.tags)}>
-                  <div class="book-card-topline">
-                    <span>{bibliographyTypeLabels[item.type]}</span>
-                    {item.year && <strong>{item.year}</strong>}
-                  </div>
-                  <h4>{item.title}</h4>
-                  <p class="authors">{item.authors}</p>
-                  <p class="details">
-                    {item.publisher}{item.pages ? `, ${item.pages}` : ''}{item.isbn ? `; ISBN ${item.isbn}` : ''}{item.doi ? `; DOI ${item.doi}` : ''}.
-                  </p>
-                  {item.note && <p class="note">{item.note}</p>}
-                  <div class="entry-tags">
-                    {item.tags.map((tag) => (
-                      <button class="tag-filter entry-tag" type="button" data-tag-filter={tag}>{tagLabel(tag)}</button>
-                    ))}
-                  </div>
-                  {item.inLibraryOfCongress && <p class="loc-badge">Library of Congress</p>}
-                  {item.url && (
-                    <a class="card-link" href={item.url} target="_blank" rel="noopener noreferrer">Electronic resource</a>
-                  )}
-                </article>
-              ))}
-            </div>
+            <p class="book-group-prompt" data-book-load-status>
+              Complete author-letter catalogue:
+              <a data-book-letter-link href={withBase('/en/library/scientific-books/letter/' + group.code + '/')}>
+                View all records →
+              </a>
+            </p>
+            <div class="book-grid" data-book-grid></div>
           </section>
         ))}
       </div>
@@ -194,85 +117,7 @@ const hasEntries = combinedBibliography.length > 0;
 </BaseLayoutEn>
 
 <script>
-  const filterButtons = Array.from(document.querySelectorAll('[data-tag-filter]'));
-  const cards = Array.from(document.querySelectorAll('[data-book-card]'));
-  const groups = Array.from(document.querySelectorAll('[data-alphabet-group]'));
-  const summary = document.querySelector('[data-filter-summary]');
-  const noResults = document.querySelector('[data-no-results]');
-  const allCount = cards.length;
-
-  function formatCount(count) {
-    if (count === 1) return '1 record';
-    return `${count} records`;
-  }
-
-  function readTags(card) {
-    try {
-      return JSON.parse(card.dataset.tags || '[]');
-    } catch {
-      return [];
-    }
-  }
-
-  function setActiveButtons(activeTag) {
-    filterButtons.forEach((button) => {
-      button.classList.toggle('is-active', button.dataset.tagFilter === activeTag);
-    });
-  }
-
-  function applyFilter(activeTag) {
-    let visibleTotal = 0;
-
-    cards.forEach((card) => {
-      const tags = readTags(card);
-      const visible = activeTag === 'all' || tags.includes(activeTag);
-      card.classList.toggle('is-filter-hidden', !visible);
-      if (visible) visibleTotal += 1;
-    });
-
-    groups.forEach((group) => {
-      const visibleCards = Array.from(group.querySelectorAll('[data-book-card]')).filter(
-        (card) => !card.classList.contains('is-filter-hidden')
-      );
-      const count = visibleCards.length;
-      group.classList.toggle('is-filter-hidden', count === 0);
-      const countElement = group.querySelector('[data-group-count]');
-      if (countElement) countElement.textContent = formatCount(count);
-    });
-
-    const activeButton = filterButtons.find((button) => button.dataset.tagFilter === activeTag);
-    const activeLabel = activeButton?.textContent?.trim() || 'All records';
-
-    if (summary) {
-      summary.textContent = activeTag === 'all'
-        ? `All records · ${allCount} records`
-        : `${activeLabel} · ${visibleTotal} of ${allCount} records`;
-    }
-
-    if (noResults) {
-      noResults.classList.toggle('is-filter-hidden', visibleTotal !== 0);
-    }
-
-    setActiveButtons(activeTag);
-  }
-
-  filterButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      const tag = button.dataset.tagFilter || 'all';
-      applyFilter(tag);
-      if (tag === 'all') {
-        history.replaceState(null, '', window.location.pathname);
-      } else {
-        history.replaceState(null, '', `#tag-${tag}`);
-      }
-    });
-  });
-
-  const hashTag = window.location.hash.startsWith('#tag-')
-    ? window.location.hash.replace('#tag-', '')
-    : 'all';
-
-  applyFilter(filterButtons.some((button) => button.dataset.tagFilter === hashTag) ? hashTag : 'all');
+  import '../../../scripts/scientific-books-browser';
 </script>
 
 <style>
@@ -463,6 +308,18 @@ const hasEntries = combinedBibliography.length > 0;
     content-visibility: auto;
     contain-intrinsic-size: auto 620px;
   }
+
+  .book-group-prompt {
+    margin: 12px 0 14px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  .book-group-prompt a {
+    margin-left: 8px;
+    font-weight: 750;
+  }
+
 
   .alphabet-header,
   .book-card-topline {

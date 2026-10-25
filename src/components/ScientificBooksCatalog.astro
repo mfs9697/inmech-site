@@ -67,7 +67,7 @@ const visibleGroups = selectedLetter
   : selectedTag
     ? alphabetGroups.map((group) => ({ ...group, items: group.items.filter((entry) => entry.tags.includes(selectedTag)) })).filter((group) => group.items.length > 0)
     : [];
-const visibleCount = visibleGroups.reduce((sum, group) => sum + group.items.length, 0;
+const visibleCount = visibleGroups.reduce((sum, group) => sum + group.items.length, 0);
 ---
 
 <BaseLayout

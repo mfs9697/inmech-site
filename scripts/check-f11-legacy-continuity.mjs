@@ -47,6 +47,8 @@ function validateRoutes(routes) {
     seen.add(entry.oldPath);
     assert.equal(entry.compatibilityPage, entry.oldPath);
     assert.equal(entry.handling, 'static-contextual-gateway');
+    assert.equal(entry.queryPolicy, i < 2 ? 'year-on-original-host' : 'none',
+      'News year queries must never be silently ignored or sent to a different year');
     assert(entry.destination.startsWith('/') && entry.destination.endsWith('/'));
     assert(existsSync(localOutput(entry.oldPath)), 'Missing fallback page ' + entry.oldPath);
     assert(existsSync(localOutput(entry.destination)), 'Missing canonical destination ' + entry.destination);

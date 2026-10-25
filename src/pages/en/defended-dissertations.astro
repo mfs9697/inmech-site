@@ -34,21 +34,6 @@ const topicOptions = defendedDissertationTopics
   .slice(0, defendedDissertationTopicLimit)
   .sort((a, b) => a.en.localeCompare(b.en, 'en', { sensitivity: 'base' }));
 const topicLabelById = new Map(defendedDissertationTopics.map((topic) => [topic.id, topic.en]));
-const catalogueRecords = defendedDissertationsEn.map((entry) => ({
-  entry,
-  topicIds: matchDefendedDissertationTopics(
-    [entry.title.en, entry.specialty?.en ?? '', ...(entry.tags ?? [])].join(' ')
-  )
-}));
-const recordsByYear = new Map<number, typeof catalogueRecords>();
-
-catalogueRecords.forEach((record) => {
-  const records = recordsByYear.get(record.entry.year) ?? [];
-  records.push(record);
-  recordsByYear.set(record.entry.year, records);
-});
-
-const yearGroups = Array.from(recordsByYear, ([year, records]) => ({ year, records })).sort((a, b) => b.year - a.year);
 const totalEntries = defendedDissertationsEn.length;
 const years = defendedDissertationsEn.map((entry) => entry.year);
 const earliestYear = Math.min(...years);
@@ -232,7 +217,8 @@ const candidateCount = defendedDissertationsEn.filter((entry) => entry.degree.le
         ))}
       </div>
 
-      <div class="catalog-groups" data-catalog-view="year" hidden>      </div>
+      <div class="catalog-groups" data-catalog-view="year" hidden>
+</div>
     </div>
   </section>
 

@@ -12,21 +12,6 @@ function withBase(path: string) {
   return `${base}/${path.replace(/^\/+/, '')}`;
 }
 
-const processSteps = [
-  {
-    title: 'Review the admission rules',
-    text: 'The applicant studies the current admission rules for doctoral studies and the requirements for submitting documents.'
-  },
-  {
-    title: 'Prepare research materials',
-    text: 'A document package is prepared to confirm research results, publications and the compliance of the proposed research area with the Institute’s profile.'
-  },
-  {
-    title: 'Consideration at the Institute',
-    text: 'The submitted materials are reviewed by the relevant structural units and academic bodies of the Institute according to the established procedures.'
-  }
-];
-
 const infoCards = [
   {
     label: 'Training level',
@@ -44,7 +29,6 @@ const infoCards = [
     text: 'coordination of educational, scientific and methodological issues'
   }
 ];
-
 
 const doctoralStudents = [
   {
@@ -125,7 +109,6 @@ const relatedLinks = [
       </div>
     </div>
   </section>
-
 
   <section class="section doctoral-cohort-section" id="doctoral-students-2026">
     <div class="container">
@@ -239,13 +222,13 @@ const relatedLinks = [
           <h3>Schedule and research plan</h3>
           <p>
             The application period, review schedule and availability of places are determined
-            separately for each admission cycle.
+            separately for each admission cycle.{' '}
             <strong>Doctoral training begins on 1 September.</strong>
           </p>
           <p>
             After admission, the doctoral researcher agrees an individual research plan with
-            their scientific consultant. The Scientific Council approves the plan
-            <strong>within two months of admission</strong>.
+            their scientific consultant. The Scientific Council approves the plan{' '}
+            <strong>within two months of admission</strong>.{' '}
             Research then follows the approved plan.
           </p>
           <p>
@@ -257,43 +240,13 @@ const relatedLinks = [
       </div>
 
       <div class="doctoral-rules-source">
-        <strong>Regulatory basis:</strong>
+        <strong>Regulatory basis:</strong>{' '}
         <a href="https://zakon.rada.gov.ua/laws/show/261-2016-%D0%BF" target="_blank" rel="noopener noreferrer">
           Procedure for the training of Doctors of Philosophy and Doctors of Sciences (Cabinet of Ministers Resolution No. 261)
-        </a>.
+        </a>.{' '}
         This is information for applicants based on the Institute's previous admission rules and
         applicable regulations; it does not replace formally approved rules for a particular admission cycle.
       </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container doctoral-two-column">
-      <article class="doctoral-panel">
-        <p class="eyebrow">Admission and support</p>
-        <h2>Main steps</h2>
-        <div class="doctoral-step-list">
-          {processSteps.map((step, index) => (
-            <div class="doctoral-step">
-              <span>{index + 1}</span>
-              <div>
-                <h3>{step.title}</h3>
-                <p>{step.text}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </article>
-
-      <article class="doctoral-panel accent-panel">
-        <p class="eyebrow">Scientific and Methodological Council</p>
-        <h2>Methodological support</h2>
-        <p>
-          Methodological support and selection of research staff for teaching activities fall within the scope of
-          the Scientific and Methodological Council.
-        </p>
-        <a class="button primary" href={withBase('/en/nmr/')}>Open SMC page</a>
-      </article>
     </div>
   </section>
 
@@ -440,7 +393,6 @@ const relatedLinks = [
   .doctoral-hero-panel,
   .doctoral-mark-card,
   .doctoral-info-card,
-  .doctoral-panel,
   .related-panel {
     background: var(--surface);
     border: 1px solid var(--line);
@@ -576,65 +528,13 @@ const relatedLinks = [
     color: var(--muted);
   }
 
-  .doctoral-two-column {
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
-    gap: 16px;
-  }
-
-  .doctoral-panel,
   .related-panel {
     padding: clamp(22px, 3vw, 34px);
   }
 
-  .doctoral-panel h2,
   .related-panel h2 {
     margin-top: 0;
     font-size: clamp(1.45rem, 2.3vw, 2.1rem);
-  }
-
-  .doctoral-panel p {
-    color: var(--muted);
-  }
-
-  .doctoral-step-list {
-    display: grid;
-    gap: 16px;
-  }
-
-  .doctoral-step {
-    display: grid;
-    grid-template-columns: 52px minmax(0, 1fr);
-    gap: 16px;
-    align-items: start;
-  }
-
-  .doctoral-step span {
-    display: grid;
-    place-items: center;
-    width: 46px;
-    height: 46px;
-    border-radius: 16px;
-    background: var(--accent-soft);
-    color: var(--accent-dark);
-    font-weight: 950;
-  }
-
-  .doctoral-step h3 {
-    margin: 0 0 6px;
-  }
-
-  .doctoral-step p {
-    margin: 0;
-  }
-
-  .accent-panel {
-    background: linear-gradient(135deg, rgba(184, 135, 47, 0.12), rgba(29, 79, 145, 0.08));
-    border-color: rgba(184, 135, 47, 0.35);
-  }
-
-  .accent-panel .button {
-    margin-top: 12px;
   }
 
   .related-panel {
@@ -669,7 +569,6 @@ const relatedLinks = [
     .doctoral-info-grid,
     .doctoral-rules-grid,
     .doctoral-students-grid,
-      .doctoral-two-column,
     .related-panel,
     .related-link-grid {
       grid-template-columns: 1fr;
@@ -693,8 +592,5 @@ const relatedLinks = [
       columns: 1;
     }
 
-    .doctoral-step {
-      grid-template-columns: 1fr;
-    }
   }
 </style>

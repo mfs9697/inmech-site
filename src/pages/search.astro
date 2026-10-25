@@ -54,7 +54,7 @@ const withBase = (path: string) => base + path;
 
   .search-hero,
   .search-panel,
-  .result-card {
+  :global(.result-card) {
     border: 1px solid var(--line);
     border-radius: var(--radius);
     background: var(--surface);
@@ -146,11 +146,11 @@ const withBase = (path: string) => base + path;
     gap: 12px;
   }
 
-  .result-card {
+  :global(.result-card) {
     padding: 18px 20px;
   }
 
-  .result-card span {
+  :global(.result-card span) {
     display: inline-flex;
     width: fit-content;
     margin-bottom: 8px;
@@ -162,13 +162,13 @@ const withBase = (path: string) => base + path;
     font-weight: 850;
   }
 
-  .result-card h3 {
+  :global(.result-card h3) {
     margin: 0 0 8px;
     font-size: 1.16rem;
   }
 
-  .result-card p,
-  .empty-results {
+  :global(.result-card p),
+  :global(.empty-results) {
     margin: 0;
     color: var(--muted);
     line-height: 1.55;

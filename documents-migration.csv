@@ -83,7 +83,7 @@
 "src\pages\dissertations.astro","https://inmech.kyiv.ua/doc/postgraduate/dis/2025/01/vid1.pdf","public/documents/dissertations/2025/01/opponent-review-1.pdf","to-download"
 "src\pages\dissertations.astro","https://inmech.kyiv.ua/doc/postgraduate/dis/2025/01/vid2.pdf","public/documents/dissertations/2025/01/opponent-review-2.pdf","to-download"
 "src\pages\dissertations.astro","https://inmech.kyiv.ua/doc/postgraduate/dis/2025/01/vid3.pdf","public/documents/dissertations/2025/01/opponent-review-3.pdf","to-download"
-"src\pages\doctoral.astro","https://inmech.kyiv.ua/doc/postgraduate/2023_doct.docx","public/documents/doctoral/admission/doctoral-admission-rules.docx","to-download"
+"src\pages\doctoral.astro","https://inmech.kyiv.ua/doc/postgraduate/2023_doct.docx","src/pages/doctoral.astro","replaced-by-page"
 "src\pages\doctoral.astro","https://inmech.kyiv.ua/doc/postgraduate/rating_2024_2025.pdf","public/documents/postgraduate/nmr/teacher-rating-2024-2025.pdf","to-download"
 "src\pages\license-and-regulations.astro","https://inmech.kyiv.ua/doc/postgraduate/2018_asp.pdf","public/documents/postgraduate/license/license-order-2018.pdf","to-download"
 "src\pages\license-and-regulations.astro","https://inmech.kyiv.ua/doc/postgraduate/postgraduate38.pdf","public/documents/postgraduate/license/edebo-extract.pdf","to-download"

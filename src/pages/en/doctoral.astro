@@ -12,15 +12,6 @@ function withBase(path: string) {
   return `${base}/${path.replace(/^\/+/, '')}`;
 }
 
-const documents = [
-  {
-    title: 'Admission rules for doctoral studies',
-    description: 'The main document for applicants to the Institute’s doctoral studies programme. Official source document in Ukrainian.',
-    href: '/documents/doctoral/admission/doctoral-admission-rules.docx',
-    type: 'DOCX'
-  }
-];
-
 const processSteps = [
   {
     title: 'Review the admission rules',
@@ -108,7 +99,7 @@ const relatedLinks = [
           scientific schools in mechanics and applied mathematics.
         </p>
         <div class="doctoral-hero-actions">
-          <a class="button primary" href="#documents">Documents</a>
+          <a class="button primary" href="#documents">Admission information</a>
           <a class="button secondary" href={withBase('/en/education/')}>Education and research training</a>
         </div>
       </div>
@@ -171,29 +162,107 @@ const relatedLinks = [
     </div>
   </section>
 
+
   <section class="section" id="documents">
     <div class="container">
       <div class="section-heading compact-header">
         <div>
-          <p class="eyebrow">Core materials</p>
-          <h2>Doctoral studies documents</h2>
+          <p class="eyebrow">Information for applicants</p>
+          <h2>Admission to doctoral studies</h2>
         </div>
         <p>
-          This page collects the key documents for admission to doctoral studies and for organising the training
-          of applicants for the Doctor of Sciences degree. Official source documents are provided in Ukrainian.
+          General admission requirements, required documents and application review.
+          Application deadlines and available places are announced separately.
         </p>
       </div>
 
-      <div class="doctoral-document-grid">
-        {documents.map((document) => (
-          <a class="doctoral-document-card" href={withBase(document.href)} target="_blank" rel="noopener noreferrer">
-            <span>{document.type}</span>
-            <div>
-              <h3>{document.title}</h3>
-              <p>{document.description}</p>
-            </div>
-          </a>
-        ))}
+      <div class="doctoral-rules-grid">
+        <article class="doctoral-rule-card">
+          <h3>General provisions</h3>
+          <p>
+            The S. P. Timoshenko Institute of Mechanics of the NAS of Ukraine provides training
+            for the Doctor of Sciences degree under NAS of Ukraine Presidium Directive No. 448
+            and applicable legislation. The Institute's research profile covers solid mechanics,
+            theoretical mechanics and related areas of applied mathematics.
+            Admission is available for the scientific specialties in which doctoral studies have been established.
+          </p>
+          <p>
+            Training is <strong>full-time</strong> and normally lasts <strong>two years</strong>.
+            Funding may be provided through state-funded places or by individuals or legal entities,
+            subject to the applicable requirements.
+          </p>
+        </article>
+
+        <article class="doctoral-rule-card">
+          <h3>Eligibility</h3>
+          <ul>
+            <li>A Doctor of Philosophy degree or the Ukrainian Candidate of Sciences degree.</li>
+            <li>Scientific achievements requiring completion or preparation as a doctoral dissertation or scientific report.</li>
+            <li>Research publications related to the proposed topic amounting to at least half the number required by the Ministry of Education and Science for the Doctor of Sciences degree.</li>
+            <li>A proposed research area aligned with the Institute's research profile and the relevant scientific specialty.</li>
+          </ul>
+        </article>
+
+        <article class="doctoral-rule-card doctoral-rule-card-wide">
+          <h3>Application documents</h3>
+          <p>Applicants should prepare the following for their application and personal file:</p>
+          <ul class="doctoral-documents-list">
+            <li>An application addressed to the Director of the Institute.</li>
+            <li>A personal personnel record form.</li>
+            <li>Identity documents and a taxpayer identification number, where applicable.</li>
+            <li>Copies of higher education and Doctor of Philosophy (Candidate of Sciences) diplomas.</li>
+            <li>A copy of an academic title certificate, if held.</li>
+            <li>A list of publications, scientific works and inventions, together with <strong>copies of publications relevant to the proposed dissertation</strong>.</li>
+            <li>A detailed research proposal outlining the plan and work needed to prepare the research results for defence.</li>
+            <li>An assessment of the applicant's scientific work prepared by an Institute researcher holding the Doctor of Sciences degree, including a proposal for scientific consultation.</li>
+            <li>Documentation of a name change, if applicable, and photographs for the personal file.</li>
+          </ul>
+          <p>
+            Original identity and degree documents must be presented for verification.
+            Degrees obtained abroad are subject to applicable recognition rules.
+            Applicants should confirm the final document checklist and submission method with
+            the Institute before applying.
+          </p>
+        </article>
+
+        <article class="doctoral-rule-card">
+          <h3>Review and admission</h3>
+          <ol>
+            <li>The applicant's documents are considered by the relevant research department, which reviews them and hears a research presentation within one month of registration of the application.</li>
+            <li>The department submits its conclusion to the Scientific Council and, if favourable, proposes a scientific consultant.</li>
+            <li>At its next meeting, the Scientific Council reviews the department's conclusion, approves the dissertation topic, makes an admission decision and appoints a scientific consultant.</li>
+            <li>Admission is formalised by an order of the Institute's Director.</li>
+          </ol>
+        </article>
+
+        <article class="doctoral-rule-card">
+          <h3>Schedule and research plan</h3>
+          <p>
+            The application period, review schedule and availability of places are determined
+            separately for each admission cycle.
+            <strong>Doctoral training begins on 1 September.</strong>
+          </p>
+          <p>
+            After admission, the doctoral researcher agrees an individual research plan with
+            their scientific consultant. The Scientific Council approves the plan
+            <strong>within two months of admission</strong>.
+            Research then follows the approved plan.
+          </p>
+          <p>
+            Stipends for state-funded doctoral researchers, repeat state-funded admission,
+            contractual terms and accommodation are governed by applicable legislation
+            and the Institute's actual capacity.
+          </p>
+        </article>
+      </div>
+
+      <div class="doctoral-rules-source">
+        <strong>Regulatory basis:</strong>
+        <a href="https://zakon.rada.gov.ua/laws/show/261-2016-%D0%BF" target="_blank" rel="noopener noreferrer">
+          Procedure for the training of Doctors of Philosophy and Doctors of Sciences (Cabinet of Ministers Resolution No. 261)
+        </a>.
+        This is information for applicants based on the Institute's previous admission rules and
+        applicable regulations; it does not replace formally approved rules for a particular admission cycle.
       </div>
     </div>
   </section>
@@ -297,6 +366,66 @@ const relatedLinks = [
     margin-top: auto;
   }
 
+
+  .doctoral-rules-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .doctoral-rule-card,
+  .doctoral-rules-source {
+    padding: clamp(22px, 3vw, 32px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .doctoral-rule-card-wide {
+    grid-column: 1 / -1;
+  }
+
+  .doctoral-rule-card h3 {
+    margin: 0 0 16px;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+  }
+
+  .doctoral-rule-card p {
+    margin: 0 0 14px;
+    line-height: 1.65;
+  }
+
+  .doctoral-rule-card p:last-child {
+    margin-bottom: 0;
+  }
+
+  .doctoral-rule-card ul,
+  .doctoral-rule-card ol {
+    margin: 0;
+    padding-left: 22px;
+  }
+
+  .doctoral-rule-card li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+
+  .doctoral-documents-list {
+    columns: 2;
+    column-gap: 38px;
+  }
+
+  .doctoral-documents-list li {
+    break-inside: avoid;
+  }
+
+  .doctoral-rules-source {
+    margin-top: 16px;
+    background: var(--surface-soft);
+    line-height: 1.6;
+  }
+
   .doctoral-hero {
     padding: 52px 0 18px;
   }
@@ -311,7 +440,6 @@ const relatedLinks = [
   .doctoral-hero-panel,
   .doctoral-mark-card,
   .doctoral-info-card,
-  .doctoral-document-card,
   .doctoral-panel,
   .related-panel {
     background: var(--surface);
@@ -448,49 +576,6 @@ const relatedLinks = [
     color: var(--muted);
   }
 
-  .doctoral-document-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-  }
-
-  .doctoral-document-card {
-    display: grid;
-    grid-template-columns: 68px minmax(0, 1fr);
-    gap: 16px;
-    align-items: start;
-    padding: clamp(20px, 3vw, 30px);
-    color: var(--text);
-  }
-
-  .doctoral-document-card:hover {
-    transform: translateY(-4px);
-    text-decoration: none;
-    border-color: rgba(29, 79, 145, 0.28);
-  }
-
-  .doctoral-document-card span {
-    display: grid;
-    place-items: center;
-    width: 58px;
-    height: 58px;
-    border-radius: 18px;
-    background: var(--accent-soft);
-    color: var(--accent-dark);
-    font-size: 0.82rem;
-    font-weight: 950;
-  }
-
-  .doctoral-document-card h3 {
-    margin: 0 0 8px;
-    font-size: 1.24rem;
-  }
-
-  .doctoral-document-card p {
-    margin: 0;
-    color: var(--muted);
-  }
-
   .doctoral-two-column {
     display: grid;
     grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
@@ -582,9 +667,9 @@ const relatedLinks = [
   @media (max-width: 900px) {
     .doctoral-hero-grid,
     .doctoral-info-grid,
+    .doctoral-rules-grid,
     .doctoral-students-grid,
-    .doctoral-document-grid,
-    .doctoral-two-column,
+      .doctoral-two-column,
     .related-panel,
     .related-link-grid {
       grid-template-columns: 1fr;
@@ -600,7 +685,14 @@ const relatedLinks = [
   }
 
   @media (max-width: 560px) {
-    .doctoral-document-card,
+    .doctoral-rule-card-wide {
+      grid-column: auto;
+    }
+
+    .doctoral-documents-list {
+      columns: 1;
+    }
+
     .doctoral-step {
       grid-template-columns: 1fr;
     }

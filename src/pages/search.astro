@@ -1,97 +1,23 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-function withBase(path: string) {
-  if (/^(https?:)?\/\//.test(path) || path.startsWith('mailto:') || path.startsWith('#')) {
-    return path;
-  }
-
-  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
-}
-
-const staticPages = [
-  ['Головна', '/', 'Головна сторінка Інституту механіки ім. С. П. Тимошенка НАН України.'],
-  ['Новини', '/news/', 'Новини та оголошення Інституту.'],
-  ['Наукові відділи', '/departments/', 'Структура наукових відділів Інституту.'],
-  ['Бібліотека', '/library/', 'Монографії, навчальні видання, історичні матеріали та каталоги.'],
-  ['Аспірантура', '/postgraduate/', 'Вступ, освітньо-наукова програма, акредитація, аспіранти та керівники.'],
-  ['Захист дисертацій', '/dissertations/', 'Матеріали захистів дисертацій поточного та попереднього року.'],
-  ['Захищені дисертації', '/defended-dissertations/', 'Алфавітний каталог дисертацій, захищених в Інституті.'],
-  ['Вчена рада', '/scientific-council/', 'Вчена рада Інституту механіки.'],
-  ['Науково-методична рада', '/nmr/', 'Методичне забезпечення освітньо-наукової діяльності.'],
-  ['Докторантура', '/doctoral/', 'Інформація про докторантуру Інституту.'],
-  ['Карта сайту', '/sitemap/', 'Структурований перелік основних сторінок сайту.'],
-  ['Політика доступності', '/accessibility/', 'Політика доступності вебсайту.']
-];
-
-const news = (await getCollection('news')).map((entry) => ({
-  title: entry.data.title,
-  url: entry.data.externalUrl ?? `/news/${entry.id}/`,
-  type: 'Новини',
-  description: entry.data.description,
-  keywords: [
-    entry.data.category,
-    ...entry.data.tags,
-    String(entry.data.year),
-    entry.body
-  ].filter(Boolean).join(' ')
-}));
-
-const departments = (await getCollection('departments')).map((entry) => ({
-  title: entry.data.title,
-  url: `/departments/${entry.id}/`,
-  type: 'Наукові відділи',
-  description: entry.data.summary,
-  keywords: [
-    entry.data.shortTitle,
-    entry.data.group,
-    entry.data.head,
-    ...entry.data.staff.map((item) => item.name),
-    entry.body
-  ].filter(Boolean).join(' ')
-}));
-
-const people = (await getCollection('people')).map((entry) => ({
-  title: entry.data.name,
-  url: `/people/${entry.id}/`,
-  type: 'Співробітники',
-  description: [entry.data.position, entry.data.department, entry.data.degree].filter(Boolean).join(' · '),
-  keywords: [
-    entry.data.nameEn,
-    entry.data.academicTitle,
-    entry.data.email,
-    ...entry.data.researchAreas,
-    entry.body
-  ].filter(Boolean).join(' ')
-}));
-
-const searchItems = [
-  ...staticPages.map(([title, url, description]) => ({ title, url, type: 'Сторінки', description, keywords: '' })),
-  ...news,
-  ...departments,
-  ...people
-].map((item) => ({
-  ...item,
-  url: withBase(item.url),
-  haystack: `${item.title} ${item.type} ${item.description} ${item.keywords}`.toLocaleLowerCase('uk-UA')
-}));
+const withBase = (path: string) => base + path;
 ---
+
 
 <BaseLayout
   title={`Пошук | ${site.shortName}`}
   description="Пошук по сайту Інституту механіки ім. С. П. Тимошенка НАН України."
   activePage="home"
 >
-  <div class="search-page">
+  <div class="search-page" data-site-search data-search-lang="uk" data-search-index={withBase('/search-index.json')}>
     <section class="search-hero">
       <p class="eyebrow">Навігація</p>
       <h1>Пошук по сайту</h1>
       <p class="lead">
-        Введіть прізвище, назву розділу, тему або ключове слово, щоб знайти сторінки, новини,
-        наукові відділи та сторінки співробітників.
+        Введіть прізвище, назву документа, конкурс, тему або ключове слово. Пошук охоплює також архів виборів директора, освітні документи та НКУТПМ.
       </p>
     </section>
 
@@ -101,7 +27,8 @@ const searchItems = [
         <input id="site-search" type="search" placeholder="Наприклад: аспірантура, SCADAS, тензорезистори, Селіванов" autocomplete="off" />
         <button type="button" data-clear-search>Очистити</button>
       </div>
-      <p class="search-help">Пошук виконується у браузері за основними сторінками та індексованими матеріалами сайту.</p>
+      <p class="search-help">Пошук за назвами, описами та метаданими сторінок і документів. Вміст PDF-файлів не індексується.</p>
+      <noscript><p class="search-help">Для роботи пошуку потрібен JavaScript. Відкрийте <a href={withBase('/sitemap/')}>карту сайту</a>, щоб переглянути розділи.</p></noscript>
     </section>
 
     <section class="search-results-section" aria-live="polite">
@@ -114,62 +41,8 @@ const searchItems = [
   </div>
 </BaseLayout>
 
-<script define:vars={{ searchItems }}>
-  const input = document.querySelector('#site-search');
-  const clearButton = document.querySelector('[data-clear-search]');
-  const results = document.querySelector('[data-search-results]');
-  const count = document.querySelector('[data-results-count]');
-
-  function escapeHtml(value) {
-    return value
-      .replaceAll('&', '&amp;')
-      .replaceAll('<', '&lt;')
-      .replaceAll('>', '&gt;')
-      .replaceAll('"', '&quot;')
-      .replaceAll("'", '&#039;');
-  }
-
-  function renderResults(query) {
-    const normalizedQuery = query.trim().toLocaleLowerCase('uk-UA');
-
-    if (!normalizedQuery) {
-      results.innerHTML = '';
-      count.textContent = 'Почніть вводити запит';
-      return;
-    }
-
-    const words = normalizedQuery.split(/\s+/).filter(Boolean);
-    const found = searchItems
-      .map((item) => {
-        const score = words.reduce((sum, word) => sum + (item.haystack.includes(word) ? 1 : 0), 0);
-        return { ...item, score };
-      })
-      .filter((item) => item.score > 0)
-      .sort((a, b) => b.score - a.score || a.title.localeCompare(b.title, 'uk'))
-      .slice(0, 50);
-
-    count.textContent = found.length === 1 ? '1 результат' : `${found.length} результатів`;
-
-    if (found.length === 0) {
-      results.innerHTML = '<p class="empty-results">За цим запитом нічого не знайдено.</p>';
-      return;
-    }
-
-    results.innerHTML = found.map((item) => `
-      <article class="result-card">
-        <span>${escapeHtml(item.type)}</span>
-        <h3><a href="${item.url}">${escapeHtml(item.title)}</a></h3>
-        ${item.description ? `<p>${escapeHtml(item.description)}</p>` : ''}
-      </article>
-    `).join('');
-  }
-
-  input?.addEventListener('input', () => renderResults(input.value));
-  clearButton?.addEventListener('click', () => {
-    input.value = '';
-    input.focus();
-    renderResults('');
-  });
+<script>
+  import '../scripts/site-search';
 </script>
 
 <style>
@@ -181,7 +54,7 @@ const searchItems = [
 
   .search-hero,
   .search-panel,
-  .result-card {
+  :global(.result-card) {
     border: 1px solid var(--line);
     border-radius: var(--radius);
     background: var(--surface);
@@ -273,11 +146,11 @@ const searchItems = [
     gap: 12px;
   }
 
-  .result-card {
+  :global(.result-card) {
     padding: 18px 20px;
   }
 
-  .result-card span {
+  :global(.result-card span) {
     display: inline-flex;
     width: fit-content;
     margin-bottom: 8px;
@@ -289,13 +162,13 @@ const searchItems = [
     font-weight: 850;
   }
 
-  .result-card h3 {
+  :global(.result-card h3) {
     margin: 0 0 8px;
     font-size: 1.16rem;
   }
 
-  .result-card p,
-  .empty-results {
+  :global(.result-card p),
+  :global(.empty-results) {
     margin: 0;
     color: var(--muted);
     line-height: 1.55;

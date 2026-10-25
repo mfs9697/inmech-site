@@ -1,5 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
-import { hasNewsScope } from './newsScopes';
+import { hasNewsScope } from './newsScopes.ts';
 
 type NewsEntry = CollectionEntry<'news'>;
 

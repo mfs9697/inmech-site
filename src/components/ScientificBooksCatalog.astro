@@ -1,0 +1,480 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { catalogueLetterSlug } from '../data/defendedCatalogueLetters';
+
+interface Props { selectedLetter?: string; selectedTag?: string; }
+const { selectedLetter, selectedTag } = Astro.props;
+import { site } from '../data/site';
+import {
+  bibliographyAll,
+  bibliographyLibraryOfCongressCount,
+  bibliographyUsedTags,
+  bibliographyYears
+} from '../data/bibliographyAll';
+import { bibliographyTagLabels } from '../data/bibliographyTags';
+
+const combinedBibliography = bibliographyAll;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function withBase(path: string) {
+  if (path.startsWith('http') || path.startsWith('#')) {
+    return path;
+  }
+
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+function normalizeAuthorKey(authors: string) {
+  return authors
+    .replace(/^За заг\. ред\.\s*/i, '')
+    .replace(/^За ред\.\s*/i, '')
+    .replace(/^Под общ\. ред\.\s*/i, '')
+    .trim();
+}
+
+function getInitial(authors: string) {
+  const normalized = normalizeAuthorKey(authors);
+  const first = normalized.charAt(0).toUpperCase();
+  return first || '#';
+}
+
+const bibliographyTypeLabels = {
+  monograph: 'Монографія',
+  textbook: 'Навчальне видання',
+  handbook: 'Довідник',
+  dictionary: 'Словник',
+  'edited-volume': 'Колективна праця',
+  chapter: 'Розділ у виданні',
+  'series-volume': 'Том серії'
+} as const;
+
+const sortedBibliography = [...combinedBibliography].sort((a, b) =>
+  normalizeAuthorKey(a.authors).localeCompare(normalizeAuthorKey(b.authors), 'uk') ||
+  a.title.localeCompare(b.title, 'uk')
+);
+
+const alphabetGroups = [...sortedBibliography.reduce((acc, entry) => {
+  const initial = getInitial(entry.authors);
+  if (!acc.has(initial)) acc.set(initial, []);
+  acc.get(initial)?.push(entry);
+  return acc;
+}, new Map<string, typeof combinedBibliography>())].map(([letter, items]) => ({ letter, items }));
+
+const hasEntries = combinedBibliography.length > 0;
+const visibleGroups = selectedLetter
+  ? alphabetGroups.filter((group) => group.letter === selectedLetter)
+  : selectedTag
+    ? alphabetGroups.map((group) => ({ ...group, items: group.items.filter((entry) => entry.tags.includes(selectedTag)) })).filter((group) => group.items.length > 0)
+    : [];
+const visibleCount = visibleGroups.reduce((sum, group) => sum + group.items.length, 0;
+---
+
+<BaseLayout
+  title={`Наукові монографії та довідкові видання | ${site.shortName}`}
+  description="Великий каталог окремих наукових монографій, довідників і словників з бібліотеки Інституту механіки ім. С. П. Тимошенка НАН України."
+  activePage="home"
+>
+  <section class="books-hero">
+    <div class="container books-hero-panel">
+      <div>
+        <p class="eyebrow">Бібліотека</p>
+        <h1>Великий каталог окремих монографій</h1>
+        <p class="lead">
+          Розділ формується як єдина бібліографічна база: кожен запис зберігається один раз,
+          а тематична належність задається контрольованими тегами. Це дає змогу показувати каталог
+          за алфавітом, роками, типами видань або науковими напрямами без дублювання записів.
+        </p>
+      </div>
+      <div class="books-stats" aria-label="Статистика каталогу окремих монографій">
+        <strong>{combinedBibliography.length}</strong>
+        <span>записів</span>
+        <small>{hasEntries ? `${bibliographyYears.at(-1)}–${bibliographyYears[0]}` : 'підготовка'}</small>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading compact-header">
+        <div>
+          <p class="eyebrow">Каталог</p>
+          <h2>Алфавітний покажчик</h2>
+        </div>
+        <p>
+          Записи згруповано за першою літерою автора або редактора. Тематичні теги вже активні:
+          натисніть тег, щоб переглянути відповідну добірку, або поверніться до всіх записів.
+        </p>
+      </div>
+
+      <div class="books-toolbar">
+        <a href={withBase('/library/')}>← До бібліотеки</a>
+        <span>
+          {selectedLetter ? 'Літера ' + selectedLetter + ' · ' + visibleCount : selectedTag ? 'Тема · ' + visibleCount : 'Усі записи · ' + combinedBibliography.length}
+        </span>
+      </div>
+
+      <nav class="alpha-nav" aria-label="Алфавітний покажчик бібліографічного каталогу">
+        <a href={withBase('/library/scientific-books/')} aria-current={!selectedLetter && !selectedTag ? 'page' : undefined}>Усі літери</a>
+        {alphabetGroups.map((group) => (
+          <a
+            id={!selectedLetter && !selectedTag ? `books-${group.letter}` : undefined}
+            href={withBase(`/library/scientific-books/letter/${catalogueLetterSlug(group.letter)}/#books-${group.letter}`)}
+            aria-current={selectedLetter === group.letter ? 'page' : undefined}
+          >{group.letter} · {group.items.length}</a>
+        ))}
+      </nav>
+
+      <nav class="tag-cloud" aria-label="Тематичний покажчик видань">
+        <a class="tag-filter" href={withBase('/library/scientific-books/')}>Усі записи</a>
+        {bibliographyUsedTags.map((tag) => (
+          <a
+            class:list={['tag-filter', { 'is-active': selectedTag === tag }]}
+            id={!selectedLetter && !selectedTag ? `tag-${tag}` : undefined}
+            href={withBase(`/library/scientific-books/topic/${tag}/`)}
+            aria-current={selectedTag === tag ? 'page' : undefined}
+          >{bibliographyTagLabels[tag]}</a>
+        ))}
+      </nav>
+
+
+      <div class="alphabet-groups">
+        {visibleGroups.map((group) => (
+          <section class="alphabet-group" id={`books-${group.letter}`} data-alphabet-group>
+            <div class="alphabet-header">
+              <h3>{group.letter}</h3>
+              <span data-group-count>{group.items.length} {group.items.length === 1 ? 'запис' : 'записів'}</span>
+            </div>
+
+            <div class="book-grid">
+              {group.items.map((item) => (
+                <article class="book-card" data-book-card data-tags={JSON.stringify(item.tags)}>
+                  <div class="book-card-topline">
+                    <span>{bibliographyTypeLabels[item.type]}</span>
+                    {item.year && <strong>{item.year}</strong>}
+                  </div>
+                  <h4>{item.title}</h4>
+                  <p class="authors">{item.authors}</p>
+                  <p class="details">
+                    {item.publisher}{item.pages ? `, ${item.pages}` : ''}{item.isbn ? `; ISBN ${item.isbn}` : ''}{item.doi ? `; DOI ${item.doi}` : ''}.
+                  </p>
+                  {item.note && <p class="note">{item.note}</p>}
+                  <div class="entry-tags">
+                    {item.tags.map((tag) => (
+                      <a class="tag-filter entry-tag" href={withBase(`/library/scientific-books/topic/${tag}/`)}>{bibliographyTagLabels[tag]}</a>
+                    ))}
+                  </div>
+                  {item.inLibraryOfCongress && <p class="loc-badge">Бібліотека Конгресу США</p>}
+                  {item.url && (
+                    <a class="card-link" href={item.url} target="_blank" rel="noopener noreferrer">Електронний ресурс →</a>
+                  )}
+                </article>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+
+
+<style>
+  .is-filter-hidden {
+    display: none !important;
+  }
+
+  .books-hero {
+    padding: 52px 0 18px;
+  }
+
+  .books-hero-panel,
+  .book-card,
+  .alphabet-group {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .books-hero-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 28px;
+    align-items: center;
+    padding: clamp(28px, 5vw, 54px);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .books-hero-panel::after {
+    content: '';
+    position: absolute;
+    right: -90px;
+    top: -110px;
+    width: 300px;
+    height: 300px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(29, 79, 145, 0.14), rgba(29, 79, 145, 0));
+  }
+
+  .books-hero-panel > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .books-hero-panel h1 {
+    margin: 0 0 18px;
+    max-width: 900px;
+    font-size: clamp(2rem, 4.2vw, 4.1rem);
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+  }
+
+  .books-stats {
+    display: grid;
+    place-items: center;
+    min-width: 158px;
+    min-height: 158px;
+    border-radius: 28px;
+    background: linear-gradient(135deg, rgba(29, 79, 145, 0.10), rgba(184, 135, 47, 0.16));
+    border: 1px solid var(--line);
+    text-align: center;
+  }
+
+  .books-stats strong {
+    display: block;
+    color: var(--accent-dark);
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .books-stats span,
+  .books-stats small {
+    color: var(--muted);
+    font-weight: 850;
+  }
+
+  .section-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 28px;
+    align-items: flex-end;
+    margin-bottom: 20px;
+  }
+
+  .section-heading h2 {
+    margin: 0;
+    font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .section-heading p:last-child {
+    max-width: 590px;
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .books-toolbar,
+  .alpha-nav,
+  .tag-cloud,
+  .no-results {
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--surface-soft);
+  }
+
+  .books-toolbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 14px;
+    padding: 14px 16px;
+  }
+
+  .books-toolbar a {
+    color: var(--accent-dark);
+    font-weight: 900;
+  }
+
+  .books-toolbar span {
+    color: var(--muted);
+    font-weight: 850;
+  }
+
+  .alpha-nav,
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+    padding: 12px;
+  }
+
+  .alpha-nav a,
+  .tag-filter,
+  .book-card-topline span,
+  .loc-badge {
+    display: inline-flex;
+    width: fit-content;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 900;
+  }
+
+  .alpha-nav a {
+    min-width: 38px;
+    justify-content: center;
+    padding: 8px 10px;
+    background: var(--surface);
+    color: var(--accent-dark);
+  }
+
+  .alpha-nav a:hover {
+    background: var(--accent-soft);
+    text-decoration: none;
+  }
+
+  .tag-filter,
+  .book-card-topline span {
+    padding: 6px 10px;
+    border: 0;
+    background: var(--surface);
+    color: var(--accent-dark);
+    cursor: pointer;
+    font-family: inherit;
+    line-height: 1.2;
+  }
+
+  .tag-filter:hover,
+  .tag-filter.is-active {
+    background: var(--accent-soft);
+  }
+
+  .tag-filter.is-active {
+    outline: 2px solid rgba(29, 79, 145, 0.18);
+  }
+
+  .alphabet-groups {
+    display: grid;
+    gap: 18px;
+  }
+
+  .alphabet-group {
+    padding: clamp(18px, 3vw, 28px);
+  }
+
+  .alphabet-header,
+  .book-card-topline {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .alphabet-header {
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .alphabet-header h3 {
+    margin: 0;
+    color: var(--accent-dark);
+    font-size: 1.45rem;
+  }
+
+  .alphabet-header span,
+  .book-card-topline strong {
+    color: var(--muted);
+    font-weight: 850;
+  }
+
+  .book-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .book-card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: var(--surface-soft);
+  }
+
+  .book-card-topline {
+    margin-bottom: 12px;
+  }
+
+  .book-card h4 {
+    margin: 0 0 10px;
+    color: var(--accent-dark);
+    line-height: 1.25;
+  }
+
+  .authors {
+    margin: 0 0 10px;
+    color: var(--text);
+    font-weight: 850;
+  }
+
+  .details,
+  .note {
+    margin: 0 0 14px;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+
+  .entry-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin: 0 0 14px;
+  }
+
+  .entry-tag {
+    font-size: 0.78rem;
+  }
+
+  .loc-badge {
+    margin: 0 0 14px;
+    padding: 6px 10px;
+    background: rgba(184, 135, 47, 0.14);
+    color: var(--accent-dark);
+  }
+
+  .no-results {
+    margin: 0 0 18px;
+    padding: 16px 18px;
+    color: var(--muted);
+    font-weight: 850;
+  }
+
+  .book-card .card-link {
+    margin-top: auto;
+  }
+
+  @media (max-width: 900px) {
+    .books-hero-panel,
+    .section-heading,
+    .books-toolbar,
+    .alphabet-header {
+      display: block;
+    }
+
+    .books-stats,
+    .section-heading p:last-child,
+    .books-toolbar span,
+    .alphabet-header span {
+      margin-top: 14px;
+    }
+
+    .book-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

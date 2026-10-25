@@ -135,30 +135,7 @@ const topicOptions = defendedDissertationTopics
   .slice(0, defendedDissertationTopicLimit)
   .sort((a, b) => a.uk.localeCompare(b.uk, 'uk', { sensitivity: 'base' }));
 const topicLabelById = new Map(defendedDissertationTopics.map((topic) => [topic.id, topic.uk]));
-const catalogRecords = catalog.flatMap((group) =>
-  group.items.map((item) => ({
-    item,
-    letter: group.letter,
-    meta: dissertationCardMeta(item),
-    topicIds: matchDefendedDissertationTopics(`${item.title} ${item.details}`)
-  }))
-);
-const recordsByYear = new Map<string, typeof catalogRecords>();
 
-catalogRecords.forEach((record) => {
-  const year = record.meta.year ?? 'Рік не визначено';
-  const records = recordsByYear.get(year) ?? [];
-  records.push(record);
-  recordsByYear.set(year, records);
-});
-
-const yearGroups = Array.from(recordsByYear, ([year, records]) => ({ year, records })).sort((a, b) => {
-  const aYear = Number(a.year);
-  const bYear = Number(b.year);
-  if (Number.isNaN(aYear)) return 1;
-  if (Number.isNaN(bYear)) return -1;
-  return bYear - aYear;
-});
 ---
 
 <section class="section" id="defended-catalog">
@@ -299,7 +276,8 @@ const yearGroups = Array.from(recordsByYear, ([year, records]) => ({ year, recor
       ))}
     </div>
 
-    <div class="diss-groups" data-catalog-view="year" hidden>    </div>
+    <div class="diss-groups" data-catalog-view="year" hidden>
+</div>
   </div>
 </section>
 

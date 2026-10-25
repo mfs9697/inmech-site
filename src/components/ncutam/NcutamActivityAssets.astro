@@ -1,5 +1,7 @@
 ---
 import { getEntries } from 'astro:content';
+import { existsSync, readFileSync } from 'node:fs';
+import path from 'node:path';
 
 interface GalleryItem {
   src: string;
@@ -26,6 +28,20 @@ const { language = 'uk', gallery = [], documents = [], video } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (path: string) => `${base}${path.startsWith('/') ? path : `/${path}`}`;
 const resolvedDocuments = documents.length > 0 ? await getEntries(documents) : [];
+const galleryThumbnailFolder = '/images/ncutam/meetings/2025-11-11/thumbs/';
+const dimensionsFile = path.join(process.cwd(), 'public', galleryThumbnailFolder, 'metadata.json');
+const originalDimensions: Record<string, { width: number; height: number }> =
+  existsSync(dimensionsFile) ? JSON.parse(readFileSync(dimensionsFile, 'utf8')) : {};
+function photoPreview(src: string) {
+  const match = /^\/images\/ncutam\/meetings\/2025-11-11\/(0[1-5])\.jpg$/.exec(src);
+  if (!match || !originalDimensions[match[1]]) return null;
+  return {
+    narrow: withBase(galleryThumbnailFolder + match[1] + '-480.webp'),
+    wide: withBase(galleryThumbnailFolder + match[1] + '-960.webp'),
+    ...originalDimensions[match[1]]
+  };
+}
+
 
 const labels = language === 'uk'
   ? {
@@ -86,10 +102,27 @@ const documentNote = (entry: (typeof resolvedDocuments)[number]) =>
       {gallery.map((item) => {
         const alt = language === 'uk' ? item.alt : (item.altEn ?? item.alt);
         const caption = language === 'uk' ? item.caption : (item.captionEn ?? item.caption);
+        const preview = photoPreview(item.src);
         return (
           <figure class="activity-gallery-item">
             <a href={withBase(item.src)} target="_blank" rel="noopener noreferrer" aria-label={`${labels.imageLink}: ${alt}`}>
-              <img src={withBase(item.src)} alt={alt} loading="lazy" decoding="async" />
+              <picture>
+                {preview && (
+                  <source
+                    type="image/webp"
+                    srcset={`${preview.narrow} 480w, ${preview.wide} 960w`}
+                    sizes="(max-width: 560px) 96vw, (max-width: 1100px) 46vw, 30vw"
+                  />
+                )}
+                <img
+                  src={withBase(item.src)}
+                  alt={alt}
+                  width={preview?.width}
+                  height={preview?.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </a>
             {caption && <figcaption>{caption}</figcaption>}
           </figure>
@@ -174,6 +207,7 @@ const documentNote = (entry: (typeof resolvedDocuments)[number]) =>
     outline: 3px solid var(--accent);
     outline-offset: -3px;
   }
+  .activity-gallery-item picture { display: block; width: 100%; }
   .activity-gallery-item img {
     display: block;
     width: 100%;

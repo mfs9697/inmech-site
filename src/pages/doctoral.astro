@@ -2,8 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
 
-const docHref = (href: string) => href.startsWith('/documents/') ? withBase(href) : href;
-
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 function withBase(path: string) {
@@ -13,15 +11,6 @@ function withBase(path: string) {
 
   return `${base}${path.startsWith('/') ? path : `/${path}`}`;
 }
-
-const documents = [
-  {
-    title: 'Правила прийому до докторантури',
-    description: 'Основний документ для вступників до докторантури Інституту.',
-    href: '/documents/doctoral/admission/doctoral-admission-rules.docx',
-    type: 'DOCX'
-  }
-];
 
 const processSteps = [
   {
@@ -110,7 +99,7 @@ const relatedLinks = [
           наукових шкіл Інституту в галузі механіки та прикладної математики.
         </p>
         <div class="doctoral-hero-actions">
-          <a class="button primary" href="#documents">Документи</a>
+          <a class="button primary" href="#documents">Правила вступу</a>
           <a class="button secondary" href={withBase('/education/')}>До освітньо-наукового розділу</a>
         </div>
       </div>
@@ -172,29 +161,107 @@ const relatedLinks = [
     </div>
   </section>
 
+
   <section class="section" id="documents">
     <div class="container">
       <div class="section-heading compact-header">
         <div>
-          <p class="eyebrow">Основні матеріали</p>
-          <h2>Документи докторантури</h2>
+          <p class="eyebrow">Інформація для вступників</p>
+          <h2>Порядок вступу до докторантури</h2>
         </div>
         <p>
-          На цій сторінці зібрано ключові документи для вступу до докторантури та
-          організації підготовки здобувачів наукового ступеня доктора наук.
+          Основні вимоги, перелік документів та процедура розгляду кандидатур.
+          Конкретні строки подання заяв і кількість місць оголошують окремо.
         </p>
       </div>
 
-      <div class="doctoral-document-grid">
-        {documents.map((document) => (
-          <a class="doctoral-document-card" href={docHref(document.href)} target="_blank" rel="noopener noreferrer">
-            <span>{document.type}</span>
-            <div>
-              <h3>{document.title}</h3>
-              <p>{document.description}</p>
-            </div>
-          </a>
-        ))}
+      <div class="doctoral-rules-grid">
+        <article class="doctoral-rule-card">
+          <h3>Загальні положення</h3>
+          <p>
+            Інститут механіки ім. С. П. Тимошенка НАН України здійснює підготовку
+            докторів наук у докторантурі відповідно до розпорядження Президії НАН України № 448
+            та чинного законодавства. Науковий профіль Інституту охоплює механіку
+            деформівного твердого тіла, теоретичну механіку та пов’язані напрями прикладної математики.
+            Прийом здійснюють за тими науковими спеціальностями, за якими відкрито докторантуру.
+          </p>
+          <p>
+            Форма підготовки — очна (денна), нормативний строк — <strong>два роки</strong>.
+            Фінансування можливе за державним замовленням або за кошти фізичних
+            чи юридичних осіб відповідно до встановлених умов.
+          </p>
+        </article>
+
+        <article class="doctoral-rule-card">
+          <h3>Вимоги до вступників</h3>
+          <ul>
+            <li>Науковий ступінь доктора філософії або кандидата наук.</li>
+            <li>Наукові здобутки, що потребують завершення чи оформлення у вигляді докторської дисертації або наукової доповіді.</li>
+            <li>Наукові публікації за темою майбутнього дослідження в обсязі не менше половини вимог, установлених МОН для здобуття ступеня доктора наук.</li>
+            <li>Відповідність запропонованого дослідження науковій спеціальності та профілю Інституту.</li>
+          </ul>
+        </article>
+
+        <article class="doctoral-rule-card doctoral-rule-card-wide">
+          <h3>Документи для вступу</h3>
+          <p>Для підготовки заяви та особової справи вступнику слід мати:</p>
+          <ul class="doctoral-documents-list">
+            <li>Заяву на ім’я директора Інституту.</li>
+            <li>Особовий листок з обліку кадрів.</li>
+            <li>Документ, що посвідчує особу, та реєстраційний номер облікової картки платника податків (за наявності).</li>
+            <li>Копії дипломів про вищу освіту та присудження ступеня доктора філософії (кандидата наук).</li>
+            <li>Копію документа про присвоєння вченого звання (за наявності).</li>
+            <li>Список наукових праць, публікацій і винаходів та <strong>копії публікацій за темою</strong> майбутньої дисертації.</li>
+            <li>Розгорнуту наукову пропозицію з планом досліджень і переліком роботи, необхідної для підготовки результатів до захисту.</li>
+            <li>Характеристику наукової діяльності вступника, підготовлену доктором наук із числа наукових працівників Інституту, із пропозицією щодо наукового консультування.</li>
+            <li>Документ про зміну прізвища (за потреби) та фотокартки для оформлення особової справи.</li>
+          </ul>
+          <p>
+            Під час подання документів пред’являють оригінали документа, що посвідчує особу,
+            і документа про науковий ступінь. Якщо науковий ступінь здобуто за кордоном,
+            застосовуються правила його визнання. Остаточний склад і спосіб подання пакета
+            необхідно уточнювати в Інституті перед вступом.
+          </p>
+        </article>
+
+        <article class="doctoral-rule-card">
+          <h3>Розгляд кандидатури та зарахування</h3>
+          <ol>
+            <li>Подані матеріали передають до відповідного наукового відділу; протягом місяця після реєстрації заяви відділ розглядає документи та заслуховує наукову доповідь вступника.</li>
+            <li>За результатами обговорення відділ подає висновок Вченій раді та, у разі позитивного рішення, пропонує кандидатуру наукового консультанта.</li>
+            <li>Вчена рада на черговому засіданні розглядає висновок, затверджує тему докторського дослідження, ухвалює рішення про зарахування і призначає наукового консультанта.</li>
+            <li>Зарахування оформлюється наказом директора Інституту.</li>
+          </ol>
+        </article>
+
+        <article class="doctoral-rule-card">
+          <h3>Строки та організація підготовки</h3>
+          <p>
+            Дати початку й завершення прийому заяв, строки відбору та наявність місць
+            визначаються для кожної вступної кампанії окремо.
+            <strong>Початок перебування в докторантурі — 1 вересня.</strong>
+          </p>
+          <p>
+            Після зарахування докторант погоджує індивідуальний план наукової роботи
+            з науковим консультантом. Вчена рада затверджує його
+            <strong>протягом двох місяців від дати зарахування</strong>.
+            Дослідження проводяться відповідно до затвердженого плану.
+          </p>
+          <p>
+            Виплата стипендії за державним замовленням, повторний вступ за державні кошти,
+            умови договору та питання проживання регулюються чинним законодавством
+            і фактичними можливостями Інституту.
+          </p>
+        </article>
+      </div>
+
+      <div class="doctoral-rules-source">
+        <strong>Нормативна основа:</strong>
+        <a href="https://zakon.rada.gov.ua/laws/show/261-2016-%D0%BF" target="_blank" rel="noopener noreferrer">
+          Порядок підготовки здобувачів ступеня доктора філософії та доктора наук (постанова КМУ № 261)
+        </a>.
+        Цей розділ — інформація для вступників на основі правил Інституту та чинного
+        Порядку; він не замінює формально затверджених правил конкретної вступної кампанії.
       </div>
     </div>
   </section>
@@ -298,6 +365,66 @@ const relatedLinks = [
     margin-top: auto;
   }
 
+
+  .doctoral-rules-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .doctoral-rule-card,
+  .doctoral-rules-source {
+    padding: clamp(22px, 3vw, 32px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .doctoral-rule-card-wide {
+    grid-column: 1 / -1;
+  }
+
+  .doctoral-rule-card h3 {
+    margin: 0 0 16px;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+  }
+
+  .doctoral-rule-card p {
+    margin: 0 0 14px;
+    line-height: 1.65;
+  }
+
+  .doctoral-rule-card p:last-child {
+    margin-bottom: 0;
+  }
+
+  .doctoral-rule-card ul,
+  .doctoral-rule-card ol {
+    margin: 0;
+    padding-left: 22px;
+  }
+
+  .doctoral-rule-card li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+
+  .doctoral-documents-list {
+    columns: 2;
+    column-gap: 38px;
+  }
+
+  .doctoral-documents-list li {
+    break-inside: avoid;
+  }
+
+  .doctoral-rules-source {
+    margin-top: 16px;
+    background: var(--surface-soft);
+    line-height: 1.6;
+  }
+
   .doctoral-hero {
     padding: 52px 0 18px;
   }
@@ -312,7 +439,6 @@ const relatedLinks = [
   .doctoral-hero-panel,
   .doctoral-mark-card,
   .doctoral-info-card,
-  .doctoral-document-card,
   .doctoral-panel,
   .related-panel {
     background: var(--surface);
@@ -449,49 +575,6 @@ const relatedLinks = [
     color: var(--muted);
   }
 
-  .doctoral-document-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-  }
-
-  .doctoral-document-card {
-    display: grid;
-    grid-template-columns: 68px minmax(0, 1fr);
-    gap: 16px;
-    align-items: start;
-    padding: clamp(20px, 3vw, 30px);
-    color: var(--text);
-  }
-
-  .doctoral-document-card:hover {
-    transform: translateY(-4px);
-    text-decoration: none;
-    border-color: rgba(29, 79, 145, 0.28);
-  }
-
-  .doctoral-document-card span {
-    display: grid;
-    place-items: center;
-    width: 58px;
-    height: 58px;
-    border-radius: 18px;
-    background: var(--accent-soft);
-    color: var(--accent-dark);
-    font-size: 0.82rem;
-    font-weight: 950;
-  }
-
-  .doctoral-document-card h3 {
-    margin: 0 0 8px;
-    font-size: 1.24rem;
-  }
-
-  .doctoral-document-card p {
-    margin: 0;
-    color: var(--muted);
-  }
-
   .doctoral-two-column {
     display: grid;
     grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
@@ -583,9 +666,9 @@ const relatedLinks = [
   @media (max-width: 900px) {
     .doctoral-hero-grid,
     .doctoral-info-grid,
+    .doctoral-rules-grid,
     .doctoral-students-grid,
-    .doctoral-document-grid,
-    .doctoral-two-column,
+      .doctoral-two-column,
     .related-panel,
     .related-link-grid {
       grid-template-columns: 1fr;
@@ -601,7 +684,14 @@ const relatedLinks = [
   }
 
   @media (max-width: 560px) {
-    .doctoral-document-card,
+    .doctoral-rule-card-wide {
+      grid-column: auto;
+    }
+
+    .doctoral-documents-list {
+      columns: 1;
+    }
+
     .doctoral-step {
       grid-template-columns: 1fr;
     }

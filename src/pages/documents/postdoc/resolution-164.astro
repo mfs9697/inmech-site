@@ -51,7 +51,7 @@ const blocks = [
     <p class="eyebrow">Нормативні документи · чинна редакція</p>
     <h1>Постанова Президії НАН України від 07.05.2025 № 164</h1>
     <p class="lead">«Про внесення змін до Положення про програму постдокторальних досліджень у Національній академії наук України».</p>
-    <p class="source-note">Текст постанови відтворено за сторінкою 1 наданого Інститутом оригіналу. <a href="/documents/postdoc/regulations/">Повний текст Положення (додаток, сторінки 2–7)</a>. Попередня постанова № 38 від 26.01.2022 втратила чинність відповідно до пункту 2 цієї постанови.</p>
+    <p class="source-note">Текст постанови відтворено за сторінкою 1 наданого Інститутом оригіналу. <a href="/documents/postdoc/resolution-164-2025.pdf" target="_blank" rel="noopener">Оригінал постанови № 164 разом із повним Положенням (PDF, 7 сторінок)</a>. <a href="/documents/postdoc/regulations/">Повний текст Положення (додаток, сторінки 2–7)</a>. Попередня постанова № 38 від 26.01.2022 втратила чинність відповідно до пункту 2 цієї постанови.</p>
   </div></div></section>
   <section class="section"><div class="container"><article class="legal-document" aria-label="Текст постанови № 164">{blocks.map((block) => block.kind === 'heading' ? <h2>{block.text}</h2> : block.kind === 'subheading' ? <p class="caption">{block.text}</p> : <p class={block.kind === 'bullet' ? 'bullet' : block.kind === 'item' ? 'item' : undefined}>{block.text}</p>)}</article></div></section>
   <style>

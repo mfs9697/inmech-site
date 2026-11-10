@@ -211,6 +211,14 @@ const additionalScientificInfo = [
                             </div>
                           )}
 
+                          {track.supervisor && (
+                            <div class="card-field supervisor-field">
+                              <p class="card-label">Research work and postdoctoral supervisor</p>
+                              <p><a href={withBase(track.supervisor.href)}>{track.supervisor.name}</a></p>
+                              <p class="card-note">{track.supervisor.position}, {track.supervisor.degree}</p>
+                            </div>
+                          )}
+
                           <div class="card-field requirements-field">
                             <p class="card-label">Eligibility requirements</p>
                             <ul class="requirement-list">

@@ -100,6 +100,12 @@ export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [
         requirements: postdocRequirements,
         researchTopicLabel: 'Indicative research topic',
         researchTopic: 'Mathematical modelling of coupled contact-interaction problems for deformable bodies',
+        supervisor: {
+          name: 'Rostyslav M. Martyniak',
+          position: 'Leading Research Scientist',
+          degree: 'Doctor of Sciences in Physics and Mathematics',
+          href: '/en/people/martynyak/'
+        },
       }
     ],
     note: 'The signed Order No. 118/к of 1 October 2026 is available below.',

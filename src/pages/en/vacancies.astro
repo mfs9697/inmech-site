@@ -211,6 +211,14 @@ const additionalScientificInfo = [
                             </div>
                           )}
 
+                          {track.supervisor && (
+                            <div class="card-field supervisor-field">
+                              <p class="card-label">Research work and postdoctoral supervisor</p>
+                              <p><a href={withBase(track.supervisor.href)}>{track.supervisor.name}</a></p>
+                              <p class="card-note">{track.supervisor.position}, {track.supervisor.degree}</p>
+                            </div>
+                          )}
+
                           <div class="card-field requirements-field">
                             <p class="card-label">Eligibility requirements</p>
                             <ul class="requirement-list">
@@ -227,9 +235,13 @@ const additionalScientificInfo = [
                               (consolidated text, Ukrainian)
                             </a>
                             {' · '}
-                            <a href={withBase('/documents/postdoc/resolution-260/')}>
-                              Presidium Resolution No. 260 of 23 June 2023 (Ukrainian)
+                            <a href={withBase('/documents/postdoc/resolution-164/')}>
+                              Presidium Resolution No. 164 of 7 May 2025 (Ukrainian)
                             </a>
+                            {' · '}
+                            <a href={withBase('/documents/postdoc/resolution-164-2025.pdf')} target="_blank" rel="noopener">Original PDF (seven pages)</a>
+                            {' · '}
+                            <a href="#postdoc-documents">Postdoctoral submission documents (11 items)</a>
                           </p>
                         )}
                         {track.note && <p class="track-note">{track.note}</p>}
@@ -342,20 +354,26 @@ const additionalScientificInfo = [
         </p>
       </div>
 
-      <div class="submission-panel postdoc-submission-panel">
+      <div id="postdoc-documents" class="submission-panel postdoc-submission-panel">
         <p class="eyebrow">Postdoctoral programme</p>
         <h3>Documents for the postdoctoral competitive selection</h3>
         <p>
           The postdoctoral selection uses a separate application package. Under paragraph 3.3 of the Regulations, an applicant submits:
         </p>
-        <ul>
-          <li>a signed application identifying the research topic;</li>
-          <li>a professional CV;</li>
-          <li>a motivation letter of no more than 500 words;</li>
-          <li>a copy of the academic-degree diploma;</li>
-          <li>the dissertation abstract;</li>
-          <li>written recommendations from two researchers in the chosen field.</li>
-        </ul>
+        <ol>
+          <li>a written application addressed to the head of the institution, naming the research work the applicant wishes to join during the postdoctoral programme;</li>
+          <li>a copy of an identity document;</li>
+          <li>a completed personal record card (questionnaire) in the prescribed form — <a class="submission-document-link" href={withBase('/documents/vacancies/forms/researcher-questionnaire.docx')} download>download the questionnaire (DOCX, Ukrainian)</a>;</li>
+          <li>a motivation letter;</li>
+          <li>an autobiography;</li>
+          <li>a copy of the employment record book (if available) or employment history from the register of insured persons of the State Register of Compulsory State Social Insurance;</li>
+          <li>copies of documents on higher education, advanced training, award of an academic degree, conferral of an academic title, and military service record (for servicemembers or persons liable for military service);</li>
+          <li>a list of scientific publications in domestic and/or foreign (international) peer-reviewed specialist journals over the past 10 years;</li>
+          <li>the abstract of a Candidate of Sciences dissertation or a copy (if available);</li>
+          <li>written recommendations from two researchers in the relevant field of science;</li>
+          <li>written consent to personal data processing — <a class="submission-document-link" href={withBase('/documents/vacancies/forms/personal-data-consent.docx')} download>download the consent form (DOCX, Ukrainian)</a>.</li>
+        </ol>
+        <p>The institute may require additional documents. Each applicant may submit only one application (paragraphs 3.3–3.4 of the Regulations).</p>
         <p>
           The general document list for staff competitions shown above does not automatically apply to the postdoctoral procedure.
         </p>

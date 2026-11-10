@@ -40,6 +40,7 @@ export interface ActiveVacancyTrack {
   requirements: string[];
   researchTopicLabel?: string;
   researchTopic?: string;
+  supervisor?: { name: string; position: string; degree: string; href: string };
   note?: string;
 }
 
@@ -96,9 +97,10 @@ const doctorResearchRequirements = [
 const postdocRequirements = [
   'громадянство України;',
   'науковий ступінь кандидата наук або доктора філософії;',
-  'кандидат не працює за основним місцем роботи в Інституті механіки ім. С. П. Тимошенка НАН України;',
-  'на момент завершення конкурсного відбору кандидатові ще не виповнилося 36 років;',
-  'від дати захисту дисертації минуло не більше 7 років.'
+  'на момент завершення конкурсного відбору — вік до 40 років включно;',
+  'на момент завершення конкурсного відбору від дати захисту дисертації минуло не більше 10 років;',
+  'досвід у проведенні наукових досліджень та/або науково-технічних (експериментальних) розробок за напрямом наукової роботи, до виконання якої планується залучити претендента;',
+  'кандидат не працює за основним місцем роботи в Інституті механіки ім. С. П. Тимошенка НАН України.'
 ];
 
 export const activeVacancyAnnouncements: ActiveVacancyAnnouncement[] = [
@@ -162,6 +164,12 @@ export const activeVacancyAnnouncements: ActiveVacancyAnnouncement[] = [
         requirements: postdocRequirements,
         researchTopicLabel: 'Орієнтовна науково-дослідна тема',
         researchTopic: 'Математичне моделювання зв’язаних задач контактної взаємодії деформівних тіл',
+        supervisor: {
+          name: 'Мартиняк Ростислав Михайлович',
+          position: 'провідний науковий співробітник',
+          degree: 'доктор фізико-математичних наук',
+          href: '/people/martynyak/'
+        },
       }
     ],
     note: 'Підписаний наказ від 01 жовтня 2026 року № 118/к доступний нижче.',

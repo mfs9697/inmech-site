@@ -10,6 +10,9 @@ const regulation = read('src/pages/documents/postdoc/regulations.astro');
 const resolution = read('src/pages/documents/postdoc/resolution-164.astro');
 const archive = read('src/pages/documents/postdoc/regulations-2022-2023.astro');
 const old260 = read('src/pages/documents/postdoc/resolution-260.astro');
+const pdf = fs.readFileSync('public/documents/postdoc/resolution-164-2025.pdf');
+assert.equal(pdf.subarray(0,5).toString(), '%PDF-', 'original PDF signature');
+assert.equal(pdf.length, 310618, 'original seven-page PDF size');
 const regulationIndex = read('src/pages/license-and-regulations.astro');
 const regulationIndexEn = read('src/pages/en/license-and-regulations.astro');
 

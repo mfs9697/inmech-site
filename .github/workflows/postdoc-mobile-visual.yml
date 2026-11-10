@@ -10,6 +10,10 @@ on:
       - 'scripts/check-postdoc-mobile.mjs'
       - '.github/workflows/postdoc-mobile-visual.yml'
 
+concurrency:
+  group: postdoc-mobile-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   chromium-viewports:
     runs-on: ubuntu-latest
@@ -27,7 +31,12 @@ jobs:
       - name: Install temporary Playwright for CI-only emulation
         run: |
           npm install --no-save --package-lock=false playwright@1.56.1
-          npx playwright install --with-deps chromium --only-shell
+          if command -v google-chrome >/dev/null 2>&1; then
+            echo 'Using preinstalled Google Chrome on GitHub runner'
+          else
+            echo 'No preinstalled Chrome; installing Playwright headless Chromium'
+            npx playwright install chromium --only-shell
+          fi
       - name: Test phone, tablet and desktop viewports
         run: node scripts/check-postdoc-mobile.mjs
       - name: Upload screenshots and metrics

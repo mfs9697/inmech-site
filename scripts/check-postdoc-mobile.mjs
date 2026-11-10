@@ -20,7 +20,7 @@ const urls = [
 const outDir = 'artifacts/postdoc-mobile';
 await fs.mkdir(outDir, { recursive: true });
 
-const server = spawn('npm', ['run', 'preview', '--', '--host', '127.0.0.1', '--port', '4321'], {
+const server = spawn('node_modules/.bin/astro', ['preview', '--host', '127.0.0.1', '--port', '4321'], {
   stdio: ['ignore', 'pipe', 'pipe'],
 });
 server.stderr.on('data', d => process.stderr.write(d.toString()));
@@ -47,7 +47,7 @@ try {
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
     for (const target of urls) {
-      const response = await page.goto(origin + target.path, { waitUntil: 'networkidle' });
+      const response = await page.goto(origin + target.path, { waitUntil: 'domcontentloaded', timeout: 15000 });
       assert.equal(response.status(), 200, target.path);
       await page.screenshot({ path:`${outDir}/${size.name}-${target.label}-top.png`, fullPage:false });
       const measures = await page.evaluate(() => {
@@ -86,7 +86,7 @@ try {
   }
 } finally {
   if (browser) await browser.close();
-  server.kill('SIGTERM');
+  server.kill('SIGKILL');
 }
 await fs.writeFile(`${outDir}/REPORT.json`, JSON.stringify(reports, null, 2));
 console.log(JSON.stringify({ viewports:cases.map(x => x.name), routes:urls.map(x => x.path), checks:reports.length, result:'PASS', screenshots:'artifacts/postdoc-mobile/*.png' }, null, 2));

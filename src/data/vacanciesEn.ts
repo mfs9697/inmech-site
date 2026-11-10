@@ -33,9 +33,10 @@ const doctorResearchRequirements = [
 const postdocRequirements = [
   'citizenship of Ukraine;',
   'Candidate of Sciences degree or PhD;',
-  'the candidate is not employed at the S. P. Timoshenko Institute of Mechanics of the NAS of Ukraine as their principal place of work;',
-  'the candidate has not reached the age of 36 by the completion date of the competitive selection;',
-  'no more than seven years have passed since the dissertation defence.'
+  'aged 40 or younger on the date the competitive selection is completed;',
+  'no more than 10 years since the dissertation defence on the date the competitive selection is completed;',
+  'experience in research and/or scientific and technical (experimental) development in the field of the research work the applicant would join;',
+  'the candidate is not employed at the S. P. Timoshenko Institute of Mechanics of the NAS of Ukraine as their principal place of work.'
 ];
 
 export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [

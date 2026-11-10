@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { site } from '../../../data/site';
+// Transcribed from page 1 of the Institute-provided seven-page signed resolution and annex.
+const blocks = [
+  {
+    "kind": "paragraph",
+    "text": "ПРЕЗИДІЯ НАЦІОНАЛЬНОЇ АКАДЕМІЇ НАУК УКРАЇНИ"
+  },
+  {
+    "kind": "paragraph",
+    "text": "ПОСТАНОВА . 07.05.2025 .                м. Київ                №. 164     ."
+  },
+  {
+    "kind": "paragraph",
+    "text": "Про внесення змін до Положення про програму постдокторальних досліджень у Національній академії наук України"
+  },
+  {
+    "kind": "paragraph",
+    "text": "З метою удосконалення механізму реалізації програми постдокторальних досліджень у Національній академії України, а також беручи до уваги пропозиції Комісії по роботі з науковою молоддю НАН України, Президія Національної академії наук України постановляє:"
+  },
+  {
+    "kind": "paragraph",
+    "text": "1. Внести зміни до Положення про програму постдокторальних досліджень у Національній академії наук України, затвердженого постановою Президії НАН України від 09.12.2020 № 275, виклавши його в редакції, що додається."
+  },
+  {
+    "kind": "paragraph",
+    "text": "2. Визнати такою, що втратила чинність, постанову Президії НАН України від 26.01.2022 № 38 «Про внесення змін до Положення про програму постдокторальних досліджень у Національній академії наук України»."
+  },
+  {
+    "kind": "paragraph",
+    "text": "3. Взяти до відома, що розподіл кількості посад старшого наукового співробітника для заміщення їх постдоками НАН України для секцій НАН України та установ при Президії НАН України встановлено пунктом 3 постанови Президії НАН України від 09.12.2020 № 275."
+  },
+  {
+    "kind": "paragraph",
+    "text": "4. Контроль за виконанням цієї постанови покласти на Науково-організаційний відділ Президії НАН України."
+  },
+  {
+    "kind": "paragraph",
+    "text": "Президент Національної академії наук України академік НАН України                 Анатолій ЗАГОРОДНІЙ"
+  },
+  {
+    "kind": "paragraph",
+    "text": "В.о.головного вченого секретаря Національної академії наук України академік НАН України                 Вячеслав БОГДАНОВ"
+  }
+];
+---
+
+<BaseLayout title={`Постанова Президії НАН України від 07.05.2025 № 164 | ${site.name}`} description="Постанова Президії НАН України від 07.05.2025 № 164 про внесення змін до Положення про програму постдокторальних досліджень." activePage="about">
+  <section class="page-hero"><div class="container"><div class="panel">
+    <p class="eyebrow">Нормативні документи · чинна редакція</p>
+    <h1>Постанова Президії НАН України від 07.05.2025 № 164</h1>
+    <p class="lead">«Про внесення змін до Положення про програму постдокторальних досліджень у Національній академії наук України».</p>
+    <p class="source-note">Текст постанови відтворено за сторінкою 1 наданого Інститутом оригіналу. <a href="/documents/postdoc/regulations/">Повний текст Положення (додаток, сторінки 2–7)</a>. Попередня постанова № 38 від 26.01.2022 втратила чинність відповідно до пункту 2 цієї постанови.</p>
+  </div></div></section>
+  <section class="section"><div class="container"><article class="legal-document" aria-label="Текст постанови № 164">{blocks.map((block) => block.kind === 'heading' ? <h2>{block.text}</h2> : block.kind === 'subheading' ? <p class="caption">{block.text}</p> : <p class={block.kind === 'bullet' ? 'bullet' : block.kind === 'item' ? 'item' : undefined}>{block.text}</p>)}</article></div></section>
+  <style>
+  .legal-document { max-width: 940px; margin: 0 auto; background:var(--surface); border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); padding:clamp(18px,4vw,42px); overflow-wrap:anywhere; }
+  .legal-document h2 { color:var(--accent-dark); font-size:clamp(1.15rem,2.3vw,1.4rem); margin:1.7rem 0 .7rem; }
+  .legal-document h2:first-child { margin-top:0; }
+  .legal-document p { margin:0 0 1rem; line-height:1.65; }
+  .legal-document .bullet { padding-left:1.3rem; text-indent:-1.1rem; }
+  .legal-document .item { padding-left:1.7rem; text-indent:-1.7rem; }
+  .legal-document .caption { text-align:center; font-weight:700; }
+  .source-note { color:var(--muted); font-size:.95rem; }
+  .source-note a { font-weight:750; }
+  @media (max-width:480px) { .legal-document { border-radius:10px; } .legal-document p { line-height:1.55; } }
+</style>
+</BaseLayout>

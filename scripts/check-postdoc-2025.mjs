@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 
 const read = (path) => fs.readFileSync(path, 'utf8');
 const ua = read('src/pages/vacancies.astro');
@@ -13,6 +14,7 @@ const old260 = read('src/pages/documents/postdoc/resolution-260.astro');
 const pdf = fs.readFileSync('public/documents/postdoc/resolution-164-2025.pdf');
 assert.equal(pdf.subarray(0,5).toString(), '%PDF-', 'original PDF signature');
 assert.equal(pdf.length, 310618, 'original seven-page PDF size');
+assert.equal(createHash('sha256').update(pdf).digest('hex'), '6e1ca5cf32857eb61b683177b278b2441b86acf3e735efb8935a44473399b144', 'original PDF integrity');
 const regulationIndex = read('src/pages/license-and-regulations.astro');
 const regulationIndexEn = read('src/pages/en/license-and-regulations.astro');
 

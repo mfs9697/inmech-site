@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import { spawn } from 'node:child_process';
 import { chromium } from 'playwright';
 
@@ -35,7 +36,7 @@ let browser;
 const reports = [];
 try {
   await ready();
-  browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
+  browser = await chromium.launch({ headless: true, args: ['--no-sandbox'], ...(existsSync('/usr/bin/google-chrome') || existsSync('/usr/bin/google-chrome-stable') ? { channel:'chrome' } : {}) });
   for (const size of cases) {
     const context = await browser.newContext({
       viewport: { width:size.width, height:size.height },
@@ -47,9 +48,10 @@ try {
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
     for (const target of urls) {
+      console.log('Checking', size.name, target.path);
       const response = await page.goto(origin + target.path, { waitUntil: 'domcontentloaded', timeout: 15000 });
       assert.equal(response.status(), 200, target.path);
-      await page.screenshot({ path:`${outDir}/${size.name}-${target.label}-top.png`, fullPage:false });
+      await page.screenshot({ timeout: 15000, path:`${outDir}/${size.name}-${target.label}-top.png`, fullPage:false });
       const measures = await page.evaluate(() => {
         const panels = [...document.querySelectorAll('.competition-track, .postdoc-submission-panel, .legal-document')];
         return {

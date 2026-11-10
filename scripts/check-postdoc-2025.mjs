@@ -55,6 +55,12 @@ for (const [source,label] of [[regulationIndex,'UA'],[regulationIndexEn,'EN']]) 
   }
 }
 assert.ok(dataUa.includes('до 40 років включно') && dataUa.includes('не більше 10 років'));
+assert.ok(dataUa.includes("name: 'Мартиняк Ростислав Михайлович'"));
+assert.ok(dataUa.includes("degree: 'доктор фізико-математичних наук'"));
+assert.ok(dataUa.includes("href: '/people/martynyak/'"));
+assert.ok(dataEn.includes("href: '/en/people/martynyak/'"));
+assert.ok(ua.includes('Керівник наукової роботи та постдока'));
+assert.ok(en.includes('Research work and postdoctoral supervisor'));
 assert.ok(dataUa.includes('досвід у проведенні наукових досліджень'));
 assert.ok(dataEn.includes('aged 40 or younger') && dataEn.includes('no more than 10 years'));
 for (const data of [dataUa,dataEn]) {

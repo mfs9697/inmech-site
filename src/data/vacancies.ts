@@ -40,6 +40,7 @@ export interface ActiveVacancyTrack {
   requirements: string[];
   researchTopicLabel?: string;
   researchTopic?: string;
+  supervisor?: { name: string; position: string; degree: string; href: string };
   note?: string;
 }
 
@@ -163,6 +164,12 @@ export const activeVacancyAnnouncements: ActiveVacancyAnnouncement[] = [
         requirements: postdocRequirements,
         researchTopicLabel: 'Орієнтовна науково-дослідна тема',
         researchTopic: 'Математичне моделювання зв’язаних задач контактної взаємодії деформівних тіл',
+        supervisor: {
+          name: 'Мартиняк Ростислав Михайлович',
+          position: 'провідний науковий співробітник',
+          degree: 'доктор фізико-математичних наук',
+          href: '/people/martynyak/'
+        },
       }
     ],
     note: 'Підписаний наказ від 01 жовтня 2026 року № 118/к доступний нижче.',

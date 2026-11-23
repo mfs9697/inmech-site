@@ -49,6 +49,21 @@ const springerBooks = [
     doi: '10.1007/978-3-032-30673-9',
     href: 'https://link.springer.com/book/9783032306722',
     cover: '/assets/img/history/books/978-3-032-30672-2.webp'
+  },
+  {
+    year: '2027',
+    title: 'Fracture Mechanics and Adjacent Fields',
+    subtitle: 'Volume 2: Damage, Structures, and Applications',
+    editors: 'Holm Altenbach, Viacheslav Bogdanov, Volodymyr Nazarenko, Roman Kushnir, Alexander Grigorenko, Mikhailo Selivanov',
+    description:
+      'Другий том двотомної колективної монографії, анонсований Springer на лютий 2027 року, присвячено моделюванню процесів руйнування, міцності та стійкості композитів і п’єзоелектричних матеріалів, втомі, залишковим напруженням і впливу середовища на поширення тріщин.',
+    series: 'Advanced Structured Materials, vol. 259',
+    chapters: 'другий том двотомного видання',
+    pages: 'X + 558 сторінок',
+    illustrations: '180 чорно-білих та 136 кольорових ілюстрацій',
+    doi: '10.1007/978-3-032-30685-2',
+    href: 'https://link.springer.com/book/9783032306845',
+    cover: '/assets/img/history/books/978-3-032-30684-5.webp'
   }
 ];
 ---
@@ -111,7 +126,7 @@ const springerBooks = [
             <img
               class="history-book-cover"
               src={withBase(book.cover)}
-              alt={`Обкладинка книги ${book.title}`}
+              alt={`Обкладинка книги ${book.title}${book.subtitle ? `: ${book.subtitle}` : ''}`}
               loading="lazy"
               width="180"
               height="271"

@@ -11,6 +11,9 @@ tagsEn: ["Springer", "fracture mechanics", "monograph", "Ukrainian science"]
 image: "/assets/img/history/books/978-3-032-30672-2.webp"
 imageAlt: "Обкладинка першого тому монографії «Fracture Mechanics and Adjacent Fields»"
 imageAltEn: "Cover of Volume 1 of “Fracture Mechanics and Adjacent Fields”"
+imageSecondary: "/assets/img/history/books/978-3-032-30684-5.webp"
+imageSecondaryAlt: "Обкладинка другого тому монографії «Fracture Mechanics and Adjacent Fields»"
+imageSecondaryAltEn: "Cover of Volume 2 of “Fracture Mechanics and Adjacent Fields”"
 year: 2026
 featured: true
 ---
@@ -31,7 +34,7 @@ featured: true
 
 **Fracture Mechanics and Adjacent Fields — Volume 2: Damage, Structures, and Applications**.
 
-Другий том розвиває тематику видання, охоплюючи чисельне моделювання процесів руйнування, стійкість композитних і п'єзоелектричних матеріалів, втому, залишкові напруження та вплив середовища на поширення тріщин. Він представлений у серії **Advanced Structured Materials, Vol. 259**. Обсяг — **XX + 552 сторінки**; **172 чорно-білі та 120 кольорових ілюстрацій**.
+Другий том розвиває тематику видання, охоплюючи чисельне моделювання процесів руйнування, стійкість композитних і п'єзоелектричних матеріалів, втому, залишкові напруження та вплив середовища на поширення тріщин. Він представлений у серії **Advanced Structured Materials, Vol. 259**. Обсяг — **X + 558 сторінок**; **180 чорно-білих і 136 кольорових ілюстрацій**. Springer зазначає заплановану дату виходу електронного й друкованого видань — **24 лютого 2027 року**.
 
 **ISBN:** eBook — 978-3-032-30685-2; тверда обкладинка — 978-3-032-30684-5.
 
@@ -61,7 +64,7 @@ The first volume addresses fundamental problems of fracture mechanics, crack beh
 
 **Fracture Mechanics and Adjacent Fields — Volume 2: Damage, Structures, and Applications**.
 
-The second volume extends the collection to computational modelling of fracture, stability of composite and piezoelectric materials, fatigue and residual stresses, and environmental effects on crack propagation. It is part of **Advanced Structured Materials, Vol. 259**, with **XX + 552 pages**, **172 black-and-white and 120 colour illustrations**.
+The second volume extends the collection to computational modelling of fracture, stability of composite and piezoelectric materials, fatigue and residual stresses, and environmental effects on crack propagation. It is part of **Advanced Structured Materials, Vol. 259**, with **X + 558 pages**, **180 black-and-white and 136 colour illustrations**. Springer lists **24 February 2027** as the scheduled release date for the eBook and hardcover.
 
 **ISBN:** eBook — 978-3-032-30685-2; hardcover — 978-3-032-30684-5.
 

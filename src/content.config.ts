@@ -20,6 +20,9 @@ const news = defineCollection({
     image: z.string().optional(),
     imageAlt: z.string().optional(),
     imageAltEn: z.string().optional(),
+    imageSecondary: z.string().optional(),
+    imageSecondaryAlt: z.string().optional(),
+    imageSecondaryAltEn: z.string().optional(),
     year: z.number(),
     featured: z.boolean().default(false),
     externalUrl: z.string().optional()

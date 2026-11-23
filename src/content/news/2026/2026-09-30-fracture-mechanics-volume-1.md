@@ -1,48 +1,76 @@
 ---
-title: "Підготовлено до виходу перший том «Fracture Mechanics and Adjacent Fields: Insights from Ukrainian Research»"
-titleEn: "Volume 1 of “Fracture Mechanics and Adjacent Fields: Insights from Ukrainian Research” prepared for publication"
-description: "Springer підготував до виходу перший том двотомної колективної монографії — «Volume 1: Foundations and Interface Phenomena»; електронне видання очікується 21 жовтня 2026 року."
-descriptionEn: "Springer has prepared the first volume of the two-volume collective monograph, “Volume 1: Foundations and Interface Phenomena,” for publication; the eBook is due on 21 October 2026."
-date: 2026-09-30
+title: "Springer представив обидва томи колективної монографії «Fracture Mechanics and Adjacent Fields»"
+titleEn: "Springer presents both volumes of the collective monograph “Fracture Mechanics and Adjacent Fields”"
+description: "На сайті Springer представлено другий том «Damage, Structures, and Applications»; оновлена новина містить відомості та посилання на обидва томи монографії."
+descriptionEn: "Springer has listed Volume 2, “Damage, Structures, and Applications”; this updated news item provides details and links for both volumes."
+date: 2026-11-23
 category: "Наукові видання"
 categoryEn: "Scientific publications"
 tags: ["Springer", "механіка руйнування", "монографія", "українська наука"]
 tagsEn: ["Springer", "fracture mechanics", "monograph", "Ukrainian science"]
 image: "/assets/img/history/books/978-3-032-30672-2.webp"
-imageAlt: "Обкладинка першого тому книги «Fracture Mechanics and Adjacent Fields: Insights from Ukrainian Research»"
-imageAltEn: "Cover of Volume 1 of “Fracture Mechanics and Adjacent Fields: Insights from Ukrainian Research”"
+imageAlt: "Обкладинка першого тому монографії «Fracture Mechanics and Adjacent Fields»"
+imageAltEn: "Cover of Volume 1 of “Fracture Mechanics and Adjacent Fields”"
 year: 2026
 featured: true
 ---
 
-У видавництві **Springer** підготовлено до виходу перший том двотомної колективної монографії **Fracture Mechanics and Adjacent Fields: Insights from Ukrainian Research** — **Volume 1: Foundations and Interface Phenomena**.
+**Оновлено 23 листопада 2026 року.** На сайті видавництва **Springer** представлено **другий том** колективної монографії з механіки руйнування та суміжних напрямів. Тепер доступні бібліографічні відомості про обидва томи видання, до підготовки якого долучилися представники українських наукових шкіл.
 
-Видання представляє сучасні дослідження з механіки руйнування та суміжних напрямів, виконані представниками українських наукових шкіл. Перший том присвячено фундаментальним питанням механіки руйнування та явищам на межах поділу.
+### Том 1. Основи механіки руйнування та міжфазні явища
 
-**Редактори тому:** Holm Altenbach, Viacheslav Bogdanov, Volodymyr Nazarenko, Roman Kushnir, Alexander Grigorenko, Mikhailo Selivanov.
+**Fracture Mechanics and Adjacent Fields: Insights from Ukrainian Research — Volume 1: Foundations and Interface Phenomena**.
 
-Книга входить до серії **Advanced Structured Materials, Vol. 258**. За актуальними бібліографічними даними Springer, обсяг видання становить **VIII + 345 сторінок**; воно містить **71 чорно-білу та 19 кольорових ілюстрацій**. eBook ISBN: **978-3-032-30673-9**; електронне видання заплановано на **21 жовтня 2026 року**. Hardcover ISBN: **978-3-032-30672-2**; друковане видання заплановано на **18 лютого 2027 року**.
+Перший том присвячено фундаментальним питанням механіки руйнування, поведінці тріщин і явищам на межах поділу матеріалів. Він вийшов у серії **Advanced Structured Materials, Vol. 258**. Обсяг — **VIII + 345 сторінок**; **71 чорно-біла та 19 кольорових ілюстрацій**.
 
-Підготовка першого тому — результат великої спільної роботи редакторів і авторського колективу. **Щиро вітаємо всіх причетних до видання та бажаємо книзі широкого наукового читача!**
+**ISBN:** eBook — 978-3-032-30673-9; тверда обкладинка — 978-3-032-30672-2.
 
-Матеріал про монографію також опубліковано на сайті **Національної академії наук України**: [«Виходить англомовна колективна монографія, що представляє сучасні дослідження українських наукових шкіл у галузі механіки руйнування та суміжних напрямів»](https://www.nas.gov.ua/scientific-publications/vihodit-anglomovna-kolektivna-monografiya-shcho-predstavlyaye-suchasni-doslidzhennya-ukranskih-naukovih-shkil-u-galuzi-mehaniki-ruynuvannya-ta-sumizhnih-napryamiv).
+[Том 1 на сайті Springer](https://link.springer.com/book/9783032306722).
 
-[Сторінка книги у Springer](https://link.springer.com/book/9783032306722)
+### Том 2. Пошкодження, конструкції та застосування
+
+**Fracture Mechanics and Adjacent Fields — Volume 2: Damage, Structures, and Applications**.
+
+Другий том розвиває тематику видання, охоплюючи чисельне моделювання процесів руйнування, стійкість композитних і п'єзоелектричних матеріалів, втому, залишкові напруження та вплив середовища на поширення тріщин. Він представлений у серії **Advanced Structured Materials, Vol. 259**. Обсяг — **XX + 552 сторінки**; **172 чорно-білі та 120 кольорових ілюстрацій**.
+
+**ISBN:** eBook — 978-3-032-30685-2; тверда обкладинка — 978-3-032-30684-5.
+
+[Том 2 на сайті Springer](https://link.springer.com/book/9783032306845).
+
+**Редактори обох томів:** Holm Altenbach, Viacheslav Bogdanov, Volodymyr Nazarenko, Roman Kushnir, Alexander Grigorenko, Mikhailo Selivanov.
+
+Видання об'єднує аналітичні, чисельні й експериментальні дослідження українських учених та їхніх колег. **Щиро вітаємо редакторів і авторські колективи з важливим результатом спільної наукової роботи!**
+
+Про підготовку першого тому ми повідомляли **30 вересня 2026 року**. Матеріал про нього також оприлюднено на сайті [Національної академії наук України](https://www.nas.gov.ua/scientific-publications/vihodit-anglomovna-kolektivna-monografiya-shcho-predstavlyaye-suchasni-doslidzhennya-ukranskih-naukovih-shkil-u-galuzi-mehaniki-ruynuvannya-ta-sumizhnih-napryamiv).
 
 <!-- en:start -->
 
-**Springer** has prepared the first volume of the two-volume collective monograph **Fracture Mechanics and Adjacent Fields: Insights from Ukrainian Research** — **Volume 1: Foundations and Interface Phenomena** — for publication.
+**Updated on 23 November 2026.** **Springer** now features **Volume 2** of the collective monograph on fracture mechanics and adjacent fields. Bibliographic information is available for both volumes, prepared with contributions from Ukrainian schools of mechanics.
 
-The volume presents contemporary research in fracture mechanics and adjacent fields by representatives of Ukrainian schools of mechanics. Volume 1 focuses on the foundations of fracture mechanics and interface phenomena.
+### Volume 1. Foundations and interface phenomena
 
-**Editors:** Holm Altenbach, Viacheslav Bogdanov, Volodymyr Nazarenko, Roman Kushnir, Alexander Grigorenko, Mikhailo Selivanov.
+**Fracture Mechanics and Adjacent Fields: Insights from Ukrainian Research — Volume 1: Foundations and Interface Phenomena**.
 
-The book is part of the **Advanced Structured Materials** series, Vol. 258. According to Springer’s current bibliographic data, the volume comprises **VIII + 345 pages** and includes **71 black-and-white and 19 colour illustrations**. eBook ISBN: **978-3-032-30673-9**, due **21 October 2026**; hardcover ISBN: **978-3-032-30672-2**, due **18 February 2027**.
+The first volume addresses fundamental problems of fracture mechanics, crack behaviour and interface phenomena. It is part of **Advanced Structured Materials, Vol. 258**, with **VIII + 345 pages**, **71 black-and-white and 19 colour illustrations**.
 
-Preparation of Volume 1 is the result of extensive collaborative work by the editors and contributing authors. **We warmly congratulate everyone involved and wish the book a wide readership in the international research community!**
+**ISBN:** eBook — 978-3-032-30673-9; hardcover — 978-3-032-30672-2.
 
-A feature about the monograph has also been published on the website of the **National Academy of Sciences of Ukraine**: [feature on the NAS of Ukraine website (in Ukrainian)](https://www.nas.gov.ua/scientific-publications/vihodit-anglomovna-kolektivna-monografiya-shcho-predstavlyaye-suchasni-doslidzhennya-ukranskih-naukovih-shkil-u-galuzi-mehaniki-ruynuvannya-ta-sumizhnih-napryamiv).
+[Volume 1 at Springer](https://link.springer.com/book/9783032306722).
 
-[Book page at Springer](https://link.springer.com/book/9783032306722)
+### Volume 2. Damage, structures, and applications
+
+**Fracture Mechanics and Adjacent Fields — Volume 2: Damage, Structures, and Applications**.
+
+The second volume extends the collection to computational modelling of fracture, stability of composite and piezoelectric materials, fatigue and residual stresses, and environmental effects on crack propagation. It is part of **Advanced Structured Materials, Vol. 259**, with **XX + 552 pages**, **172 black-and-white and 120 colour illustrations**.
+
+**ISBN:** eBook — 978-3-032-30685-2; hardcover — 978-3-032-30684-5.
+
+[Volume 2 at Springer](https://link.springer.com/book/9783032306845).
+
+**Editors of both volumes:** Holm Altenbach, Viacheslav Bogdanov, Volodymyr Nazarenko, Roman Kushnir, Alexander Grigorenko, Mikhailo Selivanov.
+
+The books bring together analytical, numerical and experimental research by Ukrainian scientists and their colleagues. **We warmly congratulate the editors and contributing authors on this significant collaborative achievement!**
+
+Our original announcement about the preparation of Volume 1 appeared on **30 September 2026**. A related [feature on the NAS of Ukraine website (in Ukrainian)](https://www.nas.gov.ua/scientific-publications/vihodit-anglomovna-kolektivna-monografiya-shcho-predstavlyaye-suchasni-doslidzhennya-ukranskih-naukovih-shkil-u-galuzi-mehaniki-ruynuvannya-ta-sumizhnih-napryamiv) covers the first volume.
 
 <!-- en:end -->

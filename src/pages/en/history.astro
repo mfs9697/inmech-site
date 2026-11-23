@@ -143,6 +143,21 @@ const springerBooks = [
     doi: '10.1007/978-3-032-30673-9',
     href: 'https://link.springer.com/book/9783032306722',
     cover: '/assets/img/history/books/978-3-032-30672-2.webp'
+  },
+  {
+    year: '2027',
+    title: 'Fracture Mechanics and Adjacent Fields',
+    subtitle: 'Volume 2: Damage, Structures, and Applications',
+    editors: 'Holm Altenbach, Viacheslav Bogdanov, Volodymyr Nazarenko, Roman Kushnir, Alexander Grigorenko, Mikhailo Selivanov',
+    description:
+      'Announced by Springer for February 2027, the second volume of the collective monograph covers computational fracture modelling, strength and stability of composite and piezoelectric materials, fatigue, residual stresses and environmental effects on crack propagation.',
+    series: 'Advanced Structured Materials, vol. 259',
+    chapters: 'second volume of a two-volume work',
+    pages: 'X + 558 pages',
+    illustrations: '180 black-and-white and 136 colour illustrations',
+    doi: '10.1007/978-3-032-30685-2',
+    href: 'https://link.springer.com/book/9783032306845',
+    cover: '/assets/img/history/books/978-3-032-30684-5.webp'
   }
 ];
 
@@ -727,7 +742,7 @@ const externalSources = [
                 <img
                   class="history-book-cover"
                   src={withBase(book.cover)}
-                  alt={`Cover of ${book.title}`}
+                  alt={`Cover of ${book.title}${book.subtitle ? `: ${book.subtitle}` : ''}`}
                   loading="lazy"
                   width="180"
                   height="271"

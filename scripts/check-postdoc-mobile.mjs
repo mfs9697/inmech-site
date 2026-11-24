@@ -67,10 +67,20 @@ try {
       assert.ok(measures.scrollWidth <= size.width + 2, `${size.name} ${target.path}: horizontal overflow ${measures.scrollWidth} > ${size.width}`);
       if (target.label.includes('vacancies')) {
         const postdoc = page.locator('.competition-track').filter({ has:page.locator('a[href="#postdoc-documents"]') });
-        assert.equal(await postdoc.count(), 1, 'one active postdoc section expected');
         const supervisorHref = target.label.startsWith('en-') ? '/en/people/martynyak/' : '/people/martynyak/';
-        assert.equal(await postdoc.locator(`a[href="${supervisorHref}"]`).count(), 1, 'missing clickable supervisor');
-        await postdoc.scrollIntoViewIfNeeded();
+        const activeCount = await postdoc.count();
+        if (activeCount === 1) {
+          assert.equal(await postdoc.locator(`a[href="${supervisorHref}"]`).count(), 1, 'missing clickable supervisor');
+          await postdoc.scrollIntoViewIfNeeded();
+        } else {
+          assert.equal(activeCount, 0, 'more than one active postdoc section');
+          const archived = page.locator('.vacancy-card').filter({
+            has: page.locator('a[href$="/2026-10-01-competition-19/order-results.pdf"]')
+          });
+          assert.equal(await archived.count(), 1, 'archived postdoctoral competition is missing');
+          assert.equal(await archived.locator('.document-list a').count(), 3, 'archive must link three signed competition orders');
+          await archived.scrollIntoViewIfNeeded();
+        }
         await page.screenshot({ path:`${outDir}/${size.name}-${target.label}-postdoc.png`, fullPage:false });
         const docs = page.locator('#postdoc-documents');
         assert.equal(await docs.locator('ol > li').count(), 11, 'postdoc list must contain 11 items');

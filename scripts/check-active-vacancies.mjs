@@ -224,6 +224,16 @@ function selfTest() {
   if (check(...clone(), { checkFiles: false }).length > 0) {
     throw new Error('Self-test baseline does not pass.');
   }
+  if (activeVacancyAnnouncements.length === 0) {
+    // A completed competition may leave no active notices. Keep a negative regression
+    // so an empty archive-ready baseline cannot silently disable validation.
+    const invalid = [{ id: 'invalid', date: 'not-a-date', year: 0, positions: [] }];
+    if (check(invalid, [], { checkFiles: false }).length === 0) {
+      throw new Error('Self-test did not reject a malformed active announcement.');
+    }
+    console.log('Active vacancies self-test: empty active state and invalid-record regression passed.');
+    return;
+  }
   const mutations = [
     ([uk]) => { uk[0].tracks[0].id = 'postdoc'; },
     ([uk]) => { uk[0].tracks[0].positions.pop(); },

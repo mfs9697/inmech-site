@@ -6,7 +6,7 @@ const councilMembers = [
   {
     name: 'Volodymyr M. Nazarenko',
     title: 'Academician of the NAS of Ukraine, Doctor of Technical Sciences',
-    councilRole: 'Director of the Institute',
+    councilRole: 'Chair of the Scientific Council',
     elected: false
   },
   {
@@ -18,7 +18,13 @@ const councilMembers = [
   {
     name: 'Yurii V. Skosarenko',
     title: 'Doctor of Technical Sciences',
-    councilRole: 'Scientific Secretary of the Institute',
+    councilRole: 'Secretary of the Scientific Council',
+    elected: false
+  },
+  {
+    name: 'Yevhenii A. Storozhuk',
+    title: 'Corresponding Member of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
+    councilRole: 'Deputy Director for Scientific and Organisational Affairs',
     elected: false
   },
   {
@@ -152,7 +158,7 @@ const electedCount = councilMembers.filter((member) => member.elected).length;
       <div class="council-summary-grid">
         <article class="council-summary-card">
           <span>{councilMembers.length}</span>
-          <p>Council members listed</p>
+          <p>members of the Scientific Council</p>
         </article>
         <article class="council-summary-card">
           <span>{electedCount}</span>
@@ -168,7 +174,6 @@ const electedCount = councilMembers.filter((member) => member.elected).length;
         <div>
           <p class="eyebrow">Council composition</p>
           <h2 class="section-title">Members of the Scientific Council</h2>
-          <p class="section-text">On 17 November 2026, the general meeting of the Institute’s researchers approved the results of the Scientific Council election. A total of 94 of 101 researchers took part in the secret ballot, and 17 members were elected. The list below includes the elected members and three ex officio members under Article 10 of the Law of Ukraine on Scientific and Scientific-Technical Activity.</p>
         </div>
       </div>
 
@@ -184,6 +189,16 @@ const electedCount = councilMembers.filter((member) => member.elected).length;
           </article>
         ))}
       </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <article class="panel statute-note">
+        <h2>Election results — 17 November 2026</h2>
+        <p>Pursuant to the Director’s Order No. 22/A of 10 November 2026, a general meeting of the Institute’s researchers was held on 17 November 2026 to elect the Scientific Council for the Director’s term of office. The meeting was chaired by Yevhenii Storozhuk, Corresponding Member of the NAS of Ukraine.</p>
+        <p>A total of 94 of the Institute’s 101 researchers (93.1%) participated in the secret ballot, which was conducted at 12 polling stations. All 17 candidates were elected: 15 received 94 votes each, while Viacheslav Bogdanov and Jeremiah Rushchitsky received 93 votes each, with one invalid ballot in each case. No votes were cast against any candidate.</p>
+        <p>The general meeting approved the election results by an open vote. The Scientific Council comprises 17 elected and four ex officio members.</p>
+      </article>
     </div>
   </section>
 </BaseLayoutEn>

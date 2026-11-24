@@ -1,6 +1,13 @@
 import type { ActiveVacancyAnnouncement, VacancyCompetition, VacancyDocument, VacancyDocumentType } from './vacancies';
 
 function documentsFor(id: string): VacancyDocument[] {
+  if (id === '2026-10-01-competition-19') {
+    return [
+      { title: 'Order announcing the competitions, 01.10.2026, No. 118/к', href: `/vacancies/${id}/order-competition.pdf`, type: 'competition-order' },
+      { title: 'Order approving the participants, 10.11.2026, No. 153/к', href: `/vacancies/${id}/order-participants.pdf`, type: 'participant-order' },
+      { title: 'Order approving the results, 12.11.2026, No. 184/к', href: `/vacancies/${id}/order-results.pdf`, type: 'result-order' }
+    ];
+  }
   return [
     {
       title: 'Order announcing the competition',
@@ -40,14 +47,25 @@ const postdocRequirements = [
 ];
 
 export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [
+];
+
+const competitions: Omit<VacancyCompetition, 'documents'>[] = [
   {
     id: '2026-10-01-competition-19',
     date: '2026-10-01',
     year: 2026,
     orderNumber: '118/к',
     publicationDate: '2026-10-21',
-    title: 'Competition for vacant research positions and postdoctoral selection',
-    summary: 'Competition for two research-management positions and a competitive selection for participation in the NAS of Ukraine postdoctoral research programme.',
+    // The 20 November date applied to the head-of-department track, not the postdoctoral track.
+    deadlineDate: '2026-11-20',
+    supervisor: {
+      name: 'Rostyslav M. Martyniak',
+      degree: 'Doctor of Sciences in Physics and Mathematics',
+      href: '/en/people/martynyak/'
+    },
+    title: 'Competition No. 118/к: department heads and postdoctoral selection',
+    summary: 'Competition for two heads of department and participation in the NAS of Ukraine postdoctoral research programme.',
+    archiveNote: 'Order approving participants No. 153/к of 10 November 2026; results order No. 184/к of 12 November 2026. The postdoctoral selection results take effect only upon approval by the Presidium of the NAS of Ukraine (Regulations, clause 3.8).',
     positions: [
       {
         title: 'head of department — 1.0 FTE',
@@ -57,68 +75,14 @@ export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [
         title: 'head of department — 1.0 FTE',
         departments: [{ title: 'Department of Thermoplasticity', href: '/en/departments/06-thermoplasticity/' }]
       },
-      {
-        title: 'participation in the NAS of Ukraine postdoctoral research programme — 1 place'
-      }
+      { title: 'participation in the NAS of Ukraine postdoctoral programme — 1 place' }
     ],
-    deadline: 'Submission deadlines are stated separately for each competitive selection.',
-    requirements: [],
-    tracks: [
-      {
-        id: 'research-positions',
-        label: 'Vacant research positions',
-        title: 'Competition to fill vacant research positions',
-        positions: [
-          {
-            title: 'head of department — 1.0 FTE',
-            departments: [{ title: 'Department of Rheology', href: '/en/departments/02-rheology/' }]
-          },
-          {
-            title: 'head of department — 1.0 FTE',
-            departments: [{ title: 'Department of Thermoplasticity', href: '/en/departments/06-thermoplasticity/' }]
-          }
-        ],
-        deadline: 'Through 20 November 2026 inclusive (30 calendar days from publication of the announcement).',
-        deadlineDate: '2026-11-20',
-        requirements: [
-          'higher education at no lower than the second-cycle (Master’s) level relevant to the scientific profile of the respective department;',
-          'a Doctor of Sciences degree or a PhD / Candidate of Sciences degree;',
-          'research results whose level, quantity and quality correspond to the department’s field and the level of the position.'
-        ],
-        note: 'Employees of the S. P. Timoshenko Institute of Mechanics of the NAS of Ukraine submit only an application to participate in the competition.'
-      },
-      {
-        id: 'postdoc',
-        label: 'NAS of Ukraine postdoctoral programme',
-        title: 'Competitive selection for participation in the postdoctoral research programme',
-        positions: [
-          {
-            title: '1 place in the NAS of Ukraine postdoctoral research programme'
-          }
-        ],
-        deadline: 'The document submission deadline is determined by the conditions of the current NAS of Ukraine competitive selection.',
-        requirements: postdocRequirements,
-        researchTopicLabel: 'Indicative research topic',
-        researchTopic: 'Mathematical modelling of coupled contact-interaction problems for deformable bodies',
-        supervisor: {
-          name: 'Rostyslav M. Martyniak',
-          position: 'Leading Research Scientist',
-          degree: 'Doctor of Sciences in Physics and Mathematics',
-          href: '/en/people/martynyak/'
-        },
-      }
-    ],
-    note: 'The signed Order No. 118/к of 1 October 2026 is available below.',
-    documents: [
-      {
-        title: 'Order announcing the competitions, 01.10.2026, No. 118/к',
-        href: '/documents/vacancies/active/2026-10-01-competition/order-competition.pdf'
-      }
+    deadline: 'For the head-of-department positions: through 20 November 2026 inclusive. For the postdoctoral selection: as stipulated by the NAS of Ukraine programme.',
+    requirements: [
+      'For the department-head positions: the academic degree and research record required by the current institutional competition rules.',
+      'For the postdoctoral programme: the special eligibility requirements in the NAS of Ukraine Regulations as revised by Presidium Resolution No. 164 of 7 May 2025.'
     ]
-  }
-];
-
-const competitions: Omit<VacancyCompetition, 'documents'>[] = [
+  },
   {
     id: '2026-07-20-competition-18',
     date: '2026-07-20',

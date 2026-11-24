@@ -24,6 +24,10 @@ export interface VacancyCompetition {
   title: string;
   summary: string;
   archiveNote?: string;
+  orderNumber?: string;
+  publicationDate?: string;
+  deadlineDate?: string;
+  supervisor?: { name: string; degree: string; href: string };
   positions: VacancyPosition[];
   departments: VacancyDepartment[];
   deadline: string;
@@ -119,6 +123,15 @@ const competitions = [
     id: '2026-10-01-competition-19',
     date: '2026-10-01',
     year: 2026,
+    orderNumber: '118/к',
+    publicationDate: '2026-10-21',
+    // The 20 November date applied to the head-of-department track, not the postdoctoral track.
+    deadlineDate: '2026-11-20',
+    supervisor: {
+      name: 'Мартиняк Ростислав Михайлович',
+      degree: 'доктор фізико-математичних наук',
+      href: '/people/martynyak/'
+    },
     title: 'Конкурс № 118/к: завідувачі відділів і постдокторальний відбір',
     summary: 'Конкурс на дві посади завідувачів відділів та участь у програмі постдокторальних досліджень НАН України.',
     archiveNote: 'Наказ про затвердження учасників № 153/к від 10.11.2026; наказ про результати № 184/к від 12.11.2026. Результати постдокторального відбору набувають чинності лише після затвердження Президією НАН України (п. 3.8 Положення).',

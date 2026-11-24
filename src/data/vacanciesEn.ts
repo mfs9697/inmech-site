@@ -54,6 +54,15 @@ const competitions: Omit<VacancyCompetition, 'documents'>[] = [
     id: '2026-10-01-competition-19',
     date: '2026-10-01',
     year: 2026,
+    orderNumber: '118/к',
+    publicationDate: '2026-10-21',
+    // The 20 November date applied to the head-of-department track, not the postdoctoral track.
+    deadlineDate: '2026-11-20',
+    supervisor: {
+      name: 'Rostyslav M. Martyniak',
+      degree: 'Doctor of Sciences in Physics and Mathematics',
+      href: '/en/people/martynyak/'
+    },
     title: 'Competition No. 118/к: department heads and postdoctoral selection',
     summary: 'Competition for two heads of department and participation in the NAS of Ukraine postdoctoral research programme.',
     archiveNote: 'Order approving participants No. 153/к of 10 November 2026; results order No. 184/к of 12 November 2026. The postdoctoral selection results take effect only upon approval by the Presidium of the NAS of Ukraine (Regulations, clause 3.8).',

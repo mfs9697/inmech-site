@@ -6,96 +6,126 @@ const councilMembers = [
   {
     name: 'Volodymyr M. Nazarenko',
     title: 'Academician of the NAS of Ukraine, Doctor of Technical Sciences',
-    councilRole: 'Chair of the Council'
-  },
-  {
-    name: 'Oleksandr M. Guz',
-    title: 'Academician of the NAS of Ukraine, Doctor of Technical Sciences',
-    councilRole: ''
-  },
-  {
-    name: 'Viacheslav L. Bogdanov',
-    title: 'Academician of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
-    councilRole: ''
+    councilRole: 'Director of the Institute',
+    elected: false
   },
   {
     name: 'Mykhailo F. Selivanov',
     title: 'Corresponding Member of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
-    councilRole: ''
-  },
-  {
-    name: 'Veniamin D. Kubenko',
-    title: 'Academician of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
-    councilRole: 'Deputy Chair'
-  },
-  {
-    name: 'Anatolii A. Martyniuk',
-    title: 'Academician of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
-    councilRole: 'Deputy Chair'
+    councilRole: 'Deputy Director for Research',
+    elected: false
   },
   {
     name: 'Yurii V. Skosarenko',
-    title: 'Scientific Secretary of the Institute, Doctor of Technical Sciences',
-    councilRole: 'Secretary'
+    title: 'Doctor of Technical Sciences',
+    councilRole: 'Scientific Secretary of the Institute',
+    elected: false
   },
   {
-    name: 'Jeremiah Rushchitsky',
-    title: 'Corresponding Member of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
-    councilRole: ''
+    name: 'Viacheslav L. Bogdanov',
+    title: 'Academician of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
+    councilRole: '',
+    elected: true
+  },
+  {
+    name: 'Oleksandr M. Guz',
+    title: 'Academician of the NAS of Ukraine, Doctor of Technical Sciences',
+    councilRole: '',
+    elected: true
   },
   {
     name: 'Oleksandr Ya. Grigorenko',
     title: 'Academician of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
-    councilRole: ''
+    councilRole: '',
+    elected: true
   },
   {
-    name: 'Ivan S. Chernyshenko',
-    title: 'Corresponding Member of the NAS of Ukraine, Doctor of Technical Sciences',
-    councilRole: ''
+    name: 'Anatolii A. Martyniuk',
+    title: 'Academician of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
+    councilRole: '',
+    elected: true
+  },
+  {
+    name: 'Veniamin D. Kubenko',
+    title: 'Academician of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
+    councilRole: '',
+    elected: true
+  },
+  {
+    name: 'Jeremiah Rushchitsky',
+    title: 'Corresponding Member of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
+    councilRole: '',
+    elected: true
   },
   {
     name: 'Yaroslav O. Zhuk',
     title: 'Corresponding Member of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
-    councilRole: ''
+    councilRole: '',
+    elected: true
   },
   {
-    name: 'Volodymyr A. Korieniev',
-    title: 'Deputy Director for General Affairs',
-    councilRole: ''
-  },
-  {
-    name: 'Yevhenii A. Storozhuk',
-    title: 'Corresponding Member of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
-    councilRole: ''
-  },
-  {
-    name: 'Anatolii O. Kaminskyi',
-    title: 'Doctor of Physical and Mathematical Sciences, Professor',
-    councilRole: ''
-  },
-  {
-    name: 'Vasyl H. Karnaukhov',
-    title: 'Doctor of Physical and Mathematical Sciences, Professor',
-    councilRole: ''
+    name: 'Oleksandr L. Kipnis',
+    title: 'Doctor of Physical and Mathematical Sciences',
+    councilRole: '',
+    elected: true
   },
   {
     name: 'Andrii S. Kolyadiuk',
     title: 'Candidate of Technical Sciences',
-    councilRole: ''
+    councilRole: '',
+    elected: true
   },
   {
-    name: 'Neonila Ye. Tkachenko',
-    title: 'Candidate of Physical and Mathematical Sciences',
-    councilRole: 'Chair of the Trade Union Committee'
+    name: 'Volodymyr A. Korieniev',
+    title: 'Deputy Director for General Affairs',
+    councilRole: '',
+    elected: true
+  },
+  {
+    name: 'Andrii V. Moltasov',
+    title: 'Doctor of Technical Sciences',
+    councilRole: '',
+    elected: true
   },
   {
     name: 'Oleksandr Kh. Ostos',
     title: 'Doctor of Philosophy',
-    councilRole: 'Chair of the Council of Young Scientists'
+    councilRole: 'Chair of the Council of Young Scientists',
+    elected: true
+  },
+  {
+    name: 'Serhii M. Sklepus',
+    title: 'Doctor of Technical Sciences',
+    councilRole: '',
+    elected: true
+  },
+  {
+    name: 'Neonila Ye. Tkachenko',
+    title: 'Candidate of Physical and Mathematical Sciences',
+    councilRole: 'Chair of the Trade Union Committee',
+    elected: true
+  },
+  {
+    name: 'Anatolii S. Khoroshun',
+    title: 'Doctor of Physical and Mathematical Sciences',
+    councilRole: '',
+    elected: true
+  },
+  {
+    name: 'Vasyl M. Yurchuk',
+    title: 'Doctor of Physical and Mathematical Sciences',
+    councilRole: '',
+    elected: true
+  },
+  {
+    name: 'Ihor V. Yanchevskyi',
+    title: 'Doctor of Physical and Mathematical Sciences',
+    councilRole: '',
+    elected: true
   }
 ];
 
-const leadershipCount = councilMembers.filter((member) => member.councilRole).length;
+const electedCount = councilMembers.filter((member) => member.elected).length;
 ---
 
 <BaseLayoutEn
@@ -122,11 +152,11 @@ const leadershipCount = councilMembers.filter((member) => member.councilRole).le
       <div class="council-summary-grid">
         <article class="council-summary-card">
           <span>{councilMembers.length}</span>
-          <p>members of the Scientific Council</p>
+          <p>Council members listed</p>
         </article>
         <article class="council-summary-card">
-          <span>{leadershipCount}</span>
-          <p>members of the Council leadership</p>
+          <span>{electedCount}</span>
+          <p>elected on 17 November 2026</p>
         </article>
       </div>
     </div>
@@ -138,6 +168,7 @@ const leadershipCount = councilMembers.filter((member) => member.councilRole).le
         <div>
           <p class="eyebrow">Council composition</p>
           <h2 class="section-title">Members of the Scientific Council</h2>
+          <p class="section-text">On 17 November 2026, the general meeting of the Institute’s researchers approved the results of the Scientific Council election. A total of 94 of 101 researchers took part in the secret ballot, and 17 members were elected. The list below includes the elected members and three ex officio members under Article 10 of the Law of Ukraine on Scientific and Scientific-Technical Activity.</p>
         </div>
       </div>
 

@@ -103,13 +103,13 @@ const councilMembers = [
   },
   {
     name: 'Молтасов Андрій Валерійович',
-    profileSlug: 'moltasov',
+    profileSlug: null,
     title: 'доктор технічних наук',
     councilRole: '',
     elected: true
   },
   {
-    name: 'Остос Олександр Хосеєвич',
+    name: 'Остос Олександр Хосейович',
     profileSlug: 'ostos',
     title: 'доктор філософії',
     councilRole: 'голова ради молодих вчених',
@@ -205,7 +205,7 @@ const electedCount = councilMembers.filter((member) => member.elected).length;
             <div class="council-number">{String(index + 1).padStart(2, '0')}</div>
             <div class="council-card-body">
               {member.councilRole && <p class="council-role">{member.councilRole}</p>}
-              <h2><a class="card-link" href={`${base}/people/${member.profileSlug}/`}>{member.name}</a></h2>
+              <h2>{member.profileSlug ? (<a class="card-link" href={`${base}/people/${member.profileSlug}/`}>{member.name}</a>) : member.name}</h2>
               <p>{member.title}</p>
             </div>
           </article>

@@ -5,132 +5,154 @@ import { siteEn } from '../../data/site-en';
 const councilMembers = [
   {
     name: 'Volodymyr M. Nazarenko',
+    profileSlug: 'nazarenko',
     title: 'Academician of the NAS of Ukraine, Doctor of Technical Sciences',
     councilRole: 'Chair of the Scientific Council',
     elected: false
   },
   {
     name: 'Mykhailo F. Selivanov',
+    profileSlug: 'selivanov',
     title: 'Corresponding Member of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
     councilRole: 'Deputy Director for Research',
     elected: false
   },
   {
     name: 'Yurii V. Skosarenko',
+    profileSlug: 'skosarenko',
     title: 'Doctor of Technical Sciences',
     councilRole: 'Secretary of the Scientific Council',
     elected: false
   },
   {
     name: 'Yevhenii A. Storozhuk',
+    profileSlug: 'storozhuk',
     title: 'Corresponding Member of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
     councilRole: 'Deputy Director for Scientific and Organisational Affairs',
     elected: false
   },
   {
     name: 'Viacheslav L. Bogdanov',
+    profileSlug: 'bogdanov',
     title: 'Academician of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
     councilRole: '',
     elected: true
   },
   {
     name: 'Oleksandr M. Guz',
+    profileSlug: 'guz',
     title: 'Academician of the NAS of Ukraine, Doctor of Technical Sciences',
     councilRole: '',
     elected: true
   },
   {
     name: 'Oleksandr Ya. Grigorenko',
+    profileSlug: 'hryhorenko',
     title: 'Academician of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
     councilRole: '',
     elected: true
   },
   {
     name: 'Anatolii A. Martyniuk',
+    profileSlug: 'martyniuk-anatolii',
     title: 'Academician of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
     councilRole: '',
     elected: true
   },
   {
     name: 'Veniamin D. Kubenko',
+    profileSlug: 'kubenko',
     title: 'Academician of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
     councilRole: '',
     elected: true
   },
   {
     name: 'Jeremiah Rushchitsky',
+    profileSlug: 'rushchytskyi',
     title: 'Corresponding Member of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
     councilRole: '',
     elected: true
   },
   {
     name: 'Yaroslav O. Zhuk',
+    profileSlug: 'zhuk-yaroslav',
     title: 'Corresponding Member of the NAS of Ukraine, Doctor of Physical and Mathematical Sciences',
     councilRole: '',
     elected: true
   },
   {
     name: 'Oleksandr L. Kipnis',
+    profileSlug: 'kipnis',
     title: 'Doctor of Physical and Mathematical Sciences',
     councilRole: '',
     elected: true
   },
   {
     name: 'Andrii S. Kolyadiuk',
+    profileSlug: 'koliadiuk',
     title: 'Candidate of Technical Sciences',
     councilRole: '',
     elected: true
   },
   {
     name: 'Volodymyr A. Korieniev',
+    profileSlug: 'korenev',
     title: 'Deputy Director for General Affairs',
     councilRole: '',
     elected: true
   },
   {
     name: 'Andrii V. Moltasov',
+    profileSlug: null,
     title: 'Doctor of Technical Sciences',
     councilRole: '',
     elected: true
   },
   {
     name: 'Oleksandr Kh. Ostos',
+    profileSlug: 'ostos',
     title: 'Doctor of Philosophy',
     councilRole: 'Chair of the Council of Young Scientists',
     elected: true
   },
   {
     name: 'Serhii M. Sklepus',
+    profileSlug: 'sklepus',
     title: 'Doctor of Technical Sciences',
     councilRole: '',
     elected: true
   },
   {
     name: 'Neonila Ye. Tkachenko',
+    profileSlug: 'tkachenko-neonila',
     title: 'Candidate of Physical and Mathematical Sciences',
     councilRole: 'Chair of the Trade Union Committee',
     elected: true
   },
   {
     name: 'Anatolii S. Khoroshun',
+    profileSlug: 'khoroshun-anatolii',
     title: 'Doctor of Physical and Mathematical Sciences',
     councilRole: '',
     elected: true
   },
   {
     name: 'Vasyl M. Yurchuk',
+    profileSlug: 'yurchuk',
     title: 'Doctor of Physical and Mathematical Sciences',
     councilRole: '',
     elected: true
   },
   {
     name: 'Ihor V. Yanchevskyi',
+    profileSlug: 'yanchevskyi',
     title: 'Doctor of Physical and Mathematical Sciences',
     councilRole: '',
     elected: true
   }
 ];
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const electedCount = councilMembers.filter((member) => member.elected).length;
 ---
 
@@ -183,7 +205,7 @@ const electedCount = councilMembers.filter((member) => member.elected).length;
             <div class="council-number">{String(index + 1).padStart(2, '0')}</div>
             <div class="council-card-body">
               {member.councilRole && <p class="council-role">{member.councilRole}</p>}
-              <h2>{member.name}</h2>
+              <h2>{member.profileSlug ? (<a class="card-link" href={`${base}/en/people/${member.profileSlug}/`}>{member.name}</a>) : member.name}</h2>
               <p>{member.title}</p>
             </div>
           </article>

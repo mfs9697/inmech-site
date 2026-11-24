@@ -5,132 +5,154 @@ import { site } from '../data/site';
 const councilMembers = [
   {
     name: 'Назаренко Володимир Михайлович',
+    profileSlug: 'nazarenko',
     title: 'академік НАН України, доктор технічних наук',
     councilRole: 'голова Вченої ради',
     elected: false
   },
   {
     name: 'Селіванов Михайло Федорович',
+    profileSlug: 'selivanov',
     title: 'член-кореспондент НАН України, доктор фізико-математичних наук',
     councilRole: 'заступник директора з наукової роботи',
     elected: false
   },
   {
     name: 'Скосаренко Юрій Валентинович',
+    profileSlug: 'skosarenko',
     title: 'доктор технічних наук',
     councilRole: 'секретар Вченої ради',
     elected: false
   },
   {
     name: 'Сторожук Євген Анатолійович',
+    profileSlug: 'storozhuk',
     title: 'член-кореспондент НАН України, доктор фізико-математичних наук',
     councilRole: 'заступник директора з науково-організаційної роботи',
     elected: false
   },
   {
     name: 'Богданов Вячеслав Леонідович',
+    profileSlug: 'bogdanov',
     title: 'академік НАН України, доктор фізико-математичних наук',
     councilRole: '',
     elected: true
   },
   {
     name: 'Гузь Олександр Миколайович',
+    profileSlug: 'guz',
     title: 'академік НАН України, доктор технічних наук',
     councilRole: '',
     elected: true
   },
   {
     name: 'Григоренко Олександр Ярославович',
+    profileSlug: 'hryhorenko',
     title: 'академік НАН України, доктор фізико-математичних наук',
     councilRole: '',
     elected: true
   },
   {
     name: 'Мартинюк Анатолій Андрійович',
+    profileSlug: 'martyniuk-anatolii',
     title: 'академік НАН України, доктор фізико-математичних наук',
     councilRole: '',
     elected: true
   },
   {
     name: 'Кубенко Веніамін Дмитрович',
+    profileSlug: 'kubenko',
     title: 'академік НАН України, доктор фізико-математичних наук',
     councilRole: '',
     elected: true
   },
   {
     name: 'Рущицький Ярема Ярославович',
+    profileSlug: 'rushchytskyi',
     title: 'член-кореспондент НАН України, доктор фізико-математичних наук',
     councilRole: '',
     elected: true
   },
   {
     name: 'Жук Ярослав Олександрович',
+    profileSlug: 'zhuk-yaroslav',
     title: 'член-кореспондент НАН України, доктор фізико-математичних наук',
     councilRole: '',
     elected: true
   },
   {
     name: 'Кіпніс Олександр Леонідович',
+    profileSlug: 'kipnis',
     title: 'доктор фізико-математичних наук',
     councilRole: '',
     elected: true
   },
   {
     name: 'Колядюк Андрій Сергійович',
+    profileSlug: 'koliadiuk',
     title: 'кандидат технічних наук',
     councilRole: '',
     elected: true
   },
   {
     name: 'Корєнєв Володимир Антонович',
+    profileSlug: 'korenev',
     title: 'заступник директора із загальних питань',
     councilRole: '',
     elected: true
   },
   {
     name: 'Молтасов Андрій Валерійович',
+    profileSlug: 'moltasov',
     title: 'доктор технічних наук',
     councilRole: '',
     elected: true
   },
   {
     name: 'Остос Олександр Хосеєвич',
+    profileSlug: 'ostos',
     title: 'доктор філософії',
     councilRole: 'голова ради молодих вчених',
     elected: true
   },
   {
     name: 'Склепус Сергій Миколайович',
+    profileSlug: 'sklepus',
     title: 'доктор технічних наук',
     councilRole: '',
     elected: true
   },
   {
     name: 'Ткаченко Неоніла Єрмолаївна',
+    profileSlug: 'tkachenko-neonila',
     title: 'кандидат фізико-математичних наук',
     councilRole: 'голова профкому',
     elected: true
   },
   {
     name: 'Хорошун Анатолій Сергійович',
+    profileSlug: 'khoroshun-anatolii',
     title: 'доктор фізико-математичних наук',
     councilRole: '',
     elected: true
   },
   {
     name: 'Юрчук Василь Миколайович',
+    profileSlug: 'yurchuk',
     title: 'доктор фізико-математичних наук',
     councilRole: '',
     elected: true
   },
   {
     name: 'Янчевський Ігор Владиславович',
+    profileSlug: 'yanchevskyi',
     title: 'доктор фізико-математичних наук',
     councilRole: '',
     elected: true
   }
 ];
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const electedCount = councilMembers.filter((member) => member.elected).length;
 ---
 
@@ -183,7 +205,7 @@ const electedCount = councilMembers.filter((member) => member.elected).length;
             <div class="council-number">{String(index + 1).padStart(2, '0')}</div>
             <div class="council-card-body">
               {member.councilRole && <p class="council-role">{member.councilRole}</p>}
-              <h2>{member.name}</h2>
+              <h2><a class="card-link" href={`${base}/people/${member.profileSlug}/`}>{member.name}</a></h2>
               <p>{member.title}</p>
             </div>
           </article>

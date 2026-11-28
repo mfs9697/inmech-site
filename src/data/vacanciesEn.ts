@@ -47,6 +47,118 @@ const postdocRequirements = [
 ];
 
 export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [
+  {
+    "id": "2026-11-26-competition-20",
+    "date": "2026-11-26",
+    "year": 2026,
+    "orderNumber": "141/к",
+    "publicationDate": "2026-11-28",
+    "title": "Competition No. 141/к to Fill Vacant Research Positions",
+    "summary": "Competition for four research positions in the Institute departments (3.5 full-time equivalents).",
+    "positions": [
+      {
+        "title": "head of department — 1.0 FTE",
+        "departments": [
+          {
+            "title": "Department of Theory of Vibrations",
+            "href": "/en/departments/11-vibrations/"
+          }
+        ]
+      },
+      {
+        "title": "head of department — 1.0 FTE",
+        "departments": [
+          {
+            "title": "Department of Creep Mechanics",
+            "href": "/en/departments/08-creep/"
+          }
+        ]
+      },
+      {
+        "title": "leading research scientist — 1.0 FTE",
+        "departments": [
+          {
+            "title": "Department of Structural Mechanics of Thin-Walled Structures",
+            "href": "/en/departments/05-thin-walled-structures/"
+          }
+        ]
+      },
+      {
+        "title": "junior research scientist — 0.5 FTE",
+        "departments": [
+          {
+            "title": "Department of Computational Mechanics and Engineering",
+            "href": "/en/departments/03-computational-mechanics-engineering/"
+          }
+        ]
+      }
+    ],
+    "deadline": "30 calendar days from publication of the announcement — through 28 December 2026 inclusive.",
+    "requirements": [
+      "higher education in the relevant research field at the master's level or above;",
+      "research results corresponding to the level of the position;",
+      "for heads of department and the leading research scientist position: a Doctor of Sciences, PhD or Candidate of Sciences degree."
+    ],
+    "note": "Submit documents under clause 11 of the Institute's Regulations to 3 P. Nesterova St., Kyiv, 03057, Ukraine, or by email to inst_mech@inmech.kyiv.ua. Documents and enquiries are handled by Mykhailo F. Selivanov, Deputy Director for Research.",
+    "tracks": [
+      {
+        "id": "research-positions",
+        "label": "Research positions",
+        "title": "Competition to Fill Vacant Research Positions",
+        "positions": [
+          {
+            "title": "head of department — 1.0 FTE",
+            "departments": [
+              {
+                "title": "Department of Theory of Vibrations",
+                "href": "/en/departments/11-vibrations/"
+              }
+            ]
+          },
+          {
+            "title": "head of department — 1.0 FTE",
+            "departments": [
+              {
+                "title": "Department of Creep Mechanics",
+                "href": "/en/departments/08-creep/"
+              }
+            ]
+          },
+          {
+            "title": "leading research scientist — 1.0 FTE",
+            "departments": [
+              {
+                "title": "Department of Structural Mechanics of Thin-Walled Structures",
+                "href": "/en/departments/05-thin-walled-structures/"
+              }
+            ]
+          },
+          {
+            "title": "junior research scientist — 0.5 FTE",
+            "departments": [
+              {
+                "title": "Department of Computational Mechanics and Engineering",
+                "href": "/en/departments/03-computational-mechanics-engineering/"
+              }
+            ]
+          }
+        ],
+        "deadline": "30 calendar days from publication of the announcement — through 28 December 2026 inclusive.",
+        "deadlineDate": "2026-12-28",
+        "requirements": [
+          "higher education in the relevant research field at the master's level or above;",
+          "research results corresponding to the level of the position;",
+          "for heads of department and the leading research scientist position: a Doctor of Sciences, PhD or Candidate of Sciences degree."
+        ]
+      }
+    ],
+    "documents": [
+      {
+        "title": "Order No. 141/к of 26 November 2026 announcing the competition (including the competition committee; Ukrainian)",
+        "href": "/documents/vacancies/active/2026-11-26-competition-141k/order-competition.pdf"
+      }
+    ]
+  }
 ];
 
 const competitions: Omit<VacancyCompetition, 'documents'>[] = [

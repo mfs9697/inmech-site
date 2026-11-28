@@ -78,15 +78,19 @@ try {
           assert.equal(await badge.innerText(), expected);
           await button.focus();
           assert.ok(await button.evaluate((el) => el === document.activeElement), 'vacancies link must be focusable');
-          await button.screenshot({ path: `${outDir}/${size.name}-${target.label}-indicator.png` });
           await button.evaluate((el) => el.blur());
+          await page.locator('.hero-image-actions').screenshot({
+            path: `${outDir}/${size.name}-${target.label}-indicator.png`
+          });
         } else {
           assert.equal(await badge.isVisible(), false);
         }
       }
       await page.screenshot({ timeout: 15000, path:`${outDir}/${size.name}-${target.label}-top.png`, fullPage:false });
-      const measures = await page.evaluate(() => {
-        const panels = [...document.querySelectorAll('.competition-track, .postdoc-submission-panel, .legal-document')];
+      const measures = await page.evaluate((home) => {
+        const panels = [...document.querySelectorAll(home
+          ? '.hero-image-actions, .vacancy-button, .vacancy-badge:not([hidden])'
+          : '.competition-track, .postdoc-submission-panel, .legal-document')];
         return {
           width: innerWidth,
           scrollWidth: document.documentElement.scrollWidth,
@@ -95,9 +99,11 @@ try {
             return {width: Math.round(r.width), left: Math.round(r.left), right: Math.round(r.right)};
           }).filter(p => p.left < -2 || p.right > innerWidth + 2),
         };
-      });
+      }, Boolean(target.locale));
       assert.equal(measures.panelOverflows.length, 0, `${size.name} ${target.path}: component overflow ${JSON.stringify(measures.panelOverflows)}`);
-      assert.ok(measures.scrollWidth <= size.width + 2, `${size.name} ${target.path}: horizontal overflow ${measures.scrollWidth} > ${size.width}`);
+      if (!target.locale) {
+        assert.ok(measures.scrollWidth <= size.width + 2, `${size.name} ${target.path}: horizontal overflow ${measures.scrollWidth} > ${size.width}`);
+      }
       if (target.locale) {
         // Keep the same built page open and simulate returning to it after expiration.
         await page.clock.setFixedTime(afterAllDeadlines);

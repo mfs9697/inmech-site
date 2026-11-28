@@ -1,3 +1,4 @@
+import { competition141k } from './competition141k.ts';
 export type VacancyDocumentType = 'competition-order' | 'participant-order' | 'result-order';
 
 export interface VacancyDocument {
@@ -15,6 +16,7 @@ export interface VacancyPosition {
   title: string;
   departments?: VacancyDepartment[];
   count?: number;
+  fte?: number;
 }
 
 export interface VacancyCompetition {
@@ -116,6 +118,7 @@ const postdocRequirements = [
 ];
 
 export const activeVacancyAnnouncements: ActiveVacancyAnnouncement[] = [
+  competition141k('uk')
 ];
 
 const competitions = [

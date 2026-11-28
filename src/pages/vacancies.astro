@@ -145,7 +145,7 @@ const additionalScientificInfo = [
 
         <div class="vacancy-list">
           {activeVacancyAnnouncements.map((entry) => (
-            <article class="vacancy-card active-vacancy-card">
+            <article id={entry.id} class="vacancy-card active-vacancy-card">
               <div class="vacancy-date">
                 <time datetime={entry.date}>{formatDate.format(new Date(`${entry.date}T00:00:00`))}</time>
                 {entry.orderNumber && <span class="vacancy-order-number">Наказ № {entry.orderNumber}</span>}
@@ -283,7 +283,12 @@ const additionalScientificInfo = [
                   </div>
                 )}
 
-                <p class="active-announcement-note">{entry.note}</p>
+                <p class="active-announcement-note">
+                  {entry.note}
+                  {entry.tracks?.some((track) => track.id === 'research-staff') && (
+                    <>{' '}<a href="#staff-application-documents">Перелік документів і контакти</a>.</>
+                  )}
+                </p>
                 {entry.documents && entry.documents.length > 0 && (
                   <ul class="active-announcement-documents">
                     {entry.documents.map((document) => (
@@ -303,9 +308,10 @@ const additionalScientificInfo = [
 
   <section class="section vacancy-intro">
     <div class="container">
-      <div class="submission-panel">
+      <div id="staff-application-documents" class="submission-panel">
         <p class="eyebrow">Документи для участі</p>
         <h3>Документи для конкурсу на вакантні наукові посади</h3>
+        <p>Подавайте документи відповідно до пункту 11 <a href={withBase('/documents/postgraduate/regulations/staff-and-methodology/staff-competition-regulation-2021.pdf')}>Положення Інституту</a>.</p>
         <ol>
           {submissionDocuments.map((item) => (
             <li>
@@ -344,7 +350,7 @@ const additionalScientificInfo = [
           закінчення строку їх подання, залишаються без розгляду та кандидатові не повертаються.
         </p>
         <p>
-          Заяви та документи приймаються за адресою: вул. П. Нестерова, м. Київ, 03057, а також на електронну пошту
+          Заяви та документи приймаються за адресою: вул. П. Нестерова, 3, м. Київ, 03057, а також на електронну пошту
           <a href="mailto:inst_mech@inmech.kyiv.ua">inst_mech@inmech.kyiv.ua</a>. Для осіб, прийнятих на вакантні наукові посади за результатами
           конкурсу, Інститут житлом не забезпечує.
         </p>

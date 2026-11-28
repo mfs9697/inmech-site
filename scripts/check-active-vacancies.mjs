@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import { activeVacancyAnnouncements } from '../src/data/vacancies.ts';
 import { activeVacancyAnnouncementsEn } from '../src/data/vacanciesEn.ts';
 
@@ -32,7 +33,7 @@ function positionSignatures(positions, locale) {
     const departments = (position.departments ?? [])
       .map((department) => normalizeDepartment(department.href, locale) ?? '!invalid')
       .sort();
-    return String(position.count ?? 1) + ':' + (departments.join('|') || 'no-department');
+    return JSON.stringify([position.count ?? 1, position.fte ?? null, departments]);
   }).sort();
 }
 
@@ -56,6 +57,9 @@ function validatePositions(positions, locale, label, errors) {
     requireText(position.title, id + '.title', errors);
     if (position.count !== undefined && (!Number.isInteger(position.count) || position.count < 1)) {
       errors.push(id + ': count must be a positive integer');
+    }
+    if (position.fte !== undefined && (!Number.isFinite(position.fte) || position.fte <= 0 || position.fte > 1)) {
+      errors.push(id + ': FTE per position must be greater than 0 and at most 1');
     }
     const departments = position.departments ?? [];
     if (!Array.isArray(departments)) {
@@ -120,7 +124,7 @@ function validateAnnouncement(item, locale, errors, checkFiles) {
         errors.push(trackLabel + ': missing requirements');
       }
       validatePositions(track.positions, locale, trackLabel, errors);
-      if (track.deadlineDate !== undefined &&
+      if ((track.id !== 'postdoc' || track.deadlineDate !== undefined) &&
           (!isDate(track.deadlineDate) || track.deadlineDate < item.publicationDate)) {
         errors.push(trackLabel + ': invalid deadlineDate');
       }
@@ -138,8 +142,10 @@ function validateAnnouncement(item, locale, errors, checkFiles) {
     const paths = new Set();
     for (const document of item.documents) {
       requireText(document.title, label + '.document.title', errors);
+      const competitionOrder = `/vacancies/${item.id}/order-competition.pdf`;
       if (typeof document.href !== 'string' ||
-          !/^\/documents\/vacancies\/active\/[a-z0-9/-]+\.pdf$/.test(document.href)) {
+          (!/^\/documents\/vacancies\/active\/[a-z0-9/-]+\.pdf$/.test(document.href) &&
+            document.href !== competitionOrder)) {
         errors.push(label + ': unexpected document path ' + document.href);
         continue;
       }
@@ -149,8 +155,16 @@ function validateAnnouncement(item, locale, errors, checkFiles) {
         const filePath = path.join(publicRoot, document.href.slice(1));
         if (!existsSync(filePath)) {
           errors.push(label + ': missing local document ' + document.href);
-        } else if (readFileSync(filePath).subarray(0, 5).toString('ascii') !== '%PDF-') {
-          errors.push(label + ': file does not have a PDF header ' + document.href);
+        } else {
+          const pdf = readFileSync(filePath);
+          if (pdf.subarray(0, 5).toString('ascii') !== '%PDF-') {
+            errors.push(label + ': file does not have a PDF header ' + document.href);
+          }
+          if (item.orderNumber === '141/к' && document.href === competitionOrder &&
+              createHash('sha256').update(pdf).digest('hex') !==
+                'ffc5666f03b06a19d2c81b008164bca5c50c2819a6287d955788ff4285826894') {
+            errors.push(label + ': signed order differs from the original two-page PDF');
+          }
         }
       }
     }
@@ -242,6 +256,8 @@ function selfTest() {
     ([uk, en]) => { en[0].orderNumber = '118/k'; },
     ([uk, en]) => { en[0].publicationDate = '2026-10-22'; },
     ([uk]) => { uk[0].positions[0].count = 0; },
+    ([uk]) => { uk[0].positions[0].fte = 0.5; },
+    ([uk]) => { uk[0].tracks[0].deadlineDate = undefined; },
     ([uk, en]) => { en[0].documents[0].href = '/documents/vacancies/active/missing.pdf'; }
   ];
   for (const [index, mutation] of mutations.entries()) {

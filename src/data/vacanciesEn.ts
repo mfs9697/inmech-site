@@ -1,3 +1,4 @@
+import { competition141k } from './competition141k.ts';
 import type { ActiveVacancyAnnouncement, VacancyCompetition, VacancyDocument, VacancyDocumentType } from './vacancies';
 
 function documentsFor(id: string): VacancyDocument[] {
@@ -47,6 +48,7 @@ const postdocRequirements = [
 ];
 
 export const activeVacancyAnnouncementsEn: ActiveVacancyAnnouncement[] = [
+  competition141k('en')
 ];
 
 const competitions: Omit<VacancyCompetition, 'documents'>[] = [

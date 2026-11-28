@@ -3,6 +3,8 @@ import { getCollection } from 'astro:content';
 import { hasNewsScope } from '../utils/newsScopes';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HomeNewsBlock from '../components/HomeNewsBlock.astro';
+import HomeVacanciesButton from '../components/HomeVacanciesButton.astro';
+import { activeVacancyAnnouncements } from '../data/vacancies';
 import DepartmentCard from '../components/DepartmentCard.astro';
 import { site } from '../data/site';
 
@@ -64,7 +66,7 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
           <div class="hero-actions hero-image-actions">
             <a class="button primary" href={withBase('/departments/')}>Наукові відділи</a>
             <a class="button secondary" href={withBase('/news/')}>Останні новини</a>
-            <a class="button secondary" href={withBase('/vacancies/')}>Вакансії</a>
+            <HomeVacanciesButton locale="uk" href={withBase('/vacancies/')} announcements={activeVacancyAnnouncements} />
             <a class="button secondary" href={withBase('/ncutam/')}>Національний комітет України з теоретичної і прикладної механіки</a>
             <a class="button hero-election-button" href={withBase('/director-election/2026/')}>
               Архів виборів директора · 2026

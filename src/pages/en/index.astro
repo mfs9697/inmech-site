@@ -3,6 +3,8 @@ import { getCollection } from 'astro:content';
 import { hasNewsScope } from '../../utils/newsScopes';
 import BaseLayoutEn from '../../layouts/BaseLayoutEn.astro';
 import HomeNewsBlock from '../../components/HomeNewsBlock.astro';
+import HomeVacanciesButton from '../../components/HomeVacanciesButton.astro';
+import { activeVacancyAnnouncementsEn } from '../../data/vacanciesEn';
 import DepartmentCard from '../../components/DepartmentCard.astro';
 import { siteEn } from '../../data/site-en';
 
@@ -64,7 +66,7 @@ const groupedDepartments = [...departments.reduce((acc, entry) => {
           <div class="hero-actions hero-image-actions">
             <a class="button primary" href={withBase('/en/departments/')}>Research departments</a>
             <a class="button secondary" href={withBase('/en/news/')}>Latest news</a>
-            <a class="button secondary" href={withBase('/en/vacancies/')}>Vacancies</a>
+            <HomeVacanciesButton locale="en" href={withBase('/en/vacancies/')} announcements={activeVacancyAnnouncementsEn} />
             <a class="button secondary" href={withBase('/en/ncutam/')}>National Committee of Ukraine for Theoretical and Applied Mechanics</a>
             <a class="button hero-election-button" href={withBase('/en/director-election/2026/')}>
               Director election archive · 2026

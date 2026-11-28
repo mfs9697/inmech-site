@@ -1,6 +1,7 @@
 import { existsSync } from 'node:fs';
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
+import { activeVacancyAnnouncements } from '../src/data/vacancies.ts';
 
 const vacancyDirectory = path.resolve('public/vacancies');
 const requiredDocuments = [
@@ -178,6 +179,15 @@ function compareVacancyRecords(ukRecords, enRecords) {
 function checkDocuments(records, folders) {
   const failures = [];
   const recordIds = new Set(records.map((record) => record.id));
+  // Active orders are verified by check-active-vacancies; the three-document
+  // requirement still applies to every archived competition.
+  const activeOrderFolders = new Set(activeVacancyAnnouncements
+    .filter(({ id, documents }) => documents?.some(({ href }) => href === `/vacancies/${id}/order-competition.pdf`))
+    .map(({ id }) => id));
+
+  for (const id of activeOrderFolders) {
+    if (recordIds.has(id)) failures.push(`${id}: competition cannot be both active and archived.`);
+  }
 
   for (const record of records) {
     const folder = path.join(vacancyDirectory, record.id);
@@ -195,7 +205,7 @@ function checkDocuments(records, folders) {
   }
 
   for (const folder of folders) {
-    if (!recordIds.has(folder)) {
+    if (!recordIds.has(folder) && !activeOrderFolders.has(folder)) {
       failures.push(`public/vacancies/${folder}: folder is not referenced by the vacancy data.`);
     }
   }

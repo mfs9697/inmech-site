@@ -1,0 +1,56 @@
+---
+import type { ActiveVacancyAnnouncement } from '../data/vacancies';
+import { vacancyWindows } from '../utils/openVacancies';
+
+interface Props {
+  locale: 'uk' | 'en';
+  href: string;
+  announcements: ActiveVacancyAnnouncement[];
+}
+
+const { locale, href, announcements } = Astro.props;
+const windows = vacancyWindows(announcements);
+---
+
+<a class="button secondary vacancy-button" href={href}>
+  {locale === 'uk' ? 'Вакансії' : 'Vacancies'}
+  {windows.length > 0 && (
+    <span class="vacancy-badge" data-vacancy-windows={JSON.stringify(windows)} data-locale={locale} hidden></span>
+  )}
+</a>
+
+<script>
+  import { countOpenVacancies, openVacancyLabel } from '../utils/openVacancies';
+
+  for (const badge of document.querySelectorAll<HTMLElement>('[data-vacancy-windows]')) {
+    const windows = JSON.parse(badge.dataset.vacancyWindows!);
+    const locale = badge.dataset.locale === 'uk' ? 'uk' : 'en';
+    const update = () => {
+      const label = openVacancyLabel(countOpenVacancies(windows), locale);
+      badge.textContent = label;
+      badge.hidden = !label;
+    };
+
+    update();
+    window.addEventListener('pageshow', update);
+    document.addEventListener('visibilitychange', update);
+    window.setInterval(update, 60_000);
+  }
+</script>
+
+<style>
+  .vacancy-button {
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    text-align: center;
+  }
+
+  .vacancy-badge {
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #e5f3e9;
+    color: #195533;
+    font-size: 0.8em;
+    line-height: 1.4;
+  }
+</style>

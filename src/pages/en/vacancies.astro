@@ -145,7 +145,7 @@ const additionalScientificInfo = [
 
         <div class="vacancy-list">
           {activeVacancyAnnouncementsEn.map((entry) => (
-            <article class="vacancy-card active-vacancy-card">
+            <article id={entry.id} class="vacancy-card active-vacancy-card">
               <div class="vacancy-date">
                 <time datetime={entry.date}>{formatDate.format(new Date(`${entry.date}T00:00:00`))}</time>
                 {entry.orderNumber && <span class="vacancy-order-number">Order No. {entry.orderNumber}</span>}
@@ -283,7 +283,12 @@ const additionalScientificInfo = [
                   </div>
                 )}
 
-                <p class="active-announcement-note">{entry.note}</p>
+                <p class="active-announcement-note">
+                  {entry.note}
+                  {entry.tracks?.some((track) => track.id === 'research-staff') && (
+                    <>{' '}<a href="#staff-application-documents">Application checklist and contacts</a>.</>
+                  )}
+                </p>
                 {entry.documents && entry.documents.length > 0 && (
                   <ul class="active-announcement-documents">
                     {entry.documents.map((document) => (
@@ -303,9 +308,10 @@ const additionalScientificInfo = [
 
   <section class="section vacancy-intro">
     <div class="container">
-      <div class="submission-panel">
+      <div id="staff-application-documents" class="submission-panel">
         <p class="eyebrow">Documents for Participation</p>
         <h3>Documents for the competition to fill vacant research positions</h3>
+        <p>Submit documents in accordance with paragraph 11 of <a href={withBase('/documents/postgraduate/regulations/staff-and-methodology/staff-competition-regulation-2021.pdf')}>the Institute’s competition regulations</a>.</p>
         <ol>
           {submissionDocuments.map((item) => (
             <li>

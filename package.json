@@ -14,7 +14,7 @@
     "check:landmarks": "node scripts/check-main-landmarks.mjs",
     "check:links": "node scripts/check-internal-links.mjs --self-test && node scripts/check-internal-links.mjs",
     "check:search": "node scripts/check-search-index.mjs",
-    "check:vacancies": "node scripts/check-vacancy-archive.mjs && node scripts/check-active-vacancies.mjs --self-test",
+    "check:vacancies": "node scripts/check-vacancy-archive.mjs && node scripts/check-active-vacancies.mjs --self-test && node --test scripts/check-open-vacancies.test.mjs",
     "check:postdoc": "node scripts/check-postdoc-2025.mjs",
     "check:news-scopes": "node scripts/check-news-scopes.mjs",
     "check:f10-render": "node scripts/check-f10-catalog-render.mjs",
